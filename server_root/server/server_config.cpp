@@ -13,7 +13,7 @@ class ServerConfig {
     //  de comandos, para que puedas cambiar fácilmente la configuración sin tener que recompilar
     //  el código
     ServerConfig() {
-        std::string filename = "server/configuration.yaml";
+        std::string filename = "server_root/server/configuration.yaml";
         YAML::Node config = YAML::LoadFile(filename);
 
         port = config["port"].as<int>();
