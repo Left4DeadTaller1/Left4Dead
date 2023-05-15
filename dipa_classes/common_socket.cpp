@@ -1,23 +1,22 @@
 // "Copyright 2022 <GPL v2>";
 
-#include <stdio.h>
+#include <arpa/inet.h>
 #include <assert.h>
-#include <string.h>
 #include <errno.h>
-
+#include <netdb.h>
+#include <stdio.h>
+#include <string.h>
 #include <sys/socket.h>
 #include <sys/types.h>
-#include <arpa/inet.h>
-#include <netdb.h>
 #include <unistd.h>
 
-#include "./socket.h"
-#include "./resolver.h"
 #include "./liberror.h"
+#include "./resolver.h"
+#include "./socket.h"
 
 Socket::Socket(
-        const char *hostname,
-        const char *servname) {
+    const char *hostname,
+    const char *servname) {
     Resolver resolver(hostname, servname, false);
 
     int s = -1;
@@ -88,10 +87,10 @@ Socket::Socket(
         ::close(skt);
 
     throw LibError(
-            saved_errno,
-            "socket construction failed (connect to %s:%s)",
-            (hostname ? hostname : ""),
-            (servname ? servname : ""));
+        saved_errno,
+        "socket construction failed (connect to %s:%s)",
+        (hostname ? hostname : ""),
+        (servname ? servname : ""));
 }
 
 Socket::Socket(const char *servname) {
@@ -151,12 +150,12 @@ Socket::Socket(const char *servname) {
         ::close(skt);
 
     throw LibError(
-            saved_errno,
-            "socket construction failed (listen on %s)",
-            (servname ? servname : ""));
+        saved_errno,
+        "socket construction failed (listen on %s)",
+        (servname ? servname : ""));
 }
 
-Socket::Socket(Socket&& other) {
+Socket::Socket(Socket &&other) {
     /* Nos copiamos del otro socket... */
     this->skt = other.skt;
     this->closed = other.closed;
@@ -176,7 +175,7 @@ Socket::Socket(Socket&& other) {
     other.closed = true;
 }
 
-Socket& Socket::operator=(Socket&& other) {
+Socket &Socket::operator=(Socket &&other) {
     /* Si el usuario hace algo como tratar de moverse
      * a si mismo (`skt = skt;`) simplemente no hacemos
      * nada.
@@ -204,157 +203,156 @@ Socket& Socket::operator=(Socket&& other) {
 }
 
 int Socket::recvsome(
-      void *data,
-      unsigned int sz,
-      bool *was_closed) {
-  *was_closed = false;
-  int s = recv(this->skt,  reinterpret_cast<char*>(data), sz, 0);
-  if (s == 0) {
-    /*
-    * Puede ser o no un error, dependerá del protocolo.
-    * Alguno protocolo podría decir "se reciben datos hasta
-    * que la conexión se cierra" en cuyo caso el cierre del socket
-    * no es un error sino algo esperado.
-    * */
-    *was_closed = true;
-    return 0;
-  } else if (s == -1) {
-    /*
-    * 99% casi seguro que es un error real
-    * */
-    throw LibError(errno, "socket recv failed");
-  } else {
-    return s;
-  }
+    void *data,
+    unsigned int sz,
+    bool *was_closed) {
+    *was_closed = false;
+    int s = recv(this->skt, reinterpret_cast<char *>(data), sz, 0);
+    if (s == 0) {
+        /*
+         * Puede ser o no un error, dependerá del protocolo.
+         * Alguno protocolo podría decir "se reciben datos hasta
+         * que la conexión se cierra" en cuyo caso el cierre del socket
+         * no es un error sino algo esperado.
+         * */
+        *was_closed = true;
+        return 0;
+    } else if (s == -1) {
+        /*
+         * 99% casi seguro que es un error real
+         * */
+        throw LibError(errno, "socket recv failed");
+    } else {
+        return s;
+    }
 }
 
 int Socket::sendsome(
-      const void *data,
-      unsigned int sz,
-      bool *was_closed) {
-  *was_closed = false;
-  /*
-  * Cuando se hace un send, el sistema operativo puede aceptar
-  * la data pero descubrir luego que el socket fue cerrado
-  * por el otro endpoint quedando la data sin enviar.
-  *
-  * Esto se lo conoce como "tubería rota" o "broken pipe".
-  *
-  * En Linux, el sistema operativo envía una señal (`SIGPIPE`) que
-  * si no es manejada termina matando al proceso.
-  * Manejo de señales esta fuera del alcance de este proyecto.
-  *
-  * Por suerte si le pasamos a send el flag `MSG_NOSIGNAL`
-  * la señal `SIGPIPE` no es enviada y por ende no nos matara el proceso.
-  *
-  * Esta en nosotros luego hace el chequeo correspondiente
-  * (ver más abajo).
-  * */
-  int s = send(this->skt, (char*)data, sz, MSG_NOSIGNAL);
-  if (s == -1) {
+    const void *data,
+    unsigned int sz,
+    bool *was_closed) {
+    *was_closed = false;
     /*
-    * Este es un caso especial: cuando enviamos algo pero en el medio
-    * se detecta un cierre del socket no se sabe bien cuanto se logro
-    * enviar (y fue recibido por el peer) y cuanto se perdió.
-    *
-    * Este es el famoso broken pipe.
-    * */
-    if (errno == EPIPE) {
-      /*
-      * Puede o no ser un error (véase el comentario en `Socket::recvsome`)
-      * */
-      *was_closed = true;
-      return 0;
-    }
+     * Cuando se hace un send, el sistema operativo puede aceptar
+     * la data pero descubrir luego que el socket fue cerrado
+     * por el otro endpoint quedando la data sin enviar.
+     *
+     * Esto se lo conoce como "tubería rota" o "broken pipe".
+     *
+     * En Linux, el sistema operativo envía una señal (`SIGPIPE`) que
+     * si no es manejada termina matando al proceso.
+     * Manejo de señales esta fuera del alcance de este proyecto.
+     *
+     * Por suerte si le pasamos a send el flag `MSG_NOSIGNAL`
+     * la señal `SIGPIPE` no es enviada y por ende no nos matara el proceso.
+     *
+     * Esta en nosotros luego hace el chequeo correspondiente
+     * (ver más abajo).
+     * */
+    int s = send(this->skt, (char *)data, sz, MSG_NOSIGNAL);
+    if (s == -1) {
+        /*
+         * Este es un caso especial: cuando enviamos algo pero en el medio
+         * se detecta un cierre del socket no se sabe bien cuanto se logro
+         * enviar (y fue recibido por el peer) y cuanto se perdió.
+         *
+         * Este es el famoso broken pipe.
+         * */
+        if (errno == EPIPE) {
+            /*
+             * Puede o no ser un error (véase el comentario en `Socket::recvsome`)
+             * */
+            *was_closed = true;
+            return 0;
+        }
 
-    /* En cualquier otro caso supondremos un error
-    * y lanzamos una excepción.
-    * */
-    *was_closed = true;
-    throw LibError(errno, "socket send failed");
-  } else if (s == 0) {
-      /*
-      * Jamas debería pasar.
-      * */
-      assert(false);
-  } else {
-      return s; 
-  }
+        /* En cualquier otro caso supondremos un error
+         * y lanzamos una excepción.
+         * */
+        *was_closed = true;
+        throw LibError(errno, "socket send failed");
+    } else if (s == 0) {
+        /*
+         * Jamas debería pasar.
+         * */
+        assert(false);
+    } else {
+        return s;
+    }
 }
 
 int Socket::recvall(
-      void *data,
-      unsigned int sz,
-      bool *was_closed) {
-  unsigned int received = 0;
-  *was_closed = false;
+    void *data,
+    unsigned int sz,
+    bool *was_closed) {
+    unsigned int received = 0;
+    *was_closed = false;
 
-  while (received < sz) {
-    int s = recvsome(
-      (char*)data + received,
-      sz - received,
-      was_closed);
-    if (s <= 0) {
-      /*
-      * Si el socket fue cerrado (`s == 0`) o hubo un error
-      * `Socket::recvsome` ya debería haber seteado `was_closed`
-      * y haber notificado el error.
-      *
-      * Nosotros podemos entonces meramente
-      *  - lanzar excepción si recibimos algunos bytes pero no todos los pedidos
-      *  - propagar la excepción `Socket::recvsome` si esto falló.
-      *  - retornar end of stream (0) si es lo q recibimos de `Socket::recvsome`
-      * */
-      assert(s == 0);
-      if (received)
-        throw LibError(
-          EPIPE,
-          "socket received only %d of %d bytes",
-          received,
-          sz);
-      else
-          return 0;
-    } else {
-      /*
-      * OK, recibimos algo pero no necesariamente todo lo que
-      * esperamos. La condición del `while` checkea eso justamente.
-      * */
-      received += s;
+    while (received < sz) {
+        int s = recvsome(
+            (char *)data + received,
+            sz - received,
+            was_closed);
+        if (s <= 0) {
+            /*
+             * Si el socket fue cerrado (`s == 0`) o hubo un error
+             * `Socket::recvsome` ya debería haber seteado `was_closed`
+             * y haber notificado el error.
+             *
+             * Nosotros podemos entonces meramente
+             *  - lanzar excepción si recibimos algunos bytes pero no todos los pedidos
+             *  - propagar la excepción `Socket::recvsome` si esto falló.
+             *  - retornar end of stream (0) si es lo q recibimos de `Socket::recvsome`
+             * */
+            assert(s == 0);
+            if (received)
+                throw LibError(
+                    EPIPE,
+                    "socket received only %d of %d bytes",
+                    received,
+                    sz);
+            else
+                return 0;
+        } else {
+            /*
+             * OK, recibimos algo pero no necesariamente todo lo que
+             * esperamos. La condición del `while` checkea eso justamente.
+             * */
+            received += s;
+        }
     }
-  }
     return sz;
 }
 
-
 int Socket::sendall(
-      const void *data,
-      unsigned int sz,
-      bool *was_closed) {
-  unsigned int sent = 0;
-  *was_closed = false;
+    const void *data,
+    unsigned int sz,
+    bool *was_closed) {
+    unsigned int sent = 0;
+    *was_closed = false;
 
-  while (sent < sz) {
-    int s = sendsome(
-      (char*)data + sent,
-      sz - sent,
-      was_closed);
+    while (sent < sz) {
+        int s = sendsome(
+            (char *)data + sent,
+            sz - sent,
+            was_closed);
 
-    /* Véase los comentarios de `Socket::recvall` */
-    if (s <= 0) {
-      assert(s == 0);
-      if (sent)
-        throw LibError(
-          EPIPE,
-          "socket sent only %d of %d bytes",
-          sent,
-          sz);
-      else
-        return 0;
-    } else {
-      sent += s;
+        /* Véase los comentarios de `Socket::recvall` */
+        if (s <= 0) {
+            assert(s == 0);
+            if (sent)
+                throw LibError(
+                    EPIPE,
+                    "socket sent only %d of %d bytes",
+                    sent,
+                    sz);
+            else
+                return 0;
+        } else {
+            sent += s;
+        }
     }
-  }
-  return sz;
+    return sz;
 }
 
 Socket::Socket(int skt) {
@@ -363,46 +361,46 @@ Socket::Socket(int skt) {
 }
 
 Socket Socket::accept() {
-  /*
-    * `accept` nos bloqueara hasta que algún cliente se conecte a nosotros
-    * y la conexión se establezca.
-    *
-    * Una vez que eso suceda, `accept` retornara el file descriptor
-    * de un *nuevo* socket (`peer_skt`) que representara a la
-    * conexión establecida con *ese* cliente.
-    *
-    * En todo momento podemos seguir usando *nuestro* file descriptor
-    * (`this->skt`) para seguir haciendo más llamadas a `accept`
-    * independientemente de que enviemos/recibamos del socket `peer`.
-    * */
-  int peer_skt = ::accept(this->skt, nullptr, nullptr);
-  if (peer_skt == -1)
-    throw LibError(errno, "socket accept failed");
+    /*
+     * `accept` nos bloqueara hasta que algún cliente se conecte a nosotros
+     * y la conexión se establezca.
+     *
+     * Una vez que eso suceda, `accept` retornara el file descriptor
+     * de un *nuevo* socket (`peer_skt`) que representara a la
+     * conexión establecida con *ese* cliente.
+     *
+     * En todo momento podemos seguir usando *nuestro* file descriptor
+     * (`this->skt`) para seguir haciendo más llamadas a `accept`
+     * independientemente de que enviemos/recibamos del socket `peer`.
+     * */
+    int peer_skt = ::accept(this->skt, nullptr, nullptr);
+    if (peer_skt == -1)
+        throw LibError(errno, "socket accept failed");
 
-  /*
-    * `peer_skt` es un file descriptor crudo y no queremos
-    * que nuestro cliente manipule recursos crudos sino que
-    * los use a través de un TDA.
-    *
-    * Por eso creamos un `Socket` y lo pasamos por movimiento
-    * */
-  return Socket(peer_skt);
+    /*
+     * `peer_skt` es un file descriptor crudo y no queremos
+     * que nuestro cliente manipule recursos crudos sino que
+     * los use a través de un TDA.
+     *
+     * Por eso creamos un `Socket` y lo pasamos por movimiento
+     * */
+    return Socket(peer_skt);
 }
 
 void Socket::shutdown(int how) {
-  if (::shutdown(this->skt, how) == -1) {
-    throw LibError(errno, "socket shutdown failed");
-  }
+    if (::shutdown(this->skt, how) == -1) {
+        throw LibError(errno, "socket shutdown failed");
+    }
 }
 
 int Socket::close() {
-  this->closed = true;
-  return ::close(this->skt);
+    this->closed = true;
+    return ::close(this->skt);
 }
 
 Socket::~Socket() {
-  if (!this->closed) {
-    ::shutdown(this->skt, 2);
-    ::close(this->skt);
-  }
+    if (!this->closed) {
+        ::shutdown(this->skt, 2);
+        ::close(this->skt);
+    }
 }
