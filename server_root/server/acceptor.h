@@ -4,9 +4,9 @@
 #include <list>
 #include <memory>
 
-#include "dipa_classes/socket.h"
-#include "dipa_classes/thread.h"
-#include "server_root/client_connection/client_connection.h"
+#include "../client_connection/client_connection.h"
+#include "socket.h"
+#include "thread.h"
 
 class Acceptor : public Thread {
    public:

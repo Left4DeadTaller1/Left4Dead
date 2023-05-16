@@ -1,12 +1,14 @@
 #ifndef CLIENT_SENDER_H
 #define CLIENT_SENDER_H
 
-#include "dipa_classes/socket.h"
-#include "dipa_classes/thread.h"
+#include <atomic>
+
+#include "socket.h"
+#include "thread.h"
 
 class ClientSender : public Thread {
    private:
-    Socket skt;
+    Socket &skt;
     std::atomic<bool> alive;
     // Match match;
     // Protocol protocol;
@@ -20,7 +22,7 @@ class ClientSender : public Thread {
 
     bool isAlive();
 
-    ~Client();
+    ~ClientSender();
 };
 
 #endif  // CLIENT_SENDER_H

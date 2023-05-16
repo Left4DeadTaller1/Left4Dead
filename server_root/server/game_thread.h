@@ -1,7 +1,7 @@
 #ifndef GAME_THREAD_H_
 #define GAME_THREAD_H_
 
-#include "dipa_classes/thread.h"
+#include "thread.h"
 
 class GameThread : public Thread {
    private:
@@ -19,6 +19,6 @@ class GameThread : public Thread {
     // leaveGame();
 
     ~GameThread();
-}
+};
 
 #endif  // GAME_THREAD_H_

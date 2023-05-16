@@ -1,47 +1,69 @@
 #include "client_connection.h"
+#define MY_SHUT_RDWR 2
 
-Client::Client(Socket skt /*, Match *match*/) : skt(skt) /*, match(match)*/ {}
+ClientConnection::ClientConnection(Socket &&skt /*, Match *match*/) : skt(std::move(skt)), alive(false) /*, match(match)*/ {}
 
-void Client::run() {
-    // alive = true;
+void ClientConnection::run() {
     // menu();
     // inGame();
-
+    bool was_closed = false;
     try {
         while (!was_closed) {
             // inGame()
         }
-        is_dead_ = true;
+        alive = true;
     } catch (const std::exception &err) {
-        std::cerr << "Unexpected exception in client_connection_match: "
+        std::cerr << "Unexpected exception in ClientConnection_connection_match: "
                   << err.what() << "\n";
     } catch (...) {
-        std::cerr << "Unexpected exception in client_connection_match: <unknown>\n";
+        std::cerr << "Unexpected exception in ClientConnection_connection_match: <unknown>\n";
     }
 }
 
-void Client::menu() {
+void ClientConnection::menu() {
     try {
         // while (player in menu) {
         // protocol.receiveMenuInput()
         // }
     } catch (const std::exception &err) {
-        std::cerr << "Unexpected exception in client_connection_menu: "
+        std::cerr << "Unexpected exception in ClientConnection_connection_menu: "
                   << err.what() << "\n";
     } catch (...) {
-        std::cerr << "Unexpected exception in client_connection_menu: <unknown>\n";
+        std::cerr << "Unexpected exception in ClientConnection_connection_menu: <unknown>\n";
     }
 }
 
-void Client::inGame() {
+void ClientConnection::inGame() {
     try {
         // while (connected to game) {
-        //  protocol.receiveClientAction()
+        //  protocol.receiveClientConnectionAction()
         //}
     } catch (const std::exception &err) {
-        std::cerr << "Unexpected exception in client_connection_game: "
+        std::cerr << "Unexpected exception in ClientConnection_connection_game: "
                   << err.what() << "\n";
     } catch (...) {
-        std::cerr << "Unexpected exception in client_connection_game: <unknown>\n";
+        std::cerr << "Unexpected exception in ClientConnection_connection_game: <unknown>\n";
+    }
+}
+
+bool ClientConnection::isDead() {
+    return !alive;
+}
+
+void ClientConnection::kill() {
+    // keep_talking = false;
+    skt.shutdown(MY_SHUT_RDWR);
+    skt.close();
+
+    // sender.stop();
+
+    // sender.join();
+
+    alive = false;
+}
+
+ClientConnection::~ClientConnection() {
+    if (alive) {
+        kill();
     }
 }

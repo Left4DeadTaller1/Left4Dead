@@ -4,15 +4,12 @@
 #include <string>
 #include <vector>
 
-#include "common_liberror.h"
-#include "common_protocol.h"
-#include "common_queue.h"
-#include "common_socket.h"
-#include "common_thread.h"
-
-// /* ************************************************************************* *
-//  *Client User Api to type msgs in the terminal
-//  * ************************************************************************* */
+#include "liberror.h"
+// #include "protocol.h"
+#include "client_receiver.h"
+#include "queue.h"
+#include "socket.h"
+#include "thread.h"
 
 class Client {
    public:
@@ -28,7 +25,7 @@ class Client {
     ReceivingThread receivingThread;
     bool isConnected;
 
-    void processCommands();
+    void processUserInput();
 
     void leave();
 };

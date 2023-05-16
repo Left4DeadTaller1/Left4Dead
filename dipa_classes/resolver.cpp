@@ -1,3 +1,5 @@
+#include "resolver.h"
+
 #include <arpa/inet.h>
 #include <errno.h>
 #include <netdb.h>
@@ -7,9 +9,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "common_resolver.h"
-#include "cresolvererror.h"
 #include "liberror.h"
+#include "resolvererror.h"
 
 Resolver::Resolver(
     const char* hostname,

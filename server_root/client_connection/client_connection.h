@@ -1,10 +1,12 @@
 #ifndef CLIENT_CONNECTION_H
 #define CLIENT_CONNECTION_H
 
-#include "dipa_classes/socket.h"
-#include "dipa_classes/thread.h"
+#include <atomic>
 
-class Client : public Thread {
+#include "socket.h"
+#include "thread.h"
+
+class ClientConnection : public Thread {
    private:
     Socket skt;
     std::atomic<bool> alive;
@@ -14,15 +16,18 @@ class Client : public Thread {
     // ClientSender sender;
 
    public:
-    Client(Socket skt /*, Match *match*/);
+    bool isDead();
+    ClientConnection(Socket&& skt /*, Match *match*/);
 
     void run() override;
 
     void menu();  //  Client is in the Menu
+    void inGame();
 
     bool isAlive();
+    void kill();
 
-    ~Client();
+    ~ClientConnection();
 };
 
 #endif  // CLIENT_CONNECTION_H

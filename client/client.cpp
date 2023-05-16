@@ -1,6 +1,7 @@
 #include "client.h"
 
 Client::Client(const char* hostname, const char* servname) : socket(hostname, servname),
+                                                             receivingThread(socket),
                                                              isConnected(true) {}
 
 void Client::processUserInput() {
@@ -26,7 +27,9 @@ void Client::processUserInput() {
     }
 }
 
-Client::run() {
+void Client::run() {
     // methods to connect to menu
     // una vez ya en partida llamas a processUserInput() y lanzas a receiver;
 }
+
+Client::~Client() {}

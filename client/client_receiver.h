@@ -1,18 +1,15 @@
 #ifndef CLIENT_RECEIVER_H
 #define CLIENT_RECEIVER_H
 
-#include "dipa_classes/thread.h"
+#include "socket.h"
+#include "thread.h"
 
 class ReceivingThread : public Thread {
    public:
     // Receiver para el menu, pre-partida...
 
     // Receiver para cuando ya se esta en al partida
-    ReceivingThread(Socket& socket)
-        : socket(socket),
-          // serverMessagesQueue(serverMessagesQueue), queue de acciones
-          // protocol(protocol),
-          running(false);
+    ReceivingThread(Socket& socket);
 
     virtual void run() override;
 

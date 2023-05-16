@@ -1,20 +1,22 @@
 #include "client_sender.h"
 
-Client::Client(Socket skt /*, Match *match*/) : skt(skt) /*, match(match)*/ {}
+ClientSender::ClientSender(Socket skt /*, Match *match*/) : skt(skt), alive(false) /*, match(match)*/ {}
 
-void Client::menu();
+void ClientSender::menu() {}
 
-bool Client::isAlive() { return alive; }
+bool ClientSender::isAlive() { return alive; }
 
-void Client::run() {
+void ClientSender::run() {
+    alive = true;
     // menu()
     // ingame()
+    bool was_closed = false;
     try {
         while (!was_closed) {
             // match.pop
             // protocol.send
         }
-        is_dead_ = true;
+        alive = false;
     } catch (const std::exception &err) {
         std::cerr << "Unexpected exception in client_sender.cpp: "
                   << err.what() << "\n";
@@ -23,4 +25,6 @@ void Client::run() {
     }
 }
 
-~Client();
+ClientSender::~ClientSender() {
+    // Destructor implementation
+}

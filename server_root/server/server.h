@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 
-#include "dipa_classes/socket.h"
+#include "socket.h"
 // #include "protected_game_codes.h"
 
 class Server {

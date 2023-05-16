@@ -1,5 +1,7 @@
 #include "client_receiver.h"
 
+#include "liberror.h"
+
 ReceivingThread::ReceivingThread(Socket& socket)
     : socket(socket),
       // serverMessagesQueue(serverMessagesQueue), queue de acciones

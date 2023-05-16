@@ -1,8 +1,10 @@
+#include "acceptor.h"
+
 #include <memory>
 #include <utility>
 
-#include "common_liberror.h"
-#include "server_acceptor.h"
+#include "liberror.h"
+#define MY_SHUT_RDWR 2
 
 Acceptor::Acceptor(Socket& skt /*, ProtectedGameCodes& gameCodes*/)
     : skt(skt) /*, gameCodes(gameCodes), clients(), matchManager()*/ {}
@@ -12,7 +14,7 @@ void Acceptor::run() {
         while (true) {
             Socket clientSocket = skt.accept();
             auto th = std::make_shared<ClientConnection>(std::move(clientSocket) /*, gameCodes, matchManager*/);
-            th->startTalking();
+            // th->startTalking();
             clients.push_back(th);
             reap_dead();
             // Limpieza de clients viejos
@@ -30,8 +32,8 @@ void Acceptor::run() {
 void Acceptor::reap_dead() {
     // las funciones lambdas en c++ parecen re herejes viniendo de js
     clients.remove_if([](const std::shared_ptr<ClientConnection>& c) {
-        c->checkThreads();
-        if (c->is_dead()) {
+        // c->checkThreads();
+        if (c->isDead()) {
             c->kill();
             return true;
         }
@@ -47,7 +49,7 @@ void Acceptor::kill_all() {
 }
 
 void Acceptor::shutdown() {
-    skt.shutdown(SHUT_RDWR);
+    skt.shutdown(MY_SHUT_RDWR);
     skt.close();
 }
 
