@@ -5,10 +5,10 @@ CollisionDetector::CollisionDetector() {}
 CollisionDetector::~CollisionDetector() {}
 
 bool CollisionDetector::isColliding(Entity& e1, Entity& e2) {
-    if (e1.getX() < e2.getX() + e2.getWidth() &&
-        e1.getX() + e1.getWidth() > e2.getX() &&
-        e1.getY() < e2.getY() + e2.getHeight() &&
-        e1.getY() + e1.getHeight() > e2.getY()) {
+    if (e1.x < e2.x + e2.width &&
+        e1.x + e1.width > e2.x &&
+        e1.y < e2.y + e2.height &&
+        e1.y + e1.height > e2.y) {
         return true;
     }
     return false;
@@ -25,4 +25,22 @@ std::vector<Entity*> CollisionDetector::getCollisions(Entity& entity, std::vecto
     }
 
     return collisions;
+}
+
+std::vector<Entity*> CollisionDetector::getBeingShot(Shot& bullet, std::vector<Entity*>& entities) {
+    std::vector<Entity*> entitiesBeingShot;
+
+    for (Entity* entity : entities) {
+        if ((bullet.shootingLeft() && entity->x > bullet.xOrigin) ||
+            (!bullet.shootingLeft() && entity->x < bullet.xOrigin)) {
+            continue;
+        }
+
+        if ((entity->y < bullet.lowerY && bullet.lowerY < entity->y + entity->height) ||
+            (entity->y < bullet.upperY && bullet.upperY < entity->y + entity->height)) {
+            entitiesBeingShot.push_back(entity);
+        }
+    }
+
+    return entitiesBeingShot;
 }

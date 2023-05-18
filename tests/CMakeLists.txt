@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.1)  
-project(Left4Dead)  
 
 file(GLOB_RECURSE SERVER_TESTS_SRC CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/server_tests/*.cpp")
 file(GLOB_RECURSE SERVER_SRC CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/server_root/server/*.cpp")

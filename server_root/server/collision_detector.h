@@ -16,6 +16,7 @@
 #include <vector>
 
 #include "entity.h"
+#include "shot.h"
 
 class CollisionDetector {
    public:
@@ -24,6 +25,7 @@ class CollisionDetector {
 
     bool isColliding(Entity& e1, Entity& e2);
     std::vector<Entity*> getCollisions(Entity& entity, std::vector<Entity*>& entities);
+    std::vector<Entity*> getBeingShot(Shot& bullet, std::vector<Entity*>& entities);
 };
 
 #endif  // COLLISION_DETECTOR_H

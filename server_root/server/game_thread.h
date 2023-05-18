@@ -10,6 +10,7 @@ class GameThread : public Thread {
     // vector<queues><actions> clientsConnected(4) = [client1, ]
     // game Game;
     //  bool isInMenu;
+    // vector<shot> flyingBullets;
    public:
     explicit GameThread();
 
