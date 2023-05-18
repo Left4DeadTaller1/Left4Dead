@@ -14,7 +14,10 @@ string(REPLACE "-Werror" "" CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
 string(REPLACE "-Werror" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 
 # Add Google Test here
-add_subdirectory(googletest)  
+add_subdirectory(lib/googletest)
+
+# Add SDL here
+#add_subdirectory(lib/SDL)
 
 # Reset the flags back to original after Google Test is added
 set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS_OLD})
@@ -68,3 +71,18 @@ endif()
 
 # Include the tests directory
 add_subdirectory(tests)
+
+#SDL
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
+project(Left4Dead LANGUAGES CXX)
+
+find_package(SDL2pp REQUIRED)
+
+# add compilation flags
+set(CMAKE_CXX_STANDARD 17)
+add_definitions(-DDATA_PATH="${PROJECT_SOURCE_DIR}")
+include_directories(${SDL2PP_INCLUDE_DIRS})
+
+# define targets
+add_executable(render_main render_main.cc)
+target_link_libraries(render_main PUBLIC SDL2pp::SDL2pp)
