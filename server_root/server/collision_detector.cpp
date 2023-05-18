@@ -41,6 +41,6 @@ std::vector<Entity*> CollisionDetector::getBeingShot(Shot& bullet, std::vector<E
             entitiesBeingShot.push_back(entity);
         }
     }
-
+    // The logic for the dmg taken should be in the game class, this method just returns the entities that are being shot
     return entitiesBeingShot;
 }

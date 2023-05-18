@@ -1,3 +1,8 @@
+# Habilito la suite de tests
+enable_testing()
+
+# Busco el paquete de GTest, ver como instalarlo en la documentacion de la herramienta
+find_package(GTest REQUIRED)
 
 file(GLOB_RECURSE SERVER_TESTS_SRC CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/server_tests/*.cpp")
 file(GLOB_RECURSE SERVER_SRC CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/server_root/server/*.cpp")
@@ -19,7 +24,10 @@ ${CMAKE_SOURCE_DIR}/server_root/server
 ${CMAKE_SOURCE_DIR}/server_root/client_connection
 )
 
-target_link_libraries(server_tests gtest_main gtest pthread server_lib)
+target_link_libraries(server_tests GTest::GTest GTest::Main pthread server_lib)
+
+include(GoogleTest)
+gtest_discover_tests(server_tests)
 
 # file(GLOB_RECURSE CLIENT_TESTS_SRC CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/client_tests/*.cpp")
 # file(GLOB_RECURSE CCONNECTION_TESTS_SRC CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/cconnection_tests/*.cpp")

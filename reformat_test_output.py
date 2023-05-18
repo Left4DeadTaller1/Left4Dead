@@ -1,8 +1,8 @@
 import sys
 import re
 
-# run ""./build/tests/server_tests > test_output.txt" to get the output the text file
-# and then run "python3 reformat_test_output.py test_output.txt"
+# Step on the root folder and run "./build/tests/server_tests > server_test_output.txt" to get the output of the tests in a text file
+# and then run "python3 reformat_test_output.py server_test_output.txt"
 
 # ANSI escape codes for colorizing output.
 RED = "\033[1;31m"

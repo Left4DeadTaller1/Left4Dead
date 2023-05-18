@@ -53,8 +53,8 @@ _deps/
 .*.swp
 *~
 
-# Tests
-test_output.txt
+# Tests outputs
+server_test_output.txt
 
 # Build directory
 /build/
