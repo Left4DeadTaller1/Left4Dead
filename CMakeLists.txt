@@ -84,5 +84,4 @@ add_definitions(-DDATA_PATH="${PROJECT_SOURCE_DIR}")
 include_directories(${SDL2PP_INCLUDE_DIRS})
 
 # define targets
-add_executable(render_main render_main.cc)
-target_link_libraries(render_main PUBLIC SDL2pp::SDL2pp)
+target_link_libraries(client PUBLIC SDL2pp::SDL2pp)

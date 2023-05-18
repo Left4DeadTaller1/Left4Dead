@@ -11,6 +11,13 @@
 #include "socket.h"
 #include "thread.h"
 
+#include <exception>
+#include <SDL2pp/SDL2pp.hh>
+
+#define WIDTH_WINDOW 800
+#define HEIGHT_WINDOW 600
+using namespace SDL2pp;
+
 class Client {
    public:
     Client(const char* hostname, const char* servname);
@@ -28,6 +35,8 @@ class Client {
     void processUserInput();
 
     void leave();
+
+    int render();
 };
 
 #endif  // CLIENT_H
