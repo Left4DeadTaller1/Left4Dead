@@ -1,22 +1,25 @@
 #include "client_connection.h"
 #define MY_SHUT_RDWR 2
+constexpr size_t QUEUE_SIZE = 16000;
 
-ClientConnection::ClientConnection(Socket &&skt /*, Match *match*/) : skt(std::move(skt)), alive(false) /*, match(match)*/ {}
+ClientConnection::ClientConnection(Socket &&skt /*, MatchManager &matchManager*/)
+    : clientSocket(std::move(skt)),
+      keepTalking(true),
+      alive(true),
+      queue(QUEUE_SIZE),
+      sender(ClientSender(clientSocket, queue)),
+      receiver(ClientReceiver(clientSocket, queue /*, matchManager*/))
+/*matchManager(matchManager)*/ {}
 
-void ClientConnection::run() {
-    // menu();
-    // inGame();
-    bool was_closed = false;
-    try {
-        while (!was_closed) {
-            // inGame()
-        }
-        alive = true;
-    } catch (const std::exception &err) {
-        std::cerr << "Unexpected exception in ClientConnection_connection_match: "
-                  << err.what() << "\n";
-    } catch (...) {
-        std::cerr << "Unexpected exception in ClientConnection_connection_match: <unknown>\n";
+void ClientConnection::connectoToClient() {
+    // Iniciar los hilos sender y receiver
+    sender.start();
+    receiver.start();
+}
+
+void ClientConnection::checkThreads() {
+    if (!receiver.getIsRunning() || !sender.getIsRunning()) {
+        alive = false;
     }
 }
 
@@ -51,13 +54,17 @@ bool ClientConnection::isDead() {
 }
 
 void ClientConnection::kill() {
-    // keep_talking = false;
-    skt.shutdown(MY_SHUT_RDWR);
-    skt.close();
+    keepTalking = false;
+    clientSocket.shutdown(MY_SHUT_RDWR);
+    clientSocket.close();
 
-    // sender.stop();
+    sender.stop();
+    receiver.stop();
 
-    // sender.join();
+    queue.close();
+
+    sender.join();
+    receiver.join();
 
     alive = false;
 }

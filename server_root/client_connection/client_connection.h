@@ -1,30 +1,36 @@
 #ifndef CLIENT_CONNECTION_H
 #define CLIENT_CONNECTION_H
 
-#include <atomic>
-
+#include "client_receiver.h"
+#include "client_sender.h"
 #include "socket.h"
-#include "thread.h"
 
-class ClientConnection : public Thread {
+class ClientConnection {
    private:
-    Socket skt;
-    std::atomic<bool> alive;
+    Socket clientSocket;
+    bool keepTalking;
+    bool alive;
+
+    Queue<std::vector<uint8_t>> queue;  // to communicate with the threads
+    ClientSender sender;
+    ClientReceiver receiver;
+    //  MatchManager& matchManager; //reference to games Monitor
+
     // Match match;
     // Protocol protocol;
 
     // ClientSender sender;
 
    public:
-    bool isDead();
     ClientConnection(Socket&& skt /*, Match *match*/);
 
-    void run() override;
+    void connectoToClient();
+    void checkThreads();
 
     void menu();  //  Client is in the Menu
     void inGame();
 
-    bool isAlive();
+    bool isDead();
     void kill();
 
     ~ClientConnection();

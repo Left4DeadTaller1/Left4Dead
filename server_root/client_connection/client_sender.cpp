@@ -1,28 +1,45 @@
 #include "client_sender.h"
 
-ClientSender::ClientSender(Socket skt /*, Match *match*/) : skt(skt), alive(false) /*, match(match)*/ {}
+ClientSender::ClientSender(Socket &skt, Queue<std::vector<uint8_t>> &q)
+    : clientSocket(skt),
+      queue(q),
+      isRunning(false) {}
 
 void ClientSender::menu() {}
 
-bool ClientSender::isAlive() { return alive; }
-
 void ClientSender::run() {
-    alive = true;
-    // menu()
-    // ingame()
-    bool was_closed = false;
+    isRunning = true;
     try {
-        while (!was_closed) {
-            // match.pop
-            // protocol.send
+        while (isRunning) {
+            std::vector<uint8_t> message = queue.pop();
+            bool was_closed = false;
+            // clientSocket.sendall(message.data(), message.size(), &was_closed);
+
+            // Conection was interrupted
+            if (was_closed) {
+                break;
+            }
         }
-        alive = false;
-    } catch (const std::exception &err) {
-        std::cerr << "Unexpected exception in client_sender.cpp: "
-                  << err.what() << "\n";
+    } catch (const ClosedQueue &e) {
+        // The queue is closed, end the thread
+        std::cerr << "ClientSender: Queue is closed. Ending thread." << std::endl;
+    } catch (const std::exception &e) {
+        // Other standard exceptions
+        std::cerr << "ClientSender: Exception caught: " << e.what() << std::endl;
     } catch (...) {
-        std::cerr << "Unexpected exception in client_sender.cpp: <unknown>\n";
+        // Other unknown exceptions
+        std::cerr << "ClientSender: Unknown exception caught. Ending thread." << std::endl;
     }
+
+    isRunning = false;
+}
+
+bool ClientSender::getIsRunning() {
+    return isRunning;
+}
+
+void ClientSender::stop() {
+    isRunning = false;
 }
 
 ClientSender::~ClientSender() {

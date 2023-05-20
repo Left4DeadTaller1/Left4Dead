@@ -5,12 +5,21 @@ CollisionDetector::CollisionDetector() {}
 CollisionDetector::~CollisionDetector() {}
 
 bool CollisionDetector::isColliding(Entity& e1, Entity& e2) {
-    if (e1.x < e2.x + e2.width &&
-        e1.x + e1.width > e2.x &&
-        e1.y < e2.y + e2.height &&
-        e1.y + e1.height > e2.y) {
+    // discard cuz they are not in the same "depth"
+    if (e1.y + e1.height < e2.y || e1.y > e2.y + e2.height) {
+        return false;
+    }
+    // discard cuz they are not close in the x axis
+    if (e1.x + e1.width < e2.x || e1.x > e2.x + e2.width) {
+        return false;
+    }
+
+    // the rectangules are touching or overlapping
+    if (e1.x + e1.width >= e2.x && e1.x <= e2.x + e2.width &&
+        e1.y + e1.height >= e2.y && e1.y <= e2.y + e2.height) {
         return true;
     }
+
     return false;
 }
 
