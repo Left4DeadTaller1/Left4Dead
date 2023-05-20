@@ -3,14 +3,19 @@
 
 #include "queue.h"
 #include "thread.h"
+#include <SDL2pp/SDL2pp.hh>
+using namespace SDL2pp;
 
 class EventManager : public Thread {
     private:
     Queue<std::string>& queue_sender;
     Queue<std::string>& queue_render;
+    Window& window;
 
     public:
-    EventManager(Queue<std::string>& queue_sender, Queue<std::string>& queue_render);
+    EventManager(Queue<std::string>& queue_sender, 
+                Queue<std::string>& queue_render, 
+                Window& window);
 
     virtual void run() override;
 };

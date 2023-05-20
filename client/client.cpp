@@ -1,8 +1,13 @@
 #include "client.h"
 
-Client::Client(const char* hostname, const char* servname) : socket(hostname, servname),
-                                                             receivingThread(socket),
-                                                             isConnected(true) {}
+Client::Client(const char* hostname, const char* servname, Window& window) : 
+                                                            /*socket(hostname, servname),
+                                                             receivingThread(socket),*/
+                                                             isConnected(true),
+                                                             queue_sender(TAM_MAX_QUEUE),
+                                                             queue_render(TAM_MAX_QUEUE),
+                                                             window(window),
+                                                             eventManager(queue_sender, queue_render, window){}
 
 void Client::processUserInput() {
     // event instancia
@@ -28,40 +33,92 @@ void Client::processUserInput() {
 }
 
 void Client::run() {
+
+    eventManager.start();
+    render(window);
+    std::cout << "pasa start\n";
     // methods to connect to menu
     // una vez ya en partida llamas a processUserInput() y lanzas a receiver;
 }
 
-int Client::render(){
-    // Initialize SDL library
-	SDL sdl(SDL_INIT_VIDEO);
+void Client::DrawSoldier(Renderer& renderer, Texture& soldier, int textureWidth, int textureHeight){
+    std::cout << "textureWidth: " << textureWidth << "\n";
+    std::cout << "textureHeight: " << textureHeight << "\n";
 
-	// Create main window: 640x480 dimensions, resizable, "SDL2pp demo" title
-	Window window("SDL2pp demo",
-			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			WIDTH_WINDOW, HEIGHT_WINDOW,
-			SDL_WINDOW_RESIZABLE);
+    renderer.Copy(
+        soldier,
+        Rect(0, 0, textureWidth / 7, textureHeight),
+        Rect(0, 600, 150, 150)
+    );
+    renderer.Copy(
+        soldier,
+        Rect((textureWidth / 7), 0, textureWidth / 7, textureHeight),
+        Rect((textureWidth / 7), 600, 150, 150)
+    );
+    renderer.Copy(
+        soldier,
+        Rect((textureWidth / 7) * 2, 0, textureWidth / 7, textureHeight),
+        Rect((textureWidth / 7) * 2, 600, 150, 150)
+    );
+    renderer.Copy(
+        soldier,
+        Rect((textureWidth / 7) * 3, 0, textureWidth / 7, textureHeight),
+        Rect((textureWidth / 7) * 3, 600, 150, 150)
+    );
+    renderer.Copy(
+        soldier,
+        Rect((textureWidth / 7) * 4, 0, textureWidth / 7, textureHeight),
+        Rect((textureWidth / 7) * 4, 600, 150, 150)
+    );
+    renderer.Copy(
+        soldier,
+        Rect((textureWidth / 7) * 5, 0, textureWidth / 7, textureHeight),
+        Rect((textureWidth / 7) * 5, 600, 150, 150)
+    );
+    renderer.Copy(
+        soldier,
+        Rect((textureWidth / 7) * 6, 0, textureWidth / 7, textureHeight),
+        Rect((textureWidth / 7) * 6, 600, 150, 150)
+    );
+}
 
-	// Create accelerated video renderer with default driver
-	Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
+void Client::DrawBackground(Renderer& renderer, Texture& background){
+    renderer.Copy(background);
+}
 
-	// Load sprites image as a new texture
-	Texture war(renderer, DATA_PATH "/resources/backgrounds/War1/Bright/war.png");
+int Client::render(Window& window){
+    Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-	// Clear screen
-	renderer.Clear();
+    renderer.Clear();
 
-	// Render our image, stretching it to the whole window
-	renderer.Copy(war);
+    Texture soldier1_walk(renderer, DATA_PATH "/client/resources/Soldier_1/Walk.png");
+    Texture background1_war(renderer, DATA_PATH "/client/resources/backgrounds/War1/Bright/War.png");
 
-	// Show rendered frame
-	renderer.Present();
+    SDL_Texture* sdlTexture = soldier1_walk.Get();
+    int textureWidth, textureHeight;
+    SDL_QueryTexture(sdlTexture, NULL, NULL, &textureWidth, &textureHeight);
 
-	// 5 second delay
-	SDL_Delay(5000);
+    Client::DrawBackground(renderer, background1_war);
+    Client::DrawSoldier(renderer, soldier1_walk, textureWidth, textureHeight);
 
-	// Here all resources are automatically released and library deinitialized
+    renderer.Present();
+
+	while (true) {
+		SDL_Event event;
+		while (SDL_WaitEvent(&event)) {
+			if (event.type == SDL_QUIT) {
+				return 0;
+			} else if (event.type == SDL_KEYDOWN) {
+				switch (event.key.keysym.sym) {
+				case SDLK_ESCAPE: case SDLK_q:
+					return 0;
+				}
+			}
+		}
+	}
 	return 0;
 }
 
-Client::~Client() {}
+Client::~Client() {
+    eventManager.join();
+}

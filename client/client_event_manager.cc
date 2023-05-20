@@ -2,40 +2,62 @@
 #include <iostream>
 #include <exception>
 
-#include <SDL2pp/SDL2pp.hh>
-
-EventManager::EventManager(Queue<std::string>& queue_sender, Queue<std::string>& queue_render):
-    queue_sender(queue_sender), queue_render(queue_render) {}
-
-using namespace SDL2pp;
+EventManager::EventManager(Queue<std::string>& queue_sender, 
+							Queue<std::string>& queue_render,
+							Window& window):
+    						queue_sender(queue_sender), 
+							queue_render(queue_render),
+							window(window) {}
 
 void EventManager::run() { try {
+
 	while (true) {
+
 		SDL_Event event;
-		while (SDL_WaitEvent(&event)) {
+		//con SDL_WaitEvent(&event) algunos eventos no los registra
+		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT) {
 				return;
 			} else if (event.type == SDL_KEYDOWN) {
 				switch (event.key.keysym.sym) {
-				case SDLK_ESCAPE: case SDLK_q:
-					return;
-				case SDLK_RIGHT: 
-				std::cout << "entra a apreto flecha para la derecha\n";
+					case SDLK_ESCAPE: case SDLK_q:
+						return;
+					case SDLK_RIGHT: 
+						std::cout << "entra a flecha derecha\n";
+						//queue_sender.push(move())
+						break;
+					case SDLK_LEFT:
+						std::cout << "entra a flecha izquierda\n";
+						break;
+					case SDLK_UP:
+						std::cout << "entra a flecha arriba\n";
+						break;
+					case SDLK_DOWN:
+						std::cout << "entra a flecha abajo\n";
+						break;
 				}
 			} else if (event.type == SDL_KEYUP) {
 				switch (event.key.keysym.sym) {
-				case SDLK_RIGHT: 
-				std::cout << "entra a solto flecha para la derecha\n";
+					case SDLK_RIGHT: 
+						std::cout << "sale a flecha derecha\n";
+						break;
+					case SDLK_LEFT:
+						std::cout << "sale a flecha izquierda\n";
+						break;
+					case SDLK_UP:
+						std::cout << "sale a flecha arriba\n";
+						break;
+					case SDLK_DOWN:
+						std::cout << "sale a flecha abajo\n";
+						break;
 				}
 			}
 		}
-		SDL_Delay(1);
 	}
-    } catch (const std::exception& e) {
-        std::cerr << "An exception occurred in Acceptor::run(): " << e.what() << std::endl;
+	} catch (const std::exception& e) {
+        std::cerr << "An exception occurred in EventManager::run(): " << e.what() << std::endl;
     } catch (...) {
-        // unknown exception
-        std::cerr << "An unknown exception occurred in Acceptor::run()" << std::endl;
+        std::cerr << "An unknown exception occurred in EventManager::run()" << std::endl;
     }
 }
 

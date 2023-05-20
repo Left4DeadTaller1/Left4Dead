@@ -85,3 +85,4 @@ include_directories(${SDL2PP_INCLUDE_DIRS})
 
 # define targets
 target_link_libraries(client PUBLIC SDL2pp::SDL2pp)
+
