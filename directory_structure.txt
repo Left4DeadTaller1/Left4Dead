@@ -1,0 +1,55 @@
+server_root
+├── client_connection
+│   ├── client_connection.cpp
+│   ├── client_connection.h
+│   ├── client_receiver.cpp
+│   ├── client_receiver.h
+│   ├── client_sender.cpp
+│   └── client_sender.h
+├── server
+│   ├── acceptor.cpp
+│   ├── acceptor.h
+│   ├── collision_detector.cpp
+│   ├── collision_detector.h
+│   ├── configuration.yaml
+│   ├── entity.cpp
+│   ├── entity.h
+│   ├── game_thread.cpp
+│   ├── game_thread.h
+│   ├── server.cpp
+│   ├── server.h
+│   ├── server_config.cpp
+│   ├── server_main.cpp
+│   ├── shot.cpp
+│   ├── shot.h
+│   ├── zombie.cpp
+│   └── zombie.h
+└── server_documentation.md
+dipa_classes
+├── common_liberror.cpp
+├── common_socket.cpp
+├── liberror.h
+├── queue.h
+├── resolver.cpp
+├── resolver.h
+├── resolvererror.cpp
+├── resolvererror.h
+├── socket.h
+└── thread.h
+client
+├── client.cpp
+├── client.h
+├── client_documentation.md
+├── client_event_manager.cc
+├── client_event_manager.h
+├── client_main.cpp
+├── client_receiver.cpp
+└── client_receiver.h
+tests
+├── CMakeLists.txt
+└── server_tests
+    ├── collisions_tests.cpp
+    ├── entity_tests.cpp
+    └── main_tests.cpp
+
+1 directory, 4 files

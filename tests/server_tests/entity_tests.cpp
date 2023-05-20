@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../../server_root/server/entity.h"
+#include "entity.h"
 
 TEST(EntityTest, Initialization) {
     //     Entity e(10, 20, 30, 40);

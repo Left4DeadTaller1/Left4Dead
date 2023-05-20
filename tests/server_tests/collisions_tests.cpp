@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "../../server_root/server/collision_detector.h"
-#include "../../server_root/server/entity.h"
-#include "../../server_root/server/shot.h"
+#include "collision_detector.h"
+#include "entity.h"
+#include "shot.h"
 
 TEST(CollisionDetectorTest, IsColliding) {
     CollisionDetector detector;
