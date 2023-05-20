@@ -3,15 +3,15 @@
 #include <chrono>
 #include <thread>
 // 1000 ms / 30 FPS = 33.3 ms per frame
-#define MS_PER_FRAME 33.3
+#define MS_PER_FRAME 33
 
 Game::Game(int idGame, std::vector<Player*>& players) : idGame(idGame),
                                                         gameRunning(false) {
     // We add the players to the entities vector
     for (auto& player : players) {
-        entities.push_back(std::unique_ptr<Entity>(player));
+        entities.push_back(std::make_shared<Player>(*player));
     }
-};
+}
 
 void Game::startGameLoop() {
     gameRunning = true;
@@ -25,10 +25,10 @@ void Game::startGameLoop() {
         // sendState();     // send the new state to the clients
 
         auto end = std::chrono::steady_clock::now();
-        auto elapsed = end - start;
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-        if (elapsed < MS_PER_UPDATE) {
-            std::this_thread::sleep_for(MS_PER_UPDATE - elapsed);
+        if (elapsed.count() < MS_PER_FRAME) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(MS_PER_FRAME) - elapsed);
         }
     }
 

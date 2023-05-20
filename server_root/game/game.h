@@ -1,6 +1,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#include <memory>
 #include <vector>
 
 #include "entity.h"
@@ -10,7 +11,7 @@ class Game {
    private:
     int idGame;
     bool gameRunning;
-    std::vector<std::unique_ptr<Entity>> entities;
+    std::vector<std::shared_ptr<Entity>> entities;
 
    public:
     Game(int idGame, std::vector<Player*>& players);

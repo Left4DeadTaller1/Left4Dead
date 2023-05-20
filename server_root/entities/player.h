@@ -3,15 +3,14 @@
 
 #include <iostream>
 
-class Player {
-    private:
-    int posx;
-    int posy;
+#include "entity.h"
 
-    public:
-    Player(int posxInicial, int posyInicial);
+class Player : public Entity {
+   private:
+   public:
+    Player(int xPosition, int yPosition, int width, int height);
 
     void move(int deltaX, int deltaY);
 };
 
-#endif //PLAYER_H_
+#endif  // PLAYER_H_

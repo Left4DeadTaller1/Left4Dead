@@ -1,10 +1,10 @@
 #include "player.h"
 
-Player::Player(int posxInicial, int posyInicial): posx(posxInicial), 
-                                        posy(posyInicial) {}
+Player::Player(int xPosition, int yPosition, int width, int height)
+    : Entity(xPosition, yPosition, width, height) {}
 
-void Player::move(int deltaX, int deltaY){
-    //restricciones de movimento
-    posx += deltaX;
-    posy += deltaY;
+void Player::move(int deltaX, int deltaY) {
+    // restricciones de movimento
+    x += deltaX;
+    y += deltaY;
 }
