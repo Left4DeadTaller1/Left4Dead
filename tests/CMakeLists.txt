@@ -7,9 +7,10 @@ find_package(GTest REQUIRED)
 # Get all source files
 file(GLOB_RECURSE SERVER_SRC CONFIGURE_DEPENDS 
     "${CMAKE_SOURCE_DIR}/server_root/server/*.cpp"
-    "${CMAKE_SOURCE_DIR}/server_root/server/entities/*.cpp"
+    "${CMAKE_SOURCE_DIR}/server_root/entities/*.cpp"
     "${CMAKE_SOURCE_DIR}/server_root/server/configuration/*.cpp"
     "${CMAKE_SOURCE_DIR}/server_root/client_connection/*.cpp"
+    "${CMAKE_SOURCE_DIR}/server_root/server/game/*.cpp"
     "${CMAKE_SOURCE_DIR}/dipa_classes/*.cpp"
 )
 
@@ -27,8 +28,9 @@ target_include_directories(server_tests
     PRIVATE 
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/server_root/client_connection
-    ${CMAKE_SOURCE_DIR}/server_root/server/entities
+    ${CMAKE_SOURCE_DIR}/server_root/entities
     ${CMAKE_SOURCE_DIR}/server_root/server/configuration
+    ${CMAKE_SOURCE_DIR}/server_root/server/game
 )
 
 # Link the GTest libraries and pthread

@@ -1,15 +1,15 @@
 #ifndef ACTION_H_
 #define ACTION_H_
 
-#include "game_state.h"
+#include "game.h"
 
 class Action {
-    public:
-        Action(void){}
+   public:
+    Action(void) {}
 
-        virtual void run(GameState& gameState) = 0;
+    virtual void run(Game& Game) = 0;
 
-        virtual ~Action() {}
+    virtual ~Action() {}
 };
 
 #endif

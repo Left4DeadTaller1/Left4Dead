@@ -6,24 +6,34 @@ server_root
 │   ├── client_receiver.h
 │   ├── client_sender.cpp
 │   └── client_sender.h
-├── server
-│   ├── acceptor.cpp
-│   ├── acceptor.h
+├── entities
 │   ├── collision_detector.cpp
 │   ├── collision_detector.h
-│   ├── configuration.yaml
 │   ├── entity.cpp
 │   ├── entity.h
-│   ├── game_thread.cpp
-│   ├── game_thread.h
-│   ├── server.cpp
-│   ├── server.h
-│   ├── server_config.cpp
-│   ├── server_main.cpp
+│   ├── player.cpp
+│   ├── player.h
 │   ├── shot.cpp
 │   ├── shot.h
 │   ├── zombie.cpp
 │   └── zombie.h
+├── game
+│   ├── action.h
+│   ├── game.cpp
+│   ├── game.h
+│   ├── game_thread.cpp
+│   ├── game_thread.h
+│   ├── move.cpp
+│   └── move.h
+├── server
+│   ├── acceptor.cpp
+│   ├── acceptor.h
+│   ├── configuration
+│   │   ├── configuration.yaml
+│   │   └── server_config.cpp
+│   ├── server.cpp
+│   ├── server.h
+│   └── server_main.cpp
 └── server_documentation.md
 dipa_classes
 ├── common_liberror.cpp
@@ -44,7 +54,208 @@ client
 ├── client_event_manager.h
 ├── client_main.cpp
 ├── client_receiver.cpp
-└── client_receiver.h
+├── client_receiver.h
+└── resources
+    ├── Jumper
+    │   ├── Attack_1.png
+    │   ├── Attack_2.png
+    │   ├── Attack_3.png
+    │   ├── Dead.png
+    │   ├── Eating.png
+    │   ├── Hurt.png
+    │   ├── Idle.png
+    │   ├── Jump.png
+    │   ├── Run.png
+    │   └── Walk.png
+    ├── Soldier_1
+    │   ├── Attack.png
+    │   ├── Dead.png
+    │   ├── Explosion.png
+    │   ├── Grenade.png
+    │   ├── Hurt.png
+    │   ├── Idle.png
+    │   ├── Recharge.png
+    │   ├── Run.png
+    │   ├── Shot_1.png
+    │   ├── Shot_2.png
+    │   └── Walk.png
+    ├── Soldier_2
+    │   ├── Attack.png
+    │   ├── Dead.png
+    │   ├── Grenade.png
+    │   ├── Hurt.png
+    │   ├── Idle.png
+    │   ├── Recharge.png
+    │   ├── Run.png
+    │   ├── Shot_1.png
+    │   ├── Shot_2.png
+    │   └── Walk.png
+    ├── Soldier_3
+    │   ├── Attack.png
+    │   ├── Dead.png
+    │   ├── Grenade.png
+    │   ├── Hurt.png
+    │   ├── Idle.png
+    │   ├── Recharge.png
+    │   ├── Run.png
+    │   ├── Shot_1.png
+    │   ├── Shot_2.png
+    │   ├── Smoke.png
+    │   └── Walk.png
+    ├── Spear
+    │   ├── Attack_1.png
+    │   ├── Attack_2.png
+    │   ├── Dead.png
+    │   ├── Fall.png
+    │   ├── Hurt.png
+    │   ├── Idle.png
+    │   ├── Protect.png
+    │   ├── Run+attack.png
+    │   ├── Run.png
+    │   └── Walk.png
+    ├── Venom
+    │   ├── Attack1.png
+    │   ├── Attack1a.png
+    │   ├── Attack2.png
+    │   ├── Dead.png
+    │   ├── Hurt.png
+    │   ├── Idle.png
+    │   ├── Jump.png
+    │   ├── Run.png
+    │   └── Walk.png
+    ├── Witch
+    │   ├── Attack_1.png
+    │   ├── Attack_2.png
+    │   ├── Attack_3.png
+    │   ├── Dead.png
+    │   ├── Hurt.png
+    │   ├── Idle.png
+    │   ├── Jump.png
+    │   ├── Run.png
+    │   ├── Scream.png
+    │   └── Walk.png
+    ├── Zombie
+    │   ├── Attack_1.png
+    │   ├── Attack_2.png
+    │   ├── Attack_3.png
+    │   ├── Bite.png
+    │   ├── Dead.png
+    │   ├── Hurt.png
+    │   ├── Idle.png
+    │   ├── Jump.png
+    │   ├── Run.png
+    │   └── Walk.png
+    └── backgrounds
+        ├── War1
+        │   ├── Bright
+        │   │   ├── War.png
+        │   │   ├── crater1.png
+        │   │   ├── crater2.png
+        │   │   ├── crater3.png
+        │   │   ├── fence.png
+        │   │   ├── house3.png
+        │   │   ├── houses1.png
+        │   │   ├── houses2.png
+        │   │   ├── road.png
+        │   │   ├── ruins.png
+        │   │   ├── sky.png
+        │   │   └── sun.png
+        │   └── Pale
+        │       ├── War.png
+        │       ├── crater1.png
+        │       ├── crater2.png
+        │       ├── crater3.png
+        │       ├── fence.png
+        │       ├── house3.png
+        │       ├── houses1.png
+        │       ├── houses2.png
+        │       ├── road.png
+        │       ├── ruins.png
+        │       ├── sky.png
+        │       └── sun.png
+        ├── War2
+        │   ├── Bright
+        │   │   ├── War2.png
+        │   │   ├── cracks1.png
+        │   │   ├── cracks2.png
+        │   │   ├── houses1.png
+        │   │   ├── houses2.png
+        │   │   ├── houses3.png
+        │   │   ├── houses4.png
+        │   │   ├── road.png
+        │   │   ├── sky.png
+        │   │   └── wall.png
+        │   └── Pale
+        │       ├── War2.png
+        │       ├── cracks1.png
+        │       ├── cracks2.png
+        │       ├── houses1.png
+        │       ├── houses2.png
+        │       ├── houses3.png
+        │       ├── houses4.png
+        │       ├── road.png
+        │       ├── sky.png
+        │       └── wall.png
+        ├── War3
+        │   ├── Bright
+        │   │   ├── War3.png
+        │   │   ├── bricks1.png
+        │   │   ├── bricks2.png
+        │   │   ├── bricks3.png
+        │   │   ├── fence.png
+        │   │   ├── house&fountain.png
+        │   │   ├── houses2.png
+        │   │   ├── houses3.png
+        │   │   ├── road.png
+        │   │   ├── sky.png
+        │   │   ├── sky_sun.png
+        │   │   └── trees.png
+        │   └── Pale
+        │       ├── War3.png
+        │       ├── bricks1.png
+        │       ├── bricks2.png
+        │       ├── bricks3.png
+        │       ├── fence.png
+        │       ├── house&fountain.png
+        │       ├── houses2.png
+        │       ├── houses3.png
+        │       ├── road.png
+        │       ├── sky.png
+        │       ├── sky_sun.png
+        │       └── trees.png
+        └── War4
+            ├── 0.png
+            ├── 00.png
+            ├── 000.png
+            ├── 0000.png
+            ├── Bright
+            │   ├── Moon_asset.png
+            │   ├── War4.png
+            │   ├── houses1.png
+            │   ├── houses2.png
+            │   ├── houses3.png
+            │   ├── houses4.png
+            │   ├── moon.png
+            │   ├── road.png
+            │   ├── sky.png
+            │   ├── wall.png
+            │   ├── wheels.png
+            │   ├── wheels2.png
+            │   └── wheels3.png
+            └── Pale
+                ├── Moon_asset.png
+                ├── War4.png
+                ├── houses1.png
+                ├── houses2.png
+                ├── houses3.png
+                ├── houses4.png
+                ├── moon.png
+                ├── road.png
+                ├── sky.png
+                ├── wall.png
+                ├── wheels.png
+                ├── wheels2.png
+                └── wheels3.png
 tests
 ├── CMakeLists.txt
 └── server_tests

@@ -55,6 +55,7 @@ _deps/
 
 # Tests outputs
 server_test_output.txt
+directory_structure.txt
 
 # Build directory
 /build/
