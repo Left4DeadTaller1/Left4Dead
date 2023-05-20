@@ -43,8 +43,11 @@ target_include_directories(server
     PRIVATE
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/server_root/server
+    ${CMAKE_SOURCE_DIR}/server_root/server/entities
+    ${CMAKE_SOURCE_DIR}/server_root/server/configuration
     ${CMAKE_SOURCE_DIR}/server_root/client_connection
 )
+
 
 find_package(Threads REQUIRED)
 target_link_libraries(client PRIVATE Threads::Threads)
