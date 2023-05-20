@@ -9,13 +9,18 @@
 class Game {
    private:
     int idGame;
-    // Player player;
-    std::vector<Player*>& players;
+    bool gameRunning;
+    std::vector<std::unique_ptr<Entity>> entities;
 
    public:
     Game(int idGame, std::vector<Player*>& players);
+    void startGameLoop();
 
-    void move(int deltaX, int deltaY, int idPlayer);
+    void updateState();
+    void moveEntities();
+
+    // The move method should of the game should move all the entities
+    // void move(int deltaX, int deltaY, int idPlayer);
 };
 
 #endif  // GAME_H_
