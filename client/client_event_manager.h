@@ -6,16 +6,17 @@
 #include <SDL2pp/SDL2pp.hh>
 using namespace SDL2pp;
 
-class EventManager : public Thread {
+class EventManagerThread : public Thread {
     private:
-    Queue<std::string>& queue_sender;
-    Queue<std::string>& queue_render;
+    Queue<std::string>& queueSenderGame;
+    Queue<std::string>& queueRenderEvent;
     Window& window;
+    bool& isConnected;
 
     public:
-    EventManager(Queue<std::string>& queue_sender, 
-                Queue<std::string>& queue_render, 
-                Window& window);
+    EventManagerThread(Queue<std::string>& queueSenderGame, 
+                Queue<std::string>& queueRenderEvent, 
+                Window& window, bool& isConnected);
 
     virtual void run() override;
 };

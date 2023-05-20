@@ -1,9 +1,9 @@
 #include "move.h"
 
-Move::Move(int idPlayer, int difx, int dify): idPlayer(idPlayer),
-                                                difx(difx),
-                                                dify(dify){}
+Move::Move(int idPlayer, int deltaX, int deltaY): idPlayer(idPlayer),
+                                                deltaX(deltaX),
+                                                deltaY(deltaY){}
 
 void Move::run(GameState& gameState){
-    gameState.move(difx, dify, idPlayer);
+    gameState.move(deltaX, deltaY, idPlayer);
 }

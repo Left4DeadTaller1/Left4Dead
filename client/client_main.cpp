@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     const char *hostname = argv[1];
     const char *servname = argv[2];
 
-    //mover a otro lado
+    //ver si se puede mover a otro lado
     SDL sdl(SDL_INIT_VIDEO);
 
 	Window window("Left4Dead",

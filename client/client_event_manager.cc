@@ -2,14 +2,15 @@
 #include <iostream>
 #include <exception>
 
-EventManager::EventManager(Queue<std::string>& queue_sender, 
-							Queue<std::string>& queue_render,
-							Window& window):
-    						queue_sender(queue_sender), 
-							queue_render(queue_render),
-							window(window) {}
+EventManagerThread::EventManagerThread(Queue<std::string>& queueSenderGame, 
+								Queue<std::string>& queueRenderEvent,
+								Window& window, bool& isConnected):
+    							queueSenderGame(queueSenderGame), 
+								queueRenderEvent(queueRenderEvent),
+								window(window),
+								isConnected(isConnected) {}
 
-void EventManager::run() { try {
+void EventManagerThread::run() { try {
 
 	while (true) {
 
@@ -24,7 +25,7 @@ void EventManager::run() { try {
 						return;
 					case SDLK_RIGHT: 
 						std::cout << "entra a flecha derecha\n";
-						//queue_sender.push(move())
+						//queueSenderGame.push(move())
 						break;
 					case SDLK_LEFT:
 						std::cout << "entra a flecha izquierda\n";

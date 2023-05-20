@@ -7,11 +7,11 @@
 class Move : public Action{
     private:
     int idPlayer;
-    int difx;
-    int dify;
+    int deltaX;
+    int deltaY;
 
     public:
-    Move(int idPlayer, int difx, int dify);
+    Move(int idPlayer, int deltaX, int deltaY);
 
     virtual void run(GameState& gameState) override;
 };

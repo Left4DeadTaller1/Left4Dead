@@ -2,11 +2,12 @@
 
 #include "liberror.h"
 
-ReceivingThread::ReceivingThread(Socket& socket)
-    : socket(socket),
-      // serverMessagesQueue(serverMessagesQueue), queue de acciones
-      // protocol(protocol),
-      running(false) {}
+ReceivingThread::ReceivingThread(Socket& socket, ClientProtocol& protocol, 
+                                Queue<std::string>& queueRenderGame): 
+                                socket(socket),
+                                protocol(protocol),
+                                queueRenderGame(queueRenderGame),
+                                running(false) {}
 
 void ReceivingThread::run() {
     running = true;

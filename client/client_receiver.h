@@ -1,15 +1,18 @@
 #ifndef CLIENT_RECEIVER_H
 #define CLIENT_RECEIVER_H
 
+#include "client_protocol.h"
 #include "socket.h"
 #include "thread.h"
+#include "queue.h"
 
 class ReceivingThread : public Thread {
    public:
     // Receiver para el menu, pre-partida...
 
-    // Receiver para cuando ya se esta en al partida
-    ReceivingThread(Socket& socket);
+    ReceivingThread(Socket& socket, 
+                    ClientProtocol& protocol, 
+                    Queue<std::string>& queueRenderGame);
 
     virtual void run() override;
 
@@ -17,8 +20,8 @@ class ReceivingThread : public Thread {
 
    private:
     Socket& socket;
-    // Queue<std::string>& serverMessagesQueue;
-    // Protocol& protocol;
+    ClientProtocol& protocol;
+    Queue<std::string>& queueRenderGame;
     bool running;
 };
 

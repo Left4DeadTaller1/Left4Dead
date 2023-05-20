@@ -8,7 +8,7 @@ class GameState {
     private:
     int idGame;
     //Player player;
-    std::vector<Player*>& players; //creqie que los jugadores tienen que ir en el heap
+    std::vector<Player*>& players; //creo que los jugadores tienen que ir en el heap
 
     public:
     GameState(int idGame, std::vector<Player*>& players);
