@@ -1,9 +1,11 @@
 //  Copyright NULL
 
 #include <stdio.h>
-#include <iostream>
-#include "client.h"
+
 #include <SDL2pp/SDL2pp.hh>
+#include <iostream>
+
+#include "client.h"
 using namespace SDL2pp;
 #define WIDTH_WINDOW 1000
 #define HEIGHT_WINDOW 800
@@ -19,13 +21,14 @@ int main(int argc, char *argv[]) {
     const char *hostname = argv[1];
     const char *servname = argv[2];
 
-    //ver si se puede mover a otro lado
+    // ver si se puede mover a otro lado
     SDL sdl(SDL_INIT_VIDEO);
 
-	Window window("Left4Dead",
-			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			WIDTH_WINDOW, HEIGHT_WINDOW,
-			SDL_WINDOW_RESIZABLE);
+    // TODO ask fede where should we put this
+    Window window("Left4Dead",
+                  SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                  WIDTH_WINDOW, HEIGHT_WINDOW,
+                  SDL_WINDOW_RESIZABLE);
 
     Client client(hostname, servname, window);
     client.run();

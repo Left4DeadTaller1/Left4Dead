@@ -6,7 +6,8 @@
 #define MS_PER_FRAME 33
 
 Game::Game(int idGame, std::vector<Player*>& players) : idGame(idGame),
-                                                        gameRunning(false) {
+                                                        gameRunning(false),
+                                                        lastEntityId(1) {
     // We add the players to the entities vector
     for (auto& player : players) {
         entities.push_back(std::make_shared<Player>(*player));
@@ -33,6 +34,18 @@ void Game::startGameLoop() {
     }
 
     gameRunning = false;
+}
+
+void Game::processInput() {
+    // We process the input from the users
+    // for (auto& player : players) {
+    //     player->();
+    // }
+}
+
+void Game::sendState() {
+    // Create DTO Object;
+    // protocol.sendState(DTO);
 }
 
 void Game::updateState() {

@@ -10,7 +10,9 @@
 class Game {
    private:
     int idGame;
+    int lastEntityId;
     bool gameRunning;
+    // Todo cambiar a map
     std::vector<std::shared_ptr<Entity>> entities;
 
    public:

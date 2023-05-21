@@ -1,9 +1,10 @@
 #ifndef CLIENT_PROTOCOL_H_
 #define CLIENT_PROTOCOL_H_
 
-#include "socket.h"
 #include <string>
 #include <vector>
+
+#include "socket.h"
 
 #define CREATE 1
 #define JOIN 2
@@ -11,11 +12,11 @@
 #define SEND_MSG 4
 
 class ClientProtocol {
- private:
+   private:
     const std::string hostname;
     Socket skt;
 
- public:
+   public:
     explicit ClientProtocol(const std::string& hostname, const std::string& servname);
 
     // ENVIA
