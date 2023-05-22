@@ -1,7 +1,7 @@
+#include "games_manager.h"
+
 #include <algorithm>
 #include <iostream>
-
-#include "games_manager.h"
 
 GamesManager::GamesManager() : gameId(0) {}
 
@@ -22,7 +22,10 @@ std::optional<std::shared_ptr<GameThread>> GamesManager::joinLobby(unsigned int 
     return std::nullopt;
 }
 
-// void GamesManager::createGame(unsigned int matchCode, const std::string &scenarioName) {
-//     std::unique_lock<std::mutex> lock(m);
-//     games.emplace_back(matchCode, scenarioName);
-// }
+int GamesManager::_getGameId() {
+    return gameId;
+}
+
+const std::unordered_map<int, std::shared_ptr<GameThread>>& GamesManager::_getGames() const {
+    return games;
+}

@@ -34,7 +34,10 @@ def parse_test_output(file):
         for line in f:
             line = line.strip()
 
-            if line.endswith('(0 ms total)'):
+            if line.endswith('total)'):
+                continue
+
+            if line.endswith('tear-down'):
                 continue
 
             m = re.match(r'\[\----------\] (\d+) tests? from (\w+)', line)
@@ -44,7 +47,7 @@ def parse_test_output(file):
 
             if m:
                 if test_suite is not None:
-                    print()  # Adding an empty line between the last test and the closing header
+                    print()
                     print(
                         f'{BLUE}------------------------{test_suite}------------------------{RESET}\n')
 
@@ -69,6 +72,7 @@ def parse_test_output(file):
                 # if a test fails, mark as false
                 test_files[test_suite] = False
 
+    print()
     print(
         f'{BLUE}------------------------{test_suite}------------------------{RESET}\n')
     print(f'\n{CYAN}{BOLD}{UNDERLINE}Global summary:{RESET}\n')
