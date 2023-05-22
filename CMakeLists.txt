@@ -30,7 +30,7 @@ add_library(server_lib STATIC ${SERVER_SRC} ${COMMON_SRC})
 
 # Executables
 add_executable(client ${CLIENT_SRC} ${COMMON_SRC})
-add_executable(server ${CMAKE_SOURCE_DIR}/server_root/server/server_main.cpp)
+add_executable(server ${SERVER_SRC} ${COMMON_SRC})
 
 
 # Link the library to your executables

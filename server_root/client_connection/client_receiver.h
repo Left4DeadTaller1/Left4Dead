@@ -17,11 +17,12 @@ class ClientReceiver : public Thread {
     // Protocol protocol;
     GamesManager &gamesManager;
     bool isRunning;
+    std::shared_ptr<GameThread> game;
 
    public:
     ClientReceiver(Socket &skt, Queue<std::vector<uint8_t>> &q, GamesManager &gamesManager);
-    // void handleCreateAction(Socket &clientSocket, bool &was_closed);
-    // void handleJoinAction(Socket &clientSocket, bool &was_closed);
+    void handleCreateAction(Socket &clientSocket, bool &was_closed);
+    void handleJoinAction(Socket &clientSocket, bool &was_closed);
     // void handleBroadcastAction(Socket &clientSocket, bool &was_closed);
     virtual void run() override;
     bool getIsRunning();
