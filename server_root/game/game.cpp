@@ -36,17 +36,17 @@ void Game::startGameLoop() {
     gameRunning = false;
 }
 
-void Game::processInput() {
-    // We process the input from the users
-    // for (auto& player : players) {
-    //     player->();
-    // }
-}
+// void Game::processInput() {
+// We process the input from the users
+// for (auto& player : players) {
+//     player->();
+// }
+// }
 
-void Game::sendState() {
-    // Create DTO Object;
-    // protocol.sendState(DTO);
-}
+// void Game::sendState() {
+// Create DTO Object;
+// protocol.sendState(DTO);
+// }
 
 void Game::updateState() {
     // We update the state of the game

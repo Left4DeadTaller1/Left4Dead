@@ -13,6 +13,7 @@ class GameThread : public Thread {
     // vector<shot> flyingBullets;
    public:
     explicit GameThread();
+    void run() override;
 
     // CreateGame();  //  Monitor de partida que llama al constructor de esta clase
     // joinGame();

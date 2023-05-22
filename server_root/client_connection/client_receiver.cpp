@@ -2,9 +2,11 @@
 
 #include <string>
 
-ClientReceiver::ClientReceiver(Socket &skt, Queue<std::vector<uint8_t>> &q)
+ClientReceiver::ClientReceiver(Socket &skt, Queue<std::vector<uint8_t>> &q,
+                               GamesManager &gamesManager)
     : clientSocket(skt),
       queue(q),
+      gamesManager(gamesManager),
       isRunning(false) {}
 
 void ClientReceiver::run() {

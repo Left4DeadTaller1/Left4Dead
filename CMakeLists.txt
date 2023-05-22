@@ -16,9 +16,6 @@ string(REPLACE "-Werror" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 # Add Google Test here
 add_subdirectory(lib/googletest)
 
-# Add SDL here
-#add_subdirectory(lib/SDL)
-
 # Reset the flags back to original after Google Test is added
 set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS_OLD})
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS_OLD})
@@ -28,15 +25,35 @@ file(GLOB_RECURSE COMMON_SRC CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/dipa_classes
 file(GLOB_RECURSE CLIENT_SRC CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/client/*")
 file(GLOB_RECURSE SERVER_SRC CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/server_root/*")
 
+# Create a library for the server source files
+add_library(server_lib STATIC ${SERVER_SRC} ${COMMON_SRC})
+
 # Executables
 add_executable(client ${CLIENT_SRC} ${COMMON_SRC})
-add_executable(server ${SERVER_SRC} ${COMMON_SRC})
+add_executable(server ${CMAKE_SOURCE_DIR}/server_root/server/server_main.cpp)
+
+
+# Link the library to your executables
+target_link_libraries(client PRIVATE server_lib)
+target_link_libraries(server PRIVATE server_lib)
 
 # Include directories
 target_include_directories(client 
     PRIVATE 
     ${CMAKE_SOURCE_DIR}/dipa_classes
+    ${SDL2PP_INCLUDE_DIRS}
 )
+
+target_include_directories(server_lib 
+    PRIVATE 
+    ${CMAKE_SOURCE_DIR}/dipa_classes
+    ${CMAKE_SOURCE_DIR}/server_root/server
+    ${CMAKE_SOURCE_DIR}/server_root/entities
+    ${CMAKE_SOURCE_DIR}/server_root/server/configuration
+    ${CMAKE_SOURCE_DIR}/server_root/client_connection
+    ${CMAKE_SOURCE_DIR}/server_root/game
+)
+
 
 target_include_directories(server
     PRIVATE
@@ -47,7 +64,6 @@ target_include_directories(server
     ${CMAKE_SOURCE_DIR}/server_root/client_connection
     ${CMAKE_SOURCE_DIR}/server_root/game
 )
-
 
 find_package(Threads REQUIRED)
 target_link_libraries(client PRIVATE Threads::Threads)
@@ -88,4 +104,3 @@ include_directories(${SDL2PP_INCLUDE_DIRS})
 
 # define targets
 target_link_libraries(client PUBLIC SDL2pp::SDL2pp)
-

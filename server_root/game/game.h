@@ -10,9 +10,11 @@
 class Game {
    private:
     int idGame;
-    int lastEntityId;
     bool gameRunning;
-    // Todo cambiar a map
+    int lastEntityId;
+    // Capaz conviene separar los players de los entities pq tienen comportamientos
+    // distintos que los zombies.
+    //  Todo cambiar a map
     std::vector<std::shared_ptr<Entity>> entities;
 
    public:

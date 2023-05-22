@@ -3,4 +3,10 @@
 GameThread::GameThread() {
 }
 
+void GameThread::run() {
+    while (true) {
+        // game.update();
+    }
+}
+
 GameThread::~GameThread() {}

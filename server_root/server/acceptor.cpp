@@ -7,13 +7,13 @@
 #define MY_SHUT_RDWR 2
 
 Acceptor::Acceptor(Socket& skt /*, ProtectedGameCodes& gameCodes*/)
-    : skt(skt) /*, gameCodes(gameCodes), clients(), matchManager()*/ {}
+    : skt(skt), gamesManager() /*, gameCodes(gameCodes), clients(), matchManager()*/ {}
 
 void Acceptor::run() {
     try {
         while (true) {
             Socket clientSocket = skt.accept();
-            auto th = std::make_shared<ClientConnection>(std::move(clientSocket) /*, gameCodes, matchManager*/);
+            auto th = std::make_shared<ClientConnection>(std::move(clientSocket), gamesManager);
             // th->startTalking();
             clients.push_back(th);
             reap_dead();

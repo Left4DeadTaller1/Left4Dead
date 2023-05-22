@@ -1,6 +1,7 @@
 #ifndef CLIENT_CONNECTION_H
 #define CLIENT_CONNECTION_H
 
+#include "../game/games_manager.h"
 #include "client_receiver.h"
 #include "client_sender.h"
 #include "socket.h"
@@ -10,19 +11,14 @@ class ClientConnection {
     Socket clientSocket;
     bool keepTalking;
     bool alive;
+    GamesManager& gamesManager;
 
     Queue<std::vector<uint8_t>> queue;  // to communicate with the threads
     ClientSender sender;
     ClientReceiver receiver;
-    //  MatchManager& matchManager; //reference to games Monitor
-
-    // Match match;
-    // Protocol protocol;
-
-    // ClientSender sender;
 
    public:
-    ClientConnection(Socket&& skt /*, Match *match*/);
+    ClientConnection(Socket&& skt, GamesManager& gamesManager);
 
     void connectoToClient();
     void checkThreads();
