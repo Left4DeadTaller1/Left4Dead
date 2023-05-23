@@ -1,28 +1,28 @@
 #include "client.h"
 
 Client::Client(const char* hostname, const char* servname, Window& window) : socket(hostname, servname),
-                                                                             protocol(hostname, servname),
+                                                                             wasClosed(false),
+                                                                             protocol(socket),
                                                                              isConnected(true),
-                                                                             queueSenderGame(TAM_MAX_QUEUE),
-                                                                             queueRenderGame(TAM_MAX_QUEUE),
-                                                                             queueRenderEvent(TAM_MAX_QUEUE),
+                                                                             qEventsToSender(TAM_MAX_QUEUE),
+                                                                             qServerToRender(TAM_MAX_QUEUE),
+                                                                             qEventsToRender(TAM_MAX_QUEUE),
                                                                              window(window),
-                                                                             renderer(queueRenderGame, queueRenderEvent, window),
-                                                                             receiveThread(socket, protocol, queueRenderGame),
-                                                                             eventManagerThread(queueSenderGame,
-                                                                                                queueRenderEvent,
+                                                                             renderer(qServerToRender, qEventsToRender, window),
+                                                                             senderThread(wasClosed, protocol, qServerToRender, 
+                                                                             qEventsToSender),
+                                                                             eventManagerThread(qEventsToSender,
+                                                                                                qEventsToRender,
                                                                                                 window,
                                                                                                 isConnected) {}
 
 void Client::run() {
-    // while(isConneced){
-    renderer.render();
     eventManagerThread.start();
-    receiveThread.start();
-    // }
+    senderThread.start();
+    renderer.render();
 }
 
 Client::~Client() {
     eventManagerThread.join();
-    receiveThread.join();
+    senderThread.join();
 }

@@ -1,28 +1,27 @@
-#ifndef CLIENT_RECEIVER_H
-#define CLIENT_RECEIVER_H
+#ifndef CLIENT_RECEIVE_H
+#define CLIENT_RECEIVE_H
 
 #include "client_protocol.h"
+#include "client_action/action.h"
+#include "liberror.h"
 #include "socket.h"
 #include "thread.h"
 #include "queue.h"
 
-class ReceivingThread : public Thread {
+class ReceiverThread : public Thread {
    public:
-    // Receiver para el menu, pre-partida...
-
-    ReceivingThread(Socket& socket, 
+    ReceiverThread(bool& wasClosed,
                     ClientProtocol& protocol, 
-                    Queue<std::string>& queueRenderGame);
+                    Queue<Action*>& qServerToRender);
 
     virtual void run() override;
 
-    bool isRunning();
-
    private:
-    Socket& socket;
+    bool& wasClosed;
     ClientProtocol& protocol;
-    Queue<std::string>& queueRenderGame;
-    bool running;
+    Queue<Action*>& qServerToRender;
+
+    void inGame();
 };
 
-#endif  // CLIENT_RECEIVER_H
+#endif  // CLIENT_RECEIVE_H

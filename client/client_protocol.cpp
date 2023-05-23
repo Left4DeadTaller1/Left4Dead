@@ -2,9 +2,8 @@
 #include <arpa/inet.h>
 #include <iostream>
 
-ClientProtocol::ClientProtocol(const std::string& hostname,const std::string& servname) :
-    hostname(hostname),
-    skt(hostname.c_str(), servname.c_str()){}
+ClientProtocol::ClientProtocol(Socket& skt) :
+    skt(skt){}
 
 
 void ClientProtocol::create(const std::string& scenario, bool& was_closed){
@@ -38,7 +37,7 @@ void ClientProtocol::join(int code, bool& was_closed){
         return;
 }
 
-//NO PROBADA  protocolo.move(difx, dify, was_closed);
+//PROBADA  protocolo.move(difx, dify, was_closed);
 void ClientProtocol::move(uint32_t difx, uint32_t dify, bool& was_closed){
     int8_t id[1];
     id[0] = MOVE;
@@ -81,7 +80,7 @@ std::string ClientProtocol::read(bool& was_closed){
     return msg;
 }
 
-bool ClientProtocol::receive_notification_join(bool& was_closed){
+bool ClientProtocol::receiveNotificationJoin(bool& was_closed){
     uint8_t param[1] = {0};
     skt.recvsome(param, 1, &was_closed);
 

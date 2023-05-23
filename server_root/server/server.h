@@ -11,6 +11,7 @@
 class Server {
    private:
     Socket svr_socket;
+    Acceptor acep_th;
     // ProtectedGameCodes gameCodes;
 
    public:
@@ -18,6 +19,8 @@ class Server {
 
     // Method to run the server's main loop
     void run();
+
+    Server::~Server();
 };
 
 #endif  // SERVER_H

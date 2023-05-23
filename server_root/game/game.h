@@ -20,7 +20,12 @@ class Game {
     void startGameLoop();
 
     void updateState();
+    
     void moveEntities();
+
+    void processInput();
+
+    void sendState();
 
     // The move method should of the game should move all the entities
     // void move(int deltaX, int deltaY, int idPlayer);

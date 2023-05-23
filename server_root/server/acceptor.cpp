@@ -6,8 +6,8 @@
 #include "liberror.h"
 #define MY_SHUT_RDWR 2
 
-Acceptor::Acceptor(Socket& skt /*, ProtectedGameCodes& gameCodes*/)
-    : skt(skt) /*, gameCodes(gameCodes), clients(), matchManager()*/ {}
+Acceptor::Acceptor(Socket& skt) : skt(skt) {}
+/*, gameCodes(gameCodes), clients(), matchManager()*/
 
 void Acceptor::run() {
     try {
@@ -24,7 +24,6 @@ void Acceptor::run() {
     } catch (const std::exception& e) {
         std::cerr << "An exception occurred in Acceptor::run(): " << e.what() << std::endl;
     } catch (...) {
-        // unknown exception
         std::cerr << "An unknown exception occurred in Acceptor::run()" << std::endl;
     }
 }

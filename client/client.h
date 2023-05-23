@@ -8,8 +8,9 @@
 
 #include "client_event_manager.h"
 #include "client_protocol.h"
-#include "client_receiver.h"
+#include "client_sender.h"
 #include "client_render.h"
+#include "client_action/action.h"
 #include "liberror.h"
 #include "queue.h"
 #include "socket.h"
@@ -29,14 +30,15 @@ class Client {
 
    private:
     Socket socket;
+    bool wasClosed;
     ClientProtocol protocol;
     bool isConnected;
-    Queue<std::string> queueSenderGame;   // qSenderToServer
-    Queue<std::string> queueRenderGame;   // qServerToRender
-    Queue<std::string> queueRenderEvent;  // qEventsToRender
+    Queue<Action*> qEventsToSender;
+    Queue<Action*> qServerToRender;
+    Queue<Action*> qEventsToRender;
     Window& window;
     ClientRenderer renderer;
-    ReceivingThread receiveThread;
+    SenderThread senderThread;
     EventManagerThread eventManagerThread;
 
     void leave();

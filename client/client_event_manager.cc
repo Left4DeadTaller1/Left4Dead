@@ -3,13 +3,13 @@
 #include <exception>
 #include <iostream>
 
-EventManagerThread::EventManagerThread(Queue<std::string>& queueSenderGame,
-                                       Queue<std::string>& queueRenderEvent,
-                                       Window& window, bool& isConnected) : queueSenderGame(queueSenderGame),
-                                                                            queueRenderEvent(queueRenderEvent),
+EventManagerThread::EventManagerThread(Queue<Action*>& qEventsToSender,
+                                       Queue<Action*>& qEventsToRender,
+                                       Window& window, bool& isConnected) : qEventsToSender(qEventsToSender),
+                                                                            qEventsToRender(qEventsToRender),
                                                                             window(window),
                                                                             isConnected(isConnected) {}
-
+//para ahora voy a suponer que solo existe un jugador con id 0
 void EventManagerThread::run() {
     try {
         while (true) {
@@ -19,22 +19,30 @@ void EventManagerThread::run() {
                 if (event.type == SDL_QUIT) {
                     return;
                 } else if (event.type == SDL_KEYDOWN) {
+                    Move* move;
                     switch (event.key.keysym.sym) {
                         case SDLK_ESCAPE:
                         case SDLK_q:
                             return;
                         case SDLK_RIGHT:
                             std::cout << "entra a flecha derecha\n";
-                            // queueSenderGame.push(move())
+                            move = new Move(0, 1, 0); //desp usar punteros inteligentes
+                            qEventsToSender.push(move);
                             break;
                         case SDLK_LEFT:
                             std::cout << "entra a flecha izquierda\n";
+                            move = new Move(0, -1, 0);
+                            qEventsToSender.push(move);
                             break;
                         case SDLK_UP:
                             std::cout << "entra a flecha arriba\n";
+                            move = new Move(0, 0, 1);
+                            qEventsToSender.push(move);
                             break;
                         case SDLK_DOWN:
                             std::cout << "entra a flecha abajo\n";
+                            move = new Move(0, 0, -1);
+                            qEventsToSender.push(move);
                             break;
                     }
                 } else if (event.type == SDL_KEYUP) {

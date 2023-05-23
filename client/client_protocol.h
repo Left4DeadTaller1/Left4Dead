@@ -13,11 +13,10 @@
 
 class ClientProtocol {
    private:
-    const std::string hostname;
-    Socket skt;
+    Socket& skt;
 
    public:
-    explicit ClientProtocol(const std::string& hostname, const std::string& servname);
+    explicit ClientProtocol(Socket& skt);
 
     // ENVIA
 
@@ -31,7 +30,7 @@ class ClientProtocol {
 
     std::string read(bool& was_closed);
 
-    bool receive_notification_join(bool& was_closed);
+    bool receiveNotificationJoin(bool& was_closed);
 
     uint32_t receive_notification_create(bool& was_closed);
 

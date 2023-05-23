@@ -2,14 +2,14 @@
 #define MY_SHUT_RDWR 2
 constexpr size_t QUEUE_SIZE = 16000;
 
-ClientConnection::ClientConnection(Socket &&skt /*, MatchManager &matchManager*/)
+ClientConnection::ClientConnection(Socket &&skt, GamesManager& gamesManager)
     : clientSocket(std::move(skt)),
       keepTalking(true),
       alive(true),
-      queue(QUEUE_SIZE),
+      //queue(QUEUE_SIZE),
       sender(ClientSender(clientSocket, queue)),
-      receiver(ClientReceiver(clientSocket, queue /*, matchManager*/))
-/*matchManager(matchManager)*/ {}
+      receiver(ClientReceiver(clientSocket, queue /*, matchManager*/)),
+      gamesManager(gamesManager) {}
 
 void ClientConnection::connectoToClient() {
     // Iniciar los hilos sender y receiver
@@ -20,32 +20,6 @@ void ClientConnection::connectoToClient() {
 void ClientConnection::checkThreads() {
     if (!receiver.getIsRunning() || !sender.getIsRunning()) {
         alive = false;
-    }
-}
-
-void ClientConnection::menu() {
-    try {
-        // while (player in menu) {
-        // protocol.receiveMenuInput()
-        // }
-    } catch (const std::exception &err) {
-        std::cerr << "Unexpected exception in ClientConnection_connection_menu: "
-                  << err.what() << "\n";
-    } catch (...) {
-        std::cerr << "Unexpected exception in ClientConnection_connection_menu: <unknown>\n";
-    }
-}
-
-void ClientConnection::inGame() {
-    try {
-        // while (connected to game) {
-        //  protocol.receiveClientConnectionAction()
-        //}
-    } catch (const std::exception &err) {
-        std::cerr << "Unexpected exception in ClientConnection_connection_game: "
-                  << err.what() << "\n";
-    } catch (...) {
-        std::cerr << "Unexpected exception in ClientConnection_connection_game: <unknown>\n";
     }
 }
 
