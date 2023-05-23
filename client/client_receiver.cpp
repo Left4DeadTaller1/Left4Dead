@@ -1,32 +1,24 @@
 #include "client_receiver.h"
 
-#include "liberror.h"
-
-ReceivingThread::ReceivingThread(Socket& socket, ClientProtocol& protocol, 
-                                Queue<std::string>& queueRenderGame): 
-                                socket(socket),
+ReceiverThread::ReceiverThread(bool& wasClosed, ClientProtocol& protocol, 
+                                Queue<Action*>& qServerToRender): 
+                                wasClosed(wasClosed),
                                 protocol(protocol),
-                                queueRenderGame(queueRenderGame),
-                                running(false) {}
+                                qServerToRender(qServerToRender){}
 
-void ReceivingThread::run() {
-    running = true;
-    bool was_closed = false;
-    try {
-        while (!was_closed) {
-            // std::string serverMessage = protocol.receiveBroadcastMessage(socket, was_closed);
+void ReceiverThread::inGame(){
+    while (!wasClosed) {
+        //aca recibe el objeto DTO y le tiene que mandar al render
+        //action.recv(protocol, wasClosed);
 
-            // if (!serverMessage.empty()) {
-            //     serverMessagesQueue.push(serverMessage);
-            // }
-        }
-    }
-
-    catch (const LibError& e) {
-        // supongo que esto no hace falta realmente porque si hubo un liberror
-        // el while se interrumpio pero bueno no esta de mas
-        was_closed = true;
+        //qServerToRender.push()
     }
 }
 
-bool ReceivingThread::isRunning() { return running; }
+void ReceiverThread::run() {
+    try {
+        inGame();
+    } catch (const LibError& e) {
+        //wasClosed = true;
+    }
+}
