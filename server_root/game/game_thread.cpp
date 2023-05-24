@@ -14,6 +14,10 @@ Queue<Action>& GameThread::getInputQueue() {
     return inputQueue;
 }
 
+std::vector<Queue<int>*>& GameThread::_getPlayerQueues() {
+    return playerQueues;
+}
+
 void GameThread::run() {
     while (true) {
         // game.update();

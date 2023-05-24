@@ -29,6 +29,9 @@ class GameThread : public Thread {
     // leaveGame();
 
     ~GameThread();
+
+    // Methods for Testing do not use in production
+    std::vector<Queue<int>*>& _getPlayerQueues();
 };
 
 #endif  // GAME_THREAD_H_
