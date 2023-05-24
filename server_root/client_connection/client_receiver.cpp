@@ -52,7 +52,7 @@ void ClientReceiver::run() {
 }
 
 void ClientReceiver::handleCreateAction(Socket &clientSocket, bool &was_closed) {
-    game = gamesManager.createLobby();
+    gameInputQueue = gamesManager.createLobby();
     // std::cout << "Created match: " << newGameCode << std::endl;
 
     // std::vector<uint8_t> createResponse = protocol.encodeCreateResponse(newGameCode);
@@ -63,9 +63,9 @@ void ClientReceiver::handleJoinAction(Socket &clientSocket, bool &was_closed) {
     int code = 0;  // placeholder you should get the code from the protocol
     // uint32_t code = protocol.receiveJoinGame(clientSocket, was_closed);
 
-    auto optionalGame = gamesManager.joinLobby(code);
-    if (optionalGame.has_value()) {
-        game = optionalGame.value();
+    auto optionalInputQueue = gamesManager.joinLobby(code);
+    if (optionalInputQueue.has_value()) {
+        gameInputQueue = optionalInputQueue.value();
         // std::cout << "Joined to match: " << code << std::endl;
     } else {
         // std::cout << "Match does not exist: " << code << std::endl;

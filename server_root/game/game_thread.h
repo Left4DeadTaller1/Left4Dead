@@ -20,6 +20,9 @@ class GameThread : public Thread {
     explicit GameThread();
     void run() override;
     void addPlayer();
+    Queue<Action>& getInputQueue();
+
+    // Later add the API for the clients to push actions to the InputQueue
 
     void startGame();
     void stop();

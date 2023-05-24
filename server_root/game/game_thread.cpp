@@ -10,6 +10,10 @@ void GameThread::addPlayer() {
     playerQueues.emplace_back();  // create new queue for this player
 }
 
+Queue<Action>& GameThread::getInputQueue() {
+    return inputQueue;
+}
+
 void GameThread::run() {
     while (true) {
         // game.update();
