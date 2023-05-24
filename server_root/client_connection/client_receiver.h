@@ -16,9 +16,8 @@ class ClientReceiver : public Thread {
     Queue<std::vector<uint8_t>> &queue;
     // Protocol protocol;
     GamesManager &gamesManager;
-    Queue<Action> &gameInputQueue;
+    Queue<Action> *gameInputQueue;
     bool isRunning;
-    std::shared_ptr<GameThread> game;
 
    public:
     // TODO: la queue es para recibir los msgs del cliente pero creeeo que con un recv que ya es bloqueante estaria..., pensar bien desp q no se frene el servidor y sobretodo el juego

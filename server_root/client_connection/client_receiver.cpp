@@ -7,8 +7,8 @@ ClientReceiver::ClientReceiver(Socket &skt, Queue<std::vector<uint8_t>> &q,
     : clientSocket(skt),
       queue(q),
       gamesManager(gamesManager),
-      isRunning(false),
-      game(nullptr) {}
+      gameInputQueue(nullptr),
+      isRunning(false) {}
 
 void ClientReceiver::run() {
     isRunning = true;
@@ -63,9 +63,9 @@ void ClientReceiver::handleJoinAction(Socket &clientSocket, bool &was_closed) {
     int code = 0;  // placeholder you should get the code from the protocol
     // uint32_t code = protocol.receiveJoinGame(clientSocket, was_closed);
 
-    auto optionalInputQueue = gamesManager.joinLobby(code);
-    if (optionalInputQueue.has_value()) {
-        gameInputQueue = optionalInputQueue.value();
+    Queue<Action> *inputQueue = gamesManager.joinLobby(code);
+    if (inputQueue != nullptr) {
+        gameInputQueue = inputQueue;
         // std::cout << "Joined to match: " << code << std::endl;
     } else {
         // std::cout << "Match does not exist: " << code << std::endl;

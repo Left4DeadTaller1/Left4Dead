@@ -5,25 +5,25 @@
 
 GamesManager::GamesManager() : gameId(0) {}
 
-std::reference_wrapper<Queue<Action>> GamesManager::createLobby() {
+Queue<Action>* GamesManager::createLobby() {
     std::lock_guard<std::mutex> lock(m);
     auto gameThread = std::make_shared<GameThread>();
     games.emplace(gameId, gameThread);
     gameThread->addPlayer();
     gameId++;
-    // Return a reference to the inputQueue
-    return std::ref(gameThread->getInputQueue());
+    // Return a pointer to the inputQueue
+    return &(gameThread->getInputQueue());
 }
 
-std::optional<std::reference_wrapper<Queue<Action>>> GamesManager::joinLobby(unsigned int gameCode) {
+Queue<Action>* GamesManager::joinLobby(unsigned int gameCode) {
     std::lock_guard<std::mutex> lock(m);
     auto it = games.find(gameCode);
     if (it != games.end()) {
-        // Access GameThread and return a reference to the inputQueue
+        // Access GameThread and return a pointer to the inputQueue
         it->second->addPlayer();
-        return std::ref(it->second->getInputQueue());
+        return &(it->second->getInputQueue());
     }
-    return std::nullopt;
+    return nullptr;
 }
 
 int GamesManager::_getGameId() {
