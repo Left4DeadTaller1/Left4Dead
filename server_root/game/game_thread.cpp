@@ -4,10 +4,10 @@
 GameThread::GameThread()
     : game(), inputQueue(MAX_QUEUE_SIZE) {}
 
-void GameThread::addPlayer() {
+void GameThread::addPlayer(Queue<int>& gameResponses) {
     std::string idPlayer = "Player" + std::to_string(playerQueues.size());
     game.addPlayer(idPlayer);
-    playerQueues.emplace_back();  // create new queue for this player
+    playerQueues.push_back(&gameResponses);  // create new queue for this player
 }
 
 Queue<Action>& GameThread::getInputQueue() {

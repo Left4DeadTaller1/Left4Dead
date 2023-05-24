@@ -10,14 +10,14 @@
 
 class ClientSender : public Thread {
    private:
-    Socket &clientSocket;
-    Queue<std::vector<uint8_t>> &queue;
+    Socket& clientSocket;
+    Queue<int>& gameResponses;
     bool isRunning;
     // Match match;
     // Protocol protocol;
 
    public:
-    ClientSender(Socket &skt, Queue<std::vector<uint8_t>> &queue);
+    ClientSender(Socket& skt, Queue<int>& gameResponses);
 
     void run() override;
 

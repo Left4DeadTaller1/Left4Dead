@@ -2,13 +2,12 @@
 
 #include <string>
 
-ClientReceiver::ClientReceiver(Socket &skt, Queue<std::vector<uint8_t>> &q,
-                               GamesManager &gamesManager)
-    : clientSocket(skt),
-      queue(q),
+ClientReceiver::ClientReceiver(Socket &clientSocket, GamesManager &gamesManager, Queue<int> &gameResponses)
+    : clientSocket(clientSocket),
       gamesManager(gamesManager),
       gameInputQueue(nullptr),
-      isRunning(false) {}
+      isRunning(false),
+      gameResponses(gameResponses) {}
 
 void ClientReceiver::run() {
     isRunning = true;
@@ -52,7 +51,7 @@ void ClientReceiver::run() {
 }
 
 void ClientReceiver::handleCreateAction(Socket &clientSocket, bool &was_closed) {
-    gameInputQueue = gamesManager.createLobby();
+    gameInputQueue = gamesManager.createLobby(gameResponses);
     // std::cout << "Created match: " << newGameCode << std::endl;
 
     // std::vector<uint8_t> createResponse = protocol.encodeCreateResponse(newGameCode);
@@ -63,7 +62,7 @@ void ClientReceiver::handleJoinAction(Socket &clientSocket, bool &was_closed) {
     int code = 0;  // placeholder you should get the code from the protocol
     // uint32_t code = protocol.receiveJoinGame(clientSocket, was_closed);
 
-    Queue<Action> *inputQueue = gamesManager.joinLobby(code);
+    Queue<Action> *inputQueue = gamesManager.joinLobby(code, gameResponses);
     if (inputQueue != nullptr) {
         gameInputQueue = inputQueue;
         // std::cout << "Joined to match: " << code << std::endl;

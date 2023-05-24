@@ -7,9 +7,9 @@ ClientConnection::ClientConnection(Socket &&skt, GamesManager &gamesManager)
       keepTalking(true),
       alive(true),
       gamesManager(gamesManager),
-      queue(QUEUE_SIZE),
-      sender(ClientSender(clientSocket, queue)),
-      receiver(ClientReceiver(clientSocket, queue, gamesManager)) {}
+      gameResponses(QUEUE_SIZE),
+      sender(ClientSender(clientSocket, gameResponses)),
+      receiver(ClientReceiver(clientSocket, gamesManager, gameResponses)) {}
 
 void ClientConnection::connectoToClient() {
     // Iniciar los hilos sender y receiver
@@ -61,7 +61,7 @@ void ClientConnection::kill() {
     sender.stop();
     receiver.stop();
 
-    queue.close();
+    gameResponses.close();
 
     sender.join();
     receiver.join();

@@ -4,11 +4,13 @@
 
 TEST(GamesManagerTest, CreateLobby) {
     GamesManager manager;
+    Queue<int> gameResponses(10);
+
     // Get the gameId this should start in 0
     int gameId = manager._getGameId();
     EXPECT_EQ(gameId, 0);
 
-    manager.createLobby();
+    manager.createLobby(gameResponses);
 
     gameId = manager._getGameId();
     // Verify the increase of gameId
@@ -29,9 +31,10 @@ TEST(GamesManagerTest, CreateLobby) {
 
 TEST(GamesManagerTest, JoinLobby) {
     GamesManager manager;
-    manager.createLobby();
+    Queue<int> gameResponses(10);
+    manager.createLobby(gameResponses);
     unsigned int gameCode = 0;
-    Queue<Action>* joinResult = manager.joinLobby(gameCode);
+    Queue<Action>* joinResult = manager.joinLobby(gameCode, gameResponses);
 
     // Verify the expected behavior based on the joinResult and the games map
     EXPECT_TRUE(joinResult != nullptr);  // Verify that the pointer is not null
@@ -39,8 +42,9 @@ TEST(GamesManagerTest, JoinLobby) {
 
 TEST(GamesManagerTest, JoinNonexistentLobby) {
     GamesManager manager;
+    Queue<int> gameResponses(10);
     unsigned int gameCode = 4;
-    Queue<Action>* joinResult = manager.joinLobby(gameCode);
+    Queue<Action>* joinResult = manager.joinLobby(gameCode, gameResponses);
 
     // Verify the expected behavior based on the joinResult and the games map
     EXPECT_TRUE(joinResult == nullptr);  // Verify that the pointer is null

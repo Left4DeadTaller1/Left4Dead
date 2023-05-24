@@ -18,10 +18,10 @@ class GamesManager {
    public:
     GamesManager();
 
-    Queue<Action>* createLobby();
+    Queue<Action>* createLobby(Queue<int>& gameResponses);
 
     // method may return a reference to the Queue (when a GameThread with the given game code is found), or it may return an empty std::optional (when there's no GameThread with the given game code)
-    Queue<Action>* joinLobby(unsigned int gameCode);
+    Queue<Action>* joinLobby(unsigned int gameCode, Queue<int>& gameResponses);
 
     // Method for Testing do not use them in production
     int _getGameId();

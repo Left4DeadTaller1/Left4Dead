@@ -13,7 +13,7 @@ class ClientConnection {
     bool alive;
     GamesManager& gamesManager;
 
-    Queue<std::vector<uint8_t>> queue;  // to communicate with the threads
+    Queue<int> gameResponses;  // game responses
     ClientSender sender;
     ClientReceiver receiver;
 
