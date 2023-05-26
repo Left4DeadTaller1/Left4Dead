@@ -18,9 +18,7 @@ class ClientRenderer {
    public:
     ClientRenderer(Queue<Action*>& qServerToRender, 
                     Queue<Action*>& qEventsToRender, 
-                    Window& window,
-                    int posX, 
-                    int posY);
+                    Window& window);
                     
     void run();
 

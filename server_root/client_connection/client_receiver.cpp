@@ -2,10 +2,12 @@
 
 #include <string>
 
-ClientReceiver::ClientReceiver(Socket &skt, Queue<std::vector<uint8_t>> &q)
-    : clientSocket(skt),
-      queue(q),
-      isRunning(false) {}
+ClientReceiver::ClientReceiver(Socket &clientSocket, GamesManager &gamesManager, Queue<int> &gameResponses)
+    : clientSocket(clientSocket),
+      gamesManager(gamesManager),
+      gameInputQueue(nullptr),
+      isRunning(false),
+      gameResponses(gameResponses) {}
 
 void ClientReceiver::run() {
     isRunning = true;
@@ -14,6 +16,7 @@ void ClientReceiver::run() {
             // uint8_t action;
             bool was_closed = false;
             // clientSocket.recvall(&action, 1, &was_closed);
+            std::string decoded_action = "create";  // Place holder you should get the value from protocol
             // std::string decoded_action = protocol.decodeAction(action);
 
             // Conection was interrupted
@@ -21,10 +24,11 @@ void ClientReceiver::run() {
                 break;
             }
 
-            // if (decoded_action == "create") { //This could have been a switch or ENUM
-            //     handleCreateAction(clientSocket, was_closed);
-            // } else if (decoded_action == "join") {
-            //     handleJoinAction(clientSocket, was_closed);
+            if (decoded_action == "create") {  // This could have been a switch or ENUM
+                handleCreateAction(clientSocket, was_closed);
+            } else if (decoded_action == "join") {
+                handleJoinAction(clientSocket, was_closed);
+            }
             // } else if (decoded_action == "broadcast") {
             //     handleBroadcastAction(clientSocket, was_closed);
             // } else {
@@ -46,39 +50,29 @@ void ClientReceiver::run() {
     isRunning = false;
 }
 
-// void ClientReceiver::handleCreateAction(Socket &clientSocket, bool &was_closed) {
-//     std::string scenario = protocol.receiveCreateGame(clientSocket, was_closed);
-//     uint32_t newGameCode = gameCodes.generateGameCode();
-//     matchManager.createMatch(newGameCode, scenario);
-//     std::cout << "Created match: " << newGameCode << std::endl;
-//     // Add the Client to match
-//     matchManager.joinMatch(newGameCode, queue);
-//     joinedGameCode = newGameCode;
-//     std::vector<uint8_t> createResponse = protocol.encodeCreateResponse(newGameCode);
-//     queue.push(createResponse);
-// }
+void ClientReceiver::handleCreateAction(Socket &clientSocket, bool &was_closed) {
+    gameInputQueue = gamesManager.createLobby(gameResponses);
+    // std::cout << "Created match: " << newGameCode << std::endl;
 
-// void ClientReceiver::handleJoinAction(Socket &clientSocket, bool &was_closed) {
-//     // Game code
-//     uint32_t code = protocol.receiveJoinGame(clientSocket, was_closed);
+    // std::vector<uint8_t> createResponse = protocol.encodeCreateResponse(newGameCode);
+    // queue.push(createResponse);
+}
 
-//     bool joinSuccess = gameCodes.isValidGameCode(code);
-//     if (joinSuccess) {
-//         std::cout << "Joined to match: " << code << std::endl;
-//         matchManager.joinMatch(code, queue);
-//         joinedGameCode = code;
-//     } else {
-//         std::cout << "Match does not exist: " << code << std::endl;
-//     }
-//     std::vector<uint8_t> joinResponse = protocol.encodeJoinResponse(joinSuccess);
-//     queue.push(joinResponse);
-// }
+void ClientReceiver::handleJoinAction(Socket &clientSocket, bool &was_closed) {
+    int code = 0;  // placeholder you should get the code from the protocol
+    // uint32_t code = protocol.receiveJoinGame(clientSocket, was_closed);
 
-// void ClientReceiver::handleBroadcastAction(Socket &clientSocket, bool &was_closed) {
-//     std::string message = protocol.receiveBroadcastAction(clientSocket, was_closed);
-//     std::vector<uint8_t> broadcastMessage = protocol.encodeBroadcast(message, true);
-//     matchManager.broadcastToMatch(joinedGameCode, broadcastMessage);
-// }
+    Queue<Action> *inputQueue = gamesManager.joinLobby(code, gameResponses);
+    if (inputQueue != nullptr) {
+        gameInputQueue = inputQueue;
+        // std::cout << "Joined to match: " << code << std::endl;
+    } else {
+        // std::cout << "Match does not exist: " << code << std::endl;
+        return;  // Return early as no more work can be done if the lobby doesn't exist
+    }
+    // std::vector<uint8_t> joinResponse = protocol.encodeJoinResponse(joinSuccess);
+    // queue.push(joinResponse);
+}
 
 void ClientReceiver::stop() {
     isRunning = false;

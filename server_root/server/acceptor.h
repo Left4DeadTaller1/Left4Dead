@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "../client_connection/client_connection.h"
+#include "../game/games_manager.h"
 #include "socket.h"
 #include "thread.h"
 
@@ -19,7 +20,7 @@ class Acceptor : public Thread {
     Socket &skt;
     // ProtectedGameCodes &gameCodes;
     std::list<std::shared_ptr<ClientConnection>> clients;
-    // MatchManager matchManager; //monitor de la partida
+    GamesManager gamesManager;
     void reap_dead();
     void kill_all();
 };

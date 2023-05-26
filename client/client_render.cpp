@@ -28,6 +28,8 @@ void ClientRenderer::drawBackground(Renderer& renderer, Texture& background){
 //el evento de cerrar la ventana que le llegue del event manager
 int ClientRenderer::render(){
 
+    Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
+
     Texture soldier1_walk(renderer, DATA_PATH "/client/resources/Soldier_1/Walk.png");
     Texture background1_war(renderer, DATA_PATH "/client/resources/backgrounds/War1/Bright/War.png");
 
@@ -35,11 +37,9 @@ int ClientRenderer::render(){
     int textureWidth, textureHeight;
     SDL_QueryTexture(sdlTexture, NULL, NULL, &textureWidth, &textureHeight);
 
-    Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
-
     while(true){
-        int newPosX = qServerToRender.pop();
-        int newPosY = qServerToRender.pop();
+        //int newPosX = qServerToRender.pop();
+        //int newPosY = qServerToRender.pop();
 
         renderer.Clear();
 

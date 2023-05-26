@@ -23,6 +23,8 @@ server_root
 │   ├── game.h
 │   ├── game_thread.cpp
 │   ├── game_thread.h
+│   ├── games_managar.cpp
+│   ├── games_manager.h
 │   ├── move.cpp
 │   └── move.h
 ├── server
@@ -53,8 +55,12 @@ client
 ├── client_event_manager.cc
 ├── client_event_manager.h
 ├── client_main.cpp
+├── client_protocol.cpp
+├── client_protocol.h
 ├── client_receiver.cpp
 ├── client_receiver.h
+├── client_render.cpp
+├── client_render.h
 └── resources
     ├── Jumper
     │   ├── Attack_1.png

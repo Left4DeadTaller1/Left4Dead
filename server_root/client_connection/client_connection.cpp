@@ -2,14 +2,14 @@
 #define MY_SHUT_RDWR 2
 constexpr size_t QUEUE_SIZE = 16000;
 
-ClientConnection::ClientConnection(Socket &&skt, GamesManager& gamesManager)
+ClientConnection::ClientConnection(Socket &&skt, GamesManager &gamesManager)
     : clientSocket(std::move(skt)),
       keepTalking(true),
       alive(true),
-      //queue(QUEUE_SIZE),
-      sender(ClientSender(clientSocket, queue)),
-      receiver(ClientReceiver(clientSocket, queue /*, matchManager*/)),
-      gamesManager(gamesManager) {}
+      gamesManager(gamesManager),
+      gameResponses(QUEUE_SIZE),
+      sender(ClientSender(clientSocket, gameResponses)),
+      receiver(ClientReceiver(clientSocket, gamesManager, gameResponses)) {}
 
 void ClientConnection::connectoToClient() {
     // Iniciar los hilos sender y receiver
@@ -35,7 +35,7 @@ void ClientConnection::kill() {
     sender.stop();
     receiver.stop();
 
-    queue.close();
+    gameResponses.close();
 
     sender.join();
     receiver.join();

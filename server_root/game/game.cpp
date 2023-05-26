@@ -1,17 +1,30 @@
 #include "game.h"
 
+#include <algorithm>
 #include <chrono>
 #include <thread>
+
 // 1000 ms / 30 FPS = 33.3 ms per frame
 #define MS_PER_FRAME 33
 
-Game::Game(int idGame, std::vector<Player*>& players) : idGame(idGame),
-                                                        gameRunning(false),
-                                                        lastEntityId(1) {
-    // We add the players to the entities vector
-    for (auto& player : players) {
-        entities.push_back(std::make_shared<Player>(*player));
-    }
+Game::Game() : gameRunning(false) {
+}
+
+void Game::addPlayer(std::string idPlayer) {
+    // Here the game should figure out the coordinates of the player for now as placew holder is 0 0 0 0
+    auto player = std::make_shared<Player>(0, 0, 0, 0, idPlayer);
+    // Todo: we have to make this match with the id of the player or something.
+    entities.push_back(player);
+}
+
+void Game::removePlayer(std::string idPlayer) {
+    // erase-remove idiom
+    entities.erase(std::remove_if(entities.begin(), entities.end(),
+                                  [idPlayer](const auto& entity) {
+                                      Player* player = dynamic_cast<Player*>(entity.get());
+                                      return player != nullptr && player->getId() == idPlayer;
+                                  }),
+                   entities.end());
 }
 
 void Game::startGameLoop() {
@@ -36,27 +49,28 @@ void Game::startGameLoop() {
     gameRunning = false;
 }
 
-void Game::processInput() {
-    // We process the input from the users
-    // for (auto& player : players) {
-    //     player->();
-    // }
-}
+// void Game::processInput() {
+// We process the input from the users
+// for (auto& player : players) {
+//     player->();
+// }
+// }
 
-void Game::sendState() {
-    // Create DTO Object;
-    // protocol.sendState(DTO);
-}
+// void Game::sendState() {
+// Create DTO Object;
+// protocol.sendState(DTO);
+// }
 
 void Game::updateState() {
     // We update the state of the game
     moveEntities();
 }
 
+// this should be moveZombies()
 void Game::moveEntities() {
-    for (auto& entity : entities) {
-        entity->move();
-    }
+    // for (auto& zombie : zombies) {
+    //     zombie->move();
+    // }
 }
 
 // void Game::move(int deltaX, int deltaY, int idPlayer) {

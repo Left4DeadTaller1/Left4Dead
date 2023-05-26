@@ -2,6 +2,7 @@
 #define GAME_H_
 
 #include <memory>
+#include <string>
 #include <vector>
 
 #include "entity.h"
@@ -9,14 +10,16 @@
 
 class Game {
    private:
-    int idGame;
-    int lastEntityId;
     bool gameRunning;
-    // Todo cambiar a map
+
+    // Capaz conviene separar los players de los entities pq tienen comportamientos distintos que los zombies. (este si un vector)
+    // TODO: this should be a list since adding and removing element is more expensive in a vector than a list for example.
     std::vector<std::shared_ptr<Entity>> entities;
 
    public:
-    Game(int idGame, std::vector<Player*>& players);
+    Game();
+    void addPlayer(std::string idPlayer);
+    void removePlayer(std::string idPlayer);
     void startGameLoop();
 
     void updateState();

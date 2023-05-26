@@ -1,8 +1,8 @@
 #include "client_sender.h"
 
-ClientSender::ClientSender(Socket &skt, Queue<std::vector<uint8_t>> &q)
+ClientSender::ClientSender(Socket &skt, Queue<int> &gameResponses)
     : clientSocket(skt),
-      queue(q),
+      gameResponses(gameResponses),
       isRunning(false) {}
 
 void ClientSender::menu() {}
@@ -11,7 +11,8 @@ void ClientSender::run() {
     isRunning = true;
     try {
         while (isRunning) {
-            std::vector<uint8_t> message = queue.pop();
+            // again this in the future should be the GameState SnapShot
+            int gameSnapShot = gameResponses.pop();
             bool was_closed = false;
             // clientSocket.sendall(message.data(), message.size(), &was_closed);
 

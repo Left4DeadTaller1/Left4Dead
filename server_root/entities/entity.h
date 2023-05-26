@@ -18,8 +18,7 @@ class Entity {
     // this is just for colision testing in the future the width and the height
     //  will be determine by the type of the entity
     Entity(int xPosition, int yPosition, int width, int height);
-    void move();
-    ~Entity();
+    virtual ~Entity();
 };
 
 #endif  // !ENTITY_H
