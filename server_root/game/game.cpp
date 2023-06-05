@@ -13,7 +13,7 @@
 ________________________________________________________________*/
 
 Game::Game()
-    : inputQueue(MAX_QUEUE_SIZE), alive(true), gameRunning(false), nextPlayerIndex(0) {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector() {
     playerQueues.resize(4, nullptr);
 }
 
@@ -83,14 +83,15 @@ void Game::addPlayer(std::string idPlayer) {
     auto player = std::make_shared<Player>(0, 0, 0, 0, idPlayer);
     // Todo: we have to make this match with the id of the player or something.
     entities.push_back(player);
+    entities.push_back(player);
 }
 
 void Game::removePlayer(std::string idPlayer) {
     // erase-remove idiom
     entities.erase(std::remove_if(entities.begin(), entities.end(),
-                                  [idPlayer](const auto& entity) {
+                                  [playerId](const auto& entity) {
                                       Player* player = dynamic_cast<Player*>(entity.get());
-                                      return player != nullptr && player->getId() == idPlayer;
+                                      return player != nullptr && player->getPlayerId() == playerId;
                                   }),
                    entities.end());
 }
@@ -117,7 +118,73 @@ void Game::startGame() {
     gameRunning = false;
 }
 
-void Game::updateState() {
-    // We update the state of the game
+void Game::getPlayersActions() {
+    Action playerAction;
+
+    for (int i = 0; i < MAX_ACTIONS_PER_FRAME; ++i) {
+        if (inputQueue.try_pop(playerAction)) {
+            playersActions[playerAction.getPlayerId()].push(playerAction);
+        } else {
+            break;  // TODO: ask fede if breaking is correct
+        }
+    }
 }
 
+void Game::updateState() {
+    for (auto& entity : entities) {
+        // Player* player = dynamic_cast<Player*>(entity.get());
+        // if (player) {
+        // updatePlayerState(player, playerActions[player->getPlayerId()]);
+        // }
+        moveEntity(*entity);
+    }
+}
+
+void Game::updatePlayerState(Player player, std::queue<Action> playerActions) {
+}
+
+void Game::moveEntity(Entity& entity) {
+    int deltaX = 0;
+    int deltaY = 0;
+    bool validMovement;
+    MovementState movementState = entity.getMovementState();
+    MovementDirectionX movementDirectionX = entity.getMovementDirectionX();
+    MovementDirectionY movementDirectionY = entity.getMovementDirectionY();
+    int movementSpeed = entity.getMovementSpeed();
+    // TODO work around this nested if
+    if (movementState == WALKING) {
+        if (movementDirectionX == LEFT) {
+            deltaX = -movementSpeed;
+        } else if (movementDirectionX == RIGHT) {
+            deltaX = movementSpeed;
+        }
+
+        if (movementDirectionY == DOWN) {
+            deltaY = -movementSpeed;
+        } else if (movementDirectionY == UP) {
+            deltaY = movementSpeed;
+        }
+    } else if (movementState == RUNNING) {
+        if (movementDirectionX == LEFT) {
+            deltaX = -(2 * movementSpeed);
+        } else if (movementDirectionX == RIGHT) {
+            deltaX = (2 * movementSpeed);
+        }
+
+        if (movementDirectionY == DOWN) {
+            deltaY = -(2 * movementSpeed);
+        } else if (movementDirectionY == UP) {
+            deltaY = (2 * movementSpeed);
+        }
+    }
+    if (movementState != ENTITY_IDLE) {
+        validMovement = collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities);
+        if (validMovement) {
+            entity.move(deltaX, deltaY);
+        }
+    }
+}
+
+const std::unordered_map<std::string, std::queue<Action>>& Game::_getPlayersActions() const {
+    return playersActions;
+}

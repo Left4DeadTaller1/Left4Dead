@@ -4,36 +4,33 @@ CollisionDetector::CollisionDetector() {}
 
 CollisionDetector::~CollisionDetector() {}
 
-bool CollisionDetector::isColliding(Entity& e1, Entity& e2) {
+bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& e2) {
     // discard cuz they are not in the same "depth"
-    if (e1.y + e1.height < e2.y || e1.y > e2.y + e2.height) {
+    if ((e1.y + deltaY) + e1.height < e2.y || (e1.y + deltaY) > e2.y + e2.height) {
         return false;
     }
     // discard cuz they are not close in the x axis
-    if (e1.x + e1.width < e2.x || e1.x > e2.x + e2.width) {
+    if ((e1.x + deltaX) + e1.width < e2.x || (e1.x + deltaX) > e2.x + e2.width) {
         return false;
     }
 
     // the rectangules are touching or overlapping
-    if (e1.x + e1.width >= e2.x && e1.x <= e2.x + e2.width &&
-        e1.y + e1.height >= e2.y && e1.y <= e2.y + e2.height) {
+    if ((e1.x + deltaX) + e1.width >= e2.x && (e1.x + deltaX) <= e2.x + e2.width &&
+        (e1.y + deltaY) + e1.height >= e2.y && (e1.y + deltaY) <= e2.y + e2.height) {
         return true;
     }
 
     return false;
 }
 
-std::vector<Entity*> CollisionDetector::getCollisions(Entity& entity, std::vector<Entity*>& entities) {
-    std::vector<Entity*> collisions;
-
-    // Check for collision between entity and all other entities
-    for (Entity* other : entities) {
-        if (&entity != other && isColliding(entity, *other)) {
-            collisions.push_back(other);
+bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities) {
+    for (auto& other : entities) {
+        if (&entity != other.get() && isColliding(entity, deltaX, deltaY, *other)) {
+            return true;
         }
     }
 
-    return collisions;
+    return false;
 }
 
 std::vector<Entity*> CollisionDetector::getBeingShot(Shot& bullet, std::vector<Entity*>& entities) {

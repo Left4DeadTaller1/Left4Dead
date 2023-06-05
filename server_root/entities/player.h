@@ -6,24 +6,20 @@
 
 #include "entity.h"
 
-typedef enum {
-    WALKING,
-    RUNNING,
-    RELOADING,
+enum WeaponState {
     SHOOTING,
-    IDLE,
-    DEAD,
-    HURT,
-} state_t;
+    RELOADING,
+    WEAPON_IDLE
+};
 
 class Player : public Entity {
    private:
     std::string idPlayer;
-    state_t state;
+    WeaponState weaponState;
 
    public:
     Player(int xPosition, int yPosition, int width, int height, std::string idPlayer);
-    std::string getId();
+    std::string getPlayerId();
 
     void move(int deltaX, int deltaY);
     ~Player();

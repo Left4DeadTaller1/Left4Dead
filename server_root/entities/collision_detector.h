@@ -13,6 +13,7 @@
 #ifndef COLLISION_DETECTOR_H
 #define COLLISION_DETECTOR_H
 
+#include <memory>
 #include <vector>
 
 #include "entity.h"
@@ -23,8 +24,8 @@ class CollisionDetector {
     CollisionDetector();
     ~CollisionDetector();
 
-    bool isColliding(Entity& e1, Entity& e2);
-    std::vector<Entity*> getCollisions(Entity& entity, std::vector<Entity*>& entities);
+    bool isColliding(Entity& e1, int deltaX, int deltaY, Entity& e2);
+    bool checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities);
     std::vector<Entity*> getBeingShot(Shot& bullet, std::vector<Entity*>& entities);
 };
 
