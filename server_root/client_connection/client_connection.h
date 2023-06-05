@@ -2,6 +2,7 @@
 #define CLIENT_CONNECTION_H
 
 #include "../game/games_manager.h"
+#include "../game/server_message.h"
 #include "client_receiver.h"
 #include "client_sender.h"
 #include "socket.h"
@@ -13,15 +14,18 @@ class ClientConnection {
     bool alive;
     GamesManager& gamesManager;
 
-    Queue<int> gameResponses;  // game responses
+    Queue<ServerMessage> gameResponses;  // game responses
     ClientSender sender;
     ClientReceiver receiver;
 
    public:
     ClientConnection(Socket&& skt, GamesManager& gamesManager);
 
-    void connectoToClient();
+    void connectToClient();
     void checkThreads();
+
+    void menu();  //  Client is in the Menu
+    void inGame();
 
     bool isDead();
     void kill();

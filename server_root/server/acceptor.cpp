@@ -10,11 +10,14 @@ Acceptor::Acceptor(Socket& skt /*, ProtectedGameCodes& gameCodes*/)
     : skt(skt), gamesManager() /*, gameCodes(gameCodes), clients(), matchManager()*/ {}
 
 void Acceptor::run() {
+    std::cout << "ENTRA AL ACEPTADOR\n";
     try {
         while (true) {
+            std::cout << "ANTES DE ACPTAR EL CLIENTE EN EL ACEPTADOR\n";
             Socket clientSocket = skt.accept();
+            std::cout << "DESPUES DE ACEPTAR AL CLIENTE EN EL ACEPTADOR\n";
             auto th = std::make_shared<ClientConnection>(std::move(clientSocket), gamesManager);
-            // th->startTalking();
+            th->connectToClient();
             clients.push_back(th);
             reap_dead();
             // Limpieza de clients viejos
@@ -24,6 +27,7 @@ void Acceptor::run() {
     } catch (const std::exception& e) {
         std::cerr << "An exception occurred in Acceptor::run(): " << e.what() << std::endl;
     } catch (...) {
+        // unknown exception
         std::cerr << "An unknown exception occurred in Acceptor::run()" << std::endl;
     }
 }

@@ -5,31 +5,35 @@
 
 GamesManager::GamesManager() : gameId(0) {}
 
-Queue<Action>* GamesManager::createLobby(Queue<int>& gameResponses) {
+GameRecord GamesManager::createLobby(Queue<ServerMessage>& gameResponses) {
     std::lock_guard<std::mutex> lock(m);
-    auto gameThread = std::make_shared<GameThread>();
-    games.emplace(gameId, gameThread);
-    gameThread->addPlayer(gameResponses);
+    auto game = std::make_shared<Game>();
+    games.emplace(gameId, game);
     gameId++;
-    // Return a pointer to the inputQueue
-    return &(gameThread->getInputQueue());
+    // Creates struct representing game
+    GameRecord gameRecord;
+    gameRecord.playerId = game->addPlayer(gameResponses);
+    gameRecord.game = game;
+    return gameRecord;
 }
 
-Queue<Action>* GamesManager::joinLobby(unsigned int gameCode, Queue<int>& gameResponses) {
+GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<ServerMessage>& gameResponses) {
     std::lock_guard<std::mutex> lock(m);
     auto it = games.find(gameCode);
     if (it != games.end()) {
-        // Access GameThread and return a pointer to the inputQueue
-        it->second->addPlayer(gameResponses);
-        return &(it->second->getInputQueue());
+        GameRecord gameRecord;
+        gameRecord.game = it->second;
+        // Access Game and return a pointer to the inputQueue
+        gameRecord.playerId = it->second->addPlayer(gameResponses);
+        return gameRecord;
     }
-    return nullptr;
+    return GameRecord{};
 }
 
 int GamesManager::_getGameId() {
     return gameId;
 }
 
-const std::unordered_map<int, std::shared_ptr<GameThread>>& GamesManager::_getGames() const {
+const std::unordered_map<int, std::shared_ptr<Game>>& GamesManager::_getGames() const {
     return games;
 }

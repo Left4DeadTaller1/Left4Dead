@@ -7,23 +7,17 @@
 
 #include "acceptor.h"
 
-Server::Server(const char *servname) : svr_socket(servname),
-                                        acep_th(svr_socket) {}  /*gameCodes()*/
-
+Server::Server(const char *servname) : svr_socket(servname) /*gameCodes()*/ {}
 void Server::run() {
+    Acceptor acep_th(svr_socket /*, gameCodes*/);
     acep_th.start();
-
     std::string input;
     while (std::cin >> input) {
         if (input == "q") {
             break;
         }
     }
-}
-
-Server::~Server(){
     acep_th.shutdown();
     acep_th.join();
-    svr_socket.close(); //creo que no lo necesitamos
+    svr_socket.close();
 }
-

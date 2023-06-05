@@ -1,6 +1,6 @@
 #include "client_sender.h"
 
-ClientSender::ClientSender(Socket &skt, Queue<int> &gameResponses)
+ClientSender::ClientSender(Socket &skt, Queue<ServerMessage> &gameResponses)
     : clientSocket(skt),
       gameResponses(gameResponses),
       isRunning(false) {}
@@ -12,7 +12,7 @@ void ClientSender::run() {
     try {
         while (isRunning) {
             // again this in the future should be the GameState SnapShot
-            int gameSnapShot = gameResponses.pop();
+            ServerMessage gameSnapShot = gameResponses.pop();
             bool was_closed = false;
             // clientSocket.sendall(message.data(), message.size(), &was_closed);
 

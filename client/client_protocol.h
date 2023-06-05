@@ -5,34 +5,49 @@
 #include <vector>
 
 #include "socket.h"
+#include "action_client.h"
+#include "action_create.h"
+#include "action_start_move.h"
+#include "action_end_move.h"
+#include "action_join.h"
 
-#define CREATE 1
-#define JOIN 2
-#define MOVE 3
-#define SEND_MSG 4
+//typedef enum state_t;
 
 class ClientProtocol {
    private:
     Socket& skt;
+
+
+    //int32_t receive_int32(bool& was_closed);
+
+    //state_t receive_int8(bool& was_closed);
 
    public:
     explicit ClientProtocol(Socket& skt);
 
     // ENVIA
 
-    void create(const std::string& scenario, bool& was_closed);
+    void sendAction(actionDTO* dto, bool& wasClosed);
 
-    void join(int code, bool& was_closed);
+    void startMove(StartMoveDTO_t* dto, bool& was_closed);
 
-    void move(uint32_t difx, uint32_t dify, bool& was_closed);
+    void endMove(EndMoveDTO_t* dto, bool& was_closed);
+
+    void create(CreateDTO_t* dto, bool& was_closed);
+
+    void join(JoinDTO_t* dto, bool& was_closed);
+
+    void startGame(bool& was_closed);
 
     // RECIBE
-
-    std::string read(bool& was_closed);
 
     bool receiveNotificationJoin(bool& was_closed);
 
     uint32_t receive_notification_create(bool& was_closed);
+
+    std::vector<int> receive_update_move(bool& was_closed);
+
+    //std::shared_ptr<gameStateDTO_t> receive_update_game(bool& was_closed);
 
     ClientProtocol(const ClientProtocol&) = delete;
     ClientProtocol& operator=(const ClientProtocol&) = delete;

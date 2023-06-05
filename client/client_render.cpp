@@ -1,7 +1,7 @@
 #include "client_render.h"
 
-ClientRenderer::ClientRenderer(Queue<Action*>& qServerToRender, 
-                    Queue<Action*>& qEventsToRender, 
+ClientRenderer::ClientRenderer(Queue<int>& qServerToRender, 
+                    Queue<ActionClient*>& qEventsToRender, 
                     Window& window):
                     qServerToRender(qServerToRender),
                     qEventsToRender(qEventsToRender),
@@ -12,9 +12,10 @@ ClientRenderer::ClientRenderer(Queue<Action*>& qServerToRender,
 void ClientRenderer::drawSoldier(Renderer& renderer, Texture& soldier, 
                                 int& textureWidth, int& textureHeight, 
                                 int& newPosX, int& newPosY){
+
     renderer.Copy(
         soldier,
-        Rect(textureWidth * (posX % 7), 0, textureWidth / 7, textureHeight),
+        Rect((textureWidth / 7 )* (posX % 7), 0, textureWidth / 7, textureHeight),
         Rect(newPosX, newPosY, 150, 150)
     );
     posX = newPosX;
@@ -27,6 +28,7 @@ void ClientRenderer::drawBackground(Renderer& renderer, Texture& background){
 
 //el evento de cerrar la ventana que le llegue del event manager
 int ClientRenderer::render(){
+    std::cout << "entra al render\n";
 
     Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
 
@@ -37,58 +39,27 @@ int ClientRenderer::render(){
     int textureWidth, textureHeight;
     SDL_QueryTexture(sdlTexture, NULL, NULL, &textureWidth, &textureHeight);
 
-    while(true){
-        //int newPosX = qServerToRender.pop();
-        //int newPosY = qServerToRender.pop();
+    renderer.Clear();
+    std::cout << "pasa clear\n";
 
+    drawBackground(renderer, background1_war);
+    drawSoldier(renderer, soldier1_walk, textureWidth, textureHeight, posX, posY);
+
+    renderer.Present();
+    std::cout << "pasa present\n";
+
+    while(true){
+        std::cout << "antes de popear en el render\n";
+        int newPosX = qServerToRender.pop();
+        int newPosY = qServerToRender.pop();
+        std::cout << "despues de popear en el render\n";
         renderer.Clear();
 
-        ClientRenderer::drawBackground(renderer, background1_war);
-        ClientRenderer::drawSoldier(renderer, soldier1_walk, textureWidth, textureHeight, newPosX, newPosY);
+        drawBackground(renderer, background1_war);
+        drawSoldier(renderer, soldier1_walk, textureWidth, textureHeight, newPosX, newPosY);
 
         renderer.Present();
     }
+
 	return 0;
 }
-
-
-/*void ClientRenderer::drawSoldier(Renderer& renderer, Texture& soldier, int textureWidth, int textureHeight){
-    std::cout << "textureWidth: " << textureWidth << "\n";
-    std::cout << "textureHeight: " << textureHeight << "\n";
-
-    renderer.Copy(
-        soldier,
-        Rect(0, 0, textureWidth / 7, textureHeight),
-        Rect(0, 600, 150, 150)
-    );
-    renderer.Copy(
-        soldier,
-        Rect((textureWidth / 7), 0, textureWidth / 7, textureHeight),
-        Rect((textureWidth / 7), 600, 150, 150)
-    );
-    renderer.Copy(
-        soldier,
-        Rect((textureWidth / 7) * 2, 0, textureWidth / 7, textureHeight),
-        Rect((textureWidth / 7) * 2, 600, 150, 150)
-    );
-    renderer.Copy(
-        soldier,
-        Rect((textureWidth / 7) * 3, 0, textureWidth / 7, textureHeight),
-        Rect((textureWidth / 7) * 3, 600, 150, 150)
-    );
-    renderer.Copy(
-        soldier,
-        Rect((textureWidth / 7) * 4, 0, textureWidth / 7, textureHeight),
-        Rect((textureWidth / 7) * 4, 600, 150, 150)
-    );
-    renderer.Copy(
-        soldier,
-        Rect((textureWidth / 7) * 5, 0, textureWidth / 7, textureHeight),
-        Rect((textureWidth / 7) * 5, 600, 150, 150)
-    );
-    renderer.Copy(
-        soldier,
-        Rect((textureWidth / 7) * 6, 0, textureWidth / 7, textureHeight),
-        Rect((textureWidth / 7) * 6, 600, 150, 150)
-    );
-}*/

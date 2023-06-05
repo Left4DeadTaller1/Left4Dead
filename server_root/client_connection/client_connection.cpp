@@ -11,7 +11,8 @@ ClientConnection::ClientConnection(Socket &&skt, GamesManager &gamesManager)
       sender(ClientSender(clientSocket, gameResponses)),
       receiver(ClientReceiver(clientSocket, gamesManager, gameResponses)) {}
 
-void ClientConnection::connectoToClient() {
+void ClientConnection::connectToClient() {
+    std::cout << "ENTRA A CLIENT CONNECTION\n";
     // Iniciar los hilos sender y receiver
     sender.start();
     receiver.start();
@@ -20,6 +21,32 @@ void ClientConnection::connectoToClient() {
 void ClientConnection::checkThreads() {
     if (!receiver.getIsRunning() || !sender.getIsRunning()) {
         alive = false;
+    }
+}
+
+void ClientConnection::menu() {
+    try {
+        // while (player in menu) {
+        // protocol.receiveMenuInput()
+        // }
+    } catch (const std::exception &err) {
+        std::cerr << "Unexpected exception in ClientConnection_connection_menu: "
+                  << err.what() << "\n";
+    } catch (...) {
+        std::cerr << "Unexpected exception in ClientConnection_connection_menu: <unknown>\n";
+    }
+}
+
+void ClientConnection::inGame() {
+    try {
+        // while (connected to game) {
+        //  protocol.receiveClientConnectionAction()
+        //}
+    } catch (const std::exception &err) {
+        std::cerr << "Unexpected exception in ClientConnection_connection_game: "
+                  << err.what() << "\n";
+    } catch (...) {
+        std::cerr << "Unexpected exception in ClientConnection_connection_game: <unknown>\n";
     }
 }
 

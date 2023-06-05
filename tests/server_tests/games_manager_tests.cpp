@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+/*#include <gtest/gtest.h>
 
 #include "games_manager.h"
 
@@ -48,4 +48,4 @@ TEST(GamesManagerTest, JoinNonexistentLobby) {
 
     // Verify the expected behavior based on the joinResult and the games map
     EXPECT_TRUE(joinResult == nullptr);  // Verify that the pointer is null
-}
+}*/

@@ -1,7 +1,7 @@
 #include "player.h"
 
 Player::Player(int xPosition, int yPosition, int width, int height, std::string idPlayer)
-    : Entity(xPosition, yPosition, width, height), idPlayer(idPlayer) {
+    : Entity(xPosition, yPosition, width, height), idPlayer(idPlayer), state(IDLE) {
 }
 
 void Player::move(int deltaX, int deltaY) {

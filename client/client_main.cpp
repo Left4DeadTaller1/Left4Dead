@@ -1,11 +1,10 @@
 //  Copyright NULL
 
-#include <stdio.h>
-
 #include <SDL2pp/SDL2pp.hh>
+#include <stdio.h>
 #include <iostream>
-
 #include "client.h"
+
 using namespace SDL2pp;
 #define WIDTH_WINDOW 1000
 #define HEIGHT_WINDOW 800

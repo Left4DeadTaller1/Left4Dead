@@ -2,7 +2,7 @@
 #define CLIENT_SENDER_H
 
 #include "client_protocol.h"
-#include "client_action/action.h"
+#include "action_client.h"
 #include "client_receiver.h"
 #include "socket.h"
 #include "thread.h"
@@ -13,19 +13,14 @@ class SenderThread : public Thread {
    public:
     SenderThread(bool& wasClosed,
                     ClientProtocol& protocol, 
-                    Queue<Action*>& qServerToRender,
-                    Queue<Action*>& qEventsToSender);
+                    Queue<ActionClient*>& qEventsToSender);
 
     virtual void run() override;
-
-    ~SenderThread();
 
    private:
     bool& wasClosed;
     ClientProtocol& protocol;
-    Queue<Action*>& qServerToRender;
-    Queue<Action*>& qEventsToSender;
-    ReceiverThread receiverThread;
+    Queue<ActionClient*>& qEventsToSender;
 
     void menu();
 

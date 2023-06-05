@@ -9,20 +9,25 @@ Client::Client(const char* hostname, const char* servname, Window& window) : soc
                                                                              qEventsToRender(TAM_MAX_QUEUE),
                                                                              window(window),
                                                                              renderer(qServerToRender, qEventsToRender, window),
-                                                                             senderThread(wasClosed, protocol, qServerToRender, 
-                                                                             qEventsToSender),
+                                                                             senderThread(wasClosed, protocol, qEventsToSender),
+                                                                             receiverThread(wasClosed, protocol, qServerToRender),
                                                                              eventManagerThread(qEventsToSender,
                                                                                                 qEventsToRender,
                                                                                                 window,
                                                                                                 isConnected) {}
 
-void Client::run() {
+void Client::run() { try {
     eventManagerThread.start();
     senderThread.start();
+    receiverThread.start();
     renderer.render();
+    } catch(...){
+        //implem
+    }
 }
 
 Client::~Client() {
     eventManagerThread.join();
     senderThread.join();
+    receiverThread.join();
 }

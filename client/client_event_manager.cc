@@ -3,8 +3,8 @@
 #include <exception>
 #include <iostream>
 
-EventManagerThread::EventManagerThread(Queue<Action*>& qEventsToSender,
-                                       Queue<Action*>& qEventsToRender,
+EventManagerThread::EventManagerThread(Queue<ActionClient*>& qEventsToSender,
+                                       Queue<ActionClient*>& qEventsToRender,
                                        Window& window, bool& isConnected) : qEventsToSender(qEventsToSender),
                                                                             qEventsToRender(qEventsToRender),
                                                                             window(window),
@@ -16,50 +16,63 @@ void EventManagerThread::run() {
             SDL_Event event;
             // con SDL_WaitEvent(&event) algunos eventos no los registra
             while (SDL_PollEvent(&event)) {
+                ActionClient* action;
                 if (event.type == SDL_QUIT) {
                     return;
                 } else if (event.type == SDL_KEYDOWN) {
-                    Move* move;
                     switch (event.key.keysym.sym) {
                         case SDLK_ESCAPE:
                         case SDLK_q:
                             return;
                         case SDLK_RIGHT:
-                            std::cout << "entra a flecha derecha\n";
-                            move = new Move(0, 1, 0); //desp usar punteros inteligentes
-                            qEventsToSender.push(move);
+                            //instaciar el dto, no la accion
+                            action = new StartMove(0, 1, 0);
                             break;
                         case SDLK_LEFT:
-                            std::cout << "entra a flecha izquierda\n";
-                            move = new Move(0, -1, 0);
-                            qEventsToSender.push(move);
+                            action = new StartMove(0, -1, 0);
                             break;
                         case SDLK_UP:
-                            std::cout << "entra a flecha arriba\n";
-                            move = new Move(0, 0, 1);
-                            qEventsToSender.push(move);
+                            action = new StartMove(0, 0, -1);
                             break;
                         case SDLK_DOWN:
-                            std::cout << "entra a flecha abajo\n";
-                            move = new Move(0, 0, -1);
-                            qEventsToSender.push(move);
+                            action = new StartMove(0, 0, 1);
+                            break;
+                        case SDLK_c:
+                            action = new Create("partida0");
+                            break;                        
+                        case SDLK_j:
+                            action = new Join(0);
+                            break;
+                        case SDLK_s:
+                            action = new StartGame();
                             break;
                     }
+                    qEventsToSender.push(action);
                 } else if (event.type == SDL_KEYUP) {
                     switch (event.key.keysym.sym) {
                         case SDLK_RIGHT:
-                            std::cout << "sale a flecha derecha\n";
+                            action = new EndMove(0);
+                            qEventsToSender.push(action);
                             break;
                         case SDLK_LEFT:
-                            std::cout << "sale a flecha izquierda\n";
+                            action = new EndMove(0);
+                            qEventsToSender.push(action);
                             break;
                         case SDLK_UP:
-                            std::cout << "sale a flecha arriba\n";
+                            action = new EndMove(0);
+                            qEventsToSender.push(action);
                             break;
                         case SDLK_DOWN:
-                            std::cout << "sale a flecha abajo\n";
+                            action = new EndMove(0);
+                            qEventsToSender.push(action);
                             break;
                     }
+                } else if (event.type == SDL_QUIT){
+                    std::cout << "entra a quit\n";
+                    //que pushee end
+                    //qEventsToSender.push();
+                    //qEventsToRender.push();
+                    return;
                 }
             }
         }

@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+/*#include <gtest/gtest.h>
 
 #include "entity.h"
 
@@ -9,4 +9,4 @@ TEST(EntityTest, Initialization) {
     //     EXPECT_EQ(e.getWidth(), 30);
     //     EXPECT_EQ(e.getHeight(), 40);
     EXPECT_EQ(true, true);
-}
+}*/

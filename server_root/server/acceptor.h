@@ -11,7 +11,7 @@
 
 class Acceptor : public Thread {
    public:
-    Acceptor(Socket &skt);      /*, ProtectedGameCodes &gameCodes*/
+    Acceptor(Socket &skt /*, ProtectedGameCodes &gameCodes*/);
     void run() override;
     void shutdown();
     ~Acceptor();

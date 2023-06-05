@@ -1,23 +1,22 @@
 #ifndef CLIENT_RENDER_H
 #define CLIENT_RENDER_H
 
+#include <SDL2pp/SDL2pp.hh>
+#include <exception>
 #include <string>
 #include <vector>
 
 #include "liberror.h"
 #include "client_receiver.h"
-#include "client_action/action.h"
+#include "action_client.h"
 #include "queue.h"
-
-#include <exception>
-#include <SDL2pp/SDL2pp.hh>
 
 using namespace SDL2pp;
 
 class ClientRenderer {
    public:
-    ClientRenderer(Queue<Action*>& qServerToRender, 
-                    Queue<Action*>& qEventsToRender, 
+    ClientRenderer(Queue<int>& qServerToRender, 
+                    Queue<ActionClient*>& qEventsToRender, 
                     Window& window);
                     
     void run();
@@ -25,15 +24,17 @@ class ClientRenderer {
     int render();
 
    private:
-    Queue<Action*>& qServerToRender;
-    Queue<Action*>& qEventsToRender;
+    Queue<int>& qServerToRender;
+    Queue<ActionClient*>& qEventsToRender;
     Window& window;
     int posX;
     int posY;
 
     void drawBackground(Renderer& renderer, Texture& background);
 
-    void drawSoldier(Renderer& renderer, Texture& soldier, int textureWidth, int textureHeight);
+    void drawSoldier(Renderer& renderer, Texture& soldier, 
+                                int& textureWidth, int& textureHeight, 
+                                int& newPosX, int& newPosY);
 };
 
 #endif  // CLIENT_RENDER_H

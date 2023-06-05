@@ -4,20 +4,24 @@
 #include "queue.h"
 #include "thread.h"
 #include <SDL2pp/SDL2pp.hh>
-#include "client_action/action.h"
-#include "client_action/move.h"
+#include "action_client.h"
+#include "action_create.h"
+#include "action_start_move.h"
+#include "action_end_move.h"
+#include "action_join.h"
+#include "action_start_game.h"
 using namespace SDL2pp;
 
 class EventManagerThread : public Thread {
     private:
-    Queue<Action*>& qEventsToSender;
-    Queue<Action*>& qEventsToRender;
+    Queue<ActionClient*>& qEventsToSender;
+    Queue<ActionClient*>& qEventsToRender;
     Window& window;
     bool& isConnected;
 
     public:
-    EventManagerThread(Queue<Action*>& qEventsToSender, 
-                Queue<Action*>& qEventsToRender, 
+    EventManagerThread(Queue<ActionClient*>& qEventsToSender, 
+                Queue<ActionClient*>& qEventsToRender, 
                 Window& window, bool& isConnected);
 
     virtual void run() override;
