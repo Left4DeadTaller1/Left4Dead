@@ -13,7 +13,7 @@
 ________________________________________________________________*/
 
 Game::Game()
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector() {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(1), gameRunning(false), collisionDetector() {
     playerQueues.resize(4, nullptr);
 }
 
@@ -120,27 +120,41 @@ void Game::startGame() {
 
 void Game::getPlayersActions() {
     Action playerAction;
+    // std::cout << "getPlayersActions: inputQueue size at start: " << inputQueue.size() << std::endl;
+    int actionsProcessed = 0;
 
     for (int i = 0; i < MAX_ACTIONS_PER_FRAME; ++i) {
         if (inputQueue.try_pop(playerAction)) {
             playersActions[playerAction.getPlayerId()].push(playerAction);
+            actionsProcessed++;
         } else {
-            break;  // TODO: ask fede if breaking is correct
+            break;
         }
     }
 }
 
 void Game::updateState() {
     for (auto& entity : entities) {
-        // Player* player = dynamic_cast<Player*>(entity.get());
-        // if (player) {
-        // updatePlayerState(player, playerActions[player->getPlayerId()]);
-        // }
+        Player* player = dynamic_cast<Player*>(entity.get());
+        if (player) {
+            updatePlayerState(*player, playersActions[player->getPlayerId()]);
+        }
         moveEntity(*entity);
     }
 }
 
-void Game::updatePlayerState(Player player, std::queue<Action> playerActions) {
+void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
+    while (!playerActions.empty()) {
+        Action action = playerActions.front();
+        playerActions.pop();
+        MovementState movementState = static_cast<MovementState>(action.getMovementType());
+        MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
+        MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
+
+        player.setMovementState(movementState);
+        player.setMovementDirectionX(movementDirectionX);
+        player.setMovementDirectionY(movementDirectionY);
+    }
 }
 
 void Game::moveEntity(Entity& entity) {
@@ -152,28 +166,28 @@ void Game::moveEntity(Entity& entity) {
     MovementDirectionY movementDirectionY = entity.getMovementDirectionY();
     int movementSpeed = entity.getMovementSpeed();
     // TODO work around this nested if
-    if (movementState == WALKING) {
-        if (movementDirectionX == LEFT) {
+    if (movementState == ENTITY_WALKING) {
+        if (movementDirectionX == ENTITY_LEFT) {
             deltaX = -movementSpeed;
-        } else if (movementDirectionX == RIGHT) {
+        } else if (movementDirectionX == ENTITY_RIGHT) {
             deltaX = movementSpeed;
         }
 
-        if (movementDirectionY == DOWN) {
+        if (movementDirectionY == ENTITY_DOWN) {
             deltaY = -movementSpeed;
-        } else if (movementDirectionY == UP) {
+        } else if (movementDirectionY == ENTITY_UP) {
             deltaY = movementSpeed;
         }
-    } else if (movementState == RUNNING) {
-        if (movementDirectionX == LEFT) {
+    } else if (movementState == ENTITY_RUNNING) {
+        if (movementDirectionX == ENTITY_LEFT) {
             deltaX = -(2 * movementSpeed);
-        } else if (movementDirectionX == RIGHT) {
+        } else if (movementDirectionX == ENTITY_RIGHT) {
             deltaX = (2 * movementSpeed);
         }
 
-        if (movementDirectionY == DOWN) {
+        if (movementDirectionY == ENTITY_DOWN) {
             deltaY = -(2 * movementSpeed);
-        } else if (movementDirectionY == UP) {
+        } else if (movementDirectionY == ENTITY_UP) {
             deltaY = (2 * movementSpeed);
         }
     }

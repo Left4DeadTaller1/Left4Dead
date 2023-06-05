@@ -61,7 +61,7 @@ class Game : public Thread {
     void addPlayer(std::string idPlayer);
     void removePlayer(std::string idPlayer);
     void updateState();
-    void updatePlayerState(Player player, std::queue<Action> playerActions);
+    void updatePlayerState(Player& player, std::queue<Action>& playerActions);
     void moveEntity(Entity& entity);
     void getPlayersActions();
 

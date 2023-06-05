@@ -4,21 +4,21 @@
 class CollisionDetector;
 
 enum MovementState {
-    WALKING,
-    RUNNING,
-    ENTITY_IDLE
+    ENTITY_WALKING,
+    ENTITY_RUNNING,
+    ENTITY_IDLE,
 };
 
 enum MovementDirectionX {
-    LEFT,
-    RIGHT,
-    NONE_X
+    ENTITY_LEFT,
+    ENTITY_RIGHT,
+    ENTITY_NONE_X,
 };
 
 enum MovementDirectionY {
-    UP,
-    DOWN,
-    NONE_Y
+    ENTITY_UP,
+    ENTITY_DOWN,
+    ENTITY_NONE_Y,
 };
 
 // TODO make this a virtual class later on
@@ -43,6 +43,11 @@ class Entity {
     MovementDirectionX getMovementDirectionX();
     MovementDirectionY getMovementDirectionY();
     int getMovementSpeed();
+
+    void setMovementState(MovementState movementState);
+    void setMovementDirectionX(MovementDirectionX movementDirectionX);
+    void setMovementDirectionY(MovementDirectionY movementDirectionY);
+
     void move(int deltaX, int deltaY);
     virtual ~Entity();
 };

@@ -1,13 +1,29 @@
 #include "action.h"
 
-Action::Action(int playerId, int actionType)
+Action::Action()
+    : playerId(""), movementType(ACTION_IDLE), directionXType(ACTION_NONE_X), directionYType(ACTION_NONE_Y) {}
+
+Action::Action(std::string playerId, int movementType, int directionXType, int directionYType)
     : playerId(playerId) {
-    // this is just for safety realistically you are not going to get an invalid action type
-    if (actionType < 0 || actionType > 2) {
-        this->actionType = ActionType::INVALID;
-    } else {
-        this->actionType = static_cast<ActionType>(actionType);
-    }
+    this->movementType = static_cast<MovementType>(movementType);
+    this->directionXType = static_cast<DirectionXType>(directionXType);
+    this->directionYType = static_cast<DirectionYType>(directionYType);
+}
+
+std::string Action::getPlayerId() {
+    return playerId;
+}
+
+int Action::getMovementType() {
+    return static_cast<int>(movementType);
+}
+
+int Action::getDirectionXType() {
+    return static_cast<int>(directionXType);
+}
+
+int Action::getDirectionYType() {
+    return static_cast<int>(directionYType);
 }
 
 Action::~Action() {}
