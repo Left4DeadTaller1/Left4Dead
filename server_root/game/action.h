@@ -33,7 +33,7 @@ class Action {
     Action(std::string playerId, int movementType, int directionXType, int directionYType);
     ~Action();
 
-    std::string getPlayerId();
+    std::string getId();
 
     // For testing purposes only do not use in production
     int getMovementType();

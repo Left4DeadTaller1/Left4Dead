@@ -9,7 +9,7 @@ class ServerMessage {
     std::string message;
 
    public:
-    ServerMessage(std::string message);
+    ServerMessage(std::string messageType, std::string message);
     std::string getMessage();
     ~ServerMessage();
 };

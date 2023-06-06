@@ -12,9 +12,11 @@ class Zombie : public Entity {
 
    public:
     // Constructor
-    Zombie(int xPosition, int yPosition, int width, int height);
+    Zombie(int xPosition, int yPosition, int width, int height, std::string zombieId);
     void move();
     ~Zombie();
+
+    std::string getType() override;
 
     void attack();  // added attack function declaration here
 };

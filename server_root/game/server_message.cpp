@@ -1,6 +1,6 @@
 #include "server_message.h"
 
-ServerMessage::ServerMessage(std::string message) : message(message) {
+ServerMessage::ServerMessage(std::string messageType, std::string message) : messageType(messageType), message(message) {
 }
 
 std::string ServerMessage::getMessage() {

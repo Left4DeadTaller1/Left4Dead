@@ -21,7 +21,6 @@ class Game : public Thread {
    private:
     // This is the big Queue where all the clients push their actions
     Queue<Action> inputQueue;
-    // vector of player queues TODO: change this to make it size 4, consider using hash
     std::vector<Queue<ServerMessage>*> playerQueues;
     int nextPlayerIndex;
 
@@ -64,6 +63,8 @@ class Game : public Thread {
     void updatePlayerState(Player& player, std::queue<Action>& playerActions);
     void moveEntity(Entity& entity);
     void getPlayersActions();
+
+    void sendState();
 
    public:
     // Methods for Testing do not use in production

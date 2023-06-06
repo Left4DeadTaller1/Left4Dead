@@ -14,14 +14,14 @@ enum WeaponState {
 
 class Player : public Entity {
    private:
-    std::string idPlayer;
+    // TODO: move id to Entity
     WeaponState weaponState;
 
    public:
     Player(int xPosition, int yPosition, int width, int height, std::string idPlayer);
-    std::string getPlayerId();
 
-    void move(int deltaX, int deltaY);
+    std::string getType() override;
+    WeaponState getWeaponState();
     ~Player();
 };
 

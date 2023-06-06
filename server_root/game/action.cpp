@@ -10,7 +10,7 @@ Action::Action(std::string playerId, int movementType, int directionXType, int d
     this->directionYType = static_cast<DirectionYType>(directionYType);
 }
 
-std::string Action::getPlayerId() {
+std::string Action::getId() {
     return playerId;
 }
 
