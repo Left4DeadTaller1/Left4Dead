@@ -6,6 +6,7 @@
 
 #include "../game/server_message.h"
 #include "queue.h"
+#include "server_protocol.h"
 #include "socket.h"
 #include "thread.h"
 
@@ -14,8 +15,7 @@ class ClientSender : public Thread {
     Socket& clientSocket;
     Queue<ServerMessage>& gameResponses;
     bool isRunning;
-    // Match match;
-    // Protocol protocol;
+    ServerProtocol protocol;
 
    public:
     ClientSender(Socket& skt, Queue<ServerMessage>& gameResponses);

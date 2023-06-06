@@ -3,7 +3,8 @@
 ClientSender::ClientSender(Socket &skt, Queue<ServerMessage> &gameResponses)
     : clientSocket(skt),
       gameResponses(gameResponses),
-      isRunning(false) {}
+      isRunning(false),
+      protocol() {}
 
 void ClientSender::menu() {}
 

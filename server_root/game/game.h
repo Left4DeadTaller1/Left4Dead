@@ -65,6 +65,7 @@ class Game : public Thread {
     void getPlayersActions();
 
     void sendState();
+    ServerMessage serializeState();
 
    public:
     // Methods for Testing do not use in production

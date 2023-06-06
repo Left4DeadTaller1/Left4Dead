@@ -10,7 +10,8 @@ class ServerMessage {
 
    public:
     ServerMessage(std::string messageType, std::string message);
-    std::string getMessage();
+    std::string getMessageType() const;
+    std::string getMessage() const;
     ~ServerMessage();
 };
 

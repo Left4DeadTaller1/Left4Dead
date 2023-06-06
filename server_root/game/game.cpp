@@ -57,7 +57,6 @@ std::vector<Queue<ServerMessage>*>& Game::_getPlayerQueues() {
 }
 
 void Game::pushAction(Action action) {
-    std::cout << "pushAction: action pushed for player " << action.getId() << std::endl;
     inputQueue.push(action);
 }
 
@@ -104,7 +103,6 @@ void Game::removePlayer(std::string playerId) {
 
 void Game::startGame() {
     gameRunning = true;
-    std::cout << "startGame: game started" << std::endl;
     while (gameRunning) {
         auto start = std::chrono::steady_clock::now();
 
@@ -123,7 +121,6 @@ void Game::startGame() {
     }
 
     gameRunning = false;
-    std::cout << "startGame: game stopped" << std::endl;
 }
 
 void Game::getPlayersActions() {
@@ -135,22 +132,16 @@ void Game::getPlayersActions() {
         if (inputQueue.try_pop(playerAction)) {
             playersActions[playerAction.getId()].push(playerAction);
             actionsProcessed++;
-            std::cout << "getPlayersActions: action popped from inputQueue for player " << playerAction.getId() << std::endl;
         } else {
-            std::cout << "getPlayersActions: no more actions to pop" << std::endl;
             break;
         }
     }
-    // std::cout << "getPlayersActions: inputQueue size at end: " << inputQueue.size() << std::endl;
-    std::cout << "getPlayersActions: playersActions size at end: " << playersActions.size() << std::endl;
-    std::cout << "getPlayersActions: actions processed: " << actionsProcessed << std::endl;
 }
 
 void Game::updateState() {
     for (auto& entity : entities) {
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
-            std::cout << "updatePlayerState: initial actions count for player " << player->getId() << ": " << playersActions[player->getId()].size() << std::endl;
             updatePlayerState(*player, playersActions[player->getId()]);
         }
         moveEntity(*entity);
@@ -174,7 +165,6 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
 void Game::moveEntity(Entity& entity) {
     int deltaX = 0;
     int deltaY = 0;
-    bool validMovement;
     MovementState movementState = entity.getMovementState();
     MovementDirectionX movementDirectionX = entity.getMovementDirectionX();
     MovementDirectionY movementDirectionY = entity.getMovementDirectionY();
@@ -223,7 +213,7 @@ void Game::sendState() {
     }
 }
 
-ServerMessage serializeState() {
+ServerMessage Game::serializeState() {
     std::string gameState = "{\"entities\": [";
     for (auto& entity : entities) {
         if (&entity != &entities[0]) {
@@ -237,11 +227,14 @@ ServerMessage serializeState() {
         gameState += "\"movementState\": " + std::to_string(entity->getMovementState()) + ",";
         gameState += "\"movementDirectionX\": " + std::to_string(entity->getMovementDirectionX());
         gameState += "\"healthState\": " + std::to_string(entity->getHealthState());
-        if (entity->getType() == "player")
-            gameState += "\",weaponState\": " + std::to_string(entity->getWeaponState()) + ",";
+        if (entity->getType() == "player") {
+            Player* player = dynamic_cast<Player*>(entity.get());
+            gameState += "\",weaponState\": " + std::to_string(player->getWeaponState()) + ",";
+        }
 
         gameState += "}";
     }
     gameState += "]}";
     ServerMessage serializedState = ServerMessage("gameState", gameState);
+    return serializedState;
 }

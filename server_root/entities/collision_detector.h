@@ -17,7 +17,9 @@
 #include <vector>
 
 #include "entity.h"
+#include "player.h"
 #include "shot.h"
+#include "zombie.h"
 
 class CollisionDetector {
    public:

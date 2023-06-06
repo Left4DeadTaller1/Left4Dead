@@ -3,7 +3,11 @@
 ServerMessage::ServerMessage(std::string messageType, std::string message) : messageType(messageType), message(message) {
 }
 
-std::string ServerMessage::getMessage() {
+std::string ServerMessage::getMessageType() const {
+    return messageType;
+}
+
+std::string ServerMessage::getMessage() const {
     return message;
 }
 

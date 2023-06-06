@@ -1,6 +1,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <string>
+
 class CollisionDetector;
 
 enum MovementState {
@@ -61,7 +63,7 @@ class Entity {
     void setMovementDirectionX(MovementDirectionX movementDirectionX);
     void setMovementDirectionY(MovementDirectionY movementDirectionY);
 
-    virtual getType() = 0;
+    virtual std::string getType() = 0;
 
     void move(int deltaX, int deltaY);
     virtual ~Entity();
