@@ -19,7 +19,7 @@ class GamesManager {
    private:
     std::unordered_map<int, std::shared_ptr<Game>> games;
     std::mutex m;
-    int gameId;
+    int nextGameId;
 
    public:
     GamesManager();
@@ -30,7 +30,7 @@ class GamesManager {
     GameRecord joinLobby(unsigned int gameCode, Queue<ServerMessage>& gameResponses);
 
     // Method for Testing do not use them in production
-    int _getGameId();
+    int _getNextGameId();
     const std::unordered_map<int, std::shared_ptr<Game>>& _getGames() const;
 };
 
