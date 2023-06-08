@@ -14,24 +14,24 @@
 ________________________________________________________________*/
 
 Game::Game()
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(1), gameRunning(false), collisionDetector() {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol() {
     playerQueues.resize(4, nullptr);
 }
 
-std::string Game::addPlayer(Queue<ServerMessage>& gameResponses) {
+std::string Game::addPlayer(Queue<std::vector<uint8_t>>& gameResponses) {
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
-    // Use nextPlayerIndex to create playerId
-    std::string playerId = "Player" + std::to_string(nextPlayerIndex);
+    std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
     addPlayer(playerId);
-    // Use nextPlayerIndex to insert the player queue into playerQueues
     playerQueues[nextPlayerIndex] = &gameResponses;
+
+    playersActions[playerId] = std::queue<Action>();
     nextPlayerIndex++;
     return playerId;
 }
 
-void Game::removePlayer(Queue<ServerMessage>& gameResponses) {
+void Game::removePlayer(Queue<std::vector<uint8_t>>& gameResponses) {
     // Find the player queue in playerQueues
     auto it = std::find(playerQueues.begin(), playerQueues.end(), &gameResponses);
     if (it != playerQueues.end()) {
@@ -52,7 +52,7 @@ Queue<Action>& Game::getInputQueue() {
     return inputQueue;
 }
 
-std::vector<Queue<ServerMessage>*>& Game::_getPlayerQueues() {
+std::vector<Queue<std::vector<uint8_t>>*>& Game::_getPlayerQueues() {
     return playerQueues;
 }
 
@@ -66,7 +66,6 @@ void Game::run() {
 }
 
 void Game::sendAction(Action action) {
-    // TODO: si usasemos el hash hariamos un push a la queue del player correspondiente pero solo la intencion no la accion en si, el objeto action muere aca, pregunta a gpt si hace falta un delete.
     inputQueue.push(action);
 }
 
@@ -139,12 +138,18 @@ void Game::getPlayersActions() {
 }
 
 void Game::updateState() {
+    // Decrementamos DYINGCOUNTER de cada entidad que este en DYING y si este llega a 0 borralo
+
     for (auto& entity : entities) {
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
             updatePlayerState(*player, playersActions[player->getId()]);
         }
-        moveEntity(*entity);
+        // else {
+        // TODO: remember to decrease zombie cd
+        // }
+        move(*entity);
+        attack(*entity);
     }
 }
 
@@ -155,14 +160,17 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
         MovementState movementState = static_cast<MovementState>(action.getMovementType());
         MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
         MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
+        WeaponState weaponState = static_cast<WeaponState>(action.getWeaponState());
 
         player.setMovementState(movementState);
         player.setMovementDirectionX(movementDirectionX);
         player.setMovementDirectionY(movementDirectionY);
+        player.setWeaponState(weaponState);
+        player.decreaseAtkCooldown();
     }
 }
 
-void Game::moveEntity(Entity& entity) {
+void Game::move(Entity& entity) {
     int deltaX = 0;
     int deltaY = 0;
     MovementState movementState = entity.getMovementState();
@@ -200,41 +208,65 @@ void Game::moveEntity(Entity& entity) {
             entity.move(deltaX, deltaY);
 }
 
+void Game::attack(Entity& entity) {
+    if (entity.canAttack()) {
+        // TODO change this String type to enum in entity class
+        if (entity.getType() == PLAYER) {
+            Shot bullet = dynamic_cast<Player&>(entity).shoot();
+            std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.getBeingShot(bullet, entities);
+
+            if (!damagedEntities.empty()) {
+                damagedEntities.front()->takeDamage(bullet.getDamage());
+            }
+        }
+    }
+}
+
 const std::unordered_map<std::string, std::queue<Action>>& Game::_getPlayersActions() const {
     return playersActions;
 }
 
 void Game::sendState() {
-    ServerMessage serializedState = serializeState();
-    for (auto& playerQueue : playerQueues) {
-        if (playerQueue != nullptr) {
-            playerQueue->try_push(serializedState);
+    std::vector<std::shared_ptr<EntityDTO>> entitiesDtos = getDtos();
+    std::vector<uint8_t> serializedState = protocol.encodeServerMessage("gameState", entitiesDtos);
+
+    for (Queue<std::vector<uint8_t>>* playerQueue : playerQueues) {
+        if (playerQueue) {
+            playerQueue->push(serializedState);
         }
     }
 }
 
-ServerMessage Game::serializeState() {
-    std::string gameState = "{\"entities\": [";
+std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {
+    std::vector<std::shared_ptr<EntityDTO>> dtos;
     for (auto& entity : entities) {
-        if (&entity != &entities[0]) {
-            gameState += ",";
-        }
-        gameState += "{\"type\": \"" + entity->getType() + "\",";
-        gameState += "\"id\": \"" + entity->getId() + "\",";
-        gameState += "\"x\": " + std::to_string(entity->getX()) + ",";
-        gameState += "\"y\": " + std::to_string(entity->getY()) + ",";
-        gameState += "\"health\": " + std::to_string(entity->getHealth()) + ",";
-        gameState += "\"movementState\": " + std::to_string(entity->getMovementState()) + ",";
-        gameState += "\"movementDirectionX\": " + std::to_string(entity->getMovementDirectionX());
-        gameState += "\"healthState\": " + std::to_string(entity->getHealthState());
-        if (entity->getType() == "player") {
-            Player* player = dynamic_cast<Player*>(entity.get());
-            gameState += "\",weaponState\": " + std::to_string(player->getWeaponState()) + ",";
-        }
-
-        gameState += "}";
+        auto dto = entity->getDto();
+        dtos.push_back(dto);
     }
-    gameState += "]}";
-    ServerMessage serializedState = ServerMessage("gameState", gameState);
-    return serializedState;
+    return dtos;
 }
+// uint8_t Game::serializeState() {
+//     std::string gameState = "{\"entities\": [";
+//     for (auto& entity : entities) {
+//         if (&entity != &entities[0]) {
+//             gameState += ",";
+//         }
+//         gameState += "{\"type\": \"" + entity->getType() + "\",";
+//         gameState += "\"id\": \"" + entity->getId() + "\",";
+//         gameState += "\"x\": " + std::to_string(entity->getX()) + ",";
+//         gameState += "\"y\": " + std::to_string(entity->getY()) + ",";
+//         gameState += "\"health\": " + std::to_string(entity->getHealth()) + ",";
+//         gameState += "\"movementState\": " + std::to_string(entity->getMovementState()) + ",";
+//         gameState += "\"movementDirectionX\": " + std::to_string(entity->getMovementDirectionX());
+//         gameState += "\"healthState\": " + std::to_string(entity->getHealthState());
+//         if (entity->getType() == "player") {
+//             Player* player = dynamic_cast<Player*>(entity.get());
+//             gameState += "\",weaponState\": " + std::to_string(player->getWeaponState()) + ",";
+//         }
+
+//         gameState += "}";
+//     }
+//     gameState += "]}";
+//     uint8_t serializedState = uint8_t("gameState", gameState);
+//     return serializedState;
+// }

@@ -37,38 +37,38 @@ TEST(CollisionDetectorTest, GetBeingShotRight) {
     CollisionDetector detector;
     Shot bullet(true, 10, 20, "right", 10, 30);  // Bullet shooting to the right
 
-    Zombie e1(30, 25, 30, 30, "e1");  // On the right path of the bullet
-    Zombie e2(10, 25, 30, 30, "e2");  // On the left path of the bullet
+    auto e1 = std::make_shared<Zombie>(30, 25, 30, 30, "e1");  // On the right path of the bullet
+    auto e2 = std::make_shared<Zombie>(10, 25, 30, 30, "e2");  // On the left path of the bullet
 
-    std::vector<Entity*> entities = {&e1, &e2};
+    std::vector<std::shared_ptr<Entity>> entities = {e1, e2};
 
-    std::vector<Entity*> entitiesBeingShot = detector.getBeingShot(bullet, entities);
+    auto entitiesBeingShot = detector.getBeingShot(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(1));
-    EXPECT_EQ(entitiesBeingShot[0], &e1);
+    EXPECT_EQ(entitiesBeingShot.front(), e1);
 }
 
 TEST(CollisionDetectorTest, GetBeingShotLeft) {
     CollisionDetector detector;
     Shot bullet(true, 10, 20, "left", 10, 30);  // Bullet shooting to the left
 
-    Zombie e1(30, 25, 30, 30, "e1");  // On the right path of the bullet
-    Zombie e2(10, 25, 30, 30, "e2");  // On the left path of the bullet
+    auto e1 = std::make_shared<Zombie>(30, 25, 30, 30, "e1");  // On the right path of the bullet
+    auto e2 = std::make_shared<Zombie>(10, 25, 30, 30, "e2");  // On the left path of the bullet
 
-    std::vector<Entity*> entities = {&e1, &e2};
+    std::vector<std::shared_ptr<Entity>> entities = {e1, e2};
 
-    std::vector<Entity*> entitiesBeingShot = detector.getBeingShot(bullet, entities);
+    auto entitiesBeingShot = detector.getBeingShot(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(1));
-    EXPECT_EQ(entitiesBeingShot[0], &e2);
+    EXPECT_EQ(entitiesBeingShot.front(), e2);
 }
 
 TEST(CollisionDetectorTest, GetBeingShotNoHit) {
     CollisionDetector detector;
     Shot bullet(true, 10, 20, "right", 10, 30);  // Bullet shooting to the right
 
-    Zombie e1(50, 60, 30, 30, "e1");  // Not in the path of the bullet
+    auto e1 = std::make_shared<Zombie>(50, 60, 30, 30, "e1");  // Not in the path of the bullet
 
-    std::vector<Entity*> entities = {&e1};
+    std::vector<std::shared_ptr<Entity>> entities = {e1};
 
-    std::vector<Entity*> entitiesBeingShot = detector.getBeingShot(bullet, entities);
+    auto entitiesBeingShot = detector.getBeingShot(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(0));  // No entities should be hit
 }

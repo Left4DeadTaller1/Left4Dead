@@ -14,7 +14,7 @@ class ClientConnection {
     bool alive;
     GamesManager& gamesManager;
 
-    Queue<ServerMessage> gameResponses;  // game responses
+    Queue<std::vector<uint8_t>> gameResponses;  // game responses
     ClientSender sender;
     ClientReceiver receiver;
 

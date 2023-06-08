@@ -10,6 +10,7 @@
 #include "player.h"
 #include "queue.h"
 #include "server_message.h"
+#include "server_protocol.h"
 #include "thread.h"
 #include "zombie.h"
 
@@ -21,14 +22,14 @@ class Game : public Thread {
    private:
     // This is the big Queue where all the clients push their actions
     Queue<Action> inputQueue;
-    std::vector<Queue<ServerMessage>*> playerQueues;
+    std::vector<Queue<std::vector<uint8_t>>*> playerQueues;
     int nextPlayerIndex;
 
    public:
     explicit Game();
     void run() override;
-    std::string addPlayer(Queue<ServerMessage>& gameResponses);
-    void removePlayer(Queue<ServerMessage>& gameResponses);
+    std::string addPlayer(Queue<std::vector<uint8_t>>& gameResponses);
+    void removePlayer(Queue<std::vector<uint8_t>>& gameResponses);
     Queue<Action>& getInputQueue();
 
     // Later add the API for the clients to push actions to the InputQueue
@@ -43,7 +44,7 @@ class Game : public Thread {
     ~Game();
 
     // Methods for Testing do not use in production
-    std::vector<Queue<ServerMessage>*>& _getPlayerQueues();
+    std::vector<Queue<std::vector<uint8_t>>*>& _getPlayerQueues();
 
     /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
     -----------------------Api for Game-----------------------------
@@ -56,16 +57,19 @@ class Game : public Thread {
     // std::vector<std::shared_ptr<Player>> players;
     // std::vector<std::shared_ptr<Zombie>> zombies;
     std::vector<std::shared_ptr<Entity>> entities;
+    ServerProtocol protocol;
 
     void addPlayer(std::string idPlayer);
     void removePlayer(std::string idPlayer);
     void updateState();
     void updatePlayerState(Player& player, std::queue<Action>& playerActions);
-    void moveEntity(Entity& entity);
+    void move(Entity& entity);
+    void attack(Entity& entity);
     void getPlayersActions();
 
     void sendState();
-    ServerMessage serializeState();
+    // uint8_t serializeState();
+    std::vector<std::shared_ptr<EntityDTO>> getDtos();
 
    public:
     // Methods for Testing do not use in production

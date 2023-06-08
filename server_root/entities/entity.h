@@ -1,6 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <memory>
 #include <string>
 
 class CollisionDetector;
@@ -27,9 +28,27 @@ enum HealthState {
     ALIVE,
     HURT,
     DEAD
+    // TODO: add dying here
 };
 
-// TODO make this a virtual class later on
+enum EntityType {
+    PLAYER,
+    ZOMBIE,
+};
+
+struct EntityDTO {
+    EntityType type;
+    std::string id;
+    int x;
+    int y;
+    int health;
+    int movementState;
+    int movementDirectionX;
+    int healthState;
+
+    virtual ~EntityDTO() = default;
+};
+
 class Entity {
    protected:
     int x;
@@ -42,6 +61,9 @@ class Entity {
     MovementDirectionX movementDirectionX;
     MovementDirectionY movementDirectionY;
     HealthState healthState;
+    // TODO: make changes to add atk cd to this class and remove it from zombie
+    //  int movementSpeed;
+    int atkCooldown;
 
     friend class CollisionDetector;
 
@@ -62,10 +84,14 @@ class Entity {
     void setMovementState(MovementState movementState);
     void setMovementDirectionX(MovementDirectionX movementDirectionX);
     void setMovementDirectionY(MovementDirectionY movementDirectionY);
+    void takeDamage(int amountOfDamage);
 
-    virtual std::string getType() = 0;
+    virtual EntityType getType() = 0;
+
+    virtual std::shared_ptr<EntityDTO> getDto();
 
     void move(int deltaX, int deltaY);
+    virtual bool canAttack() = 0;
     virtual ~Entity();
 };
 

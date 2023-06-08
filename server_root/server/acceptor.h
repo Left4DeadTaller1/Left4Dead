@@ -11,14 +11,13 @@
 
 class Acceptor : public Thread {
    public:
-    Acceptor(Socket &skt /*, ProtectedGameCodes &gameCodes*/);
+    Acceptor(Socket &skt);
     void run() override;
     void shutdown();
     ~Acceptor();
 
    private:
     Socket &skt;
-    // ProtectedGameCodes &gameCodes;
     std::list<std::shared_ptr<ClientConnection>> clients;
     GamesManager gamesManager;
     void reap_dead();

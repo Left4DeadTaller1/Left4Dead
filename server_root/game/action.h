@@ -21,16 +21,23 @@ enum DirectionYType {
     ACTION_NONE_Y,
 };
 
+enum ActionWeaponState {
+    ACTION_SHOOTING,
+    ACTION_RELOADING,
+    ACTION_WEAPON_IDLE
+};
+
 class Action {
    private:
     std::string playerId;
     MovementType movementType;
     DirectionXType directionXType;
     DirectionYType directionYType;
+    ActionWeaponState weaponState;
 
    public:
     Action();
-    Action(std::string playerId, int movementType, int directionXType, int directionYType);
+    Action(std::string playerId, int movementType, int directionXType, int directionYType, int weaponState);
     ~Action();
 
     std::string getId();
@@ -39,6 +46,7 @@ class Action {
     int getMovementType();
     int getDirectionXType();
     int getDirectionYType();
+    int getWeaponState();
 };
 
 #endif  // ACTION_H_

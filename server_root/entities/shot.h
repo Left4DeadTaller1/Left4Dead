@@ -5,6 +5,12 @@
 
 class CollisionDetector;
 
+enum type {
+    SMG,
+    RIFLE,
+    SNIPER
+};
+
 class Shot {
    private:
     bool piercing;
@@ -26,6 +32,8 @@ class Shot {
     ~Shot();
 
     bool shootingLeft();  // return true if shooting left
+    bool shootingRight();
+    int getDamage();
 };
 
 #endif  // SHOT_H

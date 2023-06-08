@@ -10,9 +10,11 @@
 #include <vector>
 
 #include "action.h"
-#include "game.h"
+#include "entity.h"
+#include "player.h"
 #include "server_message.h"
 #include "socket.h"
+#include "zombie.h"
 
 typedef enum {
     CREATE,
@@ -23,6 +25,18 @@ typedef enum {
     START_SHOOT,
     END_SHOOT
 } Type;
+
+enum class GeneralState {
+    WALKING,
+    RUNNING,
+    WALKING_SHOOTING,
+    RUNNING_SHOOTING,
+    SHOOTING,
+    RELOADING,
+    HURT,
+    DEAD,
+    IDLE
+};
 
 class ServerProtocol {
    private:
@@ -67,8 +81,9 @@ class ServerProtocol {
     ServerProtocol &operator=(ServerProtocol &&) = default;
 
     // Just my things here:
-    std::vector<uint8_t> encodeServerMessage(const ServerMessage &msg);
-    ServerMessage decodeServerMessage(const std::vector<uint8_t> &encodedMsg);
+    std::vector<uint8_t> encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities);
+    // ServerMessage decodeServerMessage(const std::vector<uint8_t> &encodedMsg);
+    GeneralState determineGeneralState(const std::shared_ptr<EntityDTO> &entity);
 };
 
 #endif

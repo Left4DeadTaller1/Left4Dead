@@ -33,10 +33,10 @@ bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int delta
     return false;
 }
 
-std::vector<Entity*> CollisionDetector::getBeingShot(Shot& bullet, std::vector<Entity*>& entities) {
-    std::vector<Entity*> entitiesBeingShot;
+std::list<std::shared_ptr<Entity>> CollisionDetector::getBeingShot(Shot& bullet, std::vector<std::shared_ptr<Entity>>& entities) {
+    std::list<std::shared_ptr<Entity>> entitiesBeingShot;
 
-    for (Entity* entity : entities) {
+    for (const auto& entity : entities) {
         if ((bullet.shootingLeft() && entity->x > bullet.xOrigin) ||
             (!bullet.shootingLeft() && entity->x < bullet.xOrigin)) {
             continue;
@@ -44,9 +44,24 @@ std::vector<Entity*> CollisionDetector::getBeingShot(Shot& bullet, std::vector<E
 
         if ((entity->y < bullet.lowerY && bullet.lowerY < entity->y + entity->height) ||
             (entity->y < bullet.upperY && bullet.upperY < entity->y + entity->height)) {
-            entitiesBeingShot.push_back(entity);
+            if (entitiesBeingShot.empty()) {
+                entitiesBeingShot.push_back(entity);
+            } else {
+                auto it = entitiesBeingShot.begin();
+                for (; it != entitiesBeingShot.end(); ++it) {
+                    if ((bullet.shootingLeft() && entity->x > (*it)->x) ||
+                        (!bullet.shootingLeft() && entity->x < (*it)->x)) {
+                        entitiesBeingShot.insert(it, entity);
+                        break;
+                    }
+                }
+
+                if (it == entitiesBeingShot.end()) {
+                    entitiesBeingShot.push_back(entity);
+                }
+            }
         }
     }
-    // The logic for the dmg taken should be in the game class, this method just returns the entities that are being shot
+
     return entitiesBeingShot;
 }

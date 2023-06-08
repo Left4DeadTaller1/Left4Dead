@@ -76,45 +76,103 @@ std::vector<int> ServerProtocol::receive_start_move(bool &was_closed, Socket &pe
     return vector;
 }
 
-std::vector<uint8_t> ServerProtocol::encodeServerMessage(const ServerMessage &msg) {
-    uint8_t messageType;
-    const std::string &msgType = msg.getMessageType();
-    if (msgType == "gameState") {
-        messageType = 1;
-    } else if (msgType == "JoinAnswer") {
-        messageType = 2;
-    } else {
-        messageType = 0;
+std::vector<uint8_t> ServerProtocol::encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities) {
+    uint8_t encodedMessageType = 1;
+
+    uint16_t msg_len = htons(static_cast<uint16_t>(entities.size()));
+    std::vector<uint8_t> encodedMsg;
+
+    encodedMsg.push_back(encodedMessageType);
+
+    // Adding the number of entities (2 bytes)
+    encodedMsg.resize(encodedMsg.size() + 2);
+    *(uint16_t *)(encodedMsg.data() + 1) = msg_len;
+
+    for (const auto &entity : entities) {
+        // Encode type
+        uint8_t encodedType = static_cast<uint8_t>(entity->type);
+        encodedMsg.push_back(encodedType);
+
+        // Extracting and converting the entity id
+        std::string idNumberStr = entity->id.substr(entity->id.find_first_of("0123456789"));
+        uint16_t id = std::stoi(idNumberStr);
+        id = htons(id);
+
+        // Adding the id (2 bytes)
+        encodedMsg.resize(encodedMsg.size() + 2);
+        *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = id;
+
+        // Encode general state
+        GeneralState generalState = determineGeneralState(entity);
+        uint8_t encodedGeneralState = static_cast<uint8_t>(generalState);
+
+        // Adding the general state (1 byte)
+        encodedMsg.push_back(encodedGeneralState);
+
+        // Encode X direction
+        uint16_t encodedXDirection = htons(static_cast<uint16_t>(entity->movementDirectionX));
+
+        // Adding the X direction (2 bytes)
+        encodedMsg.resize(encodedMsg.size() + 2);
+        *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = encodedXDirection;
+
+        // Encode health
+        uint8_t encodedHealth = static_cast<uint8_t>(entity->health);
+
+        // Adding the health (1 byte)
+        encodedMsg.push_back(encodedHealth);
     }
-
-    uint16_t msg_len = static_cast<uint16_t>(msg.getMessage().size());
-    std::vector<uint8_t> encodedMsg(1 + 2 + msg_len);
-
-    encodedMsg[0] = messageType;
-    encodedMsg[1] = (msg_len >> 8) & 0xFF;  // High byte
-    encodedMsg[2] = msg_len & 0xFF;         // Low byte
-
-    const std::string &messageContent = msg.getMessage();
-    std::copy(messageContent.begin(), messageContent.end(), encodedMsg.begin() + 3);
 
     return encodedMsg;
 }
 
-ServerMessage ServerProtocol::decodeServerMessage(const std::vector<uint8_t> &encodedMsg) {
-    std::string messageType;
-    switch (encodedMsg[0]) {
-        case 1:
-            messageType = "gameState";
-            break;
-        case 2:
-            messageType = "JoinAnswer";
-            break;
-        default:
-            messageType = "unknown";
-            break;
+GeneralState ServerProtocol::determineGeneralState(const std::shared_ptr<EntityDTO> &entity) {
+    if (entity->healthState == HealthState::DEAD) {
+        return GeneralState::DEAD;
+    } else if (entity->healthState == HealthState::HURT) {
+        return GeneralState::HURT;
     }
-    uint16_t msg_len = ntohs(*reinterpret_cast<const uint16_t *>(&encodedMsg[1]));
-    std::string msg(encodedMsg.begin() + 3, encodedMsg.begin() + 3 + msg_len);
 
-    return ServerMessage(messageType, msg);
+    if (entity->type == PLAYER) {
+        std::shared_ptr<PlayerDTO> player = std::dynamic_pointer_cast<PlayerDTO>(entity);
+
+        if (player->weaponState == WeaponState::SHOOTING) {
+            if (entity->movementState == MovementState::ENTITY_WALKING) {
+                return GeneralState::WALKING_SHOOTING;
+            } else if (entity->movementState == MovementState::ENTITY_RUNNING) {
+                return GeneralState::RUNNING_SHOOTING;
+            } else {
+                return GeneralState::SHOOTING;
+            }
+        } else if (player->weaponState == WeaponState::RELOADING) {
+            return GeneralState::RELOADING;
+        }
+    }
+
+    if (entity->movementState == MovementState::ENTITY_WALKING) {
+        return GeneralState::WALKING;
+    } else if (entity->movementState == MovementState::ENTITY_RUNNING) {
+        return GeneralState::RUNNING;
+    }
+
+    return GeneralState::IDLE;
 }
+
+// ServerMessage ServerProtocol::decodeServerMessage(const std::vector<uint8_t> &encodedMsg) {
+//     std::string messageType;
+//     switch (encodedMsg[0]) {
+//         case 1:
+//             messageType = "gameState";
+//             break;
+//         case 2:
+//             messageType = "JoinAnswer";
+//             break;
+//         default:
+//             messageType = "unknown";
+//             break;
+//     }
+//     uint16_t msg_len = ntohs(*reinterpret_cast<const uint16_t *>(&encodedMsg[1]));
+//     std::string msg(encodedMsg.begin() + 3, encodedMsg.begin() + 3 + msg_len);
+
+//     return ServerMessage(messageType, msg);
+// }

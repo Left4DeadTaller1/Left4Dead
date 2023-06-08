@@ -18,5 +18,14 @@ Shot::~Shot() {
 }
 
 bool Shot::shootingLeft() {
+    // TODO: this could be an Enums
     return direction == "left";
+}
+
+bool Shot::shootingRight() {
+    return direction == "right";
+}
+
+int Shot::getDamage() {
+    return damage;
 }

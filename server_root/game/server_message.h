@@ -2,16 +2,20 @@
 #define SERVER_MESSAGE_H_
 
 #include <string>
+#include <vector>
 
 class ServerMessage {
    private:
     std::string messageType;
-    std::string message;
+    std::vector<uint8_t> message;
 
    public:
-    ServerMessage(std::string messageType, std::string message);
+    ServerMessage() = default;
+    ServerMessage(std::string messageType, const std::vector<uint8_t>& message);
     std::string getMessageType() const;
-    std::string getMessage() const;
+    void setMessageType(const std::string& messageType);
+    std::vector<uint8_t> getMessage() const;
+    void setMessage(const std::vector<uint8_t>& message);
     ~ServerMessage();
 };
 

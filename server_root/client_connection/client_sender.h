@@ -13,12 +13,12 @@
 class ClientSender : public Thread {
    private:
     Socket& clientSocket;
-    Queue<ServerMessage>& gameResponses;
+    Queue<std::vector<uint8_t>>& gameResponses;
     bool isRunning;
     ServerProtocol protocol;
 
    public:
-    ClientSender(Socket& skt, Queue<ServerMessage>& gameResponses);
+    ClientSender(Socket& skt, Queue<std::vector<uint8_t>>& gameResponses);
 
     void run() override;
 

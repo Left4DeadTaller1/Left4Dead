@@ -6,19 +6,21 @@
 
 #include "entity.h"
 
+struct ZombieDTO : EntityDTO {
+};
+
 class Zombie : public Entity {
    private:
-    int atkCooldown;
-
    public:
     // Constructor
     Zombie(int xPosition, int yPosition, int width, int height, std::string zombieId);
     void move();
     ~Zombie();
 
-    std::string getType() override;
+    EntityType getType() override;
+    std::shared_ptr<EntityDTO> getDto() override;
 
-    void attack();  // added attack function declaration here
+    bool canAttack() override;  // added canAttack function declaration here
 };
 
 #endif  // ZOMBIE_H

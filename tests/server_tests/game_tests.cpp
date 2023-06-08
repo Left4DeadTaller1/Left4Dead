@@ -19,30 +19,30 @@ TEST(GameTest, Constructor) {
 
 TEST(GameTest, AddPlayer) {
     Game gameInstance;
-    Queue<ServerMessage> gameResponses(MAX_QUEUE_SIZE);
+    Queue<std::vector<uint8_t>> gameResponses(MAX_QUEUE_SIZE);
     // Check that the first player queue is null
-    EXPECT_EQ(gameInstance._getPlayerQueues()[1], nullptr);
+    EXPECT_EQ(gameInstance._getPlayerQueues()[0], nullptr);
     gameInstance.addPlayer(gameResponses);
     // Check that the first player queue is not null after adding player
-    EXPECT_NE(gameInstance._getPlayerQueues()[1], nullptr);
+    EXPECT_NE(gameInstance._getPlayerQueues()[0], nullptr);
 }
 
 TEST(GameTest, RemovePlayer) {
     Game gameInstance;
-    Queue<ServerMessage> gameResponses1(MAX_QUEUE_SIZE);
-    Queue<ServerMessage> gameResponses2(MAX_QUEUE_SIZE);
+    Queue<std::vector<uint8_t>> gameResponses1(MAX_QUEUE_SIZE);
+    Queue<std::vector<uint8_t>> gameResponses2(MAX_QUEUE_SIZE);
     gameInstance.addPlayer(gameResponses1);
     gameInstance.addPlayer(gameResponses2);
     // Check that the first two player queues are not null
+    EXPECT_NE(gameInstance._getPlayerQueues()[0], nullptr);
     EXPECT_NE(gameInstance._getPlayerQueues()[1], nullptr);
-    EXPECT_NE(gameInstance._getPlayerQueues()[2], nullptr);
 
     // Remove a player
     gameInstance.removePlayer(gameResponses1);
     // Check that the first player queue is null after removal
-    EXPECT_EQ(gameInstance._getPlayerQueues()[1], nullptr);
+    EXPECT_EQ(gameInstance._getPlayerQueues()[0], nullptr);
     // Check that the second player queue is still not null
-    EXPECT_NE(gameInstance._getPlayerQueues()[2], nullptr);
+    EXPECT_NE(gameInstance._getPlayerQueues()[1], nullptr);
 }
 
 TEST(GameTest, StartStopGame) {
@@ -50,7 +50,7 @@ TEST(GameTest, StartStopGame) {
 
     EXPECT_FALSE(gameInstance.getGameRunning());
 
-    gameInstance.start();
+    std::thread gameThread(&Game::run, &gameInstance);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
@@ -62,5 +62,5 @@ TEST(GameTest, StartStopGame) {
 
     EXPECT_FALSE(gameInstance.getGameRunning());
 
-    gameInstance.join();
+    gameThread.join();
 }

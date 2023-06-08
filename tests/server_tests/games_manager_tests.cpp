@@ -7,7 +7,7 @@
 
 TEST(GamesManagerTest, CreateLobby) {
     GamesManager manager;
-    Queue<ServerMessage> gameResponses(10);
+    Queue<std::vector<uint8_t>> gameResponses(10);
 
     int nextGameId = manager._getNextGameId();
     EXPECT_EQ(nextGameId, 0);
@@ -31,7 +31,7 @@ TEST(GamesManagerTest, CreateLobby) {
 
 TEST(GamesManagerTest, JoinExistingLobby) {
     GamesManager manager;
-    Queue<ServerMessage> gameResponses(10);
+    Queue<std::vector<uint8_t>> gameResponses(10);
 
     GameRecord gameRecord = manager.createLobby(gameResponses);
 
@@ -43,7 +43,7 @@ TEST(GamesManagerTest, JoinExistingLobby) {
 
 TEST(GamesManagerTest, JoinNonexistentLobby) {
     GamesManager manager;
-    Queue<ServerMessage> gameResponses(10);
+    Queue<std::vector<uint8_t>> gameResponses(10);
 
     GameRecord gameRecordJoin = manager.joinLobby(0, gameResponses);
 
