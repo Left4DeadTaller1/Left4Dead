@@ -41,6 +41,7 @@ target_link_libraries(server PRIVATE server_lib)
 target_include_directories(client 
     PRIVATE 
     ${CMAKE_SOURCE_DIR}/dipa_classes
+    ${CMAKE_SOURCE_DIR}/client/actions
     ${SDL2PP_INCLUDE_DIRS}
 )
 
