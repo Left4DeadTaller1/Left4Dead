@@ -109,6 +109,20 @@ std::vector<uint8_t> ServerProtocol::encodeServerMessage(std::string msgType, co
         // Adding the general state (1 byte)
         encodedMsg.push_back(encodedGeneralState);
 
+        // Encode X position
+        uint16_t encodedXPosition = htons(static_cast<uint16_t>(entity->x));
+
+        // Adding the X position (2 bytes)
+        encodedMsg.resize(encodedMsg.size() + 2);
+        *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = encodedXPosition;
+
+        // Encode Y position
+        uint16_t encodedYPosition = htons(static_cast<uint16_t>(entity->y));
+
+        // Adding the Y position (2 bytes)
+        encodedMsg.resize(encodedMsg.size() + 2);
+        *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = encodedYPosition;
+
         // Encode X direction
         uint16_t encodedXDirection = htons(static_cast<uint16_t>(entity->movementDirectionX));
 

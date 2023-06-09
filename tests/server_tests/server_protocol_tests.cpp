@@ -25,18 +25,22 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
 
     // Check the encoded message
     std::vector<uint8_t> expectedMessage = {
-        1,     // Message type gameState
-        0, 2,  // 2 entities
-        0,     // Entity type: Player
-        0, 1,  // ID: Player1
-        0,     // General State: WALKING
-        0, 1,  // X Direction: ENTITY_RIGHT
-        80,    // Health: 80
-        1,     // Entity type: Zombie
-        0, 1,  // ID: Zombie1
-        8,     // General State: IDLE
-        0, 1,  // X Direction: ENTITY_IDLE
-        100    // Health: 100
+        1,      // Message type gameState
+        0, 2,   // 2 entities
+        0,      // Entity type: Player
+        0, 1,   // ID: Player1
+        0,      // General State: WALKING
+        0, 5,   // X position: 5 (network byte order)
+        0, 10,  // Y position: 10 (network byte order)
+        0, 1,   // X Direction: ENTITY_RIGHT
+        80,     // Health: 80
+        1,      // Entity type: Zombie
+        0, 1,   // ID: Zombie1
+        8,      // General State: IDLE
+        0, 15,  // X position: 15 (network byte order)
+        0, 20,  // Y position: 20 (network byte order)
+        0, 0,   // X Direction: ENTITY_IDLE (assuming it's 0 for idle)
+        100     // Health: 100
     };
 
     EXPECT_EQ(encodedMessage, expectedMessage);
