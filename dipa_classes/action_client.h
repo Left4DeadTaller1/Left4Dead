@@ -1,7 +1,8 @@
 #ifndef ACTION_CLIENT_H_
 #define ACTION_CLIENT_H_
 
-//#include "../server_root/game/game.h"
+#include <vector>
+#include <cstdint>
 
 typedef enum {
     CREATE,
@@ -10,26 +11,31 @@ typedef enum {
     START_MOVE,
     END_MOVE,
     START_SHOOT,
-    END_SHOOT
+    END_SHOOT,
+    RECHARGE
 } Type;
 
-typedef struct actionDTO actionDTO_t;
+typedef enum {
+    WALK,
+    RUN
+} TypeMove;
 
-struct actionDTO{
-    Type type;
-    void* dto; 
-};
+typedef enum {
+    RIGHT,
+    LEFT,
+    UP,
+    DOWN
+} DirectionMove;
 
 class ActionClient {
    public:
     ActionClient(void) {}
 
-    //le voy a tener que hacer delete
-    virtual actionDTO_t* getDTO() const = 0;
-
-    //virtual void run(Game& game) = 0;
+    //preguntas: devuelvo un puntero para no hacer una copia?
+    virtual std::vector<int8_t> serialize() const = 0;
 
     virtual ~ActionClient() {}
 };
 
 #endif
+

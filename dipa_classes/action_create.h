@@ -4,10 +4,6 @@
 #include "action_client.h"
 #include <string>
 
-typedef struct CreateDTO {
-    std::string scenario;
-} CreateDTO_t;
-
 class Create : public ActionClient {
    private:
     std::string scenario;
@@ -15,9 +11,7 @@ class Create : public ActionClient {
    public:
     Create(std::string scenario);
 
-    actionDTO_t* getDTO() const override;
-
-    //virtual void run(Game& game) override;
+    virtual std::vector<int8_t> serialize() const override;
 };
 
 #endif  //ACTION_CREATE_H_

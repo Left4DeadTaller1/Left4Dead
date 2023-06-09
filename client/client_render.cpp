@@ -1,64 +1,95 @@
 #include "client_render.h"
 
-ClientRenderer::ClientRenderer(Queue<int>& qServerToRender, 
-                    Queue<ActionClient*>& qEventsToRender, 
-                    Window& window):
+using namespace SDL2pp;
+
+ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
+                    Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
+                    Window& window_):
                     qServerToRender(qServerToRender),
                     qEventsToRender(qEventsToRender),
-                    window(window),
-                    posX(0),
-                    posY(0){}
+                    window(window_),
+                    renderer(window_, -1, SDL_RENDERER_ACCELERATED),
+                    textureManager(renderer),
+                    previousGameStateDTO(NULL){}
 
-void ClientRenderer::drawSoldier(Renderer& renderer, Texture& soldier, 
-                                int& textureWidth, int& textureHeight, 
-                                int& newPosX, int& newPosY){
+void ClientRenderer::drawPlayer(std::shared_ptr<entity_t> previousPlayer, 
+                                std::shared_ptr<entity_t> currentPlayer){
 
-    renderer.Copy(
-        soldier,
-        Rect((textureWidth / 7 )* (posX % 7), 0, textureWidth / 7, textureHeight),
-        Rect(newPosX, newPosY, 150, 150)
-    );
-    posX = newPosX;
-    posY = newPosY;
+    std::shared_ptr<GameTexture> texture;
+    switch (currentPlayer->state) {
+        case WALKING:
+            //definir direccion en base a previousPlayer->x y currentPlayer->x
+            texture = textureManager.getTexture("soldier1-walk");
+            //despues definir para cada textura en cuanto se divide cada una
+            renderer.Copy(
+                texture->texture,
+                Rect((texture->width / 7 )* (previousPlayer->x % 7), 0, texture->width / 7, texture->height),
+                Rect(currentPlayer->x, currentPlayer->y, 150, 150)
+            );
+            break;
+        case IDLE:
+            texture = textureManager.getTexture("soldier1-idle");
+            renderer.Copy(
+                texture->texture,
+                Rect((texture->width / 7 )* (previousPlayer->x % 7), 0, texture->width / 7, texture->height),
+                Rect(currentPlayer->x, currentPlayer->y, 150, 150)
+            );
+            break;
+        /*case RUNNING:
+            std::shared_ptr<GameTexture> texture = textureManager.getTexture("soldier1-run");
+            break;
+        case RELOADING:
+            std::shared_ptr<GameTexture> texture = textureManager.getTexture("soldier1-recharge");
+            break;
+        case SHOOTING:
+            std::shared_ptr<GameTexture> texture = textureManager.getTexture("soldier1-shot1");
+            break;
+        case IDLE:
+            std::shared_ptr<GameTexture> texture = textureManager.getTexture("soldier1-idle");
+            break;
+        case DEAD:
+            std::shared_ptr<GameTexture> texture = textureManager.getTexture("soldier1-dead");
+            break;
+        case HURT:
+            std::shared_ptr<GameTexture> texture = textureManager.getTexture("soldier1-hurt");
+            break;*/                    
+    }
 }
 
-void ClientRenderer::drawBackground(Renderer& renderer, Texture& background){
+void ClientRenderer::drawBackground(Texture& background){
     renderer.Copy(background);
 }
 
-//el evento de cerrar la ventana que le llegue del event manager
+
+std::shared_ptr<entity_t> ClientRenderer::findPlayer(int idPlayer){
+    for (auto &player : *(previousGameStateDTO->entities)){
+        if(player->idEntity == idPlayer){
+            return player;
+        }
+    }
+}
+
 int ClientRenderer::render(){
-    std::cout << "entra al render\n";
-
-    Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-    Texture soldier1_walk(renderer, DATA_PATH "/client/resources/Soldier_1/Walk.png");
-    Texture background1_war(renderer, DATA_PATH "/client/resources/backgrounds/War1/Bright/War.png");
-
-    SDL_Texture* sdlTexture = soldier1_walk.Get();
-    int textureWidth, textureHeight;
-    SDL_QueryTexture(sdlTexture, NULL, NULL, &textureWidth, &textureHeight);
-
     renderer.Clear();
-    std::cout << "pasa clear\n";
 
-    drawBackground(renderer, background1_war);
-    drawSoldier(renderer, soldier1_walk, textureWidth, textureHeight, posX, posY);
+    drawBackground(textureManager.getTexture("background-war1-pale-war")->texture);
 
     renderer.Present();
-    std::cout << "pasa present\n";
+
+    previousGameStateDTO = qServerToRender.pop();
 
     while(true){
-        std::cout << "antes de popear en el render\n";
-        int newPosX = qServerToRender.pop();
-        int newPosY = qServerToRender.pop();
-        std::cout << "despues de popear en el render\n";
+        std::shared_ptr<gameStateDTO_t> gameStateDTO = qServerToRender.pop();
         renderer.Clear();
 
-        drawBackground(renderer, background1_war);
-        drawSoldier(renderer, soldier1_walk, textureWidth, textureHeight, newPosX, newPosY);
+        drawBackground(textureManager.getTexture("background-war1-pale-war")->texture);
 
+        for (auto &currentPlayer : *(gameStateDTO->entities)){
+            std::shared_ptr<entity_t> previousPlayer = findPlayer(currentPlayer->idEntity); //despues tener un map, para no tener find
+            drawPlayer(previousPlayer, currentPlayer);
+        }
         renderer.Present();
+        previousGameStateDTO = gameStateDTO;
     }
 
 	return 0;

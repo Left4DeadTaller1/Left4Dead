@@ -4,20 +4,15 @@
 #include "action_client.h"
 #include <memory>
 
-typedef struct JoinDTO {
-    int code;
-} JoinDTO_t;
-
 class Join : public ActionClient {
    private:
-    int code;
+    int8_t code;
 
    public:
-    Join(int code);
+    Join(int8_t code);
 
-    virtual actionDTO_t* getDTO() const override;
-
-    //virtual void run(Game& game) override;
+    virtual std::vector<int8_t> serialize() const override;
 };
 
 #endif  // ACTION_JOIN_H_
+

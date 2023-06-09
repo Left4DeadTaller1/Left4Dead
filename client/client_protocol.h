@@ -10,44 +10,22 @@
 #include "action_start_move.h"
 #include "action_end_move.h"
 #include "action_join.h"
-
-//typedef enum state_t;
+#include "client_game_state.h"
 
 class ClientProtocol {
    private:
     Socket& skt;
 
+    int32_t receive_int32(bool& was_closed);
 
-    //int32_t receive_int32(bool& was_closed);
-
-    //state_t receive_int8(bool& was_closed);
+    int8_t receive_int8(bool& was_closed);
 
    public:
     explicit ClientProtocol(Socket& skt);
 
-    // ENVIA
+    void sendAction(std::shared_ptr<ActionClient> action, bool& wasClosed);
 
-    void sendAction(actionDTO* dto, bool& wasClosed);
-
-    void startMove(StartMoveDTO_t* dto, bool& was_closed);
-
-    void endMove(EndMoveDTO_t* dto, bool& was_closed);
-
-    void create(CreateDTO_t* dto, bool& was_closed);
-
-    void join(JoinDTO_t* dto, bool& was_closed);
-
-    void startGame(bool& was_closed);
-
-    // RECIBE
-
-    bool receiveNotificationJoin(bool& was_closed);
-
-    uint32_t receive_notification_create(bool& was_closed);
-
-    std::vector<int> receive_update_move(bool& was_closed);
-
-    //std::shared_ptr<gameStateDTO_t> receive_update_game(bool& was_closed);
+    std::shared_ptr<gameStateDTO_t> receiveStateGame(bool& was_closed);
 
     ClientProtocol(const ClientProtocol&) = delete;
     ClientProtocol& operator=(const ClientProtocol&) = delete;

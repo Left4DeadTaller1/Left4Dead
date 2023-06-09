@@ -10,19 +10,18 @@
 #include "action_end_move.h"
 #include "action_join.h"
 #include "action_start_game.h"
-using namespace SDL2pp;
 
 class EventManagerThread : public Thread {
     private:
-    Queue<ActionClient*>& qEventsToSender;
-    Queue<ActionClient*>& qEventsToRender;
-    Window& window;
+    Queue<std::shared_ptr<ActionClient>>& qEventsToSender;
+    Queue<std::shared_ptr<ActionClient>>& qEventsToRender;
+    SDL2pp::Window& window;
     bool& isConnected;
 
     public:
-    EventManagerThread(Queue<ActionClient*>& qEventsToSender, 
-                Queue<ActionClient*>& qEventsToRender, 
-                Window& window, bool& isConnected);
+    EventManagerThread(Queue<std::shared_ptr<ActionClient>>& qEventsToSender,
+                        Queue<std::shared_ptr<ActionClient>>& qEventsToRender,
+                        SDL2pp::Window& window, bool& isConnected);
 
     virtual void run() override;
 };

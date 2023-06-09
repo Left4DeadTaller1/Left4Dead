@@ -1,18 +1,17 @@
 #include "client_sender.h"
 
 SenderThread::SenderThread(bool& wasClosed, ClientProtocol& protocol, 
-                                Queue<ActionClient*>& qEventsToSender): 
+                                Queue<std::shared_ptr<ActionClient>>& qEventsToSender): 
                                 wasClosed(wasClosed),
                                 protocol(protocol),
                                 qEventsToSender(qEventsToSender){}
 
 void SenderThread::run() {
     try {
-        ActionClient* action;
+        std::shared_ptr<ActionClient> action;
         while (!wasClosed) {
             action = qEventsToSender.pop();
-            actionDTO* dto = action->getDTO();
-            protocol.sendAction(dto, wasClosed);
+            protocol.sendAction(std::move(action), wasClosed);
         }
     } catch (const LibError& e) {
         //wasClosed = true;

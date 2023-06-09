@@ -6,9 +6,7 @@
 
 class StartGame : public ActionClient {
    public:
-    virtual actionDTO_t* getDTO() const override;
-
-    //virtual void run(Game& game) override;
+    std::vector<int8_t> serialize() const;
 };
 
 #endif  // ACTION_START_GAME_H_

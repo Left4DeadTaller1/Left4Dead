@@ -13,14 +13,14 @@ class SenderThread : public Thread {
    public:
     SenderThread(bool& wasClosed,
                     ClientProtocol& protocol, 
-                    Queue<ActionClient*>& qEventsToSender);
+                    Queue<std::shared_ptr<ActionClient>>& qEventsToSender);
 
     virtual void run() override;
 
    private:
     bool& wasClosed;
     ClientProtocol& protocol;
-    Queue<ActionClient*>& qEventsToSender;
+    Queue<std::shared_ptr<ActionClient>>& qEventsToSender;
 
     void menu();
 

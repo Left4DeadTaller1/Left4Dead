@@ -1,22 +1,23 @@
 #include "client_event_manager.h"
 
-#include <exception>
-#include <iostream>
+using namespace SDL2pp;
 
-EventManagerThread::EventManagerThread(Queue<ActionClient*>& qEventsToSender,
-                                       Queue<ActionClient*>& qEventsToRender,
-                                       Window& window, bool& isConnected) : qEventsToSender(qEventsToSender),
+EventManagerThread::EventManagerThread(Queue<std::shared_ptr<ActionClient>>& qEventsToSender,
+                                       Queue<std::shared_ptr<ActionClient>>& qEventsToRender,
+                                       SDL2pp::Window& window, bool& isConnected) : qEventsToSender(qEventsToSender),
                                                                             qEventsToRender(qEventsToRender),
                                                                             window(window),
                                                                             isConnected(isConnected) {}
-//para ahora voy a suponer que solo existe un jugador con id 0
+
 void EventManagerThread::run() {
     try {
+        bool shiftPressed = false;
+
         while (true) {
             SDL_Event event;
-            // con SDL_WaitEvent(&event) algunos eventos no los registra
             while (SDL_PollEvent(&event)) {
-                ActionClient* action;
+                std::shared_ptr<ActionClient> action;
+                
                 if (event.type == SDL_QUIT) {
                     return;
                 } else if (event.type == SDL_KEYDOWN) {
@@ -24,55 +25,39 @@ void EventManagerThread::run() {
                         case SDLK_ESCAPE:
                         case SDLK_q:
                             return;
+                        case SDLK_LSHIFT:
+                            shiftPressed = true;
+                            break;
                         case SDLK_RIGHT:
-                            //instaciar el dto, no la accion
-                            action = new StartMove(0, 1, 0);
+                            action = std::make_shared<StartMove>(shiftPressed ? RUN : WALK, RIGHT);
                             break;
                         case SDLK_LEFT:
-                            action = new StartMove(0, -1, 0);
+                            action = std::make_shared<StartMove>(shiftPressed ? RUN : WALK, LEFT);
                             break;
                         case SDLK_UP:
-                            action = new StartMove(0, 0, -1);
+                            action = std::make_shared<StartMove>(shiftPressed ? RUN : WALK, UP);
                             break;
                         case SDLK_DOWN:
-                            action = new StartMove(0, 0, 1);
+                            action = std::make_shared<StartMove>(shiftPressed ? RUN : WALK, DOWN);
                             break;
                         case SDLK_c:
-                            action = new Create("partida0");
-                            break;                        
+                            action = std::make_shared<Create>("partida0");
+                            break;
                         case SDLK_j:
-                            action = new Join(0);
+                            action = std::make_shared<Join>(0);
                             break;
                         case SDLK_s:
-                            action = new StartGame();
+                            action = std::make_shared<StartGame>();
                             break;
                     }
-                    qEventsToSender.push(action);
+
+                    if (action) {
+                        qEventsToSender.push(action);
+                    }
                 } else if (event.type == SDL_KEYUP) {
-                    switch (event.key.keysym.sym) {
-                        case SDLK_RIGHT:
-                            action = new EndMove(0);
-                            qEventsToSender.push(action);
-                            break;
-                        case SDLK_LEFT:
-                            action = new EndMove(0);
-                            qEventsToSender.push(action);
-                            break;
-                        case SDLK_UP:
-                            action = new EndMove(0);
-                            qEventsToSender.push(action);
-                            break;
-                        case SDLK_DOWN:
-                            action = new EndMove(0);
-                            qEventsToSender.push(action);
-                            break;
+                    if (event.key.keysym.sym == SDLK_LSHIFT) {
+                        shiftPressed = false;
                     }
-                } else if (event.type == SDL_QUIT){
-                    std::cout << "entra a quit\n";
-                    //que pushee end
-                    //qEventsToSender.push();
-                    //qEventsToRender.push();
-                    return;
                 }
             }
         }

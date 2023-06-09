@@ -7,19 +7,20 @@
 #include "socket.h"
 #include "thread.h"
 #include "queue.h"
+#include "client_game_state.h"
 
 class ReceiverThread : public Thread {
    public:
     ReceiverThread(bool& wasClosed,
                     ClientProtocol& protocol, 
-                    Queue<int>& qServerToRender);
+                    Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender);
 
     virtual void run() override;
 
    private:
     bool& wasClosed;
     ClientProtocol& protocol;
-    Queue<int>& qServerToRender;
+    Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender;
 
     void inGame();
 };

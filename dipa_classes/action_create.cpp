@@ -2,16 +2,10 @@
 
 Create::Create(std::string scenario) : scenario(scenario) {}
 
-actionDTO_t* Create::getDTO() const {
-    CreateDTO_t* dto = new(CreateDTO_t);
-    dto->scenario = scenario;
-
-    actionDTO_t* dtoAction = new(actionDTO_t);
-    dtoAction->type = CREATE;
-    dtoAction->dto = (void*)dto;
-    return dtoAction;
-}
-
-/*void Create::run(Game& game) {
-    return;
-};*/
+std::vector<int8_t> Create::serialize() const {
+    std::vector<int8_t> data;
+    data.push_back(CREATE);
+    data.push_back(scenario.length());
+    data.insert(data.end(), scenario.begin(), scenario.end());
+    return data;
+};

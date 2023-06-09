@@ -9,32 +9,32 @@
 #include "liberror.h"
 #include "client_receiver.h"
 #include "action_client.h"
+#include "client_texture_manager.h"
+#include "client_texture.h"
 #include "queue.h"
 
-using namespace SDL2pp;
-
 class ClientRenderer {
-   public:
-    ClientRenderer(Queue<int>& qServerToRender, 
-                    Queue<ActionClient*>& qEventsToRender, 
-                    Window& window);
-                    
-    void run();
-
-    int render();
-
    private:
-    Queue<int>& qServerToRender;
-    Queue<ActionClient*>& qEventsToRender;
-    Window& window;
-    int posX;
-    int posY;
+   Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender;
+   Queue<std::shared_ptr<ActionClient>>& qEventsToRender;
+   SDL2pp::Window& window;
+   SDL2pp::Renderer renderer;
+   TextureManager textureManager;
+   std::shared_ptr<gameStateDTO_t> previousGameStateDTO;
 
-    void drawBackground(Renderer& renderer, Texture& background);
+   void drawBackground(SDL2pp::Texture& background);
 
-    void drawSoldier(Renderer& renderer, Texture& soldier, 
-                                int& textureWidth, int& textureHeight, 
-                                int& newPosX, int& newPosY);
+   void drawPlayer(std::shared_ptr<entity_t> previousPlayer, 
+                  std::shared_ptr<entity_t> currentPlayer);
+
+   std::shared_ptr<entity_t> findPlayer(int idPlayer);
+
+   public:
+   ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
+                    Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
+                    SDL2pp::Window& window_);
+                    
+   int render();
 };
 
 #endif  // CLIENT_RENDER_H

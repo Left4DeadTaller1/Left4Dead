@@ -1,17 +1,8 @@
 #include "action_join.h"
 
-Join::Join(int code) : code(code){}
+Join::Join(int8_t code) : code(code){}
 
-actionDTO_t* Join::getDTO() const {
-    JoinDTO_t* dto = new(JoinDTO_t);
-    dto->code = code;
-
-    actionDTO_t* dtoAction = new(actionDTO_t);
-    dtoAction->type = JOIN;
-    dtoAction->dto = (void*)dto;
-    return dtoAction;
-}
-
-/*void Join::run(Game& game) {
-    return;
-}*/
+std::vector<int8_t> Join::serialize() const {
+    std::vector<int8_t> data = {JOIN, code};
+    return data;
+};

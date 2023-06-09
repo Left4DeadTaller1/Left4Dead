@@ -4,24 +4,16 @@
 #include "action_client.h"
 #include <memory>
 
-typedef struct StartMoveDTO {
-    int idPlayer;
-    int dirX;
-    int dirY;
-} StartMoveDTO_t;
-
 class StartMove : public ActionClient {
    private:
-    int idPlayer;
-    int dirX;
-    int dirY;
+    int8_t dirX;
+    int8_t dirY;
+    TypeMove typeMove;
 
    public:
-    StartMove(int idPlayer, int difx, int dify);
+    StartMove(TypeMove typeMove, DirectionMove directionMove);
 
-    virtual actionDTO_t* getDTO() const override;
-
-    //virtual void run(Game& game) override;
+    virtual std::vector<int8_t> serialize() const override;
 };
 
 #endif  // ACTION_START_MOVE_H_

@@ -7,6 +7,7 @@
 
 #include "client_event_manager.h"
 #include "client_protocol.h"
+#include <SDL2pp/SDL2pp.hh>
 #include "client_sender.h"
 #include "client_receiver.h"
 #include "client_render.h"
@@ -20,7 +21,7 @@
 
 class Client {
    public:
-    Client(const char* hostname, const char* servname, Window& window);
+    Client(const char* hostname, const char* servname, SDL2pp::Window& window);
 
     ~Client();
 
@@ -31,10 +32,10 @@ class Client {
     bool wasClosed;
     ClientProtocol protocol;
     bool isConnected;
-    Queue<ActionClient*> qEventsToSender;
-    Queue<int> qServerToRender;
-    Queue<ActionClient*> qEventsToRender;
-    Window& window;
+    Queue<std::shared_ptr<ActionClient>> qEventsToSender;
+    Queue<std::shared_ptr<gameStateDTO_t>> qServerToRender;
+    Queue<std::shared_ptr<ActionClient>> qEventsToRender;
+    SDL2pp::Window& window;
     ClientRenderer renderer;
     SenderThread senderThread;
     ReceiverThread receiverThread;

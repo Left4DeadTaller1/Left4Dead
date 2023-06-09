@@ -1,6 +1,11 @@
 
-//no hay imagen de moving and shooting
-/*typedef enum {
+#ifndef CLIENT_GAME_STATE_H_
+#define CLIENT_GAME_STATE_H_
+
+typedef struct entity entity_t;
+typedef struct gameStateDTO gameStateDTO_t;
+
+typedef enum {
     WALKING,
     RUNNING,
     RELOADING,
@@ -10,15 +15,19 @@
     HURT,
 } state_t;
 
-typedef struct entityDTO {
-    int posX;
-    int posY;
-    state_t state;
-} entityDTO_t;
+struct entity {
+    int idEntity;
+    int8_t state;
+    int x;
+    int y;
+    int health;
+};
 
-typedef struct gameDTO {
-    std::vector<stateEntity_t> entities;
-} gameDTO_t;*/
+struct gameStateDTO {
+    std::shared_ptr<std::vector<std::shared_ptr<entity_t>>> entities;
+};
+
+#endif
 
 
 

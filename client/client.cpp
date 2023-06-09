@@ -1,6 +1,6 @@
 #include "client.h"
 
-Client::Client(const char* hostname, const char* servname, Window& window) : socket(hostname, servname),
+Client::Client(const char* hostname, const char* servname, SDL2pp::Window& window) : socket(hostname, servname),
                                                                              wasClosed(false),
                                                                              protocol(socket),
                                                                              isConnected(true),
@@ -20,6 +20,7 @@ void Client::run() { try {
     eventManagerThread.start();
     senderThread.start();
     receiverThread.start();
+    std::cout << "antes de llamar a render\n";
     renderer.render();
     } catch(...){
         //implem
