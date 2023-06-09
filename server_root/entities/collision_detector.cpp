@@ -1,5 +1,10 @@
 #include "collision_detector.h"
 
+#define MELEE_RANGE 10
+#define SPEAR_RANGE 15
+#define SHORT_VENOM_RANGE 15
+#define LONG_VENOM_RANGE 30
+
 CollisionDetector::CollisionDetector() {}
 
 CollisionDetector::~CollisionDetector() {}
@@ -33,35 +38,84 @@ bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int delta
     return false;
 }
 
-std::list<std::shared_ptr<Entity>> CollisionDetector::getBeingShot(Shot& bullet, std::vector<std::shared_ptr<Entity>>& entities) {
-    std::list<std::shared_ptr<Entity>> entitiesBeingShot;
+std::list<std::shared_ptr<Entity>> CollisionDetector::beingAttack(Attack& attack, std::vector<std::shared_ptr<Entity>>& entities) {
+    std::list<std::shared_ptr<Entity>> entitiesBeingATK;
 
     for (const auto& entity : entities) {
-        if ((bullet.shootingLeft() && entity->x > bullet.xOrigin) ||
-            (!bullet.shootingLeft() && entity->x < bullet.xOrigin)) {
+        // This is discarding logic
+        if ((attack.attackingLeft() && entity->x > attack.xOrigin) ||
+            (attack.attackingRight() && entity->x < attack.xOrigin)) {
             continue;
         }
 
-        if ((entity->y < bullet.lowerY && bullet.lowerY < entity->y + entity->height) ||
-            (entity->y < bullet.upperY && bullet.upperY < entity->y + entity->height)) {
-            if (entitiesBeingShot.empty()) {
-                entitiesBeingShot.push_back(entity);
-            } else {
-                auto it = entitiesBeingShot.begin();
-                for (; it != entitiesBeingShot.end(); ++it) {
-                    if ((bullet.shootingLeft() && entity->x > (*it)->x) ||
-                        (!bullet.shootingLeft() && entity->x < (*it)->x)) {
-                        entitiesBeingShot.insert(it, entity);
-                        break;
-                    }
-                }
-
-                if (it == entitiesBeingShot.end()) {
-                    entitiesBeingShot.push_back(entity);
-                }
-            }
+        // This is colision logic
+        switch (attack.type) {
+            case BULLET:
+            case PIERCING_BULLET:
+                beingAttackInfiniteRange(entity, attack, entitiesBeingATK);
+                break;
+            case MELEE:
+                beingAttackFiniteRange(MELEE_RANGE, entity, attack, entitiesBeingATK);
+                break;
+            case SPEAR_ATTACK:
+                beingAttackFiniteRange(SPEAR_RANGE, entity, attack, entitiesBeingATK);
+                break;
+            case SHORT_VENOM:
+                beingAttackFiniteRange(SHORT_VENOM_RANGE, entity, attack, entitiesBeingATK);
+                break;
+            case LONG_VENOM:
+                // TODO: maybe long venom is like a bullet
+                beingAttackFiniteRange(LONG_VENOM_RANGE, entity, attack, entitiesBeingATK);
+                break;
+            default:
+                break;
         }
     }
 
-    return entitiesBeingShot;
+    return entitiesBeingATK;
+}
+
+void CollisionDetector::beingAttackInfiniteRange(const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK) {
+    if ((entity->y < attack.lowerY && attack.lowerY < entity->y + entity->height) ||
+        (entity->y < attack.upperY && attack.upperY < entity->y + entity->height)) {
+        if (entitiesBeingATK.empty()) {
+            entitiesBeingATK.push_back(entity);
+        } else {
+            auto it = entitiesBeingATK.begin();
+            for (; it != entitiesBeingATK.end(); ++it) {
+                if ((attack.attackingLeft() && entity->x > (*it)->x) ||
+                    (attack.attackingRight() && entity->x < (*it)->x)) {
+                    entitiesBeingATK.insert(it, entity);
+                    break;
+                }
+            }
+
+            if (it == entitiesBeingATK.end()) {
+                entitiesBeingATK.push_back(entity);
+            }
+        }
+    }
+}
+
+void CollisionDetector::beingAttackFiniteRange(int range, const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK) {
+    if ((attack.lowerY < entity->y + entity->height && attack.upperY > entity->y) &&
+        ((attack.attackingRight() && entity->x > attack.xOrigin && (entity->x - attack.xOrigin) < range) ||
+         (attack.attackingLeft() && entity->x < attack.xOrigin && (attack.xOrigin - (entity->x + entity->width)) < range))) {
+        if (entitiesBeingATK.empty()) {
+            entitiesBeingATK.push_back(entity);
+        } else {
+            auto it = entitiesBeingATK.begin();
+            for (; it != entitiesBeingATK.end(); ++it) {
+                if ((attack.attackingLeft() && entity->x > (*it)->x) ||
+                    (attack.attackingRight() && entity->x < (*it)->x)) {
+                    entitiesBeingATK.insert(it, entity);
+                    break;
+                }
+            }
+
+            if (it == entitiesBeingATK.end()) {
+                entitiesBeingATK.push_back(entity);
+            }
+        }
+    }
 }

@@ -1,7 +1,7 @@
 #include "player.h"
 
-Player::Player(int xPosition, int yPosition, int width, int height, std::string idPlayer)
-    : Entity(xPosition, yPosition, width, height, idPlayer), weaponState(WEAPON_IDLE), bullets(10) {
+Player::Player(int xPosition, int yPosition, int width, int height, std::string idPlayer, WeaponType weapon)
+    : Entity(xPosition, yPosition, width, height, idPlayer), weaponState(WEAPON_IDLE), weapon(weapon) {
 }
 
 EntityType Player::getType() {
@@ -31,36 +31,27 @@ std::shared_ptr<EntityDTO> Player::getDto() {
 }
 
 void Player::decreaseAtkCooldown() {
-    if (atkCooldown > 0) {
-        atkCooldown--;
-    }
+    weapon.decreaseCooldown();
 }
 
 bool Player::canAttack() {
-    if (bullets > 0 && atkCooldown == 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return weapon.canShoot();
 }
 
-Shot Player::shoot() {
-    bullets--;
-    atkCooldown = 10;
-    // TODO: cambia esto a enum
-    std::string bulletDirection;
+// TODO: change this to just attack
+Attack Player::attack() {
+    AttackDirection attackDirection = RIGHT;  // some default values to avoid warnings
 
     switch (movementDirectionX) {
         case ENTITY_LEFT:
-            bulletDirection = "left";
+            attackDirection = LEFT;
             break;
         case ENTITY_RIGHT:
-            bulletDirection = "right";
-            break;
-        default:
+            attackDirection = RIGHT;
             break;
     }
-    return Shot(false, 10, x, bulletDirection, y, y + height);
+
+    return weapon.shoot(x, attackDirection, y, y + height);
 }
 
 Player::~Player() {

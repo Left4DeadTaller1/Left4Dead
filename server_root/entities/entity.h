@@ -4,6 +4,8 @@
 #include <memory>
 #include <string>
 
+#include "attack.h"
+
 class CollisionDetector;
 
 enum MovementState {
@@ -15,13 +17,11 @@ enum MovementState {
 enum MovementDirectionX {
     ENTITY_LEFT,
     ENTITY_RIGHT,
-    ENTITY_NONE_X,
 };
 
 enum MovementDirectionY {
     ENTITY_UP,
     ENTITY_DOWN,
-    ENTITY_NONE_Y,
 };
 
 enum HealthState {
@@ -85,6 +85,8 @@ class Entity {
     void setMovementDirectionX(MovementDirectionX movementDirectionX);
     void setMovementDirectionY(MovementDirectionY movementDirectionY);
     void takeDamage(int amountOfDamage);
+
+    virtual Attack attack() = 0;
 
     virtual EntityType getType() = 0;
 

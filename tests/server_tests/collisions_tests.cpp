@@ -4,11 +4,13 @@
 #include "entity.h"
 #include "shot.h"
 
+// Colision Test Cases
+
 TEST(CollisionDetectorTest, IsColliding) {
     CollisionDetector detector;
-    Player e1(10, 20, 30, 30, "e1");
-    Player e2(15, 25, 30, 30, "e2");  // Overlapping with e1
-    Player e3(50, 60, 30, 30, "e3");  // Not overlapping with e1
+    Player e1(10, 20, 30, 30, "e1", SMG);
+    Player e2(15, 25, 30, 30, "e2", SMG);  // Overlapping with e1
+    Player e3(50, 60, 30, 30, "e3", SMG);  // Not overlapping with e1
 
     EXPECT_TRUE(detector.isColliding(e1, 0, 0, e2));
     EXPECT_FALSE(detector.isColliding(e1, 0, 0, e3));
@@ -16,9 +18,9 @@ TEST(CollisionDetectorTest, IsColliding) {
 
 TEST(CollisionDetectorTest, CheckForCollisions) {
     CollisionDetector detector;
-    Player e1(10, 20, 30, 30, "e1");
-    Player e2(15, 25, 30, 30, "e2");  // Overlapping with e1
-    Player e3(50, 60, 30, 30, "e3");  // Not overlapping with e1
+    Player e1(10, 20, 30, 30, "e1", SMG);
+    Player e2(15, 25, 30, 30, "e2", SMG);  // Overlapping with e1
+    Player e3(50, 60, 30, 30, "e3", SMG);  // Not overlapping with e1
 
     std::vector<std::shared_ptr<Entity>> entities = {std::make_shared<Player>(e1),
                                                      std::make_shared<Player>(e2),
@@ -33,42 +35,103 @@ TEST(CollisionDetectorTest, CheckForCollisions) {
     EXPECT_FALSE(collision3);
 }
 
+// Attacks Test Cases
 TEST(CollisionDetectorTest, GetBeingShotRight) {
     CollisionDetector detector;
-    Shot bullet(true, 10, 20, "right", 10, 30);  // Bullet shooting to the right
+    Attack bullet(BULLET, 10, 20, RIGHT, 10, 30);  // Bullet shooting to the right
 
-    auto e1 = std::make_shared<Zombie>(30, 25, 30, 30, "e1");  // On the right path of the bullet
-    auto e2 = std::make_shared<Zombie>(10, 25, 30, 30, "e2");  // On the left path of the bullet
+    auto e1 = std::make_shared<Zombie>(30, 25, 30, 30, "e1", INFECTED);  // On the right path of the bullet
+    auto e2 = std::make_shared<Zombie>(10, 25, 30, 30, "e2", INFECTED);  // On the left path of the bullet
 
     std::vector<std::shared_ptr<Entity>> entities = {e1, e2};
 
-    auto entitiesBeingShot = detector.getBeingShot(bullet, entities);
+    auto entitiesBeingShot = detector.beingAttack(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(1));
     EXPECT_EQ(entitiesBeingShot.front(), e1);
 }
 
 TEST(CollisionDetectorTest, GetBeingShotLeft) {
     CollisionDetector detector;
-    Shot bullet(true, 10, 20, "left", 10, 30);  // Bullet shooting to the left
+    Attack bullet(BULLET, 10, 20, LEFT, 10, 30);  // Bullet shooting to the left
 
-    auto e1 = std::make_shared<Zombie>(30, 25, 30, 30, "e1");  // On the right path of the bullet
-    auto e2 = std::make_shared<Zombie>(10, 25, 30, 30, "e2");  // On the left path of the bullet
+    auto e1 = std::make_shared<Zombie>(30, 25, 30, 30, "e1", INFECTED);  // On the right path of the bullet
+    auto e2 = std::make_shared<Zombie>(10, 25, 30, 30, "e2", INFECTED);  // On the left path of the bullet
 
     std::vector<std::shared_ptr<Entity>> entities = {e1, e2};
 
-    auto entitiesBeingShot = detector.getBeingShot(bullet, entities);
+    auto entitiesBeingShot = detector.beingAttack(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(1));
     EXPECT_EQ(entitiesBeingShot.front(), e2);
 }
 
 TEST(CollisionDetectorTest, GetBeingShotNoHit) {
     CollisionDetector detector;
-    Shot bullet(true, 10, 20, "right", 10, 30);  // Bullet shooting to the right
+    Attack bullet(BULLET, 10, 20, RIGHT, 20, 30);  // Bullet shooting to the right
 
-    auto e1 = std::make_shared<Zombie>(50, 60, 30, 30, "e1");  // Not in the path of the bullet
+    auto e1 = std::make_shared<Zombie>(50, 60, 10, 10, "e1", INFECTED);  // Not in the path of the bullet
 
     std::vector<std::shared_ptr<Entity>> entities = {e1};
 
-    auto entitiesBeingShot = detector.getBeingShot(bullet, entities);
+    auto entitiesBeingShot = detector.beingAttack(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(0));  // No entities should be hit
+}
+
+TEST(CollisionDetectorTest, GetBeingAttackedByMelee) {
+    CollisionDetector detector;
+    Attack melee(MELEE, 10, 20, RIGHT, 10, 30);  // Melee attack to the right
+
+    auto e1 = std::make_shared<Zombie>(15, 25, 30, 30, "e1", INFECTED);  // Within melee range but in the opposite direction
+    auto e2 = std::make_shared<Zombie>(50, 60, 30, 30, "e2", INFECTED);  // Outside melee range
+    auto e3 = std::make_shared<Zombie>(25, 25, 30, 30, "e3", INFECTED);  // Within melee range and in the correct direction
+
+    std::vector<std::shared_ptr<Entity>> entities = {e1, e2, e3};
+
+    auto entitiesBeingAttacked = detector.beingAttack(melee, entities);
+    EXPECT_EQ(entitiesBeingAttacked.size(), static_cast<std::size_t>(1));
+    EXPECT_EQ(entitiesBeingAttacked.front(), e3);
+}
+
+TEST(CollisionDetectorTest, GetBeingAttackedBySpear) {
+    CollisionDetector detector;
+    Attack spear(SPEAR_ATTACK, 10, 20, RIGHT, 10, 30);  // Spear attack to the right
+
+    auto player1 = std::make_shared<Player>(15, 25, 30, 30, "Player1", SMG);  // Within spear range but in the opposite direction
+    auto player2 = std::make_shared<Player>(50, 60, 30, 30, "Player2", SMG);  // Outside spear range
+    auto player3 = std::make_shared<Player>(25, 25, 30, 30, "Player3", SMG);  // Within spear range and in the correct direction
+
+    std::vector<std::shared_ptr<Entity>> entities = {player1, player2, player3};
+
+    auto entitiesBeingAttacked = detector.beingAttack(spear, entities);
+    EXPECT_EQ(entitiesBeingAttacked.size(), static_cast<std::size_t>(1));
+    EXPECT_EQ(entitiesBeingAttacked.front(), player3);
+}
+
+TEST(CollisionDetectorTest, GetBeingAttackedByShortVenom) {
+    CollisionDetector detector;
+    Attack shortVenom(SHORT_VENOM, 10, 20, RIGHT, 10, 30);  // Short venom attack to the right
+
+    auto player1 = std::make_shared<Player>(15, 25, 30, 30, "Player1", SMG);  // Within short venom range but in the opposite direction
+    auto player2 = std::make_shared<Player>(50, 60, 30, 30, "Player2", SMG);  // Outside short venom range
+    auto player3 = std::make_shared<Player>(25, 25, 30, 30, "Player3", SMG);  // Within short venom range and in the correct direction
+
+    std::vector<std::shared_ptr<Entity>> entities = {player1, player2, player3};
+
+    auto entitiesBeingAttacked = detector.beingAttack(shortVenom, entities);
+    EXPECT_EQ(entitiesBeingAttacked.size(), static_cast<std::size_t>(1));
+    EXPECT_EQ(entitiesBeingAttacked.front(), player3);
+}
+
+TEST(CollisionDetectorTest, GetBeingAttackedByLongVenom) {
+    CollisionDetector detector;
+    Attack longVenom(LONG_VENOM, 10, 20, RIGHT, 10, 30);  // Long venom attack to the right
+
+    auto player1 = std::make_shared<Player>(15, 35, 30, 30, "Player1", SMG);  // Within long venom range but in the opposite direction
+    auto player2 = std::make_shared<Player>(60, 70, 30, 30, "Player2", SMG);  // Outside long venom range
+    auto player3 = std::make_shared<Player>(45, 20, 30, 30, "Player3", SMG);  // Within long venom range and in the correct direction
+
+    std::vector<std::shared_ptr<Entity>> entities = {player1, player2, player3};
+
+    auto entitiesBeingAttacked = detector.beingAttack(longVenom, entities);
+    EXPECT_EQ(entitiesBeingAttacked.size(), static_cast<std::size_t>(1));
+    EXPECT_EQ(entitiesBeingAttacked.front(), player3);
 }

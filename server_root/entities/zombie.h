@@ -4,21 +4,35 @@
 
 #include <string>
 
+#include "attack.h"
 #include "entity.h"
+
+enum ZombieType {
+    INFECTED,
+    JUMPER,
+    WITCH,
+    SPEAR,
+    VENOM,
+};
 
 struct ZombieDTO : EntityDTO {
 };
 
 class Zombie : public Entity {
    private:
+    ZombieType type;
+
    public:
     // Constructor
-    Zombie(int xPosition, int yPosition, int width, int height, std::string zombieId);
+    Zombie(int xPosition, int yPosition, int width, int height, std::string zombieId, ZombieType type);
     void move();
     ~Zombie();
 
     EntityType getType() override;
+    ZombieType getZombieType();
     std::shared_ptr<EntityDTO> getDto() override;
+
+    Attack attack() override;
 
     bool canAttack() override;  // added canAttack function declaration here
 };

@@ -6,13 +6,13 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     ServerProtocol protocol;
 
     // Create mock Player
-    std::shared_ptr<Player> player = std::make_shared<Player>(5, 10, 1, 1, "Player1");
+    std::shared_ptr<Player> player = std::make_shared<Player>(5, 10, 1, 1, "Player1", SMG);
     player->setMovementState(ENTITY_WALKING);
     player->setMovementDirectionX(ENTITY_RIGHT);
     player->takeDamage(20);
 
     // Create mock Zombie
-    std::shared_ptr<Zombie> zombie = std::make_shared<Zombie>(15, 20, 1, 1, "Zombie1");
+    std::shared_ptr<Zombie> zombie = std::make_shared<Zombie>(15, 20, 1, 1, "Zombie1", INFECTED);
     zombie->setMovementState(ENTITY_IDLE);
 
     // Add entities to a vector
@@ -35,7 +35,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
         1,     // Entity type: Zombie
         0, 1,  // ID: Zombie1
         8,     // General State: IDLE
-        0, 2,  // X Direction: ENTITY_IDLE
+        0, 1,  // X Direction: ENTITY_IDLE
         100    // Health: 100
     };
 

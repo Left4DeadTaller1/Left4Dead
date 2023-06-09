@@ -1,39 +1,35 @@
-#ifndef SHOT_H
-#define SHOT_H
+// #ifndef SHOT_H
+// #define SHOT_H
 
-#include <string>
+// #include <string>
 
-class CollisionDetector;
+// #include "attack.h"
 
-enum type {
-    SMG,
-    RIFLE,
-    SNIPER
-};
+// class CollisionDetector;
 
-class Shot {
-   private:
-    bool piercing;
-    int damage;
-    int xOrigin;
-    std::string direction;
-    int lowerY;
-    int upperY;
+// enum type {
+//     SMG,
+//     RIFLE,
+//     SNIPER
+// };
 
-    friend class CollisionDetector;
+// class Shot extends Attack {
+//    private:
+//     bool piercing;
+//     int lowerY;
+//     int upperY;
 
-   public:
-    Shot(bool piercing,
-         int damage,
-         int xOrigin,
-         std::string direction,
-         int lowerY,
-         int upperY);
-    ~Shot();
+//     friend class CollisionDetector;
 
-    bool shootingLeft();  // return true if shooting left
-    bool shootingRight();
-    int getDamage();
-};
+//    public:
+//     Shot(bool piercing,
+//          int damage,
+//          int xOrigin,
+//          std::string direction,
+//          int lowerY,
+//          int upperY);
+//     ~Shot();
+//     int getDamage();
+// };
 
-#endif  // SHOT_H
+// #endif  // SHOT_H

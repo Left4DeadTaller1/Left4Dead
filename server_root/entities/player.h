@@ -5,7 +5,7 @@
 #include <string>
 
 #include "entity.h"
-#include "shot.h"
+#include "weapon.h"
 
 enum WeaponState {
     SHOOTING,
@@ -19,12 +19,11 @@ struct PlayerDTO : EntityDTO {
 
 class Player : public Entity {
    private:
-    // TODO: move id to Entity
     WeaponState weaponState;
-    int bullets;
+    Weapon weapon;
 
    public:
-    Player(int xPosition, int yPosition, int width, int height, std::string idPlayer);
+    Player(int xPosition, int yPosition, int width, int height, std::string idPlayer, WeaponType weapon);
 
     EntityType getType() override;
     WeaponState getWeaponState();
@@ -34,7 +33,7 @@ class Player : public Entity {
     void decreaseAtkCooldown();
 
     bool canAttack() override;
-    Shot shoot();
+    Attack attack();
     ~Player();
 };
 

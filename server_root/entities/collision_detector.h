@@ -17,9 +17,9 @@
 #include <memory>
 #include <vector>
 
+#include "attack.h"
 #include "entity.h"
 #include "player.h"
-#include "shot.h"
 #include "zombie.h"
 
 class CollisionDetector {
@@ -29,7 +29,12 @@ class CollisionDetector {
 
     bool isColliding(Entity& e1, int deltaX, int deltaY, Entity& e2);
     bool checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities);
-    std::list<std::shared_ptr<Entity>> getBeingShot(Shot& bullet, std::vector<std::shared_ptr<Entity>>& entities);
+
+    std::list<std::shared_ptr<Entity>> beingAttack(Attack& attack, std::vector<std::shared_ptr<Entity>>& entities);
+
+    void beingAttackInfiniteRange(const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK);
+
+    void beingAttackFiniteRange(int range, const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK);
 };
 
 #endif  // COLLISION_DETECTOR_H

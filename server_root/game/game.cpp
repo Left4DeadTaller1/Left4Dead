@@ -84,9 +84,8 @@ Game::~Game() {}
 ________________________________________________________________*/
 
 void Game::addPlayer(std::string playerId) {
-    // Here the game should figure out the coordinates of the player for now as placew holder is 0 0 0 0
-    auto player = std::make_shared<Player>(0, 0, 0, 0, playerId);
-    // Todo: we have to make this match with the id of the player or something.
+    // TODO:Here the game should figure out the coordinates of the player for now as placew holder is 0 0 0 0 and what weapon give him
+    auto player = std::make_shared<Player>(0, 0, 0, 0, playerId, SMG);
     entities.push_back(player);
 }
 
@@ -210,13 +209,27 @@ void Game::move(Entity& entity) {
 
 void Game::attack(Entity& entity) {
     if (entity.canAttack()) {
-        // TODO change this String type to enum in entity class
-        if (entity.getType() == PLAYER) {
-            Shot bullet = dynamic_cast<Player&>(entity).shoot();
-            std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.getBeingShot(bullet, entities);
+        std::unique_ptr<Attack> attackPtr = nullptr;
 
-            if (!damagedEntities.empty()) {
-                damagedEntities.front()->takeDamage(bullet.getDamage());
+        if (entity.getType() == PLAYER) {
+            attackPtr = std::make_unique<Attack>(dynamic_cast<Player&>(entity).attack());
+        } else if (entity.getType() == ZOMBIE) {
+            attackPtr = std::make_unique<Attack>(dynamic_cast<Zombie&>(entity).attack());
+        }
+
+        if (attackPtr) {
+            std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.beingAttack(*attackPtr, entities);
+
+            switch (attackPtr->getType()) {
+                case PIERCING_BULLET:
+                    // code
+                    break;
+
+                default:
+                    if (!damagedEntities.empty()) {
+                        damagedEntities.front()->takeDamage(attackPtr->getDamage());
+                    }
+                    break;
             }
         }
     }
