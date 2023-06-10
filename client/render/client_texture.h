@@ -9,14 +9,12 @@ class GameTexture {
     SDL2pp::Texture texture;
     int width;
     int height;
-    //valor division
+    int n;          //division texture
 
     friend class ClientRenderer;
 
     public:
-    GameTexture(SDL2pp::Renderer& renderer, const std::string& texturePath);
-
-    //~GameTexture(); //delete punteros
+    GameTexture(SDL2pp::Renderer& renderer, int divisionTexture, const std::string& texturePath);
 };
 
 

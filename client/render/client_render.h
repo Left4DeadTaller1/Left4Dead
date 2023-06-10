@@ -7,9 +7,9 @@
 #include <vector>
 
 #include "liberror.h"
-#include "client_receiver.h"
 #include "action_client.h"
 #include "client_texture_manager.h"
+#include "client_game_state.h"
 #include "client_texture.h"
 #include "queue.h"
 
@@ -24,10 +24,11 @@ class ClientRenderer {
 
    void drawBackground(SDL2pp::Texture& background);
 
-   void drawPlayer(std::shared_ptr<entity_t> previousPlayer, 
-                  std::shared_ptr<entity_t> currentPlayer);
+   void drawPlayer(player_t& previousPlayer, 
+                  player_t& currentPlayer);
 
-   std::shared_ptr<entity_t> findPlayer(int idPlayer);
+   void drawInfected(infected_t& previousInfected, 
+            infected_t& currentInfected);
 
    public:
    ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 

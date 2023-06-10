@@ -10,58 +10,97 @@ void ClientProtocol::sendAction(std::shared_ptr<ActionClient> action, bool& wasC
     skt.sendall(&data[0], data.size(), &wasClosed);
 }
 
-int32_t ClientProtocol::receive_int32(bool& was_closed){
-    uint32_t buf[1] = {0};
-    skt.recvall(buf, 4, &was_closed);
-    uint32_t number = ntohl(buf[0]);
-    return number;
-}
-
-int8_t ClientProtocol::receive_int8(bool& was_closed){
-    int8_t buf[1];
-    skt.recvall(buf, 1, &was_closed);
-    return buf[0];
-}
-
-std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& was_closed){
-    std::shared_ptr<gameStateDTO_t> gameStateDTO = std::make_shared<gameStateDTO_t>();
-    std::shared_ptr<std::vector<std::shared_ptr<entity_t>>> entities = std::make_shared<std::vector<std::shared_ptr<entity_t>>>();
-    gameStateDTO->entities = entities;
-
-    int cant_entities = receive_int32(was_closed);
-    std::cout << "cant entnidades: " << cant_entities << "\n";
-    if(was_closed){
+std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed){
+    uint8_t messageType;
+    skt.recvall(&messageType, 1, &wasClosed);
+    if(wasClosed){
         return NULL;
     }
-    for (int i = 0; i < cant_entities; i++){
-        std::shared_ptr<entity_t> entity = std::make_shared<entity_t>();
-        entity->idEntity = receive_int32(was_closed);
-        if(was_closed){
-            return NULL;
-        }
-        entity->state = receive_int8(was_closed);
-        if(was_closed){
-            return NULL;
-        }
-        entity->x = receive_int32(was_closed);
-        if(was_closed){
-            return NULL;
-        }
-        entity->y = receive_int32(was_closed);
-        if(was_closed){
-            return NULL;
-        }
-        entity->health = receive_int32(was_closed);
 
-        (gameStateDTO->entities)->push_back(entity);
+    //si el mensaje es para mandar estado de juego, desp poner el if
+    std::map<uint8_t, player_t> mapPlayers;
+    std::map<uint8_t, infected_t> mapInfected;
 
-        std::cout << "idEntity: " << entity->idEntity << "\n";
-        std::cout << "entity->state: " << entity->state << "\n";
-        std::cout << "entity->x: " << entity->x << "\n";
-        std::cout << "entity->y: " << entity->y << "\n";
-        std::cout << "entity->health: " << entity->health << "\n"; 
+    uint16_t amountEntities;
+    skt.recvall(&amountEntities, 2, &wasClosed);
+    if(wasClosed){
+        return NULL;
     }
+    amountEntities = ntohs(amountEntities);
+
+    for (int i = 0; i < amountEntities; i++){
+        uint8_t typeEntity;
+        skt.recvall(&typeEntity, 1, &wasClosed);
+        if(wasClosed){
+            return NULL;
+        }
+        if ((int)typeEntity == 0){ //es player
+            player_t player;
+
+            skt.recvall(&(player.idPlayer), 1, &wasClosed);
+
+            uint8_t state;
+            skt.recvall(&state, 1, &wasClosed);
+            player.state = static_cast<state_t>(state);
+
+            uint16_t x;
+            skt.recvall(&x, 2, &wasClosed);
+            player.x = ntohs(x);
+
+            uint16_t y;
+            skt.recvall(&y, 2, &wasClosed);
+            player.y = ntohs(y);
+
+            uint16_t lookingTo;
+            skt.recvall(&lookingTo, 2, &wasClosed);
+            player.lookingTo = ntohs(lookingTo);
+
+            skt.recvall(&(player.health), 1, &wasClosed);
+
+            mapPlayers[player.idPlayer] = player;
+        }
+        if ((int)typeEntity == 1){ //es infected
+            infected_t infected;
+
+            skt.recvall(&(infected.idInfected), 1, &wasClosed);
+
+            uint8_t state;
+            skt.recvall(&state, 1, &wasClosed);
+            infected.state = static_cast<state_t>(state);
+
+            uint16_t x;
+            skt.recvall(&x, 2, &wasClosed);
+            infected.x = ntohs(x);
+
+            uint16_t y;
+            skt.recvall(&y, 2, &wasClosed);
+            infected.y = ntohs(y);
+
+            uint16_t lookingTo;
+            skt.recvall(&lookingTo, 2, &wasClosed);
+            infected.lookingTo = ntohs(lookingTo);
+
+            skt.recvall(&(infected.health), 1, &wasClosed);
+
+            uint8_t typeInfected;
+            skt.recvall(&typeInfected, 1, &wasClosed);
+            infected.typeInfected = static_cast<typeEntity_t>(typeInfected);
+
+            mapInfected[infected.idInfected] = infected;
+        }
+    }
+    //para no devolver una copia
+    std::shared_ptr<gameStateDTO_t> gameStateDTO = std::make_shared<gameStateDTO_t>();
+    gameStateDTO->players = mapPlayers;
+    gameStateDTO->infected = mapInfected;
     return gameStateDTO;
 }
 
+
+
+/*  std::cout << "idEntity: " << entity->idEntity << "\n";
+    std::cout << "entity->state: " << entity->state << "\n";
+    std::cout << "entity->x: " << entity->x << "\n";
+    std::cout << "entity->y: " << entity->y << "\n";
+    std::cout << "entity->health: " << entity->health << "\n"; */
 
