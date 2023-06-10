@@ -39,8 +39,8 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
         0, 15,  // X position: 15 (network byte order)
         0, 20,  // Y position: 20 (network byte order)
         0, 1,   // X Direction: ENTITY_RIGHT
-        100     // Health: 100
-    };
+        100,    // Health: 100
+        0};     // Zombie type: INFECTED
 
     EXPECT_EQ(encodedMessage, expectedMessage);
 }

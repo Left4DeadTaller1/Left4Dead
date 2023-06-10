@@ -1,7 +1,7 @@
 #include "zombie.h"
 
 Zombie::Zombie(int xPosition, int yPosition, int width, int height, std::string zombieId, ZombieType type)
-    : Entity(xPosition, yPosition, width, height, zombieId), type(type) {
+    : Entity(xPosition, yPosition, width, height, zombieId), zombieType(type) {
 }
 
 void Zombie::move() {
@@ -30,11 +30,12 @@ std::shared_ptr<EntityDTO> Zombie::getDto() {
     dto->movementState = static_cast<int>(this->getMovementState());
     dto->movementDirectionX = static_cast<int>(this->getMovementDirectionX());
     dto->healthState = static_cast<int>(this->getHealthState());
+    dto->zombieType = this->getZombieType();
     return dto;
 }
 
 ZombieType Zombie::getZombieType() {
-    return type;
+    return zombieType;
 }
 
 Attack Zombie::attack() {
@@ -55,7 +56,7 @@ Attack Zombie::attack() {
             break;
     }
 
-    switch (type) {
+    switch (zombieType) {
         case INFECTED:
             return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
             break;

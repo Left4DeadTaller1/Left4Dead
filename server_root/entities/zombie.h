@@ -16,11 +16,12 @@ enum ZombieType {
 };
 
 struct ZombieDTO : EntityDTO {
+    ZombieType zombieType;
 };
 
 class Zombie : public Entity {
    private:
-    ZombieType type;
+    ZombieType zombieType;
 
    public:
     // Constructor

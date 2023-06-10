@@ -135,6 +135,16 @@ std::vector<uint8_t> ServerProtocol::encodeServerMessage(std::string msgType, co
 
         // Adding the health (1 byte)
         encodedMsg.push_back(encodedHealth);
+
+        if (entity->type == ZOMBIE) {
+            auto zombieEntity = std::dynamic_pointer_cast<ZombieDTO>(entity);
+            if (zombieEntity) {
+                uint8_t encodedZombieType = static_cast<uint8_t>(zombieEntity->zombieType);
+
+                // Adding the zombie type (1 byte)
+                encodedMsg.push_back(encodedZombieType);
+            }
+        }
     }
 
     return encodedMsg;
