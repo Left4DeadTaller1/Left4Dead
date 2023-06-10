@@ -12,8 +12,6 @@ ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerTo
                     textureManager(renderer),
                     previousGameStateDTO(NULL){}
 
-//void ClientRenderer::handlerMove(int speed)
-
 void ClientRenderer::drawPlayer(player_t& previousPlayer, 
                                 player_t& currentPlayer){
 
@@ -24,22 +22,6 @@ void ClientRenderer::drawPlayer(player_t& previousPlayer,
             texture.width / texture.n, texture.height),
         Rect(currentPlayer.x, currentPlayer.y, 150, 150)
     );
-
-    /*SDL_Rect srcRect;
-    srcRect.x = (texture->width / 7) * (previousPlayer->x % 7);
-    srcRect.y = 0;
-    srcRect.w = texture->width / 7;
-    srcRect.h = texture->height;
-
-    SDL_Rect dstRect;
-    dstRect.x = currentPlayer->x;
-    dstRect.y = currentPlayer->y;
-    dstRect.w = 150;
-    dstRect.h = 150;
-
-    float angle = 45.0;  // Ángulo de rotación en grados
-
-    SDL_RenderCopyEx(renderer, texture->texture, &srcRect, &dstRect, angle, nullptr, SDL_FLIP_NONE);*/
 }
 
 void drawInfected(infected_t& previousInfected, 
@@ -51,12 +33,8 @@ void ClientRenderer::drawBackground(Texture& background){
     renderer.Copy(background);
 }
 
-/*struct gameStateDTO {
-    std::map<uint8_t, player_t> players;
-    std::map<uint8_t, infected_t> infected;
-};*/
-
 int ClientRenderer::render(){
+    std::cout << "entra al render\n";
     renderer.Clear();
 
     drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
@@ -94,6 +72,8 @@ int ClientRenderer::render(){
 	return 0;
 }
 
+//void ClientRenderer::handlerMove(int speed)
+
     //en que casos voy a querer hacer algo diferente?? cuando es running, cuando en moving
     /*switch (currentPlayer->state) {
         case WALKING:
@@ -113,3 +93,19 @@ int ClientRenderer::render(){
         case HURT:
             break;                   
     }*/
+
+    /*SDL_Rect srcRect;
+    srcRect.x = (texture->width / 7) * (previousPlayer->x % 7);
+    srcRect.y = 0;
+    srcRect.w = texture->width / 7;
+    srcRect.h = texture->height;
+
+    SDL_Rect dstRect;
+    dstRect.x = currentPlayer->x;
+    dstRect.y = currentPlayer->y;
+    dstRect.w = 150;
+    dstRect.h = 150;
+
+    float angle = 45.0;  // Ángulo de rotación en grados
+
+    SDL_RenderCopyEx(renderer, texture->texture, &srcRect, &dstRect, angle, nullptr, SDL_FLIP_NONE);*/
