@@ -85,6 +85,7 @@ class Entity {
     void setMovementDirectionX(MovementDirectionX movementDirectionX);
     void setMovementDirectionY(MovementDirectionY movementDirectionY);
     void takeDamage(int amountOfDamage);
+    void decreaseATKCooldown();
 
     virtual Attack attack() = 0;
 

@@ -30,7 +30,7 @@ std::shared_ptr<EntityDTO> Player::getDto() {
     return dto;
 }
 
-void Player::decreaseAtkCooldown() {
+void Player::decreaseATKCooldown() {
     weapon.decreaseCooldown();
 }
 

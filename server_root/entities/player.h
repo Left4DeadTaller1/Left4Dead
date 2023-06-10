@@ -30,7 +30,7 @@ class Player : public Entity {
     void setWeaponState(WeaponState weaponState);
     std::shared_ptr<EntityDTO> getDto() override;
 
-    void decreaseAtkCooldown();
+    void decreaseATKCooldown();
 
     bool canAttack() override;
     Attack attack();

@@ -70,5 +70,10 @@ void Entity::takeDamage(int amountOfDamage) {
     // }
 }
 
+void Entity::decreaseATKCooldown() {
+    if (cooldown > 0)
+        atkCooldown--;
+}
+
 Entity::~Entity() {
 }

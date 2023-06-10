@@ -164,7 +164,7 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
         player.setMovementDirectionX(movementDirectionX);
         player.setMovementDirectionY(movementDirectionY);
         player.setWeaponState(weaponState);
-        player.decreaseAtkCooldown();
+        player.decreaseATKCooldown();
     }
 }
 

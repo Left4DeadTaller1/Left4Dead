@@ -4,9 +4,9 @@ Zombie::Zombie(int xPosition, int yPosition, int width, int height, std::string 
     : Entity(xPosition, yPosition, width, height, zombieId), zombieType(type) {
 }
 
-void Zombie::move() {
-    // TODO
-}
+// void Zombie::move() {
+//     // TODO
+// }
 
 EntityType Zombie::getType() {
     return ZOMBIE;
