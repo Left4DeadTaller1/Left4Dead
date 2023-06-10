@@ -2,7 +2,6 @@
 
 #include "collision_detector.h"
 #include "entity.h"
-#include "shot.h"
 
 // Colision Test Cases
 

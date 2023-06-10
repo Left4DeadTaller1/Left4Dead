@@ -49,21 +49,23 @@ target_include_directories(server_lib
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/server_root/server
     ${CMAKE_SOURCE_DIR}/server_root/entities
-    ${CMAKE_SOURCE_DIR}/server_root/server/configuration
     ${CMAKE_SOURCE_DIR}/server_root/client_connection
     ${CMAKE_SOURCE_DIR}/server_root/game
+    ${CMAKE_SOURCE_DIR}/server_root/game/configuration
 )
-
 
 target_include_directories(server
     PRIVATE
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/server_root/server
     ${CMAKE_SOURCE_DIR}/server_root/entities
-    ${CMAKE_SOURCE_DIR}/server_root/server/configuration
     ${CMAKE_SOURCE_DIR}/server_root/client_connection
     ${CMAKE_SOURCE_DIR}/server_root/game
+    ${CMAKE_SOURCE_DIR}/server_root/game/configuration
 )
+
+target_link_libraries(server_lib PRIVATE yaml-cpp)
+target_link_libraries(server PRIVATE yaml-cpp)
 
 find_package(Threads REQUIRED)
 target_link_libraries(client PRIVATE Threads::Threads)

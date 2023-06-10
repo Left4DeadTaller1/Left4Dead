@@ -1,56 +1,63 @@
 #include "weapon.h"
 
+#include "game_config.h"
+
 Weapon::Weapon(WeaponType type)
     : type(type) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> gameParams = config.getGameParams();
+
     switch (type) {
         case SMG:
-            maxBullets = SMG_MAX_BULLETS;
-            bullets = SMG_MAX_BULLETS;
+            maxBullets = gameParams["SMG_MAX_BULLETS"];
+            bullets = maxBullets;
             cooldown = 0;
+            damage = gameParams["SMG_DAMAGE"];
             break;
 
         case RIFLE:
-            maxBullets = RIFLE_MAX_BULLETS;
-            bullets = RIFLE_MAX_BULLETS;
+            maxBullets = gameParams["RIFLE_MAX_BULLETS"];
+            bullets = maxBullets;
             cooldown = 0;
+            damage = gameParams["RIFLE_DAMAGE"];
             break;
 
         case SNIPER:
-            maxBullets = SNIPER_MAX_BULLETS;
-            bullets = SNIPER_MAX_BULLETS;
+            maxBullets = gameParams["SNIPER_MAX_BULLETS"];
+            bullets = maxBullets;
             cooldown = 0;
+            damage = gameParams["SNIPER_DAMAGE"];
             break;
     }
 }
 
 Attack Weapon::shoot(int bulletXOrigin, int bulletDirection, int bulletLowerY, int bulletUpperY) {
-    // TODO: think if the logic for if being able to shoot should be here
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> gameParams = config.getGameParams();
+
     switch (type) {
         case SMG:
-            cooldown = SMG_COOLDOWN;
-            bullets -= SMG_BULLETS_SHOT;
+            cooldown = gameParams["SMG_COOLDOWN"];
+            bullets -= gameParams["SMG_BULLETS_SHOT"];
+            return Attack(BULLET, damage, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY);
 
-            return Attack(BULLET, SMG_DAMAGE, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY);
-            break;
-
-        case RIFLE:
-            cooldown = RIFLE_COOLDOWN;
-
-            if (bullets - RIFLE_BULLETS_SHOT < 0)
+        case RIFLE: {
+            cooldown = gameParams["RIFLE_COOLDOWN"];
+            int rifleBulletsShot = gameParams["RIFLE_BULLETS_SHOT"];
+            if (bullets - rifleBulletsShot < 0)
                 bullets = 0;
             else
-                bullets -= RIFLE_BULLETS_SHOT;
+                bullets -= rifleBulletsShot;
+            return Attack(BULLET, damage, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY);
+        }
 
-            return Attack(BULLET, RIFLE_DAMAGE, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY);
-            break;
         case SNIPER:
-            cooldown = SNIPER_COOLDOWN;
-            bullets -= SNIPER_BULLETS_SHOT;
-            return Attack(PIERCING_BULLET, SNIPER_DAMAGE, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY);
-            break;
+            cooldown = gameParams["SNIPER_COOLDOWN"];
+            bullets -= gameParams["SNIPER_BULLETS_SHOT"];
+            return Attack(PIERCING_BULLET, damage, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY);
+
         default:
             return Attack(BULLET, 0, 0, RIGHT, 0, 0);
-            break;
     }
 }
 

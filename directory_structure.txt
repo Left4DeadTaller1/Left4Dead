@@ -9,19 +9,24 @@ server_root
 │   ├── server_protocol.cpp
 │   └── server_protocol.h
 ├── entities
+│   ├── attack.cpp
+│   ├── attack.h
 │   ├── collision_detector.cpp
 │   ├── collision_detector.h
 │   ├── entity.cpp
 │   ├── entity.h
 │   ├── player.cpp
 │   ├── player.h
-│   ├── shot.cpp
-│   ├── shot.h
+│   ├── weapon.cpp
+│   ├── weapon.h
 │   ├── zombie.cpp
 │   └── zombie.h
 ├── game
 │   ├── action.cpp
 │   ├── action.h
+│   ├── configuration
+│   │   ├── game_config.cpp
+│   │   └── game_config.h
 │   ├── game.cpp
 │   ├── game.h
 │   ├── games_manager.cpp
@@ -31,8 +36,6 @@ server_root
 └── server
     ├── acceptor.cpp
     ├── acceptor.h
-    ├── configuration
-    │   └── server_config.cpp
     ├── server.cpp
     ├── server.h
     └── server_main.cpp
@@ -99,10 +102,11 @@ tests
 └── server_tests
     ├── collisions_tests.cpp
     ├── entity_tests.cpp
+    ├── game_config_tests.cpp
     ├── game_tests.cpp
-    ├── game_thread_tests.cpp
     ├── games_manager_tests.cpp
     ├── main_tests.cpp
     └── server_protocol_tests.cpp
 
-1 directory, 7 files
+
+1 directory, 6 files

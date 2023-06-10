@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "entity.h"
+#include "game_config.h"
 #include "player.h"
 #include "weapon.h"
 #include "zombie.h"
@@ -48,9 +49,17 @@ TEST(ZombieTest, TestZombieTakeDamage) {
     EXPECT_EQ(zombie.getHealth(), 60);
 }
 
-// Weapon Test Cases
+// // Weapon Test Cases
 TEST(WeaponTest, TestWeaponShooting) {
     Weapon smg(SMG);
+
+    // Get game configuration
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> gameParams = config.getGameParams();
+
+    int smgCooldown = gameParams["SMG_COOLDOWN"];
+    int smgMaxBullets = gameParams["SMG_MAX_BULLETS"];
+    int smgBulletsShot = gameParams["SMG_BULLETS_SHOT"];
 
     // Initially, weapon can shoot
     EXPECT_TRUE(smg.canShoot());
@@ -59,7 +68,7 @@ TEST(WeaponTest, TestWeaponShooting) {
     smg.shoot(10, RIGHT, 5, 10);
 
     // Simulate decreasing cooldown to 0
-    for (int i = 0; i < SMG_COOLDOWN; ++i) {
+    for (int i = 0; i < smgCooldown; ++i) {
         smg.decreaseCooldown();
     }
 
@@ -67,10 +76,10 @@ TEST(WeaponTest, TestWeaponShooting) {
     EXPECT_TRUE(smg.canShoot());
 
     // Simulate shooting until out of bullets
-    int maxShots = SMG_MAX_BULLETS / SMG_BULLETS_SHOT + 1;
+    int maxShots = smgMaxBullets / smgBulletsShot + 1;
     for (int i = 0; i < maxShots; ++i) {
         smg.shoot(10, RIGHT, 5, 10);
-        for (int j = 0; j < SMG_COOLDOWN; ++j) {
+        for (int j = 0; j < smgCooldown; ++j) {
             smg.decreaseCooldown();
         }
     }
@@ -82,11 +91,19 @@ TEST(WeaponTest, TestWeaponShooting) {
 TEST(WeaponTest, TestWeaponReloading) {
     Weapon smg(SMG);
 
+    // Get game configuration
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> gameParams = config.getGameParams();
+
+    int smgCooldown = gameParams["SMG_COOLDOWN"];
+    int smgMaxBullets = gameParams["SMG_MAX_BULLETS"];
+    int smgBulletsShot = gameParams["SMG_BULLETS_SHOT"];
+
     // Simulate shooting until out of bullets
-    int maxShots = SMG_MAX_BULLETS / SMG_BULLETS_SHOT + 1;
+    int maxShots = smgMaxBullets / smgBulletsShot + 1;
     for (int i = 0; i < maxShots; ++i) {
         smg.shoot(10, RIGHT, 5, 10);
-        for (int j = 0; j < SMG_COOLDOWN; ++j) {
+        for (int j = 0; j < smgCooldown; ++j) {
             smg.decreaseCooldown();
         }
     }

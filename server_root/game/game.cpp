@@ -123,7 +123,6 @@ void Game::startGame() {
 
 void Game::getPlayersActions() {
     Action playerAction;
-    // std::cout << "getPlayersActions: inputQueue size at start: " << inputQueue.size() << std::endl;
     int actionsProcessed = 0;
 
     for (int i = 0; i < MAX_ACTIONS_PER_FRAME; ++i) {

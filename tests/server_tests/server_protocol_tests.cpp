@@ -13,7 +13,6 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
 
     // Create mock Zombie
     std::shared_ptr<Zombie> zombie = std::make_shared<Zombie>(15, 20, 1, 1, "Zombie1", INFECTED);
-    zombie->setMovementState(ENTITY_IDLE);
 
     // Add entities to a vector
     std::vector<std::shared_ptr<EntityDTO>> entities;
@@ -39,7 +38,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
         8,      // General State: IDLE
         0, 15,  // X position: 15 (network byte order)
         0, 20,  // Y position: 20 (network byte order)
-        0, 0,   // X Direction: ENTITY_IDLE (assuming it's 0 for idle)
+        0, 1,   // X Direction: ENTITY_RIGHT
         100     // Health: 100
     };
 
