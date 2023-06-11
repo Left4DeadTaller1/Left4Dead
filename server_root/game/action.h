@@ -12,13 +12,11 @@ enum MovementType {
 enum DirectionXType {
     ACTION_LEFT,
     ACTION_RIGHT,
-    ACTION_NONE_X,
 };
 
 enum DirectionYType {
     ACTION_UP,
     ACTION_DOWN,
-    ACTION_NONE_Y,
 };
 
 enum ActionWeaponState {

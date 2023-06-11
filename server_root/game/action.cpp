@@ -1,7 +1,7 @@
 #include "action.h"
 
 Action::Action()
-    : playerId(""), movementType(ACTION_IDLE), directionXType(ACTION_NONE_X), directionYType(ACTION_NONE_Y), weaponState(ACTION_WEAPON_IDLE) {}
+    : playerId(""), movementType(ACTION_IDLE), directionXType(ACTION_RIGHT), directionYType(ACTION_UP), weaponState(ACTION_WEAPON_IDLE) {}
 
 Action::Action(std::string playerId, int movementType, int directionXType, int directionYType, int weaponState)
     : playerId(playerId) {
