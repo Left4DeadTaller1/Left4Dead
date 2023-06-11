@@ -182,21 +182,19 @@ GeneralState ServerProtocol::determineGeneralState(const std::shared_ptr<EntityD
     return GeneralState::IDLE;
 }
 
-// ServerMessage ServerProtocol::decodeServerMessage(const std::vector<uint8_t> &encodedMsg) {
-//     std::string messageType;
-//     switch (encodedMsg[0]) {
-//         case 1:
-//             messageType = "gameState";
-//             break;
-//         case 2:
-//             messageType = "JoinAnswer";
-//             break;
-//         default:
-//             messageType = "unknown";
-//             break;
-//     }
-//     uint16_t msg_len = ntohs(*reinterpret_cast<const uint16_t *>(&encodedMsg[1]));
-//     std::string msg(encodedMsg.begin() + 3, encodedMsg.begin() + 3 + msg_len);
+std::vector<uint8_t> ServerProtocol::encodeServerMessage(const std::string &msgType, const std::string &playerId) {
+    std::vector<uint8_t> encodedMsg;
 
-//     return ServerMessage(messageType, msg);
-// }
+    if (msgType == "JoinMsg") {
+        encodedMsg.push_back(2);
+
+        // Extracting the number from the playerId string
+        std::string idNumberStr = playerId.substr(playerId.find_first_of("0123456789"));
+        int id = std::stoi(idNumberStr);
+
+        // Cast to uint8_t and add it to the encoded message
+        encodedMsg.push_back(static_cast<uint8_t>(id));
+    }
+
+    return encodedMsg;
+}
