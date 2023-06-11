@@ -29,6 +29,8 @@ std::string Game::addPlayer(Queue<std::vector<uint8_t>>& gameResponses) {
     playersActions[playerId] = std::queue<Action>();
     nextPlayerIndex++;
 
+    std::vector<uint8_t> joinMessage = protocol.encodeServerMessage("JoinMsg", playerId);
+
     // Add message to all player queues that are not null
     for (auto playerQueue : playerQueues) {
         if (playerQueue != nullptr) {
