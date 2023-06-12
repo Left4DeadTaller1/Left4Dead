@@ -51,9 +51,13 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             skt.recvall(&y, 2, &wasClosed);
             player.y = ntohs(y);
 
+            uint16_t lookingTo2;
+            skt.recvall(&lookingTo2, 2, &wasClosed);
+            //player.lookingTo = ntohs(lookingTo);
+
             uint16_t lookingTo;
-            skt.recvall(&lookingTo, 2, &wasClosed);
-            player.lookingTo = ntohs(lookingTo);
+            skt.recvall(&lookingTo, 1, &wasClosed);
+            player.lookingTo = lookingTo;
 
             skt.recvall(&(player.health), 1, &wasClosed);
 

@@ -10,10 +10,6 @@ int ServerProtocol::receiveTypeCommand(bool &wasClosed, Socket &peer){
     uint8_t type;
     peer.recvsome(&type, 1, &wasClosed);
     return type;
-int ServerProtocol::receiveTypeCommand(bool &wasClosed, Socket &peer){
-    uint8_t type;
-    peer.recvsome(&type, 1, &wasClosed);
-    return type;
 }
 
 std::string ServerProtocol::receiveCreate(bool &wasClosed, Socket &peer){
@@ -47,12 +43,6 @@ std::vector<int> ServerProtocol::receiveStartMove(bool& wasClosed, Socket &peer)
     int8_t y;
     peer.recvall(&y, 1, &wasClosed);
     vector.push_back(y);
-<<<<<<< HEAD
-
-    //ver si funciona despues
-    //peer.recvall(&vector[0], 3, &wasClosed);
-=======
->>>>>>> Server
 
     return vector;
 }
@@ -68,26 +58,6 @@ std::vector<int> ServerProtocol::receiveEndMove(bool& wasClosed, Socket &peer){
     peer.recvall(&y, 1, &wasClosed);
     vector.push_back(y);
 
-<<<<<<< HEAD
-    //ver si funciona despues
-    //peer.recvall(&vector[0], 2, &wasClosed);
-
-    return vector;
-}
-
-//no se usan:
-
-void ServerProtocol::notifyCreate(uint32_t code, Socket &peer, bool &wasClosed){
-    code = htonl(code);
-    peer.sendall(&code, 4, &wasClosed);  
-}
-
-void ServerProtocol::notifyJoin(uint8_t param, Socket &peer, bool &wasClosed){
-    uint8_t id = param;
-    peer.sendsome(&id , 1, &wasClosed);
-}
-
-=======
     return vector;
 }
 
@@ -222,4 +192,3 @@ std::vector<uint8_t> ServerProtocol::encodeServerMessage(const std::string &msgT
 
     return encodedMsg;
 }
->>>>>>> Server

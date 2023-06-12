@@ -78,7 +78,7 @@ struct infected {
     state_t state;
     uint16_t x;
     uint16_t y;
-    uint16_t lookingTo;
+    uint8_t lookingTo;
     uint8_t health;
     typeEntity_t typeInfected; //pedirle a reg este dato
 };

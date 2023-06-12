@@ -16,6 +16,7 @@
 #include "socket.h"
 #include "zombie.h"
 
+
 typedef enum {
     CREATE,
     JOIN,
@@ -23,7 +24,9 @@ typedef enum {
     START_MOVE,
     END_MOVE,
     START_SHOOT,
-    END_SHOOT
+    END_SHOOT,
+    RECHARGE,
+    EXIT
 } Type;
 
 enum class GeneralState {
@@ -39,15 +42,7 @@ enum class GeneralState {
 };
 
 class ServerProtocol {
-    private:
-    //const std::string servname;
-
-    void send_int32(int32_t number, bool& was_closed, Socket &peer);
-
-    void send_int8(int8_t number, bool& was_closed, Socket &peer);
-
     public:
-    //explicit ServerProtocol(const std::string& servname);
     ServerProtocol(void);
 
     int receiveTypeCommand(bool &wasClosed, Socket &peer);
@@ -56,23 +51,11 @@ class ServerProtocol {
 
     uint8_t receiveJoin(bool &wasClosed, Socket &peer);
 
-    void send_update_move(uint32_t posx, uint32_t posy, bool& was_closed, Socket &peer);
-
-    //RECIBE
-
     void notifyCreate(uint32_t code, Socket &peer, bool &wasClosed);
 
-    std::string receive_create(bool &was_closed, Socket &peer);
+    std::vector<int> receiveStartMove(bool& wasClosed, Socket &peer);
 
-    uint32_t receive_join(bool &was_closed, Socket &peer);
-
-    std::vector<int> receive_start_move(bool& was_closed, Socket &peer);
-
-    /*void send_update_game(std::shared_ptr<gameStateDTO_t> gameStateDTO, 
-                                        bool& was_closed, 
-                                        Socket &peer);*/
-
-    //std::vector<int> receive_move(bool& was_closed, Socket &peer);
+    std::vector<int> receiveEndMove(bool& wasClosed, Socket &peer);
 
     ServerProtocol(const ServerProtocol &) = delete;
     ServerProtocol &operator=(const ServerProtocol &) = delete;
