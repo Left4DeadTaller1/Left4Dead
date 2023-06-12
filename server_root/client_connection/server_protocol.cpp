@@ -6,13 +6,13 @@
 
 ServerProtocol::ServerProtocol(void) {}
 
-int ServerProtocol::receiveTypeCommand(bool &wasClosed, Socket &peer){
+int ServerProtocol::receiveTypeCommand(bool &wasClosed, Socket &peer) {
     uint8_t type;
     peer.recvsome(&type, 1, &wasClosed);
     return type;
 }
 
-std::string ServerProtocol::receiveCreate(bool &wasClosed, Socket &peer){
+std::string ServerProtocol::receiveCreate(bool &wasClosed, Socket &peer) {
     uint8_t scenario_len;
     peer.recvall(&scenario_len, 1, &wasClosed);
 
@@ -23,13 +23,13 @@ std::string ServerProtocol::receiveCreate(bool &wasClosed, Socket &peer){
     return buf_scenario_name;
 }
 
-uint8_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer){
+uint8_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
     uint8_t code;
     peer.recvall(&code, 1, &wasClosed);
     return code;
 }
 
-std::vector<int> ServerProtocol::receiveStartMove(bool& wasClosed, Socket &peer){
+std::vector<int> ServerProtocol::receiveStartMove(bool &wasClosed, Socket &peer) {
     std::vector<int> vector;
 
     uint8_t typeMove;
@@ -47,7 +47,7 @@ std::vector<int> ServerProtocol::receiveStartMove(bool& wasClosed, Socket &peer)
     return vector;
 }
 
-std::vector<int> ServerProtocol::receiveEndMove(bool& wasClosed, Socket &peer){
+std::vector<int> ServerProtocol::receiveEndMove(bool &wasClosed, Socket &peer) {
     std::vector<int> vector;
 
     int8_t x;
@@ -62,88 +62,68 @@ std::vector<int> ServerProtocol::receiveEndMove(bool& wasClosed, Socket &peer){
 }
 
 std::vector<uint8_t> ServerProtocol::encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities) {
-    uint8_t encodedMessageType = 9; // cambie (lari) solo para ver si se recibe un 9 al pricipio
-
-    uint16_t msg_len = htons(static_cast<uint16_t>(entities.size()));
     std::vector<uint8_t> encodedMsg;
 
+    uint8_t encodedMessageType = 9;  // dummy value for example
+    // Adding the message type (1 byte)
     encodedMsg.push_back(encodedMessageType);
 
     // Adding the number of entities (2 bytes)
-    encodedMsg.resize(encodedMsg.size() + 2);
-    *(uint16_t *)(encodedMsg.data() + 1) = msg_len;
+    uint16_t entitiesAmount = htons(static_cast<uint16_t>(entities.size()));
+    encodedMsg.push_back(reinterpret_cast<uint8_t *>(&entitiesAmount)[0]);
+    encodedMsg.push_back(reinterpret_cast<uint8_t *>(&entitiesAmount)[1]);
 
     for (const auto &entity : entities) {
-        // Encode type
-        uint8_t encodedType = static_cast<uint8_t>(entity->type);
-        encodedMsg.push_back(encodedType);
+        // Encode and add the entity type (1 byte)
+        encodedMsg.push_back(static_cast<uint8_t>(entity->type));
 
-        // Extracting and converting the entity id
+        // Extract, convert, and add the entity id (2 bytes)
         std::string idNumberStr = entity->id.substr(entity->id.find_first_of("0123456789"));
-        uint16_t id = std::stoi(idNumberStr);
-        id = htons(id);
+        uint16_t id = htons(static_cast<uint16_t>(std::stoi(idNumberStr)));
+        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&id)[0]);
+        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&id)[1]);
 
-        // Adding the id (2 bytes)
-        encodedMsg.resize(encodedMsg.size() + 2);
-        *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = id;
-
-        // Encode general state
+        // Encode and add the general state (1 byte)
         GeneralState generalState = determineGeneralState(entity);
-        uint8_t encodedGeneralState = static_cast<uint8_t>(generalState);
+        encodedMsg.push_back(static_cast<uint8_t>(generalState));
 
-        // Adding the general state (1 byte)
-        encodedMsg.push_back(encodedGeneralState);
-
-        // Encode X position
+        // Encode and add the X position (2 bytes)
         uint16_t encodedXPosition = htons(static_cast<uint16_t>(entity->x));
+        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedXPosition)[0]);
+        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedXPosition)[1]);
 
-        // Adding the X position (2 bytes)
-        encodedMsg.resize(encodedMsg.size() + 2);
-        *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = encodedXPosition;
-
-        // Encode Y position
+        // Encode and add the Y position (2 bytes)
         uint16_t encodedYPosition = htons(static_cast<uint16_t>(entity->y));
+        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedYPosition)[0]);
+        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedYPosition)[1]);
 
-        // Adding the Y position (2 bytes)
-        encodedMsg.resize(encodedMsg.size() + 2);
-        *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = encodedYPosition;
-
-        // Encode X direction TODO: change this to face direction
+        // Encode and add the X direction (2 bytes)
         uint16_t encodedXDirection = htons(static_cast<uint16_t>(entity->movementDirectionX));
+        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedXDirection)[0]);
+        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedXDirection)[1]);
 
-        // Adding the X direction (2 bytes)
-        encodedMsg.resize(encodedMsg.size() + 2);
-        *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = encodedXDirection;
-
+        // If the entity is a player, add the facing direction (1 byte)
         if (entity->type == PLAYER) {
             auto playerEntity = std::dynamic_pointer_cast<PlayerDTO>(entity);
             if (playerEntity) {
-                uint8_t facingDirection = static_cast<uint8_t>(playerEntity->facingDirection);
-                // Adding the facing direction of player (1 byte)
-                encodedMsg.push_back(facingDirection);
+                encodedMsg.push_back(static_cast<uint8_t>(playerEntity->facingDirection));
             }
         }
 
-        // Encode health
-        uint8_t encodedHealth = static_cast<uint8_t>(entity->health);
+        // Encode and add the health (1 byte)
+        encodedMsg.push_back(static_cast<uint8_t>(entity->health));
 
-        // Adding the health (1 byte)
-        encodedMsg.push_back(encodedHealth);
-
+        // If the entity is a zombie, add the zombie type (1 byte)
         if (entity->type == ZOMBIE) {
             auto zombieEntity = std::dynamic_pointer_cast<ZombieDTO>(entity);
             if (zombieEntity) {
-                uint8_t encodedZombieType = static_cast<uint8_t>(zombieEntity->zombieType);
-
-                // Adding the zombie type (1 byte)
-                encodedMsg.push_back(encodedZombieType);
+                encodedMsg.push_back(static_cast<uint8_t>(zombieEntity->zombieType));
             }
         }
     }
 
     return encodedMsg;
 }
-
 
 GeneralState ServerProtocol::determineGeneralState(const std::shared_ptr<EntityDTO> &entity) {
     if (entity->healthState == HealthState::DEAD) {

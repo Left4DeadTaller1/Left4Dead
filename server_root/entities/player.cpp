@@ -31,6 +31,10 @@ void Player::setMovementDirectionX(MovementDirectionX movementDirectionX) {
 
         case ENTITY_RIGHT:
             facingDirection = FACING_RIGHT;
+            break;
+
+        default:
+            break;
     }
     this->movementDirectionX = movementDirectionX;
 }

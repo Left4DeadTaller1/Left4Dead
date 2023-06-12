@@ -28,6 +28,8 @@ Zombie::Zombie(int xPosition, int yPosition, std::string zombieId, ZombieType ty
             width = entityParams["VENOM_WIDTH"];
             height = entityParams["VENOM_HEIGHT"];
             break;
+        default:
+            break;
     }
 }
 
