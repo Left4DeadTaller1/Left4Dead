@@ -46,14 +46,15 @@ void Player::setWeaponState(WeaponState weaponState) {
 std::shared_ptr<EntityDTO> Player::getDto() {
     auto dto = std::make_shared<PlayerDTO>();
     dto->type = PLAYER;
-    dto->id = this->getId();
-    dto->x = this->getX();
-    dto->y = this->getY();
-    dto->health = this->getHealth();
+    dto->id = this->entityId;
+    dto->x = this->x;
+    dto->y = this->y;
+    dto->health = this->health;
     dto->movementState = static_cast<int>(this->getMovementState());
     dto->movementDirectionX = static_cast<int>(this->getMovementDirectionX());
     dto->healthState = static_cast<int>(this->getHealthState());
-    dto->weaponState = this->getWeaponState();
+    dto->facingDirection = this->facingDirection;
+    dto->weaponState = this->weaponState;
     return dto;
 }
 

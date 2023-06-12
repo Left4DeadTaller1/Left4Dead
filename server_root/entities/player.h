@@ -19,6 +19,7 @@ enum WeaponState {
 };
 
 struct PlayerDTO : EntityDTO {
+    FacingDirection facingDirection;
     WeaponState weaponState;
 };
 

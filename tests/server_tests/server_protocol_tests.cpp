@@ -32,6 +32,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
         0, 5,   // X position: 5 (network byte order)
         0, 10,  // Y position: 10 (network byte order)
         0, 1,   // X Direction: ENTITY_RIGHT
+        1,      // facingDirection: FACING_RIGHT
         80,     // Health: 80
         1,      // Entity type: Zombie
         0, 1,   // ID: Zombie1

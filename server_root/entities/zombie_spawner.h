@@ -1,4 +1,6 @@
 
+#include <vector>
+
 struct SpawnPoint {
     int x;
     int y;

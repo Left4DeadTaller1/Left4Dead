@@ -130,6 +130,15 @@ std::vector<uint8_t> ServerProtocol::encodeServerMessage(std::string msgType, co
         encodedMsg.resize(encodedMsg.size() + 2);
         *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = encodedXDirection;
 
+        if (entity->type == PLAYER) {
+            auto playerEntity = std::dynamic_pointer_cast<PlayerDTO>(entity);
+            if (playerEntity) {
+                uint8_t facingDirection = static_cast<uint8_t>(playerEntity->facingDirection);
+                // Adding the facing direction of player (1 byte)
+                encodedMsg.push_back(facingDirection);
+            }
+        }
+
         // Encode health
         uint8_t encodedHealth = static_cast<uint8_t>(entity->health);
 
