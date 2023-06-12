@@ -5,7 +5,7 @@
 Zombie::Zombie(int xPosition, int yPosition, std::string zombieId, ZombieType type)
     : Entity(xPosition, yPosition, zombieId), zombieType(type) {
     GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> entityParams = config.getEntitiesParams();  // Modified the type here
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     switch (zombieType) {
         case INFECTED:

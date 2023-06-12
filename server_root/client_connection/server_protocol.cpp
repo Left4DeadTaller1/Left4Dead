@@ -123,7 +123,7 @@ std::vector<uint8_t> ServerProtocol::encodeServerMessage(std::string msgType, co
         encodedMsg.resize(encodedMsg.size() + 2);
         *(uint16_t *)(encodedMsg.data() + encodedMsg.size() - 2) = encodedYPosition;
 
-        // Encode X direction
+        // Encode X direction TODO: change this to face direction
         uint16_t encodedXDirection = htons(static_cast<uint16_t>(entity->movementDirectionX));
 
         // Adding the X direction (2 bytes)
