@@ -29,8 +29,6 @@
 typedef struct player player_t;
 typedef struct infected infected_t;
 typedef struct gameStateDTO gameStateDTO_t;
-//typedef enum state_t : uint8_t;
-//typedef enum typeEntity_t : uint8_t;
 
 typedef enum state_t : uint8_t {
     WALKING,        //all

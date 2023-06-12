@@ -4,3 +4,7 @@ std::vector<int8_t> EndShoot::serialize() const {
     std::vector<int8_t> data = {END_SHOOT};
     return data;
 };
+
+bool EndShoot::isExit(void) const {
+    return false;
+}

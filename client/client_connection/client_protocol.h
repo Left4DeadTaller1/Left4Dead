@@ -15,11 +15,7 @@
 class ClientProtocol {
    private:
     Socket& skt;
-
-    int32_t receive_int32(bool& was_closed);
-
-    int8_t receive_int8(bool& was_closed);
-
+    
    public:
     explicit ClientProtocol(Socket& skt);
 

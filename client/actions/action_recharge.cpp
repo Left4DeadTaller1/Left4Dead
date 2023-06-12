@@ -4,3 +4,7 @@ std::vector<int8_t> Recharge::serialize() const {
     std::vector<int8_t> data = {RECHARGE};
     return data;
 };
+
+bool Recharge::isExit(void) const {
+    return false;
+}

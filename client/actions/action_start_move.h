@@ -14,6 +14,8 @@ class StartMove : public ActionClient {
     StartMove(TypeMove typeMove, DirectionMove directionMove);
 
     virtual std::vector<int8_t> serialize() const override;
+
+    virtual bool isExit(void) const override;
 };
 
 #endif  // ACTION_START_MOVE_H_

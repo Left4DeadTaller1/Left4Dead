@@ -9,3 +9,7 @@ std::vector<int8_t> Create::serialize() const {
     data.insert(data.end(), scenario.begin(), scenario.end());
     return data;
 };
+
+bool Create::isExit(void) const {
+    return false;
+}

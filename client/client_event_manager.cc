@@ -24,6 +24,7 @@ void EventManagerThread::run() {
                     switch (event.key.keysym.sym) {
                         case SDLK_ESCAPE:
                         case SDLK_q:
+                            action = std::make_shared<Exit>();
                             return;
                         case SDLK_LSHIFT:
                             shiftPressed = true;

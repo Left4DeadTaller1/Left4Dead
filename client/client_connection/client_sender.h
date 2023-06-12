@@ -22,8 +22,6 @@ class SenderThread : public Thread {
     ClientProtocol& protocol;
     Queue<std::shared_ptr<ActionClient>>& qEventsToSender;
 
-    void menu();
-
     void inGame();
 };
 

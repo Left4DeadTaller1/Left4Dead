@@ -22,7 +22,10 @@ StartMove::StartMove(TypeMove typeMove, DirectionMove directionMove): typeMove(t
 }
 
 std::vector<int8_t> StartMove::serialize() const {
-    //harcodeo 0 pero deberia ser typeMove
-    std::vector<int8_t> data = {START_MOVE, 0, dirX, dirY};
+    std::vector<int8_t> data = {START_MOVE, static_cast<int8_t>(typeMove), dirX, dirY};
     return data;
 };
+
+bool StartMove::isExit(void) const {
+    return false;
+}

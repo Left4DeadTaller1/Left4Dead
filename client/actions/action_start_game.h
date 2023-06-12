@@ -7,6 +7,8 @@
 class StartGame : public ActionClient {
    public:
     std::vector<int8_t> serialize() const;
+
+    virtual bool isExit(void) const override;
 };
 
 #endif  // ACTION_START_GAME_H_

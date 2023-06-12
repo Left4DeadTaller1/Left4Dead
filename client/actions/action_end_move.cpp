@@ -23,3 +23,7 @@ std::vector<int8_t> EndMove::serialize() const {
     std::vector<int8_t> data = {END_MOVE, dirX, dirY};
     return data;
 };
+
+bool EndMove::isExit(void) const {
+    return false;
+}

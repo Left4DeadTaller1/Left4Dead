@@ -43,6 +43,7 @@ target_include_directories(client
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/client/actions
     ${CMAKE_SOURCE_DIR}/client/render
+    ${CMAKE_SOURCE_DIR}/client/client_connection
     ${SDL2PP_INCLUDE_DIRS}
 )
 

@@ -9,11 +9,11 @@ SenderThread::SenderThread(bool& wasClosed, ClientProtocol& protocol,
 void SenderThread::run() {
     try {
         std::shared_ptr<ActionClient> action;
-        while (!wasClosed) {
+        while (!wasClosed && !action->isExit()) {
             action = qEventsToSender.pop();
             protocol.sendAction(std::move(action), wasClosed);
         }
     } catch (const LibError& e) {
-        //wasClosed = true;
+        //implem
     }
 }

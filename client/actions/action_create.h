@@ -12,6 +12,8 @@ class Create : public ActionClient {
     Create(std::string scenario);
 
     virtual std::vector<int8_t> serialize() const override;
+
+    virtual bool isExit(void) const override;
 };
 
 #endif  //ACTION_CREATE_H_

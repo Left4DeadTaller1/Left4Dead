@@ -34,7 +34,6 @@ void ClientRenderer::drawBackground(Texture& background){
 }
 
 int ClientRenderer::render(){
-    std::cout << "entra al render\n";
     renderer.Clear();
 
     drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
@@ -106,6 +105,6 @@ int ClientRenderer::render(){
     dstRect.w = 150;
     dstRect.h = 150;
 
-    float angle = 45.0;  // Ángulo de rotación en grados
+    float angle = 
 
     SDL_RenderCopyEx(renderer, texture->texture, &srcRect, &dstRect, angle, nullptr, SDL_FLIP_NONE);*/

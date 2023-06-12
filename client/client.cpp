@@ -20,7 +20,6 @@ void Client::run() { try {
     eventManagerThread.start();
     senderThread.start();
     receiverThread.start();
-    std::cout << "antes de llamar a render\n";
     renderer.render();
     } catch(...){
         //implem

@@ -12,10 +12,11 @@ typedef enum {
     END_MOVE,
     START_SHOOT,
     END_SHOOT,
-    RECHARGE
+    RECHARGE,
+    EXIT
 } Type;
 
-typedef enum {
+typedef enum : int8_t{
     WALK,
     RUN
 } TypeMove;
@@ -33,6 +34,8 @@ class ActionClient {
 
     //preguntas: devuelvo un puntero para no hacer una copia?
     virtual std::vector<int8_t> serialize() const = 0;
+
+    virtual bool isExit(void) const = 0;
 
     virtual ~ActionClient() {}
 };
