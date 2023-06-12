@@ -29,18 +29,6 @@ void Entity::move(int deltaX, int deltaY) {
     y += deltaY;
 }
 
-void Entity::setMovementState(MovementState movementState) {
-    this->movementState = movementState;
-}
-
-void Entity::setMovementDirectionX(MovementDirectionX movementDirectionX) {
-    this->movementDirectionX = movementDirectionX;
-}
-
-void Entity::setMovementDirectionY(MovementDirectionY movementDirectionY) {
-    this->movementDirectionY = movementDirectionY;
-}
-
 std::string Entity::getId() {
     return entityId;
 }

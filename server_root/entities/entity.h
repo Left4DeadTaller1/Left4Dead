@@ -17,17 +17,19 @@ enum MovementState {
 enum MovementDirectionX {
     ENTITY_LEFT,
     ENTITY_RIGHT,
+    ENTITY_NONE_X,
 };
 
 enum MovementDirectionY {
     ENTITY_UP,
     ENTITY_DOWN,
+    ENTITY_NONE_Y,
 };
 
 enum HealthState {
     ALIVE,
     HURT,
-    DEAD
+    DEAD,
     // TODO: add dying here
 };
 
@@ -80,9 +82,6 @@ class Entity {
     int getHealth();
     int getMovementSpeed();
 
-    void setMovementState(MovementState movementState);
-    void setMovementDirectionX(MovementDirectionX movementDirectionX);
-    void setMovementDirectionY(MovementDirectionY movementDirectionY);
     void takeDamage(int amountOfDamage);
     void decreaseATKCooldown();
 

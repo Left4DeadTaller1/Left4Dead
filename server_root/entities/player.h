@@ -7,6 +7,11 @@
 #include "entity.h"
 #include "weapon.h"
 
+enum FacingDirection {
+    FACING_LEFT,
+    FACING_RIGHT,
+};
+
 enum WeaponState {
     SHOOTING,
     RELOADING,
@@ -19,11 +24,16 @@ struct PlayerDTO : EntityDTO {
 
 class Player : public Entity {
    private:
+    FacingDirection facingDirection;
     WeaponState weaponState;
     Weapon weapon;
 
    public:
     Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon);
+
+    void setMovementState(MovementState movementState);
+    void setMovementDirectionX(MovementDirectionX movementDirectionX);
+    void setMovementDirectionY(MovementDirectionY movementDirectionY);
 
     EntityType getType() override;
     WeaponState getWeaponState();

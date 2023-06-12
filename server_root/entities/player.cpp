@@ -3,7 +3,7 @@
 #include "game_config.h"
 
 Player::Player(int xPosition, int yPosition, std::string playerId, WeaponType weaponType)
-    : Entity(xPosition, yPosition, playerId), weaponState(WEAPON_IDLE), weapon(weaponType) {
+    : Entity(xPosition, yPosition, playerId), weaponState(WEAPON_IDLE), weapon(weaponType), facingDirection(FACING_RIGHT) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -17,6 +17,26 @@ EntityType Player::getType() {
 
 WeaponState Player::getWeaponState() {
     return weaponState;
+}
+
+void Player::setMovementState(MovementState movementState) {
+    this->movementState = movementState;
+}
+
+void Player::setMovementDirectionX(MovementDirectionX movementDirectionX) {
+    switch (movementDirectionX) {
+        case ENTITY_LEFT:
+            facingDirection = FACING_LEFT;
+            break;
+
+        case ENTITY_RIGHT:
+            facingDirection = FACING_RIGHT;
+    }
+    this->movementDirectionX = movementDirectionX;
+}
+
+void Player::setMovementDirectionY(MovementDirectionY movementDirectionY) {
+    this->movementDirectionY = movementDirectionY;
 }
 
 void Player::setWeaponState(WeaponState weaponState) {

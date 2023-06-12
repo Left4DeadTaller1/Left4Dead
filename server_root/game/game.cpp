@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+
+#include "game_config.h"
 #define MAX_QUEUE_SIZE 16000
 #define MAX_ACTIONS_PER_FRAME 50
 
@@ -171,6 +173,7 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
     while (!playerActions.empty()) {
         Action action = playerActions.front();
         playerActions.pop();
+
         MovementState movementState = static_cast<MovementState>(action.getMovementType());
         MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
         MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
