@@ -6,8 +6,8 @@
 #include "liberror.h"
 #define MY_SHUT_RDWR 2
 
-Acceptor::Acceptor(Socket& skt /*, ProtectedGameCodes& gameCodes*/)
-    : skt(skt), gamesManager() /*, gameCodes(gameCodes), clients(), matchManager()*/ {}
+Acceptor::Acceptor(Socket& skt)
+    : skt(skt), gamesManager() {}
 
 void Acceptor::run() {
     std::cout << "ENTRA AL ACEPTADOR\n";

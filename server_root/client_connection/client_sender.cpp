@@ -1,9 +1,10 @@
 #include "client_sender.h"
 
-ClientSender::ClientSender(Socket &skt, Queue<ServerMessage> &gameResponses)
+ClientSender::ClientSender(Socket &skt, Queue<std::vector<uint8_t>> &gameResponses)
     : clientSocket(skt),
       gameResponses(gameResponses),
-      isRunning(false) {}
+      isRunning(false),
+      protocol() {}
 
 void ClientSender::menu() {}
 
@@ -11,12 +12,15 @@ void ClientSender::run() {
     isRunning = true;
     try {
         while (isRunning) {
-            // again this in the future should be the GameState SnapShot
-            ServerMessage gameSnapShot = gameResponses.pop();
+            // Now gameSnapShot is a vector of bytes representing the game state
+            std::vector<uint8_t> gameSnapShot = gameResponses.pop();
             bool was_closed = false;
-            // clientSocket.sendall(message.data(), message.size(), &was_closed);
 
-            // Conection was interrupted
+            if (gameSnapShot.size() > 0) {
+                clientSocket.sendall(gameSnapShot.data(), gameSnapShot.size(), &was_closed);
+            }
+
+            // Connection was interrupted
             if (was_closed) {
                 break;
             }

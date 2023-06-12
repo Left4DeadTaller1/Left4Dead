@@ -1,6 +1,11 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <memory>
+#include <string>
+
+#include "attack.h"
+
 class CollisionDetector;
 
 enum MovementState {
@@ -21,7 +26,31 @@ enum MovementDirectionY {
     ENTITY_NONE_Y,
 };
 
-// TODO make this a virtual class later on
+enum HealthState {
+    ALIVE,
+    HURT,
+    DEAD,
+    // TODO: add dying here
+};
+
+enum EntityType {
+    PLAYER,
+    ZOMBIE,
+};
+
+struct EntityDTO {
+    EntityType type;
+    std::string id;
+    int x;
+    int y;
+    int health;
+    int movementState;
+    int movementDirectionX;
+    int healthState;
+
+    virtual ~EntityDTO() = default;
+};
+
 class Entity {
    protected:
     int x;
@@ -29,26 +58,41 @@ class Entity {
     int width;
     int height;
     int health;
+    std::string entityId;
     MovementState movementState;
     MovementDirectionX movementDirectionX;
     MovementDirectionY movementDirectionY;
+    HealthState healthState;
+    //  int movementSpeed;
+    int atkCooldown;
 
     friend class CollisionDetector;
 
    public:
     // this is just for colision testing in the future the width and the height
     //  will be determine by the type of the entity
-    Entity(int xPosition, int yPosition, int width, int height);
+    Entity(int xPosition, int yPosition, std::string id);
     MovementState getMovementState();
     MovementDirectionX getMovementDirectionX();
     MovementDirectionY getMovementDirectionY();
+    HealthState getHealthState();
+    std::string getId();
+    int getX();
+    int getY();
+    int getHealth();
     int getMovementSpeed();
 
-    void setMovementState(MovementState movementState);
-    void setMovementDirectionX(MovementDirectionX movementDirectionX);
-    void setMovementDirectionY(MovementDirectionY movementDirectionY);
+    void takeDamage(int amountOfDamage);
+    void decreaseATKCooldown();
+
+    virtual Attack attack() = 0;
+
+    virtual EntityType getType() = 0;
+
+    virtual std::shared_ptr<EntityDTO> getDto();
 
     void move(int deltaX, int deltaY);
+    virtual bool canAttack() = 0;
     virtual ~Entity();
 };
 

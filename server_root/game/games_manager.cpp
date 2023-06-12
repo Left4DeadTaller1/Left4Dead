@@ -3,13 +3,13 @@
 #include <algorithm>
 #include <iostream>
 
-GamesManager::GamesManager() : gameId(0) {}
+GamesManager::GamesManager() : nextGameId(0) {}
 
-GameRecord GamesManager::createLobby(Queue<ServerMessage>& gameResponses) {
+GameRecord GamesManager::createLobby(Queue<std::vector<uint8_t>>& gameResponses) {
     std::lock_guard<std::mutex> lock(m);
     auto game = std::make_shared<Game>();
-    games.emplace(gameId, game);
-    gameId++;
+    games.emplace(nextGameId, game);
+    nextGameId++;
     // Creates struct representing game
     GameRecord gameRecord;
     gameRecord.playerId = game->addPlayer(gameResponses);
@@ -17,7 +17,7 @@ GameRecord GamesManager::createLobby(Queue<ServerMessage>& gameResponses) {
     return gameRecord;
 }
 
-GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<ServerMessage>& gameResponses) {
+GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::vector<uint8_t>>& gameResponses) {
     std::lock_guard<std::mutex> lock(m);
     auto it = games.find(gameCode);
     if (it != games.end()) {
@@ -30,8 +30,8 @@ GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<ServerMessage>& 
     return GameRecord{};
 }
 
-int GamesManager::_getGameId() {
-    return gameId;
+int GamesManager::_getNextGameId() {
+    return nextGameId;
 }
 
 const std::unordered_map<int, std::shared_ptr<Game>>& GamesManager::_getGames() const {

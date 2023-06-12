@@ -1,7 +1,0 @@
-port: 8082
-mapFiles:
-  - map1.txt
-  - map2.txt
-gameParams:
-  unitDamage: 10
-  unitSpeed: 5

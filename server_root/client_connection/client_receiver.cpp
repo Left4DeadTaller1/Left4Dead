@@ -2,7 +2,7 @@
 
 #include <string>
 
-ClientReceiver::ClientReceiver(Socket &clientSocket, GamesManager &gamesManager, Queue<ServerMessage> &gameResponses)
+ClientReceiver::ClientReceiver(Socket &clientSocket, GamesManager &gamesManager, Queue<std::vector<uint8_t>> &gameResponses)
     : clientSocket(clientSocket),
       gamesManager(gamesManager),
       game(nullptr),
@@ -75,7 +75,8 @@ void ClientReceiver::handleGameAction() {
     int movementType = 0;  // placeholder you should get the action from the protocol
     int directionXType = 0;
     int directionYType = 0;
-    Action action(playerId, movementType, directionXType, directionYType);
+    int weaponType = 0;
+    Action action(playerId, movementType, directionXType, directionYType, weaponType);
     game->pushAction(action);
 }
 

@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+
+#include "game_config.h"
 #define MAX_QUEUE_SIZE 16000
 #define MAX_ACTIONS_PER_FRAME 50
 
@@ -14,24 +16,35 @@
 ________________________________________________________________*/
 
 Game::Game()
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(1), gameRunning(false), collisionDetector() {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol() {
     playerQueues.resize(4, nullptr);
 }
 
-std::string Game::addPlayer(Queue<ServerMessage>& gameResponses) {
+std::string Game::addPlayer(Queue<std::vector<uint8_t>>& gameResponses) {
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
-    // Use nextPlayerIndex to create playerId
-    std::string playerId = "Player" + std::to_string(nextPlayerIndex);
-    addPlayer(playerId);
-    // Use nextPlayerIndex to insert the player queue into playerQueues
+    std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
+    spawnPlayer(playerId);
     playerQueues[nextPlayerIndex] = &gameResponses;
+
+    playersActions[playerId] = std::queue<Action>();
     nextPlayerIndex++;
+
+    std::vector<uint8_t> joinMessage = protocol.encodeServerMessage("JoinMsg", playerId);
+
+    // Add message to all player queues that are not null
+    for (auto playerQueue : playerQueues) {
+        if (playerQueue != nullptr) {
+            // I use try_push to not block GameThread but maybe this is wrong.
+            bool success = playerQueue->try_push(joinMessage);
+        }
+    }
+
     return playerId;
 }
 
-void Game::removePlayer(Queue<ServerMessage>& gameResponses) {
+void Game::removePlayer(Queue<std::vector<uint8_t>>& gameResponses) {
     // Find the player queue in playerQueues
     auto it = std::find(playerQueues.begin(), playerQueues.end(), &gameResponses);
     if (it != playerQueues.end()) {
@@ -52,12 +65,11 @@ Queue<Action>& Game::getInputQueue() {
     return inputQueue;
 }
 
-std::vector<Queue<ServerMessage>*>& Game::_getPlayerQueues() {
+std::vector<Queue<std::vector<uint8_t>>*>& Game::_getPlayerQueues() {
     return playerQueues;
 }
 
 void Game::pushAction(Action action) {
-    std::cout << "pushAction: action pushed for player " << action.getPlayerId() << std::endl;
     inputQueue.push(action);
 }
 
@@ -67,7 +79,6 @@ void Game::run() {
 }
 
 void Game::sendAction(Action action) {
-    // TODO: si usasemos el hash hariamos un push a la queue del player correspondiente pero solo la intencion no la accion en si, el objeto action muere aca, pregunta a gpt si hace falta un delete.
     inputQueue.push(action);
 }
 
@@ -85,10 +96,22 @@ Game::~Game() {}
 -----------------------Api for Game-----------------------------
 ________________________________________________________________*/
 
-void Game::addPlayer(std::string playerId) {
-    // Here the game should figure out the coordinates of the player for now as placew holder is 0 0 0 0
-    auto player = std::make_shared<Player>(0, 0, 0, 0, playerId);
-    // Todo: we have to make this match with the id of the player or something.
+void Game::spawnPlayer(std::string playerId) {
+    // TODO:Here the game should figure out what weapon give each player
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> gameDimensions = config.getGameDimensions();
+    int gameWidth = gameDimensions["GAME_WIDTH"];
+    int gameHeight = gameDimensions["GAME_HEIGHT"];
+
+    std::map<std::string, int> playerMeasures = config.getEntitiesParams();
+    int playerWidth = playerMeasures["PLAYER_WIDTH"];
+    int playerHeight = playerMeasures["PLAYER_HEIGHT"];
+    int numPlayers = entities.size();
+
+    int spawnX = gameWidth / 2 + (numPlayers % 2 == 0 ? playerWidth : 0);
+    int spawnY = gameHeight / 2 - (numPlayers / 2) * playerHeight;
+
+    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SMG);
     entities.push_back(player);
 }
 
@@ -97,14 +120,13 @@ void Game::removePlayer(std::string playerId) {
     entities.erase(std::remove_if(entities.begin(), entities.end(),
                                   [playerId](const auto& entity) {
                                       Player* player = dynamic_cast<Player*>(entity.get());
-                                      return player != nullptr && player->getPlayerId() == playerId;
+                                      return player != nullptr && player->getId() == playerId;
                                   }),
                    entities.end());
 }
 
 void Game::startGame() {
     gameRunning = true;
-    std::cout << "startGame: game started" << std::endl;
     while (gameRunning) {
         auto start = std::chrono::steady_clock::now();
 
@@ -112,7 +134,7 @@ void Game::startGame() {
 
         updateState();  // update game state
 
-        // sendState();     // send the new state to the clients
+        sendState();  // send the new state to the clients
 
         auto end = std::chrono::steady_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
@@ -123,37 +145,35 @@ void Game::startGame() {
     }
 
     gameRunning = false;
-    std::cout << "startGame: game stopped" << std::endl;
 }
 
 void Game::getPlayersActions() {
     Action playerAction;
-    // std::cout << "getPlayersActions: inputQueue size at start: " << inputQueue.size() << std::endl;
     int actionsProcessed = 0;
 
     for (int i = 0; i < MAX_ACTIONS_PER_FRAME; ++i) {
         if (inputQueue.try_pop(playerAction)) {
-            playersActions[playerAction.getPlayerId()].push(playerAction);
+            playersActions[playerAction.getId()].push(playerAction);
             actionsProcessed++;
-            std::cout << "getPlayersActions: action popped from inputQueue for player " << playerAction.getPlayerId() << std::endl;
         } else {
-            std::cout << "getPlayersActions: no more actions to pop" << std::endl;
             break;
         }
     }
-    // std::cout << "getPlayersActions: inputQueue size at end: " << inputQueue.size() << std::endl;
-    std::cout << "getPlayersActions: playersActions size at end: " << playersActions.size() << std::endl;
-    std::cout << "getPlayersActions: actions processed: " << actionsProcessed << std::endl;
 }
 
 void Game::updateState() {
+    // Decrementamos DYINGCOUNTER de cada entidad que este en DYING y si este llega a 0 borralo
+
     for (auto& entity : entities) {
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
-            std::cout << "updatePlayerState: initial actions count for player " << player->getPlayerId() << ": " << playersActions[player->getPlayerId()].size() << std::endl;
-            updatePlayerState(*player, playersActions[player->getPlayerId()]);
+            updatePlayerState(*player, playersActions[player->getId()]);
         }
-        moveEntity(*entity);
+        // else {
+        // TODO: remember to decrease entity atk cd
+        // }
+        move(*entity);
+        attack(*entity);
     }
 }
 
@@ -161,20 +181,23 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
     while (!playerActions.empty()) {
         Action action = playerActions.front();
         playerActions.pop();
+
         MovementState movementState = static_cast<MovementState>(action.getMovementType());
         MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
         MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
+        WeaponState weaponState = static_cast<WeaponState>(action.getWeaponState());
 
         player.setMovementState(movementState);
         player.setMovementDirectionX(movementDirectionX);
         player.setMovementDirectionY(movementDirectionY);
+        player.setWeaponState(weaponState);
+        player.decreaseATKCooldown();
     }
 }
 
-void Game::moveEntity(Entity& entity) {
+void Game::move(Entity& entity) {
     int deltaX = 0;
     int deltaY = 0;
-    bool validMovement;
     MovementState movementState = entity.getMovementState();
     MovementDirectionX movementDirectionX = entity.getMovementDirectionX();
     MovementDirectionY movementDirectionY = entity.getMovementDirectionY();
@@ -205,14 +228,59 @@ void Game::moveEntity(Entity& entity) {
             deltaY = (2 * movementSpeed);
         }
     }
-    if (movementState != ENTITY_IDLE) {
-        validMovement = collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities);
-        if (validMovement) {
+    if (movementState != ENTITY_IDLE)
+        if (!collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities))
             entity.move(deltaX, deltaY);
+}
+
+void Game::attack(Entity& entity) {
+    if (entity.canAttack()) {
+        std::unique_ptr<Attack> attackPtr = nullptr;
+
+        if (entity.getType() == PLAYER) {
+            attackPtr = std::make_unique<Attack>(dynamic_cast<Player&>(entity).attack());
+        } else if (entity.getType() == ZOMBIE) {
+            attackPtr = std::make_unique<Attack>(dynamic_cast<Zombie&>(entity).attack());
+        }
+
+        if (attackPtr) {
+            std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.beingAttack(*attackPtr, entities);
+
+            switch (attackPtr->getType()) {
+                case PIERCING_BULLET:
+                    // code
+                    break;
+
+                default:
+                    if (!damagedEntities.empty()) {
+                        damagedEntities.front()->takeDamage(attackPtr->getDamage());
+                    }
+                    break;
+            }
         }
     }
 }
 
 const std::unordered_map<std::string, std::queue<Action>>& Game::_getPlayersActions() const {
     return playersActions;
+}
+
+void Game::sendState() {
+    std::vector<std::shared_ptr<EntityDTO>> entitiesDtos = getDtos();
+    std::vector<uint8_t> serializedState = protocol.encodeServerMessage("gameState", entitiesDtos);
+
+    for (Queue<std::vector<uint8_t>>* playerQueue : playerQueues) {
+        if (playerQueue) {
+            playerQueue->push(serializedState);
+        }
+    }
+}
+
+std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {
+    std::vector<std::shared_ptr<EntityDTO>> dtos;
+    for (auto& entity : entities) {
+        auto dto = entity->getDto();
+        dtos.push_back(dto);
+    }
+    return dtos;
 }

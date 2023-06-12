@@ -1,7 +1,7 @@
 #include "entity.h"
 
-Entity::Entity(int xPosition, int yPosition, int width, int height)
-    : x(xPosition), y(yPosition), width(width), height(height), health(100), movementState(ENTITY_IDLE), movementDirectionX(ENTITY_NONE_X), movementDirectionY(ENTITY_NONE_Y) {
+Entity::Entity(int xPosition, int yPosition, std::string id)
+    : x(xPosition), y(yPosition), health(100), entityId(id), movementState(ENTITY_IDLE), movementDirectionX(ENTITY_RIGHT), movementDirectionY(ENTITY_UP), healthState(ALIVE), atkCooldown(10) {
 }
 
 MovementState Entity::getMovementState() {
@@ -16,6 +16,10 @@ MovementDirectionY Entity::getMovementDirectionY() {
     return movementDirectionY;
 }
 
+HealthState Entity::getHealthState() {
+    return healthState;
+}
+
 int Entity::getMovementSpeed() {
     return 5;
 }
@@ -25,16 +29,38 @@ void Entity::move(int deltaX, int deltaY) {
     y += deltaY;
 }
 
-void Entity::setMovementState(MovementState movementState) {
-    this->movementState = movementState;
+std::string Entity::getId() {
+    return entityId;
 }
 
-void Entity::setMovementDirectionX(MovementDirectionX movementDirectionX) {
-    this->movementDirectionX = movementDirectionX;
+int Entity::getX() {
+    return x;
 }
 
-void Entity::setMovementDirectionY(MovementDirectionY movementDirectionY) {
-    this->movementDirectionY = movementDirectionY;
+int Entity::getY() {
+    return y;
+}
+
+int Entity::getHealth() {
+    return health;
+}
+
+std::shared_ptr<EntityDTO> Entity::getDto() {
+    auto dto = std::make_shared<EntityDTO>();
+    return dto;
+}
+
+void Entity::takeDamage(int amountOfDamage) {
+    health -= amountOfDamage;
+    /// TODO do this:
+    // if (health <= 0) {
+    //     healthState = DYING;
+    // }
+}
+
+void Entity::decreaseATKCooldown() {
+    if (atkCooldown > 0)
+        atkCooldown--;
 }
 
 Entity::~Entity() {

@@ -5,6 +5,12 @@
 #include <string>
 
 #include "entity.h"
+#include "weapon.h"
+
+enum FacingDirection {
+    FACING_LEFT,
+    FACING_RIGHT,
+};
 
 enum WeaponState {
     SHOOTING,
@@ -12,16 +18,33 @@ enum WeaponState {
     WEAPON_IDLE
 };
 
+struct PlayerDTO : EntityDTO {
+    FacingDirection facingDirection;
+    WeaponState weaponState;
+};
+
 class Player : public Entity {
    private:
-    std::string idPlayer;
+    FacingDirection facingDirection;
     WeaponState weaponState;
+    Weapon weapon;
 
    public:
-    Player(int xPosition, int yPosition, int width, int height, std::string idPlayer);
-    std::string getPlayerId();
+    Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon);
 
-    void move(int deltaX, int deltaY);
+    void setMovementState(MovementState movementState);
+    void setMovementDirectionX(MovementDirectionX movementDirectionX);
+    void setMovementDirectionY(MovementDirectionY movementDirectionY);
+
+    EntityType getType() override;
+    WeaponState getWeaponState();
+    void setWeaponState(WeaponState weaponState);
+    std::shared_ptr<EntityDTO> getDto() override;
+
+    void decreaseATKCooldown();
+
+    bool canAttack() override;
+    Attack attack();
     ~Player();
 };
 

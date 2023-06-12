@@ -13,11 +13,14 @@
 #ifndef COLLISION_DETECTOR_H
 #define COLLISION_DETECTOR_H
 
+#include <list>
 #include <memory>
 #include <vector>
 
+#include "attack.h"
 #include "entity.h"
-#include "shot.h"
+#include "player.h"
+#include "zombie.h"
 
 class CollisionDetector {
    public:
@@ -26,7 +29,12 @@ class CollisionDetector {
 
     bool isColliding(Entity& e1, int deltaX, int deltaY, Entity& e2);
     bool checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities);
-    std::vector<Entity*> getBeingShot(Shot& bullet, std::vector<Entity*>& entities);
+
+    std::list<std::shared_ptr<Entity>> beingAttack(Attack& attack, std::vector<std::shared_ptr<Entity>>& entities);
+
+    void beingAttackInfiniteRange(const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK);
+
+    void beingAttackFiniteRange(int range, const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK);
 };
 
 #endif  // COLLISION_DETECTOR_H

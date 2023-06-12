@@ -1,51 +1,51 @@
-/*#include <gtest/gtest.h>
+#include <gtest/gtest.h>
+
+#include <algorithm>
+#include <iostream>
 
 #include "games_manager.h"
 
 TEST(GamesManagerTest, CreateLobby) {
     GamesManager manager;
-    Queue<int> gameResponses(10);
+    Queue<std::vector<uint8_t>> gameResponses(10);
 
-    // Get the gameId this should start in 0
-    int gameId = manager._getGameId();
-    EXPECT_EQ(gameId, 0);
+    int nextGameId = manager._getNextGameId();
+    EXPECT_EQ(nextGameId, 0);
 
-    manager.createLobby(gameResponses);
+    GameRecord gameRecord = manager.createLobby(gameResponses);
+    nextGameId = manager._getNextGameId();
 
-    gameId = manager._getGameId();
-    // Verify the increase of gameId
-    EXPECT_EQ(gameId, 1);
+    EXPECT_EQ(nextGameId, 1);
 
-    // Get the games map
-    const std::unordered_map<int, std::shared_ptr<GameThread>>& games = manager._getGames();
+    const std::unordered_map<int, std::shared_ptr<Game>>& games = manager._getGames();
 
-    // Verify the size of the games map
     EXPECT_EQ(games.size(), 1);
 
-    // Verify that the game with gameId=0 exists in the games map
     EXPECT_TRUE(games.find(0) != games.end());
 
-    // Verify that the value associated with the gameId=0 is not nullptr
-    EXPECT_TRUE(games.at(0).get() != nullptr);
+    EXPECT_TRUE(games.at(0) != nullptr);
+
+    EXPECT_EQ(gameRecord.playerId, "Player1");
+    EXPECT_EQ(gameRecord.game, games.at(0));
 }
 
-TEST(GamesManagerTest, JoinLobby) {
+TEST(GamesManagerTest, JoinExistingLobby) {
     GamesManager manager;
-    Queue<int> gameResponses(10);
-    manager.createLobby(gameResponses);
-    unsigned int gameCode = 0;
-    Queue<Action>* joinResult = manager.joinLobby(gameCode, gameResponses);
+    Queue<std::vector<uint8_t>> gameResponses(10);
 
-    // Verify the expected behavior based on the joinResult and the games map
-    EXPECT_TRUE(joinResult != nullptr);  // Verify that the pointer is not null
+    GameRecord gameRecord = manager.createLobby(gameResponses);
+
+    GameRecord gameRecordJoin = manager.joinLobby(0, gameResponses);
+
+    EXPECT_EQ(gameRecordJoin.playerId, "Player2");  // Since player1 is the creator of the game
+    EXPECT_EQ(gameRecordJoin.game, gameRecord.game);
 }
 
 TEST(GamesManagerTest, JoinNonexistentLobby) {
     GamesManager manager;
-    Queue<int> gameResponses(10);
-    unsigned int gameCode = 4;
-    Queue<Action>* joinResult = manager.joinLobby(gameCode, gameResponses);
+    Queue<std::vector<uint8_t>> gameResponses(10);
 
-    // Verify the expected behavior based on the joinResult and the games map
-    EXPECT_TRUE(joinResult == nullptr);  // Verify that the pointer is null
-}*/
+    GameRecord gameRecordJoin = manager.joinLobby(0, gameResponses);
+
+    EXPECT_EQ(gameRecordJoin.game, nullptr);
+}

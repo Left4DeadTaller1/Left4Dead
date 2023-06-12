@@ -19,18 +19,18 @@ class GamesManager {
    private:
     std::unordered_map<int, std::shared_ptr<Game>> games;
     std::mutex m;
-    int gameId;
+    int nextGameId;
 
    public:
     GamesManager();
 
-    GameRecord createLobby(Queue<ServerMessage>& gameResponses);
+    GameRecord createLobby(Queue<std::vector<uint8_t>>& gameResponses);
 
     // method may return a reference to the Queue (when a Game with the given game code is found), or it may return an empty std::optional (when there's no Game with the given game code)
-    GameRecord joinLobby(unsigned int gameCode, Queue<ServerMessage>& gameResponses);
+    GameRecord joinLobby(unsigned int gameCode, Queue<std::vector<uint8_t>>& gameResponses);
 
     // Method for Testing do not use them in production
-    int _getGameId();
+    int _getNextGameId();
     const std::unordered_map<int, std::shared_ptr<Game>>& _getGames() const;
 };
 

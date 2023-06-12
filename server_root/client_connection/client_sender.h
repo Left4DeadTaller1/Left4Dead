@@ -6,19 +6,19 @@
 
 #include "../game/server_message.h"
 #include "queue.h"
+#include "server_protocol.h"
 #include "socket.h"
 #include "thread.h"
 
 class ClientSender : public Thread {
    private:
     Socket& clientSocket;
-    Queue<ServerMessage>& gameResponses;
+    Queue<std::vector<uint8_t>>& gameResponses;
     bool isRunning;
-    // Match match;
-    // Protocol protocol;
+    ServerProtocol protocol;
 
    public:
-    ClientSender(Socket& skt, Queue<ServerMessage>& gameResponses);
+    ClientSender(Socket& skt, Queue<std::vector<uint8_t>>& gameResponses);
 
     void run() override;
 
