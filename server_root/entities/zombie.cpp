@@ -101,7 +101,7 @@ Attack Zombie::attack() {
             break;
 
         case VENOM:
-            // TODO: figure out later what attack it should do
+            // TODO: figure out later what attack it should do if range or melee venom
             return Attack(SHORT_VENOM, atkDmg, attackX, attackDirection, y, y + height);
             break;
 

@@ -61,7 +61,6 @@ class Entity {
     MovementDirectionX movementDirectionX;
     MovementDirectionY movementDirectionY;
     HealthState healthState;
-    // TODO: make changes to add atk cd to this class and remove it from zombie
     //  int movementSpeed;
     int atkCooldown;
 

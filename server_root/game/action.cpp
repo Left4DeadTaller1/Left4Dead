@@ -15,7 +15,6 @@ std::string Action::getId() {
     return playerId;
 }
 
-// TODO: this could prob just return the Enum type instead of int, so you don't habvet to cast in game when optaining state
 int Action::getMovementType() {
     return static_cast<int>(movementType);
 }

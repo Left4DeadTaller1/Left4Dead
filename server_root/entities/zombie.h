@@ -1,6 +1,5 @@
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
-#define ATK_COOLDOWN 10  // TODO think this in relation with fps game loop
 
 #include <string>
 

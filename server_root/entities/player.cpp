@@ -45,7 +45,6 @@ bool Player::canAttack() {
     return weapon.canShoot();
 }
 
-// TODO: change this to just attack
 Attack Player::attack() {
     AttackDirection attackDirection = RIGHT;  // some default values to avoid warnings
 
