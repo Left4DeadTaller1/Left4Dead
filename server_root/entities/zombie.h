@@ -25,7 +25,7 @@ class Zombie : public Entity {
 
    public:
     // Constructor
-    Zombie(int xPosition, int yPosition, int width, int height, std::string zombieId, ZombieType type);
+    Zombie(int xPosition, int yPosition, std::string zombieId, ZombieType type);
     void move();
     ~Zombie();
 

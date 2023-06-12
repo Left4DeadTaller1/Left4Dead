@@ -96,7 +96,7 @@ ________________________________________________________________*/
 
 void Game::addPlayer(std::string playerId) {
     // TODO:Here the game should figure out the coordinates of the player for now as placew holder is 0 0 0 0 and what weapon give him
-    auto player = std::make_shared<Player>(0, 0, 0, 0, playerId, SMG);
+    auto player = std::make_shared<Player>(0, 0, playerId, SMG);
     entities.push_back(player);
 }
 

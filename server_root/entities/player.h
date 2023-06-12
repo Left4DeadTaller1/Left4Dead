@@ -23,7 +23,7 @@ class Player : public Entity {
     Weapon weapon;
 
    public:
-    Player(int xPosition, int yPosition, int width, int height, std::string idPlayer, WeaponType weapon);
+    Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon);
 
     EntityType getType() override;
     WeaponState getWeaponState();

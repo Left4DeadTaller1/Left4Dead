@@ -70,7 +70,7 @@ class Entity {
    public:
     // this is just for colision testing in the future the width and the height
     //  will be determine by the type of the entity
-    Entity(int xPosition, int yPosition, int width, int height, std::string id);
+    Entity(int xPosition, int yPosition, std::string id);
     MovementState getMovementState();
     MovementDirectionX getMovementDirectionX();
     MovementDirectionY getMovementDirectionY();

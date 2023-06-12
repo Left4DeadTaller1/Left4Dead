@@ -8,7 +8,7 @@
 
 // Player Test Cases
 TEST(PlayerTest, TestPlayerInitialization) {
-    Player player(5, 10, 1, 1, "Player1", SMG);
+    Player player(5, 10, "Player1", SMG);
     EXPECT_EQ(player.getId(), "Player1");
     EXPECT_EQ(player.getX(), 5);
     EXPECT_EQ(player.getY(), 10);
@@ -18,13 +18,13 @@ TEST(PlayerTest, TestPlayerInitialization) {
 }
 
 TEST(PlayerTest, TestPlayerTakeDamage) {
-    Player player(5, 10, 1, 1, "Player1", SMG);
+    Player player(5, 10, "Player1", SMG);
     player.takeDamage(20);
     EXPECT_EQ(player.getHealth(), 80);
 }
 
 TEST(PlayerTest, TestPlayerMovement) {
-    Player player(5, 10, 1, 1, "Player1", SMG);
+    Player player(5, 10, "Player1", SMG);
     player.move(3, 2);
     EXPECT_EQ(player.getX(), 8);
     EXPECT_EQ(player.getY(), 12);
@@ -34,7 +34,7 @@ TEST(PlayerTest, TestPlayerMovement) {
 
 // Zombie Test Cases
 TEST(ZombieTest, TestZombieInitialization) {
-    Zombie zombie(15, 20, 1, 1, "Zombie1", INFECTED);
+    Zombie zombie(15, 20, "Zombie1", INFECTED);
     EXPECT_EQ(zombie.getId(), "Zombie1");
     EXPECT_EQ(zombie.getX(), 15);
     EXPECT_EQ(zombie.getY(), 20);
@@ -44,7 +44,7 @@ TEST(ZombieTest, TestZombieInitialization) {
 }
 
 TEST(ZombieTest, TestZombieTakeDamage) {
-    Zombie zombie(15, 20, 1, 1, "Zombie1", INFECTED);
+    Zombie zombie(15, 20, "Zombie1", INFECTED);
     zombie.takeDamage(40);
     EXPECT_EQ(zombie.getHealth(), 60);
 }

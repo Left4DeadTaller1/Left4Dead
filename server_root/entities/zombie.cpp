@@ -1,7 +1,37 @@
 #include "zombie.h"
 
-Zombie::Zombie(int xPosition, int yPosition, int width, int height, std::string zombieId, ZombieType type)
-    : Entity(xPosition, yPosition, width, height, zombieId), zombieType(type) {
+#include "game_config.h"
+
+Zombie::Zombie(int xPosition, int yPosition, std::string zombieId, ZombieType type)
+    : Entity(xPosition, yPosition, zombieId), zombieType(type) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> gameParams = config.getGameParams();
+
+    switch (zombieType) {
+        case INFECTED:
+            width = gameParams["INFECTED_WIDTH"];
+            height = gameParams["INFECTED_HEIGHT"];
+            break;
+        case JUMPER:
+            width = gameParams["JUMPER_WIDTH"];
+            height = gameParams["JUMPER_HEIGHT"];
+            break;
+
+        case WITCH:
+            width = gameParams["WITCH_WIDTH"];
+            height = gameParams["WITCH_HEIGHT"];
+            break;
+
+        case SPEAR:
+            width = gameParams["SPEAR_WIDTH"];
+            height = gameParams["SPEAR_HEIGHT"];
+            break;
+
+        case VENOM:
+            width = gameParams["VENOM_WIDTH"];
+            height = gameParams["VENOM_HEIGHT"];
+            break;
+    }
 }
 
 // void Zombie::move() {
