@@ -1,5 +1,7 @@
 #include "collision_detector.h"
 
+#include "game_config.h"
+
 #define MELEE_RANGE 10
 #define SPEAR_RANGE 15
 #define SHORT_VENOM_RANGE 15
@@ -22,13 +24,24 @@ bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& 
     // the rectangules are touching or overlapping
     if ((e1.x + deltaX) + e1.width >= e2.x && (e1.x + deltaX) <= e2.x + e2.width &&
         (e1.y + deltaY) + e1.height >= e2.y && (e1.y + deltaY) <= e2.y + e2.height) {
-        return true;
+        return true;  // collision with another entity
     }
 
     return false;
 }
 
 bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> gameParams = config.getGameParams();
+    int gameWidth = gameParams["GAME_WIDTH"];
+    int gameHeight = gameParams["GAME_HEIGHT"];
+
+    // Check for boundary collision
+    if ((entity.x + deltaX) < 0 || (entity.x + deltaX + entity.width) > gameWidth ||
+        (entity.y + deltaY) < 0 || (entity.y + deltaY + entity.height) > gameHeight) {
+        return true;  // collision with boundary
+    }
+
     for (auto& other : entities) {
         if (&entity != other.get() && isColliding(entity, deltaX, deltaY, *other)) {
             return true;

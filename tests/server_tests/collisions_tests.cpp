@@ -134,3 +134,27 @@ TEST(CollisionDetectorTest, GetBeingAttackedByLongVenom) {
     EXPECT_EQ(entitiesBeingAttacked.size(), static_cast<std::size_t>(1));
     EXPECT_EQ(entitiesBeingAttacked.front(), player3);
 }
+
+TEST(CollisionDetectorTest, CheckForBoundaryCollisions) {
+    CollisionDetector detector;
+    //
+
+    Player e1(10, 20, 30, 30, "e1", SMG);
+
+    std::vector<std::shared_ptr<Entity>> entities;  // No other entities
+
+    // Check that initially there is no collision
+    EXPECT_FALSE(detector.checkForCollisions(e1, 0, 0, entities));
+
+    // Check collision with left boundary
+    EXPECT_TRUE(detector.checkForCollisions(e1, -20, 0, entities));
+
+    // Check collision with top boundary
+    EXPECT_TRUE(detector.checkForCollisions(e1, 0, -30, entities));
+
+    // Check collision with right boundary
+    EXPECT_TRUE(detector.checkForCollisions(e1, 1510, 0, entities));
+
+    // Check collision with bottom boundary
+    EXPECT_TRUE(detector.checkForCollisions(e1, 0, 160, entities));
+}

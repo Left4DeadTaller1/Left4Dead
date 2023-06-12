@@ -213,7 +213,7 @@ void Game::move(Entity& entity) {
         }
     }
     if (movementState != ENTITY_IDLE)
-        if (collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities))
+        if (!collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities))
             entity.move(deltaX, deltaY);
 }
 
