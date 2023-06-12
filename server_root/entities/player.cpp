@@ -2,12 +2,13 @@
 
 #include "game_config.h"
 
-Player::Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon)
-    : Entity(xPosition, yPosition, idPlayer), weaponState(WEAPON_IDLE), weapon(weapon) {
+Player::Player(int xPosition, int yPosition, std::string playerId, WeaponType weaponType)
+    : Entity(xPosition, yPosition, playerId), weaponState(WEAPON_IDLE), weapon(weaponType) {
     GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> gameParams = config.getGameParams();
-    width = gameParams["PLAYER_WIDTH"];
-    height = gameParams["PLAYER_HEIGHT"];
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+
+    width = entityParams["PLAYER_WIDTH"];
+    height = entityParams["PLAYER_HEIGHT"];
 }
 
 EntityType Player::getType() {

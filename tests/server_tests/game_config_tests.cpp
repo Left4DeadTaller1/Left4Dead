@@ -6,6 +6,6 @@
 TEST(GameConfigTest, TestLoadingConfiguration) {
     GameConfig& config = GameConfig::getInstance();
 
-    std::map<std::string, int> gameParams = config.getGameParams();
-    EXPECT_EQ(gameParams["SMG_COOLDOWN"], 10);
+    std::map<std::string, int> weaponsParams = config.getWeaponsParams();
+    EXPECT_EQ(weaponsParams["SMG_COOLDOWN"], 10);
 }

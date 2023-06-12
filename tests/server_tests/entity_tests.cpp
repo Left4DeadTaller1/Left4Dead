@@ -55,11 +55,11 @@ TEST(WeaponTest, TestWeaponShooting) {
 
     // Get game configuration
     GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> gameParams = config.getGameParams();
+    std::map<std::string, int> weaponsParams = config.getWeaponsParams();
 
-    int smgCooldown = gameParams["SMG_COOLDOWN"];
-    int smgMaxBullets = gameParams["SMG_MAX_BULLETS"];
-    int smgBulletsShot = gameParams["SMG_BULLETS_SHOT"];
+    int smgCooldown = weaponsParams["SMG_COOLDOWN"];
+    int smgMaxBullets = weaponsParams["SMG_MAX_BULLETS"];
+    int smgBulletsShot = weaponsParams["SMG_BULLETS_SHOT"];
 
     // Initially, weapon can shoot
     EXPECT_TRUE(smg.canShoot());
@@ -93,11 +93,11 @@ TEST(WeaponTest, TestWeaponReloading) {
 
     // Get game configuration
     GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> gameParams = config.getGameParams();
+    std::map<std::string, int> weaponsParams = config.getWeaponsParams();
 
-    int smgCooldown = gameParams["SMG_COOLDOWN"];
-    int smgMaxBullets = gameParams["SMG_MAX_BULLETS"];
-    int smgBulletsShot = gameParams["SMG_BULLETS_SHOT"];
+    int smgCooldown = weaponsParams["SMG_COOLDOWN"];
+    int smgMaxBullets = weaponsParams["SMG_MAX_BULLETS"];
+    int smgBulletsShot = weaponsParams["SMG_BULLETS_SHOT"];
 
     // Simulate shooting until out of bullets
     int maxShots = smgMaxBullets / smgBulletsShot + 1;

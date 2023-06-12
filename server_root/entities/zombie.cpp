@@ -5,31 +5,28 @@
 Zombie::Zombie(int xPosition, int yPosition, std::string zombieId, ZombieType type)
     : Entity(xPosition, yPosition, zombieId), zombieType(type) {
     GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> gameParams = config.getGameParams();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();  // Modified the type here
 
     switch (zombieType) {
         case INFECTED:
-            width = gameParams["INFECTED_WIDTH"];
-            height = gameParams["INFECTED_HEIGHT"];
+            width = entityParams["INFECTED_WIDTH"];
+            height = entityParams["INFECTED_HEIGHT"];
             break;
         case JUMPER:
-            width = gameParams["JUMPER_WIDTH"];
-            height = gameParams["JUMPER_HEIGHT"];
+            width = entityParams["JUMPER_WIDTH"];
+            height = entityParams["JUMPER_HEIGHT"];
             break;
-
         case WITCH:
-            width = gameParams["WITCH_WIDTH"];
-            height = gameParams["WITCH_HEIGHT"];
+            width = entityParams["WITCH_WIDTH"];
+            height = entityParams["WITCH_HEIGHT"];
             break;
-
         case SPEAR:
-            width = gameParams["SPEAR_WIDTH"];
-            height = gameParams["SPEAR_HEIGHT"];
+            width = entityParams["SPEAR_WIDTH"];
+            height = entityParams["SPEAR_HEIGHT"];
             break;
-
         case VENOM:
-            width = gameParams["VENOM_WIDTH"];
-            height = gameParams["VENOM_HEIGHT"];
+            width = entityParams["VENOM_WIDTH"];
+            height = entityParams["VENOM_HEIGHT"];
             break;
     }
 }

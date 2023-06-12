@@ -12,11 +12,15 @@ class GameConfig {
     static GameConfig& getInstance();
 
     std::vector<std::string> getMapFiles() const;
-    std::map<std::string, int> getGameParams() const;
+    std::map<std::string, int> getGameDimensions() const;
+    std::map<std::string, int> getEntitiesParams() const;
+    std::map<std::string, int> getWeaponsParams() const;
 
    private:
     std::vector<std::string> mapFiles;
-    std::map<std::string, int> gameParams;
+    std::map<std::string, int> gameDimensions;
+    std::map<std::string, int> entitiesParams;
+    std::map<std::string, int> weaponsParams;
 
     GameConfig();
     GameConfig(const GameConfig&) = delete;

@@ -32,9 +32,9 @@ bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& 
 
 bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities) {
     GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> gameParams = config.getGameParams();
-    int gameWidth = gameParams["GAME_WIDTH"];
-    int gameHeight = gameParams["GAME_HEIGHT"];
+    std::map<std::string, int> gameDimensions = config.getGameDimensions();
+    int gameWidth = gameDimensions["GAME_WIDTH"];
+    int gameHeight = gameDimensions["GAME_HEIGHT"];
 
     // Check for boundary collision
     if ((entity.x + deltaX) < 0 || (entity.x + deltaX + entity.width) > gameWidth ||
