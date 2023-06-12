@@ -1,12 +1,9 @@
 #include "server_protocol.h"
 
-<<<<<<< HEAD
-=======
 #include <arpa/inet.h>
 
 #include <iostream>
 
->>>>>>> Server
 ServerProtocol::ServerProtocol(void) {}
 
 int ServerProtocol::receiveTypeCommand(bool &wasClosed, Socket &peer){
