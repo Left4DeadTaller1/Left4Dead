@@ -59,7 +59,7 @@ class Game : public Thread {
     std::vector<std::shared_ptr<Entity>> entities;
     ServerProtocol protocol;
 
-    void addPlayer(std::string idPlayer);
+    void spawnPlayer(std::string idPlayer);
     void removePlayer(std::string idPlayer);
     void updateState();
     void updatePlayerState(Player& player, std::queue<Action>& playerActions);

@@ -25,7 +25,7 @@ std::string Game::addPlayer(Queue<std::vector<uint8_t>>& gameResponses) {
         throw std::out_of_range("Player list is full!");
     }
     std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
-    addPlayer(playerId);
+    spawnPlayer(playerId);
     playerQueues[nextPlayerIndex] = &gameResponses;
 
     playersActions[playerId] = std::queue<Action>();
@@ -96,14 +96,22 @@ Game::~Game() {}
 -----------------------Api for Game-----------------------------
 ________________________________________________________________*/
 
-void Game::addPlayer(std::string playerId) {
-    // TODO:Here the game should figure out the coordinates of the player for now as placew holder is 0 0 0 0 and what weapon give him
+void Game::spawnPlayer(std::string playerId) {
+    // TODO:Here the game should figure out what weapon give each player
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
     int gameWidth = gameDimensions["GAME_WIDTH"];
     int gameHeight = gameDimensions["GAME_HEIGHT"];
 
-    auto player = std::make_shared<Player>(0, 0, playerId, SMG);
+    std::map<std::string, int> playerMeasures = config.getEntitiesParams();
+    int playerWidth = playerMeasures["PLAYER_WIDTH"];
+    int playerHeight = playerMeasures["PLAYER_HEIGHT"];
+    int numPlayers = entities.size();
+
+    int spawnX = gameWidth / 2 + (numPlayers % 2 == 0 ? playerWidth : 0);
+    int spawnY = gameHeight / 2 - (numPlayers / 2) * playerHeight;
+
+    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SMG);
     entities.push_back(player);
 }
 
