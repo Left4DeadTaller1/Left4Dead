@@ -68,7 +68,6 @@ class Game : public Thread {
     void getPlayersActions();
 
     void sendState();
-    // uint8_t serializeState();
     std::vector<std::shared_ptr<EntityDTO>> getDtos();
 
    public:

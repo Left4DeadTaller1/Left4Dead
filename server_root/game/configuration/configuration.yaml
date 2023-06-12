@@ -2,6 +2,8 @@ mapFiles:
   - map1.txt
   - map2.txt
 gameParams:
+  GAME_WIDTH: 1500
+  GAME_HEIGHT: 150
   SMG_DAMAGE: 10
   RIFLE_DAMAGE: 20
   SNIPER_DAMAGE: 50

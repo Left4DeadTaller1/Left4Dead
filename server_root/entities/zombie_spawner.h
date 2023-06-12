@@ -1,18 +1,12 @@
 class ZombieSpawner {
    private:
     int spawnInterval;
+    int frameCounter;
 
    public:
-    ZombieSpawner(int spawnInterval)
-        : spawnInterval(spawnInterval) {}
+    ZombieSpawner();
 
-    void spawn() {
-        // Create new zombie with random properties
-        // Add zombie to the game world
-    }
+    void spawn();
 
-    void update() {
-        // Check if enough time has passed based on spawnInterval
-        // If so, call spawn()
-    }
+    void update();
 };

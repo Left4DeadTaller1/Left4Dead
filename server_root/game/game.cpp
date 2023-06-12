@@ -155,7 +155,7 @@ void Game::updateState() {
             updatePlayerState(*player, playersActions[player->getId()]);
         }
         // else {
-        // TODO: remember to decrease zombie cd
+        // TODO: remember to decrease entity atk cd
         // }
         move(*entity);
         attack(*entity);
@@ -268,28 +268,3 @@ std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {
     }
     return dtos;
 }
-// uint8_t Game::serializeState() {
-//     std::string gameState = "{\"entities\": [";
-//     for (auto& entity : entities) {
-//         if (&entity != &entities[0]) {
-//             gameState += ",";
-//         }
-//         gameState += "{\"type\": \"" + entity->getType() + "\",";
-//         gameState += "\"id\": \"" + entity->getId() + "\",";
-//         gameState += "\"x\": " + std::to_string(entity->getX()) + ",";
-//         gameState += "\"y\": " + std::to_string(entity->getY()) + ",";
-//         gameState += "\"health\": " + std::to_string(entity->getHealth()) + ",";
-//         gameState += "\"movementState\": " + std::to_string(entity->getMovementState()) + ",";
-//         gameState += "\"movementDirectionX\": " + std::to_string(entity->getMovementDirectionX());
-//         gameState += "\"healthState\": " + std::to_string(entity->getHealthState());
-//         if (entity->getType() == "player") {
-//             Player* player = dynamic_cast<Player*>(entity.get());
-//             gameState += "\",weaponState\": " + std::to_string(player->getWeaponState()) + ",";
-//         }
-
-//         gameState += "}";
-//     }
-//     gameState += "]}";
-//     uint8_t serializedState = uint8_t("gameState", gameState);
-//     return serializedState;
-// }
