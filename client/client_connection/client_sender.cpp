@@ -9,7 +9,7 @@ SenderThread::SenderThread(bool& wasClosed, ClientProtocol& protocol,
 void SenderThread::run() {
     try {
         std::shared_ptr<ActionClient> action;
-        while (!wasClosed && !action->isExit()) {
+        while (!wasClosed && (!action || (action && !action->isExit()))) {
             action = qEventsToSender.pop();
             protocol.sendAction(std::move(action), wasClosed);
         }
