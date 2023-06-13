@@ -27,7 +27,7 @@ ZombieSpawner::ZombieSpawner() : spawnInterval(5), totalZombies(0) {
     spawnPoints.push_back(spawnPoint4);
 }
 
-std::shared_ptr<Zombie> ZombieSpawner::spawn() {
+std::shared_ptr<Entity> ZombieSpawner::spawn() {
     if (spawnInterval > 0) {
         spawnInterval -= 1;
         return nullptr;
@@ -43,7 +43,7 @@ std::shared_ptr<Zombie> ZombieSpawner::spawn() {
 
     int zombieType = rand() % TYPES_OF_ZOMBIE;
 
-    std::shared_ptr<Zombie> zombiePtr = std::make_shared<Zombie>(spawnX, spawnY, zombieId, static_cast<ZombieType>(zombieType));
+    std::shared_ptr<Entity> zombiePtr = std::make_shared<Zombie>(spawnX, spawnY, zombieId, static_cast<ZombieType>(zombieType));
     spawnInterval = 5;
     return zombiePtr;
 }

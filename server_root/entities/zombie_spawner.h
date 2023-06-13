@@ -16,5 +16,5 @@ class ZombieSpawner {
 
    public:
     ZombieSpawner();
-    std::shared_ptr<Zombie> spawn();
+    std::shared_ptr<Entity> spawn();
 };

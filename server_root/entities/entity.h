@@ -64,7 +64,6 @@ class Entity {
     MovementDirectionY movementDirectionY;
     HealthState healthState;
     int movementSpeed;
-    int atkCooldown;
 
     friend class CollisionDetector;
 
@@ -83,7 +82,7 @@ class Entity {
     int getMovementSpeed();
 
     void takeDamage(int amountOfDamage);
-    void decreaseATKCooldown();
+    virtual void decreaseATKCooldown() = 0;
 
     virtual Attack attack() = 0;
 

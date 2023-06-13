@@ -55,7 +55,7 @@ class Game : public Thread {
     CollisionDetector collisionDetector;
     std::unordered_map<std::string, std::queue<Action>>
         playersActions;
-    // std::vector<std::shared_ptr<Player>> players;
+    std::vector<std::shared_ptr<Player>> players;
     // std::vector<std::shared_ptr<Zombie>> zombies;
     std::vector<std::shared_ptr<Entity>> entities;
     ServerProtocol protocol;
