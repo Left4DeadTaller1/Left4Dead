@@ -28,6 +28,8 @@ Zombie::Zombie(int xPosition, int yPosition, std::string zombieId, ZombieType ty
             width = entityParams["VENOM_WIDTH"];
             height = entityParams["VENOM_HEIGHT"];
             break;
+        default:
+            break;
     }
 }
 
@@ -80,6 +82,9 @@ Attack Zombie::attack() {
         case ENTITY_RIGHT:
             attackDirection = RIGHT;
             attackX = x + width;
+            break;
+        default:
+            // TODO i think we should add a facing direction for zombies too
             break;
     }
 

@@ -37,7 +37,7 @@ std::string Game::addPlayer(Queue<std::vector<uint8_t>>& gameResponses) {
     for (auto playerQueue : playerQueues) {
         if (playerQueue != nullptr) {
             // I use try_push to not block GameThread but maybe this is wrong.
-            bool success = playerQueue->try_push(joinMessage);
+            playerQueue->try_push(joinMessage);
         }
     }
 
