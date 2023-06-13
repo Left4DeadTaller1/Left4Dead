@@ -5,8 +5,8 @@
 #include <iostream>
 #include "client.h"
 
-#define WIDTH_WINDOW 1000
-#define HEIGHT_WINDOW 800
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
 
 int main(int argc, char *argv[]) {
     int ret = -1;
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 
     SDL2pp::Window window("Left4Dead",
                   SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                  WIDTH_WINDOW, HEIGHT_WINDOW,
+                  WINDOW_WIDTH, WINDOW_HEIGHT,
                   SDL_WINDOW_RESIZABLE);
 
     Client client(hostname, servname, window);

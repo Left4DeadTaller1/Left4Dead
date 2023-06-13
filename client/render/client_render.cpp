@@ -1,6 +1,12 @@
 #include "client_render.h"
 
 using namespace SDL2pp;
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
+#define GAME_HEIGHT 150
+#define GAME_WIDTH 1500
+#define IMAGE_WIDTH 150
+#define IMAGE_HEIGHT 150
 
 ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
                     Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
@@ -12,7 +18,7 @@ ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerTo
                     textureManager(renderer),
                     previousGameStateDTO(NULL){}
 
-void ClientRenderer::drawPlayer(player_t& previousPlayer, 
+/*void ClientRenderer::drawPlayer(player_t& previousPlayer, 
                                 player_t& currentPlayer){
     
     std::cout << "previousPlayer.x: " << (int)previousPlayer.x << "\n";
@@ -30,10 +36,43 @@ void ClientRenderer::drawPlayer(player_t& previousPlayer,
         texture.texture,
         Rect((texture.width / texture.n)* (previousPlayer.x % texture.n), 0, 
             texture.width / texture.n, texture.height),
-        Rect(currentPlayer.x, currentPlayer.y, 150, 150)
+        Rect((currentPlayer.x * WINDOW_WIDTH) / GAME_WIDTH, 
+            WINDOW_HEIGHT - currentPlayer.y - GAME_HEIGHT, 
+            IMAGE_WIDTH, 
+            IMAGE_HEIGHT)
     );
+}*/
 
+#define PI 3.14
+
+void ClientRenderer::drawPlayer(player_t& previousPlayer, 
+                                player_t& currentPlayer){
+
+    float angle = atan2(currentPlayer.y - previousPlayer.y, currentPlayer.x - previousPlayer.x) * 180.0 / PI;
+    
+    //ver de tener los mismo state para no tener problemas 
+    GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
+
+    SDL_Rect srcRect;
+    srcRect.x = (texture.width / texture.n)* (previousPlayer.x % texture.n);
+    srcRect.y = 0;
+    srcRect.w = texture.width / texture.n;
+    srcRect.h = texture.height;
+
+    SDL_Rect dstRect;
+    dstRect.x = (currentPlayer.x * WINDOW_WIDTH) / GAME_WIDTH;
+    dstRect.y = WINDOW_HEIGHT - currentPlayer.y - GAME_HEIGHT;
+    dstRect.w = IMAGE_WIDTH;
+    dstRect.h = IMAGE_HEIGHT;
+
+    if (currentPlayer.lookingTo == 0) {
+        SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_HORIZONTAL);
+    } else {
+        SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
+    }
+    //SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, angle, nullptr, SDL_FLIP_NONE);
 }
+
 
 void drawInfected(infected_t& previousInfected, 
             infected_t& currentInfected){
@@ -85,31 +124,3 @@ int ClientRenderer::render(){
 	return 0;
 }
 
-/*
-
-#define PI 3.14
-
-void ClientRenderer::drawPlayer(player_t& previousPlayer, 
-                                player_t& currentPlayer){
-    
-    //ver de tener los mismo state para no tener problemas 
-    GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
-
-    SDL_Rect srcRect;
-    srcRect.x = (texture.width / texture.n) * (previousPlayer.x % texture.n);
-    srcRect.y = 0;
-    srcRect.w = texture.width / texture.n;
-    srcRect.h = texture.height;
-
-    SDL_Rect dstRect;
-    dstRect.x = currentPlayer.x;
-    dstRect.y = currentPlayer.y;
-    dstRect.w = 150;
-    dstRect.h = 150;
-
-    float angle = atan2(currentPlayer.y - previousPlayer.y, currentPlayer.x - previousPlayer.x) * 180.0 / PI;
-
-    SDL_RenderCopyEx(renderer, texture.texture, &srcRect, &dstRect, angle, nullptr, SDL_FLIP_NONE);
-}
-
-*/

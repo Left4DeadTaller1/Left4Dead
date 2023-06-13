@@ -9,7 +9,7 @@
 #define MAX_ACTIONS_PER_FRAME 50
 
 // 1000 ms / 30 FPS = 33.3 ms per frame
-#define MS_PER_FRAME 2000
+#define MS_PER_FRAME 33
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 -------------------Api for clientCommunication------------------
