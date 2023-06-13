@@ -3,7 +3,6 @@
 using namespace SDL2pp;
 
 TextureManager::TextureManager(Renderer& renderer){
-    std::cout << "entra a constructor texture manager\n";
     loadTextures(renderer);
     loadTranslations();
 }
@@ -18,9 +17,11 @@ GameTexture& TextureManager::getBackgroundTexture(const std::string& nameTexture
 
 GameTexture& TextureManager::getTexture(typeEntity_t typeEntity, state_t state){
     std::string nameTexture = translationTypeEntity[typeEntity] + "-" + translationState[state];
+    std::cout << "name texture: " << nameTexture << "\n";
 
     std::map<std::string, GameTexture>::iterator iter = textures.find(nameTexture);
     if (iter == textures.end()) {
+        std::cout << "no encuentra: " << nameTexture << "\n";
         //lanzar excepcion
     }
     return iter->second;

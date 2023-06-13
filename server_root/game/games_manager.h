@@ -24,6 +24,8 @@ class GamesManager {
    public:
     GamesManager();
 
+    void startGame(unsigned int gameCode);
+
     GameRecord createLobby(Queue<std::vector<uint8_t>>& gameResponses);
 
     // method may return a reference to the Queue (when a Game with the given game code is found), or it may return an empty std::optional (when there's no Game with the given game code)

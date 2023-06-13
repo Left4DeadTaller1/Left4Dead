@@ -16,6 +16,11 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
     if(wasClosed){
         return NULL;
     }
+    std::cout << "messageType: " << (int)messageType << "\n";
+
+    if (messageType != 9){
+        return NULL;
+    }
 
     //si el mensaje es para mandar estado de juego, desp poner el if
     std::map<uint8_t, player_t> mapPlayers;
@@ -27,6 +32,7 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         return NULL;
     }
     amountEntities = ntohs(amountEntities);
+    std::cout << "amountEntities: " << (int)amountEntities << "\n";
 
     for (int i = 0; i < amountEntities; i++){
         uint8_t typeEntity;
@@ -34,10 +40,13 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         if(wasClosed){
             return NULL;
         }
+        std::cout << "typeEntity: " << (int)typeEntity << "\n";
         if ((int)typeEntity == 0){ //es player
             player_t player;
 
-            skt.recvall(&(player.idPlayer), 1, &wasClosed);
+            uint16_t idPlayer;
+            skt.recvall(&idPlayer, 2, &wasClosed);
+            player.x = ntohs(idPlayer);
 
             uint8_t state;
             skt.recvall(&state, 1, &wasClosed);
@@ -55,11 +64,18 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             skt.recvall(&lookingTo2, 2, &wasClosed);
             //player.lookingTo = ntohs(lookingTo);
 
-            uint16_t lookingTo;
+            uint8_t lookingTo;
             skt.recvall(&lookingTo, 1, &wasClosed);
             player.lookingTo = lookingTo;
 
             skt.recvall(&(player.health), 1, &wasClosed);
+
+            std::cout << "idPlayer: " << (int)player.idPlayer << "\n";
+            std::cout << "player.state: " << (int)player.state << "\n";
+            std::cout << "player.x: " << (int)player.x << "\n";
+            std::cout << "player.y: " << (int)player.y << "\n";
+            std::cout << "player.lookingTo: " << (int)player.lookingTo << "\n";
+            std::cout << "player.health: " << (int)player.health << "\n"; 
 
             mapPlayers[player.idPlayer] = player;
         }

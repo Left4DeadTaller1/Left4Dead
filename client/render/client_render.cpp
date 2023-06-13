@@ -14,14 +14,25 @@ ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerTo
 
 void ClientRenderer::drawPlayer(player_t& previousPlayer, 
                                 player_t& currentPlayer){
+    
+    std::cout << "previousPlayer.x" << (int)previousPlayer.x << "\n";
+    std::cout << "currentPlayer.x" << (int)previousPlayer.x << "\n";
+    std::cout << "currentPlayer.y" << (int)previousPlayer.x << "\n";
 
+    //ver de tener los mismo state para no tener problemas 
     GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
+
+    std::cout << "texture.width" << (int)texture.width << "\n";
+    std::cout << "texture.height" << (int)texture.height << "\n";
+    std::cout << "texture.n" << (int)texture.n << "\n";
+
     renderer.Copy(
         texture.texture,
         Rect((texture.width / texture.n)* (previousPlayer.x % texture.n), 0, 
             texture.width / texture.n, texture.height),
         Rect(currentPlayer.x, currentPlayer.y, 150, 150)
     );
+
 }
 
 void drawInfected(infected_t& previousInfected, 
@@ -44,26 +55,37 @@ int ClientRenderer::render(){
 
     while(true){
         std::shared_ptr<gameStateDTO_t> gameStateDTO = qServerToRender.pop();
+        std::cout << "SE RECIBE ESTADO DEL JUEGO: \n";
+        for (auto &currentPlayer: gameStateDTO.players) {
+            std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO.players).find(currentPlayer.first);
+            if (iter != previousGameStateDTO.players.end()) {
+                std::cout << "id player " << (int)(iter.second.idPlayer) << "\n";
+            } else {
+                std::cout << "id player error\n";
+            }
+        }
         renderer.Clear();
 
         drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
 
-        for (auto &currentPlayer : gameStateDTO->players){
-            std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
-            if (iter != previousGameStateDTO->players.end()) {
-                drawPlayer(iter->second, currentPlayer.second);
+        for (auto &currentPlayer : gameStateDTO.players){
+            std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO.players).find(currentPlayer.first);
+            if (iter != previousGameStateDTO.players.end()) {
+                std::cout << "encontro al player\n";
+                drawPlayer(iter.second, currentPlayer.second);
             } else {
+                std::cout << "no encontro al player\n";
                 drawPlayer(currentPlayer.second, currentPlayer.second);
             }
         }
-        for (auto &currentInfected : gameStateDTO->infected){
-            std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentInfected.first);
-            if (iter != previousGameStateDTO->infected.end()) {
-                //drawInfected(iter->second, currentInfected.second);
+        /*for (auto &currentInfected : gameStateDTO.infected){
+            std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO.infected).find(currentInfected.first);
+            if (iter != previousGameStateDTO.infected.end()) {
+                //drawInfected(iter.second, currentInfected.second);
             } else {
                 //drawInfected(currentInfected.second, currentInfected.second);
             }
-        }
+        }*/
         renderer.Present();
         previousGameStateDTO = gameStateDTO;
     }
@@ -71,40 +93,31 @@ int ClientRenderer::render(){
 	return 0;
 }
 
-//void ClientRenderer::handlerMove(int speed)
+/*
 
-    //en que casos voy a querer hacer algo diferente?? cuando es running, cuando en moving
-    /*switch (currentPlayer->state) {
-        case WALKING:
-            break;
-        case IDLE:
-            break;
-        case RUNNING:
-            break;
-        case RELOADING:
-            break;
-        case SHOOTING:
-            break;
-        case IDLE:
-            break;
-        case DEAD:
-            break;
-        case HURT:
-            break;                   
-    }*/
+#define PI 3.14
 
-    /*SDL_Rect srcRect;
-    srcRect.x = (texture->width / 7) * (previousPlayer->x % 7);
+void ClientRenderer::drawPlayer(player_t& previousPlayer, 
+                                player_t& currentPlayer){
+    
+    //ver de tener los mismo state para no tener problemas 
+    GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
+
+    SDL_Rect srcRect;
+    srcRect.x = (texture.width / texture.n) * (previousPlayer.x % texture.n);
     srcRect.y = 0;
-    srcRect.w = texture->width / 7;
-    srcRect.h = texture->height;
+    srcRect.w = texture.width / texture.n;
+    srcRect.h = texture.height;
 
     SDL_Rect dstRect;
-    dstRect.x = currentPlayer->x;
-    dstRect.y = currentPlayer->y;
+    dstRect.x = currentPlayer.x;
+    dstRect.y = currentPlayer.y;
     dstRect.w = 150;
     dstRect.h = 150;
 
-    float angle = 
+    float angle = atan2(currentPlayer.y - previousPlayer.y, currentPlayer.x - previousPlayer.x) * 180.0 / PI;
 
-    SDL_RenderCopyEx(renderer, texture->texture, &srcRect, &dstRect, angle, nullptr, SDL_FLIP_NONE);*/
+    SDL_RenderCopyEx(renderer, texture.texture, &srcRect, &dstRect, angle, nullptr, SDL_FLIP_NONE);
+}
+
+*/

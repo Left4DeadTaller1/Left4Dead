@@ -36,6 +36,7 @@ void ClientReceiver::run() {
                     break;
                 case START_GAME:
                     std::cout << "START_GAME\n";
+                    gamesManager.startGame(0);
                     break;
                 case START_MOVE:
                     data = protocol.receiveStartMove(wasClosed, clientSocket);
@@ -52,13 +53,19 @@ void ClientReceiver::run() {
                     std::cout << "diry: " << data[1] << "\n";
                     handleEndMove(data[0], data[1]);
                     break;
-                /*case START_SHOOT:
+                case START_SHOOT:
+                    std::cout << "START_SHOOT\n";
+                    handleStartShoot();
                     break;
                 case END_SHOOT:
+                    std::cout << "END_SHOOT\n";
+                    handleEndShoot();
                     break;
                 case RECHARGE:
+                    std::cout << "RECHARGE\n";
+                    handleRecharge();
                     break;
-                case EXIT:
+                /*case EXIT:
                     break;*/
             }
             // uint8_t action;
@@ -88,6 +95,7 @@ void ClientReceiver::run() {
     isRunning = false;
 }
 
+
 void ClientReceiver::handleCreateAction() {
     GameRecord gameRecord = gamesManager.createLobby(gameResponses);
     game = gameRecord.game;
@@ -105,29 +113,44 @@ void ClientReceiver::handleJoinAction(const int code) {
         playerId = gameRecord.playerId;
         // std::cout << "Joined to match: " << code << std::endl;
     } else {
-        // std::cout << "Match does not exist: " << code << std::endl;
-        return;  // Return early as no more work can be done if the lobby doesn't exist
+        std::vector<uint8_t> joinMessage = protocol.encodeServerMessage("JoinMsg", false);
+        gameResponses.push(joinMessage);
     }
     // std::vector<uint8_t> joinResponse = protocol.encodeJoinResponse(joinSuccess);
     // queue.push(joinResponse);
 }
 
+void ClientReceiver::handleStartShoot() {
+    Action action(playerId, 3, 3, 3, 0);
+    game->pushAction(action);
+}
+
+void ClientReceiver::handleEndShoot() {
+    Action action(playerId, 3, 3, 3, 2);
+    game->pushAction(action);
+}
+
+void ClientReceiver::handleRecharge() {
+    Action action(playerId, 3, 3, 3, 1);
+    game->pushAction(action);
+}
+
 void ClientReceiver::handleStartMove(int movementType, int directionXType, int directionYType) {
-    int weaponType = 4;
+    int weaponType = 3;
     Action action(playerId, movementType, directionXType, directionYType, weaponType);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
-    int weaponType = 4;
+    int weaponType = 3;
     int movementType;
-    if (directionXType == 3 && directionYType == 3){
+    if (directionXType == 2 && directionYType == 2){
         movementType = 3;
         Action action(playerId, movementType, directionXType, directionYType, weaponType);
         game->pushAction(action);
         return;
     }
-    movementType = 4;
+    movementType = 3;
     Action action(playerId, movementType, directionXType, directionYType, weaponType);
     game->pushAction(action);
 }

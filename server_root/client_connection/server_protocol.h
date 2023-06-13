@@ -68,6 +68,7 @@ class ServerProtocol {
     // ServerMessage decodeServerMessage(const std::vector<uint8_t> &encodedMsg);
     GeneralState determineGeneralState(const std::shared_ptr<EntityDTO> &entity);
     std::vector<uint8_t> encodeServerMessage(const std::string &msgType, const std::string &playerId);
+    std::vector<uint8_t> encodeServerMessage(const std::string &msgType, bool serverResponse);
 };
 
 #endif

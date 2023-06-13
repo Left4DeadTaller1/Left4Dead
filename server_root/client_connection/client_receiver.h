@@ -30,6 +30,9 @@ class ClientReceiver : public Thread {
     void handleGameAction();
     void handleStartMove(int movementType, int directionXType, int directionYType);
     void handleEndMove(int directionXType, int directionYType);
+    void handleStartShoot();
+    void handleEndShoot();
+    void handleRecharge();
     // void handleBroadcastAction(Socket &clientSocket, bool &was_closed);
     virtual void run() override;
     bool getIsRunning();

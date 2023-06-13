@@ -3,18 +3,18 @@
 EndMove::EndMove(DirectionMove directionMove){
     if (directionMove == RIGHT){
         dirX = 1;
-        dirY = 3;
+        dirY = 2;
     }
     if (directionMove == LEFT){
         dirX = 0;
-        dirY = 3;
+        dirY = 2;
     }
     if (directionMove == UP){
-        dirX = 3;
+        dirX = 2;
         dirY = 0;
     }
     if (directionMove == DOWN){
-        dirX = 3;
+        dirX = 2;
         dirY = 1;
     }
 }

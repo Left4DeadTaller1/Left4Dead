@@ -62,7 +62,7 @@ std::vector<int> ServerProtocol::receiveEndMove(bool& wasClosed, Socket &peer){
 }
 
 std::vector<uint8_t> ServerProtocol::encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities) {
-    uint8_t encodedMessageType = 1;
+    uint8_t encodedMessageType = 9; // cambie (lari) solo para ver si se recibe un 9 al pricipio
 
     uint16_t msg_len = htons(static_cast<uint16_t>(entities.size()));
     std::vector<uint8_t> encodedMsg;
@@ -144,6 +144,7 @@ std::vector<uint8_t> ServerProtocol::encodeServerMessage(std::string msgType, co
     return encodedMsg;
 }
 
+
 GeneralState ServerProtocol::determineGeneralState(const std::shared_ptr<EntityDTO> &entity) {
     if (entity->healthState == HealthState::DEAD) {
         return GeneralState::DEAD;
@@ -188,6 +189,23 @@ std::vector<uint8_t> ServerProtocol::encodeServerMessage(const std::string &msgT
 
         // Cast to uint8_t and add it to the encoded message
         encodedMsg.push_back(static_cast<uint8_t>(id));
+    }
+
+    return encodedMsg;
+}
+
+std::vector<uint8_t> ServerProtocol::encodeServerMessage(const std::string &msgType, bool serverResponse) {
+    std::vector<uint8_t> encodedMsg;
+
+    if (msgType == "JoinMsg") {
+        encodedMsg.push_back(2);
+
+        if (serverResponse) {
+            encodedMsg.push_back(1);
+            // TODO: maybe here also push the game code or something?
+        } else {
+            encodedMsg.push_back(0);
+        }
     }
 
     return encodedMsg;

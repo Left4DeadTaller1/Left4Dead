@@ -16,6 +16,19 @@ void ClientSender::run() {
             std::vector<uint8_t> gameSnapShot = gameResponses.pop();
             bool was_closed = false;
 
+            std::cout << "EN EL SENDER\n";
+            std::cout << "tipo de mensaje: " << (int)gameSnapShot[0] << "\n";
+            std::cout << "cant entidadees izq: " << (int)gameSnapShot[1] << "\n";
+            std::cout << "cant entidadees der: " << (int)gameSnapShot[2] << "\n";
+            std::cout << "tipo de entidad: " << (int)gameSnapShot[3] << "\n";
+            std::cout << "id entidad izq: " << (int)gameSnapShot[4] << "\n";
+            std::cout << "id entidad der: " << (int)gameSnapShot[5] << "\n";
+            std::cout << "estado mov entidad: " << (int)gameSnapShot[6] << "\n";
+            std::cout << "x izq: " << (int)gameSnapShot[7] << "\n";
+            std::cout << "x der: " << (int)gameSnapShot[8] << "\n";
+            std::cout << "y izq: " << (int)gameSnapShot[9] << "\n";
+            std::cout << "y der: " << (int)gameSnapShot[10] << "\n";
+
             if (gameSnapShot.size() > 0) {
                 clientSocket.sendall(gameSnapShot.data(), gameSnapShot.size(), &was_closed);
             }

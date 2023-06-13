@@ -7,5 +7,8 @@ GameTexture::GameTexture(Renderer& renderer, int divisionTexture, const std::str
     height(0),
     n(divisionTexture){
         SDL_QueryTexture(texture.Get(), NULL, NULL, &width, &height);
+        /*std::cout << "texture.width" << (int)width << "\n";
+        std::cout << "texture.height" << (int)height << "\n";
+        std::cout << "texture.n" << (int)n << "\n";*/
     }
 

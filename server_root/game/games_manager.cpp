@@ -17,6 +17,14 @@ GameRecord GamesManager::createLobby(Queue<std::vector<uint8_t>>& gameResponses)
     return gameRecord;
 }
 
+void GamesManager::startGame(unsigned int gameCode) {
+    std::lock_guard<std::mutex> lock(m);
+    auto it = games.find(gameCode);
+    if (it != games.end()) {
+        it->second->start();
+    }
+}
+
 GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::vector<uint8_t>>& gameResponses) {
     std::lock_guard<std::mutex> lock(m);
     auto it = games.find(gameCode);
