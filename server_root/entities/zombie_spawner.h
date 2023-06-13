@@ -1,6 +1,8 @@
 
 #include <vector>
 
+#include "zombie.h"
+
 struct SpawnPoint {
     int x;
     int y;
@@ -10,12 +12,9 @@ class ZombieSpawner {
    private:
     std::vector<SpawnPoint> spawnPoints;
     int spawnInterval;
-    int frameCounter;
+    int totalZombies;
 
    public:
     ZombieSpawner();
-
-    void spawn();
-
-    void update();
+    std::shared_ptr<Zombie> spawn();
 };

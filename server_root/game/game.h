@@ -13,6 +13,7 @@
 #include "server_protocol.h"
 #include "thread.h"
 #include "zombie.h"
+#include "zombie_spawner.h"
 
 // change to Game
 class Game : public Thread {
@@ -58,6 +59,7 @@ class Game : public Thread {
     // std::vector<std::shared_ptr<Zombie>> zombies;
     std::vector<std::shared_ptr<Entity>> entities;
     ServerProtocol protocol;
+    ZombieSpawner zombieSpawner;
 
     void spawnPlayer(std::string idPlayer);
     void removePlayer(std::string idPlayer);

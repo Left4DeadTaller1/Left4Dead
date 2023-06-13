@@ -16,7 +16,7 @@
 ________________________________________________________________*/
 
 Game::Game()
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol() {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner() {
     playerQueues.resize(4, nullptr);
 }
 
@@ -173,6 +173,11 @@ void Game::updateState() {
         // }
         move(*entity);
         attack(*entity);
+        entity->decreaseATKCooldown();
+    }
+    std::shared_pt<Zombie> spawnedZombie = zombieSpawner.spawn();
+    if (spawnedZombie) {
+        entities.push_back(*spawnedZombie);
     }
 }
 
