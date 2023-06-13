@@ -20,17 +20,8 @@ ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerTo
 
 /*void ClientRenderer::drawPlayer(player_t& previousPlayer, 
                                 player_t& currentPlayer){
-    
-    std::cout << "previousPlayer.x: " << (int)previousPlayer.x << "\n";
-    std::cout << "currentPlayer.x: " << (int)previousPlayer.x << "\n";
-    std::cout << "currentPlayer.y: " << (int)previousPlayer.x << "\n";
 
-    //ver de tener los mismo state para no tener problemas 
     GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
-
-    std::cout << "texture.width: " << (int)texture.width << "\n";
-    std::cout << "texture.height: " << (int)texture.height << "\n";
-    std::cout << "texture.n: " << (int)texture.n << "\n";
 
     renderer.Copy(
         texture.texture,
@@ -48,9 +39,13 @@ ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerTo
 void ClientRenderer::drawPlayer(player_t& previousPlayer, 
                                 player_t& currentPlayer){
 
+    std::cout << "previousPlayer.x: " << (int)previousPlayer.x << "\n";
+    std::cout << "previousPlayer.y: " << (int)previousPlayer.y << "\n";
+    std::cout << "currentPlayer.x: " << (int)currentPlayer.x << "\n";
+    std::cout << "currentPlayer.y: " << (int)currentPlayer.y << "\n";
+
     float angle = atan2(currentPlayer.y - previousPlayer.y, currentPlayer.x - previousPlayer.x) * 180.0 / PI;
     
-    //ver de tener los mismo state para no tener problemas 
     GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
 
     SDL_Rect srcRect;
