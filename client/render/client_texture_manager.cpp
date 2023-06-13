@@ -82,6 +82,8 @@ void TextureManager::loadTextures(Renderer& renderer){
                                                 DATA_PATH "/client/render/resources/backgrounds/War4/Bright/War4.png"));
     textures.emplace("background-war4-pale-war", GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/backgrounds/War4/Pale/War4.png"));
+    textures.emplace("barras-vida", GameTexture(renderer, 11,
+                                                DATA_PATH "/client/render/resources/vida/barrasvida.png"));
 
     //load textures soldier 1
     textures.emplace("soldier1-attack", GameTexture(renderer, 3,
@@ -214,4 +216,5 @@ void TextureManager::loadTextures(Renderer& renderer){
                                         DATA_PATH "/client/render/resources/Zombie/Run.png"));
     textures.emplace("zombie-walk", GameTexture(renderer, 8,
                                         DATA_PATH "/client/render/resources/Zombie/Walk.png"));
+
 }
