@@ -12,31 +12,31 @@ Zombie::Zombie(int xPosition, int yPosition, std::string zombieId, ZombieType ty
             width = entityParams["INFECTED_WIDTH"];
             height = entityParams["INFECTED_HEIGHT"];
             health = entityParams["INFECTED_HEALTH"];
-            movementSpeed = entityParams["INFECTED_MOVEMENT_SPEED"];
+            movementSpeed = entityParams["INFECTED_SPEED"];
             break;
         case JUMPER:
             width = entityParams["JUMPER_WIDTH"];
             height = entityParams["JUMPER_HEIGHT"];
             health = entityParams["JUMPER_HEALTH"];
-            movementSpeed = entityParams["JUMPER_MOVEMENT_SPEED"];
+            movementSpeed = entityParams["JUMPER_SPEED"];
             break;
         case WITCH:
             width = entityParams["WITCH_WIDTH"];
             height = entityParams["WITCH_HEIGHT"];
             health = entityParams["WITCH_HEALTH"];
-            movementSpeed = entityParams["WITCH_MOVEMENT_SPEED"];
+            movementSpeed = entityParams["WITCH_SPEED"];
             break;
         case SPEAR:
             width = entityParams["SPEAR_WIDTH"];
             height = entityParams["SPEAR_HEIGHT"];
             health = entityParams["SPEAR_HEALTH"];
-            movementSpeed = entityParams["SPEAR_MOVEMENT_SPEED"];
+            movementSpeed = entityParams["SPEAR_SPEED"];
             break;
         case VENOM:
             width = entityParams["VENOM_WIDTH"];
             height = entityParams["VENOM_HEIGHT"];
             health = entityParams["VENOM_HEALTH"];
-            movementSpeed = entityParams["VENOM_MOVEMENT_SPEED"];
+            movementSpeed = entityParams["VENOM_SPEED"];
             break;
         default:
             break;

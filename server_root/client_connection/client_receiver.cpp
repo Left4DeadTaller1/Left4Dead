@@ -106,17 +106,15 @@ void ClientReceiver::handleCreateAction() {
 }
 
 void ClientReceiver::handleJoinAction(const int code) {
-    GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses);
-    if (gameRecord.game != nullptr) {
+    try {
+        GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses);
         game = gameRecord.game;
         playerId = gameRecord.playerId;
         // std::cout << "Joined to match: " << code << std::endl;
-    } else {
+    } catch (const std::out_of_range &e) {
         std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinMsg", false);
         gameResponses.push(joinMessage);
     }
-    // std::vector<uint8_t> joinResponse = protocol.encodeJoinResponse(joinSuccess);
-    // queue.push(joinResponse);
 }
 
 void ClientReceiver::handleStartShoot() {
