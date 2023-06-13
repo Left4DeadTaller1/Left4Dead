@@ -30,6 +30,8 @@ class ClientRenderer {
    void drawInfected(infected_t& previousInfected, 
             infected_t& currentInfected);
 
+   void renderLifeBar(player_t& currentPlayer);
+
    public:
    ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
                     Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 

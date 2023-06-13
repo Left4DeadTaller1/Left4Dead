@@ -34,6 +34,24 @@ ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerTo
     );
 }*/
 
+void ClientRenderer::renderLifeBar(player_t& currentPlayer){
+    GameTexture& texture = textureManager.getBackgroundTexture("barras-vida");
+
+    SDL_Rect srcRect;
+    srcRect.x = (texture.width / texture.n)* ((100 - currentPlayer.health) / 10);
+    srcRect.y = 0;
+    srcRect.w = texture.width / texture.n;
+    srcRect.h = texture.height;
+
+    SDL_Rect dstRect;
+    dstRect.x = ((currentPlayer.x * WINDOW_WIDTH) / GAME_WIDTH) + 30;
+    dstRect.y = (WINDOW_HEIGHT - currentPlayer.y - GAME_HEIGHT) + 30;
+    dstRect.w = 20;
+    dstRect.h = 50;
+
+    SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
+}
+
 #define PI 3.14
 
 void ClientRenderer::drawPlayer(player_t& previousPlayer, 
@@ -43,6 +61,8 @@ void ClientRenderer::drawPlayer(player_t& previousPlayer,
     std::cout << "previousPlayer.y: " << (int)previousPlayer.y << "\n";
     std::cout << "currentPlayer.x: " << (int)currentPlayer.x << "\n";
     std::cout << "currentPlayer.y: " << (int)currentPlayer.y << "\n";
+
+    renderLifeBar(currentPlayer);
 
     float angle = atan2(currentPlayer.y - previousPlayer.y, currentPlayer.x - previousPlayer.x) * 180.0 / PI;
     
