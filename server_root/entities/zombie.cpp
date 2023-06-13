@@ -83,6 +83,9 @@ Attack Zombie::attack() {
             attackDirection = RIGHT;
             attackX = x + width;
             break;
+        default:
+            // TODO i think we should add a facing direction for zombies too
+            break;
     }
 
     switch (zombieType) {
