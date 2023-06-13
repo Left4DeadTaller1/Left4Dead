@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include "server_protocol.h"
 
 TEST(ServerProtocolTest, TestEncodeServerMessage) {
     ServerProtocol protocol;
