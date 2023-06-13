@@ -2,7 +2,7 @@
 
 #include <string>
 
-ClientReceiver::ClientReceiver(Socket &clientSocket, GamesManager &gamesManager, Queue<std::vector<uint8_t>> &gameResponses)
+ClientReceiver::ClientReceiver(Socket &clientSocket, GamesManager &gamesManager, Queue<std::shared_ptr<std::vector<uint8_t>>> &gameResponses)
     : clientSocket(clientSocket),
       gamesManager(gamesManager),
       game(nullptr),
@@ -17,7 +17,7 @@ void ClientReceiver::run() {
     try {
         while (isRunning) {
             bool wasClosed = false;
-            
+
             int tipoComando = protocol.receiveTypeCommand(wasClosed, clientSocket);
             int code;
             std::vector<int> data;
@@ -31,7 +31,7 @@ void ClientReceiver::run() {
                 case JOIN:
                     std::cout << "JOIN\n";
                     code = protocol.receiveJoin(wasClosed, clientSocket);
-                    std::cout << "code: "<< code <<"\n";
+                    std::cout << "code: " << code << "\n";
                     handleJoinAction(code);
                     break;
                 case START_GAME:
@@ -65,8 +65,8 @@ void ClientReceiver::run() {
                     std::cout << "RECHARGE\n";
                     handleRecharge();
                     break;
-                /*case EXIT:
-                    break;*/
+                    /*case EXIT:
+                        break;*/
             }
             // uint8_t action;
             // clientSocket.recvall(&action, 1, &was_closed);
@@ -95,7 +95,6 @@ void ClientReceiver::run() {
     isRunning = false;
 }
 
-
 void ClientReceiver::handleCreateAction() {
     GameRecord gameRecord = gamesManager.createLobby(gameResponses);
     game = gameRecord.game;
@@ -107,17 +106,15 @@ void ClientReceiver::handleCreateAction() {
 }
 
 void ClientReceiver::handleJoinAction(const int code) {
-    GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses);
-    if (gameRecord.game != nullptr) {
+    try {
+        GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses);
         game = gameRecord.game;
         playerId = gameRecord.playerId;
         // std::cout << "Joined to match: " << code << std::endl;
-    } else {
-        std::vector<uint8_t> joinMessage = protocol.encodeServerMessage("JoinMsg", false);
+    } catch (const std::out_of_range &e) {
+        std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinMsg", false);
         gameResponses.push(joinMessage);
     }
-    // std::vector<uint8_t> joinResponse = protocol.encodeJoinResponse(joinSuccess);
-    // queue.push(joinResponse);
 }
 
 void ClientReceiver::handleStartShoot() {
@@ -144,7 +141,7 @@ void ClientReceiver::handleStartMove(int movementType, int directionXType, int d
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
     int weaponType = 3;
     int movementType;
-    if (directionXType == 2 && directionYType == 2){
+    if (directionXType == 2 && directionYType == 2) {
         movementType = 3;
         Action action(playerId, movementType, directionXType, directionYType, weaponType);
         game->pushAction(action);
@@ -177,10 +174,10 @@ bool ClientReceiver::getIsRunning() {
 
 /*
     while (not was_closed) {
-        int tipo_comando_ = protocol.receiveTypeCommand(was_closed, peer);  
+        int tipo_comando_ = protocol.receiveTypeCommand(was_closed, peer);
         if (was_closed) {
             break;
-        }         
+        }
         if (tipo_comando_ == START_MOVE){
             std::vector<int> data = protocol.receiveStartMove(was_closed, peer);
             std::cout << "se recibe START_MOVE con: \n";

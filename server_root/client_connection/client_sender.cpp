@@ -1,6 +1,6 @@
 #include "client_sender.h"
 
-ClientSender::ClientSender(Socket &skt, Queue<std::vector<uint8_t>> &gameResponses)
+ClientSender::ClientSender(Socket &skt, Queue<std::shared_ptr<std::vector<uint8_t>>> &gameResponses)
     : clientSocket(skt),
       gameResponses(gameResponses),
       isRunning(false),
@@ -13,7 +13,15 @@ void ClientSender::run() {
     try {
         while (isRunning) {
             // Now gameSnapShot is a vector of bytes representing the game state
-            std::vector<uint8_t> gameSnapShot = gameResponses.pop();
+            std::shared_ptr<std::vector<uint8_t>> gameSnapShotPtr = gameResponses.pop();
+
+            if (gameSnapShotPtr == nullptr) {
+                // TODO: maybe add an error throw or smthing
+                continue;
+            }
+
+            std::vector<uint8_t> &gameSnapShot = *gameSnapShotPtr;
+
             bool was_closed = false;
 
             std::cout << "EN EL SENDER\n";

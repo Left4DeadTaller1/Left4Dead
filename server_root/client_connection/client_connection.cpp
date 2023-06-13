@@ -8,8 +8,8 @@ ClientConnection::ClientConnection(Socket &&skt, GamesManager &gamesManager)
       alive(true),
       gamesManager(gamesManager),
       gameResponses(QUEUE_SIZE),
-      sender(ClientSender(clientSocket, gameResponses)),
-      receiver(ClientReceiver(clientSocket, gamesManager, gameResponses)) {}
+      sender(clientSocket, gameResponses),
+      receiver(clientSocket, gamesManager, gameResponses) {}
 
 void ClientConnection::connectToClient() {
     std::cout << "ENTRA A CLIENT CONNECTION\n";

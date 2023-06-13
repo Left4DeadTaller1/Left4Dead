@@ -15,6 +15,7 @@ TEST(PlayerTest, TestPlayerInitialization) {
     EXPECT_EQ(player.getHealth(), 100);
     EXPECT_EQ(player.getMovementState(), ENTITY_IDLE);
     EXPECT_EQ(player.getWeaponState(), WEAPON_IDLE);
+    EXPECT_EQ(player.getMovementSpeed(), 10);
 }
 
 TEST(PlayerTest, TestPlayerTakeDamage) {

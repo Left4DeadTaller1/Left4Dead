@@ -19,7 +19,7 @@ TEST(GameTest, Constructor) {
 
 TEST(GameTest, AddPlayer) {
     Game gameInstance;
-    Queue<std::vector<uint8_t>> gameResponses(MAX_QUEUE_SIZE);
+    Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses(MAX_QUEUE_SIZE);
     // Check that the first player queue is null
     EXPECT_EQ(gameInstance._getPlayerQueues()[0], nullptr);
     gameInstance.addPlayer(gameResponses);
@@ -29,8 +29,8 @@ TEST(GameTest, AddPlayer) {
 
 TEST(GameTest, RemovePlayer) {
     Game gameInstance;
-    Queue<std::vector<uint8_t>> gameResponses1(MAX_QUEUE_SIZE);
-    Queue<std::vector<uint8_t>> gameResponses2(MAX_QUEUE_SIZE);
+    Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses1(MAX_QUEUE_SIZE);
+    Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses2(MAX_QUEUE_SIZE);
     gameInstance.addPlayer(gameResponses1);
     gameInstance.addPlayer(gameResponses2);
     // Check that the first two player queues are not null

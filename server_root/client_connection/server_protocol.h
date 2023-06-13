@@ -16,7 +16,6 @@
 #include "socket.h"
 #include "zombie.h"
 
-
 typedef enum {
     CREATE,
     JOIN,
@@ -42,7 +41,7 @@ enum class GeneralState {
 };
 
 class ServerProtocol {
-    public:
+   public:
     ServerProtocol(void);
 
     int receiveTypeCommand(bool &wasClosed, Socket &peer);
@@ -53,9 +52,9 @@ class ServerProtocol {
 
     void notifyCreate(uint32_t code, Socket &peer, bool &wasClosed);
 
-    std::vector<int> receiveStartMove(bool& wasClosed, Socket &peer);
+    std::vector<int> receiveStartMove(bool &wasClosed, Socket &peer);
 
-    std::vector<int> receiveEndMove(bool& wasClosed, Socket &peer);
+    std::vector<int> receiveEndMove(bool &wasClosed, Socket &peer);
 
     ServerProtocol(const ServerProtocol &) = delete;
     ServerProtocol &operator=(const ServerProtocol &) = delete;
@@ -64,11 +63,12 @@ class ServerProtocol {
     ServerProtocol &operator=(ServerProtocol &&) = default;
 
     // Just my things here:
-    std::vector<uint8_t> encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities);
+    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities);
+    std::string extractId(const std::string &str);
     // ServerMessage decodeServerMessage(const std::vector<uint8_t> &encodedMsg);
     GeneralState determineGeneralState(const std::shared_ptr<EntityDTO> &entity);
-    std::vector<uint8_t> encodeServerMessage(const std::string &msgType, const std::string &playerId);
-    std::vector<uint8_t> encodeServerMessage(const std::string &msgType, bool serverResponse);
+    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, const std::string &playerId);
+    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, bool serverResponse);
 };
 
 #endif

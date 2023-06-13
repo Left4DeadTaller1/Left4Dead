@@ -9,6 +9,8 @@ Player::Player(int xPosition, int yPosition, std::string playerId, WeaponType we
 
     width = entityParams["PLAYER_WIDTH"];
     height = entityParams["PLAYER_HEIGHT"];
+    health = entityParams["PLAYER_HEALTH"];
+    movementSpeed = entityParams["PLAYER_SPEED"];
 }
 
 EntityType Player::getType() {
