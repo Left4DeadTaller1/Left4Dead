@@ -20,7 +20,7 @@ Game::Game()
     playerQueues.resize(4, nullptr);
 }
 
-std::string Game::addPlayer(Queue<std::vector<uint8_t>>& gameResponses) {
+std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
@@ -31,12 +31,11 @@ std::string Game::addPlayer(Queue<std::vector<uint8_t>>& gameResponses) {
     playersActions[playerId] = std::queue<Action>();
     nextPlayerIndex++;
 
-    std::vector<uint8_t> joinMessage = protocol.encodeServerMessage("JoinMsg", playerId);
+    std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinMsg", playerId);
 
     // Add message to all player queues that are not null
     for (auto playerQueue : playerQueues) {
         if (playerQueue != nullptr) {
-            // I use try_push to not block GameThread but maybe this is wrong.
             playerQueue->try_push(joinMessage);
         }
     }
@@ -44,7 +43,7 @@ std::string Game::addPlayer(Queue<std::vector<uint8_t>>& gameResponses) {
     return playerId;
 }
 
-void Game::removePlayer(Queue<std::vector<uint8_t>>& gameResponses) {
+void Game::removePlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
     // Find the player queue in playerQueues
     auto it = std::find(playerQueues.begin(), playerQueues.end(), &gameResponses);
     if (it != playerQueues.end()) {
@@ -65,7 +64,7 @@ Queue<Action>& Game::getInputQueue() {
     return inputQueue;
 }
 
-std::vector<Queue<std::vector<uint8_t>>*>& Game::_getPlayerQueues() {
+std::vector<Queue<std::shared_ptr<std::vector<uint8_t>>>*>& Game::_getPlayerQueues() {
     return playerQueues;
 }
 
@@ -267,9 +266,9 @@ const std::unordered_map<std::string, std::queue<Action>>& Game::_getPlayersActi
 
 void Game::sendState() {
     std::vector<std::shared_ptr<EntityDTO>> entitiesDtos = getDtos();
-    std::vector<uint8_t> serializedState = protocol.encodeServerMessage("gameState", entitiesDtos);
+    std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage("gameState", entitiesDtos);
 
-    for (Queue<std::vector<uint8_t>>* playerQueue : playerQueues) {
+    for (Queue<std::shared_ptr<std::vector<uint8_t>>>* playerQueue : playerQueues) {
         if (playerQueue) {
             playerQueue->push(serializedState);
         }

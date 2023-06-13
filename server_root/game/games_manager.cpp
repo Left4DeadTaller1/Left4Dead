@@ -5,7 +5,7 @@
 
 GamesManager::GamesManager() : nextGameId(0) {}
 
-GameRecord GamesManager::createLobby(Queue<std::vector<uint8_t>>& gameResponses) {
+GameRecord GamesManager::createLobby(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
     std::lock_guard<std::mutex> lock(m);
     auto game = std::make_shared<Game>();
     games.emplace(nextGameId, game);
@@ -25,7 +25,7 @@ void GamesManager::startGame(unsigned int gameCode) {
     }
 }
 
-GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::vector<uint8_t>>& gameResponses) {
+GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
     std::lock_guard<std::mutex> lock(m);
     auto it = games.find(gameCode);
     if (it != games.end()) {

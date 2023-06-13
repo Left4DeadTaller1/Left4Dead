@@ -3,6 +3,7 @@
 #include <arpa/inet.h>
 
 #include <iostream>
+#include <sstream>
 
 ServerProtocol::ServerProtocol(void) {}
 
@@ -61,68 +62,80 @@ std::vector<int> ServerProtocol::receiveEndMove(bool &wasClosed, Socket &peer) {
     return vector;
 }
 
-std::vector<uint8_t> ServerProtocol::encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities) {
-    std::vector<uint8_t> encodedMsg;
+std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities) {
+    auto encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
-    uint8_t encodedMessageType = 9;  // dummy value for example
+    uint8_t encodedMessageType = 1;  // dummy value for example
     // Adding the message type (1 byte)
-    encodedMsg.push_back(encodedMessageType);
+    encodedMsg->push_back(encodedMessageType);
 
     // Adding the number of entities (2 bytes)
     uint16_t entitiesAmount = htons(static_cast<uint16_t>(entities.size()));
-    encodedMsg.push_back(reinterpret_cast<uint8_t *>(&entitiesAmount)[0]);
-    encodedMsg.push_back(reinterpret_cast<uint8_t *>(&entitiesAmount)[1]);
+    encodedMsg->push_back(reinterpret_cast<uint8_t *>(&entitiesAmount)[0]);
+    encodedMsg->push_back(reinterpret_cast<uint8_t *>(&entitiesAmount)[1]);
 
     for (const auto &entity : entities) {
         // Encode and add the entity type (1 byte)
-        encodedMsg.push_back(static_cast<uint8_t>(entity->type));
+        encodedMsg->push_back(static_cast<uint8_t>(entity->type));
 
         // Extract, convert, and add the entity id (2 bytes)
-        std::string idNumberStr = entity->id.substr(entity->id.find_first_of("0123456789"));
+        std::string idNumberStr = extractId(entity->id);
         uint16_t id = htons(static_cast<uint16_t>(std::stoi(idNumberStr)));
-        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&id)[0]);
-        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&id)[1]);
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&id)[0]);
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&id)[1]);
 
         // Encode and add the general state (1 byte)
         GeneralState generalState = determineGeneralState(entity);
-        encodedMsg.push_back(static_cast<uint8_t>(generalState));
+        encodedMsg->push_back(static_cast<uint8_t>(generalState));
 
         // Encode and add the X position (2 bytes)
         uint16_t encodedXPosition = htons(static_cast<uint16_t>(entity->x));
-        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedXPosition)[0]);
-        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedXPosition)[1]);
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedXPosition)[0]);
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedXPosition)[1]);
 
         // Encode and add the Y position (2 bytes)
         uint16_t encodedYPosition = htons(static_cast<uint16_t>(entity->y));
-        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedYPosition)[0]);
-        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedYPosition)[1]);
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedYPosition)[0]);
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedYPosition)[1]);
 
         // Encode and add the X direction (2 bytes)
         uint16_t encodedXDirection = htons(static_cast<uint16_t>(entity->movementDirectionX));
-        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedXDirection)[0]);
-        encodedMsg.push_back(reinterpret_cast<uint8_t *>(&encodedXDirection)[1]);
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedXDirection)[0]);
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedXDirection)[1]);
 
         // If the entity is a player, add the facing direction (1 byte)
         if (entity->type == PLAYER) {
             auto playerEntity = std::dynamic_pointer_cast<PlayerDTO>(entity);
             if (playerEntity) {
-                encodedMsg.push_back(static_cast<uint8_t>(playerEntity->facingDirection));
+                encodedMsg->push_back(static_cast<uint8_t>(playerEntity->facingDirection));
             }
         }
 
         // Encode and add the health (1 byte)
-        encodedMsg.push_back(static_cast<uint8_t>(entity->health));
+        encodedMsg->push_back(static_cast<uint8_t>(entity->health));
 
         // If the entity is a zombie, add the zombie type (1 byte)
         if (entity->type == ZOMBIE) {
             auto zombieEntity = std::dynamic_pointer_cast<ZombieDTO>(entity);
             if (zombieEntity) {
-                encodedMsg.push_back(static_cast<uint8_t>(zombieEntity->zombieType));
+                encodedMsg->push_back(static_cast<uint8_t>(zombieEntity->zombieType));
             }
         }
     }
 
     return encodedMsg;
+}
+
+std::string ServerProtocol::extractId(const std::string &str) {
+    std::string result;
+
+    for (char c : str) {
+        if (std::isdigit(c)) {
+            result += c;
+        }
+    }
+
+    return result;
 }
 
 GeneralState ServerProtocol::determineGeneralState(const std::shared_ptr<EntityDTO> &entity) {
@@ -157,34 +170,34 @@ GeneralState ServerProtocol::determineGeneralState(const std::shared_ptr<EntityD
     return GeneralState::IDLE;
 }
 
-std::vector<uint8_t> ServerProtocol::encodeServerMessage(const std::string &msgType, const std::string &playerId) {
-    std::vector<uint8_t> encodedMsg;
+std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const std::string &msgType, const std::string &playerId) {
+    std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
     if (msgType == "JoinMsg") {
-        encodedMsg.push_back(2);
+        encodedMsg->push_back(2);
 
         // Extracting the number from the playerId string
-        std::string idNumberStr = playerId.substr(playerId.find_first_of("0123456789"));
+        std::string idNumberStr = extractId(playerId);
         int id = std::stoi(idNumberStr);
 
         // Cast to uint8_t and add it to the encoded message
-        encodedMsg.push_back(static_cast<uint8_t>(id));
+        encodedMsg->push_back(static_cast<uint8_t>(id));
     }
 
     return encodedMsg;
 }
 
-std::vector<uint8_t> ServerProtocol::encodeServerMessage(const std::string &msgType, bool serverResponse) {
-    std::vector<uint8_t> encodedMsg;
+std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const std::string &msgType, bool serverResponse) {
+    std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
     if (msgType == "JoinMsg") {
-        encodedMsg.push_back(2);
+        encodedMsg->push_back(2);
 
         if (serverResponse) {
-            encodedMsg.push_back(1);
+            encodedMsg->push_back(1);
             // TODO: maybe here also push the game code or something?
         } else {
-            encodedMsg.push_back(0);
+            encodedMsg->push_back(0);
         }
     }
 

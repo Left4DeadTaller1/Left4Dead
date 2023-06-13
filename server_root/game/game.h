@@ -22,14 +22,14 @@ class Game : public Thread {
    private:
     // This is the big Queue where all the clients push their actions
     Queue<Action> inputQueue;
-    std::vector<Queue<std::vector<uint8_t>>*> playerQueues;
+    std::vector<Queue<std::shared_ptr<std::vector<uint8_t>>>*> playerQueues;
     int nextPlayerIndex;
 
    public:
     explicit Game();
     void run() override;
-    std::string addPlayer(Queue<std::vector<uint8_t>>& gameResponses);
-    void removePlayer(Queue<std::vector<uint8_t>>& gameResponses);
+    std::string addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses);
+    void removePlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses);
     Queue<Action>& getInputQueue();
 
     // Later add the API for the clients to push actions to the InputQueue
@@ -44,7 +44,7 @@ class Game : public Thread {
     ~Game();
 
     // Methods for Testing do not use in production
-    std::vector<Queue<std::vector<uint8_t>>*>& _getPlayerQueues();
+    std::vector<Queue<std::shared_ptr<std::vector<uint8_t>>>*>& _getPlayerQueues();
 
     /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
     -----------------------Api for Game-----------------------------
