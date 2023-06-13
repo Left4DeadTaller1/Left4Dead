@@ -34,7 +34,7 @@ void ZombieSpawner::update() {
 }
 
 void ZombieSpawner::spawn() {
-    int spawnPointToSpawn = rand() % spawnPoints.size();
+    // int spawnPointToSpawn = rand() % spawnPoints.size();
 
     // TODO use prototype pattern
 }
