@@ -16,12 +16,17 @@ GameTexture& TextureManager::getBackgroundTexture(const std::string& nameTexture
 }
 
 GameTexture& TextureManager::getTexture(typeEntity_t typeEntity, state_t state){
+    if (state == WALKING_SHOOTING){
+        state = WALKING;
+    }
+    if (state == RUNNING_SHOOTING){
+        state = RUNNING;
+    }
     std::string nameTexture = translationTypeEntity[typeEntity] + "-" + translationState[state];
-    std::cout << "name texture: " << nameTexture << "\n";
 
     std::map<std::string, GameTexture>::iterator iter = textures.find(nameTexture);
     if (iter == textures.end()) {
-        std::cout << "no encuentra: " << nameTexture << "\n";
+        std::cout << "NO SE ENCONTRO TEXTURA: " << nameTexture << "\n";
         //lanzar excepcion
     }
     return iter->second;
