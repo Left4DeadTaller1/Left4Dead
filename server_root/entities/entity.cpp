@@ -1,7 +1,7 @@
 #include "entity.h"
 
 Entity::Entity(int xPosition, int yPosition, std::string id)
-    : x(xPosition), y(yPosition), health(100), entityId(id), movementState(ENTITY_IDLE), movementDirectionX(ENTITY_RIGHT), movementDirectionY(ENTITY_UP), healthState(ALIVE), atkCooldown(10) {
+    : x(xPosition), y(yPosition), entityId(id), movementState(ENTITY_IDLE), movementDirectionX(ENTITY_RIGHT), movementDirectionY(ENTITY_UP), healthState(ALIVE), atkCooldown(10) {
 }
 
 MovementState Entity::getMovementState() {
@@ -21,7 +21,7 @@ HealthState Entity::getHealthState() {
 }
 
 int Entity::getMovementSpeed() {
-    return 5;
+    return movementSpeed;
 }
 
 void Entity::move(int deltaX, int deltaY) {

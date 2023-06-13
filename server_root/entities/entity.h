@@ -63,7 +63,7 @@ class Entity {
     MovementDirectionX movementDirectionX;
     MovementDirectionY movementDirectionY;
     HealthState healthState;
-    //  int movementSpeed;
+    int movementSpeed;
     int atkCooldown;
 
     friend class CollisionDetector;
