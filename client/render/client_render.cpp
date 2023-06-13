@@ -15,16 +15,16 @@ ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerTo
 void ClientRenderer::drawPlayer(player_t& previousPlayer, 
                                 player_t& currentPlayer){
     
-    std::cout << "previousPlayer.x" << (int)previousPlayer.x << "\n";
-    std::cout << "currentPlayer.x" << (int)previousPlayer.x << "\n";
-    std::cout << "currentPlayer.y" << (int)previousPlayer.x << "\n";
+    std::cout << "previousPlayer.x: " << (int)previousPlayer.x << "\n";
+    std::cout << "currentPlayer.x: " << (int)previousPlayer.x << "\n";
+    std::cout << "currentPlayer.y: " << (int)previousPlayer.x << "\n";
 
     //ver de tener los mismo state para no tener problemas 
     GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
 
-    std::cout << "texture.width" << (int)texture.width << "\n";
-    std::cout << "texture.height" << (int)texture.height << "\n";
-    std::cout << "texture.n" << (int)texture.n << "\n";
+    std::cout << "texture.width: " << (int)texture.width << "\n";
+    std::cout << "texture.height: " << (int)texture.height << "\n";
+    std::cout << "texture.n: " << (int)texture.n << "\n";
 
     renderer.Copy(
         texture.texture,
@@ -55,32 +55,24 @@ int ClientRenderer::render(){
 
     while(true){
         std::shared_ptr<gameStateDTO_t> gameStateDTO = qServerToRender.pop();
-        std::cout << "SE RECIBE ESTADO DEL JUEGO: \n";
-        for (auto &currentPlayer: gameStateDTO.players) {
-            std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO.players).find(currentPlayer.first);
-            if (iter != previousGameStateDTO.players.end()) {
-                std::cout << "id player " << (int)(iter.second.idPlayer) << "\n";
-            } else {
-                std::cout << "id player error\n";
-            }
-        }
+
         renderer.Clear();
 
         drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
 
-        for (auto &currentPlayer : gameStateDTO.players){
-            std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO.players).find(currentPlayer.first);
-            if (iter != previousGameStateDTO.players.end()) {
+        for (auto &currentPlayer : gameStateDTO->players){
+            std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
+            if (iter != previousGameStateDTO->players.end()) {
                 std::cout << "encontro al player\n";
-                drawPlayer(iter.second, currentPlayer.second);
+                drawPlayer(iter->second, currentPlayer.second);
             } else {
                 std::cout << "no encontro al player\n";
                 drawPlayer(currentPlayer.second, currentPlayer.second);
             }
         }
         /*for (auto &currentInfected : gameStateDTO.infected){
-            std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO.infected).find(currentInfected.first);
-            if (iter != previousGameStateDTO.infected.end()) {
+            std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentInfected.first);
+            if (iter != previousGameStateDTO->infected.end()) {
                 //drawInfected(iter.second, currentInfected.second);
             } else {
                 //drawInfected(currentInfected.second, currentInfected.second);
