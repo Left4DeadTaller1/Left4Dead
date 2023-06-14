@@ -30,7 +30,7 @@ TEST(PlayerTest, TestPlayerInitialization) {
     EXPECT_EQ(player.getHealth(), entityParams["PLAYER_HEALTH"]);
     EXPECT_EQ(player.getMovementState(), ENTITY_IDLE);
     EXPECT_EQ(player.getWeaponState(), WEAPON_IDLE);
-    EXPECT_EQ(player.getMovementSpeed(), entityParams["PLAYER_MOVEMENT_SPEED"]);
+    EXPECT_EQ(player.getMovementSpeed(), entityParams["PLAYER_SPEED"]);
 }
 
 TEST(PlayerTest, TestPlayerTakeDamage) {

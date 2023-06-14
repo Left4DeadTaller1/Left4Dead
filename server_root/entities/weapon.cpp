@@ -84,5 +84,9 @@ void Weapon::reload() {
     bullets = maxBullets;
 }
 
+int Weapon::getBullets() {
+    return bullets;
+}
+
 Weapon::~Weapon() {
 }

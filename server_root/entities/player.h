@@ -15,6 +15,7 @@ enum WeaponState {
 
 struct PlayerDTO : EntityDTO {
     WeaponState weaponState;
+    int bullets;
 };
 
 class Player : public Entity {

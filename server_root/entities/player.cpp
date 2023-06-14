@@ -61,6 +61,7 @@ std::shared_ptr<EntityDTO> Player::getDto() {
     dto->healthState = static_cast<int>(this->getHealthState());
     dto->facingDirection = this->facingDirection;
     dto->weaponState = this->weaponState;
+    dto->bullets = this->weapon.getBullets();
     return dto;
 }
 
