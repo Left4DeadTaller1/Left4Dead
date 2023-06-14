@@ -1,7 +1,7 @@
 #include "entity.h"
 
 Entity::Entity(int xPosition, int yPosition, std::string id)
-    : x(xPosition), y(yPosition), entityId(id), movementState(ENTITY_IDLE), movementDirectionX(ENTITY_RIGHT), movementDirectionY(ENTITY_UP), healthState(ALIVE) {
+    : x(xPosition), y(yPosition), entityId(id), movementState(ENTITY_IDLE), movementDirectionX(ENTITY_RIGHT), movementDirectionY(ENTITY_UP), healthState(ALIVE), framesHurt(15) {
 }
 
 MovementState Entity::getMovementState() {
@@ -18,6 +18,13 @@ MovementDirectionY Entity::getMovementDirectionY() {
 
 HealthState Entity::getHealthState() {
     return healthState;
+}
+
+void Entity::setHealthState(HealthState healthState) {
+    if (framesHurt == 0)
+        this->healthState = healthState;
+    else
+        framesHurt--;
 }
 
 int Entity::getMovementSpeed() {
@@ -52,6 +59,7 @@ std::shared_ptr<EntityDTO> Entity::getDto() {
 
 void Entity::takeDamage(int amountOfDamage) {
     health -= amountOfDamage;
+    healthState = HURT;
     /// TODO do this:
     // if (health <= 0) {
     //     healthState = DYING;
