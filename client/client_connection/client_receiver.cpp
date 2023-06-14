@@ -12,9 +12,21 @@ void ReceiverThread::run() { try {
         //wasClosed = true de client_sender y avisarle al render 
         //pusheando en event manager a la cola del render directo
         while (!wasClosed) {
-            std::shared_ptr<gameStateDTO_t> gameStateDTO = protocol.receiveStateGame(wasClosed);
-            std::cout << "se recibe estado del juego en el receiver\n";
-            if (gameStateDTO != NULL){
+            int messageType = protocol.receiveTypeCommand(wasClosed);
+            if (messageType == MSG_CREATE){
+                continue;
+            }
+
+            if (messageType == MSG_JOIN){
+                continue;
+            }
+
+            if (messageType == MSG_EXIT){
+                continue;
+            }
+
+            if (messageType == MSG_GAME_STATE){
+                std::shared_ptr<gameStateDTO_t> gameStateDTO = protocol.receiveStateGame(wasClosed);
                 qServerToRender.push(gameStateDTO);
             }
         }

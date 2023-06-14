@@ -49,9 +49,6 @@ void ClientRenderer::renderLifeBar(player_t& currentPlayer){
 
 void ClientRenderer::drawInfected(infected_t& previousPlayer, 
                                 infected_t& currentPlayer){
-
-
-    //renderLifeBar(currentPlayer);
     
     GameTexture& texture = textureManager.getTexture(currentPlayer.typeInfected, currentPlayer.state);
 
@@ -72,20 +69,12 @@ void ClientRenderer::drawInfected(infected_t& previousPlayer,
     } else {
         SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
     }
-
-    //float angle = atan2(currentPlayer.y - previousPlayer.y, currentPlayer.x - previousPlayer.x) * 180.0 / PI;
-
 }
 
 #define PI 3.14
 
 void ClientRenderer::drawPlayer(player_t& previousPlayer, 
                                 player_t& currentPlayer){
-
-    /*std::cout << "previousPlayer.x: " << (int)previousPlayer.x << "\n";
-    std::cout << "previousPlayer.y: " << (int)previousPlayer.y << "\n";
-    std::cout << "currentPlayer.x: " << (int)currentPlayer.x << "\n";
-    std::cout << "currentPlayer.y: " << (int)currentPlayer.y << "\n";*/
 
     renderLifeBar(currentPlayer);
     
@@ -108,9 +97,6 @@ void ClientRenderer::drawPlayer(player_t& previousPlayer,
     } else {
         SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
     }
-
-    //float angle = atan2(currentPlayer.y - previousPlayer.y, currentPlayer.x - previousPlayer.x) * 180.0 / PI;
-
 }
 
 
@@ -146,7 +132,7 @@ void  ClientRenderer::drawInfected(std::map<uint8_t, infected_t>& infected){
 }
 
 void  ClientRenderer::drawInicio(void) {
-    //renderer.Clear();
+    renderer.Clear();
     drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
     renderer.Present();
 }

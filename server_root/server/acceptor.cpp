@@ -10,12 +10,9 @@ Acceptor::Acceptor(Socket& skt)
     : skt(skt), gamesManager() {}
 
 void Acceptor::run() {
-    std::cout << "ENTRA AL ACEPTADOR\n";
     try {
         while (true) {
-            std::cout << "ANTES DE ACPTAR EL CLIENTE EN EL ACEPTADOR\n";
             Socket clientSocket = skt.accept();
-            std::cout << "DESPUES DE ACEPTAR AL CLIENTE EN EL ACEPTADOR\n";
             auto th = std::make_shared<ClientConnection>(std::move(clientSocket), gamesManager);
             th->connectToClient();
             clients.push_back(th);

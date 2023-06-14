@@ -10,26 +10,31 @@ void ClientProtocol::sendAction(std::shared_ptr<ActionClient> action, bool& wasC
     skt.sendall(&data[0], data.size(), &wasClosed);
 }
 
-std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed){
+void ClientProtocol::receiveCreateorJoin(bool& wasClosed){
+    uint8_t code;
+    skt.recvall(&code, 1, &wasClosed);
+    if(wasClosed){
+        return;
+    }
+    return;
+}
+
+void ClientProtocol::receiveExit(bool& wasClosed){
+
+    uint8_t code;
+    skt.recvall(&code, 1, &wasClosed);
+    if(wasClosed){
+        return;
+    }
+}
+
+int ClientProtocol::receiveTypeCommand(bool& wasClosed){
     uint8_t messageType;
     skt.recvall(&messageType, 1, &wasClosed);
-    if(wasClosed){
-        return NULL;
-    }
-    std::cout << "messageType: " << (int)messageType << "\n";
+    return messageType;
+}
 
-    if (messageType == 2){
-        //despues manejar mensaje!!
-        uint8_t message;
-        skt.recvall(&message, 1, &wasClosed);
-        if(wasClosed){
-            return NULL;
-        }
-    }
-
-    if (messageType != 9){
-        return NULL;
-    }
+std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed){
 
     std::map<uint8_t, player_t> mapPlayers;
     std::map<uint8_t, infected_t> mapInfected;
