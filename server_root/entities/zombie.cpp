@@ -104,6 +104,12 @@ ZombieType Zombie::getZombieType() {
 }
 
 void Zombie::decideTarget(std::vector<std::shared_ptr<Player>>& players) {
+    if (players.empty()) {
+        return;  // i mean you will never have 0 players but just in case
+    }
+
+    movementState = ENTITY_RUNNING;
+
     int closestPlayerX = players[0]->getX();
     int closestPlayerY = players[0]->getY();
     int closestPlayerDistance = std::sqrt(std::pow((x - closestPlayerX), 2) + std::pow((y - closestPlayerY), 2));
