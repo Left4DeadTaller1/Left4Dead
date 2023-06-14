@@ -18,10 +18,20 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
     }
     std::cout << "messageType: " << (int)messageType << "\n";
 
+    if (messageType == 2){
+        //despues manejar mensaje!!
+        uint8_t message;
+        skt.recvall(&message, 1, &wasClosed);
+        if(wasClosed){
+            return NULL;
+        }
+    }
+
     if (messageType != 9){
         return NULL;
     }
 
+    std::cout << "EN PROTOCOLO\n";
     //si el mensaje es para mandar estado de juego, desp poner el if
     std::map<uint8_t, player_t> mapPlayers;
     std::map<uint8_t, infected_t> mapInfected;
@@ -46,7 +56,7 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
 
             uint16_t idPlayer;
             skt.recvall(&idPlayer, 2, &wasClosed);
-            player.x = ntohs(idPlayer);
+            player.idPlayer = ntohs(idPlayer);
 
             uint8_t state;
             skt.recvall(&state, 1, &wasClosed);
@@ -75,7 +85,7 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             std::cout << "player.x: " << (int)player.x << "\n";
             std::cout << "player.y: " << (int)player.y << "\n";
             std::cout << "player.lookingTo: " << (int)player.lookingTo << "\n";
-            std::cout << "player.health: " << (int)player.health << "\n"; 
+            std::cout << "player.health: " << (int)player.health << "\n";
 
             mapPlayers[player.idPlayer] = player;
         }
@@ -115,12 +125,3 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
     gameStateDTO->infected = mapInfected;
     return gameStateDTO;
 }
-
-
-
-/*  std::cout << "idEntity: " << entity->idEntity << "\n";
-    std::cout << "entity->state: " << entity->state << "\n";
-    std::cout << "entity->x: " << entity->x << "\n";
-    std::cout << "entity->y: " << entity->y << "\n";
-    std::cout << "entity->health: " << entity->health << "\n"; */
-

@@ -24,33 +24,33 @@ void ClientReceiver::run() {
 
             switch (tipoComando) {
                 case CREATE:
-                    std::cout << "CREATE\n";
+                    //std::cout << "CREATE\n";
                     protocol.receiveCreate(wasClosed, clientSocket);
                     handleCreateAction();
                     break;
                 case JOIN:
-                    std::cout << "JOIN\n";
+                    //std::cout << "JOIN\n";
                     code = protocol.receiveJoin(wasClosed, clientSocket);
                     std::cout << "code: " << code << "\n";
                     handleJoinAction(code);
                     break;
                 case START_GAME:
-                    std::cout << "START_GAME\n";
+                    //std::cout << "START_GAME\n";
                     gamesManager.startGame(0);
                     break;
                 case START_MOVE:
                     data = protocol.receiveStartMove(wasClosed, clientSocket);
-                    std::cout << "START_MOVE\n";
+                    /*std::cout << "START_MOVE\n";
                     std::cout << "type: " << data[0] << "\n";
                     std::cout << "dirx: " << data[1] << "\n";
-                    std::cout << "diry: " << data[2] << "\n";
+                    std::cout << "diry: " << data[2] << "\n";*/
                     handleStartMove(data[0], data[1], data[2]);
                     break;
                 case END_MOVE:
                     data = protocol.receiveEndMove(wasClosed, clientSocket);
-                    std::cout << "END_MOVE\n";
+                    /*std::cout << "END_MOVE\n";
                     std::cout << "dirx: " << data[0] << "\n";
-                    std::cout << "diry: " << data[1] << "\n";
+                    std::cout << "diry: " << data[1] << "\n";*/
                     handleEndMove(data[0], data[1]);
                     break;
                 case START_SHOOT:
@@ -58,11 +58,11 @@ void ClientReceiver::run() {
                     handleStartShoot();
                     break;
                 case END_SHOOT:
-                    std::cout << "END_SHOOT\n";
+                    //std::cout << "END_SHOOT\n";
                     handleEndShoot();
                     break;
                 case RECHARGE:
-                    std::cout << "RECHARGE\n";
+                    //std::cout << "RECHARGE\n";
                     handleRecharge();
                     break;
                     /*case EXIT:
@@ -118,6 +118,7 @@ void ClientReceiver::handleJoinAction(const int code) {
 }
 
 void ClientReceiver::handleStartShoot() {
+    std::cout << "entra handleStartShoot en receiver\n";
     Action action(playerId, 3, 3, 3, 0);
     game->pushAction(action);
 }

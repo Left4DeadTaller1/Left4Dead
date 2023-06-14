@@ -18,22 +18,6 @@ ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerTo
                     textureManager(renderer),
                     previousGameStateDTO(NULL){}
 
-/*void ClientRenderer::drawPlayer(player_t& previousPlayer, 
-                                player_t& currentPlayer){
-
-    GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
-
-    renderer.Copy(
-        texture.texture,
-        Rect((texture.width / texture.n)* (previousPlayer.x % texture.n), 0, 
-            texture.width / texture.n, texture.height),
-        Rect((currentPlayer.x * WINDOW_WIDTH) / GAME_WIDTH, 
-            WINDOW_HEIGHT - currentPlayer.y - GAME_HEIGHT, 
-            IMAGE_WIDTH, 
-            IMAGE_HEIGHT)
-    );
-}*/
-
 void ClientRenderer::renderLifeBar(player_t& currentPlayer){
     GameTexture& texture = textureManager.getBackgroundTexture("barras-vida");
 
@@ -109,6 +93,21 @@ int ClientRenderer::render(){
 
     while(true){
         std::shared_ptr<gameStateDTO_t> gameStateDTO = qServerToRender.pop();
+
+        std::cout << "amountEntities: " << (gameStateDTO->players).size() << "\n";
+        for (auto &currentPlayer : gameStateDTO->players) {
+            std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
+            if (iter != previousGameStateDTO->players.end()) {
+                std::cout << "idPlayer: " << (int)(currentPlayer.second.idPlayer) << "\n";
+                std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
+                std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
+                std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
+                std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
+                std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
+            } else {
+                std::cout << "no encontro al player\n";
+            }
+        }
 
         renderer.Clear();
 

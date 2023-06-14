@@ -26,6 +26,7 @@ void GamesManager::startGame(unsigned int gameCode) {
 }
 
 GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
+    std::cout << "ENTRA A JOIN LOBBY\n";
     std::lock_guard<std::mutex> lock(m);
     auto it = games.find(gameCode);
     if (it != games.end()) {

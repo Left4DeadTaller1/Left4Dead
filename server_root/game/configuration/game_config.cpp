@@ -4,7 +4,7 @@
 
 GameConfig::GameConfig() {
     try {
-        std::string filename = "/home/regman/taller/left4Dead/server_root/game/configuration/configuration.yaml";
+        std::string filename = "/home/usaurio/Left4Dead/server_root/game/configuration/configuration.yaml";
 
         YAML::Node config = YAML::LoadFile(filename);
 
