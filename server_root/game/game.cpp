@@ -21,10 +21,12 @@ Game::Game()
 }
 
 std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
+    std::cout << "ENTRA A ADD PLAYER\n";
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
     std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
+    std::cout << "se crea con id: " << playerId << "\n";
     spawnPlayer(playerId);
     playerQueues[nextPlayerIndex] = &gameResponses;
 
@@ -308,8 +310,15 @@ void Game::sendState() {
 std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {
     std::vector<std::shared_ptr<EntityDTO>> dtos;
     for (auto& entity : entities) {
-        auto dto = entity->getDto();
-        dtos.push_back(dto);
+        if (entity->getType() == PLAYER) {
+            Player* player = dynamic_cast<Player*>(entity.get());
+            auto dto = player->getDto();
+            dtos.push_back(dto);
+        } else {
+            Zombie* zombie = dynamic_cast<Zombie*>(entity.get());
+            auto dto = zombie->getDto();
+            dtos.push_back(dto);
+        }
     }
     return dtos;
 }

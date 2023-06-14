@@ -63,9 +63,18 @@ std::vector<int> ServerProtocol::receiveEndMove(bool &wasClosed, Socket &peer) {
 }
 
 std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities) {
+    /*std::cout << "EN EL PROTOCOLO RECIBE\n";
+    std::cout << "tipo de mensaje: " << msgType << "\n";
+    std::cout << "cant entidadees izq: " << (int)entities.size() << "\n";
+    std::cout << "tipo de entidad: " << (int)(entities[0]->type) << "\n";
+    std::cout << "id entidad izq: " << (entities[0]->id) << "\n";
+    std::cout << "estado mov entidad: " << (int)(entities[0]->movementDirectionX) << "\n";
+    std::cout << "x: " << (int)(entities[0]->x) << "\n";
+    std::cout << "y: " << (int)(entities[0]->y) << "\n";*/
+    
     auto encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
-    uint8_t encodedMessageType = 1;  // dummy value for example
+    uint8_t encodedMessageType = 9;  // dummy value for example
     // Adding the message type (1 byte)
     encodedMsg->push_back(encodedMessageType);
 
@@ -123,8 +132,22 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
         }
     }
 
+    /*std::cout << "EN EL PROTOCOLO\n";
+    std::cout << "tipo de mensaje: " << (int)(*encodedMsg)[0] << "\n";
+    std::cout << "cant entidadees izq: " << (int)(*encodedMsg)[1] << "\n";
+    std::cout << "cant entidadees der: " << (int)(*encodedMsg)[2] << "\n";
+    std::cout << "tipo de entidad: " << (int)(*encodedMsg)[3] << "\n";
+    std::cout << "id entidad izq: " << (int)(*encodedMsg)[4] << "\n";
+    std::cout << "id entidad der: " << (int)(*encodedMsg)[5] << "\n";
+    std::cout << "estado mov entidad: " << (int)(*encodedMsg)[6] << "\n";
+    std::cout << "x izq: " << (int)(*encodedMsg)[7] << "\n";
+    std::cout << "x der: " << (int)(*encodedMsg)[8] << "\n";
+    std::cout << "y izq: " << (int)(*encodedMsg)[9] << "\n";
+    std::cout << "y der: " << (int)(*encodedMsg)[10] << "\n";*/
+
     return encodedMsg;
 }
+
 
 std::string ServerProtocol::extractId(const std::string &str) {
     std::string result;

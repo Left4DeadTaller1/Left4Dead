@@ -20,7 +20,7 @@ void Client::run() { try {
     eventManagerThread.start();
     senderThread.start();
     receiverThread.start();
-    renderer.render();
+    renderer.looprender();
     } catch(...){
         //implem
     }
