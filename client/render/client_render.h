@@ -32,12 +32,20 @@ class ClientRenderer {
 
    void renderLifeBar(player_t& currentPlayer);
 
+   //void presentarVentana(void);
+
+   void  drawPlayers(std::map<uint8_t, player_t>& players);
+
+   void  drawInfected(std::map<uint8_t, infected_t>& infected);
+
+   void  drawInicio(void);
+
    public:
    ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
                     Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
                     SDL2pp::Window& window_);
                     
-   int render();
+   int looprender(void);
 };
 
 #endif  // CLIENT_RENDER_H

@@ -31,8 +31,6 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         return NULL;
     }
 
-    std::cout << "EN PROTOCOLO\n";
-    //si el mensaje es para mandar estado de juego, desp poner el if
     std::map<uint8_t, player_t> mapPlayers;
     std::map<uint8_t, infected_t> mapInfected;
 
@@ -42,7 +40,6 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         return NULL;
     }
     amountEntities = ntohs(amountEntities);
-    std::cout << "amountEntities: " << (int)amountEntities << "\n";
 
     for (int i = 0; i < amountEntities; i++){
         uint8_t typeEntity;
@@ -50,7 +47,6 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         if(wasClosed){
             return NULL;
         }
-        std::cout << "typeEntity: " << (int)typeEntity << "\n";
         if ((int)typeEntity == 0){ //es player
             player_t player;
 
@@ -80,19 +76,14 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
 
             skt.recvall(&(player.health), 1, &wasClosed);
 
-            std::cout << "idPlayer: " << (int)player.idPlayer << "\n";
-            std::cout << "player.state: " << (int)player.state << "\n";
-            std::cout << "player.x: " << (int)player.x << "\n";
-            std::cout << "player.y: " << (int)player.y << "\n";
-            std::cout << "player.lookingTo: " << (int)player.lookingTo << "\n";
-            std::cout << "player.health: " << (int)player.health << "\n";
-
             mapPlayers[player.idPlayer] = player;
         }
         if ((int)typeEntity == 1){ //es infected
             infected_t infected;
 
-            skt.recvall(&(infected.idInfected), 1, &wasClosed);
+            uint16_t idInfected;
+            skt.recvall(&idInfected, 2, &wasClosed);
+            infected.idInfected = ntohs(idInfected);
 
             uint8_t state;
             skt.recvall(&state, 1, &wasClosed);
@@ -119,7 +110,6 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             mapInfected[infected.idInfected] = infected;
         }
     }
-    //para no devolver una copia
     std::shared_ptr<gameStateDTO_t> gameStateDTO = std::make_shared<gameStateDTO_t>();
     gameStateDTO->players = mapPlayers;
     gameStateDTO->infected = mapInfected;

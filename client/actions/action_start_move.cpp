@@ -5,18 +5,18 @@ StartMove::StartMove(TypeMove typeMove, DirectionMove directionMove): typeMove(t
                                                                         dirY(0){
     if (directionMove == RIGHT){
         dirX = 1;
-        dirY = 2;
+        dirY = 3;
     }
     if (directionMove == LEFT){
         dirX = 0;
-        dirY = 2;
+        dirY = 3;
     }
     if (directionMove == UP){
-        dirX = 2;
+        dirX = 3;
         dirY = 0;
     }
     if (directionMove == DOWN){
-        dirX = 2;
+        dirX = 3;
         dirY = 1;
     }
 }

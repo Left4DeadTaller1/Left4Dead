@@ -77,11 +77,11 @@ typedef enum state_t : uint8_t {
 };*/
 
 typedef enum typeEntity_t : uint8_t {
+    ZOMBIE,
     JUMPER,
+    WITCH,
     SPEAR,
     VENOM,
-    WITCH,
-    ZOMBIE,
     SOLDIER1,
     SOLDIER2,
     SOLDIER3

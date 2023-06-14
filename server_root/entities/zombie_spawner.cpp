@@ -7,7 +7,7 @@
 #define TYPES_OF_ZOMBIE 5
 
 // TODO set the spawnInterval with config yaml
-ZombieSpawner::ZombieSpawner() : spawnInterval(5), totalZombies(0) {
+ZombieSpawner::ZombieSpawner() : spawnInterval(120), totalZombies(0) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
 

@@ -89,7 +89,6 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
 
         // Extract, convert, and add the entity id (2 bytes)
         std::string idNumberStr = extractId(entity->id);
-        std::cout << "idNumberStr: " << idNumberStr << "\n";
         uint16_t id = htons(static_cast<uint16_t>(std::stoi(idNumberStr)));
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&id)[0]);
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&id)[1]);
