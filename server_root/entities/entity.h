@@ -64,6 +64,8 @@ class Entity {
     MovementDirectionY movementDirectionY;
     HealthState healthState;
     int movementSpeed;
+    // TODO: think this better
+    int framesHurt;
 
     friend class CollisionDetector;
 
@@ -75,6 +77,7 @@ class Entity {
     MovementDirectionX getMovementDirectionX();
     MovementDirectionY getMovementDirectionY();
     HealthState getHealthState();
+    void setHealthState(HealthState healthState);
     std::string getId();
     int getX();
     int getY();
