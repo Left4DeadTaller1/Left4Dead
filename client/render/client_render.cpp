@@ -144,37 +144,6 @@ int ClientRenderer::looprender(void){
     while(true){
 
         std::shared_ptr<gameStateDTO_t> gameStateDTO = qServerToRender.pop();
-
-        /*for (auto &currentPlayer : gameStateDTO->players) {
-            std::cout << "PLAYER\n";
-            std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
-            if (iter != previousGameStateDTO->players.end()) {
-                std::cout << "idPlayer: " << (int)(currentPlayer.second.idPlayer) << "\n";
-                std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
-                std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
-                std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
-                std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
-                std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
-            } else {
-                std::cout << "no encontro al player\n";
-            }
-        }*/
-        /*for (auto &currentPlayer : gameStateDTO->infected) {
-            std::cout << "ZOMBI\n";
-            std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentPlayer.first);
-            if (iter != previousGameStateDTO->infected.end()) {
-                std::cout << "idPlayer: " << (int)(currentPlayer.second.idInfected) << "\n";
-                std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
-                std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
-                std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
-                std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
-                std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
-                std::cout << "type: " << (int)(currentPlayer.second.typeInfected) << "\n";
-            } else {
-                std::cout << "no encontro al player\n";
-            }
-        }*/
-
         renderer.Clear();
 
         drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
@@ -200,5 +169,6 @@ int ClientRenderer::looprender(void){
 
 	return 0;
 }
+
 
 
