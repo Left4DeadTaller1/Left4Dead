@@ -23,6 +23,7 @@ void Acceptor::run() {
             // Limpieza de clients viejos
         }
     } catch (const LibError& e) {
+        // TODO here gamesManager should tell each game to finish
         kill_all();
     } catch (const std::exception& e) {
         std::cerr << "An exception occurred in Acceptor::run(): " << e.what() << std::endl;

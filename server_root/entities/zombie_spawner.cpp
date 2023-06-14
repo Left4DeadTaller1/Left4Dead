@@ -14,11 +14,11 @@ ZombieSpawner::ZombieSpawner() : spawnInterval(5), totalZombies(0) {
     int gameWidth = gameDimensions["GAME_WIDTH"];
     int gameHeight = gameDimensions["GAME_HEIGHT"];
     // Left spawners
-    SpawnPoint spawnPoint1 = {0, (gameHeight / 3)};
+    SpawnPoint spawnPoint1 = {0, (gameHeight + 1)};
     SpawnPoint spawnPoint2 = {0, (2 * gameHeight / 3)};
 
     // Right spawners
-    SpawnPoint spawnPoint3 = {(gameWidth - 100), (gameHeight / 3)};
+    SpawnPoint spawnPoint3 = {(gameWidth - 100), (gameHeight + 1)};
     SpawnPoint spawnPoint4 = {(gameWidth - 100), (2 * gameHeight / 3)};
 
     spawnPoints.push_back(spawnPoint1);

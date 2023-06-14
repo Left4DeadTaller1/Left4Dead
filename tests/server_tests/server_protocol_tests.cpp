@@ -29,7 +29,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
         0, 2,   // 2 entities
         0,      // Entity type: Player
         0, 1,   // ID: Player1
-        0,      // General State: WALKING
+        6,      // General State: HURT since got attacked
         0, 5,   // X position: 5 (network byte order)
         0, 10,  // Y position: 10 (network byte order)
         0, 1,   // X Direction: ENTITY_RIGHT

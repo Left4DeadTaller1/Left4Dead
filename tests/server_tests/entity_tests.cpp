@@ -6,22 +6,39 @@
 #include "weapon.h"
 #include "zombie.h"
 
+// Entity Test Cases
+TEST(EntityTest, TestTakingDamage) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+
+    Player player(5, 10, "Player1", SMG);
+    Zombie zombie(15, 20, "Zombie1", INFECTED);
+    zombie.takeDamage(20);
+    player.takeDamage(20);
+    EXPECT_EQ(player.getHealth(), entityParams["PLAYER_HEALTH"] - 20);
+    EXPECT_EQ(zombie.getHealth(), entityParams["INFECTED_HEALTH"] - 20);
+}
+
 // Player Test Cases
 TEST(PlayerTest, TestPlayerInitialization) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
     Player player(5, 10, "Player1", SMG);
     EXPECT_EQ(player.getId(), "Player1");
     EXPECT_EQ(player.getX(), 5);
     EXPECT_EQ(player.getY(), 10);
-    EXPECT_EQ(player.getHealth(), 100);
+    EXPECT_EQ(player.getHealth(), entityParams["PLAYER_HEALTH"]);
     EXPECT_EQ(player.getMovementState(), ENTITY_IDLE);
     EXPECT_EQ(player.getWeaponState(), WEAPON_IDLE);
-    EXPECT_EQ(player.getMovementSpeed(), 10);
+    EXPECT_EQ(player.getMovementSpeed(), entityParams["PLAYER_MOVEMENT_SPEED"]);
 }
 
 TEST(PlayerTest, TestPlayerTakeDamage) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
     Player player(5, 10, "Player1", SMG);
     player.takeDamage(20);
-    EXPECT_EQ(player.getHealth(), 80);
+    EXPECT_EQ(player.getHealth(), entityParams["PLAYER_HEALTH"] - 20);
 }
 
 TEST(PlayerTest, TestPlayerMovement) {
@@ -48,6 +65,22 @@ TEST(ZombieTest, TestZombieTakeDamage) {
     Zombie zombie(15, 20, "Zombie1", INFECTED);
     zombie.takeDamage(40);
     EXPECT_EQ(zombie.getHealth(), 60);
+}
+
+TEST(ZombieTest, TestZombieDecideTarget) {
+    Zombie zombie(10, 10, "Zombie1", INFECTED);
+
+    auto player1 = std::make_shared<Player>(5, 5, "Player1", SMG);
+    auto player2 = std::make_shared<Player>(20, 20, "Player2", SMG);
+    auto player3 = std::make_shared<Player>(15, 5, "Player3", SMG);
+
+    std::vector<std::shared_ptr<Player>> players = {player1, player2, player3};
+
+    zombie.decideTarget(players);
+    // Player1 is the closest to the Zombie. Zombie should move to the bottom left.
+    EXPECT_EQ(zombie.getMovementDirectionX(), ENTITY_LEFT);
+    EXPECT_EQ(zombie.getMovementDirectionY(), ENTITY_DOWN);
+    EXPECT_EQ(zombie.getMovementState(), ENTITY_RUNNING);
 }
 
 // // Weapon Test Cases
@@ -117,20 +150,4 @@ TEST(WeaponTest, TestWeaponReloading) {
 
     // Weapon should be able to shoot
     EXPECT_TRUE(smg.canShoot());
-}
-
-TEST(ZombieTest, TestZombieDecideTarget) {
-    Zombie zombie(10, 10, "Zombie1", INFECTED);
-
-    auto player1 = std::make_shared<Player>(5, 5, "Player1", SMG);
-    auto player2 = std::make_shared<Player>(20, 20, "Player2", SMG);
-    auto player3 = std::make_shared<Player>(15, 5, "Player3", SMG);
-
-    std::vector<std::shared_ptr<Player>> players = {player1, player2, player3};
-
-    zombie.decideTarget(players);
-    // Player1 is the closest to the Zombie. Zombie should move to the bottom left.
-    EXPECT_EQ(zombie.getMovementDirectionX(), ENTITY_LEFT);
-    EXPECT_EQ(zombie.getMovementDirectionY(), ENTITY_DOWN);
-    EXPECT_EQ(zombie.getMovementState(), ENTITY_RUNNING);
 }
