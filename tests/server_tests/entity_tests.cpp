@@ -118,3 +118,19 @@ TEST(WeaponTest, TestWeaponReloading) {
     // Weapon should be able to shoot
     EXPECT_TRUE(smg.canShoot());
 }
+
+TEST(ZombieTest, TestZombieDecideTarget) {
+    Zombie zombie(10, 10, "Zombie1", INFECTED);
+
+    auto player1 = std::make_shared<Player>(5, 5, "Player1", SMG);
+    auto player2 = std::make_shared<Player>(20, 20, "Player2", SMG);
+    auto player3 = std::make_shared<Player>(15, 5, "Player3", SMG);
+
+    std::vector<std::shared_ptr<Player>> players = {player1, player2, player3};
+
+    zombie.decideTarget(players);
+    // Player1 is the closest to the Zombie. Zombie should move to the bottom left.
+    EXPECT_EQ(zombie.getMovementDirectionX(), ENTITY_LEFT);
+    EXPECT_EQ(zombie.getMovementDirectionY(), ENTITY_DOWN);
+    EXPECT_EQ(zombie.getMovementState(), ENTITY_RUNNING);
+}
