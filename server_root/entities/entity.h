@@ -38,6 +38,11 @@ enum EntityType {
     ZOMBIE,
 };
 
+enum FacingDirection {
+    FACING_LEFT,
+    FACING_RIGHT,
+};
+
 struct EntityDTO {
     EntityType type;
     std::string id;
@@ -46,6 +51,7 @@ struct EntityDTO {
     int health;
     int movementState;
     int movementDirectionX;
+    FacingDirection facingDirection;
     int healthState;
 
     virtual ~EntityDTO() = default;
@@ -62,6 +68,7 @@ class Entity {
     MovementState movementState;
     MovementDirectionX movementDirectionX;
     MovementDirectionY movementDirectionY;
+    FacingDirection facingDirection;
     HealthState healthState;
     int movementSpeed;
     // TODO: think this better

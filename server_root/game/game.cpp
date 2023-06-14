@@ -170,7 +170,6 @@ void Game::getPlayersActions() {
 
 void Game::updateState() {
     // Decrementamos DYINGCOUNTER de cada entidad que este en DYING y si este llega a 0 borralo
-
     for (auto& entity : entities) {
         if (entity->getHealthState() == HURT)
             entity->setHealthState(ALIVE);

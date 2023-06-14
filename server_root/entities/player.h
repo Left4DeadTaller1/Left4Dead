@@ -7,11 +7,6 @@
 #include "entity.h"
 #include "weapon.h"
 
-enum FacingDirection {
-    FACING_LEFT,
-    FACING_RIGHT,
-};
-
 enum WeaponState {
     SHOOTING,
     RELOADING,
@@ -19,13 +14,11 @@ enum WeaponState {
 };
 
 struct PlayerDTO : EntityDTO {
-    FacingDirection facingDirection;
     WeaponState weaponState;
 };
 
 class Player : public Entity {
    private:
-    FacingDirection facingDirection;
     WeaponState weaponState;
     Weapon weapon;
 

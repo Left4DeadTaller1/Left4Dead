@@ -94,6 +94,7 @@ std::shared_ptr<EntityDTO> Zombie::getDto() {
     dto->health = this->getHealth();
     dto->movementState = static_cast<int>(this->getMovementState());
     dto->movementDirectionX = static_cast<int>(this->getMovementDirectionX());
+    dto->facingDirection = this->facingDirection;
     dto->healthState = static_cast<int>(this->getHealthState());
     dto->zombieType = this->getZombieType();
     return dto;
@@ -125,8 +126,10 @@ void Zombie::decideTarget(std::vector<std::shared_ptr<Player>>& players) {
 
     if (closestPlayerX < x) {
         movementDirectionX = ENTITY_LEFT;
+        facingDirection = FACING_LEFT;
     } else {
         movementDirectionX = ENTITY_RIGHT;
+        facingDirection = FACING_RIGHT;
     }
 
     if (closestPlayerY < y) {
@@ -184,12 +187,12 @@ Attack Zombie::attack() {
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
 
-    switch (movementDirectionX) {
-        case ENTITY_LEFT:
+    switch (facingDirection) {
+        case FACING_LEFT:
             attackDirection = LEFT;
             attackX = x;
             break;
-        case ENTITY_RIGHT:
+        case FACING_RIGHT:
             attackDirection = RIGHT;
             attackX = x + width;
             break;

@@ -55,7 +55,7 @@ std::list<std::shared_ptr<Entity>> CollisionDetector::shoot(Attack& attack, std:
     std::list<std::shared_ptr<Entity>> entitiesBeingATK;
 
     for (const auto& entity : entities) {
-        // This is discarding logic
+        // This is discarding for descarting units that are not in the direction of the bullet
         if ((attack.attackingLeft() && entity->x > attack.xOrigin) ||
             (attack.attackingRight() && entity->x < attack.xOrigin)) {
             continue;
@@ -96,8 +96,7 @@ std::shared_ptr<Player>& CollisionDetector::getPlayersInRange(int attackRange, A
     std::list<std::shared_ptr<Player>> playersInRange;
 
     for (const auto& player : players) {
-        // This is discarding logic
-
+        // This is discarding for descarting units that are not in the direction of the attack
         if ((attack.attackingLeft() && player->x > attack.xOrigin) ||
             (attack.attackingRight() && player->x < attack.xOrigin)) {
             continue;
@@ -109,9 +108,18 @@ std::shared_ptr<Player>& CollisionDetector::getPlayersInRange(int attackRange, A
 }
 
 void CollisionDetector::attackPlayers(int range, const std::shared_ptr<Player>& player, Attack& attack, std::list<std::shared_ptr<Player>>& playersInRange) {
-    if ((attack.lowerY < player->y + player->height && attack.upperY > player->y) &&
-        ((attack.attackingRight() && player->x > attack.xOrigin && (player->x - attack.xOrigin) < range) ||
-         (attack.attackingLeft() && player->x < attack.xOrigin && (attack.xOrigin - (player->x + player->width)) < range))) {
+    bool isInRange = false;
+
+    // I check first that the attack and the player are in the same Depth (withing the Y values)
+    if (attack.lowerY < (player->y + player->height) && attack.upperY > player->y) {
+        // And now we check that the player is in the range of the attack in X
+        if (attack.attackingRight() && (player->x - attack.xOrigin) < range)
+            isInRange = true;
+        else if (attack.attackingLeft() && (attack.xOrigin - (player->x + player->width)) < range)
+            isInRange = true;
+    }
+
+    if (isInRange) {
         if (playersInRange.empty()) {
             playersInRange.push_back(player);
         } else {
