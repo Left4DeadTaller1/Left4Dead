@@ -30,11 +30,19 @@ class CollisionDetector {
     bool isColliding(Entity& e1, int deltaX, int deltaY, Entity& e2);
     bool checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities);
 
-    std::list<std::shared_ptr<Entity>> beingAttack(Attack& attack, std::vector<std::shared_ptr<Entity>>& entities);
+    // Player's attacks
+    std::list<std::shared_ptr<Entity>> shoot(Attack& attack, std::vector<std::shared_ptr<Entity>>& entities);
 
-    void beingAttackInfiniteRange(const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK);
+    // Zombie's attacks
+    // TODO:change the MovementDirectionX to a FACING DIRECTION
+    std::shared_ptr<Player>& getPlayersInRange(int attackRange, Attack& attack, std::vector<std::shared_ptr<Player>>& players);
 
-    void beingAttackFiniteRange(int range, const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK);
+   private:
+    // for the player's attacks
+    void shootZombie(const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK);
+
+    // for the zombie's attacks
+    void attackPlayers(int range, const std::shared_ptr<Player>& player, Attack& attack, std::list<std::shared_ptr<Player>>& playersInRange);
 };
 
 #endif  // COLLISION_DETECTOR_H

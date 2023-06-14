@@ -16,7 +16,7 @@
 ________________________________________________________________*/
 
 Game::Game()
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol() {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner() {
     playerQueues.resize(4, nullptr);
 }
 
@@ -98,7 +98,7 @@ Game::~Game() {}
 ________________________________________________________________*/
 
 void Game::spawnPlayer(std::string playerId) {
-    // TODO:Here the game should figure out what weapon give each player
+    // TODO: Here the game should figure out what weapon give each player
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
     int gameWidth = gameDimensions["GAME_WIDTH"];
@@ -114,6 +114,7 @@ void Game::spawnPlayer(std::string playerId) {
 
     auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SMG);
     entities.push_back(player);
+    players.push_back(player);
 }
 
 void Game::removePlayer(std::string playerId) {
@@ -170,11 +171,19 @@ void Game::updateState() {
         if (player) {
             updatePlayerState(*player, playersActions[player->getId()]);
         }
-        // else {
-        // TODO: remember to decrease entity atk cd
-        // }
+
+        else {
+            Zombie* zombie = dynamic_cast<Zombie*>(entity.get());
+            zombie->decideTarget(players);
+        }
+
         move(*entity);
         attack(*entity);
+        entity->decreaseATKCooldown();
+    }
+    std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
+    if (spawnedZombie) {
+        entities.push_back(spawnedZombie);
     }
 }
 
@@ -239,24 +248,36 @@ void Game::attack(Entity& entity) {
         std::unique_ptr<Attack> attackPtr = nullptr;
 
         if (entity.getType() == PLAYER) {
-            attackPtr = std::make_unique<Attack>(dynamic_cast<Player&>(entity).attack());
-        } else if (entity.getType() == ZOMBIE) {
-            attackPtr = std::make_unique<Attack>(dynamic_cast<Zombie&>(entity).attack());
-        }
+            Player* player = dynamic_cast<Player*>(&entity);
 
-        if (attackPtr) {
-            std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.beingAttack(*attackPtr, entities);
+            if (player->getWeaponState() == SHOOTING) {
+                attackPtr = std::make_unique<Attack>(player->attack());
 
-            switch (attackPtr->getType()) {
-                case PIERCING_BULLET:
-                    // code
-                    break;
+                if (attackPtr) {
+                    std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.shoot(*attackPtr, entities);
 
-                default:
-                    if (!damagedEntities.empty()) {
-                        damagedEntities.front()->takeDamage(attackPtr->getDamage());
+                    switch (attackPtr->getType()) {
+                        case PIERCING_BULLET:
+                            // if (!damagedEntities.empty()) {
+                            // Here we should damage X amount of entities
+                            // }
+                            break;
+
+                        default:
+                            if (!damagedEntities.empty()) {
+                                damagedEntities.front()->takeDamage(attackPtr->getDamage());
+                            }
+                            break;
                     }
-                    break;
+                }
+            }
+        } else if (entity.getType() == ZOMBIE) {
+            Zombie* zombie = dynamic_cast<Zombie*>(&entity);
+            attackPtr = std::make_unique<Attack>(zombie->attack());
+            int attackRange = zombie->getAttackRange();
+            std::shared_ptr<Player>& playerInRange = collisionDetector.getPlayersInRange(attackRange, *attackPtr, players);
+            if (playerInRange) {
+                playerInRange->takeDamage(attackPtr->getDamage());
             }
         }
     }

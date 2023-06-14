@@ -8,6 +8,7 @@ enum AttackDirection {
     RIGHT
 };
 
+// TODO: change long and short venom for spray and proyectile
 enum AttackType {
     BULLET,
     PIERCING_BULLET,

@@ -4,8 +4,10 @@
 
 #include "game_config.h"
 
+#define TYPES_OF_ZOMBIE 5
+
 // TODO set the spawnInterval with config yaml
-ZombieSpawner::ZombieSpawner() : spawnInterval(100), frameCounter(0) {
+ZombieSpawner::ZombieSpawner() : spawnInterval(5), totalZombies(0) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
 
@@ -25,16 +27,24 @@ ZombieSpawner::ZombieSpawner() : spawnInterval(100), frameCounter(0) {
     spawnPoints.push_back(spawnPoint4);
 }
 
-void ZombieSpawner::update() {
-    frameCounter++;
-    if (frameCounter >= spawnInterval) {
-        frameCounter = 0;
-        spawn();
+std::shared_ptr<Entity> ZombieSpawner::spawn() {
+    spawnInterval -= 1;
+    if (spawnInterval > 0) {
+        return nullptr;
     }
-}
 
-void ZombieSpawner::spawn() {
-    // int spawnPointToSpawn = rand() % spawnPoints.size();
+    int spawnPointToSpawn = rand() % spawnPoints.size();
 
-    // TODO use prototype pattern
+    int spawnX = spawnPoints[spawnPointToSpawn].x;
+    int spawnY = spawnPoints[spawnPointToSpawn].y;
+
+    totalZombies += 1;
+    std::string zombieId = "zombie" + std::to_string(totalZombies);
+
+    int zombieType = rand() % TYPES_OF_ZOMBIE;
+
+    std::shared_ptr<Zombie> zombiePtr = std::make_shared<Zombie>(spawnX, spawnY, zombieId, static_cast<ZombieType>(zombieType));
+    spawnInterval = 5;
+
+    return std::static_pointer_cast<Entity>(zombiePtr);
 }
