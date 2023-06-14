@@ -74,6 +74,13 @@ void Game::pushAction(Action action) {
 
 void Game::run() {
     // Start the game when the thread starts running
+    std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage();
+    for (auto playerQueue : playerQueues) {
+        if (playerQueue != nullptr) {
+            playerQueue->try_push(joinMessage);
+        }
+    }
+
     startGame();
 }
 
@@ -165,7 +172,7 @@ void Game::updateState() {
     // Decrementamos DYINGCOUNTER de cada entidad que este en DYING y si este llega a 0 borralo
 
     for (auto& entity : entities) {
-        if (entity->getHealthState == HURT)
+        if (entity->getHealthState() == HURT)
             entity->setHealthState(ALIVE);
 
         Player* player = dynamic_cast<Player*>(entity.get());

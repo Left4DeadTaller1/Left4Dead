@@ -203,3 +203,12 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const 
 
     return encodedMsg;
 }
+
+std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage() {
+    // Yeah i know this method seems pointless i just need a msg to send to the clients to tell them the game started
+    std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
+
+    encodedMsg->push_back(3);
+
+    return encodedMsg;
+}
