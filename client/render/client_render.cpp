@@ -145,7 +145,7 @@ int ClientRenderer::looprender(void){
 
         std::shared_ptr<gameStateDTO_t> gameStateDTO = qServerToRender.pop();
 
-        for (auto &currentPlayer : gameStateDTO->players) {
+        /*for (auto &currentPlayer : gameStateDTO->players) {
             std::cout << "PLAYER\n";
             std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
             if (iter != previousGameStateDTO->players.end()) {
@@ -158,7 +158,7 @@ int ClientRenderer::looprender(void){
             } else {
                 std::cout << "no encontro al player\n";
             }
-        }
+        }*/
         /*for (auto &currentPlayer : gameStateDTO->infected) {
             std::cout << "ZOMBI\n";
             std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentPlayer.first);

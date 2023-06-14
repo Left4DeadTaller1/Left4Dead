@@ -92,7 +92,7 @@ void ClientReceiver::handleJoinAction(const int code) {
 }
 
 void ClientReceiver::handleStartShoot() {
-    std::cout << "entra handleStartShoot en receiver\n";
+    //std::cout << "entra handleStartShoot en receiver\n";
     Action action(playerId, 3, 3, 3, 0);
     game->pushAction(action);
 }
