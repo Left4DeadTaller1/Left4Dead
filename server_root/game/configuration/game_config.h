@@ -15,12 +15,14 @@ class GameConfig {
     std::map<std::string, int> getGameDimensions() const;
     std::map<std::string, int> getEntitiesParams() const;
     std::map<std::string, int> getWeaponsParams() const;
+    std::map<std::string, int> getSpawnsParams() const;
 
    private:
     std::vector<std::string> mapFiles;
     std::map<std::string, int> gameDimensions;
     std::map<std::string, int> entitiesParams;
     std::map<std::string, int> weaponsParams;
+    std::map<std::string, int> spawnsParams;
 
     GameConfig();
     GameConfig(const GameConfig&) = delete;

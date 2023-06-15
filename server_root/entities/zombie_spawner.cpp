@@ -7,9 +7,12 @@
 #define TYPES_OF_ZOMBIE 5
 
 // TODO set the spawnInterval with config yaml
-ZombieSpawner::ZombieSpawner() : spawnInterval(500), totalZombies(0) {
+ZombieSpawner::ZombieSpawner() : totalZombies(0) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
+    std::map<std::string, int> spawnSettings = config.getSpawnsParams();
+
+    spawnInterval = spawnSettings["SPAWN_INTERVAL"];
 
     int gameWidth = gameDimensions["GAME_WIDTH"];
     int gameHeight = gameDimensions["GAME_HEIGHT"];
@@ -28,6 +31,8 @@ ZombieSpawner::ZombieSpawner() : spawnInterval(500), totalZombies(0) {
 }
 
 std::shared_ptr<Entity> ZombieSpawner::spawn() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> spawnSettings = config.getSpawnsParams();
     spawnInterval -= 1;
     if (spawnInterval > 0) {
         return nullptr;
@@ -44,7 +49,7 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
     int zombieType = rand() % TYPES_OF_ZOMBIE;
 
     std::shared_ptr<Zombie> zombiePtr = std::make_shared<Zombie>(spawnX, spawnY, zombieId, static_cast<ZombieType>(zombieType));
-    spawnInterval = 5;
+    spawnInterval = spawnSettings["SPAWN_INTERVAL"];
 
     return std::static_pointer_cast<Entity>(zombiePtr);
 }
