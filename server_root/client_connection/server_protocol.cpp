@@ -71,10 +71,10 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
     std::cout << "estado mov entidad: " << (int)(entities[0]->movementDirectionX) << "\n";
     std::cout << "x: " << (int)(entities[0]->x) << "\n";
     std::cout << "y: " << (int)(entities[0]->y) << "\n";*/
-    
+
     auto encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
-    uint8_t encodedMessageType = 9;  // dummy value for example
+    uint8_t encodedMessageType = 1;
     // Adding the message type (1 byte)
     encodedMsg->push_back(encodedMessageType);
 
@@ -147,7 +147,6 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
 
     return encodedMsg;
 }
-
 
 std::string ServerProtocol::extractId(const std::string &str) {
     std::string result;
