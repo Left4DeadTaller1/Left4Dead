@@ -20,16 +20,18 @@ void EventManagerThread::run() {
 
         while (true) {
             SDL_Event event;
-            while (SDL_PollEvent(&event)) {
+            while (SDL_WaitEvent(&event)) {
                 std::shared_ptr<ActionClient> action;
 
                 if (event.type == SDL_QUIT) {
+                    // Falta hacer un push del evento Exit
                     return;
                 } else if (event.type == SDL_KEYDOWN) {
                     switch (event.key.keysym.sym) {
                         case SDLK_ESCAPE:
                         case SDLK_q:
                             action = std::make_shared<Exit>();
+                            // Falta hacer un push
                             return;
                         case SDLK_LSHIFT:
                             shiftPressed = true;

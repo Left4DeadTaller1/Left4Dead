@@ -25,6 +25,11 @@ file(GLOB_RECURSE COMMON_SRC CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/dipa_classes
 file(GLOB_RECURSE CLIENT_SRC CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/client/*")
 file(GLOB_RECURSE SERVER_SRC CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/server_root/*")
 
+
+# TODO: play with this macro in order to set it as a local path if in development
+#       or the installation path if in production
+add_compile_definitions(SERVER_CONFIG_FILE_PATH="${CMAKE_SOURCE_DIR}/")
+
 # Create a library for the server source files
 add_library(server_lib STATIC ${SERVER_SRC} ${COMMON_SRC})
 

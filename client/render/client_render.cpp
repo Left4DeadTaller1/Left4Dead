@@ -102,6 +102,7 @@ void ClientRenderer::drawPlayer(player_t& previousPlayer,
 
 void drawInfected(infected_t& previousInfected, 
             infected_t& currentInfected){
+                // Esto no hace nada?
                 return;
             }
 
@@ -143,7 +144,10 @@ int ClientRenderer::looprender(void){
 
     while(true){
 
+        // Esto no debe ser bloqueante
         std::shared_ptr<gameStateDTO_t> gameStateDTO = qServerToRender.pop();
+        // Falta un pop no bloqueante de los eventos a renderizar (que puede llegar un exit)
+
         renderer.Clear();
 
         drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);

@@ -4,9 +4,7 @@
 
 GameConfig::GameConfig() {
     try {
-        std::string filename = "/home/usaurio/Left4Dead/server_root/game/configuration/configuration.yaml";
-
-        YAML::Node config = YAML::LoadFile(filename);
+        YAML::Node config = YAML::LoadFile(SERVER_CONFIG_FILE_PATH "server_root/game/configuration/configuration.yaml");
 
         if (config["mapFiles"]) {
             mapFiles = config["mapFiles"].as<std::vector<std::string>>();
