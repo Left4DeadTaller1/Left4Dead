@@ -124,12 +124,10 @@ void Game::spawnPlayer(std::string playerId) {
 
 void Game::removePlayer(std::string playerId) {
     // erase-remove idiom
-    entities.erase(std::remove_if(entities.begin(), entities.end(),
-                                  [playerId](const auto& entity) {
-                                      Player* player = dynamic_cast<Player*>(entity.get());
-                                      return player != nullptr && player->getId() == playerId;
-                                  }),
-                   entities.end());
+    entities.remove_if([playerId](const auto& entity) {
+        Player* player = dynamic_cast<Player*>(entity.get());
+        return player != nullptr && player->getId() == playerId;
+    });
 }
 
 void Game::startGame() {

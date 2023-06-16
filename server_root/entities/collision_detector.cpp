@@ -30,7 +30,7 @@ bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& 
     return false;
 }
 
-bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities) {
+bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
     int gameWidth = gameDimensions["GAME_WIDTH"];
@@ -51,7 +51,7 @@ bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int delta
     return false;
 }
 
-std::list<std::shared_ptr<Entity>> CollisionDetector::shoot(Attack& attack, std::vector<std::shared_ptr<Entity>>& entities) {
+std::list<std::shared_ptr<Entity>> CollisionDetector::shoot(Attack& attack, std::list<std::shared_ptr<Entity>>& entities) {
     std::list<std::shared_ptr<Entity>> entitiesBeingATK;
 
     for (const auto& entity : entities) {

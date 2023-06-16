@@ -21,13 +21,16 @@ TEST(CollisionDetectorTest, CheckForCollisions) {
     Player e2(15, 25, "e2", SMG);  // Overlapping with e1
     Player e3(50, 60, "e3", SMG);  // Not overlapping with e1
 
-    std::vector<std::shared_ptr<Entity>> entities = {std::make_shared<Player>(e1),
-                                                     std::make_shared<Player>(e2),
-                                                     std::make_shared<Player>(e3)};
+    std::list<std::shared_ptr<Entity>> entities = {std::make_shared<Player>(e1),
+                                                   std::make_shared<Player>(e2),
+                                                   std::make_shared<Player>(e3)};
+    std::list<std::shared_ptr<Entity>> entitiesCopy = entities;
 
-    bool collision1 = detector.checkForCollisions(*entities[0], 0, 0, entities);
-    bool collision2 = detector.checkForCollisions(*entities[1], 0, 0, entities);
-    bool collision3 = detector.checkForCollisions(*entities[2], 0, 0, entities);
+    bool collision1 = detector.checkForCollisions(*entities.front(), 0, 0, entitiesCopy);
+    entities.pop_front();
+    bool collision2 = detector.checkForCollisions(*entities.front(), 0, 0, entitiesCopy);
+    entities.pop_front();
+    bool collision3 = detector.checkForCollisions(*entities.front(), 0, 0, entitiesCopy);
 
     EXPECT_TRUE(collision1);
     EXPECT_TRUE(collision2);
@@ -42,7 +45,7 @@ TEST(CollisionDetectorTest, GetBeingShotRight) {
     auto e1 = std::make_shared<Infected>(30, 25, "e1");  // On the right path of the bullet
     auto e2 = std::make_shared<Infected>(10, 25, "e2");  // On the left path of the bullet
 
-    std::vector<std::shared_ptr<Entity>> entities = {e1, e2};
+    std::list<std::shared_ptr<Entity>> entities = {e1, e2};
 
     auto entitiesBeingShot = detector.shoot(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(1));
@@ -56,9 +59,7 @@ TEST(CollisionDetectorTest, GetBeingShotLeft) {
     auto e1 = std::make_shared<Infected>(30, 25, "e1");  // On the right path of the bullet
     auto e2 = std::make_shared<Infected>(10, 25, "e2");  // On the left path of the bullet
 
-    std::vector<std::shared_ptr<Entity>> entities;
-    entities.push_back(e1);
-    entities.push_back(e2);
+    std::list<std::shared_ptr<Entity>> entities = {e1, e2};
 
     auto entitiesBeingShot = detector.shoot(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(1));
@@ -71,7 +72,7 @@ TEST(CollisionDetectorTest, GetBeingShotNoHit) {
 
     auto e1 = std::make_shared<Infected>(50, 60, "e1");  // Not in the path of the bullet
 
-    std::vector<std::shared_ptr<Entity>> entities = {e1};
+    std::list<std::shared_ptr<Entity>> entities = {e1};
 
     auto entitiesBeingShot = detector.shoot(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(0));  // No entities should be hit
@@ -140,7 +141,7 @@ TEST(CollisionDetectorTest, CheckForBoundaryCollisions) {
 
     Player e1(10, 20, "e1", SMG);
 
-    std::vector<std::shared_ptr<Entity>> entities;  // No other entities
+    std::list<std::shared_ptr<Entity>> entities;  // No other entities
 
     // Check that initially there is no collision
     EXPECT_FALSE(detector.checkForCollisions(e1, 0, 0, entities));

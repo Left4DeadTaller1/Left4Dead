@@ -1,6 +1,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#include <list>
 #include <queue>
 #include <unordered_map>
 
@@ -57,7 +58,7 @@ class Game : public Thread {
         playersActions;
     std::vector<std::shared_ptr<Player>> players;
     // std::vector<std::shared_ptr<Zombie>> zombies;
-    std::vector<std::shared_ptr<Entity>> entities;
+    std::list<std::shared_ptr<Entity>> entities;
     ServerProtocol protocol;
     ZombieSpawner zombieSpawner;
 

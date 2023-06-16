@@ -33,10 +33,10 @@ class CollisionDetector {
     ~CollisionDetector();
 
     bool isColliding(Entity& e1, int deltaX, int deltaY, Entity& e2);
-    bool checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities);
+    bool checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities);
 
     // Player's attacks
-    std::list<std::shared_ptr<Entity>> shoot(Attack& attack, std::vector<std::shared_ptr<Entity>>& entities);
+    std::list<std::shared_ptr<Entity>> shoot(Attack& attack, std::list<std::shared_ptr<Entity>>& entities);
 
     // Zombie's attacks
     // TODO:change the MovementDirectionX to a FACING DIRECTION
