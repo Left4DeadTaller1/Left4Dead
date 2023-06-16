@@ -15,12 +15,24 @@ server_root
 │   ├── collision_detector.h
 │   ├── entity.cpp
 │   ├── entity.h
+│   ├── infected.cpp
+│   ├── infected.h
+│   ├── jumper.cpp
+│   ├── jumper.h
 │   ├── player.cpp
 │   ├── player.h
+│   ├── spear.cpp
+│   ├── spear.h
+│   ├── venom.cpp
+│   ├── venom.h
 │   ├── weapon.cpp
 │   ├── weapon.h
+│   ├── witch.cpp
+│   ├── witch.h
 │   ├── zombie.cpp
-│   └── zombie.h
+│   ├── zombie.h
+│   ├── zombie_spawner.cpp
+│   └── zombie_spawner.h
 ├── game
 │   ├── action.cpp
 │   ├── action.h
@@ -40,17 +52,6 @@ server_root
     ├── server.h
     └── server_main.cpp
 dipa_classes
-├── action_client.h
-├── action_create.cpp
-├── action_create.h
-├── action_end_move.cpp
-├── action_end_move.h
-├── action_join.cpp
-├── action_join.h
-├── action_start_game.cpp
-├── action_start_game.h
-├── action_start_move.cpp
-├── action_start_move.h
 ├── common_liberror.cpp
 ├── common_socket.cpp
 ├── liberror.h
@@ -62,42 +63,69 @@ dipa_classes
 ├── socket.h
 └── thread.h
 client
+├── actions
+│   ├── action_client.h
+│   ├── action_create.cpp
+│   ├── action_create.h
+│   ├── action_end_move.cpp
+│   ├── action_end_move.h
+│   ├── action_end_shoot.cpp
+│   ├── action_end_shoot.h
+│   ├── action_exit_game.cpp
+│   ├── action_exit_game.h
+│   ├── action_join.cpp
+│   ├── action_join.h
+│   ├── action_recharge.cpp
+│   ├── action_recharge.h
+│   ├── action_start_game.cpp
+│   ├── action_start_game.h
+│   ├── action_start_move.cpp
+│   ├── action_start_move.h
+│   ├── action_start_shoot.cpp
+│   └── action_start_shoot.h
 ├── client.cpp
 ├── client.h
+├── client_connection
+│   ├── client_protocol.cpp
+│   ├── client_protocol.h
+│   ├── client_receiver.cpp
+│   ├── client_receiver.h
+│   ├── client_sender.cpp
+│   └── client_sender.h
 ├── client_event_manager.h
-├── client_game_state.cpp
-├── client_game_state.h
 ├── client_main.cpp
-├── client_protocol.cpp
-├── client_protocol.h
-├── client_receiver.cpp
-├── client_receiver.h
-├── client_render.cpp
-├── client_render.h
-├── client_sender.cpp
-├── client_sender.h
-└── resources
-    ├── Jumper
-    ├── Soldier_1
-    ├── Soldier_2
-    ├── Soldier_3
-    ├── Spear
-    ├── Venom
-    ├── Witch
-    ├── Zombie
-    └── backgrounds
-        ├── War1
-        │   ├── Bright
-        │   └── Pale
-        ├── War2
-        │   ├── Bright
-        │   └── Pale
-        ├── War3
-        │   ├── Bright
-        │   └── Pale
-        └── War4
-            ├── Bright
-            └── Pale
+└── render
+    ├── client_game_state.cpp
+    ├── client_game_state.h
+    ├── client_render.cpp
+    ├── client_render.h
+    ├── client_texture.cpp
+    ├── client_texture.h
+    ├── client_texture_manager.cpp
+    ├── client_texture_manager.h
+    └── resources
+        ├── Jumper
+        ├── Soldier_1
+        ├── Soldier_2
+        ├── Soldier_3
+        ├── Spear
+        ├── Venom
+        ├── Witch
+        ├── Zombie
+        ├── backgrounds
+        │   ├── War1
+        │   │   ├── Bright
+        │   │   └── Pale
+        │   ├── War2
+        │   │   ├── Bright
+        │   │   └── Pale
+        │   ├── War3
+        │   │   ├── Bright
+        │   │   └── Pale
+        │   └── War4
+        │       ├── Bright
+        │       └── Pale
+        └── vida
 tests
 └── server_tests
     ├── collisions_tests.cpp
@@ -106,7 +134,7 @@ tests
     ├── game_tests.cpp
     ├── games_manager_tests.cpp
     ├── main_tests.cpp
-    └── server_protocol_tests.cpp
+    ├── server_protocol_tests.cpp
+    └── zombie_spawner_tests.cpp
 
-
-1 directory, 6 files
+1 directory, 8 files

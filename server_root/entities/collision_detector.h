@@ -19,7 +19,12 @@
 
 #include "attack.h"
 #include "entity.h"
+#include "infected.h"
+#include "jumper.h"
 #include "player.h"
+#include "spear.h"
+#include "venom.h"
+#include "witch.h"
 #include "zombie.h"
 
 class CollisionDetector {

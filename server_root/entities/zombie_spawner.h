@@ -1,6 +1,11 @@
 
 #include <vector>
 
+#include "infected.h"
+#include "jumper.h"
+#include "spear.h"
+#include "venom.h"
+#include "witch.h"
 #include "zombie.h"
 
 struct SpawnPoint {

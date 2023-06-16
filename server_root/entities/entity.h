@@ -29,8 +29,8 @@ enum MovementDirectionY {
 enum HealthState {
     ALIVE,
     HURT,
+    DYING,
     DEAD,
-    // TODO: add dying here
 };
 
 enum EntityType {
@@ -53,6 +53,7 @@ struct EntityDTO {
     int movementDirectionX;
     FacingDirection facingDirection;
     int healthState;
+    int actionCounter;
 
     virtual ~EntityDTO() = default;
 };
@@ -71,8 +72,9 @@ class Entity {
     FacingDirection facingDirection;
     HealthState healthState;
     int movementSpeed;
-    // TODO: think this better
+    // TODO: remove this
     int framesHurt;
+    int actionCounter;
 
     friend class CollisionDetector;
 

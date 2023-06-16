@@ -39,8 +39,8 @@ TEST(CollisionDetectorTest, GetBeingShotRight) {
     CollisionDetector detector;
     Attack bullet(BULLET, 10, 20, RIGHT, 10, 30);  // Bullet shooting to the right
 
-    auto e1 = std::make_shared<Zombie>(30, 25, "e1", INFECTED);  // On the right path of the bullet
-    auto e2 = std::make_shared<Zombie>(10, 25, "e2", INFECTED);  // On the left path of the bullet
+    auto e1 = std::make_shared<Infected>(30, 25, "e1");  // On the right path of the bullet
+    auto e2 = std::make_shared<Infected>(10, 25, "e2");  // On the left path of the bullet
 
     std::vector<std::shared_ptr<Entity>> entities = {e1, e2};
 
@@ -53,10 +53,12 @@ TEST(CollisionDetectorTest, GetBeingShotLeft) {
     CollisionDetector detector;
     Attack bullet(BULLET, 10, 20, LEFT, 10, 30);  // Bullet shooting to the left
 
-    auto e1 = std::make_shared<Zombie>(30, 25, "e1", INFECTED);  // On the right path of the bullet
-    auto e2 = std::make_shared<Zombie>(10, 25, "e2", INFECTED);  // On the left path of the bullet
+    auto e1 = std::make_shared<Infected>(30, 25, "e1");  // On the right path of the bullet
+    auto e2 = std::make_shared<Infected>(10, 25, "e2");  // On the left path of the bullet
 
-    std::vector<std::shared_ptr<Entity>> entities = {e1, e2};
+    std::vector<std::shared_ptr<Entity>> entities;
+    entities.push_back(e1);
+    entities.push_back(e2);
 
     auto entitiesBeingShot = detector.shoot(bullet, entities);
     EXPECT_EQ(entitiesBeingShot.size(), static_cast<std::size_t>(1));
@@ -67,7 +69,7 @@ TEST(CollisionDetectorTest, GetBeingShotNoHit) {
     CollisionDetector detector;
     Attack bullet(BULLET, 10, 20, RIGHT, 20, 30);  // Bullet shooting to the right
 
-    auto e1 = std::make_shared<Zombie>(50, 60, "e1", INFECTED);  // Not in the path of the bullet
+    auto e1 = std::make_shared<Infected>(50, 60, "e1");  // Not in the path of the bullet
 
     std::vector<std::shared_ptr<Entity>> entities = {e1};
 

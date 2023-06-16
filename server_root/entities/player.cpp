@@ -3,7 +3,7 @@
 #include "game_config.h"
 
 Player::Player(int xPosition, int yPosition, std::string playerId, WeaponType weaponType)
-    : Entity(xPosition, yPosition, playerId), weaponState(WEAPON_IDLE), weapon(weaponType) {
+    : Entity(xPosition, yPosition, playerId), weaponState(WEAPON_IDLE), weapon(weaponType), actionState(IDLE_STATE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 

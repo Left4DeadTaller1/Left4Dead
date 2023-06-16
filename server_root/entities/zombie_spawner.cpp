@@ -48,7 +48,26 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
 
     int zombieType = rand() % TYPES_OF_ZOMBIE;
 
-    std::shared_ptr<Zombie> zombiePtr = std::make_shared<Zombie>(spawnX, spawnY, zombieId, static_cast<ZombieType>(zombieType));
+    std::shared_ptr<Zombie> zombiePtr;
+
+    switch (zombieType) {
+        case 1:
+            zombiePtr = std::make_shared<Infected>(spawnX, spawnY, zombieId);
+            break;
+        case 2:
+            zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId);
+            break;
+        case 3:
+            zombiePtr = std::make_shared<Witch>(spawnX, spawnY, zombieId);
+            break;
+        case 4:
+            zombiePtr = std::make_shared<Spear>(spawnX, spawnY, zombieId);
+            break;
+        case 5:
+            zombiePtr = std::make_shared<Venom>(spawnX, spawnY, zombieId);
+            break;
+    }
+
     spawnInterval = spawnSettings["SPAWN_INTERVAL"];
 
     return std::static_pointer_cast<Entity>(zombiePtr);

@@ -21,12 +21,10 @@ Game::Game()
 }
 
 std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
-    std::cout << "ENTRA A ADD PLAYER\n";
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
     std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
-    std::cout << "se crea con id: " << playerId << "\n";
     spawnPlayer(playerId);
     playerQueues[nextPlayerIndex] = &gameResponses;
 
@@ -254,39 +252,34 @@ void Game::move(Entity& entity) {
 
 void Game::attack(Entity& entity) {
     if (entity.canAttack()) {
-        std::unique_ptr<Attack> attackPtr = nullptr;
-
         if (entity.getType() == PLAYER) {
             Player* player = dynamic_cast<Player*>(&entity);
 
             if (player->getWeaponState() == SHOOTING) {
-                attackPtr = std::make_unique<Attack>(player->attack());
+                auto attack = player->attack();
+                std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.shoot(attack, entities);
 
-                if (attackPtr) {
-                    std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.shoot(*attackPtr, entities);
+                switch (attack.getType()) {
+                    case PIERCING_BULLET:
+                        // if (!damagedEntities.empty()) {
+                        // Here we should damage X amount of entities
+                        // }
+                        break;
 
-                    switch (attackPtr->getType()) {
-                        case PIERCING_BULLET:
-                            // if (!damagedEntities.empty()) {
-                            // Here we should damage X amount of entities
-                            // }
-                            break;
-
-                        default:
-                            if (!damagedEntities.empty()) {
-                                damagedEntities.front()->takeDamage(attackPtr->getDamage());
-                            }
-                            break;
-                    }
+                    default:
+                        if (!damagedEntities.empty()) {
+                            damagedEntities.front()->takeDamage(attack.getDamage());
+                        }
+                        break;
                 }
             }
         } else if (entity.getType() == ZOMBIE) {
             Zombie* zombie = dynamic_cast<Zombie*>(&entity);
-            attackPtr = std::make_unique<Attack>(zombie->attack());
+            auto attack = zombie->attack();
             int attackRange = zombie->getAttackRange();
-            std::shared_ptr<Player>& playerInRange = collisionDetector.getPlayersInRange(attackRange, *attackPtr, players);
+            std::shared_ptr<Player>& playerInRange = collisionDetector.getPlayersInRange(attackRange, attack, players);
             if (playerInRange) {
-                playerInRange->takeDamage(attackPtr->getDamage());
+                playerInRange->takeDamage(attack.getDamage());
             }
         }
     }
@@ -310,15 +303,8 @@ void Game::sendState() {
 std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {
     std::vector<std::shared_ptr<EntityDTO>> dtos;
     for (auto& entity : entities) {
-        if (entity->getType() == PLAYER) {
-            Player* player = dynamic_cast<Player*>(entity.get());
-            auto dto = player->getDto();
-            dtos.push_back(dto);
-        } else {
-            Zombie* zombie = dynamic_cast<Zombie*>(entity.get());
-            auto dto = zombie->getDto();
-            dtos.push_back(dto);
-        }
+        auto dto = entity->getDto();
+        dtos.push_back(dto);
     }
     return dtos;
 }

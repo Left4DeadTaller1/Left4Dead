@@ -16,7 +16,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     uint8_t playerHealth = static_cast<uint8_t>(entityParams["PLAYER_HEALTH"] - 20);
 
     // Create mock Zombie
-    std::shared_ptr<Zombie> zombie = std::make_shared<Zombie>(15, 20, "Zombie1", INFECTED);
+    std::shared_ptr<Infected> zombie = std::make_shared<Infected>(15, 20, "Zombie1");
     uint8_t zombieHealth = static_cast<uint8_t>(entityParams["INFECTED_HEALTH"]);
 
     // Add entities to a vector

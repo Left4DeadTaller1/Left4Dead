@@ -11,9 +11,14 @@
 
 #include "action.h"
 #include "entity.h"
+#include "infected.h"
+#include "jumper.h"
 #include "player.h"
 #include "server_message.h"
 #include "socket.h"
+#include "spear.h"
+#include "venom.h"
+#include "witch.h"
 #include "zombie.h"
 
 typedef enum {

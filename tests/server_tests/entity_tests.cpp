@@ -2,8 +2,13 @@
 
 #include "entity.h"
 #include "game_config.h"
+#include "infected.h"
+#include "jumper.h"
 #include "player.h"
+#include "spear.h"
+#include "venom.h"
 #include "weapon.h"
+#include "witch.h"
 #include "zombie.h"
 
 // Entity Test Cases
@@ -12,7 +17,7 @@ TEST(EntityTest, TestTakingDamage) {
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     Player player(5, 10, "Player1", SMG);
-    Zombie zombie(15, 20, "Zombie1", INFECTED);
+    Infected zombie(15, 20, "Zombie1");
     zombie.takeDamage(20);
     player.takeDamage(20);
     EXPECT_EQ(player.getHealth(), entityParams["PLAYER_HEALTH"] - 20);
@@ -52,23 +57,22 @@ TEST(PlayerTest, TestPlayerMovement) {
 
 // Zombie Test Cases
 TEST(ZombieTest, TestZombieInitialization) {
-    Zombie zombie(15, 20, "Zombie1", INFECTED);
+    Infected zombie(15, 20, "Zombie1");
     EXPECT_EQ(zombie.getId(), "Zombie1");
     EXPECT_EQ(zombie.getX(), 15);
     EXPECT_EQ(zombie.getY(), 20);
     EXPECT_EQ(zombie.getHealth(), 100);
     EXPECT_EQ(zombie.getMovementState(), ENTITY_IDLE);
-    EXPECT_EQ(zombie.getZombieType(), INFECTED);
 }
 
 TEST(ZombieTest, TestZombieTakeDamage) {
-    Zombie zombie(15, 20, "Zombie1", INFECTED);
+    Infected zombie(15, 20, "Zombie1");
     zombie.takeDamage(40);
     EXPECT_EQ(zombie.getHealth(), 60);
 }
 
 TEST(ZombieTest, TestZombieDecideTarget) {
-    Zombie zombie(10, 10, "Zombie1", INFECTED);
+    Infected zombie(10, 10, "Zombie1");
 
     auto player1 = std::make_shared<Player>(5, 5, "Player1", SMG);
     auto player2 = std::make_shared<Player>(20, 20, "Player2", SMG);

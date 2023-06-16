@@ -13,15 +13,24 @@ enum WeaponState {
     WEAPON_IDLE
 };
 
+enum PlayerActionState {
+    SHOOTING_STATE,
+    RELOADING_STATE,
+    ATTACKING_STATE,
+    IDLE_STATE,
+};
+
 struct PlayerDTO : EntityDTO {
     WeaponState weaponState;
     int bullets;
+    PlayerActionState actionState;
 };
 
 class Player : public Entity {
    private:
     WeaponState weaponState;
     Weapon weapon;
+    PlayerActionState actionState;
 
    public:
     Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon);

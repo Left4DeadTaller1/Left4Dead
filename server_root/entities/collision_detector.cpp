@@ -2,10 +2,10 @@
 
 #include "game_config.h"
 
-#define MELEE_RANGE 10
-#define SPEAR_RANGE 15
-#define SHORT_VENOM_RANGE 15
-#define LONG_VENOM_RANGE 30
+// #define MELEE_RANGE 10
+// #define SPEAR_RANGE 15
+// #define SHORT_VENOM_RANGE 15
+// #define LONG_VENOM_RANGE 30
 
 CollisionDetector::CollisionDetector() {}
 
