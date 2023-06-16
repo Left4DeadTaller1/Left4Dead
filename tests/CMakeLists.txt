@@ -19,6 +19,7 @@ target_include_directories(server_tests
    ${CMAKE_SOURCE_DIR}/dipa_classes
    ${CMAKE_SOURCE_DIR}/server_root/client_connection
    ${CMAKE_SOURCE_DIR}/server_root/entities
+   ${CMAKE_SOURCE_DIR}/server_root/entities/zombies
    ${CMAKE_SOURCE_DIR}/server_root/game/configuration
    ${CMAKE_SOURCE_DIR}/server_root/game
    ${CMAKE_SOURCE_DIR}/server_root/server

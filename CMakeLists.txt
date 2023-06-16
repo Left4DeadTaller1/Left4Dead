@@ -52,6 +52,7 @@ target_include_directories(server_lib
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/server_root/server
     ${CMAKE_SOURCE_DIR}/server_root/entities
+    ${CMAKE_SOURCE_DIR}/server_root/entities/zombies
     ${CMAKE_SOURCE_DIR}/server_root/client_connection
     ${CMAKE_SOURCE_DIR}/server_root/game
     ${CMAKE_SOURCE_DIR}/server_root/game/configuration
@@ -62,6 +63,7 @@ target_include_directories(server
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/server_root/server
     ${CMAKE_SOURCE_DIR}/server_root/entities
+    ${CMAKE_SOURCE_DIR}/server_root/entities/zombies
     ${CMAKE_SOURCE_DIR}/server_root/client_connection
     ${CMAKE_SOURCE_DIR}/server_root/game
     ${CMAKE_SOURCE_DIR}/server_root/game/configuration
