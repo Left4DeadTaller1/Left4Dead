@@ -54,6 +54,7 @@ Attack Infected::attack() {
     }
     attacksCooldowns["melee"] = entityParams["INFECTED_ATTACK_COOLDOWN"];
     atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"];
+    actionState = INFECTED_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }
 
@@ -77,6 +78,19 @@ void Infected::startMoving() {
 
 bool Infected::isMoving() {
     return actionState == INFECTED_MOVING;
+}
+
+void Infected::checkIfDead() {
+    if (actionState == INFECTED_DYING && actionCounter == 0) {
+        kill();
+    }
+}
+
+void Infected::kill() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    actionState = INFECTED_DEAD;
+    actionCounter = entityParams["INFECTED_DEATH_DURATION"];
 }
 
 Infected::~Infected() {}

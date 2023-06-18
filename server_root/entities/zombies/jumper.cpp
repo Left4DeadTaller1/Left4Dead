@@ -55,6 +55,7 @@ Attack Jumper::attack() {
     }
     attacksCooldowns["melee"] = entityParams["JUMPER_ATTACK_COOLDOWN"];
     atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"];
+    actionState = JUMPER_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }
 
@@ -73,11 +74,24 @@ void Jumper::takeDamage(int damage) {
     if (health <= 0) {
         health = 0;
         actionState = JUMPER_DYING;
-        actionCounter = entityParams["JUMPER_DEATH_DURATION"];
+        actionCounter = entityParams["JUMPER_DYING_DURATION"];
     } else {
         actionState = JUMPER_HURT;
         actionCounter = entityParams["JUMPER_HURT_DURATION"];
     }
+}
+
+void Jumper::checkIfDead() {
+    if (actionState == JUMPER_DYING && actionCounter == 0) {
+        kill();
+    }
+}
+
+void Jumper::kill() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    actionState = JUMPER_DEAD;
+    actionCounter = entityParams["JUMPER_DEATH_DURATION"];
 }
 
 Jumper::~Jumper() {}

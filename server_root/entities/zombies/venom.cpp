@@ -58,10 +58,12 @@ Attack Venom::attack() {
     if (attacksCooldowns["proyectile"] == 0) {
         attacksCooldowns["proyectile"] = entityParams["VENOM_PROYECTILE_COOLDOWN"];
         atkDmg = entityParams["VENOM_PROYECTILE_DAMAGE"];
+        actionState = VENOM_SHOOTING;
         return Attack(LONG_VENOM, atkDmg, attackX, attackDirection, y, y + height);
     } else {
         attacksCooldowns["spray"] = entityParams["VENOM_SPRAY_COOLDOWN"];
         atkDmg = entityParams["VENOM_SPRAY_DAMAGE"];
+        actionState = VENOM_ATTACKING;
         return Attack(SHORT_VENOM, atkDmg, attackX, attackDirection, y, y + height);
     }
 }
@@ -86,6 +88,19 @@ void Venom::takeDamage(int damage) {
         actionState = VENOM_HURT;
         actionCounter = entityParams["VENOM_HURT_DURATION"];
     }
+}
+
+void Venom::checkIfDead() {
+    if (actionState == VENOM_DYING && actionCounter == 0) {
+        actionState = VENOM_DEAD;
+    }
+}
+
+void Venom::kill() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    actionState = VENOM_DEAD;
+    actionCounter = entityParams["VENOM_DEATH_DURATION"];
 }
 
 Venom::~Venom() {}

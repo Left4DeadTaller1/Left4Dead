@@ -66,7 +66,7 @@ void Player::takeDamage(int damage) {
     if (health <= 0) {
         health = 0;
         actionState = PLAYER_DYING;
-        actionCounter = entityParams["PLAYER_DEATH_DURATION"];
+        actionCounter = entityParams["PLAYER_DYING_DURATION"];
     } else {
         actionState = PLAYER_HURT;
         actionCounter = entityParams["PLAYER_HURT_DURATION"];
@@ -138,6 +138,19 @@ Attack Player::attack() {
     }
 
     return weapon.shoot(x, attackDirection, y, y + height);
+}
+
+void Player::checkIfDead() {
+    if (actionState == PLAYER_DYING && actionCounter == 0) {
+        kill();
+    }
+}
+
+void Player::kill() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    actionState = PLAYER_DEAD;
+    actionCounter = entityParams["PLAYER_DEATH_DURATION"];
 }
 
 Player::~Player() {

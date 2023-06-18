@@ -55,6 +55,7 @@ Attack Spear::attack() {
     }
     attacksCooldowns["melee"] = entityParams["SPEAR_ATTACK_COOLDOWN"];
     atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"];
+    actionState = SPEAR_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }
 
@@ -73,11 +74,24 @@ void Spear::takeDamage(int damage) {
     if (health <= 0) {
         health = 0;
         actionState = SPEAR_DYING;
-        actionCounter = entityParams["SPEAR_DEATH_DURATION"];
+        actionCounter = entityParams["SPEAR_DYING_DURATION"];
     } else {
         actionState = SPEAR_HURT;
         actionCounter = entityParams["SPEAR_HURT_DURATION"];
     }
+}
+
+void Spear::checkIfDead() {
+    if (actionState == SPEAR_DYING && actionCounter == 0) {
+        actionState = SPEAR_DEAD;
+    }
+}
+
+void Spear::kill() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    actionState = SPEAR_DEAD;
+    actionCounter = entityParams["SPEAR_DEATH_DURATION"];
 }
 
 Spear::~Spear() {}

@@ -28,6 +28,8 @@ class Infected : public Zombie {
     void takeDamage(int damage) override;
     void startMoving() override;
     bool isMoving() override;
+    void checkIfDead() override;
+    void kill() override;
     ~Infected();
 };
 

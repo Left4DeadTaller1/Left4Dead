@@ -55,6 +55,7 @@ Attack Witch::attack() {
     }
     attacksCooldowns["melee"] = entityParams["WITCH_ATTACK_COOLDOWN"];
     atkDmg = entityParams["WITCH_ATTACK_DAMAGE"];
+    actionState = WITCH_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }
 
@@ -78,6 +79,19 @@ void Witch::takeDamage(int damage) {
         actionState = WITCH_HURT;
         actionCounter = entityParams["WITCH_HURT_DURATION"];
     }
+}
+
+void Witch::checkIfDead() {
+    if (actionState == WITCH_DYING && actionCounter == 0) {
+        kill();
+    }
+}
+
+void Witch::kill() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    actionState = WITCH_DYING;
+    actionCounter = entityParams["WITCH_DEATH_DURATION"];
 }
 
 Witch::~Witch() {}

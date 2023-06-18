@@ -42,7 +42,9 @@ int Entity::getActionCounter() {
 }
 
 void Entity::decreaseActionCounter() {
-    actionCounter--;
+    if (actionCounter > 0)
+        actionCounter--;
+    checkIfDead();
 }
 
 std::shared_ptr<EntityDTO> Entity::getDto() {

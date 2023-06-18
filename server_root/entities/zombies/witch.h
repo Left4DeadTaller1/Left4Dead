@@ -29,6 +29,8 @@ class Witch : public Zombie {
     void startMoving() override;
     bool isMoving() override;
     void takeDamage(int damage) override;
+    void checkIfDead() override;
+    void kill() override;
     ~Witch();
 };
 

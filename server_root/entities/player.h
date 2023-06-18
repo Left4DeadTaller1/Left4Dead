@@ -48,6 +48,9 @@ class Player : public Entity {
 
     bool canAttack() override;
     Attack attack();
+
+    void checkIfDead() override;
+    void kill() override;
     ~Player();
 };
 

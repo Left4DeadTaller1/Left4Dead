@@ -13,7 +13,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     player->setMovementDirectionX(ENTITY_RIGHT);
     player->takeDamage(20);
     uint8_t playerHealth = static_cast<uint8_t>(entityParams["PLAYER_HEALTH"] - 20);
-    uint8_t playerActionCooldown = static_cast<uint8_t>(entityParams["PLAYER_ATTACK_COOLDOWN"]);
+    uint8_t playerActionCooldown = static_cast<uint8_t>(entityParams["PLAYER_HURT_DURATION"]);
 
     // Create mock Zombie
     std::shared_ptr<Infected> zombie = std::make_shared<Infected>(15, 20, "Zombie1");
@@ -50,7 +50,8 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
         0, zombieHealth};      // Health: 100 (2 byte)
 
     // For debugging purposes
-    // std::cout << "encodMessage: ";
+    // std::cout
+    //     << "encodMessage: ";
     // for (auto byte : encodedMessage) {
     //     std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(byte) << " ";
     // }
