@@ -94,4 +94,8 @@ void Spear::kill() {
     actionCounter = entityParams["SPEAR_DEATH_DURATION"];
 }
 
+bool Spear::isDead() {
+    return (actionCounter == 0 && actionState == SPEAR_DEAD);
+}
+
 Spear::~Spear() {}

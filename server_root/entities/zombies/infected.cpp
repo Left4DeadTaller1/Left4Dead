@@ -93,4 +93,8 @@ void Infected::kill() {
     actionCounter = entityParams["INFECTED_DEATH_DURATION"];
 }
 
+bool Infected::isDead() {
+    return (actionCounter == 0 && actionState == INFECTED_DEAD);
+}
+
 Infected::~Infected() {}

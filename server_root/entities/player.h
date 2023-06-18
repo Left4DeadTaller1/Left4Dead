@@ -51,6 +51,7 @@ class Player : public Entity {
 
     void checkIfDead() override;
     void kill() override;
+    bool isDead() override;
     ~Player();
 };
 

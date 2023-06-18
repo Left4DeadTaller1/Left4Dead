@@ -94,4 +94,8 @@ void Witch::kill() {
     actionCounter = entityParams["WITCH_DEATH_DURATION"];
 }
 
+bool Witch::isDead() {
+    return actionState == WITCH_DYING && actionCounter == 0;
+}
+
 Witch::~Witch() {}

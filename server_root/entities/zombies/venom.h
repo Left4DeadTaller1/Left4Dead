@@ -31,6 +31,7 @@ class Venom : public Zombie {
     void takeDamage(int damage) override;
     void checkIfDead() override;
     void kill() override;
+    bool isDead() override;
     ~Venom();
 };
 

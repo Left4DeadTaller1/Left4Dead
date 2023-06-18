@@ -103,4 +103,8 @@ void Venom::kill() {
     actionCounter = entityParams["VENOM_DEATH_DURATION"];
 }
 
+bool Venom::isDead() {
+    return (actionCounter == 0 && actionState == VENOM_DEAD);
+}
+
 Venom::~Venom() {}

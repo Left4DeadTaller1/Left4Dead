@@ -94,4 +94,8 @@ void Jumper::kill() {
     actionCounter = entityParams["JUMPER_DEATH_DURATION"];
 }
 
+bool Jumper::isDead() {
+    return (actionCounter == 0 && actionState == JUMPER_DEAD);
+}
+
 Jumper::~Jumper() {}

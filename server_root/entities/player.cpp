@@ -153,5 +153,9 @@ void Player::kill() {
     actionCounter = entityParams["PLAYER_DEATH_DURATION"];
 }
 
+bool Player::isDead() {
+    return (actionCounter == 0 && actionState == PLAYER_DEAD);
+}
+
 Player::~Player() {
 }

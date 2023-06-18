@@ -31,6 +31,7 @@ class Jumper : public Zombie {
     bool isMoving() override;
     void checkIfDead() override;
     void kill() override;
+    bool isDead() override;
     ~Jumper();
 };
 

@@ -69,6 +69,7 @@ class Game : public Thread {
     void move(Entity& entity);
     void attack(Entity& entity);
     void getPlayersActions();
+    void removeDeadEntities();
 
     void sendState();
     std::vector<std::shared_ptr<EntityDTO>> getDtos();
