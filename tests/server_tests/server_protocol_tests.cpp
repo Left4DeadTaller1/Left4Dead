@@ -13,6 +13,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     player->setMovementDirectionX(ENTITY_RIGHT);
     player->takeDamage(20);
     uint8_t playerHealth = static_cast<uint8_t>(entityParams["PLAYER_HEALTH"] - 20);
+    uint8_t playerActionCooldown = static_cast<uint8_t>(entityParams["PLAYER_ATTACK_COOLDOWN"]);
 
     // Create mock Zombie
     std::shared_ptr<Infected> zombie = std::make_shared<Infected>(15, 20, "Zombie1");
@@ -28,25 +29,25 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     std::vector<uint8_t>& encodedMessage = *encodedMessagePtr;
 
     std::vector<uint8_t> expectedMessage = {
-        1,                 // Message type gameState (1 byte)
-        0, 2,              // 2 entities  (2 bytes)
-        0,                 // Entity type: Player (1 byte)
-        0, 1,              // ID: Player1 (2 bytes)
-        9,                 // General State: HURT since got attacked (1 byte)
-        45,                // Action Counter: 45 since it got hurt (1 byte)
-        0, 5,              // X position: 5 (network byte order) (2 bytes)
-        0, 10,             // Y position: 10 (network byte order) (2 bytes)
-        1,                 // facingDirection: FACING_RIGHT (1 byte)
-        0, playerHealth,   // Health: 80 (2 byte)
-        1,                 // Entity type: Zombie (1 byte)
-        0, 1,              // ID: Zombie1 (2 bytes)
-        0,                 // Zombie type: INFECTED (1 byte)
-        12,                // General State: IDLE (1 byte) //till here is okey
-        0,                 // Action Counter: 0 since i didn't do anything (1 byte)
-        0, 15,             // X position: 15 (network byte order) (2 bytes)
-        0, 20,             // Y position: 20 (network byte order) (2 bytes)
-        1,                 // facingDirection: FACING_RIGHT (1 byte)
-        0, zombieHealth};  // Health: 100 (2 byte)
+        1,                     // Message type gameState (1 byte)
+        0, 2,                  // 2 entities  (2 bytes)
+        0,                     // Entity type: Player (1 byte)
+        0, 1,                  // ID: Player1 (2 bytes)
+        9,                     // General State: HURT since got attacked (1 byte)
+        playerActionCooldown,  // Action Counter: 45 since it got hurt (1 byte)
+        0, 5,                  // X position: 5 (network byte order) (2 bytes)
+        0, 10,                 // Y position: 10 (network byte order) (2 bytes)
+        1,                     // facingDirection: FACING_RIGHT (1 byte)
+        0, playerHealth,       // Health: 80 (2 byte)
+        1,                     // Entity type: Zombie (1 byte)
+        0, 1,                  // ID: Zombie1 (2 bytes)
+        0,                     // Zombie type: INFECTED (1 byte)
+        12,                    // General State: IDLE (1 byte) //till here is okey
+        0,                     // Action Counter: 0 since i didn't do anything (1 byte)
+        0, 15,                 // X position: 15 (network byte order) (2 bytes)
+        0, 20,                 // Y position: 20 (network byte order) (2 bytes)
+        1,                     // facingDirection: FACING_RIGHT (1 byte)
+        0, zombieHealth};      // Health: 100 (2 byte)
 
     // For debugging purposes
     // std::cout << "encodMessage: ";

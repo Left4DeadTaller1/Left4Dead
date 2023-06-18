@@ -67,14 +67,16 @@ bool Witch::isMoving() {
 }
 
 void Witch::takeDamage(int damage) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
     if (health <= 0) {
         health = 0;
         actionState = WITCH_DYING;
-        actionCounter = 60;
+        actionCounter = entityParams["WITCH_DYING_DURATION"];
     } else {
         actionState = WITCH_HURT;
-        actionCounter = 45;
+        actionCounter = entityParams["WITCH_HURT_DURATION"];
     }
 }
 

@@ -60,14 +60,16 @@ std::tuple<int, int> Player::getDirectionsAmount() {
 }
 
 void Player::takeDamage(int damage) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
     if (health <= 0) {
         health = 0;
         actionState = PLAYER_DYING;
-        actionCounter = 60;
+        actionCounter = entityParams["PLAYER_DEATH_DURATION"];
     } else {
         actionState = PLAYER_HURT;
-        actionCounter = 45;
+        actionCounter = entityParams["PLAYER_HURT_DURATION"];
     }
 }
 

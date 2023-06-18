@@ -67,14 +67,16 @@ bool Spear::isMoving() {
 }
 
 void Spear::takeDamage(int damage) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
     if (health <= 0) {
         health = 0;
         actionState = SPEAR_DYING;
-        actionCounter = 60;
+        actionCounter = entityParams["SPEAR_DEATH_DURATION"];
     } else {
         actionState = SPEAR_HURT;
-        actionCounter = 45;
+        actionCounter = entityParams["SPEAR_HURT_DURATION"];
     }
 }
 

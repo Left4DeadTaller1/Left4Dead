@@ -37,6 +37,7 @@ struct EntityDTO {
     int x;
     int y;
     int health;
+    // TODO check if i need this field
     int movementDirectionX;
     FacingDirection facingDirection;
     int actionCounter;
