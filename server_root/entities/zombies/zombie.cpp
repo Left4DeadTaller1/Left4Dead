@@ -20,26 +20,21 @@ bool Zombie::canAttack() {
     return false;
 }
 
-std::shared_ptr<EntityDTO> Zombie::getDto() {
-    auto dto = std::make_shared<ZombieDTO>();
+void Zombie::fillBaseZombieDTO(std::shared_ptr<ZombieDTO> dto) {
     dto->type = ZOMBIE;
     dto->id = this->getId();
     dto->x = this->getX();
     dto->y = this->getY();
     dto->health = this->getHealth();
-    dto->movementState = static_cast<int>(this->getMovementState());
     dto->movementDirectionX = static_cast<int>(this->getMovementDirectionX());
     dto->facingDirection = this->facingDirection;
-    dto->healthState = static_cast<int>(this->getHealthState());
-    return dto;
+    dto->actionCounter = this->actionCounter;
 }
 
 void Zombie::decideTarget(std::vector<std::shared_ptr<Player>>& players) {
     if (players.empty()) {
         return;  // i mean you will never have 0 players but just in case
     }
-
-    movementState = ENTITY_RUNNING;
 
     int closestPlayerX = players[0]->getX();
     int closestPlayerY = players[0]->getY();
@@ -67,6 +62,41 @@ void Zombie::decideTarget(std::vector<std::shared_ptr<Player>>& players) {
     } else {
         movementDirectionY = ENTITY_UP;
     }
+
+    startMoving();
+}
+
+std::tuple<int, int> Zombie::getDirectionsAmount() {
+    int xAmount = 0;
+    int yAmount = 0;
+
+    switch (movementDirectionX) {
+        case ENTITY_LEFT:
+            xAmount = -movementSpeed;
+            break;
+
+        case ENTITY_RIGHT:
+            xAmount = movementSpeed;
+            break;
+
+        default:
+            break;
+    }
+
+    switch (movementDirectionY) {
+        case ENTITY_UP:
+            yAmount = -movementSpeed;
+            break;
+
+        case ENTITY_DOWN:
+            yAmount = movementSpeed;
+            break;
+
+        default:
+            break;
+    }
+
+    return std::make_tuple(xAmount, yAmount);
 }
 
 void Zombie::decreaseATKCooldown() {

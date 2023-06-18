@@ -1,31 +1,31 @@
 #include "weapon.h"
 
+#include <iostream>
+
 #include "game_config.h"
 
 Weapon::Weapon(WeaponType type)
     : type(type) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> weaponsParams = config.getWeaponsParams();
+    cooldown = 0;
 
     switch (type) {
         case SMG:
             maxBullets = weaponsParams["SMG_MAX_BULLETS"];
             bullets = maxBullets;
-            cooldown = 0;
             damage = weaponsParams["SMG_DAMAGE"];
             break;
 
         case RIFLE:
             maxBullets = weaponsParams["RIFLE_MAX_BULLETS"];
             bullets = maxBullets;
-            cooldown = 0;
             damage = weaponsParams["RIFLE_DAMAGE"];
             break;
 
         case SNIPER:
             maxBullets = weaponsParams["SNIPER_MAX_BULLETS"];
             bullets = maxBullets;
-            cooldown = 0;
             damage = weaponsParams["SNIPER_DAMAGE"];
             break;
     }

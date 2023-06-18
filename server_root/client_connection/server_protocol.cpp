@@ -63,15 +63,6 @@ std::vector<int> ServerProtocol::receiveEndMove(bool &wasClosed, Socket &peer) {
 }
 
 std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities) {
-    /*std::cout << "EN EL PROTOCOLO RECIBE\n";
-    std::cout << "tipo de mensaje: " << msgType << "\n";
-    std::cout << "cant entidadees izq: " << (int)entities.size() << "\n";
-    std::cout << "tipo de entidad: " << (int)(entities[0]->type) << "\n";
-    std::cout << "id entidad izq: " << (entities[0]->id) << "\n";
-    std::cout << "estado mov entidad: " << (int)(entities[0]->movementDirectionX) << "\n";
-    std::cout << "x: " << (int)(entities[0]->x) << "\n";
-    std::cout << "y: " << (int)(entities[0]->y) << "\n";*/
-
     auto encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
     uint8_t encodedMessageType = 1;
@@ -93,9 +84,20 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&id)[0]);
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&id)[1]);
 
+        // If the entity is a zombie, add the zombie type (1 byte)
+        if (entity->type == ZOMBIE) {
+            auto zombieEntity = std::dynamic_pointer_cast<ZombieDTO>(entity);
+            if (zombieEntity) {
+                encodedMsg->push_back(static_cast<uint8_t>(zombieEntity->zombieType));
+            }
+        }
+
         // Encode and add the general state (1 byte)
         GeneralState generalState = determineGeneralState(entity);
         encodedMsg->push_back(static_cast<uint8_t>(generalState));
+
+        // Encode and add the action counter (1 byte)
+        encodedMsg->push_back(static_cast<uint8_t>(entity->actionCounter));
 
         // Encode and add the X position (2 bytes)
         uint16_t encodedXPosition = htons(static_cast<uint16_t>(entity->x));
@@ -107,43 +109,15 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedYPosition)[0]);
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedYPosition)[1]);
 
-        // Encode and add the X direction (2 bytes)
-        uint16_t encodedXDirection = htons(static_cast<uint16_t>(entity->movementDirectionX));
-        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedXDirection)[0]);
-        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedXDirection)[1]);
+        // Encode and add the facing direction (1 byte)
+        uint8_t encodedFacingDirection = static_cast<uint8_t>(entity->facingDirection);
+        encodedMsg->push_back(encodedFacingDirection);
 
-        // If the entity is a player, add the facing direction (1 byte)
-        if (entity->type == PLAYER) {
-            auto playerEntity = std::dynamic_pointer_cast<PlayerDTO>(entity);
-            if (playerEntity) {
-                encodedMsg->push_back(static_cast<uint8_t>(playerEntity->facingDirection));
-            }
-        }
-
-        // Encode and add the health (1 byte)
-        encodedMsg->push_back(static_cast<uint8_t>(entity->health));
-
-        // If the entity is a zombie, add the zombie type (1 byte)
-        if (entity->type == ZOMBIE) {
-            auto zombieEntity = std::dynamic_pointer_cast<ZombieDTO>(entity);
-            if (zombieEntity) {
-                encodedMsg->push_back(static_cast<uint8_t>(zombieEntity->zombieType));
-            }
-        }
+        // Encode and add the health (2 byte)
+        uint16_t encodedHealth = htons(static_cast<uint16_t>(entity->health));
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedHealth)[0]);
+        encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedHealth)[1]);
     }
-
-    /*std::cout << "EN EL PROTOCOLO\n";
-    std::cout << "tipo de mensaje: " << (int)(*encodedMsg)[0] << "\n";
-    std::cout << "cant entidadees izq: " << (int)(*encodedMsg)[1] << "\n";
-    std::cout << "cant entidadees der: " << (int)(*encodedMsg)[2] << "\n";
-    std::cout << "tipo de entidad: " << (int)(*encodedMsg)[3] << "\n";
-    std::cout << "id entidad izq: " << (int)(*encodedMsg)[4] << "\n";
-    std::cout << "id entidad der: " << (int)(*encodedMsg)[5] << "\n";
-    std::cout << "estado mov entidad: " << (int)(*encodedMsg)[6] << "\n";
-    std::cout << "x izq: " << (int)(*encodedMsg)[7] << "\n";
-    std::cout << "x der: " << (int)(*encodedMsg)[8] << "\n";
-    std::cout << "y izq: " << (int)(*encodedMsg)[9] << "\n";
-    std::cout << "y der: " << (int)(*encodedMsg)[10] << "\n";*/
 
     return encodedMsg;
 }
@@ -161,38 +135,231 @@ std::string ServerProtocol::extractId(const std::string &str) {
 }
 
 GeneralState ServerProtocol::determineGeneralState(const std::shared_ptr<EntityDTO> &entity) {
-    if (entity->healthState == HealthState::DEAD) {
-        return GeneralState::DEAD;
-    } else if (entity->healthState == HealthState::HURT) {
-        return GeneralState::HURT;
-    }
-
-    if (entity->type == PLAYER) {
-        std::shared_ptr<PlayerDTO> player = std::dynamic_pointer_cast<PlayerDTO>(entity);
-
-        if (player->weaponState == WeaponState::SHOOTING) {
-            if (entity->movementState == MovementState::ENTITY_WALKING) {
-                return GeneralState::WALKING_SHOOTING;
-            } else if (entity->movementState == MovementState::ENTITY_RUNNING) {
-                return GeneralState::RUNNING_SHOOTING;
-            } else {
-                return GeneralState::SHOOTING;
-            }
-        } else if (player->weaponState == WeaponState::RELOADING) {
-            return GeneralState::RELOADING;
+    switch (entity->type) {
+        case PLAYER: {
+            std::shared_ptr<PlayerDTO> player = std::dynamic_pointer_cast<PlayerDTO>(entity);
+            return determinePlayerState(player);
+            break;
         }
-    }
 
-    if (entity->movementState == MovementState::ENTITY_WALKING) {
-        return GeneralState::WALKING;
-    } else if (entity->movementState == MovementState::ENTITY_RUNNING) {
-        return GeneralState::RUNNING;
-    }
+        case ZOMBIE: {
+            std::shared_ptr<ZombieDTO> zombie = std::dynamic_pointer_cast<ZombieDTO>(entity);
+            return determineZombieState(zombie);
+            break;
+        }
 
-    return GeneralState::IDLE;
+        default:
+            return GeneralState::WALKING;
+            break;
+    }
 }
 
-std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const std::string &msgType, const std::string &playerId) {
+GeneralState ServerProtocol::determinePlayerState(const std::shared_ptr<PlayerDTO> &playerState) {
+    switch (playerState->actionState) {
+        case PLAYER_WALKING:
+            return GeneralState::WALKING;
+            break;
+        case PLAYER_RUNNING:
+            return GeneralState::RUNNING;
+            break;
+        case PLAYER_IDLE:
+            return GeneralState::IDLE;
+            break;
+        case PLAYER_SHOOTING:
+            return GeneralState::SHOOTING;
+            break;
+        case PLAYER_RELOADING:
+            return GeneralState::RELOADING;
+            break;
+        case PLAYER_HURT:
+            return GeneralState::HURT;
+            break;
+        case PLAYER_DYING:
+            return GeneralState::DYING;
+            break;
+        case PLAYER_DEAD:
+            return GeneralState::DEAD;
+            break;
+        default:
+            return GeneralState::WALKING;
+            break;
+    }
+}
+
+GeneralState ServerProtocol::determineZombieState(const std::shared_ptr<ZombieDTO> &zombie) {
+    switch (zombie->zombieType) {
+        case INFECTED:
+            return determineInfectedState(zombie);
+            break;
+
+        case JUMPER:
+            return determineJumperState(zombie);
+            break;
+
+        case WITCH:
+            return determineWitchState(zombie);
+            break;
+
+        case SPEAR:
+            return determineSpearState(zombie);
+            break;
+
+        case VENOM:
+            return determineVenomState(zombie);
+            break;
+
+        default:
+            return GeneralState::WALKING;
+            break;
+    }
+}
+
+GeneralState ServerProtocol::determineInfectedState(const std::shared_ptr<ZombieDTO> &zombie) {
+    std::shared_ptr<InfectedDTO> infected = std::dynamic_pointer_cast<InfectedDTO>(zombie);
+    switch (infected->actionState) {
+        case INFECTED_MOVING:
+            return GeneralState::WALKING;
+            break;
+        case INFECTED_HURT:
+            return GeneralState::HURT;
+            break;
+        case INFECTED_DYING:
+            return GeneralState::DYING;
+            break;
+        case INFECTED_DEAD:
+            return GeneralState::DEAD;
+            break;
+        case INFECTED_ATTACKING:
+            return GeneralState::ATTACKING;
+            break;
+        case INFECTED_IDLE:
+            return GeneralState::IDLE;
+            break;
+        default:
+            return GeneralState::WALKING;
+            break;
+    }
+}
+
+GeneralState ServerProtocol::determineJumperState(const std::shared_ptr<ZombieDTO> &zombie) {
+    std::shared_ptr<JumperDTO> jumper = std::dynamic_pointer_cast<JumperDTO>(zombie);
+    switch (jumper->actionState) {
+        case JUMPER_MOVING:
+            return GeneralState::WALKING;
+            break;
+        case JUMPER_HURT:
+            return GeneralState::HURT;
+            break;
+        case JUMPER_DYING:
+            return GeneralState::DYING;
+            break;
+        case JUMPER_DEAD:
+            return GeneralState::DEAD;
+            break;
+        case JUMPER_ATTACKING:
+            return GeneralState::ATTACKING;
+            break;
+        case JUMPER_JUMPING:
+            return GeneralState::JUMPING;
+            break;
+        case JUMPER_IDLE:
+            return GeneralState::IDLE;
+            break;
+        default:
+            return GeneralState::WALKING;
+            break;
+    }
+}
+
+GeneralState ServerProtocol::determineWitchState(const std::shared_ptr<ZombieDTO> &zombie) {
+    std::shared_ptr<WitchDTO> witch = std::dynamic_pointer_cast<WitchDTO>(zombie);
+    switch (witch->actionState) {
+        case WITCH_MOVING:
+            return GeneralState::WALKING;
+            break;
+        case WITCH_HURT:
+            return GeneralState::HURT;
+            break;
+        case WITCH_DYING:
+            return GeneralState::DYING;
+            break;
+        case WITCH_DEAD:
+            return GeneralState::DEAD;
+            break;
+        case WITCH_ATTACKING:
+            return GeneralState::ATTACKING;
+            break;
+        case WITCH_SHOUTING:
+            return GeneralState::SHOUTING;
+            break;
+        case WITCH_IDLE:
+            return GeneralState::IDLE;
+            break;
+        default:
+            return GeneralState::WALKING;
+            break;
+    }
+}
+
+GeneralState ServerProtocol::determineSpearState(const std::shared_ptr<ZombieDTO> &zombie) {
+    std::shared_ptr<SpearDTO> spear = std::dynamic_pointer_cast<SpearDTO>(zombie);
+    switch (spear->actionState) {
+        case SPEAR_MOVING:
+            return GeneralState::WALKING;
+            break;
+        case SPEAR_HURT:
+            return GeneralState::HURT;
+            break;
+        case SPEAR_DYING:
+            return GeneralState::DYING;
+            break;
+        case SPEAR_DEAD:
+            return GeneralState::DEAD;
+            break;
+        case SPEAR_ATTACKING:
+            return GeneralState::ATTACKING;
+            break;
+        case SPEAR_IDLE:
+            return GeneralState::IDLE;
+            break;
+        default:
+            return GeneralState::WALKING;
+            break;
+    }
+}
+
+GeneralState ServerProtocol::determineVenomState(const std::shared_ptr<ZombieDTO> &zombie) {
+    std::shared_ptr<VenomDTO> venom = std::dynamic_pointer_cast<VenomDTO>(zombie);
+    switch (venom->actionState) {
+        case VENOM_MOVING:
+            return GeneralState::WALKING;
+            break;
+        case VENOM_HURT:
+            return GeneralState::HURT;
+            break;
+        case VENOM_DYING:
+            return GeneralState::DYING;
+            break;
+        case VENOM_DEAD:
+            return GeneralState::DEAD;
+            break;
+        case VENOM_ATTACKING:
+            return GeneralState::ATTACKING;
+            break;
+        case VENOM_SHOOTING:
+            return GeneralState::SHOOTING;
+            break;
+        case VENOM_IDLE:
+            return GeneralState::IDLE;
+            break;
+        default:
+            return GeneralState::WALKING;
+            break;
+    }
+}
+
+std::shared_ptr<std::vector<uint8_t>>
+ServerProtocol::encodeServerMessage(const std::string &msgType, const std::string &playerId) {
     std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
     if (msgType == "JoinMsg") {

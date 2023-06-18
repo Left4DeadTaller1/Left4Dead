@@ -167,11 +167,8 @@ void Game::getPlayersActions() {
 }
 
 void Game::updateState() {
-    // Decrementamos DYINGCOUNTER de cada entidad que este en DYING y si este llega a 0 borralo
     for (auto& entity : entities) {
-        if (entity->getHealthState() == HURT)
-            entity->setHealthState(ALIVE);
-
+        entity->decreaseActionCounter();
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
             updatePlayerState(*player, playersActions[player->getId()]);
@@ -194,58 +191,34 @@ void Game::updateState() {
 
 void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
     while (!playerActions.empty()) {
-        Action action = playerActions.front();
-        playerActions.pop();
+        if (player.getActionCounter() == 0) {
+            Action action = playerActions.front();
+            playerActions.pop();
 
-        MovementState movementState = static_cast<MovementState>(action.getMovementType());
-        MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
-        MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
-        WeaponState weaponState = static_cast<WeaponState>(action.getWeaponState());
+            // TODO: updatea esto para que sea acorde al general State
+            PlayerActionState playerState = static_cast<PlayerActionState>(action.getInputType());
+            MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
+            MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
 
-        player.setMovementState(movementState);
-        player.setMovementDirectionX(movementDirectionX);
-        player.setMovementDirectionY(movementDirectionY);
-        player.setWeaponState(weaponState);
-        player.decreaseATKCooldown();
+            player.setActionState(playerState);
+            player.setMovementDirectionX(movementDirectionX);
+            player.setMovementDirectionY(movementDirectionY);
+        }
     }
 }
 
 void Game::move(Entity& entity) {
+    if (!entity.isMoving()) {
+        return;
+    }
+
     int deltaX = 0;
     int deltaY = 0;
-    MovementState movementState = entity.getMovementState();
-    MovementDirectionX movementDirectionX = entity.getMovementDirectionX();
-    MovementDirectionY movementDirectionY = entity.getMovementDirectionY();
-    int movementSpeed = entity.getMovementSpeed();
-    // TODO work around this nested if
-    if (movementState == ENTITY_WALKING) {
-        if (movementDirectionX == ENTITY_LEFT) {
-            deltaX = -movementSpeed;
-        } else if (movementDirectionX == ENTITY_RIGHT) {
-            deltaX = movementSpeed;
-        }
 
-        if (movementDirectionY == ENTITY_DOWN) {
-            deltaY = -movementSpeed;
-        } else if (movementDirectionY == ENTITY_UP) {
-            deltaY = movementSpeed;
-        }
-    } else if (movementState == ENTITY_RUNNING) {
-        if (movementDirectionX == ENTITY_LEFT) {
-            deltaX = -(2 * movementSpeed);
-        } else if (movementDirectionX == ENTITY_RIGHT) {
-            deltaX = (2 * movementSpeed);
-        }
+    std::tie(deltaX, deltaY) = entity.getDirectionsAmount();
 
-        if (movementDirectionY == ENTITY_DOWN) {
-            deltaY = -(2 * movementSpeed);
-        } else if (movementDirectionY == ENTITY_UP) {
-            deltaY = (2 * movementSpeed);
-        }
-    }
-    if (movementState != ENTITY_IDLE)
-        if (!collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities))
-            entity.move(deltaX, deltaY);
+    if (!collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities))
+        entity.move(deltaX, deltaY);
 }
 
 void Game::attack(Entity& entity) {
@@ -253,7 +226,8 @@ void Game::attack(Entity& entity) {
         if (entity.getType() == PLAYER) {
             Player* player = dynamic_cast<Player*>(&entity);
 
-            if (player->getWeaponState() == SHOOTING) {
+            // TODO; change this to gral state
+            if (player->getActionState() == PLAYER_SHOOTING) {
                 auto attack = player->attack();
                 std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.shoot(attack, entities);
 
@@ -266,6 +240,7 @@ void Game::attack(Entity& entity) {
 
                     default:
                         if (!damagedEntities.empty()) {
+                            // TODO make the takeDAmamge for ALL zombies
                             damagedEntities.front()->takeDamage(attack.getDamage());
                         }
                         break;
@@ -277,6 +252,7 @@ void Game::attack(Entity& entity) {
             int attackRange = zombie->getAttackRange();
             std::shared_ptr<Player>& playerInRange = collisionDetector.getPlayersInRange(attackRange, attack, players);
             if (playerInRange) {
+                // TODO make the takeDAmamge for players
                 playerInRange->takeDamage(attack.getDamage());
             }
         }

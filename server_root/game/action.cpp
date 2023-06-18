@@ -1,22 +1,21 @@
 #include "action.h"
 
 Action::Action()
-    : playerId(""), movementType(ACTION_IDLE), directionXType(ACTION_RIGHT), directionYType(ACTION_UP), weaponState(ACTION_WEAPON_IDLE) {}
+    : playerId(""), input(INPUT_IDLE), directionXType(ACTION_RIGHT) {}
 
-Action::Action(std::string playerId, int movementType, int directionXType, int directionYType, int weaponState)
+Action::Action(std::string playerId, int input, int directionXType, int directionYType)
     : playerId(playerId) {
-    this->movementType = static_cast<MovementType>(movementType);
+    this->input = static_cast<Input>(input);
     this->directionXType = static_cast<DirectionXType>(directionXType);
     this->directionYType = static_cast<DirectionYType>(directionYType);
-    this->weaponState = static_cast<ActionWeaponState>(weaponState);
 }
 
 std::string Action::getId() {
     return playerId;
 }
 
-int Action::getMovementType() {
-    return static_cast<int>(movementType);
+int Action::getInputType() {
+    return static_cast<int>(input);
 }
 
 int Action::getDirectionXType() {
@@ -25,10 +24,6 @@ int Action::getDirectionXType() {
 
 int Action::getDirectionYType() {
     return static_cast<int>(directionYType);
-}
-
-int Action::getWeaponState() {
-    return static_cast<int>(weaponState);
 }
 
 Action::~Action() {}

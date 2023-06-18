@@ -92,41 +92,40 @@ void ClientReceiver::handleJoinAction(const int code) {
 }
 
 void ClientReceiver::handleStartShoot() {
-    //std::cout << "entra handleStartShoot en receiver\n";
-    Action action(playerId, 3, 3, 3, 0);
+    // std::cout << "entra handleStartShoot en receiver\n";
+    Action action(playerId, 3, 2, 2);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleEndShoot() {
-    Action action(playerId, 3, 3, 3, 2);
+    Action action(playerId, 2, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleRecharge() {
-    Action action(playerId, 3, 3, 3, 1);
+    Action action(playerId, 4, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleStartMove(int movementType, int directionXType, int directionYType) {
-    int weaponType = 3;
-    Action action(playerId, movementType, directionXType, directionYType, weaponType);
+    Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
-    int weaponType = 3;
     int movementType;
     if (directionXType == 2 && directionYType == 2) {
         movementType = 3;
-        Action action(playerId, movementType, directionXType, directionYType, weaponType);
+        Action action(playerId, movementType, directionXType, directionYType);
         game->pushAction(action);
         return;
     }
     movementType = 3;
-    Action action(playerId, movementType, directionXType, directionYType, weaponType);
+    Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
+// TODO prob remove this
 void ClientReceiver::handleGameAction() {
     // We can move this to line 32
     // int actionType = protocol.receiveActionType(clientSocket, was_closed);
@@ -134,8 +133,7 @@ void ClientReceiver::handleGameAction() {
     int movementType = 0;  // placeholder you should get the action from the protocol
     int directionXType = 0;
     int directionYType = 0;
-    int weaponType = 0;
-    Action action(playerId, movementType, directionXType, directionYType, weaponType);
+    Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
@@ -146,4 +144,3 @@ void ClientReceiver::stop() {
 bool ClientReceiver::getIsRunning() {
     return isRunning;
 }
-

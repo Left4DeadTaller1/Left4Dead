@@ -3,7 +3,7 @@
 #include "game_config.h"
 
 Player::Player(int xPosition, int yPosition, std::string playerId, WeaponType weaponType)
-    : Entity(xPosition, yPosition, playerId), weaponState(WEAPON_IDLE), weapon(weaponType), actionState(IDLE_STATE) {
+    : Entity(xPosition, yPosition, playerId), weapon(weaponType), actionState(PLAYER_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -17,12 +17,58 @@ EntityType Player::getType() {
     return PLAYER;
 }
 
-WeaponState Player::getWeaponState() {
-    return weaponState;
+bool Player::isMoving() {
+    return actionState == PLAYER_WALKING || actionState == PLAYER_RUNNING;
 }
 
-void Player::setMovementState(MovementState movementState) {
-    this->movementState = movementState;
+std::tuple<int, int> Player::getDirectionsAmount() {
+    int xAmount = 0;
+    int yAmount = 0;
+
+    switch (movementDirectionX) {
+        case ENTITY_LEFT:
+            xAmount = -movementSpeed;
+            break;
+
+        case ENTITY_RIGHT:
+            xAmount = movementSpeed;
+            break;
+
+        default:
+            break;
+    }
+
+    switch (movementDirectionY) {
+        case ENTITY_UP:
+            yAmount = -movementSpeed;
+            break;
+
+        case ENTITY_DOWN:
+            yAmount = movementSpeed;
+            break;
+
+        default:
+            break;
+    }
+
+    if (actionState == PLAYER_RUNNING) {
+        xAmount *= 2;
+        yAmount *= 2;
+    }
+
+    return std::make_tuple(xAmount, yAmount);
+}
+
+void Player::takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+        health = 0;
+        actionState = PLAYER_DYING;
+        actionCounter = 60;
+    } else {
+        actionState = PLAYER_HURT;
+        actionCounter = 45;
+    }
 }
 
 void Player::setMovementDirectionX(MovementDirectionX movementDirectionX) {
@@ -45,8 +91,12 @@ void Player::setMovementDirectionY(MovementDirectionY movementDirectionY) {
     this->movementDirectionY = movementDirectionY;
 }
 
-void Player::setWeaponState(WeaponState weaponState) {
-    this->weaponState = weaponState;
+void Player::setActionState(PlayerActionState actionState) {
+    this->actionState = actionState;
+}
+
+PlayerActionState Player::getActionState() {
+    return actionState;
 }
 
 std::shared_ptr<EntityDTO> Player::getDto() {
@@ -56,11 +106,11 @@ std::shared_ptr<EntityDTO> Player::getDto() {
     dto->x = this->x;
     dto->y = this->y;
     dto->health = this->health;
-    dto->movementState = static_cast<int>(this->getMovementState());
+    dto->actionState = this->actionState;
+    dto->actionCounter = this->actionCounter;
+    // TODO check if i need to remove this one
     dto->movementDirectionX = static_cast<int>(this->getMovementDirectionX());
-    dto->healthState = static_cast<int>(this->getHealthState());
     dto->facingDirection = this->facingDirection;
-    dto->weaponState = this->weaponState;
     dto->bullets = this->weapon.getBullets();
     return dto;
 }

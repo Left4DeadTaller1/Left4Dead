@@ -3,16 +3,11 @@
 
 #include <memory>
 #include <string>
+#include <tuple>
 
 #include "attack.h"
 
 class CollisionDetector;
-
-enum MovementState {
-    ENTITY_WALKING,
-    ENTITY_RUNNING,
-    ENTITY_IDLE,
-};
 
 enum MovementDirectionX {
     ENTITY_LEFT,
@@ -24,13 +19,6 @@ enum MovementDirectionY {
     ENTITY_UP,
     ENTITY_DOWN,
     ENTITY_NONE_Y,
-};
-
-enum HealthState {
-    ALIVE,
-    HURT,
-    DYING,
-    DEAD,
 };
 
 enum EntityType {
@@ -49,10 +37,8 @@ struct EntityDTO {
     int x;
     int y;
     int health;
-    int movementState;
     int movementDirectionX;
     FacingDirection facingDirection;
-    int healthState;
     int actionCounter;
 
     virtual ~EntityDTO() = default;
@@ -66,14 +52,11 @@ class Entity {
     int height;
     int health;
     std::string entityId;
-    MovementState movementState;
     MovementDirectionX movementDirectionX;
     MovementDirectionY movementDirectionY;
     FacingDirection facingDirection;
-    HealthState healthState;
     int movementSpeed;
     // TODO: remove this
-    int framesHurt;
     int actionCounter;
 
     friend class CollisionDetector;
@@ -82,18 +65,18 @@ class Entity {
     // this is just for colision testing in the future the width and the height
     //  will be determine by the type of the entity
     Entity(int xPosition, int yPosition, std::string id);
-    MovementState getMovementState();
     MovementDirectionX getMovementDirectionX();
     MovementDirectionY getMovementDirectionY();
-    HealthState getHealthState();
-    void setHealthState(HealthState healthState);
     std::string getId();
     int getX();
     int getY();
     int getHealth();
     int getMovementSpeed();
+    int getActionCounter();
+    void decreaseActionCounter();
 
-    void takeDamage(int amountOfDamage);
+    virtual bool isMoving() = 0;
+    virtual void takeDamage(int amountOfDamage) = 0;
     virtual void decreaseATKCooldown() = 0;
 
     virtual Attack attack() = 0;
@@ -101,6 +84,7 @@ class Entity {
     virtual EntityType getType() = 0;
 
     virtual std::shared_ptr<EntityDTO> getDto();
+    virtual std::tuple<int, int> getDirectionsAmount() = 0;
 
     void move(int deltaX, int deltaY);
     virtual bool canAttack() = 0;

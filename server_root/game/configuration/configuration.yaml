@@ -66,4 +66,4 @@ gameParams:
     SNIPER_BULLETS_SHOT: 1
 
   spawns:
-  SPAWN_INTERVAL: 120
+    SPAWN_INTERVAL: 120

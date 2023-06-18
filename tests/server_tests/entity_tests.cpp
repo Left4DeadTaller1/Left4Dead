@@ -33,8 +33,7 @@ TEST(PlayerTest, TestPlayerInitialization) {
     EXPECT_EQ(player.getX(), 5);
     EXPECT_EQ(player.getY(), 10);
     EXPECT_EQ(player.getHealth(), entityParams["PLAYER_HEALTH"]);
-    EXPECT_EQ(player.getMovementState(), ENTITY_IDLE);
-    EXPECT_EQ(player.getWeaponState(), WEAPON_IDLE);
+    EXPECT_EQ(player.getActionState(), PLAYER_IDLE);
     EXPECT_EQ(player.getMovementSpeed(), entityParams["PLAYER_SPEED"]);
 }
 
@@ -62,7 +61,6 @@ TEST(ZombieTest, TestZombieInitialization) {
     EXPECT_EQ(zombie.getX(), 15);
     EXPECT_EQ(zombie.getY(), 20);
     EXPECT_EQ(zombie.getHealth(), 100);
-    EXPECT_EQ(zombie.getMovementState(), ENTITY_IDLE);
 }
 
 TEST(ZombieTest, TestZombieTakeDamage) {
@@ -84,7 +82,6 @@ TEST(ZombieTest, TestZombieDecideTarget) {
     // Player1 is the closest to the Zombie. Zombie should move to the bottom left.
     EXPECT_EQ(zombie.getMovementDirectionX(), ENTITY_LEFT);
     EXPECT_EQ(zombie.getMovementDirectionY(), ENTITY_DOWN);
-    EXPECT_EQ(zombie.getMovementState(), ENTITY_RUNNING);
 }
 
 // // Weapon Test Cases

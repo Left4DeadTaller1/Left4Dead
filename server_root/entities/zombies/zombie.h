@@ -39,11 +39,16 @@ class Zombie : public Entity {
     ~Zombie();
 
     EntityType getType() override;
-    virtual std::shared_ptr<EntityDTO> getDto() override;
+    virtual std::shared_ptr<EntityDTO> getDto() = 0;
+    void fillBaseZombieDTO(std::shared_ptr<ZombieDTO> dto);
+
+    virtual void startMoving() = 0;
 
     void decideTarget(std::vector<std::shared_ptr<Player>> &players);
 
     void decreaseATKCooldown() override;
+
+    std::tuple<int, int> getDirectionsAmount();
 
     virtual int getAttackRange() = 0;
 

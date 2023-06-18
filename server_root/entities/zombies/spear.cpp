@@ -5,7 +5,7 @@
 #include "game_config.h"
 
 Spear::Spear(int xPosition, int yPosition, std::string zombieId)
-    : Zombie(xPosition, yPosition, zombieId) {
+    : Zombie(xPosition, yPosition, zombieId), actionState(SPEAR_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -18,9 +18,16 @@ Spear::Spear(int xPosition, int yPosition, std::string zombieId)
 }
 
 std::shared_ptr<EntityDTO> Spear::getDto() {
-    auto dto = std::dynamic_pointer_cast<ZombieDTO>(Zombie::getDto());
-    dto->zombieType = SPEAR;
-    return dto;
+    auto spearDto = std::make_shared<SpearDTO>();
+
+    // Fill in the base ZombieDTO parts
+    fillBaseZombieDTO(spearDto);
+
+    // Fill in the SpearDTO specific parts
+    spearDto->zombieType = SPEAR;
+    spearDto->actionState = this->actionState;
+
+    return spearDto;
 }
 
 int Spear::getAttackRange() {
@@ -49,6 +56,26 @@ Attack Spear::attack() {
     attacksCooldowns["melee"] = entityParams["SPEAR_ATTACK_COOLDOWN"];
     atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"];
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
+}
+
+void Spear::startMoving() {
+    actionState = SPEAR_MOVING;
+}
+
+bool Spear::isMoving() {
+    return actionState == SPEAR_MOVING;
+}
+
+void Spear::takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+        health = 0;
+        actionState = SPEAR_DYING;
+        actionCounter = 60;
+    } else {
+        actionState = SPEAR_HURT;
+        actionCounter = 45;
+    }
 }
 
 Spear::~Spear() {}

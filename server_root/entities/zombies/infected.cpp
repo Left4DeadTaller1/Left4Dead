@@ -5,7 +5,7 @@
 #include "game_config.h"
 
 Infected::Infected(int xPosition, int yPosition, std::string zombieId)
-    : Zombie(xPosition, yPosition, zombieId) {
+    : Zombie(xPosition, yPosition, zombieId), actionState(INFECTED_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -17,9 +17,16 @@ Infected::Infected(int xPosition, int yPosition, std::string zombieId)
 }
 
 std::shared_ptr<EntityDTO> Infected::getDto() {
-    auto dto = std::dynamic_pointer_cast<ZombieDTO>(Zombie::getDto());
-    dto->zombieType = INFECTED;
-    return dto;
+    auto infectedDto = std::make_shared<InfectedDTO>();
+
+    // Fill in the base ZombieDTO parts
+    fillBaseZombieDTO(infectedDto);
+
+    // Fill in the InfectedDTO specific parts
+    infectedDto->zombieType = INFECTED;
+    infectedDto->actionState = this->actionState;
+
+    return infectedDto;
 }
 
 int Infected::getAttackRange() {
@@ -48,6 +55,26 @@ Attack Infected::attack() {
     attacksCooldowns["melee"] = entityParams["INFECTED_ATTACK_COOLDOWN"];
     atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"];
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
+}
+
+void Infected::takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+        health = 0;
+        actionState = INFECTED_DYING;
+        actionCounter = 60;
+    } else {
+        actionState = INFECTED_HURT;
+        actionCounter = 45;
+    }
+}
+
+void Infected::startMoving() {
+    actionState = INFECTED_MOVING;
+}
+
+bool Infected::isMoving() {
+    return actionState == INFECTED_MOVING;
 }
 
 Infected::~Infected() {}

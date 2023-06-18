@@ -5,7 +5,7 @@
 #include "game_config.h"
 
 Jumper::Jumper(int xPosition, int yPosition, std::string zombieId)
-    : Zombie(xPosition, yPosition, zombieId) {
+    : Zombie(xPosition, yPosition, zombieId), actionState(JUMPER_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -18,9 +18,16 @@ Jumper::Jumper(int xPosition, int yPosition, std::string zombieId)
 }
 
 std::shared_ptr<EntityDTO> Jumper::getDto() {
-    auto dto = std::dynamic_pointer_cast<ZombieDTO>(Zombie::getDto());
-    dto->zombieType = JUMPER;
-    return dto;
+    auto jumperDto = std::make_shared<JumperDTO>();
+
+    // Fill in the base ZombieDTO parts
+    fillBaseZombieDTO(jumperDto);
+
+    // Fill in the JumperDTO specific parts
+    jumperDto->zombieType = JUMPER;
+    jumperDto->actionState = this->actionState;
+
+    return jumperDto;
 }
 
 int Jumper::getAttackRange() {
@@ -49,6 +56,26 @@ Attack Jumper::attack() {
     attacksCooldowns["melee"] = entityParams["JUMPER_ATTACK_COOLDOWN"];
     atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"];
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
+}
+
+void Jumper::startMoving() {
+    actionState = JUMPER_MOVING;
+}
+
+bool Jumper::isMoving() {
+    return actionState == JUMPER_MOVING;
+}
+
+void Jumper::takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+        health = 0;
+        actionState = JUMPER_DYING;
+        actionCounter = 60;
+    } else {
+        actionState = JUMPER_HURT;
+        actionCounter = 45;
+    }
 }
 
 Jumper::~Jumper() {}

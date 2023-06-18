@@ -34,15 +34,19 @@ typedef enum {
 } Type;
 
 enum class GeneralState {
-    WALKING,
-    RUNNING,
-    WALKING_SHOOTING,
-    RUNNING_SHOOTING,
-    SHOOTING,
-    RELOADING,
-    HURT,
-    DEAD,
-    IDLE
+    WALKING,           // 0
+    RUNNING,           // 1
+    WALKING_SHOOTING,  // 2
+    RUNNING_SHOOTING,  // 3
+    SHOOTING,          // 4
+    ATTACKING,         // 5
+    JUMPING,           // 6
+    SHOUTING,          // 7
+    RELOADING,         // 8
+    HURT,              // 9
+    DYING,             // 10
+    DEAD,              // 11
+    IDLE               // 12
 };
 
 class ServerProtocol {
@@ -72,6 +76,15 @@ class ServerProtocol {
     std::string extractId(const std::string &str);
     // ServerMessage decodeServerMessage(const std::vector<uint8_t> &encodedMsg);
     GeneralState determineGeneralState(const std::shared_ptr<EntityDTO> &entity);
+    GeneralState determinePlayerState(const std::shared_ptr<PlayerDTO> &player);
+    GeneralState determineZombieState(const std::shared_ptr<ZombieDTO> &zombie);
+
+    GeneralState determineInfectedState(const std::shared_ptr<ZombieDTO> &zombie);
+    GeneralState determineJumperState(const std::shared_ptr<ZombieDTO> &zombie);
+    GeneralState determineWitchState(const std::shared_ptr<ZombieDTO> &zombie);
+    GeneralState determineSpearState(const std::shared_ptr<ZombieDTO> &zombie);
+    GeneralState determineVenomState(const std::shared_ptr<ZombieDTO> &zombie);
+
     std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, const std::string &playerId);
     std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, bool serverResponse);
     std::shared_ptr<std::vector<uint8_t>> encodeServerMessage();

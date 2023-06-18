@@ -5,7 +5,7 @@
 #include "game_config.h"
 
 Venom::Venom(int xPosition, int yPosition, std::string zombieId)
-    : Zombie(xPosition, yPosition, zombieId) {
+    : Zombie(xPosition, yPosition, zombieId), actionState(VENOM_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -18,12 +18,20 @@ Venom::Venom(int xPosition, int yPosition, std::string zombieId)
 }
 
 std::shared_ptr<EntityDTO> Venom::getDto() {
-    auto dto = std::dynamic_pointer_cast<ZombieDTO>(Zombie::getDto());
-    dto->zombieType = VENOM;
-    return dto;
+    auto venomDto = std::make_shared<VenomDTO>();
+
+    // Fill in the base ZombieDTO parts
+    fillBaseZombieDTO(venomDto);
+
+    // Fill in the VenomDTO specific parts
+    venomDto->zombieType = VENOM;
+    venomDto->actionState = this->actionState;
+
+    return venomDto;
 }
 
 int Venom::getAttackRange() {
+    // TODO: change this to depending of atks cd
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     return entityParams["VENOM_ATTACK_RANGE"];
@@ -55,6 +63,26 @@ Attack Venom::attack() {
         attacksCooldowns["spray"] = entityParams["VENOM_SPRAY_COOLDOWN"];
         atkDmg = entityParams["VENOM_SPRAY_DAMAGE"];
         return Attack(SHORT_VENOM, atkDmg, attackX, attackDirection, y, y + height);
+    }
+}
+
+void Venom::startMoving() {
+    actionState = VENOM_MOVING;
+}
+
+bool Venom::isMoving() {
+    return actionState == VENOM_MOVING;
+}
+
+void Venom::takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+        health = 0;
+        actionState = VENOM_DYING;
+        actionCounter = 60;
+    } else {
+        actionState = VENOM_HURT;
+        actionCounter = 45;
     }
 }
 

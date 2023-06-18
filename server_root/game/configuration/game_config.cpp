@@ -29,7 +29,7 @@ GameConfig::GameConfig() {
             }
 
             if (config["gameParams"]["spawns"]) {
-                weaponsParams = config["gameParams"]["spawns"].as<std::map<std::string, int>>();
+                spawnsParams = config["gameParams"]["spawns"].as<std::map<std::string, int>>();
             }
         }
 

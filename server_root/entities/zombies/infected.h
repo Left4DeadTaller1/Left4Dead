@@ -3,14 +3,31 @@
 
 #include "zombie.h"
 
+enum InfectedActionState {
+    INFECTED_MOVING,
+    INFECTED_IDLE,
+    INFECTED_HURT,
+    INFECTED_ATTACKING,
+    INFECTED_DYING,
+    INFECTED_DEAD,
+};
+
+struct InfectedDTO : ZombieDTO {
+    InfectedActionState actionState;
+};
+
 class Infected : public Zombie {
    private:
-    /* data */
+    InfectedActionState actionState;
+
    public:
     Infected(int xPosition, int yPosition, std::string zombieId);
-    std::shared_ptr<EntityDTO> getDto();
+    std::shared_ptr<EntityDTO> getDto() override;
     int getAttackRange() override;
     Attack attack() override;
+    void takeDamage(int damage) override;
+    void startMoving() override;
+    bool isMoving() override;
     ~Infected();
 };
 

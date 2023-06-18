@@ -5,7 +5,7 @@
 #include "game_config.h"
 
 Witch::Witch(int xPosition, int yPosition, std::string zombieId)
-    : Zombie(xPosition, yPosition, zombieId) {
+    : Zombie(xPosition, yPosition, zombieId), actionState(WITCH_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -18,9 +18,16 @@ Witch::Witch(int xPosition, int yPosition, std::string zombieId)
 }
 
 std::shared_ptr<EntityDTO> Witch::getDto() {
-    auto dto = std::dynamic_pointer_cast<ZombieDTO>(Zombie::getDto());
-    dto->zombieType = WITCH;
-    return dto;
+    auto witchDto = std::make_shared<WitchDTO>();
+
+    // Fill in the base ZombieDTO parts
+    fillBaseZombieDTO(witchDto);
+
+    // Fill in the WitchDTO specific parts
+    witchDto->zombieType = WITCH;
+    witchDto->actionState = this->actionState;
+
+    return witchDto;
 }
 
 int Witch::getAttackRange() {
@@ -49,6 +56,26 @@ Attack Witch::attack() {
     attacksCooldowns["melee"] = entityParams["WITCH_ATTACK_COOLDOWN"];
     atkDmg = entityParams["WITCH_ATTACK_DAMAGE"];
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
+}
+
+void Witch::startMoving() {
+    actionState = WITCH_MOVING;
+}
+
+bool Witch::isMoving() {
+    return actionState == WITCH_MOVING;
+}
+
+void Witch::takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+        health = 0;
+        actionState = WITCH_DYING;
+        actionCounter = 60;
+    } else {
+        actionState = WITCH_HURT;
+        actionCounter = 45;
+    }
 }
 
 Witch::~Witch() {}
