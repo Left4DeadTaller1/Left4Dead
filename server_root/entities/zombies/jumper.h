@@ -22,7 +22,7 @@ class Jumper : public Zombie {
     JumperActionState actionState;
 
    public:
-    Jumper(int xPosition, int yPosition, std::string zombieId);
+    Jumper(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     std::shared_ptr<EntityDTO> getDto() override;
     int getAttackRange() override;
     Attack attack() override;

@@ -7,7 +7,7 @@
 #define TYPES_OF_ZOMBIE 5
 
 // TODO set the spawnInterval with config yaml
-ZombieSpawner::ZombieSpawner() : totalZombies(0) {
+ZombieSpawner::ZombieSpawner() : totalZombies(0), mutationLevel(0) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
     std::map<std::string, int> spawnSettings = config.getSpawnsParams();
@@ -52,23 +52,27 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
 
     switch (zombieType) {
         case 1:
-            zombiePtr = std::make_shared<Infected>(spawnX, spawnY, zombieId);
+            zombiePtr = std::make_shared<Infected>(spawnX, spawnY, zombieId, mutationLevel);
             break;
         case 2:
-            zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId);
+            zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
             break;
         case 3:
-            zombiePtr = std::make_shared<Witch>(spawnX, spawnY, zombieId);
+            zombiePtr = std::make_shared<Witch>(spawnX, spawnY, zombieId, mutationLevel);
             break;
         case 4:
-            zombiePtr = std::make_shared<Spear>(spawnX, spawnY, zombieId);
+            zombiePtr = std::make_shared<Spear>(spawnX, spawnY, zombieId, mutationLevel);
             break;
         case 5:
-            zombiePtr = std::make_shared<Venom>(spawnX, spawnY, zombieId);
+            zombiePtr = std::make_shared<Venom>(spawnX, spawnY, zombieId, mutationLevel);
             break;
     }
 
     spawnInterval = spawnSettings["SPAWN_INTERVAL"];
 
     return std::static_pointer_cast<Entity>(zombiePtr);
+}
+
+void ZombieSpawner::mutate() {
+    mutationLevel += 1;
 }

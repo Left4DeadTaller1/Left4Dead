@@ -4,15 +4,15 @@
 
 #include "game_config.h"
 
-Spear::Spear(int xPosition, int yPosition, std::string zombieId)
-    : Zombie(xPosition, yPosition, zombieId), actionState(SPEAR_IDLE) {
+Spear::Spear(int xPosition, int yPosition, std::string zombieId, int mutationLevel)
+    : Zombie(xPosition, yPosition, zombieId, mutationLevel), actionState(SPEAR_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     width = entityParams["SPEAR_WIDTH"];
     height = entityParams["SPEAR_HEIGHT"];
-    health = entityParams["SPEAR_HEALTH"];
-    movementSpeed = entityParams["SPEAR_SPEED"];
+    health = entityParams["SPEAR_HEALTH"] + (5 * mutationLevel);
+    movementSpeed = entityParams["SPEAR_SPEED"] + (5 * mutationLevel);
     // Todo: add jump ATk
     attacksCooldowns.insert(std::make_pair("melee", entityParams["SPEAR_ATTACK_COOLDOWN"]));
 }
@@ -54,7 +54,7 @@ Attack Spear::attack() {
             break;
     }
     attacksCooldowns["melee"] = entityParams["SPEAR_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"];
+    atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"] + (5 * mutationLevel);
     actionState = SPEAR_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }

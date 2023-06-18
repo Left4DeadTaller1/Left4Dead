@@ -22,7 +22,7 @@ class Venom : public Zombie {
     VenomActionState actionState;
 
    public:
-    Venom(int xPosition, int yPosition, std::string zombieId);
+    Venom(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     std::shared_ptr<EntityDTO> getDto() override;
     int getAttackRange() override;
     Attack attack() override;

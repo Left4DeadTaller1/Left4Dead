@@ -4,15 +4,15 @@
 
 #include "game_config.h"
 
-Jumper::Jumper(int xPosition, int yPosition, std::string zombieId)
-    : Zombie(xPosition, yPosition, zombieId), actionState(JUMPER_IDLE) {
+Jumper::Jumper(int xPosition, int yPosition, std::string zombieId, int mutationLevel)
+    : Zombie(xPosition, yPosition, zombieId, mutationLevel), actionState(JUMPER_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     width = entityParams["JUMPER_WIDTH"];
     height = entityParams["JUMPER_HEIGHT"];
-    health = entityParams["JUMPER_HEALTH"];
-    movementSpeed = entityParams["JUMPER_SPEED"];
+    health = entityParams["JUMPER_HEALTH"] + (5 * mutationLevel);
+    movementSpeed = entityParams["JUMPER_SPEED"] + (5 * mutationLevel);
     // Todo: add jump ATk
     attacksCooldowns.insert(std::make_pair("melee", entityParams["JUMPER_ATTACK_COOLDOWN"]));
 }
@@ -54,7 +54,7 @@ Attack Jumper::attack() {
             break;
     }
     attacksCooldowns["melee"] = entityParams["JUMPER_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"];
+    atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] + (5 * mutationLevel);
     actionState = JUMPER_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }

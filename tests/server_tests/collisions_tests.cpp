@@ -42,8 +42,8 @@ TEST(CollisionDetectorTest, GetBeingShotRight) {
     CollisionDetector detector;
     Attack bullet(BULLET, 10, 20, RIGHT, 10, 30);  // Bullet shooting to the right
 
-    auto e1 = std::make_shared<Infected>(30, 25, "e1");  // On the right path of the bullet
-    auto e2 = std::make_shared<Infected>(10, 25, "e2");  // On the left path of the bullet
+    auto e1 = std::make_shared<Infected>(30, 25, "e1", 0);  // On the right path of the bullet
+    auto e2 = std::make_shared<Infected>(10, 25, "e2", 0);  // On the left path of the bullet
 
     std::list<std::shared_ptr<Entity>> entities = {e1, e2};
 
@@ -56,8 +56,8 @@ TEST(CollisionDetectorTest, GetBeingShotLeft) {
     CollisionDetector detector;
     Attack bullet(BULLET, 10, 20, LEFT, 10, 30);  // Bullet shooting to the left
 
-    auto e1 = std::make_shared<Infected>(30, 25, "e1");  // On the right path of the bullet
-    auto e2 = std::make_shared<Infected>(10, 25, "e2");  // On the left path of the bullet
+    auto e1 = std::make_shared<Infected>(30, 25, "e1", 0);  // On the right path of the bullet
+    auto e2 = std::make_shared<Infected>(10, 25, "e2", 0);  // On the left path of the bullet
 
     std::list<std::shared_ptr<Entity>> entities = {e1, e2};
 
@@ -70,7 +70,7 @@ TEST(CollisionDetectorTest, GetBeingShotNoHit) {
     CollisionDetector detector;
     Attack bullet(BULLET, 10, 20, RIGHT, 20, 30);  // Bullet shooting to the right
 
-    auto e1 = std::make_shared<Infected>(50, 60, "e1");  // Not in the path of the bullet
+    auto e1 = std::make_shared<Infected>(50, 60, "e1", 0);  // Not in the path of the bullet
 
     std::list<std::shared_ptr<Entity>> entities = {e1};
 

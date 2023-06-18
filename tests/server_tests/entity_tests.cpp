@@ -17,7 +17,7 @@ TEST(EntityTest, TestTakingDamage) {
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     Player player(5, 10, "Player1", SMG);
-    Infected zombie(15, 20, "Zombie1");
+    Infected zombie(15, 20, "Zombie1", 0);
     zombie.takeDamage(20);
     player.takeDamage(20);
     EXPECT_EQ(player.getHealth(), entityParams["PLAYER_HEALTH"] - 20);
@@ -56,7 +56,7 @@ TEST(PlayerTest, TestPlayerMovement) {
 
 // Zombie Test Cases
 TEST(ZombieTest, TestZombieInitialization) {
-    Infected zombie(15, 20, "Zombie1");
+    Infected zombie(15, 20, "Zombie1", 0);
     EXPECT_EQ(zombie.getId(), "Zombie1");
     EXPECT_EQ(zombie.getX(), 15);
     EXPECT_EQ(zombie.getY(), 20);
@@ -64,13 +64,13 @@ TEST(ZombieTest, TestZombieInitialization) {
 }
 
 TEST(ZombieTest, TestZombieTakeDamage) {
-    Infected zombie(15, 20, "Zombie1");
+    Infected zombie(15, 20, "Zombie1", 0);
     zombie.takeDamage(40);
     EXPECT_EQ(zombie.getHealth(), 60);
 }
 
 TEST(ZombieTest, TestZombieDecideTarget) {
-    Infected zombie(10, 10, "Zombie1");
+    Infected zombie(10, 10, "Zombie1", 0);
 
     auto player1 = std::make_shared<Player>(5, 5, "Player1", SMG);
     auto player2 = std::make_shared<Player>(20, 20, "Player2", SMG);
@@ -82,6 +82,17 @@ TEST(ZombieTest, TestZombieDecideTarget) {
     // Player1 is the closest to the Zombie. Zombie should move to the bottom left.
     EXPECT_EQ(zombie.getMovementDirectionX(), ENTITY_LEFT);
     EXPECT_EQ(zombie.getMovementDirectionY(), ENTITY_DOWN);
+}
+
+TEST(ZombieTest, TestZombieMutation) {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    Infected zombie(15, 20, "Zombie1", 5);
+    auto attack = zombie.attack();
+
+    EXPECT_EQ(zombie.getMovementSpeed(), entityParams["INFECTED_SPEED"] + (5 * 5));
+    EXPECT_EQ(zombie.getHealth(), entityParams["INFECTED_HEALTH"] + (5 * 5));
+    EXPECT_EQ(attack.getDamage(), entityParams["INFECTED_ATTACK_DAMAGE"] + (5 * 5));
 }
 
 // // Weapon Test Cases

@@ -4,15 +4,15 @@
 
 #include "game_config.h"
 
-Venom::Venom(int xPosition, int yPosition, std::string zombieId)
-    : Zombie(xPosition, yPosition, zombieId), actionState(VENOM_IDLE) {
+Venom::Venom(int xPosition, int yPosition, std::string zombieId, int mutationLevel)
+    : Zombie(xPosition, yPosition, zombieId, mutationLevel), actionState(VENOM_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     width = entityParams["VENOM_WIDTH"];
     height = entityParams["VENOM_HEIGHT"];
-    health = entityParams["VENOM_HEALTH"];
-    movementSpeed = entityParams["VENOM_SPEED"];
+    health = entityParams["VENOM_HEALTH"] + (5 * mutationLevel);
+    movementSpeed = entityParams["VENOM_SPEED"] + (5 * mutationLevel);
     attacksCooldowns.insert(std::make_pair("spray", entityParams["VENOM_SPRAY_COOLDOWN"]));
     attacksCooldowns.insert(std::make_pair("proyectile", entityParams["VENOM_PROYECTILE_COOLDOWN"]));
 }
@@ -57,12 +57,12 @@ Attack Venom::attack() {
 
     if (attacksCooldowns["proyectile"] == 0) {
         attacksCooldowns["proyectile"] = entityParams["VENOM_PROYECTILE_COOLDOWN"];
-        atkDmg = entityParams["VENOM_PROYECTILE_DAMAGE"];
+        atkDmg = entityParams["VENOM_PROYECTILE_DAMAGE"] + (5 * mutationLevel);
         actionState = VENOM_SHOOTING;
         return Attack(LONG_VENOM, atkDmg, attackX, attackDirection, y, y + height);
     } else {
         attacksCooldowns["spray"] = entityParams["VENOM_SPRAY_COOLDOWN"];
-        atkDmg = entityParams["VENOM_SPRAY_DAMAGE"];
+        atkDmg = entityParams["VENOM_SPRAY_DAMAGE"] + (5 * mutationLevel);
         actionState = VENOM_ATTACKING;
         return Attack(SHORT_VENOM, atkDmg, attackX, attackDirection, y, y + height);
     }

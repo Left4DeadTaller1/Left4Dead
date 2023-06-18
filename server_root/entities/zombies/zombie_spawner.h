@@ -18,8 +18,10 @@ class ZombieSpawner {
     std::vector<SpawnPoint> spawnPoints;
     int spawnInterval;
     int totalZombies;
+    int mutationLevel;
 
    public:
     ZombieSpawner();
     std::shared_ptr<Entity> spawn();
+    void mutate();
 };

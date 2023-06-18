@@ -4,8 +4,8 @@
 
 #include "game_config.h"
 
-Zombie::Zombie(int xPosition, int yPosition, std::string zombieId)
-    : Entity(xPosition, yPosition, zombieId) {}
+Zombie::Zombie(int xPosition, int yPosition, std::string zombieId, int mutationLevel)
+    : Entity(xPosition, yPosition, zombieId), mutationLevel(mutationLevel) {}
 
 EntityType Zombie::getType() {
     return ZOMBIE;

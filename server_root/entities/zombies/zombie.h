@@ -31,10 +31,11 @@ struct ZombieDTO : EntityDTO {
 class Zombie : public Entity {
    protected:
     std::map<std::string, int> attacksCooldowns;
+    int mutationLevel;
 
    public:
     // Constructor
-    Zombie(int xPosition, int yPosition, std::string zombieId);
+    Zombie(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     void move();
     ~Zombie();
 

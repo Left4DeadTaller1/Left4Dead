@@ -4,15 +4,15 @@
 
 #include "game_config.h"
 
-Witch::Witch(int xPosition, int yPosition, std::string zombieId)
-    : Zombie(xPosition, yPosition, zombieId), actionState(WITCH_IDLE) {
+Witch::Witch(int xPosition, int yPosition, std::string zombieId, int mutationLevel)
+    : Zombie(xPosition, yPosition, zombieId, mutationLevel), actionState(WITCH_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     width = entityParams["WITCH_WIDTH"];
     height = entityParams["WITCH_HEIGHT"];
-    health = entityParams["WITCH_HEALTH"];
-    movementSpeed = entityParams["WITCH_SPEED"];
+    health = entityParams["WITCH_HEALTH"] + (5 * mutationLevel);
+    movementSpeed = entityParams["WITCH_SPEED"] + (5 * mutationLevel);
     // Todo: add jump ATk
     attacksCooldowns.insert(std::make_pair("melee", entityParams["WITCH_ATTACK_COOLDOWN"]));
 }
@@ -54,7 +54,7 @@ Attack Witch::attack() {
             break;
     }
     attacksCooldowns["melee"] = entityParams["WITCH_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["WITCH_ATTACK_DAMAGE"];
+    atkDmg = entityParams["WITCH_ATTACK_DAMAGE"] + (5 * mutationLevel);
     actionState = WITCH_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }

@@ -21,7 +21,7 @@ class Spear : public Zombie {
     SpearActionState actionState;
 
    public:
-    Spear(int xPosition, int yPosition, std::string zombieId);
+    Spear(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     std::shared_ptr<EntityDTO> getDto() override;
     int getAttackRange() override;
     Attack attack() override;

@@ -58,7 +58,8 @@ std::list<std::shared_ptr<Entity>> CollisionDetector::shoot(Attack& attack, std:
 
     for (const auto& entity : entities) {
         // This is discarding for descarting units that are not in the direction of the bullet
-        if ((entity->isDead() || attack.attackingLeft() && entity->x > attack.xOrigin) ||
+        if (entity->isDead() ||
+            (attack.attackingLeft() && entity->x > attack.xOrigin) ||
             (attack.attackingRight() && entity->x < attack.xOrigin)) {
             continue;
         }
@@ -99,7 +100,8 @@ std::shared_ptr<Player>& CollisionDetector::getPlayersInRange(int attackRange, A
 
     for (const auto& player : players) {
         // This is discarding for descarting units that are not in the direction of the attack
-        if ((player->isDead() || attack.attackingLeft() && player->x > attack.xOrigin) ||
+        if (player->isDead() ||
+            (attack.attackingLeft() && player->x > attack.xOrigin) ||
             (attack.attackingRight() && player->x < attack.xOrigin)) {
             continue;
         }
