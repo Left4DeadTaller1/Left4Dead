@@ -238,15 +238,30 @@ void Game::attack(Entity& entity) {
                 std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.shoot(attack, entities);
 
                 switch (attack.getType()) {
-                    case PIERCING_BULLET:
-                        // if (!damagedEntities.empty()) {
-                        // Here we should damage X amount of entities
-                        // }
-                        break;
+                    case PIERCING_BULLET: {
+                        // i mean yeah this prob should be inside the weapon class (Sniper case) but whatever
+                        GameConfig& config = GameConfig::getInstance();
+                        std::map<std::string, int> weaponsParams = config.getWeaponsParams();
+                        int bulletLostDmg = weaponsParams["SNIPER_DMG_LOST_PER_PIERCE"];
+                        int enemiesPierce = 0;
 
+                        if (!damagedEntities.empty()) {
+                            int effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierce);
+
+                            while (effectiveDamage > 0 && !damagedEntities.empty()) {
+                                damagedEntities.front()->takeDamage(effectiveDamage);
+                                damagedEntities.pop_front();
+
+                                enemiesPierce++;
+                                effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierce);
+                            }
+                        }
+
+                        break;
+                    }
                     default:
                         if (!damagedEntities.empty()) {
-                            // TODO make the takeDAmamge for ALL zombies
+                            // TODO make the takeDamage for ALL zombies
                             damagedEntities.front()->takeDamage(attack.getDamage());
                         }
                         break;
