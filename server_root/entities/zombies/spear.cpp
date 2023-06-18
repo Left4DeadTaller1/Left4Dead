@@ -95,6 +95,10 @@ void Spear::kill() {
 }
 
 bool Spear::isDead() {
+    return actionState == SPEAR_DEAD;
+}
+
+bool Spear::isRemovable() {
     return (actionCounter == 0 && actionState == SPEAR_DEAD);
 }
 

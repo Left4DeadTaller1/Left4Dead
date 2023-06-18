@@ -104,6 +104,10 @@ void Venom::kill() {
 }
 
 bool Venom::isDead() {
+    return actionState == VENOM_DEAD;
+}
+
+bool Venom::isRemovable() {
     return (actionCounter == 0 && actionState == VENOM_DEAD);
 }
 

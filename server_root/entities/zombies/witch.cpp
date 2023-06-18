@@ -95,6 +95,10 @@ void Witch::kill() {
 }
 
 bool Witch::isDead() {
+    return actionState == WITCH_DEAD;
+}
+
+bool Witch::isRemovable() {
     return actionState == WITCH_DYING && actionCounter == 0;
 }
 

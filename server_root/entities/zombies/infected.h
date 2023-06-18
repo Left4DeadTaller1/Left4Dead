@@ -30,6 +30,7 @@ class Infected : public Zombie {
     bool isMoving() override;
     void checkIfDead() override;
     void kill() override;
+    bool isRemovable() override;
     bool isDead() override;
     ~Infected();
 };

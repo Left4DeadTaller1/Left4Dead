@@ -34,7 +34,7 @@ void Acceptor::reap_dead() {
     // las funciones lambdas en c++ parecen re herejes viniendo de js
     clients.remove_if([](const std::shared_ptr<ClientConnection>& c) {
         // c->checkThreads();
-        if (c->isDead()) {
+        if (c->isRemovable()) {
             c->kill();
             return true;
         }

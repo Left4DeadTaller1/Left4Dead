@@ -82,6 +82,7 @@ class Entity {
     virtual void checkIfDead() = 0;
     virtual void kill() = 0;
     virtual bool isDead() = 0;
+    virtual bool isRemovable() = 0;
 
     virtual Attack attack() = 0;
 

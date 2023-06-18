@@ -154,6 +154,10 @@ void Player::kill() {
 }
 
 bool Player::isDead() {
+    return actionState == PLAYER_DEAD;
+}
+
+bool Player::isRemovable() {
     return (actionCounter == 0 && actionState == PLAYER_DEAD);
 }
 

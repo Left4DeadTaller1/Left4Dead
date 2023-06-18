@@ -95,6 +95,10 @@ void Jumper::kill() {
 }
 
 bool Jumper::isDead() {
+    return actionState == JUMPER_DEAD;
+}
+
+bool Jumper::isRemovable() {
     return (actionCounter == 0 && actionState == JUMPER_DEAD);
 }
 

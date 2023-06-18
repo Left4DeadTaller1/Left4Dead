@@ -31,6 +31,7 @@ class Spear : public Zombie {
     void checkIfDead() override;
     void kill() override;
     bool isDead() override;
+    bool isRemovable() override;
 
     ~Spear();
 };

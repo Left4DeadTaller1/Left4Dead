@@ -167,12 +167,14 @@ void Game::getPlayersActions() {
 }
 
 void Game::updateState() {
+    removeDeadEntities();
+
     for (auto& entity : entities) {
-        entity->decreaseActionCounter();
-        if (entity->isDead()) {
-            entities.remove(entity);
+        // skip entity if dead
+        if (entity->isDead())
             continue;
-        }
+
+        entity->decreaseActionCounter();
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
             updatePlayerState(*player, playersActions[player->getId()]);
@@ -270,7 +272,7 @@ const std::unordered_map<std::string, std::queue<Action>>& Game::_getPlayersActi
 void Game::removeDeadEntities() {
     auto it = entities.begin();
     while (it != entities.end()) {
-        if ((*it)->isDead()) {
+        if ((*it)->isRemovable()) {
             it = entities.erase(it);
         } else {
             ++it;
