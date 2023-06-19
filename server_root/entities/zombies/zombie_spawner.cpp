@@ -46,26 +46,20 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
     totalZombies += 1;
     std::string zombieId = "zombie" + std::to_string(totalZombies);
 
-    int zombieType = rand() % TYPES_OF_ZOMBIE;
+    int zombieType = rand() % 100;
 
     std::shared_ptr<Zombie> zombiePtr;
 
-    switch (zombieType) {
-        case 1:
-            zombiePtr = std::make_shared<Infected>(spawnX, spawnY, zombieId, mutationLevel);
-            break;
-        case 2:
-            zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
-            break;
-        case 3:
-            zombiePtr = std::make_shared<Witch>(spawnX, spawnY, zombieId, mutationLevel);
-            break;
-        case 4:
-            zombiePtr = std::make_shared<Spear>(spawnX, spawnY, zombieId, mutationLevel);
-            break;
-        case 5:
-            zombiePtr = std::make_shared<Venom>(spawnX, spawnY, zombieId, mutationLevel);
-            break;
+    if (zombieType < 50) {  // 50%
+        zombiePtr = std::make_shared<Infected>(spawnX, spawnY, zombieId, mutationLevel);
+    } else if (zombieType < 55) {  // 5%
+        zombiePtr = std::make_shared<Witch>(spawnX, spawnY, zombieId, mutationLevel);
+    } else if (zombieType < 70) {  // 15%
+        zombiePtr = std::make_shared<Venom>(spawnX, spawnY, zombieId, mutationLevel);
+    } else if (zombieType < 85) {  // 15%
+        zombiePtr = std::make_shared<Spear>(spawnX, spawnY, zombieId, mutationLevel);
+    } else {  // 15%
+        zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
     }
 
     spawnInterval = spawnSettings["SPAWN_INTERVAL"];
