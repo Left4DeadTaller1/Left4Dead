@@ -48,19 +48,19 @@ TEST(GameTest, RemovePlayer) {
 TEST(GameTest, StartStopGame) {
     Game gameInstance;
 
-    EXPECT_FALSE(gameInstance.getGameRunning());
+    EXPECT_FALSE(gameInstance.isGameRunning());
 
     std::thread gameThread(&Game::run, &gameInstance);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-    EXPECT_TRUE(gameInstance.getGameRunning());
+    EXPECT_TRUE(gameInstance.isGameRunning());
 
     gameInstance.stop();
 
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-    EXPECT_FALSE(gameInstance.getGameRunning());
+    EXPECT_FALSE(gameInstance.isGameRunning());
 
     gameThread.join();
 }

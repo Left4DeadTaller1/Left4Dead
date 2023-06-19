@@ -52,7 +52,7 @@ GamesManager::~GamesManager() {
 
     for (auto& gamePair : games) {
         auto& game = gamePair.second;
-        if (game && game->gameRunning()) {
+        if (game && game->isGameRunning()) {
             game->join();
         }
     }

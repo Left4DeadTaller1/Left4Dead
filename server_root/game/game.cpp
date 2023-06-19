@@ -92,7 +92,7 @@ void Game::stop() {
     gameRunning = false;
 }
 
-bool Game::gameRunning() {
+bool Game::isGameRunning() {
     return gameRunning;
 }
 

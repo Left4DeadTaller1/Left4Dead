@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS}")
 
+# Define BASE_PATH macro
+add_compile_definitions(BASE_PATH="${CMAKE_SOURCE_DIR}")
+
 # For Google Test, remove -Werror flag
 set(CMAKE_C_FLAGS_OLD ${CMAKE_C_FLAGS})
 set(CMAKE_CXX_FLAGS_OLD ${CMAKE_CXX_FLAGS})
@@ -31,7 +34,6 @@ add_library(server_lib STATIC ${SERVER_SRC} ${COMMON_SRC})
 # Executables
 add_executable(client ${CLIENT_SRC} ${COMMON_SRC})
 add_executable(server ${SERVER_SRC} ${COMMON_SRC})
-
 
 # Link the library to your executables
 target_link_libraries(client PRIVATE server_lib)
@@ -99,15 +101,11 @@ endif()
 add_subdirectory(tests)
 
 #SDL
-cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
-project(Left4Dead LANGUAGES CXX)
-
 find_package(SDL2pp REQUIRED)
 
-# add compilation flags
-set(CMAKE_CXX_STANDARD 17)
+# Add compilation flags
 add_definitions(-DDATA_PATH="${PROJECT_SOURCE_DIR}")
 include_directories(${SDL2PP_INCLUDE_DIRS})
 
-# define targets
+# Define targets
 target_link_libraries(client PUBLIC SDL2pp::SDL2pp)

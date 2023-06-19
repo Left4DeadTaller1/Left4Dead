@@ -26,7 +26,11 @@
  <!-- Add steps later -->
 
 
- haber falta lo de revivir jugadores
+ haber falta:
+ lo de revivir jugadores
+ lo del cambio entre animaciones
  lo de remover jugadores inactivos
  lo de cerrar el juego si no hay mas jugadores
- los ataques de cada zombie
+ los ataques especiales de cada zombie
+ cheats
+ 
