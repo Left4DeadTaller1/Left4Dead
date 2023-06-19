@@ -40,7 +40,7 @@ class Game : public Thread {
     void startGame();
     void sendAction(Action action);
     void stop();
-    bool getGameRunning();
+    bool gameRunning();
     // leaveGame();
 
     ~Game();

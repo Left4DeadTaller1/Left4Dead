@@ -45,3 +45,15 @@ int GamesManager::_getNextGameId() {
 const std::unordered_map<int, std::shared_ptr<Game>>& GamesManager::_getGames() const {
     return games;
 }
+
+GamesManager::~GamesManager() {
+    // Para prevenir problemas de concurrencia
+    std::lock_guard<std::mutex> lock(m);
+
+    for (auto& gamePair : games) {
+        auto& game = gamePair.second;
+        if (game && game->gameRunning()) {
+            game->join();
+        }
+    }
+}
