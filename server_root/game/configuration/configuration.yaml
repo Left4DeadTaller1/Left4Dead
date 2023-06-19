@@ -85,4 +85,5 @@ gameParams:
     SNIPER_BULLETS_SHOT: 1
 
   spawns:
+    MUTATION_STRENGTH: 10
     SPAWN_INTERVAL: 120

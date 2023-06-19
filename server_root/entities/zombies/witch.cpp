@@ -8,11 +8,13 @@ Witch::Witch(int xPosition, int yPosition, std::string zombieId, int mutationLev
     : Zombie(xPosition, yPosition, zombieId, mutationLevel), actionState(WITCH_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> spawnParams = config.getSpawnsParams();
+    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
 
     width = entityParams["WITCH_WIDTH"];
     height = entityParams["WITCH_HEIGHT"];
-    health = entityParams["WITCH_HEALTH"] + (5 * mutationLevel);
-    movementSpeed = entityParams["WITCH_SPEED"] + (5 * mutationLevel);
+    health = entityParams["WITCH_HEALTH"] + mutationIncrease;
+    movementSpeed = entityParams["WITCH_SPEED"] + mutationIncrease;
     // Todo: add jump ATk
     attacksCooldowns.insert(std::make_pair("melee", entityParams["WITCH_ATTACK_COOLDOWN"]));
 }
@@ -39,6 +41,8 @@ int Witch::getAttackRange() {
 Attack Witch::attack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> spawnParams = config.getSpawnsParams();
+    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
     int atkDmg;
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
@@ -54,7 +58,7 @@ Attack Witch::attack() {
             break;
     }
     attacksCooldowns["melee"] = entityParams["WITCH_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["WITCH_ATTACK_DAMAGE"] + (5 * mutationLevel);
+    atkDmg = entityParams["WITCH_ATTACK_DAMAGE"] + mutationIncrease;
     actionState = WITCH_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }

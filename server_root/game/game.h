@@ -61,8 +61,10 @@ class Game : public Thread {
     std::list<std::shared_ptr<Entity>> entities;
     ServerProtocol protocol;
     ZombieSpawner zombieSpawner;
+    int framesCounter;
 
-    void spawnPlayer(std::string idPlayer);
+    void
+    spawnPlayer(std::string idPlayer);
     void removePlayer(std::string idPlayer);
     void updateState();
     void updatePlayerState(Player& player, std::queue<Action>& playerActions);

@@ -8,11 +8,13 @@ Infected::Infected(int xPosition, int yPosition, std::string zombieId, int mutat
     : Zombie(xPosition, yPosition, zombieId, mutationLevel), actionState(INFECTED_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> spawnParams = config.getSpawnsParams();
+    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
 
     width = entityParams["INFECTED_WIDTH"];
     height = entityParams["INFECTED_HEIGHT"];
-    health = entityParams["INFECTED_HEALTH"] + (5 * mutationLevel);
-    movementSpeed = entityParams["INFECTED_SPEED"] + (5 * mutationLevel);
+    health = entityParams["INFECTED_HEALTH"] + mutationIncrease;
+    movementSpeed = entityParams["INFECTED_SPEED"] + mutationIncrease;
     attacksCooldowns.insert(std::make_pair("melee", entityParams["INFECTED_ATTACK_COOLDOWN"]));
 }
 
@@ -38,6 +40,9 @@ int Infected::getAttackRange() {
 Attack Infected::attack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> spawnParams = config.getSpawnsParams();
+    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+
     int atkDmg;
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
@@ -53,7 +58,7 @@ Attack Infected::attack() {
             break;
     }
     attacksCooldowns["melee"] = entityParams["INFECTED_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"] + (5 * mutationLevel);
+    atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"] + mutationIncrease;
     actionState = INFECTED_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }

@@ -8,11 +8,13 @@ Venom::Venom(int xPosition, int yPosition, std::string zombieId, int mutationLev
     : Zombie(xPosition, yPosition, zombieId, mutationLevel), actionState(VENOM_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> spawnParams = config.getSpawnsParams();
+    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
 
     width = entityParams["VENOM_WIDTH"];
     height = entityParams["VENOM_HEIGHT"];
-    health = entityParams["VENOM_HEALTH"] + (5 * mutationLevel);
-    movementSpeed = entityParams["VENOM_SPEED"] + (5 * mutationLevel);
+    health = entityParams["VENOM_HEALTH"] + mutationIncrease;
+    movementSpeed = entityParams["VENOM_SPEED"] + mutationIncrease;
     attacksCooldowns.insert(std::make_pair("spray", entityParams["VENOM_SPRAY_COOLDOWN"]));
     attacksCooldowns.insert(std::make_pair("proyectile", entityParams["VENOM_PROYECTILE_COOLDOWN"]));
 }
@@ -40,6 +42,8 @@ int Venom::getAttackRange() {
 Attack Venom::attack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> spawnParams = config.getSpawnsParams();
+    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
     int atkDmg;
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
@@ -57,12 +61,12 @@ Attack Venom::attack() {
 
     if (attacksCooldowns["proyectile"] == 0) {
         attacksCooldowns["proyectile"] = entityParams["VENOM_PROYECTILE_COOLDOWN"];
-        atkDmg = entityParams["VENOM_PROYECTILE_DAMAGE"] + (5 * mutationLevel);
+        atkDmg = entityParams["VENOM_PROYECTILE_DAMAGE"] + mutationIncrease;
         actionState = VENOM_SHOOTING;
         return Attack(LONG_VENOM, atkDmg, attackX, attackDirection, y, y + height);
     } else {
         attacksCooldowns["spray"] = entityParams["VENOM_SPRAY_COOLDOWN"];
-        atkDmg = entityParams["VENOM_SPRAY_DAMAGE"] + (5 * mutationLevel);
+        atkDmg = entityParams["VENOM_SPRAY_DAMAGE"] + mutationIncrease;
         actionState = VENOM_ATTACKING;
         return Attack(SHORT_VENOM, atkDmg, attackX, attackDirection, y, y + height);
     }

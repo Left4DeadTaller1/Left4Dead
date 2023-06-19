@@ -87,12 +87,14 @@ TEST(ZombieTest, TestZombieDecideTarget) {
 TEST(ZombieTest, TestZombieMutation) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> spawnParams = config.getSpawnsParams();
+    int mutationIncrease = 5 * spawnParams["MUTATION_STRENGTH"];
     Infected zombie(15, 20, "Zombie1", 5);
     auto attack = zombie.attack();
 
-    EXPECT_EQ(zombie.getMovementSpeed(), entityParams["INFECTED_SPEED"] + (5 * 5));
-    EXPECT_EQ(zombie.getHealth(), entityParams["INFECTED_HEALTH"] + (5 * 5));
-    EXPECT_EQ(attack.getDamage(), entityParams["INFECTED_ATTACK_DAMAGE"] + (5 * 5));
+    EXPECT_EQ(zombie.getMovementSpeed(), entityParams["INFECTED_SPEED"] + mutationIncrease);
+    EXPECT_EQ(zombie.getHealth(), entityParams["INFECTED_HEALTH"] + mutationIncrease);
+    EXPECT_EQ(attack.getDamage(), entityParams["INFECTED_ATTACK_DAMAGE"] + mutationIncrease);
 }
 
 // // Weapon Test Cases

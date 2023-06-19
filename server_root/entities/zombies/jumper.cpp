@@ -8,11 +8,13 @@ Jumper::Jumper(int xPosition, int yPosition, std::string zombieId, int mutationL
     : Zombie(xPosition, yPosition, zombieId, mutationLevel), actionState(JUMPER_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> spawnParams = config.getSpawnsParams();
+    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
 
     width = entityParams["JUMPER_WIDTH"];
     height = entityParams["JUMPER_HEIGHT"];
-    health = entityParams["JUMPER_HEALTH"] + (5 * mutationLevel);
-    movementSpeed = entityParams["JUMPER_SPEED"] + (5 * mutationLevel);
+    health = entityParams["JUMPER_HEALTH"] + mutationIncrease;
+    movementSpeed = entityParams["JUMPER_SPEED"] + mutationIncrease;
     // Todo: add jump ATk
     attacksCooldowns.insert(std::make_pair("melee", entityParams["JUMPER_ATTACK_COOLDOWN"]));
 }
@@ -39,6 +41,8 @@ int Jumper::getAttackRange() {
 Attack Jumper::attack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> spawnParams = config.getSpawnsParams();
+    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
     int atkDmg;
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
@@ -54,7 +58,7 @@ Attack Jumper::attack() {
             break;
     }
     attacksCooldowns["melee"] = entityParams["JUMPER_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] + (5 * mutationLevel);
+    atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] + mutationIncrease;
     actionState = JUMPER_ATTACKING;
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
 }

@@ -16,7 +16,7 @@
 ________________________________________________________________*/
 
 Game::Game()
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner() {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0) {
     playerQueues.resize(4, nullptr);
 }
 
@@ -147,6 +147,8 @@ void Game::startGame() {
         if (elapsed.count() < MS_PER_FRAME) {
             std::this_thread::sleep_for(std::chrono::milliseconds(MS_PER_FRAME) - elapsed);
         }
+
+        framesCounter++;
     }
 
     gameRunning = false;
@@ -189,6 +191,12 @@ void Game::updateState() {
         attack(*entity);
         entity->decreaseATKCooldown();
     }
+
+    // Every min mutate zombies
+    if (framesCounter % 1800 == 0)
+        zombieSpawner.mutate();
+
+    // spawn zombies
     std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
     if (spawnedZombie) {
         entities.push_back(spawnedZombie);
