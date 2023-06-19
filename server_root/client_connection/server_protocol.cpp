@@ -378,7 +378,7 @@ ServerProtocol::encodeServerMessage(const std::string &msgType, const std::strin
 
 std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const std::string &msgType, bool serverResponse) {
     std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
-
+    std::cout << "En el equivocado" << std::endl;
     if (msgType == "JoinMsg") {
         encodedMsg->push_back(2);
 
@@ -394,6 +394,7 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const 
 }
 
 std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage() {
+    std::cout << "En el equivocado 2" << std::endl;
     // Yeah i know this method seems pointless i just need a msg to send to the clients to tell them the game started
     std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
 

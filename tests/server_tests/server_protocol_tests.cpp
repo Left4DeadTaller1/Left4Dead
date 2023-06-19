@@ -16,7 +16,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     uint8_t playerActionCooldown = static_cast<uint8_t>(entityParams["PLAYER_HURT_DURATION"]);
 
     // Create mock Zombie
-    std::shared_ptr<Infected> zombie = std::make_shared<Infected>(15, 20, "Zombie1", 0);
+    std::shared_ptr<Infected> zombie = std::make_shared<Infected>(15, 20, "Zombie15", 0);
     uint8_t zombieHealth = static_cast<uint8_t>(entityParams["INFECTED_HEALTH"]);
 
     // Add entities to a vector
@@ -40,7 +40,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
         1,                     // facingDirection: FACING_RIGHT (1 byte)
         0, playerHealth,       // Health: 80 (2 byte)
         1,                     // Entity type: Zombie (1 byte)
-        0, 1,                  // ID: Zombie1 (2 bytes)
+        0, 15,                 // ID: Zombie1 (2 bytes)
         0,                     // Zombie type: INFECTED (1 byte)
         12,                    // General State: IDLE (1 byte) //till here is okey
         0,                     // Action Counter: 0 since i didn't do anything (1 byte)
@@ -95,12 +95,15 @@ TEST(ServerProtocolTest, TestExtractId) {
 
 TEST(ServerProtocolTest, TestEncodeJoinMessage) {
     ServerProtocol protocol;
+    std::string msgType = "JoinMsg";
+    std::string playerId1 = "Player1";
+    std::string playerId2 = "Player4";
 
     // Encode the Join Message
-    std::shared_ptr<std::vector<uint8_t>> encodedMessage1Ptr = protocol.encodeServerMessage("JoinMsg", "Player1");
+    std::shared_ptr<std::vector<uint8_t>> encodedMessage1Ptr = protocol.encodeServerMessage(msgType, playerId1);
     std::vector<uint8_t>& encodedMessage1 = *encodedMessage1Ptr;
 
-    std::shared_ptr<std::vector<uint8_t>> encodedMessage2Ptr = protocol.encodeServerMessage("JoinMsg", "Player4");
+    std::shared_ptr<std::vector<uint8_t>> encodedMessage2Ptr = protocol.encodeServerMessage(msgType, playerId2);
     std::vector<uint8_t>& encodedMessage2 = *encodedMessage2Ptr;
 
     // Check the encoded message
