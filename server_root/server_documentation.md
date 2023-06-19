@@ -24,3 +24,9 @@
    
 3. Build the project: Follow the build instructions provided in the repository's documentation.
  <!-- Add steps later -->
+
+
+ haber falta lo de revivir jugadores
+ lo de remover jugadores inactivos
+ lo de cerrar el juego si no hay mas jugadores
+ los ataques de cada zombie

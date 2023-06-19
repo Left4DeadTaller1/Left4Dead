@@ -11,6 +11,7 @@
 struct SpawnPoint {
     int x;
     int y;
+    bool witchAffected;
 };
 
 class ZombieSpawner {
