@@ -22,12 +22,12 @@ class EventManagerThread : public Thread {
     Queue<std::shared_ptr<ActionClient>>& qEventsToSender;
     Queue<std::shared_ptr<ActionClient>>& qEventsToRender;
     SDL2pp::Window& window;
-    bool& isConnected;
+    std::atomic<bool>& isConnected;
 
     public:
     EventManagerThread(Queue<std::shared_ptr<ActionClient>>& qEventsToSender,
                         Queue<std::shared_ptr<ActionClient>>& qEventsToRender,
-                        SDL2pp::Window& window, bool& isConnected);
+                        SDL2pp::Window& window, std::atomic<bool>& isConnected);
 
     virtual void run() override;
 };

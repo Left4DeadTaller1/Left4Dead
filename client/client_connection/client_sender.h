@@ -11,14 +11,14 @@
 
 class SenderThread : public Thread {
    public:
-    SenderThread(bool& wasClosed,
-                    ClientProtocol& protocol, 
-                    Queue<std::shared_ptr<ActionClient>>& qEventsToSender);
+    SenderThread(std::atomic<bool>& isConnected,
+                ClientProtocol& protocol, 
+                Queue<std::shared_ptr<ActionClient>>& qEventsToSender);
 
     virtual void run() override;
 
    private:
-    bool& wasClosed;
+    std::atomic<bool>& isConnected;
     ClientProtocol& protocol;
     Queue<std::shared_ptr<ActionClient>>& qEventsToSender;
 

@@ -16,6 +16,7 @@
 #include "queue.h"
 #include "socket.h"
 #include "thread.h"
+#include <atomic>
 
 #define TAM_MAX_QUEUE 16000
 
@@ -29,9 +30,9 @@ class Client {
 
    private:
     Socket socket;
-    bool wasClosed;
+    std::atomic<bool> wasClosed;
     ClientProtocol protocol;
-    bool isConnected;
+    std::atomic<bool> isConnected;
     Queue<std::shared_ptr<ActionClient>> qEventsToSender;
     Queue<std::shared_ptr<gameStateDTO_t>> qServerToRender;
     Queue<std::shared_ptr<ActionClient>> qEventsToRender;

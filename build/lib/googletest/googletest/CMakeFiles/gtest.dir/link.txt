@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L -shared -Wl,-soname,libgtest.so.1.13.0 -o ../../libgtest.so.1.13.0 CMakeFiles/gtest.dir/src/gtest-all.cc.o 

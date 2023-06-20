@@ -1,15 +1,6 @@
 #include "client_render.h"
 
 using namespace SDL2pp;
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
-#define GAME_HEIGHT 150
-#define GAME_WIDTH 1500
-#define IMAGE_WIDTH 150
-#define IMAGE_HEIGHT 150
-#define IMAGE_BORDER_PADDING 40
-#define MAX_HEALTH 100
-#define LIFE_LEVELS 10
 
 ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
                     Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
@@ -19,7 +10,16 @@ ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerTo
                     window(window_),
                     renderer(window_, -1, SDL_RENDERER_ACCELERATED),
                     textureManager(renderer),
+                    soundManager(),
                     previousGameStateDTO(NULL){}
+
+void ClientRenderer::copySprite(Texture& texture, Rect& srcRect, Rect& dstRect, int lookingTo){
+    if (lookingTo == ENTITY_LOOKING_LEFT) {
+        SDL_RenderCopyEx(renderer.Get(), texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_HORIZONTAL);
+    } else {
+        SDL_RenderCopyEx(renderer.Get(), texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
+    }
+}
 
 void ClientRenderer::renderLifeBar(player_t& currentPlayer){
     GameTexture& texture = textureManager.getBackgroundTexture("barras-vida");
@@ -32,78 +32,61 @@ void ClientRenderer::renderLifeBar(player_t& currentPlayer){
 
     SDL_Rect dstRect;
     if (currentPlayer.lookingTo == 0) {
-        dstRect.x = ((currentPlayer.x * WINDOW_WIDTH) / GAME_WIDTH) + 100;
+        dstRect.x = ((currentPlayer.x * VIEWPORT_WIDTH) / GAME_WIDTH)   \
+                            + DIST_X_LIFE_BAR_TO_ENTITY_LOOKING_LEFT;
     } else {
-        dstRect.x = ((currentPlayer.x * WINDOW_WIDTH) / GAME_WIDTH) + 30;
+        dstRect.x = ((currentPlayer.x * VIEWPORT_WIDTH) / GAME_WIDTH)   \
+                            + DIST_X_LIFE_BAR_TO_ENTITY_LOOKING_RIGHT;
     }
-    dstRect.y = (WINDOW_HEIGHT - currentPlayer.y - GAME_HEIGHT) + 30;
-    dstRect.w = 20;
-    dstRect.h = 50;
+    dstRect.y = (VIEWPORT_HEIGHT - currentPlayer.y - GAME_HEIGHT) + DIST_Y_LIFE_BAR_TO_ENTITY;
+    dstRect.w = LIFE_BAR_WIDTH;
+    dstRect.h = LIFE_BAR_HEIGHT;
 
-    if (currentPlayer.lookingTo == 0) {
-        SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_HORIZONTAL);
-    } else {
-        SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
-    }
+    //copySprite(texture.texture, srcRect, dstRect, currentPlayer.lookingTo);
 }
 
-void ClientRenderer::drawInfected(infected_t& previousPlayer, 
-                                infected_t& currentPlayer){
+void ClientRenderer::drawInfected(infected_t& previousInfected, 
+                                infected_t& currentInfected){
     
-    GameTexture& texture = textureManager.getTexture(currentPlayer.typeInfected, currentPlayer.state);
+    GameTexture& texture = textureManager.getTexture(currentInfected.typeInfected, 
+                                                        currentInfected.state);
 
-    SDL_Rect srcRect;
-    srcRect.x = (texture.width / texture.n)* (previousPlayer.x % texture.n);
-    srcRect.y = 0;
-    srcRect.w = texture.width / texture.n;
-    srcRect.h = texture.height;
+    Rect srcRect((texture.width / texture.n)* (previousInfected.x % texture.n),
+                0,
+                texture.width / texture.n, 
+                texture.height);
 
-    SDL_Rect dstRect;
-    dstRect.x = (currentPlayer.x * WINDOW_WIDTH) / GAME_WIDTH;
-    dstRect.y = WINDOW_HEIGHT - currentPlayer.y - GAME_HEIGHT;
-    dstRect.w = IMAGE_WIDTH;
-    dstRect.h = IMAGE_HEIGHT;
+    Rect dstRect((currentInfected.x * VIEWPORT_WIDTH) / GAME_WIDTH,
+                VIEWPORT_HEIGHT - currentInfected.y - GAME_HEIGHT,
+                ENTITY_WIDTH, 
+                ENTITY_HEIGHT);
 
-    if (currentPlayer.lookingTo == 0) {
-        SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_HORIZONTAL);
-    } else {
-        SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
-    }
+    copySprite(texture.texture, srcRect, dstRect, currentInfected.lookingTo);
 }
-
-#define PI 3.14
 
 void ClientRenderer::drawPlayer(player_t& previousPlayer, 
                                 player_t& currentPlayer){
-
-    renderLifeBar(currentPlayer);
     
     GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
 
-    SDL_Rect srcRect;
-    srcRect.x = (texture.width / texture.n)* (previousPlayer.x % texture.n);
-    srcRect.y = 0;
-    srcRect.w = texture.width / texture.n;
-    srcRect.h = texture.height;
+    Rect srcRect((texture.width / texture.n)* (previousPlayer.x % texture.n),
+                0,
+                texture.width / texture.n, 
+                texture.height);
 
-    SDL_Rect dstRect;
-    dstRect.x = (currentPlayer.x * WINDOW_WIDTH) / GAME_WIDTH;
-    dstRect.y = WINDOW_HEIGHT - currentPlayer.y - GAME_HEIGHT;
-    dstRect.w = IMAGE_WIDTH;
-    dstRect.h = IMAGE_HEIGHT;
+    Rect dstRect((currentPlayer.x * VIEWPORT_WIDTH) / GAME_WIDTH,
+                VIEWPORT_HEIGHT - currentPlayer.y - GAME_HEIGHT,
+                ENTITY_WIDTH, 
+                ENTITY_HEIGHT);
 
-    if (currentPlayer.lookingTo == 0) {
-        SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_HORIZONTAL);
-    } else {
-        SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
+    copySprite(texture.texture, srcRect, dstRect, currentPlayer.lookingTo);
+    if (currentPlayer.state != previousPlayer.state && currentPlayer.state != IDLE){     //y si soy yoelse {
+        soundManager.playSound(SOLDIER1, currentPlayer.state, -1);
+    }
+    if (currentPlayer.state != previousPlayer.state){
+        soundManager.stopSound(SOLDIER1, previousPlayer.state);
     }
 }
-
-
-void drawInfected(infected_t& previousInfected, 
-            infected_t& currentInfected){
-                return;
-            }
 
 void ClientRenderer::drawBackground(Texture& background){
     renderer.Copy(background);
@@ -131,44 +114,42 @@ void  ClientRenderer::drawInfected(std::map<uint8_t, infected_t>& infected){
     }
 }
 
-void  ClientRenderer::drawInicio(void) {
+void ClientRenderer::drawInicio(void) {
     renderer.Clear();
     drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
     renderer.Present();
 }
 
-int ClientRenderer::looprender(void){
+int ClientRenderer::looprender(void) {
     drawInicio();
     previousGameStateDTO = qServerToRender.pop();
 
-    while(true){
-
+    while (true) {
         std::shared_ptr<gameStateDTO_t> gameStateDTO = qServerToRender.pop();
         renderer.Clear();
 
         drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
 
         SDL_Rect viewport;
-        viewport.x = -IMAGE_BORDER_PADDING;
+        viewport.x = VIEWPORT_X_INITIAL;
         viewport.y = 0;
-        viewport.w = WINDOW_WIDTH + IMAGE_BORDER_PADDING;
-        viewport.h = WINDOW_HEIGHT;
+        viewport.w = VIEWPORT_WIDTH;
+        viewport.h = VIEWPORT_HEIGHT;
 
-        //SDL_RenderSetLogicalSize(renderer.Get(), viewport.w, viewport.h);
         SDL_RenderSetViewport(renderer.Get(), &viewport);
 
         drawPlayers(gameStateDTO->players);
         drawInfected(gameStateDTO->infected);
 
         renderer.Present();
-        SDL_RenderSetLogicalSize(renderer.Get(), WINDOW_WIDTH, WINDOW_HEIGHT);
         SDL_RenderSetViewport(renderer.Get(), nullptr);
 
         previousGameStateDTO = gameStateDTO;
     }
 
-	return 0;
+    return 0;
 }
+
 
 
 

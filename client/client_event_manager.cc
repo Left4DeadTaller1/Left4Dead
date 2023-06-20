@@ -4,7 +4,7 @@ using namespace SDL2pp;
 
 EventManagerThread::EventManagerThread(Queue<std::shared_ptr<ActionClient>>& qEventsToSender,
                                        Queue<std::shared_ptr<ActionClient>>& qEventsToRender,
-                                       SDL2pp::Window& window, bool& isConnected) : qEventsToSender(qEventsToSender),
+                                       SDL2pp::Window& window, std::atomic<bool>& isConnected) : qEventsToSender(qEventsToSender),
                                                                             qEventsToRender(qEventsToRender),
                                                                             window(window),
                                                                             isConnected(isConnected) {}
@@ -20,7 +20,7 @@ void EventManagerThread::run() {
 
         while (true) {
             SDL_Event event;
-            while (SDL_PollEvent(&event)) {
+            while (SDL_WaitEvent(&event)) {
                 std::shared_ptr<ActionClient> action;
 
                 if (event.type == SDL_QUIT) {

@@ -3,6 +3,8 @@
 #ifndef SOCKET_H_
 #define SOCKET_H_
 
+#include <atomic>
+
 /*
  * TDA Socket.
  * Por simplificación este TDA se enfocará solamente

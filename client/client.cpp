@@ -9,8 +9,8 @@ Client::Client(const char* hostname, const char* servname, SDL2pp::Window& windo
                                                                              qEventsToRender(TAM_MAX_QUEUE),
                                                                              window(window),
                                                                              renderer(qServerToRender, qEventsToRender, window),
-                                                                             senderThread(wasClosed, protocol, qEventsToSender),
-                                                                             receiverThread(wasClosed, protocol, qServerToRender),
+                                                                             senderThread(isConnected, protocol, qEventsToSender),
+                                                                             receiverThread(isConnected, protocol, qServerToRender),
                                                                              eventManagerThread(qEventsToSender,
                                                                                                 qEventsToRender,
                                                                                                 window,
@@ -21,8 +21,10 @@ void Client::run() { try {
     senderThread.start();
     receiverThread.start();
     renderer.looprender();
-    } catch(...){
-        //implem
+    } catch (const std::exception &e) {
+        std::cerr << "Client: Exception caught: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Client: Unknown exception caught. Ending program." << std::endl;
     }
 }
 
