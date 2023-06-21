@@ -16,26 +16,34 @@ void ClientReceiver::run() {
     try {
         while (isRunning) {
             bool wasClosed = false;
+            int typeCommand;
 
-            int tipoComando = protocol.receiveTypeCommand(wasClosed, clientSocket);
+            try {
+                typeCommand = protocol.receiveTypeCommand(wasClosed, clientSocket);
+            } catch (const std::runtime_error &e) {
+                std::cerr << "Player disconnected: " << e.what() << std::endl;
+                handlePlayerDisconnection();
+                break;
+            }
+
             int code;
             std::vector<int> data;
 
-            switch (tipoComando) {
+            switch (typeCommand) {
                 case CREATE:
                     protocol.receiveCreate(wasClosed, clientSocket);
-                    if (!game->getIsGameRunning())
+                    if (!game->isGameRunning())
                         handleCreateAction();
                     break;
                 case JOIN:
                     code = protocol.receiveJoin(wasClosed, clientSocket);
                     std::cout << "code: " << code << "\n";
-                    if (!game->getIsGameRunning())
+                    if (!game->isGameRunning())
                         handleJoinAction(code);
                     break;
                 case START_GAME:
                     // TODO receive the gameCode and pass it to the startGame
-                    if (!game->getIsGameRunning())
+                    if (!game->isGameRunning())
                         gamesManager.startGame(0);
                     break;
                 case START_MOVE:
@@ -148,4 +156,10 @@ void ClientReceiver::stop() {
 
 bool ClientReceiver::getIsRunning() {
     return isRunning;
+}
+
+void ClientReceiver::handlePlayerDisconnection() {
+    game->removePlayer(gameResponses);
+    Action action(playerId, 7, 2, 2);
+    game->pushAction(action);
 }

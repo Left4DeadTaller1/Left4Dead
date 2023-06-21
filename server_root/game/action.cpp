@@ -14,8 +14,8 @@ std::string Action::getId() {
     return playerId;
 }
 
-int Action::getInputType() {
-    return static_cast<int>(input);
+Input Action::getInputType() {
+    return input;
 }
 
 int Action::getDirectionXType() {

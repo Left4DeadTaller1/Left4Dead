@@ -4,15 +4,15 @@
 #include <string>
 
 enum DirectionXType {
-    ACTION_LEFT,
-    ACTION_RIGHT,
-    NONE_X,
+    ACTION_LEFT,   // 0
+    ACTION_RIGHT,  // 1
+    NONE_X,        // 2
 };
 
 enum DirectionYType {
-    ACTION_UP,
-    ACTION_DOWN,
-    NONE_Y,
+    ACTION_UP,    // 0
+    ACTION_DOWN,  // 1
+    NONE_Y,       // 2
 };
 
 enum Input {
@@ -23,6 +23,7 @@ enum Input {
     INPUT_RELOADING,  // 4
     INPUT_ATTACKING,  // 5
     NO_CHANGE,        // 6
+    DISCONNECTION,    // 7
 };
 
 class Action {
@@ -41,7 +42,7 @@ class Action {
     std::string getId();
 
     // For testing purposes only do not use in production
-    int getInputType();
+    Input getInputType();
     int getDirectionXType();
     int getDirectionYType();
 };

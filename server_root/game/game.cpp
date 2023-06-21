@@ -209,14 +209,20 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
             Action action = playerActions.front();
             playerActions.pop();
 
-            // TODO: updatea esto para que sea acorde al general State
+            int playerState = action.getInputType();
 
-            PlayerActionState playerState = static_cast<PlayerActionState>(action.getInputType());
             MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
             MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
 
-            if (PlayerActionState != NO_CHANGE)
+            if (playerState == DISCONNECTION) {
+                removePlayer(player.getId());
+                break;
+            }
+
+            if (playerState != NO_CHANGE) {
+                PlayerActionState playerState = static_cast<PlayerActionState>(playerState);
                 player.setActionState(playerState);
+            }
             player.setMovementDirectionX(movementDirectionX);
             player.setMovementDirectionY(movementDirectionY);
         }

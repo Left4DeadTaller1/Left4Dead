@@ -4,12 +4,14 @@
 
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 
 ServerProtocol::ServerProtocol(void) {}
 
 int ServerProtocol::receiveTypeCommand(bool &wasClosed, Socket &peer) {
     uint8_t type;
-    peer.recvsome(&type, 1, &wasClosed);
+    if (peer.recvall(&type, 1, &wasClosed) == 0)
+        throw std::runtime_error("Player disconnected");
     return type;
 }
 
