@@ -3,50 +3,48 @@
 
 #include <string>
 
-enum MovementType {
-    ACTION_WALKING,
-    ACTION_RUNNING,
-    ACTION_IDLE,
-};
-
 enum DirectionXType {
-    ACTION_LEFT,
-    ACTION_RIGHT,
-    NONE_X,
+    ACTION_LEFT,   // 0
+    ACTION_RIGHT,  // 1
+    NONE_X,        // 2
 };
 
 enum DirectionYType {
-    ACTION_UP,
-    ACTION_DOWN,
-    NONE_Y,
+    ACTION_UP,    // 0
+    ACTION_DOWN,  // 1
+    NONE_Y,       // 2
 };
 
-enum ActionWeaponState {
-    ACTION_SHOOTING,
-    ACTION_RELOADING,
-    ACTION_WEAPON_IDLE,
+enum Input {
+    INPUT_WALKING,    // 0
+    INPUT_RUNNING,    // 1
+    INPUT_IDLE,       // 2
+    INPUT_SHOOTING,   // 3
+    INPUT_RELOADING,  // 4
+    INPUT_ATTACKING,  // 5
+    NO_CHANGE,        // 6
+    DISCONNECTION,    // 7
 };
 
 class Action {
    private:
+    // TODO change this later
     std::string playerId;
-    MovementType movementType;
+    Input input;
     DirectionXType directionXType;
     DirectionYType directionYType;
-    ActionWeaponState weaponState;
 
    public:
     Action();
-    Action(std::string playerId, int movementType, int directionXType, int directionYType, int weaponState);
+    Action(std::string playerId, int input, int directionXType, int directionYType);
     ~Action();
 
     std::string getId();
 
     // For testing purposes only do not use in production
-    int getMovementType();
+    Input getInputType();
     int getDirectionXType();
     int getDirectionYType();
-    int getWeaponState();
 };
 
 #endif  // ACTION_H_

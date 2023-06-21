@@ -9,6 +9,13 @@
 #include "entity.h"
 #include "player.h"
 
+// enum ActionState {
+//     ATTACKING,
+//     JUMPING,
+//     SHOUTING,
+//     IDLE,
+// };
+
 enum ZombieType {
     INFECTED,
     JUMPER,
@@ -22,27 +29,31 @@ struct ZombieDTO : EntityDTO {
 };
 
 class Zombie : public Entity {
-   private:
-    ZombieType zombieType;
+   protected:
     std::map<std::string, int> attacksCooldowns;
+    int mutationLevel;
 
    public:
     // Constructor
-    Zombie(int xPosition, int yPosition, std::string zombieId, ZombieType type);
+    Zombie(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     void move();
     ~Zombie();
 
     EntityType getType() override;
-    ZombieType getZombieType();
-    std::shared_ptr<EntityDTO> getDto() override;
+    virtual std::shared_ptr<EntityDTO> getDto() = 0;
+    void fillBaseZombieDTO(std::shared_ptr<ZombieDTO> dto);
+
+    virtual void startMoving() = 0;
 
     void decideTarget(std::vector<std::shared_ptr<Player>> &players);
 
     void decreaseATKCooldown() override;
 
-    int getAttackRange();
+    std::tuple<int, int> getDirectionsAmount();
 
-    Attack attack() override;
+    virtual int getAttackRange() = 0;
+
+    virtual Attack attack() = 0;
 
     bool canAttack() override;  // added canAttack function declaration here
 };

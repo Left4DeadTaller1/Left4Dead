@@ -20,6 +20,7 @@ void Acceptor::run() {
             // Limpieza de clients viejos
         }
     } catch (const LibError& e) {
+        // TODO here gamesManager should tell each game to finish
         kill_all();
     } catch (const std::exception& e) {
         std::cerr << "An exception occurred in Acceptor::run(): " << e.what() << std::endl;
@@ -33,7 +34,7 @@ void Acceptor::reap_dead() {
     // las funciones lambdas en c++ parecen re herejes viniendo de js
     clients.remove_if([](const std::shared_ptr<ClientConnection>& c) {
         // c->checkThreads();
-        if (c->isDead()) {
+        if (c->isRemovable()) {
             c->kill();
             return true;
         }

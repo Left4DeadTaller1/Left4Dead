@@ -34,6 +34,7 @@ class GamesManager {
     // Method for Testing do not use them in production
     int _getNextGameId();
     const std::unordered_map<int, std::shared_ptr<Game>>& _getGames() const;
+    ~GamesManager();
 };
 
 #endif  // GAME_MANAGER_H

@@ -8,9 +8,13 @@
 TEST(ZombieSpawnerTest, CheckZombieSpawn) {
     ZombieSpawner spawner;
     std::shared_ptr<Entity> entity;
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> spawnSettings = config.getSpawnsParams();
+
+    int framesTillSpawn = spawnSettings["SPAWN_INTERVAL"];
 
     // The first 4 times spawn() is called, it should return nullptr.
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < (framesTillSpawn - 1); i++) {
         entity = spawner.spawn();
         EXPECT_EQ(entity, nullptr);
     }

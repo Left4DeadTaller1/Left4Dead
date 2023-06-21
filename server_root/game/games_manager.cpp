@@ -26,7 +26,6 @@ void GamesManager::startGame(unsigned int gameCode) {
 }
 
 GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
-    std::cout << "ENTRA A JOIN LOBBY\n";
     std::lock_guard<std::mutex> lock(m);
     auto it = games.find(gameCode);
     if (it != games.end()) {
@@ -45,4 +44,16 @@ int GamesManager::_getNextGameId() {
 
 const std::unordered_map<int, std::shared_ptr<Game>>& GamesManager::_getGames() const {
     return games;
+}
+
+GamesManager::~GamesManager() {
+    // Para prevenir problemas de concurrencia
+    std::lock_guard<std::mutex> lock(m);
+
+    for (auto& gamePair : games) {
+        auto& game = gamePair.second;
+        if (game && game->isGameRunning()) {
+            game->join();
+        }
+    }
 }

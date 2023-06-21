@@ -4,7 +4,7 @@
 
 GameConfig::GameConfig() {
     try {
-        std::string filename = "/home/usaurio/Left4Dead/server_root/game/configuration/configuration.yaml";
+        std::string filename = BASE_PATH "/server_root/game/configuration/configuration.yaml";
 
         YAML::Node config = YAML::LoadFile(filename);
 
@@ -26,6 +26,10 @@ GameConfig::GameConfig() {
             // Load weapons parameters
             if (config["gameParams"]["weapons"]) {
                 weaponsParams = config["gameParams"]["weapons"].as<std::map<std::string, int>>();
+            }
+
+            if (config["gameParams"]["spawns"]) {
+                spawnsParams = config["gameParams"]["spawns"].as<std::map<std::string, int>>();
             }
         }
 
@@ -55,4 +59,7 @@ std::map<std::string, int> GameConfig::getEntitiesParams() const {
 
 std::map<std::string, int> GameConfig::getWeaponsParams() const {
     return weaponsParams;
+}
+std::map<std::string, int> GameConfig::getSpawnsParams() const {
+    return spawnsParams;
 }

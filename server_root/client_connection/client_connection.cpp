@@ -50,7 +50,7 @@ void ClientConnection::inGame() {
     }
 }
 
-bool ClientConnection::isDead() {
+bool ClientConnection::isRemovable() {
     return !alive;
 }
 

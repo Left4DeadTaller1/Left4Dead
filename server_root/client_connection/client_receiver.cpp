@@ -16,24 +16,36 @@ void ClientReceiver::run() {
     try {
         while (isRunning) {
             bool wasClosed = false;
+            int typeCommand;
 
-            int tipoComando = protocol.receiveTypeCommand(wasClosed, clientSocket);
+            try {
+                typeCommand = protocol.receiveTypeCommand(wasClosed, clientSocket);
+            } catch (const std::runtime_error &e) {
+                std::cerr << "Player disconnected: " << e.what() << std::endl;
+                handlePlayerDisconnection();
+                break;
+            }
+
             int code;
             std::vector<int> data;
             dataJoin_t dataJoin;
 
-            switch (tipoComando) {
+            switch (typeCommand) {
                 case CREATE:
                     protocol.receiveCreate(wasClosed, clientSocket);
-                    handleCreateAction();
+                    if (!game->isGameRunning())
+                        handleCreateAction();
                     break;
                 case JOIN:
                     dataJoin = protocol.receiveJoin(wasClosed, clientSocket);
                     std::cout << "code: " << dataJoin.code << "\n";
-                    handleJoinAction(dataJoin.code);
+                    if (!game->isGameRunning())
+                        handleJoinAction(dataJoin.code);
                     break;
                 case START_GAME:
-                    gamesManager.startGame(0);
+                    // TODO receive the gameCode and pass it to the startGame
+                    if (!game->isGameRunning())
+                        gamesManager.startGame(0);
                     break;
                 case START_MOVE:
                     data = protocol.receiveStartMove(wasClosed, clientSocket);
@@ -93,41 +105,41 @@ void ClientReceiver::handleJoinAction(const int code) {
 }
 
 void ClientReceiver::handleStartShoot() {
-    //std::cout << "entra handleStartShoot en receiver\n";
-    Action action(playerId, 3, 3, 3, 0);
+    // std::cout << "entra handleStartShoot en receiver\n";
+    Action action(playerId, 3, 2, 2);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleEndShoot() {
-    Action action(playerId, 3, 3, 3, 2);
+    Action action(playerId, 2, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleRecharge() {
-    Action action(playerId, 3, 3, 3, 1);
+    Action action(playerId, 4, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleStartMove(int movementType, int directionXType, int directionYType) {
-    int weaponType = 3;
-    Action action(playerId, movementType, directionXType, directionYType, weaponType);
+    Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
-    int weaponType = 3;
     int movementType;
     if (directionXType == 2 && directionYType == 2) {
-        movementType = 3;
-        Action action(playerId, movementType, directionXType, directionYType, weaponType);
+        movementType = 2;
+        Action action(playerId, movementType, directionXType, directionYType);
         game->pushAction(action);
         return;
     }
-    movementType = 3;
-    Action action(playerId, movementType, directionXType, directionYType, weaponType);
+
+    movementType = 6;
+    Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
+// TODO prob remove this
 void ClientReceiver::handleGameAction() {
     // We can move this to line 32
     // int actionType = protocol.receiveActionType(clientSocket, was_closed);
@@ -135,8 +147,7 @@ void ClientReceiver::handleGameAction() {
     int movementType = 0;  // placeholder you should get the action from the protocol
     int directionXType = 0;
     int directionYType = 0;
-    int weaponType = 0;
-    Action action(playerId, movementType, directionXType, directionYType, weaponType);
+    Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
@@ -148,3 +159,8 @@ bool ClientReceiver::getIsRunning() {
     return isRunning;
 }
 
+void ClientReceiver::handlePlayerDisconnection() {
+    game->removePlayer(gameResponses);
+    Action action(playerId, 7, 2, 2);
+    game->pushAction(action);
+}

@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS}")
 
+# Define BASE_PATH macro
+add_compile_definitions(BASE_PATH="${CMAKE_SOURCE_DIR}")
+
 # For Google Test, remove -Werror flag
 set(CMAKE_C_FLAGS_OLD ${CMAKE_C_FLAGS})
 set(CMAKE_CXX_FLAGS_OLD ${CMAKE_CXX_FLAGS})
@@ -54,6 +57,7 @@ target_include_directories(server_lib
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/server_root/server
     ${CMAKE_SOURCE_DIR}/server_root/entities
+    ${CMAKE_SOURCE_DIR}/server_root/entities/zombies
     ${CMAKE_SOURCE_DIR}/server_root/client_connection
     ${CMAKE_SOURCE_DIR}/server_root/game
     ${CMAKE_SOURCE_DIR}/server_root/game/configuration
@@ -64,6 +68,7 @@ target_include_directories(server
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/server_root/server
     ${CMAKE_SOURCE_DIR}/server_root/entities
+    ${CMAKE_SOURCE_DIR}/server_root/entities/zombies
     ${CMAKE_SOURCE_DIR}/server_root/client_connection
     ${CMAKE_SOURCE_DIR}/server_root/game
     ${CMAKE_SOURCE_DIR}/server_root/game/configuration

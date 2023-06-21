@@ -1,11 +1,7 @@
 #include "entity.h"
 
 Entity::Entity(int xPosition, int yPosition, std::string id)
-    : x(xPosition), y(yPosition), entityId(id), movementState(ENTITY_IDLE), movementDirectionX(ENTITY_RIGHT), movementDirectionY(ENTITY_UP), healthState(ALIVE), framesHurt(15) {
-}
-
-MovementState Entity::getMovementState() {
-    return movementState;
+    : x(xPosition), y(yPosition), entityId(id), movementDirectionX(ENTITY_RIGHT), movementDirectionY(ENTITY_UP), facingDirection(FACING_RIGHT), actionCounter(0) {
 }
 
 MovementDirectionX Entity::getMovementDirectionX() {
@@ -14,17 +10,6 @@ MovementDirectionX Entity::getMovementDirectionX() {
 
 MovementDirectionY Entity::getMovementDirectionY() {
     return movementDirectionY;
-}
-
-HealthState Entity::getHealthState() {
-    return healthState;
-}
-
-void Entity::setHealthState(HealthState healthState) {
-    if (framesHurt == 0)
-        this->healthState = healthState;
-    else
-        framesHurt--;
 }
 
 int Entity::getMovementSpeed() {
@@ -52,18 +37,19 @@ int Entity::getHealth() {
     return health;
 }
 
+int Entity::getActionCounter() {
+    return actionCounter;
+}
+
+void Entity::decreaseActionCounter() {
+    if (actionCounter > 0)
+        actionCounter--;
+    checkIfDead();
+}
+
 std::shared_ptr<EntityDTO> Entity::getDto() {
     auto dto = std::make_shared<EntityDTO>();
     return dto;
-}
-
-void Entity::takeDamage(int amountOfDamage) {
-    health -= amountOfDamage;
-    healthState = HURT;
-    /// TODO do this:
-    // if (health <= 0) {
-    //     healthState = DYING;
-    // }
 }
 
 Entity::~Entity() {

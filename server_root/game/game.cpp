@@ -16,17 +16,15 @@
 ________________________________________________________________*/
 
 Game::Game()
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner() {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0) {
     playerQueues.resize(4, nullptr);
 }
 
 std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
-    std::cout << "ENTRA A ADD PLAYER\n";
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
     std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
-    std::cout << "se crea con id: " << playerId << "\n";
     spawnPlayer(playerId);
     playerQueues[nextPlayerIndex] = &gameResponses;
 
@@ -94,7 +92,7 @@ void Game::stop() {
     gameRunning = false;
 }
 
-bool Game::getGameRunning() {
+bool Game::isGameRunning() {
     return gameRunning;
 }
 
@@ -126,12 +124,10 @@ void Game::spawnPlayer(std::string playerId) {
 
 void Game::removePlayer(std::string playerId) {
     // erase-remove idiom
-    entities.erase(std::remove_if(entities.begin(), entities.end(),
-                                  [playerId](const auto& entity) {
-                                      Player* player = dynamic_cast<Player*>(entity.get());
-                                      return player != nullptr && player->getId() == playerId;
-                                  }),
-                   entities.end());
+    entities.remove_if([playerId](const auto& entity) {
+        Player* player = dynamic_cast<Player*>(entity.get());
+        return player != nullptr && player->getId() == playerId;
+    });
 }
 
 void Game::startGame() {
@@ -151,6 +147,8 @@ void Game::startGame() {
         if (elapsed.count() < MS_PER_FRAME) {
             std::this_thread::sleep_for(std::chrono::milliseconds(MS_PER_FRAME) - elapsed);
         }
+
+        framesCounter++;
     }
 
     gameRunning = false;
@@ -171,12 +169,14 @@ void Game::getPlayersActions() {
 }
 
 void Game::updateState() {
-    // Decrementamos DYINGCOUNTER de cada entidad que este en DYING y si este llega a 0 borralo
+    removeDeadEntities();
 
     for (auto& entity : entities) {
-        if (entity->getHealthState() == HURT)
-            entity->setHealthState(ALIVE);
+        // skip entity if dead
+        if (entity->isDead())
+            continue;
 
+        entity->decreaseActionCounter();
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
             updatePlayerState(*player, playersActions[player->getId()]);
@@ -191,6 +191,12 @@ void Game::updateState() {
         attack(*entity);
         entity->decreaseATKCooldown();
     }
+
+    // Every min mutate zombies
+    if (framesCounter % 1800 == 0)
+        zombieSpawner.mutate();
+
+    // spawn zombies
     std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
     if (spawnedZombie) {
         entities.push_back(spawnedZombie);
@@ -199,95 +205,92 @@ void Game::updateState() {
 
 void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
     while (!playerActions.empty()) {
-        Action action = playerActions.front();
-        playerActions.pop();
+        if (player.getActionCounter() == 0) {
+            Action action = playerActions.front();
+            playerActions.pop();
 
-        MovementState movementState = static_cast<MovementState>(action.getMovementType());
-        MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
-        MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
-        WeaponState weaponState = static_cast<WeaponState>(action.getWeaponState());
+            int playerState = action.getInputType();
 
-        player.setMovementState(movementState);
-        player.setMovementDirectionX(movementDirectionX);
-        player.setMovementDirectionY(movementDirectionY);
-        player.setWeaponState(weaponState);
-        player.decreaseATKCooldown();
+            MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
+            MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
+
+            if (playerState == DISCONNECTION) {
+                removePlayer(player.getId());
+                break;
+            }
+
+            if (playerState != NO_CHANGE) {
+                PlayerActionState playerState = static_cast<PlayerActionState>(playerState);
+                player.setActionState(playerState);
+            }
+            player.setMovementDirectionX(movementDirectionX);
+            player.setMovementDirectionY(movementDirectionY);
+        }
     }
 }
 
 void Game::move(Entity& entity) {
+    if (!entity.isMoving()) {
+        return;
+    }
+
     int deltaX = 0;
     int deltaY = 0;
-    MovementState movementState = entity.getMovementState();
-    MovementDirectionX movementDirectionX = entity.getMovementDirectionX();
-    MovementDirectionY movementDirectionY = entity.getMovementDirectionY();
-    int movementSpeed = entity.getMovementSpeed();
-    // TODO work around this nested if
-    if (movementState == ENTITY_WALKING) {
-        if (movementDirectionX == ENTITY_LEFT) {
-            deltaX = -movementSpeed;
-        } else if (movementDirectionX == ENTITY_RIGHT) {
-            deltaX = movementSpeed;
-        }
 
-        if (movementDirectionY == ENTITY_DOWN) {
-            deltaY = -movementSpeed;
-        } else if (movementDirectionY == ENTITY_UP) {
-            deltaY = movementSpeed;
-        }
-    } else if (movementState == ENTITY_RUNNING) {
-        if (movementDirectionX == ENTITY_LEFT) {
-            deltaX = -(2 * movementSpeed);
-        } else if (movementDirectionX == ENTITY_RIGHT) {
-            deltaX = (2 * movementSpeed);
-        }
+    std::tie(deltaX, deltaY) = entity.getDirectionsAmount();
 
-        if (movementDirectionY == ENTITY_DOWN) {
-            deltaY = -(2 * movementSpeed);
-        } else if (movementDirectionY == ENTITY_UP) {
-            deltaY = (2 * movementSpeed);
-        }
-    }
-    if (movementState != ENTITY_IDLE)
-        if (!collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities))
-            entity.move(deltaX, deltaY);
+    if (!collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities))
+        entity.move(deltaX, deltaY);
 }
 
 void Game::attack(Entity& entity) {
     if (entity.canAttack()) {
-        std::unique_ptr<Attack> attackPtr = nullptr;
-
         if (entity.getType() == PLAYER) {
             Player* player = dynamic_cast<Player*>(&entity);
 
-            if (player->getWeaponState() == SHOOTING) {
-                attackPtr = std::make_unique<Attack>(player->attack());
+            // TODO; change this to gral state
+            if (player->getActionState() == PLAYER_SHOOTING) {
+                auto attack = player->attack();
+                std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.shoot(attack, entities);
 
-                if (attackPtr) {
-                    std::list<std::shared_ptr<Entity>> damagedEntities = collisionDetector.shoot(*attackPtr, entities);
+                switch (attack.getType()) {
+                    case PIERCING_BULLET: {
+                        // i mean yeah this prob should be inside the weapon class (Sniper case) but whatever
+                        GameConfig& config = GameConfig::getInstance();
+                        std::map<std::string, int> weaponsParams = config.getWeaponsParams();
+                        int bulletLostDmg = weaponsParams["SNIPER_DMG_LOST_PER_PIERCE"];
+                        int enemiesPierce = 0;
 
-                    switch (attackPtr->getType()) {
-                        case PIERCING_BULLET:
-                            // if (!damagedEntities.empty()) {
-                            // Here we should damage X amount of entities
-                            // }
-                            break;
+                        if (!damagedEntities.empty()) {
+                            int effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierce);
 
-                        default:
-                            if (!damagedEntities.empty()) {
-                                damagedEntities.front()->takeDamage(attackPtr->getDamage());
+                            while (effectiveDamage > 0 && !damagedEntities.empty()) {
+                                damagedEntities.front()->takeDamage(effectiveDamage);
+                                damagedEntities.pop_front();
+
+                                enemiesPierce++;
+                                effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierce);
                             }
-                            break;
+                        }
+
+                        break;
                     }
+                    default:
+                        if (!damagedEntities.empty()) {
+                            // TODO make the takeDamage for ALL zombies
+                            damagedEntities.front()->takeDamage(attack.getDamage());
+                        }
+                        break;
                 }
             }
         } else if (entity.getType() == ZOMBIE) {
             Zombie* zombie = dynamic_cast<Zombie*>(&entity);
-            attackPtr = std::make_unique<Attack>(zombie->attack());
+            auto attack = zombie->attack();
             int attackRange = zombie->getAttackRange();
-            std::shared_ptr<Player>& playerInRange = collisionDetector.getPlayersInRange(attackRange, *attackPtr, players);
+            std::shared_ptr<Player>& playerInRange = collisionDetector.getPlayersInRange(attackRange, attack, players);
             if (playerInRange) {
-                playerInRange->takeDamage(attackPtr->getDamage());
+                // TODO make the takeDAmamge for players
+                playerInRange->takeDamage(attack.getDamage());
             }
         }
     }
@@ -295,6 +298,17 @@ void Game::attack(Entity& entity) {
 
 const std::unordered_map<std::string, std::queue<Action>>& Game::_getPlayersActions() const {
     return playersActions;
+}
+
+void Game::removeDeadEntities() {
+    auto it = entities.begin();
+    while (it != entities.end()) {
+        if ((*it)->isRemovable()) {
+            it = entities.erase(it);
+        } else {
+            ++it;
+        }
+    }
 }
 
 void Game::sendState() {
@@ -311,15 +325,8 @@ void Game::sendState() {
 std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {
     std::vector<std::shared_ptr<EntityDTO>> dtos;
     for (auto& entity : entities) {
-        if (entity->getType() == PLAYER) {
-            Player* player = dynamic_cast<Player*>(entity.get());
-            auto dto = player->getDto();
-            dtos.push_back(dto);
-        } else {
-            Zombie* zombie = dynamic_cast<Zombie*>(entity.get());
-            auto dto = zombie->getDto();
-            dtos.push_back(dto);
-        }
+        auto dto = entity->getDto();
+        dtos.push_back(dto);
     }
     return dtos;
 }

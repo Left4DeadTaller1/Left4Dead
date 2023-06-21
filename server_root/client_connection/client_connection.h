@@ -27,7 +27,7 @@ class ClientConnection {
     void menu();  //  Client is in the Menu
     void inGame();
 
-    bool isDead();
+    bool isRemovable();
     void kill();
 
     ~ClientConnection();

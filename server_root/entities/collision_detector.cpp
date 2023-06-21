@@ -2,10 +2,10 @@
 
 #include "game_config.h"
 
-#define MELEE_RANGE 10
-#define SPEAR_RANGE 15
-#define SHORT_VENOM_RANGE 15
-#define LONG_VENOM_RANGE 30
+// #define MELEE_RANGE 10
+// #define SPEAR_RANGE 15
+// #define SHORT_VENOM_RANGE 15
+// #define LONG_VENOM_RANGE 30
 
 CollisionDetector::CollisionDetector() {}
 
@@ -30,7 +30,7 @@ bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& 
     return false;
 }
 
-bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::vector<std::shared_ptr<Entity>>& entities) {
+bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
     int gameWidth = gameDimensions["GAME_WIDTH"];
@@ -43,6 +43,8 @@ bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int delta
     }
 
     for (auto& other : entities) {
+        if (other->isDead())
+            continue;
         if (&entity != other.get() && isColliding(entity, deltaX, deltaY, *other)) {
             return true;
         }
@@ -51,12 +53,13 @@ bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int delta
     return false;
 }
 
-std::list<std::shared_ptr<Entity>> CollisionDetector::shoot(Attack& attack, std::vector<std::shared_ptr<Entity>>& entities) {
+std::list<std::shared_ptr<Entity>> CollisionDetector::shoot(Attack& attack, std::list<std::shared_ptr<Entity>>& entities) {
     std::list<std::shared_ptr<Entity>> entitiesBeingATK;
 
     for (const auto& entity : entities) {
-        // This is discarding logic
-        if ((attack.attackingLeft() && entity->x > attack.xOrigin) ||
+        // This is discarding for descarting units that are not in the direction of the bullet
+        if (entity->isDead() ||
+            (attack.attackingLeft() && entity->x > attack.xOrigin) ||
             (attack.attackingRight() && entity->x < attack.xOrigin)) {
             continue;
         }
@@ -96,9 +99,9 @@ std::shared_ptr<Player>& CollisionDetector::getPlayersInRange(int attackRange, A
     std::list<std::shared_ptr<Player>> playersInRange;
 
     for (const auto& player : players) {
-        // This is discarding logic
-
-        if ((attack.attackingLeft() && player->x > attack.xOrigin) ||
+        // This is discarding for descarting units that are not in the direction of the attack
+        if (player->isDead() ||
+            (attack.attackingLeft() && player->x > attack.xOrigin) ||
             (attack.attackingRight() && player->x < attack.xOrigin)) {
             continue;
         }
@@ -109,9 +112,18 @@ std::shared_ptr<Player>& CollisionDetector::getPlayersInRange(int attackRange, A
 }
 
 void CollisionDetector::attackPlayers(int range, const std::shared_ptr<Player>& player, Attack& attack, std::list<std::shared_ptr<Player>>& playersInRange) {
-    if ((attack.lowerY < player->y + player->height && attack.upperY > player->y) &&
-        ((attack.attackingRight() && player->x > attack.xOrigin && (player->x - attack.xOrigin) < range) ||
-         (attack.attackingLeft() && player->x < attack.xOrigin && (attack.xOrigin - (player->x + player->width)) < range))) {
+    bool isInRange = false;
+
+    // I check first that the attack and the player are in the same Depth (withing the Y values)
+    if (attack.lowerY < (player->y + player->height) && attack.upperY > player->y) {
+        // And now we check that the player is in the range of the attack in X
+        if (attack.attackingRight() && (player->x - attack.xOrigin) < range)
+            isInRange = true;
+        else if (attack.attackingLeft() && (attack.xOrigin - (player->x + player->width)) < range)
+            isInRange = true;
+    }
+
+    if (isInRange) {
         if (playersInRange.empty()) {
             playersInRange.push_back(player);
         } else {

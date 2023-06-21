@@ -24,6 +24,7 @@ class Weapon {
     void decreaseCooldown();
     bool canShoot();
     void reload();
+    int getBullets();
 };
 
 #endif  // WEAPON_H

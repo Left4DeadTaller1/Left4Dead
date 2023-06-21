@@ -24,3 +24,18 @@
    
 3. Build the project: Follow the build instructions provided in the repository's documentation.
  <!-- Add steps later -->
+
+
+ haber falta:
+ lo de revivir jugadores
+ lo del cambio entre animaciones
+ lo del movimiento, que te deje moverte tanto como querias y puedas y no que tire false y ya
+ lo de cerrar el juego si no hay mas jugadores
+ los ataques especiales de cada zombie
+ cheats
+ lo de remover jugadores inactivos
+ checekar si recvall() devuelve 0, (si queres sumale el was_closed), eso es q el cliente se murio -> quitalo
+ capaz algo que haga que cuando se cierre el server le envie un msg a cada cliente?
+ limitar el tipo de acciones que puede recibir el receiver cuando el juego esta corriendo
+ 
+ 
