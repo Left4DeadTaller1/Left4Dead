@@ -132,6 +132,7 @@
 	[
 		"DATA_PATH=\"/home/usaurio/Left4Dead\"",
 		"FONDO_QT=\"/home/usaurio/Left4Dead/client/render/resources/sounds/fondo3.mp3\"",
+		"IMAGEN_FONDO_QT=\"/home/usaurio/Left4Dead/client/render/resources/fondoqt2.jpeg\"",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_MULTIMEDIA_LIB",

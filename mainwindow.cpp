@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->frame->setStyleSheet("background-color: rgba(255, 255, 255, 0.5);");
 
     //imagen de fondo
-    QPixmap pixmap("/home/usaurio/Descargas/fondoqt2.jpeg");
+    QPixmap pixmap(IMAGEN_FONDO_QT);
     ui->fondo->setPixmap(pixmap);
     ui->fondo->setScaledContents(true);
 
