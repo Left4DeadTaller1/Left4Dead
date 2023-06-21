@@ -1,21 +1,22 @@
 #include "action_end_move.h"
 
 EndMove::EndMove(DirectionMove directionMove){
+    std::cout << "entra a end move right en action end move\n";
     if (directionMove == RIGHT){
-        dirX = 1;
-        dirY = 2;
+        dirX = 2;
+        dirY = 3;
     }
     if (directionMove == LEFT){
-        dirX = 0;
-        dirY = 2;
+        dirX = 2;
+        dirY = 3;
     }
     if (directionMove == UP){
-        dirX = 2;
-        dirY = 0;
+        dirX = 3;
+        dirY = 2;
     }
     if (directionMove == DOWN){
-        dirX = 2;
-        dirY = 1;
+        dirX = 3;
+        dirY = 2;
     }
 }
 

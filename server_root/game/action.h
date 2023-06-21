@@ -7,12 +7,14 @@ enum DirectionXType {
     ACTION_LEFT,   // 0
     ACTION_RIGHT,  // 1
     NONE_X,        // 2
+    NO_CHANGE_X    // 3
 };
 
 enum DirectionYType {
     ACTION_UP,    // 0
     ACTION_DOWN,  // 1
     NONE_Y,       // 2
+    NO_CHANGE_Y   // 3
 };
 
 enum Input {

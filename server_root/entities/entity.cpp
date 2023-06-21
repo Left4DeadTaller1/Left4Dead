@@ -1,7 +1,7 @@
 #include "entity.h"
 
 Entity::Entity(int xPosition, int yPosition, std::string id)
-    : x(xPosition), y(yPosition), entityId(id), movementDirectionX(ENTITY_RIGHT), movementDirectionY(ENTITY_UP), facingDirection(FACING_RIGHT), actionCounter(0) {
+    : x(xPosition), y(yPosition), entityId(id), movementDirectionX(ENTITY_NONE_X), movementDirectionY(ENTITY_NONE_Y), facingDirection(FACING_RIGHT), actionCounter(0) {
 }
 
 MovementDirectionX Entity::getMovementDirectionX() {

@@ -86,6 +86,7 @@ void EventManagerThread::run() {
                             break;
                         case SDLK_RIGHT:
                             if (rightMoveSent) {
+                                std::cout << "entra a end move right en event manager\n";
                                 action = std::make_shared<EndMove>(RIGHT);
                                 rightMoveSent = false;
                             }

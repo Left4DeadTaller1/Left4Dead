@@ -209,22 +209,29 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
             Action action = playerActions.front();
             playerActions.pop();
 
-            int playerState = action.getInputType();
+            int actionPlayerState = action.getInputType();
+            int actionMovementDirectionX = action.getDirectionXType();
+            int actionMovementDirectionY= action.getDirectionYType();
 
-            MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
-            MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
+            //MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
+            //MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
 
-            if (playerState == DISCONNECTION) {
+            if (actionPlayerState == DISCONNECTION) {
                 removePlayer(player.getId());
                 break;
             }
-
-            if (playerState != NO_CHANGE) {
-                PlayerActionState playerState = static_cast<PlayerActionState>(playerState);
+            if (actionPlayerState != NO_CHANGE) {
+                PlayerActionState playerState = static_cast<PlayerActionState>(actionPlayerState);
                 player.setActionState(playerState);
             }
-            player.setMovementDirectionX(movementDirectionX);
-            player.setMovementDirectionY(movementDirectionY);
+            if (actionMovementDirectionX != NO_CHANGE_X) {
+                MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(actionMovementDirectionX);
+                player.setMovementDirectionX(movementDirectionX);
+            }
+            if (actionMovementDirectionY != NO_CHANGE_Y) {
+                MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(actionMovementDirectionY);
+                player.setMovementDirectionY(movementDirectionY);
+            }
         }
     }
 }
@@ -247,7 +254,6 @@ void Game::attack(Entity& entity) {
     if (entity.canAttack()) {
         if (entity.getType() == PLAYER) {
             Player* player = dynamic_cast<Player*>(&entity);
-
             // TODO; change this to gral state
             if (player->getActionState() == PLAYER_SHOOTING) {
                 auto attack = player->attack();

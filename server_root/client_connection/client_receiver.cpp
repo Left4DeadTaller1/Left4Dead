@@ -84,7 +84,6 @@ void ClientReceiver::run() {
 }
 
 void ClientReceiver::handleCreateAction() {
-    std::cout << "LLEGO A HANDLER CREATE ACTION\n";
     GameRecord gameRecord = gamesManager.createLobby(gameResponses);
     game = gameRecord.game;
     playerId = gameRecord.playerId;
@@ -106,8 +105,7 @@ void ClientReceiver::handleJoinAction(const int code) {
 }
 
 void ClientReceiver::handleStartShoot() {
-    // std::cout << "entra handleStartShoot en receiver\n";
-    Action action(playerId, 3, 2, 2);
+    Action action(playerId, 3, 3, 3);
     game->pushAction(action);
 }
 

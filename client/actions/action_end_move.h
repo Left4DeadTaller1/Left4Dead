@@ -3,6 +3,7 @@
 
 #include "action_client.h"
 #include <memory>
+#include <iostream>
 
 class EndMove : public ActionClient {
    private:
