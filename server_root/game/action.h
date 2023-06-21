@@ -22,6 +22,7 @@ enum Input {
     INPUT_SHOOTING,   // 3
     INPUT_RELOADING,  // 4
     INPUT_ATTACKING,  // 5
+    NO_CHANGE,        // 6
 };
 
 class Action {

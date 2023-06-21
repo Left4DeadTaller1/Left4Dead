@@ -115,12 +115,13 @@ void ClientReceiver::handleStartMove(int movementType, int directionXType, int d
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
     int movementType;
     if (directionXType == 2 && directionYType == 2) {
-        movementType = 3;
+        movementType = 2;
         Action action(playerId, movementType, directionXType, directionYType);
         game->pushAction(action);
         return;
     }
-    movementType = 3;
+
+    movementType = 6;
     Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }

@@ -210,11 +210,13 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
             playerActions.pop();
 
             // TODO: updatea esto para que sea acorde al general State
+
             PlayerActionState playerState = static_cast<PlayerActionState>(action.getInputType());
             MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
             MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
 
-            player.setActionState(playerState);
+            if (PlayerActionState != NO_CHANGE)
+                player.setActionState(playerState);
             player.setMovementDirectionX(movementDirectionX);
             player.setMovementDirectionY(movementDirectionY);
         }
