@@ -24,15 +24,19 @@ void ClientReceiver::run() {
             switch (tipoComando) {
                 case CREATE:
                     protocol.receiveCreate(wasClosed, clientSocket);
-                    handleCreateAction();
+                    if (!game->getIsGameRunning())
+                        handleCreateAction();
                     break;
                 case JOIN:
                     code = protocol.receiveJoin(wasClosed, clientSocket);
                     std::cout << "code: " << code << "\n";
-                    handleJoinAction(code);
+                    if (!game->getIsGameRunning())
+                        handleJoinAction(code);
                     break;
                 case START_GAME:
-                    gamesManager.startGame(0);
+                    // TODO receive the gameCode and pass it to the startGame
+                    if (!game->getIsGameRunning())
+                        gamesManager.startGame(0);
                     break;
                 case START_MOVE:
                     data = protocol.receiveStartMove(wasClosed, clientSocket);
