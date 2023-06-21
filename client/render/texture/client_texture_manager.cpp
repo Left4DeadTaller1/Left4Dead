@@ -46,6 +46,7 @@ void TextureManager::loadTranslations(){
     translationState[RUNNING] = "run";
     translationState[IDLE] = "idle";
     translationState[DEAD] = "dead";
+    translationState[DYING] = "dead";
     translationState[HURT] = "hurt";
     translationState[RELOADING] = "recharge";
     translationState[SHOOTING] = "shot1";
@@ -110,6 +111,8 @@ void TextureManager::loadTextures(Renderer& renderer){
                                         DATA_PATH "/client/render/resources/Soldier_1/Walk.png"));
 
     //load textures jumper
+    textures.emplace("jumper-attack", GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Jumper/Attack_1.png"));
     textures.emplace("jumper-attack1", GameTexture(renderer, 4,
                                         DATA_PATH "/client/render/resources/Jumper/Attack_1.png"));
     textures.emplace("jumper-attack2", GameTexture(renderer, 4,
@@ -132,6 +135,8 @@ void TextureManager::loadTextures(Renderer& renderer){
                                         DATA_PATH "/client/render/resources/Jumper/Walk.png"));
 
     //load textures spear
+    textures.emplace("spear-attack", GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Spear/Attack_1.png"));
     textures.emplace("spear-attack1", GameTexture(renderer, 4,
                                         DATA_PATH "/client/render/resources/Spear/Attack_1.png"));
     textures.emplace("spear-attack2", GameTexture(renderer, 4,
@@ -154,6 +159,10 @@ void TextureManager::loadTextures(Renderer& renderer){
                                         DATA_PATH "/client/render/resources/Spear/Walk.png"));
 
     //load textures venom
+    textures.emplace("venom-attack", GameTexture(renderer,8, 
+                                        DATA_PATH "/client/render/resources/Venom/Attack2.png"));
+    textures.emplace("venom-shot1", GameTexture(renderer,8, 
+                                        DATA_PATH "/client/render/resources/Venom/Attack1.png"));
     textures.emplace("venom-attack1", GameTexture(renderer,8, 
                                         DATA_PATH "/client/render/resources/Venom/Attack1.png"));
     textures.emplace("venom-attack1a", GameTexture(renderer, 12,
@@ -174,6 +183,8 @@ void TextureManager::loadTextures(Renderer& renderer){
                                         DATA_PATH "/client/render/resources/Venom/Walk.png"));
 
     //load textures witch
+    textures.emplace("witch-attack", GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Witch/Attack_1.png"));
     textures.emplace("witch-attack1", GameTexture(renderer, 4,
                                         DATA_PATH "/client/render/resources/Witch/Attack_1.png"));
     textures.emplace("witch-attack2", GameTexture(renderer, 4,
@@ -196,6 +207,8 @@ void TextureManager::loadTextures(Renderer& renderer){
                                         DATA_PATH "/client/render/resources/Witch/Walk.png"));
 
     //load textures zombie
+    textures.emplace("zombie-attack", GameTexture(renderer, 5,
+                                        DATA_PATH "/client/render/resources/Zombie/Attack_1.png"));
     textures.emplace("zombie-attack1", GameTexture(renderer, 5,
                                         DATA_PATH "/client/render/resources/Zombie/Attack_1.png"));
     textures.emplace("zombie-attack2", GameTexture(renderer, 4,

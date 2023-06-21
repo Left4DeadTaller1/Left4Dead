@@ -281,6 +281,52 @@ tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o: \
  /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-typed-test.h \
  /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest_pred_impl.h \
  /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest_prod.h \
+ /home/usaurio/Left4Dead/server_root/game/configuration/game_config.h \
+ /usr/include/yaml-cpp/yaml.h /usr/include/yaml-cpp/parser.h \
+ /usr/include/yaml-cpp/dll.h /usr/include/yaml-cpp/emitter.h \
+ /usr/include/c++/11/cmath /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/c++/11/bits/specfun.h /usr/include/c++/11/tr1/gamma.tcc \
+ /usr/include/c++/11/tr1/special_function_util.h \
+ /usr/include/c++/11/tr1/bessel_function.tcc \
+ /usr/include/c++/11/tr1/beta_function.tcc \
+ /usr/include/c++/11/tr1/ell_integral.tcc \
+ /usr/include/c++/11/tr1/exp_integral.tcc \
+ /usr/include/c++/11/tr1/hypergeometric.tcc \
+ /usr/include/c++/11/tr1/legendre_function.tcc \
+ /usr/include/c++/11/tr1/modified_bessel_func.tcc \
+ /usr/include/c++/11/tr1/poly_hermite.tcc \
+ /usr/include/c++/11/tr1/poly_laguerre.tcc \
+ /usr/include/c++/11/tr1/riemann_zeta.tcc /usr/include/yaml-cpp/binary.h \
+ /usr/include/yaml-cpp/emitterdef.h /usr/include/yaml-cpp/emittermanip.h \
+ /usr/include/yaml-cpp/null.h /usr/include/yaml-cpp/ostream_wrapper.h \
+ /usr/include/yaml-cpp/emitterstyle.h /usr/include/yaml-cpp/stlemitter.h \
+ /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/list.tcc /usr/include/yaml-cpp/exceptions.h \
+ /usr/include/yaml-cpp/mark.h /usr/include/yaml-cpp/noexcept.h \
+ /usr/include/yaml-cpp/traits.h /usr/include/yaml-cpp/node/node.h \
+ /usr/include/yaml-cpp/node/detail/iterator_fwd.h \
+ /usr/include/yaml-cpp/node/ptr.h /usr/include/yaml-cpp/node/type.h \
+ /usr/include/yaml-cpp/node/impl.h \
+ /usr/include/yaml-cpp/node/detail/memory.h \
+ /usr/include/yaml-cpp/node/detail/node.h \
+ /usr/include/yaml-cpp/node/detail/node_ref.h \
+ /usr/include/yaml-cpp/node/detail/node_data.h \
+ /usr/include/yaml-cpp/node/detail/node_iterator.h \
+ /usr/include/yaml-cpp/node/iterator.h \
+ /usr/include/yaml-cpp/node/detail/iterator.h \
+ /usr/include/yaml-cpp/node/convert.h \
+ /usr/include/yaml-cpp/node/detail/impl.h /usr/include/c++/11/algorithm \
+ /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+ /usr/include/yaml-cpp/node/parse.h /usr/include/yaml-cpp/node/emit.h \
  /home/usaurio/Left4Dead/server_root/client_connection/server_protocol.h \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
@@ -298,10 +344,16 @@ tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o: \
  /home/usaurio/Left4Dead/server_root/game/action.h \
  /home/usaurio/Left4Dead/server_root/entities/entity.h \
  /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
  /home/usaurio/Left4Dead/server_root/entities/player.h \
  /home/usaurio/Left4Dead/server_root/entities/entity.h \
  /home/usaurio/Left4Dead/server_root/entities/weapon.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
  /home/usaurio/Left4Dead/server_root/game/server_message.h \
  /home/usaurio/Left4Dead/dipa_classes/socket.h \
- /home/usaurio/Left4Dead/server_root/entities/zombie.h \
- /home/usaurio/Left4Dead/server_root/entities/player.h
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h

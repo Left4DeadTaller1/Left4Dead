@@ -167,7 +167,8 @@ CMakeFiles/server.dir/server_root/game/games_manager.cpp.o: \
  /usr/include/c++/11/bits/node_handle.h \
  /usr/include/c++/11/bits/unordered_map.h \
  /usr/include/c++/11/bits/erase_if.h \
- /home/usaurio/Left4Dead/server_root/game/game.h \
+ /home/usaurio/Left4Dead/server_root/game/game.h /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h /usr/include/c++/11/bits/list.tcc \
  /usr/include/c++/11/queue /usr/include/c++/11/deque \
  /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
@@ -176,8 +177,13 @@ CMakeFiles/server.dir/server_root/game/games_manager.cpp.o: \
  /usr/include/c++/11/bits/stl_queue.h \
  /home/usaurio/Left4Dead/server_root/game/action.h \
  /home/usaurio/Left4Dead/server_root/entities/collision_detector.h \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/list.tcc \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
+ /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
+ /usr/include/c++/11/bits/stl_map.h \
+ /usr/include/c++/11/bits/stl_multimap.h \
  /home/usaurio/Left4Dead/server_root/entities/attack.h \
  /home/usaurio/Left4Dead/server_root/entities/entity.h \
  /home/usaurio/Left4Dead/server_root/entities/player.h \
@@ -197,12 +203,12 @@ CMakeFiles/server.dir/server_root/game/games_manager.cpp.o: \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
  /home/usaurio/Left4Dead/server_root/entities/weapon.h \
- /home/usaurio/Left4Dead/server_root/entities/zombie.h \
- /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
- /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/bits/stl_multimap.h \
- /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
  /home/usaurio/Left4Dead/server_root/entities/player.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
  /home/usaurio/Left4Dead/dipa_classes/queue.h \
  /usr/include/c++/11/condition_variable \
  /home/usaurio/Left4Dead/server_root/game/server_message.h \
@@ -232,11 +238,15 @@ CMakeFiles/server.dir/server_root/game/games_manager.cpp.o: \
  /home/usaurio/Left4Dead/server_root/game/action.h \
  /home/usaurio/Left4Dead/server_root/game/server_message.h \
  /home/usaurio/Left4Dead/dipa_classes/socket.h /usr/include/c++/11/atomic \
- /home/usaurio/Left4Dead/server_root/entities/zombie.h \
  /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
  /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
- /home/usaurio/Left4Dead/server_root/entities/zombie_spawner.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
  /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \

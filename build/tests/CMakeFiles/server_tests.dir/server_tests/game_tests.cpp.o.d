@@ -281,21 +281,27 @@ tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o: \
  /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-typed-test.h \
  /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest_pred_impl.h \
  /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest_prod.h \
- /home/usaurio/Left4Dead/server_root/game/game.h \
+ /home/usaurio/Left4Dead/server_root/game/game.h /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h /usr/include/c++/11/bits/list.tcc \
  /usr/include/c++/11/queue /usr/include/c++/11/deque \
  /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
  /usr/include/c++/11/bits/stl_queue.h \
  /home/usaurio/Left4Dead/server_root/game/action.h \
  /home/usaurio/Left4Dead/server_root/entities/collision_detector.h \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/list.tcc \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
  /home/usaurio/Left4Dead/server_root/entities/attack.h \
  /home/usaurio/Left4Dead/server_root/entities/entity.h \
  /home/usaurio/Left4Dead/server_root/entities/player.h \
  /home/usaurio/Left4Dead/server_root/entities/weapon.h \
- /home/usaurio/Left4Dead/server_root/entities/zombie.h \
- /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
  /home/usaurio/Left4Dead/server_root/entities/player.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
  /home/usaurio/Left4Dead/dipa_classes/queue.h \
  /home/usaurio/Left4Dead/server_root/game/server_message.h \
  /home/usaurio/Left4Dead/server_root/client_connection/server_protocol.h \
@@ -315,8 +321,12 @@ tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o: \
  /home/usaurio/Left4Dead/server_root/game/action.h \
  /home/usaurio/Left4Dead/server_root/game/server_message.h \
  /home/usaurio/Left4Dead/dipa_classes/socket.h \
- /home/usaurio/Left4Dead/server_root/entities/zombie.h \
  /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
  /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
- /home/usaurio/Left4Dead/server_root/entities/zombie_spawner.h
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h

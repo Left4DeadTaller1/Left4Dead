@@ -33,7 +33,7 @@ void ClientReceiver::run() {
             switch (typeCommand) {
                 case CREATE:
                     protocol.receiveCreate(wasClosed, clientSocket);
-                    if (!game->isGameRunning())
+                    if (!game)
                         handleCreateAction();
                     break;
                 case JOIN:
@@ -84,6 +84,7 @@ void ClientReceiver::run() {
 }
 
 void ClientReceiver::handleCreateAction() {
+    std::cout << "LLEGO A HANDLER CREATE ACTION\n";
     GameRecord gameRecord = gamesManager.createLobby(gameResponses);
     game = gameRecord.game;
     playerId = gameRecord.playerId;

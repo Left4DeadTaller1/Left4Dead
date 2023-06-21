@@ -58,9 +58,19 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         skt.recvall(&idEntity, 2, &wasClosed);
         idEntity = ntohs(idEntity);
 
+        typeEntity_t typeInfected;
+        if ((int)typeEntity == INFECTED){
+            uint8_t typeInfected_;
+            skt.recvall(&typeInfected_, 1, &wasClosed);
+            typeInfected = static_cast<typeEntity_t>(typeInfected_);
+        }
+
         uint8_t state_;
         skt.recvall(&state_, 1, &wasClosed);
         state_t state = static_cast<state_t>(state_);
+
+        uint8_t actionCounter;
+        skt.recvall(&actionCounter, 1, &wasClosed);
 
         uint16_t x;
         skt.recvall(&x, 2, &wasClosed);
@@ -70,23 +80,19 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         skt.recvall(&y, 2, &wasClosed);
         y = ntohs(y);
 
-        uint16_t lookingTo;
-        skt.recvall(&lookingTo, 2, &wasClosed);
-        lookingTo = ntohs(lookingTo);
+        uint8_t lookingTo;
+        skt.recvall(&lookingTo, 1, &wasClosed);
 
-        if ((int)typeEntity == PLAYER){
-            uint8_t lookingTo2;
-            skt.recvall(&lookingTo2, 1, &wasClosed);
-        }
-
-        uint8_t health;
-        skt.recvall(&health, 1, &wasClosed);
+        uint16_t health;
+        skt.recvall(&health, 2, &wasClosed);
+        health = ntohs(health);
 
         if ((int)typeEntity == PLAYER){
             player_t player;
 
             player.idPlayer = idEntity;
             player.state = state;
+            player.actionCounter = actionCounter;
             player.x = x;
             player.y = y;
             player.lookingTo = lookingTo;
@@ -98,15 +104,14 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         if ((int)typeEntity == INFECTED){
             infected_t infected;
 
-            uint8_t typeInfected;
-            skt.recvall(&typeInfected, 1, &wasClosed);
-
-            infected.typeInfected = static_cast<typeEntity_t>(typeInfected);
             infected.idInfected = idEntity;
+            infected.typeInfected = typeInfected;
             infected.state = state;
+            infected.actionCounter = actionCounter;
             infected.x = x;
             infected.y = y;
             infected.lookingTo = lookingTo;
+            infected.health = health;
 
             mapInfected[idEntity] = infected;
         }

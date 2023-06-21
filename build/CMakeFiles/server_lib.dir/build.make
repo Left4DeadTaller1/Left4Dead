@@ -195,38 +195,108 @@ CMakeFiles/server_lib.dir/server_root/entities/weapon.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/weapon.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/weapon.cpp -o CMakeFiles/server_lib.dir/server_root/entities/weapon.cpp.s
 
-CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.o: CMakeFiles/server_lib.dir/flags.make
-CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.o: ../server_root/entities/zombie.cpp
-CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.o -MF CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.o -c /home/usaurio/Left4Dead/server_root/entities/zombie.cpp
+CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.o: CMakeFiles/server_lib.dir/flags.make
+CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.o: ../server_root/entities/zombies/infected.cpp
+CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.o -MF CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.o -c /home/usaurio/Left4Dead/server_root/entities/zombies/infected.cpp
 
-CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/entities/zombie.cpp > CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.i
+CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/entities/zombies/infected.cpp > CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.i
 
-CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/zombie.cpp -o CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.s
+CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/zombies/infected.cpp -o CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.s
 
-CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.o: CMakeFiles/server_lib.dir/flags.make
-CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.o: ../server_root/entities/zombie_spawner.cpp
-CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.o -MF CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.o -c /home/usaurio/Left4Dead/server_root/entities/zombie_spawner.cpp
+CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.o: CMakeFiles/server_lib.dir/flags.make
+CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.o: ../server_root/entities/zombies/jumper.cpp
+CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.o -MF CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.o -c /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.cpp
 
-CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/entities/zombie_spawner.cpp > CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.i
+CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.cpp > CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.i
 
-CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/zombie_spawner.cpp -o CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.s
+CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.cpp -o CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.s
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o: CMakeFiles/server_lib.dir/flags.make
+CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o: ../server_root/entities/zombies/spear.cpp
+CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o -MF CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o -c /home/usaurio/Left4Dead/server_root/entities/zombies/spear.cpp
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/entities/zombies/spear.cpp > CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.i
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/zombies/spear.cpp -o CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.s
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.o: CMakeFiles/server_lib.dir/flags.make
+CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.o: ../server_root/entities/zombies/venom.cpp
+CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.o -MF CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.o -c /home/usaurio/Left4Dead/server_root/entities/zombies/venom.cpp
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/entities/zombies/venom.cpp > CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.i
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/zombies/venom.cpp -o CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.s
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.o: CMakeFiles/server_lib.dir/flags.make
+CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.o: ../server_root/entities/zombies/witch.cpp
+CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.o -MF CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.o -c /home/usaurio/Left4Dead/server_root/entities/zombies/witch.cpp
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/entities/zombies/witch.cpp > CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.i
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/zombies/witch.cpp -o CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.s
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.o: CMakeFiles/server_lib.dir/flags.make
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.o: ../server_root/entities/zombies/zombie.cpp
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.o -MF CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.o -c /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.cpp
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.cpp > CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.i
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.cpp -o CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.s
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.o: CMakeFiles/server_lib.dir/flags.make
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.o: ../server_root/entities/zombies/zombie_spawner.cpp
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.o -MF CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.o -c /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.cpp
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.cpp > CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.i
+
+CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.cpp -o CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.s
 
 CMakeFiles/server_lib.dir/server_root/game/action.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/game/action.cpp.o: ../server_root/game/action.cpp
 CMakeFiles/server_lib.dir/server_root/game/action.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/action.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/action.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/game/action.cpp.o -MF CMakeFiles/server_lib.dir/server_root/game/action.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/game/action.cpp.o -c /home/usaurio/Left4Dead/server_root/game/action.cpp
 
 CMakeFiles/server_lib.dir/server_root/game/action.cpp.i: cmake_force
@@ -240,7 +310,7 @@ CMakeFiles/server_lib.dir/server_root/game/action.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o: ../server_root/game/configuration/game_config.cpp
 CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o -MF CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o -c /home/usaurio/Left4Dead/server_root/game/configuration/game_config.cpp
 
 CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.i: cmake_force
@@ -254,7 +324,7 @@ CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.s: cmak
 CMakeFiles/server_lib.dir/server_root/game/game.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/game/game.cpp.o: ../server_root/game/game.cpp
 CMakeFiles/server_lib.dir/server_root/game/game.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/game.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/game.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/game/game.cpp.o -MF CMakeFiles/server_lib.dir/server_root/game/game.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/game/game.cpp.o -c /home/usaurio/Left4Dead/server_root/game/game.cpp
 
 CMakeFiles/server_lib.dir/server_root/game/game.cpp.i: cmake_force
@@ -268,7 +338,7 @@ CMakeFiles/server_lib.dir/server_root/game/game.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o: ../server_root/game/games_manager.cpp
 CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o -MF CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o -c /home/usaurio/Left4Dead/server_root/game/games_manager.cpp
 
 CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.i: cmake_force
@@ -282,7 +352,7 @@ CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o: ../server_root/game/server_message.cpp
 CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o -MF CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o -c /home/usaurio/Left4Dead/server_root/game/server_message.cpp
 
 CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.i: cmake_force
@@ -296,7 +366,7 @@ CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o: ../server_root/server/acceptor.cpp
 CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o -MF CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o -c /home/usaurio/Left4Dead/server_root/server/acceptor.cpp
 
 CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.i: cmake_force
@@ -310,7 +380,7 @@ CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: ../server_root/server/server.cpp
 CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/server.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/server.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/server/server.cpp.o -MF CMakeFiles/server_lib.dir/server_root/server/server.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/server/server.cpp.o -c /home/usaurio/Left4Dead/server_root/server/server.cpp
 
 CMakeFiles/server_lib.dir/server_root/server/server.cpp.i: cmake_force
@@ -324,7 +394,7 @@ CMakeFiles/server_lib.dir/server_root/server/server.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: ../server_root/server/server_main.cpp
 CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o -MF CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o -c /home/usaurio/Left4Dead/server_root/server/server_main.cpp
 
 CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.i: cmake_force
@@ -338,7 +408,7 @@ CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o: ../dipa_classes/liberror.cpp
 CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o -MF CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o.d -o CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/liberror.cpp
 
 CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.i: cmake_force
@@ -352,7 +422,7 @@ CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o: ../dipa_classes/resolver.cpp
 CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o -MF CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o.d -o CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/resolver.cpp
 
 CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.i: cmake_force
@@ -366,7 +436,7 @@ CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o: ../dipa_classes/resolvererror.cpp
 CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o -MF CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o.d -o CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/resolvererror.cpp
 
 CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.i: cmake_force
@@ -380,7 +450,7 @@ CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o -MF CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o.d -o CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/socket.cpp
 
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.i: cmake_force
@@ -402,8 +472,13 @@ server_lib_OBJECTS = \
 "CMakeFiles/server_lib.dir/server_root/entities/entity.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/entities/player.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/entities/weapon.cpp.o" \
-"CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.o" \
-"CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.o" \
+"CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.o" \
+"CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.o" \
+"CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o" \
+"CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.o" \
+"CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.o" \
+"CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.o" \
+"CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/game/action.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/game/game.cpp.o" \
@@ -429,8 +504,13 @@ libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/collision_detect
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/entity.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/player.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/weapon.cpp.o
-libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/zombie.cpp.o
-libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/zombie_spawner.cpp.o
+libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/zombies/infected.cpp.o
+libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/zombies/jumper.cpp.o
+libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o
+libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/zombies/venom.cpp.o
+libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/zombies/witch.cpp.o
+libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie.cpp.o
+libserver_lib.a: CMakeFiles/server_lib.dir/server_root/entities/zombies/zombie_spawner.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/game/action.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/game/game.cpp.o
@@ -445,7 +525,7 @@ libserver_lib.a: CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/build.make
 libserver_lib.a: CMakeFiles/server_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX static library libserver_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Linking CXX static library libserver_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/server_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server_lib.dir/link.txt --verbose=$(VERBOSE)
 

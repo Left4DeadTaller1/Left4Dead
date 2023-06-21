@@ -45,6 +45,7 @@
 #define __FLT32_HAS_DENORM__ 1
 #define __UINT_FAST8_MAX__ 0xff
 #define __cpp_rvalue_reference 200610L
+#define BASE_PATH "/home/usaurio/Left4Dead"
 #define __cpp_nested_namespace_definitions 201411L
 #define __DEC64_MAX_EXP__ 385
 #define __INT8_C(c) c
@@ -367,6 +368,7 @@
 #define __STDCPP_THREADS__ 1
 #define __GNUC_STDC_INLINE__ 1
 #define __FLT64_HAS_DENORM__ 1
+#define IMAGEN_FONDO_QT "/home/usaurio/Left4Dead/client/render/resources/fondoqt2.jpeg"
 #define __FLT32_EPSILON__ 1.19209289550781250000000000000000000e-7F32
 #define __DBL_DECIMAL_DIG__ 17
 #define __STDC_UTF_32__ 1

@@ -130,6 +130,7 @@
 	"MOC_COMPILATION_FILE" : "/home/usaurio/Left4Dead/build/qt_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
+		"BASE_PATH=\"/home/usaurio/Left4Dead\"",
 		"DATA_PATH=\"/home/usaurio/Left4Dead\"",
 		"FONDO_QT=\"/home/usaurio/Left4Dead/client/render/resources/sounds/fondo3.mp3\"",
 		"IMAGEN_FONDO_QT=\"/home/usaurio/Left4Dead/client/render/resources/fondoqt2.jpeg\"",

@@ -327,9 +327,16 @@ tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o: \
  /usr/include/yaml-cpp/node/detail/impl.h /usr/include/c++/11/algorithm \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
  /usr/include/yaml-cpp/node/parse.h /usr/include/yaml-cpp/node/emit.h \
- /home/usaurio/Left4Dead/server_root/entities/zombie_spawner.h \
- /home/usaurio/Left4Dead/server_root/entities/zombie.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
  /home/usaurio/Left4Dead/server_root/entities/attack.h \
  /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
  /home/usaurio/Left4Dead/server_root/entities/player.h \
- /home/usaurio/Left4Dead/server_root/entities/weapon.h
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/weapon.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h

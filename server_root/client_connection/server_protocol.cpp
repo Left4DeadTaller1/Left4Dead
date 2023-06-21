@@ -85,7 +85,7 @@ std::vector<int> ServerProtocol::receiveEndMove(bool &wasClosed, Socket &peer) {
 std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::string msgType, const std::vector<std::shared_ptr<EntityDTO>> &entities) {
     auto encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
-    uint8_t encodedMessageType = 1;
+    uint8_t encodedMessageType = 9;
     // Adding the message type (1 byte)
     encodedMsg->push_back(encodedMessageType);
 
@@ -310,7 +310,7 @@ GeneralState ServerProtocol::determineWitchState(const std::shared_ptr<ZombieDTO
             return GeneralState::ATTACKING;
             break;
         case WITCH_SHOUTING:
-            return GeneralState::SHOUTING;
+            return GeneralState::SCREAMING;
             break;
         case WITCH_IDLE:
             return GeneralState::IDLE;

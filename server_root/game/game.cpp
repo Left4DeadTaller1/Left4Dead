@@ -74,12 +74,12 @@ void Game::pushAction(Action action) {
 
 void Game::run() {
     // Start the game when the thread starts running
-    std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage();
+    /*std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage();
     for (auto playerQueue : playerQueues) {
         if (playerQueue != nullptr) {
             playerQueue->try_push(joinMessage);
         }
-    }
+    }*/
 
     startGame();
 }

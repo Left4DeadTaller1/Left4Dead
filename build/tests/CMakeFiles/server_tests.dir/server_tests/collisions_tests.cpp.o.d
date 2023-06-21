@@ -286,7 +286,15 @@ tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o: \
  /usr/include/c++/11/bits/list.tcc \
  /home/usaurio/Left4Dead/server_root/entities/attack.h \
  /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
  /home/usaurio/Left4Dead/server_root/entities/player.h \
  /home/usaurio/Left4Dead/server_root/entities/weapon.h \
- /home/usaurio/Left4Dead/server_root/entities/zombie.h \
- /home/usaurio/Left4Dead/server_root/entities/entity.h
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
+ /home/usaurio/Left4Dead/server_root/entities/player.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h

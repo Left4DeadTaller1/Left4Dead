@@ -14,21 +14,22 @@ typedef enum state_t : uint8_t {
     WALKING_SHOOTING,   //      soldier1
     RUNNING_SHOOTING,   //      soldier1
     SHOOTING,           //      soldier1
+    ATTACK,             //      soldier1
+    JUMP,               //              jumper          venom   witch   zombie
+    SCREAM,             //                                      witch
     RELOADING,          //      soldier1
     HURT,               //all
+    DYING,              //all  
     DEAD,               //all    
     IDLE,               //all
-    ATTACK,             //      soldier1
     ATTACK1,            //              jumper  spear   venom   witch   zombie
     ATTACK2,            //              jumper  spear   venom   witch   zombie
     ATTACK3,            //              jumper                  witch   zombie
     EATING,             //              jumper
-    JUMP,               //              jumper          venom   witch   zombie
     FALL,               //                      spear
     PROTECT,            //                      spear
     RUN_AND_ATTACK,     //                      spear
     ATTACK1a,           //                              venom
-    SCREAM,             //                                      witch
     BITE                //                                              zombie
 };
 
@@ -44,22 +45,25 @@ typedef enum typeEntity_t : uint8_t {
 };
 
 struct player {
-    uint8_t idPlayer;
+    uint16_t idPlayer;
     state_t state;
+    uint8_t actionCounter;
     uint16_t x;
     uint16_t y;
-    uint16_t lookingTo;
-    uint8_t health;
+    uint8_t lookingTo;
+    uint16_t health;
     //uint8_t typePlayer;
 };
 
 struct infected {
-    uint8_t idInfected;
+    uint16_t idInfected;
+    typeEntity_t typeInfected;
     state_t state;
+    uint8_t actionCounter;
     uint16_t x;
     uint16_t y;
     uint8_t lookingTo;
-    typeEntity_t typeInfected;
+    uint16_t health;
 };
 
 struct gameStateDTO {
