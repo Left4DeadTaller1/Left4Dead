@@ -16,6 +16,11 @@
 #include "socket.h"
 #include "zombie.h"
 
+typedef struct dataJoin {
+    uint8_t code;
+    std::string namePlayer;  
+} dataJoin_t;
+
 typedef enum {
     CREATE,
     JOIN,
@@ -48,7 +53,7 @@ class ServerProtocol {
 
     std::string receiveCreate(bool &wasClosed, Socket &peer);
 
-    uint8_t receiveJoin(bool &wasClosed, Socket &peer);
+    dataJoin_t receiveJoin(bool &wasClosed, Socket &peer);
 
     void notifyCreate(uint32_t code, Socket &peer, bool &wasClosed);
 

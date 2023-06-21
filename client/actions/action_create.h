@@ -6,10 +6,10 @@
 
 class Create : public ActionClient {
    private:
-    std::string scenario;
+    std::string namePlayer;
 
    public:
-    Create(std::string scenario);
+    Create(std::string namePlayer);
 
     virtual std::vector<int8_t> serialize() const override;
 

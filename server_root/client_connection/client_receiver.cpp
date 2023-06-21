@@ -20,6 +20,7 @@ void ClientReceiver::run() {
             int tipoComando = protocol.receiveTypeCommand(wasClosed, clientSocket);
             int code;
             std::vector<int> data;
+            dataJoin_t dataJoin;
 
             switch (tipoComando) {
                 case CREATE:
@@ -27,9 +28,9 @@ void ClientReceiver::run() {
                     handleCreateAction();
                     break;
                 case JOIN:
-                    code = protocol.receiveJoin(wasClosed, clientSocket);
-                    std::cout << "code: " << code << "\n";
-                    handleJoinAction(code);
+                    dataJoin = protocol.receiveJoin(wasClosed, clientSocket);
+                    std::cout << "code: " << dataJoin.code << "\n";
+                    handleJoinAction(dataJoin.code);
                     break;
                 case START_GAME:
                     gamesManager.startGame(0);

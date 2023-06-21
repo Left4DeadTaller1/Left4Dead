@@ -11,14 +11,14 @@
 
 class ReceiverThread : public Thread {
    public:
-    ReceiverThread(bool& wasClosed,
+    ReceiverThread(std::atomic<bool>& isConnected,
                     ClientProtocol& protocol, 
                     Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender);
 
     virtual void run() override;
 
    private:
-    bool& wasClosed;
+    std::atomic<bool>& isConnected;
     ClientProtocol& protocol;
     Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender;
 

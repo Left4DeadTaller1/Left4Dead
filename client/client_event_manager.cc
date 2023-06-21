@@ -4,10 +4,11 @@ using namespace SDL2pp;
 
 EventManagerThread::EventManagerThread(Queue<std::shared_ptr<ActionClient>>& qEventsToSender,
                                        Queue<std::shared_ptr<ActionClient>>& qEventsToRender,
-                                       SDL2pp::Window& window, bool& isConnected) : qEventsToSender(qEventsToSender),
-                                                                            qEventsToRender(qEventsToRender),
-                                                                            window(window),
-                                                                            isConnected(isConnected) {}
+                                       SDL2pp::Window& window, std::atomic<bool>& isConnected) : 
+                                                                    qEventsToSender(qEventsToSender),
+                                                                    qEventsToRender(qEventsToRender),
+                                                                    window(window),
+                                                                    isConnected(isConnected) {}
 
 void EventManagerThread::run() {
     try {
@@ -20,25 +21,18 @@ void EventManagerThread::run() {
 
         while (true) {
             SDL_Event event;
-            while (SDL_PollEvent(&event)) {
+            while (SDL_WaitEvent(&event)) {
                 std::shared_ptr<ActionClient> action;
 
                 if (event.type == SDL_QUIT) {
+                    action = std::make_shared<Exit>();
+                    qEventsToRender.push(action);
+                    qEventsToSender.close();
                     return;
                 } else if (event.type == SDL_KEYDOWN) {
                     switch (event.key.keysym.sym) {
-                        case SDLK_ESCAPE:
-                        case SDLK_q:
-                            action = std::make_shared<Exit>();
-                            return;
                         case SDLK_LSHIFT:
                             shiftPressed = true;
-                            break;
-                        case SDLK_c:
-                            action = std::make_shared<Create>("partida0");
-                            break;
-                        case SDLK_j:
-                            action = std::make_shared<Join>(0);
                             break;
                         case SDLK_s:
                             action = std::make_shared<StartGame>();

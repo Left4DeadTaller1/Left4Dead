@@ -14,21 +14,39 @@ int ServerProtocol::receiveTypeCommand(bool &wasClosed, Socket &peer) {
 }
 
 std::string ServerProtocol::receiveCreate(bool &wasClosed, Socket &peer) {
-    uint8_t scenario_len;
-    peer.recvall(&scenario_len, 1, &wasClosed);
+    uint8_t name_len;
+    peer.recvall(&name_len, 1, &wasClosed);
 
-    char buf_scenario_name[500];
-    peer.recvall(buf_scenario_name, scenario_len, &wasClosed);
-    buf_scenario_name[scenario_len] = '\0';
+    char buf_name[500];
+    peer.recvall(buf_name, name_len, &wasClosed);
+    buf_name[name_len] = '\0';
 
-    return buf_scenario_name;
+    return buf_name;
 }
 
-uint8_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
+dataJoin_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
+    dataJoin_t dataJoin;
+
+    uint8_t code;
+    peer.recvall(&code, 1, &wasClosed);
+    dataJoin.code = code;
+
+    uint8_t name_len;
+    peer.recvall(&name_len, 1, &wasClosed);
+
+    char buf_name[500];
+    peer.recvall(buf_name, name_len, &wasClosed);
+    buf_name[name_len] = '\0';
+    dataJoin.namePlayer = buf_name;
+    
+    return dataJoin;
+}
+
+/*uint8_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
     uint8_t code;
     peer.recvall(&code, 1, &wasClosed);
     return code;
-}
+}*/
 
 std::vector<int> ServerProtocol::receiveStartMove(bool &wasClosed, Socket &peer) {
     std::vector<int> vector;

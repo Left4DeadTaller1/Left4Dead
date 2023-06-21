@@ -10,8 +10,7 @@
 #include "action_start_move.h"
 #include "action_end_move.h"
 #include "action_join.h"
-#include "client_game_state.h"
-
+#include "../render/game/client_game_state.h"
 
 #define MSG_CREATE 2
 #define MSG_JOIN 2
@@ -29,7 +28,7 @@ class ClientProtocol {
 
     std::shared_ptr<gameStateDTO_t> receiveStateGame(bool& was_closed);
 
-    void receiveCreateorJoin(bool& wasClosed);
+    int receiveCreateorJoin(bool& wasClosed);
 
     void receiveExit(bool& wasClosed);
 
