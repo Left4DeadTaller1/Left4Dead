@@ -81,14 +81,19 @@ void Infected::startMoving() {
     actionState = INFECTED_MOVING;
 }
 
+void Infected::idle() {
+    actionState = INFECTED_IDLE;
+}
+
 bool Infected::isMoving() {
     return actionState == INFECTED_MOVING;
 }
 
-void Infected::checkIfDead() {
+bool Infected::checkIfDead() {
     if (actionState == INFECTED_DYING && actionCounter == 0) {
-        kill();
+        return true;
     }
+    return false;
 }
 
 void Infected::kill() {
@@ -103,7 +108,7 @@ bool Infected::isRemovable() {
 }
 
 bool Infected::isDead() {
-    return actionState == INFECTED_DEAD;
+    return (actionState == INFECTED_DEAD || actionState == INFECTED_DYING);
 }
 
 Infected::~Infected() {}

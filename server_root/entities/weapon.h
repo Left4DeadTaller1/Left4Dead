@@ -22,6 +22,7 @@ class Weapon {
     ~Weapon();
     Attack shoot(int bulletXOrigin, int bulletDirection, int bulletLowerY, int bulletUpperY);
     void decreaseCooldown();
+    int getCooldown();
     bool canShoot();
     void reload();
     int getBullets();

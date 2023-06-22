@@ -41,15 +41,17 @@ class Player : public Entity {
     EntityType getType() override;
     std::shared_ptr<EntityDTO> getDto() override;
     bool isMoving() override;
+    void idle() override;
     std::tuple<int, int> getDirectionsAmount();
     void takeDamage(int damage) override;
 
     void decreaseATKCooldown();
 
+    void reload();
     bool canAttack() override;
     Attack attack();
 
-    void checkIfDead() override;
+    bool checkIfDead() override;
     void kill() override;
     bool isDead() override;
     bool isRemovable() override;

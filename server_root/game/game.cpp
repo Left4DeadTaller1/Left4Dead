@@ -170,16 +170,19 @@ void Game::getPlayersActions() {
 
 void Game::updateState() {
     removeDeadEntities();
-
     for (auto& entity : entities) {
         // skip entity if dead
-        if (entity->isDead())
+        if (entity->isDead()) {
+            entity->decreaseActionCounter();
             continue;
+        }
 
         entity->decreaseActionCounter();
+        entity->decreaseATKCooldown();  // yes they need to be 2 separe methods
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
             updatePlayerState(*player, playersActions[player->getId()]);
+            reloadPlayer(*player);
         }
 
         else {
@@ -189,7 +192,6 @@ void Game::updateState() {
 
         move(*entity);
         attack(*entity);
-        entity->decreaseATKCooldown();
     }
 
     // Every min mutate zombies
@@ -213,9 +215,6 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
             int actionMovementDirectionX = action.getDirectionXType();
             int actionMovementDirectionY = action.getDirectionYType();
 
-            // MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
-            // MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
-
             if (actionPlayerState == DISCONNECTION) {
                 removePlayer(player.getId());
                 break;
@@ -232,8 +231,15 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
                 MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(actionMovementDirectionY);
                 player.setMovementDirectionY(movementDirectionY);
             }
+        } else {
+            break;
         }
     }
+}
+
+void Game::reloadPlayer(Player& player) {
+    if (player.getActionState() == PLAYER_RELOADING)
+        player.reload();
 }
 
 void Game::move(Entity& entity) {
@@ -288,6 +294,7 @@ void Game::attack(Entity& entity) {
                     default:
                         if (!damagedEntities.empty()) {
                             // TODO make the takeDamage for ALL zombies
+                            std::cout << "player shot zombie " << std::endl;
                             damagedEntities.front()->takeDamage(attack.getDamage());
                         }
                         break;
@@ -300,6 +307,7 @@ void Game::attack(Entity& entity) {
             std::shared_ptr<Player>& playerInRange = collisionDetector.getPlayersInRange(attackRange, attack, players);
             if (playerInRange) {
                 // TODO make the takeDAmamge for players
+                std::cout << "Zombie attacked player" << std::endl;
                 playerInRange->takeDamage(attack.getDamage());
             }
         }

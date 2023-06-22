@@ -121,11 +121,21 @@ void Player::decreaseATKCooldown() {
     weapon.decreaseCooldown();
 }
 
+void Player::idle() {
+    actionState = PLAYER_IDLE;
+}
+
+void Player::reload() {
+    weapon.reload();
+}
+
 bool Player::canAttack() {
     return weapon.canShoot();
 }
 
 Attack Player::attack() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
     AttackDirection attackDirection = RIGHT;  // some default values to avoid warnings
 
     switch (facingDirection) {
@@ -137,13 +147,20 @@ Attack Player::attack() {
             break;
     }
 
-    return weapon.shoot(x, attackDirection, y, y + height);
+    actionCounter = weapon.getCooldown();
+
+    // return weapon.shoot(x, attackDirection, y, y + height);
+    Attack bullet = weapon.shoot(x, attackDirection, y, (y + height));
+    actionCounter = weapon.getCooldown();
+
+    return bullet;
 }
 
-void Player::checkIfDead() {
-    if (actionState == PLAYER_DYING && actionCounter == 0) {
-        kill();
-    }
+bool Player::checkIfDead() {
+    if (actionState == PLAYER_DYING && actionCounter == 0)
+        return true;
+
+    return false;
 }
 
 void Player::kill() {
@@ -154,7 +171,7 @@ void Player::kill() {
 }
 
 bool Player::isDead() {
-    return actionState == PLAYER_DEAD;
+    return (actionState == PLAYER_DEAD || actionState == PLAYER_DYING);
 }
 
 bool Player::isRemovable() {
