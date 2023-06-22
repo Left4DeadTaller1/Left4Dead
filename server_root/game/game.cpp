@@ -253,6 +253,7 @@ void Game::move(Entity& entity) {
 
     entity.move(realDeltaX, realDeltaY);
 }
+
 void Game::attack(Entity& entity) {
     if (entity.canAttack()) {
         if (entity.getType() == PLAYER) {

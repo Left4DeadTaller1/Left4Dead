@@ -52,43 +52,51 @@ std::tuple<int, int> CollisionDetector::checkForCollisions(Entity& entity, int d
     int gameWidth = gameDimensions["GAME_WIDTH"];
     int gameHeight = gameDimensions["GAME_HEIGHT"];
 
-    // Distancia máxima hasta el borde de la pantalla
     int maxMoveX = entity.getMovementDirectionX() == ENTITY_LEFT ? entity.x : gameWidth - (entity.x + entity.width);
     int maxMoveY = entity.getMovementDirectionY() == ENTITY_DOWN ? entity.y : gameHeight - (entity.y + entity.height);
 
-    // Actualizar maxMoveX y maxMoveY en función de la distancia a las otras entidades
+    std::cout << "Initial maxMoveX: " << maxMoveX << ", maxMoveY: " << maxMoveY << std::endl;
+
     for (auto& other : entities) {
         if (other->isDead() || &entity == other.get())
             continue;
 
         if (willCollideHorizontally(entity, *other)) {
+            std::cout << "Will collide horizontally with: " << other->entityId << std::endl;
             if (entity.getMovementDirectionX() == ENTITY_LEFT) {
                 int distance = entity.x - (other->x + other->width);
+                std::cout << "Left collision distance: " << distance << std::endl;
                 if (distance >= 0 && distance < maxMoveX)
                     maxMoveX = distance;
             } else if (entity.getMovementDirectionX() == ENTITY_RIGHT) {
                 int distance = other->x - (entity.x + entity.width);
+                std::cout << "Right collision distance: " << distance << std::endl;
                 if (distance >= 0 && distance < maxMoveX)
                     maxMoveX = distance;
             }
         }
 
         if (willCollideVertically(entity, *other)) {
+            std::cout << "Will collide vertically with: " << other->entityId << std::endl;
             if (entity.getMovementDirectionY() == ENTITY_UP) {
-                int distance = entity.y - (other->y + other->height);
+                int distance = other->y - (entity.y + entity.height);
+                std::cout << "Up collision distance: " << distance << std::endl;
                 if (distance >= 0 && distance < maxMoveY)
                     maxMoveY = distance;
             } else if (entity.getMovementDirectionY() == ENTITY_DOWN) {
-                int distance = other->y - (entity.y + entity.height);
+                int distance = entity.y - (other->y + other->height);
+                std::cout << "Down collision distance: " << distance << std::endl;
                 if (distance >= 0 && distance < maxMoveY)
                     maxMoveY = distance;
             }
         }
     }
 
-    // Calcular el movimiento real como el mínimo entre la distancia deseada y la distancia máxima permitida
     int actualMovementX = std::min(maxMoveX, abs(deltaX)) * (deltaX < 0 ? -1 : 1);
     int actualMovementY = std::min(maxMoveY, abs(deltaY)) * (deltaY < 0 ? -1 : 1);
+
+    std::cout << "Resulting move: (" << actualMovementX << ", " << actualMovementY << ")" << std::endl
+              << std::endl;
 
     return std::make_tuple(actualMovementX, actualMovementY);
 }
