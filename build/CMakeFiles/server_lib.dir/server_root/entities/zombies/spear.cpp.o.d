@@ -1,8 +1,8 @@
 CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o: \
- /home/regman/taller/left4Dead/server_root/entities/zombies/spear.cpp \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/spear.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -146,8 +146,8 @@ CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/regman/taller/left4Dead/server_root/entities/attack.h \
- /home/regman/taller/left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -165,8 +165,8 @@ CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/regman/taller/left4Dead/server_root/entities/attack.h \
- /home/regman/taller/left4Dead/server_root/entities/player.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/player.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
  /usr/include/c++/11/bits/locale_classes.h \
@@ -185,8 +185,8 @@ CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/regman/taller/left4Dead/server_root/entities/entity.h \
- /home/regman/taller/left4Dead/server_root/entities/weapon.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/weapon.h \
  /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -210,7 +210,7 @@ CMakeFiles/server_lib.dir/server_root/entities/zombies/spear.cpp.o: \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
- /home/regman/taller/left4Dead/server_root/game/configuration/game_config.h \
+ /home/usaurio/Left4Dead/server_root/game/configuration/game_config.h \
  /usr/include/yaml-cpp/yaml.h /usr/include/yaml-cpp/parser.h \
  /usr/include/yaml-cpp/dll.h /usr/include/yaml-cpp/emitter.h \
  /usr/include/c++/11/cstddef /usr/include/c++/11/sstream \

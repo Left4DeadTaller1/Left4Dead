@@ -1,8 +1,8 @@
 CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o: \
- /home/regman/taller/left4Dead/client/actions/action_start_shoot.cpp \
+ /home/usaurio/Left4Dead/client/actions/action_start_shoot.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/client/actions/action_start_shoot.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/actions/action_start_shoot.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

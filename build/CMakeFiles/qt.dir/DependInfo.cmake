@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/regman/taller/left4Dead/mainwindow.cpp" "CMakeFiles/qt.dir/mainwindow.cpp.o" "gcc" "CMakeFiles/qt.dir/mainwindow.cpp.o.d"
-  "/home/regman/taller/left4Dead/build/qt_autogen/mocs_compilation.cpp" "CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o.d"
+  "/home/usaurio/Left4Dead/mainwindow.cpp" "CMakeFiles/qt.dir/mainwindow.cpp.o" "gcc" "CMakeFiles/qt.dir/mainwindow.cpp.o.d"
+  "/home/usaurio/Left4Dead/build/qt_autogen/mocs_compilation.cpp" "CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o.d"
   )
 
 # Targets to which this target links.

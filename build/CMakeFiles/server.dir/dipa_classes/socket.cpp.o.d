@@ -1,12 +1,7 @@
 CMakeFiles/server.dir/dipa_classes/socket.cpp.o: \
-<<<<<<< HEAD
  /home/usaurio/Left4Dead/dipa_classes/socket.cpp \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
-=======
- /home/regman/taller/left4Dead/dipa_classes/socket.cpp \
- /usr/include/stdc-predef.h /usr/include/arpa/inet.h \
->>>>>>> 6951c8aaf3603bd64ff511f234ab688666fb8e7a
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
@@ -104,21 +99,14 @@ CMakeFiles/server.dir/dipa_classes/socket.cpp.o: \
  /usr/include/c++/11/bits/memoryfwd.h /usr/include/c++/11/bits/postypes.h \
  /usr/include/c++/11/cwchar /usr/include/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
-<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
-=======
- /usr/include/c++/11/bits/atomic_lockfree_defines.h \
- /usr/include/c++/11/bits/move.h /usr/include/c++/11/type_traits \
- /home/regman/taller/left4Dead/dipa_classes/./liberror.h \
->>>>>>> 6951c8aaf3603bd64ff511f234ab688666fb8e7a
  /usr/include/c++/11/exception /usr/include/c++/11/bits/exception.h \
  /usr/include/c++/11/bits/exception_ptr.h \
  /usr/include/c++/11/bits/exception_defines.h \
  /usr/include/c++/11/bits/cxxabi_init_exception.h \
  /usr/include/c++/11/typeinfo /usr/include/c++/11/bits/hash_bytes.h \
-<<<<<<< HEAD
  /usr/include/c++/11/new /usr/include/c++/11/bits/move.h \
  /usr/include/c++/11/type_traits \
  /usr/include/c++/11/bits/nested_exception.h \
@@ -200,8 +188,3 @@ CMakeFiles/server.dir/dipa_classes/socket.cpp.o: \
  /home/usaurio/Left4Dead/dipa_classes/socket.h \
  /home/usaurio/Left4Dead/dipa_classes/resolver.h \
  /home/usaurio/Left4Dead/dipa_classes/liberror.h
-=======
- /usr/include/c++/11/new /usr/include/c++/11/bits/nested_exception.h \
- /home/regman/taller/left4Dead/dipa_classes/./resolver.h \
- /home/regman/taller/left4Dead/dipa_classes/./socket.h
->>>>>>> 6951c8aaf3603bd64ff511f234ab688666fb8e7a
