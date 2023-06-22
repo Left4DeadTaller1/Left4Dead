@@ -30,27 +30,67 @@ bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& 
     return false;
 }
 
-bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities) {
+bool CollisionDetector::willCollideHorizontally(Entity& e1, Entity& e2) {
+    // discard cuz they are not in the same "depth"
+    if ((e1.y) + e1.height < e2.y || (e1.y) > e2.y + e2.height)
+        return false;
+
+    return true;
+}
+
+bool CollisionDetector::willCollideVertically(Entity& e1, Entity& e2) {
+    // discard cuz they are not in the same "depth"
+    if ((e1.x) + e1.width < e2.x || (e1.x > e2.x + e2.width))
+        return false;
+
+    return true;
+}
+
+std::tuple<int, int> CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
     int gameWidth = gameDimensions["GAME_WIDTH"];
     int gameHeight = gameDimensions["GAME_HEIGHT"];
 
-    // Check for boundary collision
-    if ((entity.x + deltaX) < 0 || (entity.x + deltaX + entity.width) > gameWidth ||
-        (entity.y + deltaY) < 0 || (entity.y + deltaY + entity.height) > gameHeight) {
-        return true;  // collision with boundary
-    }
+    // Distancia máxima hasta el borde de la pantalla
+    int maxMoveX = entity.getMovementDirectionX() == ENTITY_LEFT ? entity.x : gameWidth - (entity.x + entity.width);
+    int maxMoveY = entity.getMovementDirectionY() == ENTITY_DOWN ? entity.y : gameHeight - (entity.y + entity.height);
 
+    // Actualizar maxMoveX y maxMoveY en función de la distancia a las otras entidades
     for (auto& other : entities) {
-        if (other->isDead())
+        if (other->isDead() || &entity == other.get())
             continue;
-        if (&entity != other.get() && isColliding(entity, deltaX, deltaY, *other)) {
-            return true;
+
+        if (willCollideHorizontally(entity, *other)) {
+            if (entity.getMovementDirectionX() == ENTITY_LEFT) {
+                int distance = entity.x - (other->x + other->width);
+                if (distance >= 0 && distance < maxMoveX)
+                    maxMoveX = distance;
+            } else if (entity.getMovementDirectionX() == ENTITY_RIGHT) {
+                int distance = other->x - (entity.x + entity.width);
+                if (distance >= 0 && distance < maxMoveX)
+                    maxMoveX = distance;
+            }
+        }
+
+        if (willCollideVertically(entity, *other)) {
+            if (entity.getMovementDirectionY() == ENTITY_UP) {
+                int distance = entity.y - (other->y + other->height);
+                if (distance >= 0 && distance < maxMoveY)
+                    maxMoveY = distance;
+            } else if (entity.getMovementDirectionY() == ENTITY_DOWN) {
+                int distance = other->y - (entity.y + entity.height);
+                if (distance >= 0 && distance < maxMoveY)
+                    maxMoveY = distance;
+            }
         }
     }
 
-    return false;
+    // Calcular el movimiento real como el mínimo entre la distancia deseada y la distancia máxima permitida
+    int actualMovementX = std::min(maxMoveX, abs(deltaX)) * (deltaX < 0 ? -1 : 1);
+    int actualMovementY = std::min(maxMoveY, abs(deltaY)) * (deltaY < 0 ? -1 : 1);
+
+    return std::make_tuple(actualMovementX, actualMovementY);
 }
 
 std::list<std::shared_ptr<Entity>> CollisionDetector::shoot(Attack& attack, std::list<std::shared_ptr<Entity>>& entities) {

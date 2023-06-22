@@ -1,1 +1,2 @@
-/usr/bin/c++ -fPIC   -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L -shared -Wl,-soname,libgtest_main.so.1.13.0 -o ../../libgtest_main.so.1.13.0 CMakeFiles/gtest_main.dir/src/gtest_main.cc.o  -Wl,-rpath,/home/usaurio/Left4Dead/build/lib: ../../libgtest.so.1.13.0 
+/usr/bin/ar qc ../../libgtest_main.a CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+/usr/bin/ranlib ../../libgtest_main.a

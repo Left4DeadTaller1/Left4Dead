@@ -6,8 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/qt.dir/mainwindow.cpp.o.d"
   "CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o.d"
+  "libqt.a"
   "libqt.pdb"
-  "libqt.so"
   "ui_mainwindow.h"
 )
 

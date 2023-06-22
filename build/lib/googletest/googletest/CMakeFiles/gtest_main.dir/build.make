@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/usaurio/Left4Dead
+CMAKE_SOURCE_DIR = /home/regman/taller/left4Dead
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/usaurio/Left4Dead/build
+CMAKE_BINARY_DIR = /home/regman/taller/left4Dead/build
 
 # Include any dependencies generated for this target.
 include lib/googletest/googletest/CMakeFiles/gtest_main.dir/depend.make
@@ -72,16 +72,16 @@ include lib/googletest/googletest/CMakeFiles/gtest_main.dir/flags.make
 lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o: lib/googletest/googletest/CMakeFiles/gtest_main.dir/flags.make
 lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o: ../lib/googletest/googletest/src/gtest_main.cc
 lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o: lib/googletest/googletest/CMakeFiles/gtest_main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
-	cd /home/usaurio/Left4Dead/build/lib/googletest/googletest && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -MF CMakeFiles/gtest_main.dir/src/gtest_main.cc.o.d -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/usaurio/Left4Dead/lib/googletest/googletest/src/gtest_main.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
+	cd /home/regman/taller/left4Dead/build/lib/googletest/googletest && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -MF CMakeFiles/gtest_main.dir/src/gtest_main.cc.o.d -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/regman/taller/left4Dead/lib/googletest/googletest/src/gtest_main.cc
 
 lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gtest_main.dir/src/gtest_main.cc.i"
-	cd /home/usaurio/Left4Dead/build/lib/googletest/googletest && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/lib/googletest/googletest/src/gtest_main.cc > CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
+	cd /home/regman/taller/left4Dead/build/lib/googletest/googletest && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/lib/googletest/googletest/src/gtest_main.cc > CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
 
 lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gtest_main.dir/src/gtest_main.cc.s"
-	cd /home/usaurio/Left4Dead/build/lib/googletest/googletest && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/lib/googletest/googletest/src/gtest_main.cc -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
+	cd /home/regman/taller/left4Dead/build/lib/googletest/googletest && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/lib/googletest/googletest/src/gtest_main.cc -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
 
 # Object files for target gtest_main
 gtest_main_OBJECTS = \
@@ -90,26 +90,22 @@ gtest_main_OBJECTS = \
 # External object files for target gtest_main
 gtest_main_EXTERNAL_OBJECTS =
 
-lib/libgtest_main.so.1.13.0: lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
-lib/libgtest_main.so.1.13.0: lib/googletest/googletest/CMakeFiles/gtest_main.dir/build.make
-lib/libgtest_main.so.1.13.0: lib/libgtest.so.1.13.0
-lib/libgtest_main.so.1.13.0: lib/googletest/googletest/CMakeFiles/gtest_main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library ../../libgtest_main.so"
-	cd /home/usaurio/Left4Dead/build/lib/googletest/googletest && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gtest_main.dir/link.txt --verbose=$(VERBOSE)
-	cd /home/usaurio/Left4Dead/build/lib/googletest/googletest && $(CMAKE_COMMAND) -E cmake_symlink_library ../../libgtest_main.so.1.13.0 ../../libgtest_main.so.1.13.0 ../../libgtest_main.so
-
-lib/libgtest_main.so: lib/libgtest_main.so.1.13.0
-	@$(CMAKE_COMMAND) -E touch_nocreate lib/libgtest_main.so
+lib/libgtest_main.a: lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+lib/libgtest_main.a: lib/googletest/googletest/CMakeFiles/gtest_main.dir/build.make
+lib/libgtest_main.a: lib/googletest/googletest/CMakeFiles/gtest_main.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../../libgtest_main.a"
+	cd /home/regman/taller/left4Dead/build/lib/googletest/googletest && $(CMAKE_COMMAND) -P CMakeFiles/gtest_main.dir/cmake_clean_target.cmake
+	cd /home/regman/taller/left4Dead/build/lib/googletest/googletest && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gtest_main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-lib/googletest/googletest/CMakeFiles/gtest_main.dir/build: lib/libgtest_main.so
+lib/googletest/googletest/CMakeFiles/gtest_main.dir/build: lib/libgtest_main.a
 .PHONY : lib/googletest/googletest/CMakeFiles/gtest_main.dir/build
 
 lib/googletest/googletest/CMakeFiles/gtest_main.dir/clean:
-	cd /home/usaurio/Left4Dead/build/lib/googletest/googletest && $(CMAKE_COMMAND) -P CMakeFiles/gtest_main.dir/cmake_clean.cmake
+	cd /home/regman/taller/left4Dead/build/lib/googletest/googletest && $(CMAKE_COMMAND) -P CMakeFiles/gtest_main.dir/cmake_clean.cmake
 .PHONY : lib/googletest/googletest/CMakeFiles/gtest_main.dir/clean
 
 lib/googletest/googletest/CMakeFiles/gtest_main.dir/depend:
-	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/usaurio/Left4Dead /home/usaurio/Left4Dead/lib/googletest/googletest /home/usaurio/Left4Dead/build /home/usaurio/Left4Dead/build/lib/googletest/googletest /home/usaurio/Left4Dead/build/lib/googletest/googletest/CMakeFiles/gtest_main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/regman/taller/left4Dead /home/regman/taller/left4Dead/lib/googletest/googletest /home/regman/taller/left4Dead/build /home/regman/taller/left4Dead/build/lib/googletest/googletest /home/regman/taller/left4Dead/build/lib/googletest/googletest/CMakeFiles/gtest_main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : lib/googletest/googletest/CMakeFiles/gtest_main.dir/depend
 

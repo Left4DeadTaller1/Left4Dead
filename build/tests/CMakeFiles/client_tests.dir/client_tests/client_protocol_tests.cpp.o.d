@@ -1,7 +1,7 @@
 tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: \
- /home/usaurio/Left4Dead/tests/client_tests/client_protocol_tests.cpp \
+ /home/regman/taller/left4Dead/tests/client_tests/client_protocol_tests.cpp \
  /usr/include/stdc-predef.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest.h \
  /usr/include/c++/11/cstddef \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -189,9 +189,9 @@ tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-assertion-result.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-message.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-port.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-assertion-result.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-message.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-port.h \
  /usr/include/c++/11/stdlib.h /usr/include/string.h \
  /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
@@ -211,8 +211,8 @@ tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/custom/gtest-port.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-port-arch.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/custom/gtest-port.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-port-arch.h \
  /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
@@ -228,9 +228,9 @@ tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: \
  /usr/include/c++/11/any /usr/include/c++/11/optional \
  /usr/include/c++/11/bits/enable_special_members.h \
  /usr/include/c++/11/variant \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-death-test.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-death-test-internal.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-matchers.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-death-test.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-death-test-internal.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-matchers.h \
  /usr/include/c++/11/atomic /usr/include/c++/11/functional \
  /usr/include/c++/11/bits/std_function.h \
  /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
@@ -240,8 +240,8 @@ tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-printers.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-internal.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-printers.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-internal.h \
  /usr/include/x86_64-linux-gnu/sys/wait.h /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
  /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
@@ -267,29 +267,29 @@ tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h /usr/include/c++/11/map \
  /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-filepath.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-string.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-type-util.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-filepath.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-string.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-type-util.h \
  /usr/include/c++/11/cxxabi.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/custom/gtest-printers.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-param-test.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/custom/gtest-printers.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-param-test.h \
  /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-param-util.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-param-util.h \
  /usr/include/c++/11/cassert /usr/include/assert.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-test-part.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-typed-test.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest_pred_impl.h \
- /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest_prod.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/gmock.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/gmock-actions.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-test-part.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-typed-test.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest_pred_impl.h \
+ /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest_prod.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/gmock.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/gmock-actions.h \
  /usr/include/c++/11/algorithm \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/internal/gmock-internal-utils.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/internal/gmock-port.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/internal/custom/gmock-port.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/internal/gmock-pp.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/gmock-cardinalities.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/internal/gmock-internal-utils.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/internal/gmock-port.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/internal/custom/gmock-port.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/internal/gmock-pp.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/gmock-cardinalities.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
@@ -298,9 +298,9 @@ tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/gmock-function-mocker.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/gmock-spec-builders.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/gmock-matchers.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/gmock-function-mocker.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/gmock-spec-builders.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/gmock-matchers.h \
  /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -323,17 +323,17 @@ tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/internal/custom/gmock-matchers.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/gmock-more-actions.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/gmock-more-matchers.h \
- /home/usaurio/Left4Dead/lib/googletest/googlemock/include/gmock/gmock-nice-strict.h \
- /home/usaurio/Left4Dead/tests/../client/client_connection/client_protocol.h \
- /home/usaurio/Left4Dead/tests/../dipa_classes/socket.h \
- /home/usaurio/Left4Dead/tests/../client/actions/action_client.h \
- /home/usaurio/Left4Dead/tests/../client/actions/action_create.h \
- /home/usaurio/Left4Dead/tests/../client/actions/action_client.h \
- /home/usaurio/Left4Dead/tests/../client/actions/action_start_move.h \
- /home/usaurio/Left4Dead/tests/../client/actions/action_end_move.h \
- /home/usaurio/Left4Dead/tests/../client/actions/action_join.h \
- /home/usaurio/Left4Dead/tests/../client/client_connection/../render/game/client_game_state.h
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/internal/custom/gmock-matchers.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/gmock-more-actions.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/gmock-more-matchers.h \
+ /home/regman/taller/left4Dead/lib/googletest/googlemock/include/gmock/gmock-nice-strict.h \
+ /home/regman/taller/left4Dead/tests/../client/client_connection/client_protocol.h \
+ /home/regman/taller/left4Dead/tests/../dipa_classes/socket.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_client.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_create.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_client.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_start_move.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_end_move.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_join.h \
+ /home/regman/taller/left4Dead/tests/../client/client_connection/../render/game/client_game_state.h

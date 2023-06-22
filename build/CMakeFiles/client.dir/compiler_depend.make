@@ -1751,7 +1751,7 @@ CMakeFiles/client.dir/client/client.cpp.o: ../client/client.cpp \
   /usr/include/assert.h \
   /usr/local/include/SDL2pp/SDLTTF.hh \
   /usr/local/include/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -1870,9 +1870,12 @@ CMakeFiles/client.dir/client/client.cpp.o: ../client/client.cpp \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
   /usr/local/include/SDL2pp/SDLImage.hh \
   /usr/local/include/SDL2pp/Chunk.hh \
-  /usr/include/SDL2/SDL_mixer.h \
+  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_endian.h \
   /usr/local/include/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -3133,7 +3136,7 @@ CMakeFiles/client.dir/client/client_event_manager.cc.o: ../client/client_event_m
   /usr/include/assert.h \
   /usr/local/include/SDL2pp/SDLTTF.hh \
   /usr/local/include/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -3252,9 +3255,12 @@ CMakeFiles/client.dir/client/client_event_manager.cc.o: ../client/client_event_m
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
   /usr/local/include/SDL2pp/SDLImage.hh \
   /usr/local/include/SDL2pp/Chunk.hh \
-  /usr/include/SDL2/SDL_mixer.h \
+  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_endian.h \
   /usr/local/include/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -3575,7 +3581,7 @@ CMakeFiles/client.dir/client/client_main.cpp.o: ../client/client_main.cpp \
   /usr/include/assert.h \
   /usr/local/include/SDL2pp/SDLTTF.hh \
   /usr/local/include/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -3694,9 +3700,12 @@ CMakeFiles/client.dir/client/client_main.cpp.o: ../client/client_main.cpp \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
   /usr/local/include/SDL2pp/SDLImage.hh \
   /usr/local/include/SDL2pp/Chunk.hh \
-  /usr/include/SDL2/SDL_mixer.h \
+  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_endian.h \
   /usr/local/include/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -4209,7 +4218,7 @@ CMakeFiles/client.dir/client/render/client_render.cpp.o: ../client/render/client
   /usr/include/assert.h \
   /usr/local/include/SDL2pp/SDLTTF.hh \
   /usr/local/include/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -4328,9 +4337,12 @@ CMakeFiles/client.dir/client/render/client_render.cpp.o: ../client/render/client
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
   /usr/local/include/SDL2pp/SDLImage.hh \
   /usr/local/include/SDL2pp/Chunk.hh \
-  /usr/include/SDL2/SDL_mixer.h \
+  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_endian.h \
   /usr/local/include/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -4685,7 +4697,7 @@ CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o: ../client/render/s
   /usr/include/assert.h \
   /usr/local/include/SDL2pp/SDLTTF.hh \
   /usr/local/include/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -4804,9 +4816,12 @@ CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o: ../client/render/s
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
   /usr/local/include/SDL2pp/SDLImage.hh \
   /usr/local/include/SDL2pp/Chunk.hh \
-  /usr/include/SDL2/SDL_mixer.h \
+  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_endian.h \
   /usr/local/include/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -5128,7 +5143,7 @@ CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o: ../client/
   /usr/include/assert.h \
   /usr/local/include/SDL2pp/SDLTTF.hh \
   /usr/local/include/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -5247,9 +5262,12 @@ CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o: ../client/
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
   /usr/local/include/SDL2pp/SDLImage.hh \
   /usr/local/include/SDL2pp/Chunk.hh \
-  /usr/include/SDL2/SDL_mixer.h \
+  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_endian.h \
   /usr/local/include/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -5572,7 +5590,7 @@ CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o: ../client/rend
   /usr/include/assert.h \
   /usr/local/include/SDL2pp/SDLTTF.hh \
   /usr/local/include/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -5691,9 +5709,12 @@ CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o: ../client/rend
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
   /usr/local/include/SDL2pp/SDLImage.hh \
   /usr/local/include/SDL2pp/Chunk.hh \
-  /usr/include/SDL2/SDL_mixer.h \
+  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_endian.h \
   /usr/local/include/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -6009,7 +6030,7 @@ CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o: ../cli
   /usr/include/assert.h \
   /usr/local/include/SDL2pp/SDLTTF.hh \
   /usr/local/include/SDL2pp/Font.hh \
-  /usr/include/SDL2/SDL_ttf.h \
+  /usr/local/include/SDL2/SDL_ttf.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -6128,9 +6149,12 @@ CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o: ../cli
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
   /usr/local/include/SDL2pp/SDLImage.hh \
   /usr/local/include/SDL2pp/Chunk.hh \
-  /usr/include/SDL2/SDL_mixer.h \
+  /usr/local/include/SDL2/SDL_mixer.h \
+  /usr/include/SDL2/SDL_endian.h \
   /usr/local/include/SDL2pp/Mixer.hh \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -6548,8 +6572,6 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
-/usr/include/x86_64-linux-gnu/bits/unistd.h:
-
 /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
@@ -6693,8 +6715,6 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp \
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
-
-/usr/include/linux/limits.h:
 
 /usr/local/include/SDL2pp/SDL.hh:
 
@@ -6927,8 +6947,6 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp \
 /usr/include/c++/11/bits/streambuf.tcc:
 
 ../client/client.h:
-
-/usr/include/SDL2/SDL_mixer.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
@@ -7268,6 +7286,10 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp \
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
+
+/usr/local/include/SDL2/SDL_ttf.h:
+
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
 /usr/include/wchar.h:
@@ -7350,6 +7372,8 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp \
 
 /usr/include/c++/11/bits/basic_string.h:
 
+/usr/include/linux/limits.h:
+
 /usr/include/c++/11/ext/concurrence.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
@@ -7415,8 +7439,6 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp \
 /usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
 
 /usr/include/inttypes.h:
-
-/usr/include/SDL2/SDL_ttf.h:
 
 /usr/include/c++/11/math.h:
 
@@ -7790,6 +7812,8 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp \
 
 /usr/local/include/SDL2pp/SDLImage.hh:
 
+/usr/local/include/SDL2/SDL_mixer.h:
+
 ../dipa_classes/resolvererror.h:
 
 /usr/local/include/SDL2pp/Mixer.hh:
@@ -7801,8 +7825,6 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp \
 /usr/include/c++/11/bits/stl_multimap.h:
 
 ../client/client_connection/client_sender.h:
-
-/usr/local/include/SDL2/SDL_mixer.h:
 
 /usr/include/c++/11/ratio:
 

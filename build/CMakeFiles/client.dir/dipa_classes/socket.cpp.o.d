@@ -1,5 +1,5 @@
 CMakeFiles/client.dir/dipa_classes/socket.cpp.o: \
- /home/usaurio/Left4Dead/dipa_classes/socket.cpp \
+ /home/regman/taller/left4Dead/dipa_classes/socket.cpp \
  /usr/include/stdc-predef.h /usr/include/arpa/inet.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -97,12 +97,12 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/c++/11/bits/atomic_lockfree_defines.h \
  /usr/include/c++/11/bits/move.h /usr/include/c++/11/type_traits \
- /home/usaurio/Left4Dead/dipa_classes/./liberror.h \
+ /home/regman/taller/left4Dead/dipa_classes/./liberror.h \
  /usr/include/c++/11/exception /usr/include/c++/11/bits/exception.h \
  /usr/include/c++/11/bits/exception_ptr.h \
  /usr/include/c++/11/bits/exception_defines.h \
  /usr/include/c++/11/bits/cxxabi_init_exception.h \
  /usr/include/c++/11/typeinfo /usr/include/c++/11/bits/hash_bytes.h \
  /usr/include/c++/11/new /usr/include/c++/11/bits/nested_exception.h \
- /home/usaurio/Left4Dead/dipa_classes/./resolver.h \
- /home/usaurio/Left4Dead/dipa_classes/./socket.h
+ /home/regman/taller/left4Dead/dipa_classes/./resolver.h \
+ /home/regman/taller/left4Dead/dipa_classes/./socket.h

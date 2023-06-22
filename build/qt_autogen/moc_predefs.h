@@ -45,7 +45,7 @@
 #define __FLT32_HAS_DENORM__ 1
 #define __UINT_FAST8_MAX__ 0xff
 #define __cpp_rvalue_reference 200610L
-#define BASE_PATH "/home/usaurio/Left4Dead"
+#define BASE_PATH "/home/regman/taller/left4Dead"
 #define __cpp_nested_namespace_definitions 201411L
 #define __DEC64_MAX_EXP__ 385
 #define __INT8_C(c) c
@@ -88,7 +88,6 @@
 #define __FLT32_MAX_10_EXP__ 38
 #define __FLT64X_EPSILON__ 1.08420217248550443400745280086994171e-19F64x
 #define __STDC_HOSTED__ 1
-#define qt_EXPORTS 1
 #define __DEC64_MIN_EXP__ (-382)
 #define __cpp_decltype_auto 201304L
 #define __DBL_DIG__ 15
@@ -287,7 +286,7 @@
 #define __cpp_structured_bindings 201606L
 #define __SIZEOF_INT__ 4
 #define __DEC32_MAX_EXP__ 97
-#define DATA_PATH "/home/usaurio/Left4Dead"
+#define DATA_PATH "/home/regman/taller/left4Dead"
 #define __INT_FAST8_MAX__ 0x7f
 #define __FLT128_MAX__ 1.18973149535723176508575932662800702e+4932F128
 #define __INTPTR_MAX__ 0x7fffffffffffffffL
@@ -368,7 +367,7 @@
 #define __STDCPP_THREADS__ 1
 #define __GNUC_STDC_INLINE__ 1
 #define __FLT64_HAS_DENORM__ 1
-#define IMAGEN_FONDO_QT "/home/usaurio/Left4Dead/client/render/resources/fondoqt2.jpeg"
+#define IMAGEN_FONDO_QT "/home/regman/taller/left4Dead/client/render/resources/fondoqt2.jpeg"
 #define __FLT32_EPSILON__ 1.19209289550781250000000000000000000e-7F32
 #define __DBL_DECIMAL_DIG__ 17
 #define __STDC_UTF_32__ 1
@@ -393,7 +392,7 @@
 #define __FLT_MAX__ 3.40282346638528859811704183484516925e+38F
 #define __cpp_constexpr 201603L
 #define __SSE2__ 1
-#define FONDO_QT "/home/usaurio/Left4Dead/client/render/resources/sounds/fondo3.mp3"
+#define FONDO_QT "/home/regman/taller/left4Dead/client/render/resources/sounds/fondo3.mp3"
 #define __cpp_deduction_guides 201703L
 #define __INT32_TYPE__ int
 #define __SIZEOF_DOUBLE__ 8

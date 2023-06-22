@@ -32,8 +32,10 @@ class CollisionDetector {
     CollisionDetector();
     ~CollisionDetector();
 
+    bool willCollideHorizontally(Entity& e1, Entity& e2);
+    bool willCollideVertically(Entity& e1, Entity& e2);
     bool isColliding(Entity& e1, int deltaX, int deltaY, Entity& e2);
-    bool checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities);
+    std::tuple<int, int> checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities);
 
     // Player's attacks
     std::list<std::shared_ptr<Entity>> shoot(Attack& attack, std::list<std::shared_ptr<Entity>>& entities);
