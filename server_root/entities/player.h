@@ -47,6 +47,7 @@ class Player : public Entity {
 
     void decreaseATKCooldown();
 
+    void reload();
     bool canAttack() override;
     Attack attack();
 

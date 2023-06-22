@@ -125,6 +125,10 @@ void Player::idle() {
     actionState = PLAYER_IDLE;
 }
 
+void Player::reload() {
+    weapon.reload();
+}
+
 bool Player::canAttack() {
     return weapon.canShoot();
 }

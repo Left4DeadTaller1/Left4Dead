@@ -236,20 +236,11 @@ CMakeFiles/server.dir/server_root/game/games_manager.cpp.o: \
  /usr/include/string.h /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
-<<<<<<< HEAD
- /home/usaurio/Left4Dead/server_root/game/action.h \
- /home/usaurio/Left4Dead/server_root/game/server_message.h \
- /home/usaurio/Left4Dead/dipa_classes/socket.h \
- /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
- /usr/include/c++/11/bits/std_thread.h \
-=======
  /home/regman/taller/left4Dead/server_root/game/action.h \
  /home/regman/taller/left4Dead/server_root/game/server_message.h \
  /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /usr/include/c++/11/atomic \
  /home/regman/taller/left4Dead/dipa_classes/thread.h \
  /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
->>>>>>> 6951c8aaf3603bd64ff511f234ab688666fb8e7a
  /usr/include/c++/11/bits/this_thread_sleep.h \
  /home/regman/taller/left4Dead/server_root/entities/zombies/zombie_spawner.h \
  /home/regman/taller/left4Dead/server_root/entities/zombies/infected.h \

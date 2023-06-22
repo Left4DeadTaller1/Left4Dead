@@ -182,6 +182,7 @@ void Game::updateState() {
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
             updatePlayerState(*player, playersActions[player->getId()]);
+            reloadPlayer(*player);
         }
 
         else {
@@ -234,6 +235,11 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
             break;
         }
     }
+}
+
+void Game::reloadPlayer(Player& player) {
+    if (player.getActionState() == PLAYER_RELOADING)
+        player.reload();
 }
 
 void Game::move(Entity& entity) {

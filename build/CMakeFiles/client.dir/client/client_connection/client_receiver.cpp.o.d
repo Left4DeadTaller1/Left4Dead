@@ -137,21 +137,11 @@ CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
-<<<<<<< HEAD
- /home/usaurio/Left4Dead/dipa_classes/socket.h \
- /home/usaurio/Left4Dead/client/actions/action_client.h \
- /home/usaurio/Left4Dead/client/actions/action_create.h \
- /home/usaurio/Left4Dead/client/actions/action_client.h \
- /home/usaurio/Left4Dead/client/actions/action_start_move.h \
-=======
  /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /usr/include/c++/11/atomic /usr/include/c++/11/bits/atomic_base.h \
- /usr/include/c++/11/bits/atomic_lockfree_defines.h \
  /home/regman/taller/left4Dead/client/actions/action_client.h \
  /home/regman/taller/left4Dead/client/actions/action_create.h \
  /home/regman/taller/left4Dead/client/actions/action_client.h \
  /home/regman/taller/left4Dead/client/actions/action_start_move.h \
->>>>>>> 6951c8aaf3603bd64ff511f234ab688666fb8e7a
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -213,9 +203,5 @@ CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o: \
  /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_deque.h \
  /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_queue.h \
-<<<<<<< HEAD
- /home/usaurio/Left4Dead/client/render/game/client_game_state.h \
+ /home/regman/taller/left4Dead/client/render/game/client_game_state.h \
  /usr/include/c++/11/atomic
-=======
- /home/regman/taller/left4Dead/client/render/game/client_game_state.h
->>>>>>> 6951c8aaf3603bd64ff511f234ab688666fb8e7a
