@@ -71,6 +71,10 @@ bool Witch::isMoving() {
     return actionState == WITCH_MOVING;
 }
 
+void Witch::idle() {
+    actionState = WITCH_IDLE;
+}
+
 void Witch::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
@@ -85,10 +89,11 @@ void Witch::takeDamage(int damage) {
     }
 }
 
-void Witch::checkIfDead() {
+bool Witch::checkIfDead() {
     if (actionState == WITCH_DYING && actionCounter == 0) {
-        kill();
+        return true;
     }
+    return false;
 }
 
 void Witch::kill() {
@@ -99,7 +104,7 @@ void Witch::kill() {
 }
 
 bool Witch::isDead() {
-    return actionState == WITCH_DEAD;
+    return (actionState == WITCH_DEAD && actionCounter == WITCH_DYING);
 }
 
 bool Witch::isRemovable() {

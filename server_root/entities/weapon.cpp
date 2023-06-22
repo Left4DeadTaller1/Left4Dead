@@ -88,5 +88,9 @@ int Weapon::getBullets() {
     return bullets;
 }
 
+int Weapon::getCooldown() {
+    return cooldown;
+}
+
 Weapon::~Weapon() {
 }

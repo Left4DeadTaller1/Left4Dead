@@ -79,10 +79,11 @@ class Entity {
     virtual bool isMoving() = 0;
     virtual void takeDamage(int amountOfDamage) = 0;
     virtual void decreaseATKCooldown() = 0;
-    virtual void checkIfDead() = 0;
+    virtual bool checkIfDead() = 0;
     virtual void kill() = 0;
     virtual bool isDead() = 0;
     virtual bool isRemovable() = 0;
+    virtual void idle() = 0;
 
     virtual Attack attack() = 0;
 

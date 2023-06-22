@@ -71,6 +71,10 @@ bool Spear::isMoving() {
     return actionState == SPEAR_MOVING;
 }
 
+void Spear::idle() {
+    actionState = SPEAR_IDLE;
+}
+
 void Spear::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
@@ -85,10 +89,11 @@ void Spear::takeDamage(int damage) {
     }
 }
 
-void Spear::checkIfDead() {
+bool Spear::checkIfDead() {
     if (actionState == SPEAR_DYING && actionCounter == 0) {
-        actionState = SPEAR_DEAD;
+        return true;
     }
+    return false;
 }
 
 void Spear::kill() {
@@ -99,7 +104,7 @@ void Spear::kill() {
 }
 
 bool Spear::isDead() {
-    return actionState == SPEAR_DEAD;
+    return (actionState == SPEAR_DEAD || actionState == SPEAR_DYING);
 }
 
 bool Spear::isRemovable() {

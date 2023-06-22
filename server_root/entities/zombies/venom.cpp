@@ -80,6 +80,10 @@ bool Venom::isMoving() {
     return actionState == VENOM_MOVING;
 }
 
+void Venom::idle() {
+    actionState = VENOM_IDLE;
+}
+
 void Venom::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
@@ -94,10 +98,11 @@ void Venom::takeDamage(int damage) {
     }
 }
 
-void Venom::checkIfDead() {
+bool Venom::checkIfDead() {
     if (actionState == VENOM_DYING && actionCounter == 0) {
-        actionState = VENOM_DEAD;
+        return true;
     }
+    return false;
 }
 
 void Venom::kill() {
@@ -108,7 +113,7 @@ void Venom::kill() {
 }
 
 bool Venom::isDead() {
-    return actionState == VENOM_DEAD;
+    return (actionState == VENOM_DEAD || actionState == VENOM_DYING);
 }
 
 bool Venom::isRemovable() {

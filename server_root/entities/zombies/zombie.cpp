@@ -32,7 +32,7 @@ void Zombie::fillBaseZombieDTO(std::shared_ptr<ZombieDTO> dto) {
 }
 
 void Zombie::decideTarget(std::vector<std::shared_ptr<Player>>& players) {
-    if (players.empty()) {
+    if (players.empty() || actionCounter != 0) {
         return;  // i mean you will never have 0 players but just in case
     }
 

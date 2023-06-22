@@ -67,28 +67,40 @@ void Jumper::startMoving() {
     actionState = JUMPER_MOVING;
 }
 
+void Jumper::idle() {
+    actionState = JUMPER_IDLE;
+}
+
 bool Jumper::isMoving() {
     return actionState == JUMPER_MOVING;
 }
 
 void Jumper::takeDamage(int damage) {
+    std::cout << "Jumper taking damage: " << damage << std::endl;
+    std::cout << "Health: " << health << std::endl;
+
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
     if (health <= 0) {
         health = 0;
+        std::cout << "Jumper Dying, health: " << health << std::endl;
         actionState = JUMPER_DYING;
         actionCounter = entityParams["JUMPER_DYING_DURATION"];
     } else {
         actionState = JUMPER_HURT;
         actionCounter = entityParams["JUMPER_HURT_DURATION"];
     }
+
+    std::cout << "Health after dmg: " << health << std::endl
+              << std::endl;
 }
 
-void Jumper::checkIfDead() {
+bool Jumper::checkIfDead() {
     if (actionState == JUMPER_DYING && actionCounter == 0) {
-        kill();
+        return true;
     }
+    return false;
 }
 
 void Jumper::kill() {
@@ -99,7 +111,7 @@ void Jumper::kill() {
 }
 
 bool Jumper::isDead() {
-    return actionState == JUMPER_DEAD;
+    return (actionState == JUMPER_DEAD || actionState == JUMPER_DYING);
 }
 
 bool Jumper::isRemovable() {

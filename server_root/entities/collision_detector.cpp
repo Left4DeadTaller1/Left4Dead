@@ -55,37 +55,29 @@ std::tuple<int, int> CollisionDetector::checkForCollisions(Entity& entity, int d
     int maxMoveX = entity.getMovementDirectionX() == ENTITY_LEFT ? entity.x : gameWidth - (entity.x + entity.width);
     int maxMoveY = entity.getMovementDirectionY() == ENTITY_DOWN ? entity.y : gameHeight - (entity.y + entity.height);
 
-    std::cout << "Initial maxMoveX: " << maxMoveX << ", maxMoveY: " << maxMoveY << std::endl;
-
     for (auto& other : entities) {
         if (other->isDead() || &entity == other.get())
             continue;
 
         if (willCollideHorizontally(entity, *other)) {
-            std::cout << "Will collide horizontally with: " << other->entityId << std::endl;
             if (entity.getMovementDirectionX() == ENTITY_LEFT) {
                 int distance = entity.x - (other->x + other->width);
-                std::cout << "Left collision distance: " << distance << std::endl;
                 if (distance >= 0 && distance < maxMoveX)
                     maxMoveX = distance;
             } else if (entity.getMovementDirectionX() == ENTITY_RIGHT) {
                 int distance = other->x - (entity.x + entity.width);
-                std::cout << "Right collision distance: " << distance << std::endl;
                 if (distance >= 0 && distance < maxMoveX)
                     maxMoveX = distance;
             }
         }
 
         if (willCollideVertically(entity, *other)) {
-            std::cout << "Will collide vertically with: " << other->entityId << std::endl;
             if (entity.getMovementDirectionY() == ENTITY_UP) {
                 int distance = other->y - (entity.y + entity.height);
-                std::cout << "Up collision distance: " << distance << std::endl;
                 if (distance >= 0 && distance < maxMoveY)
                     maxMoveY = distance;
             } else if (entity.getMovementDirectionY() == ENTITY_DOWN) {
                 int distance = entity.y - (other->y + other->height);
-                std::cout << "Down collision distance: " << distance << std::endl;
                 if (distance >= 0 && distance < maxMoveY)
                     maxMoveY = distance;
             }
@@ -94,9 +86,6 @@ std::tuple<int, int> CollisionDetector::checkForCollisions(Entity& entity, int d
 
     int actualMovementX = std::min(maxMoveX, abs(deltaX)) * (deltaX < 0 ? -1 : 1);
     int actualMovementY = std::min(maxMoveY, abs(deltaY)) * (deltaY < 0 ? -1 : 1);
-
-    std::cout << "Resulting move: (" << actualMovementX << ", " << actualMovementY << ")" << std::endl
-              << std::endl;
 
     return std::make_tuple(actualMovementX, actualMovementY);
 }
@@ -122,8 +111,9 @@ void CollisionDetector::shootZombie(const std::shared_ptr<Entity>& entity, Attac
     if (entity->getType() == PLAYER)
         return;
 
-    if ((entity->y < attack.lowerY && attack.lowerY < entity->y + entity->height) ||
-        (entity->y < attack.upperY && attack.upperY < entity->y + entity->height)) {
+    if ((attack.lowerY <= entity->y && entity->y <= attack.upperY) ||
+        (attack.lowerY <= entity->y + entity->height && entity->y + entity->height <= attack.upperY) ||
+        (attack.lowerY <= entity->y && entity->y + entity->height <= attack.upperY)) {
         if (entitiesBeingATK.empty()) {
             entitiesBeingATK.push_back(entity);
         } else {

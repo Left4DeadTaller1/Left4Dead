@@ -29,7 +29,8 @@ class Jumper : public Zombie {
     void startMoving() override;
     void takeDamage(int damage) override;
     bool isMoving() override;
-    void checkIfDead() override;
+    void idle() override;
+    bool checkIfDead() override;
     void kill() override;
     bool isDead() override;
     bool isRemovable() override;

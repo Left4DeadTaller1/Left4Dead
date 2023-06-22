@@ -27,8 +27,9 @@ class Spear : public Zombie {
     Attack attack() override;
     void startMoving() override;
     bool isMoving() override;
+    void idle() override;
     void takeDamage(int damage) override;
-    void checkIfDead() override;
+    bool checkIfDead() override;
     void kill() override;
     bool isDead() override;
     bool isRemovable() override;
