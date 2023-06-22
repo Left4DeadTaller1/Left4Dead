@@ -211,10 +211,10 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
 
             int actionPlayerState = action.getInputType();
             int actionMovementDirectionX = action.getDirectionXType();
-            int actionMovementDirectionY= action.getDirectionYType();
+            int actionMovementDirectionY = action.getDirectionYType();
 
-            //MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
-            //MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
+            // MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(action.getDirectionXType());
+            // MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(action.getDirectionYType());
 
             if (actionPlayerState == DISCONNECTION) {
                 removePlayer(player.getId());
@@ -246,8 +246,12 @@ void Game::move(Entity& entity) {
 
     std::tie(deltaX, deltaY) = entity.getDirectionsAmount();
 
-    if (!collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities))
-        entity.move(deltaX, deltaY);
+    int realDeltaX = 0;
+    int realDeltaY = 0;
+
+    std::tie(realDeltaX, realDeltaY) = collisionDetector.checkForCollisions(entity, deltaX, deltaY, entities);
+
+    entity.move(realDeltaX, realDeltaY);
 }
 
 void Game::attack(Entity& entity) {

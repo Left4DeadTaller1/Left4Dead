@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/usaurio/Left4Dead
+CMAKE_SOURCE_DIR = /home/regman/taller/left4Dead
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/usaurio/Left4Dead/build
+CMAKE_BINARY_DIR = /home/regman/taller/left4Dead/build
 
 # Utility rule file for qt_autogen.
 
@@ -67,8 +67,8 @@ include CMakeFiles/qt_autogen.dir/compiler_depend.make
 include CMakeFiles/qt_autogen.dir/progress.make
 
 CMakeFiles/qt_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target qt"
-	/usr/bin/cmake -E cmake_autogen /home/usaurio/Left4Dead/build/CMakeFiles/qt_autogen.dir/AutogenInfo.json ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target qt"
+	/usr/bin/cmake -E cmake_autogen /home/regman/taller/left4Dead/build/CMakeFiles/qt_autogen.dir/AutogenInfo.json ""
 
 qt_autogen: CMakeFiles/qt_autogen
 qt_autogen: CMakeFiles/qt_autogen.dir/build.make
@@ -83,6 +83,6 @@ CMakeFiles/qt_autogen.dir/clean:
 .PHONY : CMakeFiles/qt_autogen.dir/clean
 
 CMakeFiles/qt_autogen.dir/depend:
-	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/usaurio/Left4Dead /home/usaurio/Left4Dead /home/usaurio/Left4Dead/build /home/usaurio/Left4Dead/build /home/usaurio/Left4Dead/build/CMakeFiles/qt_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/regman/taller/left4Dead /home/regman/taller/left4Dead /home/regman/taller/left4Dead/build /home/regman/taller/left4Dead/build /home/regman/taller/left4Dead/build/CMakeFiles/qt_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/qt_autogen.dir/depend
 

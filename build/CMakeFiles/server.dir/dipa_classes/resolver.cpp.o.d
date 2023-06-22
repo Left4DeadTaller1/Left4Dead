@@ -1,8 +1,9 @@
 CMakeFiles/server.dir/dipa_classes/resolver.cpp.o: \
- /home/usaurio/Left4Dead/dipa_classes/resolver.cpp \
+ /home/regman/taller/left4Dead/dipa_classes/resolver.cpp \
  /usr/include/stdc-predef.h \
- /home/usaurio/Left4Dead/dipa_classes/resolver.h /usr/include/netdb.h \
- /usr/include/features.h /usr/include/features-time64.h \
+ /home/regman/taller/left4Dead/dipa_classes/resolver.h \
+ /usr/include/netdb.h /usr/include/features.h \
+ /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -88,7 +89,7 @@ CMakeFiles/server.dir/dipa_classes/resolver.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h \
- /home/usaurio/Left4Dead/dipa_classes/liberror.h \
+ /home/regman/taller/left4Dead/dipa_classes/liberror.h \
  /usr/include/c++/11/exception \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -102,4 +103,4 @@ CMakeFiles/server.dir/dipa_classes/resolver.cpp.o: \
  /usr/include/c++/11/new /usr/include/c++/11/bits/move.h \
  /usr/include/c++/11/type_traits \
  /usr/include/c++/11/bits/nested_exception.h \
- /home/usaurio/Left4Dead/dipa_classes/resolvererror.h
+ /home/regman/taller/left4Dead/dipa_classes/resolvererror.h

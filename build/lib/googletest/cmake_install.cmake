@@ -1,4 +1,4 @@
-# Install script for directory: /home/usaurio/Left4Dead/lib/googletest
+# Install script for directory: /home/regman/taller/left4Dead/lib/googletest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/usaurio/Left4Dead/build/lib/googletest/googlemock/cmake_install.cmake")
+  include("/home/regman/taller/left4Dead/build/lib/googletest/googlemock/cmake_install.cmake")
 
 endif()
 

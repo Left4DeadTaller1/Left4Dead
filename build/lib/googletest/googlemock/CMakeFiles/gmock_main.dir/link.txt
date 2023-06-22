@@ -1,1 +1,2 @@
-/usr/bin/c++ -fPIC   -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L -shared -Wl,-soname,libgmock_main.so.1.13.0 -o ../../libgmock_main.so.1.13.0 CMakeFiles/gmock_main.dir/src/gmock_main.cc.o  -Wl,-rpath,/home/usaurio/Left4Dead/build/lib: ../../libgmock.so.1.13.0 ../../libgtest.so.1.13.0 
+/usr/bin/ar qc ../../libgmock_main.a CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+/usr/bin/ranlib ../../libgmock_main.a

@@ -85,11 +85,11 @@ std::tuple<int, int> Zombie::getDirectionsAmount() {
 
     switch (movementDirectionY) {
         case ENTITY_UP:
-            yAmount = -movementSpeed;
+            yAmount = movementSpeed;
             break;
 
         case ENTITY_DOWN:
-            yAmount = movementSpeed;
+            yAmount = -movementSpeed;
             break;
 
         default:

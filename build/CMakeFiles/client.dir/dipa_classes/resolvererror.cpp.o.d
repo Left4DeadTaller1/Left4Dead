@@ -1,7 +1,7 @@
 CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o: \
- /home/usaurio/Left4Dead/dipa_classes/resolvererror.cpp \
+ /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp \
  /usr/include/stdc-predef.h \
- /home/usaurio/Left4Dead/dipa_classes/resolvererror.h \
+ /home/regman/taller/left4Dead/dipa_classes/resolvererror.h \
  /usr/include/c++/11/exception \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

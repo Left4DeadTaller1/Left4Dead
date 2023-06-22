@@ -1,7 +1,7 @@
 tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o: \
- /home/usaurio/Left4Dead/client/client_connection/client_protocol.cpp \
+ /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp \
  /usr/include/stdc-predef.h \
- /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
+ /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -136,11 +136,21 @@ tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cp
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
+<<<<<<< HEAD
  /home/usaurio/Left4Dead/tests/../dipa_classes/socket.h \
  /home/usaurio/Left4Dead/tests/../client/actions/action_client.h \
  /home/usaurio/Left4Dead/tests/../client/actions/action_create.h \
  /home/usaurio/Left4Dead/tests/../client/actions/action_client.h \
  /home/usaurio/Left4Dead/tests/../client/actions/action_start_move.h \
+=======
+ /home/regman/taller/left4Dead/tests/../dipa_classes/socket.h \
+ /usr/include/c++/11/atomic /usr/include/c++/11/bits/atomic_base.h \
+ /usr/include/c++/11/bits/atomic_lockfree_defines.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_client.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_create.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_client.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_start_move.h \
+>>>>>>> 6951c8aaf3603bd64ff511f234ab688666fb8e7a
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -163,7 +173,7 @@ tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cp
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/usaurio/Left4Dead/tests/../client/actions/action_end_move.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_end_move.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
  /usr/include/c++/11/bits/locale_classes.h \
@@ -182,8 +192,8 @@ tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cp
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/usaurio/Left4Dead/tests/../client/actions/action_join.h \
- /home/usaurio/Left4Dead/client/client_connection/../render/game/client_game_state.h \
+ /home/regman/taller/left4Dead/tests/../client/actions/action_join.h \
+ /home/regman/taller/left4Dead/client/client_connection/../render/game/client_game_state.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/node_handle.h \
  /usr/include/c++/11/bits/stl_map.h \

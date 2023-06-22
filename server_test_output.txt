@@ -1,0 +1,50 @@
+[==========] Running 13 tests from 4 test suites.
+[----------] Global test environment set-up.
+[----------] 5 tests from CollisionDetectorTest
+[ RUN      ] CollisionDetectorTest.IsColliding
+[       OK ] CollisionDetectorTest.IsColliding (0 ms)
+[ RUN      ] CollisionDetectorTest.GetCollisions
+[       OK ] CollisionDetectorTest.GetCollisions (0 ms)
+[ RUN      ] CollisionDetectorTest.CheckBeingShotRight
+[       OK ] CollisionDetectorTest.CheckBeingShotRight (0 ms)
+[ RUN      ] CollisionDetectorTest.CheckBeingShotLeft
+[       OK ] CollisionDetectorTest.CheckBeingShotLeft (0 ms)
+[ RUN      ] CollisionDetectorTest.CheckBeingShotNoHit
+[       OK ] CollisionDetectorTest.CheckBeingShotNoHit (0 ms)
+[----------] 5 tests from CollisionDetectorTest (0 ms total)
+
+[----------] 1 test from EntityTest
+[ RUN      ] EntityTest.Initialization
+[       OK ] EntityTest.Initialization (0 ms)
+[----------] 1 test from EntityTest (0 ms total)
+
+[----------] 3 tests from GameTest
+[ RUN      ] GameTest.Constructor
+[       OK ] GameTest.Constructor (0 ms)
+[ RUN      ] GameTest.AddPlayer
+[       OK ] GameTest.AddPlayer (0 ms)
+[ RUN      ] GameTest.RemovePlayer
+[       OK ] GameTest.RemovePlayer (0 ms)
+[----------] 3 tests from GameTest (0 ms total)
+
+[----------] 4 tests from GamesManagerTest
+[ RUN      ] GamesManagerTest.CreateLobby
+[       OK ] GamesManagerTest.CreateLobby (0 ms)
+[ RUN      ] GamesManagerTest.JoinLobby
+[       OK ] GamesManagerTest.JoinLobby (0 ms)
+[ RUN      ] GamesManagerTest.JoinNonexistentLobby
+[       OK ] GamesManagerTest.JoinNonexistentLobby (0 ms)
+[ RUN      ] GamesManagerTest.ShutdownGames
+unknown file: Failure
+C++ exception with description "Invalid argument" thrown in the test body.
+
+[  FAILED  ] GamesManagerTest.ShutdownGames (8 ms)
+[----------] 4 tests from GamesManagerTest (8 ms total)
+
+[----------] Global test environment tear-down
+[==========] 13 tests from 4 test suites ran. (8 ms total)
+[  PASSED  ] 12 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] GamesManagerTest.ShutdownGames
+
+ 1 FAILED TEST

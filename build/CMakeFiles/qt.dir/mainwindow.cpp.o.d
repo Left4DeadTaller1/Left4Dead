@@ -1,6 +1,6 @@
 CMakeFiles/qt.dir/mainwindow.cpp.o: \
- /home/usaurio/Left4Dead/mainwindow.cpp /usr/include/stdc-predef.h \
- /home/usaurio/Left4Dead/mainwindow.h \
+ /home/regman/taller/left4Dead/mainwindow.cpp /usr/include/stdc-predef.h \
+ /home/regman/taller/left4Dead/mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
@@ -314,10 +314,10 @@ CMakeFiles/qt.dir/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
  /usr/include/x86_64-linux-gnu/qt5/QtMultimedia/qaudio.h \
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qnetworkconfiguration.h \
- /home/usaurio/Left4Dead/client/actions/action_client.h \
- /home/usaurio/Left4Dead/client/actions/action_create.h \
- /home/usaurio/Left4Dead/client/actions/action_client.h \
- /home/usaurio/Left4Dead/build/ui_mainwindow.h \
+ /home/regman/taller/left4Dead/client/actions/action_client.h \
+ /home/regman/taller/left4Dead/client/actions/action_create.h \
+ /home/regman/taller/left4Dead/client/actions/action_client.h \
+ /home/regman/taller/left4Dead/build/ui_mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h \

@@ -30,27 +30,75 @@ bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& 
     return false;
 }
 
-bool CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities) {
+bool CollisionDetector::willCollideHorizontally(Entity& e1, Entity& e2) {
+    // discard cuz they are not in the same "depth"
+    if ((e1.y) + e1.height < e2.y || (e1.y) > e2.y + e2.height)
+        return false;
+
+    return true;
+}
+
+bool CollisionDetector::willCollideVertically(Entity& e1, Entity& e2) {
+    // discard cuz they are not in the same "depth"
+    if ((e1.x) + e1.width < e2.x || (e1.x > e2.x + e2.width))
+        return false;
+
+    return true;
+}
+
+std::tuple<int, int> CollisionDetector::checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
     int gameWidth = gameDimensions["GAME_WIDTH"];
     int gameHeight = gameDimensions["GAME_HEIGHT"];
 
-    // Check for boundary collision
-    if ((entity.x + deltaX) < 0 || (entity.x + deltaX + entity.width) > gameWidth ||
-        (entity.y + deltaY) < 0 || (entity.y + deltaY + entity.height) > gameHeight) {
-        return true;  // collision with boundary
-    }
+    int maxMoveX = entity.getMovementDirectionX() == ENTITY_LEFT ? entity.x : gameWidth - (entity.x + entity.width);
+    int maxMoveY = entity.getMovementDirectionY() == ENTITY_DOWN ? entity.y : gameHeight - (entity.y + entity.height);
+
+    std::cout << "Initial maxMoveX: " << maxMoveX << ", maxMoveY: " << maxMoveY << std::endl;
 
     for (auto& other : entities) {
-        if (other->isDead())
+        if (other->isDead() || &entity == other.get())
             continue;
-        if (&entity != other.get() && isColliding(entity, deltaX, deltaY, *other)) {
-            return true;
+
+        if (willCollideHorizontally(entity, *other)) {
+            std::cout << "Will collide horizontally with: " << other->entityId << std::endl;
+            if (entity.getMovementDirectionX() == ENTITY_LEFT) {
+                int distance = entity.x - (other->x + other->width);
+                std::cout << "Left collision distance: " << distance << std::endl;
+                if (distance >= 0 && distance < maxMoveX)
+                    maxMoveX = distance;
+            } else if (entity.getMovementDirectionX() == ENTITY_RIGHT) {
+                int distance = other->x - (entity.x + entity.width);
+                std::cout << "Right collision distance: " << distance << std::endl;
+                if (distance >= 0 && distance < maxMoveX)
+                    maxMoveX = distance;
+            }
+        }
+
+        if (willCollideVertically(entity, *other)) {
+            std::cout << "Will collide vertically with: " << other->entityId << std::endl;
+            if (entity.getMovementDirectionY() == ENTITY_UP) {
+                int distance = other->y - (entity.y + entity.height);
+                std::cout << "Up collision distance: " << distance << std::endl;
+                if (distance >= 0 && distance < maxMoveY)
+                    maxMoveY = distance;
+            } else if (entity.getMovementDirectionY() == ENTITY_DOWN) {
+                int distance = entity.y - (other->y + other->height);
+                std::cout << "Down collision distance: " << distance << std::endl;
+                if (distance >= 0 && distance < maxMoveY)
+                    maxMoveY = distance;
+            }
         }
     }
 
-    return false;
+    int actualMovementX = std::min(maxMoveX, abs(deltaX)) * (deltaX < 0 ? -1 : 1);
+    int actualMovementY = std::min(maxMoveY, abs(deltaY)) * (deltaY < 0 ? -1 : 1);
+
+    std::cout << "Resulting move: (" << actualMovementX << ", " << actualMovementY << ")" << std::endl
+              << std::endl;
+
+    return std::make_tuple(actualMovementX, actualMovementY);
 }
 
 std::list<std::shared_ptr<Entity>> CollisionDetector::shoot(Attack& attack, std::list<std::shared_ptr<Entity>>& entities) {

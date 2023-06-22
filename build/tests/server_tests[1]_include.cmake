@@ -1,5 +1,5 @@
-if(EXISTS "/home/usaurio/Left4Dead/build/tests/server_tests[1]_tests.cmake")
-  include("/home/usaurio/Left4Dead/build/tests/server_tests[1]_tests.cmake")
+if(EXISTS "/home/regman/taller/left4Dead/build/tests/server_tests[1]_tests.cmake")
+  include("/home/regman/taller/left4Dead/build/tests/server_tests[1]_tests.cmake")
 else()
   add_test(server_tests_NOT_BUILT server_tests_NOT_BUILT)
 endif()
