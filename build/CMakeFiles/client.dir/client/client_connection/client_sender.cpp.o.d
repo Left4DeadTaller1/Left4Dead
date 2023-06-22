@@ -137,9 +137,7 @@ CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/usaurio/Left4Dead/dipa_classes/socket.h /usr/include/c++/11/atomic \
- /usr/include/c++/11/bits/atomic_base.h \
- /usr/include/c++/11/bits/atomic_lockfree_defines.h \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
  /home/usaurio/Left4Dead/client/actions/action_client.h \
  /home/usaurio/Left4Dead/client/actions/action_create.h \
  /home/usaurio/Left4Dead/client/actions/action_client.h \
@@ -161,6 +159,8 @@ CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o: \
  /usr/include/c++/11/bits/cxxabi_init_exception.h \
  /usr/include/c++/11/bits/nested_exception.h \
  /usr/include/c++/11/bits/shared_ptr_atomic.h \
+ /usr/include/c++/11/bits/atomic_base.h \
+ /usr/include/c++/11/bits/atomic_lockfree_defines.h \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
@@ -204,4 +204,5 @@ CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o: \
  /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_deque.h \
  /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_queue.h \
- /home/usaurio/Left4Dead/client/render/game/client_game_state.h
+ /home/usaurio/Left4Dead/client/render/game/client_game_state.h \
+ /usr/include/c++/11/atomic

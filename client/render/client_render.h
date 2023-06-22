@@ -15,6 +15,7 @@
 #include "client_game_state.h"
 #include "client_texture.h"
 #include "queue.h"
+#include <atomic>
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -44,6 +45,7 @@
 
 class ClientRenderer {
    private:
+   std::atomic<bool>& isConnected;
    Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender;
    Queue<std::shared_ptr<ActionClient>>& qEventsToRender;
    SDL2pp::Window& window;
@@ -69,9 +71,10 @@ class ClientRenderer {
    void  drawInicio(void);
 
    public:
-   ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
-                    Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
-                    SDL2pp::Window& window_);
+   ClientRenderer(std::atomic<bool>& isConnected, 
+                  Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
+                  Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
+                  SDL2pp::Window& window_);
 
    void copySprite(SDL2pp::Texture& texture, 
                   SDL2pp::Rect& srcRect, 

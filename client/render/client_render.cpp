@@ -3,9 +3,11 @@
 using namespace SDL2pp;
 #define MS_PER_FRAME 33
 
-ClientRenderer::ClientRenderer(Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
+ClientRenderer::ClientRenderer(std::atomic<bool>& isConnected,
+                    Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
                     Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
                     Window& window_):
+                    isConnected(isConnected),
                     qServerToRender(qServerToRender),
                     qEventsToRender(qEventsToRender),
                     window(window_),
@@ -125,7 +127,7 @@ int ClientRenderer::looprender(void) {
     drawInicio();
     previousGameStateDTO = qServerToRender.pop();
 
-    while (true) {
+    while (isConnected) {
         auto start = std::chrono::steady_clock::now();
 
         for (int i = 0; i < 10; i++){
@@ -134,6 +136,8 @@ int ClientRenderer::looprender(void) {
             if (action){
                 //procesar accion
                 if (action->isExit()){
+                    qServerToRender.close();
+                    //qEventsToRender.close();
                     return 0;
                 }
             }
@@ -143,35 +147,6 @@ int ClientRenderer::looprender(void) {
             std::shared_ptr<gameStateDTO_t> gameStateDTO;
             qServerToRender.try_pop(gameStateDTO);
             if (gameStateDTO){
-                for (auto &currentPlayer : gameStateDTO->players) {
-                    std::cout << "PLAYER\n";
-                    std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
-                    if (iter != previousGameStateDTO->players.end()) {
-                        std::cout << "idPlayer: " << (int)(currentPlayer.second.idPlayer) << "\n";
-                        std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
-                        std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
-                        std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
-                        std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
-                        std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
-                    } else {
-                        std::cout << "no encontro al player\n";
-                    }
-                    }
-                for (auto &currentPlayer : gameStateDTO->infected) {
-                    std::cout << "ZOMBI\n";
-                    std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentPlayer.first);
-                    if (iter != previousGameStateDTO->infected.end()) {
-                        std::cout << "idZombi: " << (int)(currentPlayer.second.idInfected) << "\n";
-                        std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
-                        std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
-                        std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
-                        std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
-                        std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
-                        std::cout << "type: " << (int)(currentPlayer.second.typeInfected) << "\n";
-                    } else {
-                        std::cout << "no encontro al player\n";
-                    }
-                }
                 renderer.Clear();
 
                 drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
@@ -201,7 +176,6 @@ int ClientRenderer::looprender(void) {
             std::this_thread::sleep_for(std::chrono::milliseconds(MS_PER_FRAME) - elapsed);
         }
     }
-
     return 0;
 }
 

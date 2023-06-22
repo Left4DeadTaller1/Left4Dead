@@ -10,7 +10,7 @@ SenderThread::SenderThread(std::atomic<bool>& isConnected,
 void SenderThread::run() {
     bool wasClosed = false;
     std::shared_ptr<ActionClient> action;
-    while (!wasClosed) { 
+    while (!wasClosed && isConnected) { 
         try {
             action = qEventsToSender.pop();
             protocol.sendAction(std::move(action), wasClosed);
@@ -18,5 +18,8 @@ void SenderThread::run() {
             break;
         }
     }
+}
+
+SenderThread::~SenderThread(){
     isConnected = false;
 }

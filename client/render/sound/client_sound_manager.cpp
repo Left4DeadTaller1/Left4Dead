@@ -29,7 +29,6 @@ void SoundManager::playSound(typeEntity_t typeEntity, state_t state, int playMod
         state = RUNNING;
     }
     std::string nameSound = translationTypeEntity[typeEntity] + "-" + translationState[state];
-    std::cout << "name : " << nameSound << "\n";
     std::map<std::string, std::shared_ptr<Sound>>::iterator iter = sounds.find(nameSound);
     if (iter == sounds.end()) {
         std::cout << "NO SE ENCONTRO SONIDO: " << nameSound << "\n";

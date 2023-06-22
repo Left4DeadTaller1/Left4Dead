@@ -1,7 +1,6 @@
 #include "action_end_move.h"
 
 EndMove::EndMove(DirectionMove directionMove){
-    std::cout << "entra a end move right en action end move\n";
     if (directionMove == RIGHT){
         dirX = 2;
         dirY = 3;

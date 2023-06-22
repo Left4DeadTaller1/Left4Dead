@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+/*#include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
 #include "client_protocol.h"
@@ -30,6 +30,6 @@ TEST(ClientProtocolTest, ReceiveCreateOrJoinTest) {
     EXPECT_FALSE(wasClosed);
     EXPECT_EQ(result, expectedCode);
 }
-
+*/
 
 

@@ -26,8 +26,8 @@ void EventManagerThread::run() {
 
                 if (event.type == SDL_QUIT) {
                     action = std::make_shared<Exit>();
-                    qEventsToRender.push(action);
                     qEventsToSender.close();
+                    qEventsToRender.push(action);
                     return;
                 } else if (event.type == SDL_KEYDOWN) {
                     switch (event.key.keysym.sym) {
@@ -86,7 +86,6 @@ void EventManagerThread::run() {
                             break;
                         case SDLK_RIGHT:
                             if (rightMoveSent) {
-                                std::cout << "entra a end move right en event manager\n";
                                 action = std::make_shared<EndMove>(RIGHT);
                                 rightMoveSent = false;
                             }

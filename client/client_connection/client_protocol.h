@@ -19,10 +19,10 @@
 
 class ClientProtocol {
    private:
-    Socket& skt;
+    Socket skt;
     
    public:
-    explicit ClientProtocol(Socket& skt);
+    ClientProtocol(const std::string& hostname,const std::string& servname);
 
     void sendAction(std::shared_ptr<ActionClient> action, bool& wasClosed);
 

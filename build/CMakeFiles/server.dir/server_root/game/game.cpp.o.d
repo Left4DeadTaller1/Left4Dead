@@ -235,7 +235,7 @@ CMakeFiles/server.dir/server_root/game/game.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
  /home/usaurio/Left4Dead/server_root/game/action.h \
  /home/usaurio/Left4Dead/server_root/game/server_message.h \
- /home/usaurio/Left4Dead/dipa_classes/socket.h /usr/include/c++/11/atomic \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
  /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
  /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
@@ -295,7 +295,7 @@ CMakeFiles/server.dir/server_root/game/game.cpp.o: \
  /usr/include/yaml-cpp/node/detail/node_iterator.h \
  /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
  /usr/include/yaml-cpp/node/iterator.h \
- /usr/include/yaml-cpp/node/detail/iterator.h \
+ /usr/include/yaml-cpp/node/detail/iterator.h /usr/include/c++/11/atomic \
  /usr/include/yaml-cpp/node/convert.h \
  /usr/include/yaml-cpp/node/detail/impl.h \
  /usr/include/yaml-cpp/node/parse.h /usr/include/yaml-cpp/node/emit.h

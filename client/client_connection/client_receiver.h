@@ -8,21 +8,24 @@
 #include "thread.h"
 #include "queue.h"
 #include "client_game_state.h"
+#include <atomic>
 
 class ReceiverThread : public Thread {
-   public:
+    private:
+    std::atomic<bool>& isConnected;
+    ClientProtocol& protocol;
+    Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender;
+
+    void inGame();
+
+    public:
     ReceiverThread(std::atomic<bool>& isConnected,
                     ClientProtocol& protocol, 
                     Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender);
 
     virtual void run() override;
 
-   private:
-    std::atomic<bool>& isConnected;
-    ClientProtocol& protocol;
-    Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender;
-
-    void inGame();
+    ~ReceiverThread();
 };
 
 #endif  // CLIENT_RECEIVE_H

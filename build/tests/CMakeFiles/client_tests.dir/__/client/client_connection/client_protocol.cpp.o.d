@@ -137,8 +137,6 @@ tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cp
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
  /home/usaurio/Left4Dead/tests/../dipa_classes/socket.h \
- /usr/include/c++/11/atomic /usr/include/c++/11/bits/atomic_base.h \
- /usr/include/c++/11/bits/atomic_lockfree_defines.h \
  /home/usaurio/Left4Dead/tests/../client/actions/action_client.h \
  /home/usaurio/Left4Dead/tests/../client/actions/action_create.h \
  /home/usaurio/Left4Dead/tests/../client/actions/action_client.h \
@@ -160,6 +158,8 @@ tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cp
  /usr/include/c++/11/bits/cxxabi_init_exception.h \
  /usr/include/c++/11/bits/nested_exception.h \
  /usr/include/c++/11/bits/shared_ptr_atomic.h \
+ /usr/include/c++/11/bits/atomic_base.h \
+ /usr/include/c++/11/bits/atomic_lockfree_defines.h \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \

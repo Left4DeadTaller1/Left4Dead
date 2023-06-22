@@ -8,21 +8,24 @@
 #include "thread.h"
 #include "queue.h"
 #include "liberror.h"
+#include <atomic>
 
 class SenderThread : public Thread {
-   public:
+    private:
+    std::atomic<bool>& isConnected;
+    ClientProtocol& protocol;
+    Queue<std::shared_ptr<ActionClient>>& qEventsToSender;
+
+    void inGame();
+
+    public:
     SenderThread(std::atomic<bool>& isConnected,
                 ClientProtocol& protocol, 
                 Queue<std::shared_ptr<ActionClient>>& qEventsToSender);
 
     virtual void run() override;
 
-   private:
-    std::atomic<bool>& isConnected;
-    ClientProtocol& protocol;
-    Queue<std::shared_ptr<ActionClient>>& qEventsToSender;
-
-    void inGame();
+    ~SenderThread();
 };
 
 #endif  // CLIENT_SENDER_H

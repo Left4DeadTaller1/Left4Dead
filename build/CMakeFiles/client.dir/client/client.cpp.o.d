@@ -370,7 +370,7 @@ CMakeFiles/client.dir/client/client.cpp.o: \
  /home/usaurio/Left4Dead/client/actions/action_start_shoot.h \
  /home/usaurio/Left4Dead/client/actions/action_end_shoot.h \
  /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
- /home/usaurio/Left4Dead/dipa_classes/socket.h /usr/include/c++/11/atomic \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
  /home/usaurio/Left4Dead/client/client_connection/../render/game/client_game_state.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_map.h \
@@ -380,6 +380,7 @@ CMakeFiles/client.dir/client/client.cpp.o: \
  /home/usaurio/Left4Dead/client/client_connection/client_receiver.h \
  /home/usaurio/Left4Dead/dipa_classes/liberror.h \
  /home/usaurio/Left4Dead/client/render/game/client_game_state.h \
+ /usr/include/c++/11/atomic \
  /home/usaurio/Left4Dead/client/client_connection/client_receiver.h \
  /home/usaurio/Left4Dead/client/render/client_render.h \
  /usr/local/include/SDL2/SDL_mixer.h \

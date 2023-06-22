@@ -31,7 +31,6 @@ class Client {
     void run();
 
    private:
-    Socket socket;
     std::atomic<bool> wasClosed;
     ClientProtocol protocol;
     std::atomic<bool> isConnected;
