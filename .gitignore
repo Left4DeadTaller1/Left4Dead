@@ -72,3 +72,36 @@ CMakeLists.txt.user*
 *.dll
 *.exe
 
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+
+# Object files
+*.o
+*.o.d
+
+# Dependency files
+*.d
+
+# Log files
+*.log
+
+# JSON files (if you want to ignore all JSON files)
+# *.json (uncomment this line if you want to ignore all .json files)
+
+# Generated header files
+moc_*.h
+
+# Internal files
+*.internal
+
+# Link files
+link.txt

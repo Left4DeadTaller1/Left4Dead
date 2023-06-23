@@ -8,15 +8,15 @@
 #include "weapon.h"
 
 enum PlayerActionState {
-    PLAYER_WALKING,
-    PLAYER_RUNNING,
-    PLAYER_IDLE,
-    PLAYER_SHOOTING,
-    PLAYER_RELOADING,
-    PLAYER_ATTACKING,
-    PLAYER_HURT,
-    PLAYER_DYING,
-    PLAYER_DEAD,
+    PLAYER_WALKING,    // 0
+    PLAYER_RUNNING,    // 1
+    PLAYER_IDLE,       // 2
+    PLAYER_SHOOTING,   // 3
+    PLAYER_RELOADING,  // 4
+    PLAYER_ATTACKING,  // 5
+    PLAYER_HURT,       // 6
+    PLAYER_DYING,      // 7
+    PLAYER_DEAD,       // 8
 };
 
 struct PlayerDTO : EntityDTO {

@@ -1,7 +1,7 @@
 CMakeFiles/server.dir/server_root/entities/zombies/zombie_spawner.cpp.o: \
- /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.cpp \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/zombie_spawner.cpp \
  /usr/include/stdc-predef.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/zombie_spawner.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -44,8 +44,8 @@ CMakeFiles/server.dir/server_root/entities/zombies/zombie_spawner.cpp.o: \
  /usr/include/c++/11/bits/hash_bytes.h \
  /usr/include/c++/11/bits/range_access.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/infected.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_function.h \
  /usr/include/c++/11/backward/binders.h \
@@ -146,8 +146,8 @@ CMakeFiles/server.dir/server_root/entities/zombies/zombie_spawner.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/11/bits/charconv.h \
  /usr/include/c++/11/bits/basic_string.tcc \
- /home/usaurio/Left4Dead/server_root/entities/attack.h \
- /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/regman/taller/left4Dead/server_root/entities/attack.h \
+ /home/regman/taller/left4Dead/server_root/entities/entity.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -165,8 +165,8 @@ CMakeFiles/server.dir/server_root/entities/zombies/zombie_spawner.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/usaurio/Left4Dead/server_root/entities/attack.h \
- /home/usaurio/Left4Dead/server_root/entities/player.h \
+ /home/regman/taller/left4Dead/server_root/entities/attack.h \
+ /home/regman/taller/left4Dead/server_root/entities/player.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
  /usr/include/c++/11/bits/locale_classes.h \
@@ -185,13 +185,13 @@ CMakeFiles/server.dir/server_root/entities/zombies/zombie_spawner.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/usaurio/Left4Dead/server_root/entities/entity.h \
- /home/usaurio/Left4Dead/server_root/entities/weapon.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
- /home/usaurio/Left4Dead/server_root/game/configuration/game_config.h \
+ /home/regman/taller/left4Dead/server_root/entities/entity.h \
+ /home/regman/taller/left4Dead/server_root/entities/weapon.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/jumper.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/spear.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/venom.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/witch.h \
+ /home/regman/taller/left4Dead/server_root/game/configuration/game_config.h \
  /usr/include/yaml-cpp/yaml.h /usr/include/yaml-cpp/parser.h \
  /usr/include/yaml-cpp/dll.h /usr/include/yaml-cpp/emitter.h \
  /usr/include/c++/11/cmath /usr/include/math.h \

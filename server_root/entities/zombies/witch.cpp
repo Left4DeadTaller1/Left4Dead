@@ -1,6 +1,7 @@
 #include "witch.h"
 
 #include <cmath>
+#include <iostream>
 
 #include "game_config.h"
 
@@ -28,6 +29,7 @@ std::shared_ptr<EntityDTO> Witch::getDto() {
 
     // Fill in the WitchDTO specific parts
     witchDto->zombieType = WITCH;
+    std::cout << "Action state before DTO: " << actionState << std::endl;
     witchDto->actionState = this->actionState;
 
     return witchDto;
@@ -45,6 +47,7 @@ std::shared_ptr<Ability> Witch::useSkill() {
         noneAbility->type = INVALID;
         return noneAbility;
     }
+    std::cout << "witch using wail" << std::endl;
 
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
@@ -133,3 +136,11 @@ bool Witch::isRemovable() {
 }
 
 Witch::~Witch() {}
+
+void Witch::setActionState(WitchActionState actionState) {
+    this->actionState = actionState;
+}
+
+WitchActionState Witch::getActionState() {
+    return actionState;
+}

@@ -1,4 +1,4 @@
-# Install script for directory: /home/usaurio/Left4Dead
+# Install script for directory: /home/regman/taller/left4Dead
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,12 +44,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/usaurio/Left4Dead/build/lib/googletest/cmake_install.cmake")
+  include("/home/regman/taller/left4Dead/build/lib/googletest/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/usaurio/Left4Dead/build/tests/cmake_install.cmake")
+  include("/home/regman/taller/left4Dead/build/tests/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -60,5 +60,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/usaurio/Left4Dead/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/regman/taller/left4Dead/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

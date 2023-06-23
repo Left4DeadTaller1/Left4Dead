@@ -23,7 +23,7 @@
 
 typedef struct dataJoin {
     uint8_t code;
-    std::string namePlayer;  
+    std::string namePlayer;
 } dataJoin_t;
 
 typedef enum {
@@ -46,7 +46,7 @@ enum class GeneralState {
     SHOOTING,          // 4
     ATTACKING,         // 5
     JUMPING,           // 6
-    SCREAMING,          // 7
+    SCREAMING,         // 7
     RELOADING,         // 8
     HURT,              // 9
     DYING,             // 10

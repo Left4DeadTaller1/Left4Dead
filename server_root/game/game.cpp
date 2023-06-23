@@ -246,13 +246,17 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
 }
 
 void Game::reloadPlayer(Player& player) {
-    if (player.getActionState() == PLAYER_RELOADING && player.getActionCounter() == 0)
-        // TIODO THIS IS RELOADING INF
+    if (player.getActionState() == PLAYER_RELOADING && player.getActionCounter() == 0) {
+        std::cout << "player reloaded" << std::endl;
+        std::cout << player.getActionState() << std::endl;
+
         player.reload();
+    }
 }
 
 void Game::move(Entity& entity) {
     if (!entity.isMoving()) {
+        std::cout << "entity is not moving" << std::endl;
         return;
     }
 
@@ -271,6 +275,7 @@ void Game::move(Entity& entity) {
 
 void Game::attack(Entity& entity) {
     if (entity.canAttack()) {
+        std::cout << "entity can attack" << std::endl;
         if (entity.getType() == PLAYER) {
             Player* player = dynamic_cast<Player*>(&entity);
             // TODO; change this to gral state
@@ -303,7 +308,6 @@ void Game::attack(Entity& entity) {
                     default:
                         if (!damagedEntities.empty()) {
                             // TODO make the takeDamage for ALL zombies
-                            std::cout << "player shot zombie " << std::endl;
                             damagedEntities.front()->takeDamage(attack.getDamage());
                         }
                         break;
@@ -315,8 +319,6 @@ void Game::attack(Entity& entity) {
             int attackRange = attack.getRange();
             std::shared_ptr<Player> playerInRange = collisionDetector.getPlayersInRange(attackRange, attack, players);
             if (playerInRange) {
-                // TODO make the takeDAmamge for players
-                std::cout << "Zombie attacked player" << std::endl;
                 playerInRange->takeDamage(attack.getDamage());
             }
         }
@@ -336,43 +338,43 @@ void Game::useSkill(Entity& entity) {
                 int infectedWidth = entitiesDimensions["INFECTED_WIDTH"];
                 int infectedHeight = entitiesDimensions["INFECTED_HEIGHT"];
 
-                int leftOfWitch = wailAbility->WitchX - infectedWidth - 5;
-                int rightOfWitch = wailAbility->WitchX + witchWidth + 5;
-                int upOfWitch = wailAbility->WitchY + witchHeight + 5;
-                int downOfWitch = wailAbility->WitchY - infectedHeight - 5;
-                std::cout << "Witch infection lvl is: " << wailAbility->witchInfectionLevel << std::endl;
+                int leftOfWitch = wailAbility->WitchX - infectedWidth - 15;
+                int rightOfWitch = wailAbility->WitchX + witchWidth + 15;
+                int upOfWitch = wailAbility->WitchY + witchHeight + 15;
+                int downOfWitch = wailAbility->WitchY - infectedHeight - 15;
+                std::cout << "Witch used ability" << std::endl;
 
                 switch (wailAbility->witchInfectionLevel) {
                     case 3:
                         // Spawn zombie to the top left of the witch
                         if (collisionDetector.isEmptySpace(entities, leftOfWitch, upOfWitch)) {
                             int totalZombies = zombieSpawner.getTotalZombies();
-                            std::string zombieId = "zombie" + std::to_string(totalZombies);
                             zombieSpawner.increaseTotalZombies();
+                            std::string zombieId = "zombie" + std::to_string(totalZombies);
                             entities.push_back(std::make_shared<Infected>(leftOfWitch, upOfWitch, zombieId, wailAbility->witchInfectionLevel));
                         }
                     case 2:
                         // Spawn zombie to the top right of the witch
                         if (collisionDetector.isEmptySpace(entities, rightOfWitch, upOfWitch)) {
                             int totalZombies = zombieSpawner.getTotalZombies();
-                            std::string zombieId = "zombie" + std::to_string(totalZombies);
                             zombieSpawner.increaseTotalZombies();
+                            std::string zombieId = "zombie" + std::to_string(totalZombies);
                             entities.push_back(std::make_shared<Infected>(rightOfWitch, upOfWitch, zombieId, wailAbility->witchInfectionLevel));
                         }
                     case 1:
                         // Spawn zombie to the bottom left of the witch
                         if (collisionDetector.isEmptySpace(entities, leftOfWitch, downOfWitch)) {
                             int totalZombies = zombieSpawner.getTotalZombies();
-                            std::string zombieId = "zombie" + std::to_string(totalZombies);
                             zombieSpawner.increaseTotalZombies();
+                            std::string zombieId = "zombie" + std::to_string(totalZombies);
                             entities.push_back(std::make_shared<Infected>(leftOfWitch, downOfWitch, zombieId, wailAbility->witchInfectionLevel));
                         }
                     case 0:
                         // Spawn zombie to the bottom right of the witch
                         if (collisionDetector.isEmptySpace(entities, rightOfWitch, downOfWitch)) {
                             int totalZombies = zombieSpawner.getTotalZombies();
-                            std::string zombieId = "zombie" + std::to_string(totalZombies);
                             zombieSpawner.increaseTotalZombies();
+                            std::string zombieId = "zombie" + std::to_string(totalZombies);
                             entities.push_back(std::make_shared<Infected>(rightOfWitch, downOfWitch, zombieId, wailAbility->witchInfectionLevel));
                         }
                         break;

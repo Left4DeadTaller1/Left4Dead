@@ -1,7 +1,7 @@
 CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o: \
- /home/usaurio/Left4Dead/server_root/game/configuration/game_config.cpp \
+ /home/regman/taller/left4Dead/server_root/game/configuration/game_config.cpp \
  /usr/include/stdc-predef.h \
- /home/usaurio/Left4Dead/server_root/game/configuration/game_config.h \
+ /home/regman/taller/left4Dead/server_root/game/configuration/game_config.h \
  /usr/include/yaml-cpp/yaml.h /usr/include/yaml-cpp/parser.h \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
