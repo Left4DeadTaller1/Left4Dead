@@ -72,7 +72,6 @@ include CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_create.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_create.cpp.o: ../client/actions/action_create.cpp
 CMakeFiles/client.dir/client/actions/action_create.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/client/actions/action_create.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_create.cpp.o -MF CMakeFiles/client.dir/client/actions/action_create.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_create.cpp.o -c /home/usaurio/Left4Dead/client/actions/action_create.cpp
 
@@ -83,23 +82,10 @@ CMakeFiles/client.dir/client/actions/action_create.cpp.i: cmake_force
 CMakeFiles/client.dir/client/actions/action_create.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_create.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/actions/action_create.cpp -o CMakeFiles/client.dir/client/actions/action_create.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/client/actions/action_create.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_create.cpp.o -MF CMakeFiles/client.dir/client/actions/action_create.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_create.cpp.o -c /home/regman/taller/left4Dead/client/actions/action_create.cpp
-
-CMakeFiles/client.dir/client/actions/action_create.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/actions/action_create.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/actions/action_create.cpp > CMakeFiles/client.dir/client/actions/action_create.cpp.i
-
-CMakeFiles/client.dir/client/actions/action_create.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_create.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/actions/action_create.cpp -o CMakeFiles/client.dir/client/actions/action_create.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/actions/action_end_move.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_end_move.cpp.o: ../client/actions/action_end_move.cpp
 CMakeFiles/client.dir/client/actions/action_end_move.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/client/actions/action_end_move.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_end_move.cpp.o -MF CMakeFiles/client.dir/client/actions/action_end_move.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_end_move.cpp.o -c /home/usaurio/Left4Dead/client/actions/action_end_move.cpp
 
@@ -110,23 +96,10 @@ CMakeFiles/client.dir/client/actions/action_end_move.cpp.i: cmake_force
 CMakeFiles/client.dir/client/actions/action_end_move.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_end_move.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/actions/action_end_move.cpp -o CMakeFiles/client.dir/client/actions/action_end_move.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/client/actions/action_end_move.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_end_move.cpp.o -MF CMakeFiles/client.dir/client/actions/action_end_move.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_end_move.cpp.o -c /home/regman/taller/left4Dead/client/actions/action_end_move.cpp
-
-CMakeFiles/client.dir/client/actions/action_end_move.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/actions/action_end_move.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/actions/action_end_move.cpp > CMakeFiles/client.dir/client/actions/action_end_move.cpp.i
-
-CMakeFiles/client.dir/client/actions/action_end_move.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_end_move.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/actions/action_end_move.cpp -o CMakeFiles/client.dir/client/actions/action_end_move.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o: ../client/actions/action_end_shoot.cpp
 CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o -MF CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o -c /home/usaurio/Left4Dead/client/actions/action_end_shoot.cpp
 
@@ -137,23 +110,10 @@ CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.i: cmake_force
 CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/actions/action_end_shoot.cpp -o CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o -MF CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.o -c /home/regman/taller/left4Dead/client/actions/action_end_shoot.cpp
-
-CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/actions/action_end_shoot.cpp > CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.i
-
-CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/actions/action_end_shoot.cpp -o CMakeFiles/client.dir/client/actions/action_end_shoot.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o: ../client/actions/action_exit_game.cpp
 CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o -MF CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o -c /home/usaurio/Left4Dead/client/actions/action_exit_game.cpp
 
@@ -164,23 +124,10 @@ CMakeFiles/client.dir/client/actions/action_exit_game.cpp.i: cmake_force
 CMakeFiles/client.dir/client/actions/action_exit_game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_exit_game.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/actions/action_exit_game.cpp -o CMakeFiles/client.dir/client/actions/action_exit_game.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o -MF CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_exit_game.cpp.o -c /home/regman/taller/left4Dead/client/actions/action_exit_game.cpp
-
-CMakeFiles/client.dir/client/actions/action_exit_game.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/actions/action_exit_game.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/actions/action_exit_game.cpp > CMakeFiles/client.dir/client/actions/action_exit_game.cpp.i
-
-CMakeFiles/client.dir/client/actions/action_exit_game.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_exit_game.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/actions/action_exit_game.cpp -o CMakeFiles/client.dir/client/actions/action_exit_game.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/actions/action_join.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_join.cpp.o: ../client/actions/action_join.cpp
 CMakeFiles/client.dir/client/actions/action_join.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/client/actions/action_join.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_join.cpp.o -MF CMakeFiles/client.dir/client/actions/action_join.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_join.cpp.o -c /home/usaurio/Left4Dead/client/actions/action_join.cpp
 
@@ -191,23 +138,10 @@ CMakeFiles/client.dir/client/actions/action_join.cpp.i: cmake_force
 CMakeFiles/client.dir/client/actions/action_join.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_join.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/actions/action_join.cpp -o CMakeFiles/client.dir/client/actions/action_join.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/client/actions/action_join.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_join.cpp.o -MF CMakeFiles/client.dir/client/actions/action_join.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_join.cpp.o -c /home/regman/taller/left4Dead/client/actions/action_join.cpp
-
-CMakeFiles/client.dir/client/actions/action_join.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/actions/action_join.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/actions/action_join.cpp > CMakeFiles/client.dir/client/actions/action_join.cpp.i
-
-CMakeFiles/client.dir/client/actions/action_join.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_join.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/actions/action_join.cpp -o CMakeFiles/client.dir/client/actions/action_join.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/actions/action_recharge.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_recharge.cpp.o: ../client/actions/action_recharge.cpp
 CMakeFiles/client.dir/client/actions/action_recharge.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/client.dir/client/actions/action_recharge.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_recharge.cpp.o -MF CMakeFiles/client.dir/client/actions/action_recharge.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_recharge.cpp.o -c /home/usaurio/Left4Dead/client/actions/action_recharge.cpp
 
@@ -218,23 +152,10 @@ CMakeFiles/client.dir/client/actions/action_recharge.cpp.i: cmake_force
 CMakeFiles/client.dir/client/actions/action_recharge.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_recharge.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/actions/action_recharge.cpp -o CMakeFiles/client.dir/client/actions/action_recharge.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/client.dir/client/actions/action_recharge.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_recharge.cpp.o -MF CMakeFiles/client.dir/client/actions/action_recharge.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_recharge.cpp.o -c /home/regman/taller/left4Dead/client/actions/action_recharge.cpp
-
-CMakeFiles/client.dir/client/actions/action_recharge.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/actions/action_recharge.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/actions/action_recharge.cpp > CMakeFiles/client.dir/client/actions/action_recharge.cpp.i
-
-CMakeFiles/client.dir/client/actions/action_recharge.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_recharge.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/actions/action_recharge.cpp -o CMakeFiles/client.dir/client/actions/action_recharge.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/actions/action_start_game.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_start_game.cpp.o: ../client/actions/action_start_game.cpp
 CMakeFiles/client.dir/client/actions/action_start_game.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/client.dir/client/actions/action_start_game.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_start_game.cpp.o -MF CMakeFiles/client.dir/client/actions/action_start_game.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_start_game.cpp.o -c /home/usaurio/Left4Dead/client/actions/action_start_game.cpp
 
@@ -245,23 +166,10 @@ CMakeFiles/client.dir/client/actions/action_start_game.cpp.i: cmake_force
 CMakeFiles/client.dir/client/actions/action_start_game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_start_game.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/actions/action_start_game.cpp -o CMakeFiles/client.dir/client/actions/action_start_game.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/client.dir/client/actions/action_start_game.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_start_game.cpp.o -MF CMakeFiles/client.dir/client/actions/action_start_game.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_start_game.cpp.o -c /home/regman/taller/left4Dead/client/actions/action_start_game.cpp
-
-CMakeFiles/client.dir/client/actions/action_start_game.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/actions/action_start_game.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/actions/action_start_game.cpp > CMakeFiles/client.dir/client/actions/action_start_game.cpp.i
-
-CMakeFiles/client.dir/client/actions/action_start_game.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_start_game.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/actions/action_start_game.cpp -o CMakeFiles/client.dir/client/actions/action_start_game.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/actions/action_start_move.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_start_move.cpp.o: ../client/actions/action_start_move.cpp
 CMakeFiles/client.dir/client/actions/action_start_move.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/client.dir/client/actions/action_start_move.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_start_move.cpp.o -MF CMakeFiles/client.dir/client/actions/action_start_move.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_start_move.cpp.o -c /home/usaurio/Left4Dead/client/actions/action_start_move.cpp
 
@@ -272,23 +180,10 @@ CMakeFiles/client.dir/client/actions/action_start_move.cpp.i: cmake_force
 CMakeFiles/client.dir/client/actions/action_start_move.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_start_move.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/actions/action_start_move.cpp -o CMakeFiles/client.dir/client/actions/action_start_move.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/client.dir/client/actions/action_start_move.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_start_move.cpp.o -MF CMakeFiles/client.dir/client/actions/action_start_move.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_start_move.cpp.o -c /home/regman/taller/left4Dead/client/actions/action_start_move.cpp
-
-CMakeFiles/client.dir/client/actions/action_start_move.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/actions/action_start_move.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/actions/action_start_move.cpp > CMakeFiles/client.dir/client/actions/action_start_move.cpp.i
-
-CMakeFiles/client.dir/client/actions/action_start_move.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_start_move.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/actions/action_start_move.cpp -o CMakeFiles/client.dir/client/actions/action_start_move.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o: ../client/actions/action_start_shoot.cpp
 CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o -MF CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o -c /home/usaurio/Left4Dead/client/actions/action_start_shoot.cpp
 
@@ -299,23 +194,10 @@ CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.i: cmake_force
 CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/actions/action_start_shoot.cpp -o CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o -MF CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o.d -o CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o -c /home/regman/taller/left4Dead/client/actions/action_start_shoot.cpp
-
-CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/actions/action_start_shoot.cpp > CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.i
-
-CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/actions/action_start_shoot.cpp -o CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/client.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/client.cpp.o: ../client/client.cpp
 CMakeFiles/client.dir/client/client.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/client.dir/client/client.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client.cpp.o -MF CMakeFiles/client.dir/client/client.cpp.o.d -o CMakeFiles/client.dir/client/client.cpp.o -c /home/usaurio/Left4Dead/client/client.cpp
 
@@ -326,23 +208,10 @@ CMakeFiles/client.dir/client/client.cpp.i: cmake_force
 CMakeFiles/client.dir/client/client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/client.cpp -o CMakeFiles/client.dir/client/client.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/client.dir/client/client.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client.cpp.o -MF CMakeFiles/client.dir/client/client.cpp.o.d -o CMakeFiles/client.dir/client/client.cpp.o -c /home/regman/taller/left4Dead/client/client.cpp
-
-CMakeFiles/client.dir/client/client.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/client.cpp > CMakeFiles/client.dir/client/client.cpp.i
-
-CMakeFiles/client.dir/client/client.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/client.cpp -o CMakeFiles/client.dir/client/client.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o: ../client/client_connection/client_protocol.cpp
 CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o -MF CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o.d -o CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o -c /home/usaurio/Left4Dead/client/client_connection/client_protocol.cpp
 
@@ -353,23 +222,10 @@ CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.i: cmake_forc
 CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/client_connection/client_protocol.cpp -o CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o -MF CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o.d -o CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.o -c /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp
-
-CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp > CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.i
-
-CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp -o CMakeFiles/client.dir/client/client_connection/client_protocol.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o: ../client/client_connection/client_receiver.cpp
 CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o -MF CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o.d -o CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o -c /home/usaurio/Left4Dead/client/client_connection/client_receiver.cpp
 
@@ -380,23 +236,10 @@ CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.i: cmake_forc
 CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/client_connection/client_receiver.cpp -o CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o -MF CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o.d -o CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o -c /home/regman/taller/left4Dead/client/client_connection/client_receiver.cpp
-
-CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/client_connection/client_receiver.cpp > CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.i
-
-CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/client_connection/client_receiver.cpp -o CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o: ../client/client_connection/client_sender.cpp
 CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o -MF CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o.d -o CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o -c /home/usaurio/Left4Dead/client/client_connection/client_sender.cpp
 
@@ -407,23 +250,10 @@ CMakeFiles/client.dir/client/client_connection/client_sender.cpp.i: cmake_force
 CMakeFiles/client.dir/client/client_connection/client_sender.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_connection/client_sender.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/client_connection/client_sender.cpp -o CMakeFiles/client.dir/client/client_connection/client_sender.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o -MF CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o.d -o CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o -c /home/regman/taller/left4Dead/client/client_connection/client_sender.cpp
-
-CMakeFiles/client.dir/client/client_connection/client_sender.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/client_connection/client_sender.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/client_connection/client_sender.cpp > CMakeFiles/client.dir/client/client_connection/client_sender.cpp.i
-
-CMakeFiles/client.dir/client/client_connection/client_sender.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_connection/client_sender.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/client_connection/client_sender.cpp -o CMakeFiles/client.dir/client/client_connection/client_sender.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/client_event_manager.cc.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/client_event_manager.cc.o: ../client/client_event_manager.cc
 CMakeFiles/client.dir/client/client_event_manager.cc.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/client.dir/client/client_event_manager.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_event_manager.cc.o -MF CMakeFiles/client.dir/client/client_event_manager.cc.o.d -o CMakeFiles/client.dir/client/client_event_manager.cc.o -c /home/usaurio/Left4Dead/client/client_event_manager.cc
 
@@ -434,23 +264,10 @@ CMakeFiles/client.dir/client/client_event_manager.cc.i: cmake_force
 CMakeFiles/client.dir/client/client_event_manager.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_event_manager.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/client_event_manager.cc -o CMakeFiles/client.dir/client/client_event_manager.cc.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/client.dir/client/client_event_manager.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_event_manager.cc.o -MF CMakeFiles/client.dir/client/client_event_manager.cc.o.d -o CMakeFiles/client.dir/client/client_event_manager.cc.o -c /home/regman/taller/left4Dead/client/client_event_manager.cc
-
-CMakeFiles/client.dir/client/client_event_manager.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/client_event_manager.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/client_event_manager.cc > CMakeFiles/client.dir/client/client_event_manager.cc.i
-
-CMakeFiles/client.dir/client/client_event_manager.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_event_manager.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/client_event_manager.cc -o CMakeFiles/client.dir/client/client_event_manager.cc.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/client_main.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/client_main.cpp.o: ../client/client_main.cpp
 CMakeFiles/client.dir/client/client_main.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/client.dir/client/client_main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_main.cpp.o -MF CMakeFiles/client.dir/client/client_main.cpp.o.d -o CMakeFiles/client.dir/client/client_main.cpp.o -c /home/usaurio/Left4Dead/client/client_main.cpp
 
@@ -461,23 +278,10 @@ CMakeFiles/client.dir/client/client_main.cpp.i: cmake_force
 CMakeFiles/client.dir/client/client_main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/client_main.cpp -o CMakeFiles/client.dir/client/client_main.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/client.dir/client/client_main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/client_main.cpp.o -MF CMakeFiles/client.dir/client/client_main.cpp.o.d -o CMakeFiles/client.dir/client/client_main.cpp.o -c /home/regman/taller/left4Dead/client/client_main.cpp
-
-CMakeFiles/client.dir/client/client_main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/client_main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/client_main.cpp > CMakeFiles/client.dir/client/client_main.cpp.i
-
-CMakeFiles/client.dir/client/client_main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/client_main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/client_main.cpp -o CMakeFiles/client.dir/client/client_main.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o: ../client/configuration/renderer_config.cpp
 CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o -MF CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o.d -o CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o -c /home/usaurio/Left4Dead/client/configuration/renderer_config.cpp
 
@@ -488,23 +292,10 @@ CMakeFiles/client.dir/client/configuration/renderer_config.cpp.i: cmake_force
 CMakeFiles/client.dir/client/configuration/renderer_config.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/configuration/renderer_config.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/configuration/renderer_config.cpp -o CMakeFiles/client.dir/client/configuration/renderer_config.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o -MF CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o.d -o CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o -c /home/regman/taller/left4Dead/client/configuration/renderer_config.cpp
-
-CMakeFiles/client.dir/client/configuration/renderer_config.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/configuration/renderer_config.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/configuration/renderer_config.cpp > CMakeFiles/client.dir/client/configuration/renderer_config.cpp.i
-
-CMakeFiles/client.dir/client/configuration/renderer_config.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/configuration/renderer_config.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/configuration/renderer_config.cpp -o CMakeFiles/client.dir/client/configuration/renderer_config.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/render/client_render.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/render/client_render.cpp.o: ../client/render/client_render.cpp
 CMakeFiles/client.dir/client/render/client_render.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/client.dir/client/render/client_render.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/client_render.cpp.o -MF CMakeFiles/client.dir/client/render/client_render.cpp.o.d -o CMakeFiles/client.dir/client/render/client_render.cpp.o -c /home/usaurio/Left4Dead/client/render/client_render.cpp
 
@@ -515,23 +306,10 @@ CMakeFiles/client.dir/client/render/client_render.cpp.i: cmake_force
 CMakeFiles/client.dir/client/render/client_render.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/client_render.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/render/client_render.cpp -o CMakeFiles/client.dir/client/render/client_render.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/client.dir/client/render/client_render.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/client_render.cpp.o -MF CMakeFiles/client.dir/client/render/client_render.cpp.o.d -o CMakeFiles/client.dir/client/render/client_render.cpp.o -c /home/regman/taller/left4Dead/client/render/client_render.cpp
-
-CMakeFiles/client.dir/client/render/client_render.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/render/client_render.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/render/client_render.cpp > CMakeFiles/client.dir/client/render/client_render.cpp.i
-
-CMakeFiles/client.dir/client/render/client_render.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/client_render.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/render/client_render.cpp -o CMakeFiles/client.dir/client/render/client_render.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/render/game/client_player.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/render/game/client_player.cpp.o: ../client/render/game/client_player.cpp
 CMakeFiles/client.dir/client/render/game/client_player.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/client.dir/client/render/game/client_player.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/game/client_player.cpp.o -MF CMakeFiles/client.dir/client/render/game/client_player.cpp.o.d -o CMakeFiles/client.dir/client/render/game/client_player.cpp.o -c /home/usaurio/Left4Dead/client/render/game/client_player.cpp
 
@@ -542,23 +320,10 @@ CMakeFiles/client.dir/client/render/game/client_player.cpp.i: cmake_force
 CMakeFiles/client.dir/client/render/game/client_player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/game/client_player.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/render/game/client_player.cpp -o CMakeFiles/client.dir/client/render/game/client_player.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/client.dir/client/render/game/client_player.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/game/client_player.cpp.o -MF CMakeFiles/client.dir/client/render/game/client_player.cpp.o.d -o CMakeFiles/client.dir/client/render/game/client_player.cpp.o -c /home/regman/taller/left4Dead/client/render/game/client_player.cpp
-
-CMakeFiles/client.dir/client/render/game/client_player.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/render/game/client_player.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/render/game/client_player.cpp > CMakeFiles/client.dir/client/render/game/client_player.cpp.i
-
-CMakeFiles/client.dir/client/render/game/client_player.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/game/client_player.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/render/game/client_player.cpp -o CMakeFiles/client.dir/client/render/game/client_player.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/render/game/infected.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/render/game/infected.cpp.o: ../client/render/game/infected.cpp
 CMakeFiles/client.dir/client/render/game/infected.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/client.dir/client/render/game/infected.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/game/infected.cpp.o -MF CMakeFiles/client.dir/client/render/game/infected.cpp.o.d -o CMakeFiles/client.dir/client/render/game/infected.cpp.o -c /home/usaurio/Left4Dead/client/render/game/infected.cpp
 
@@ -569,23 +334,10 @@ CMakeFiles/client.dir/client/render/game/infected.cpp.i: cmake_force
 CMakeFiles/client.dir/client/render/game/infected.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/game/infected.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/render/game/infected.cpp -o CMakeFiles/client.dir/client/render/game/infected.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/client.dir/client/render/game/infected.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/game/infected.cpp.o -MF CMakeFiles/client.dir/client/render/game/infected.cpp.o.d -o CMakeFiles/client.dir/client/render/game/infected.cpp.o -c /home/regman/taller/left4Dead/client/render/game/infected.cpp
-
-CMakeFiles/client.dir/client/render/game/infected.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/render/game/infected.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/render/game/infected.cpp > CMakeFiles/client.dir/client/render/game/infected.cpp.i
-
-CMakeFiles/client.dir/client/render/game/infected.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/game/infected.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/render/game/infected.cpp -o CMakeFiles/client.dir/client/render/game/infected.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o: ../client/render/game/lifeBar.cpp
 CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o -MF CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o.d -o CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o -c /home/usaurio/Left4Dead/client/render/game/lifeBar.cpp
 
@@ -596,23 +348,10 @@ CMakeFiles/client.dir/client/render/game/lifeBar.cpp.i: cmake_force
 CMakeFiles/client.dir/client/render/game/lifeBar.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/game/lifeBar.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/render/game/lifeBar.cpp -o CMakeFiles/client.dir/client/render/game/lifeBar.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o -MF CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o.d -o CMakeFiles/client.dir/client/render/game/lifeBar.cpp.o -c /home/regman/taller/left4Dead/client/render/game/lifeBar.cpp
-
-CMakeFiles/client.dir/client/render/game/lifeBar.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/render/game/lifeBar.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/render/game/lifeBar.cpp > CMakeFiles/client.dir/client/render/game/lifeBar.cpp.i
-
-CMakeFiles/client.dir/client/render/game/lifeBar.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/game/lifeBar.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/render/game/lifeBar.cpp -o CMakeFiles/client.dir/client/render/game/lifeBar.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o: ../client/render/sound/client_sound.cpp
 CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o -MF CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o.d -o CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o -c /home/usaurio/Left4Dead/client/render/sound/client_sound.cpp
 
@@ -623,23 +362,10 @@ CMakeFiles/client.dir/client/render/sound/client_sound.cpp.i: cmake_force
 CMakeFiles/client.dir/client/render/sound/client_sound.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/sound/client_sound.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/render/sound/client_sound.cpp -o CMakeFiles/client.dir/client/render/sound/client_sound.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o -MF CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o.d -o CMakeFiles/client.dir/client/render/sound/client_sound.cpp.o -c /home/regman/taller/left4Dead/client/render/sound/client_sound.cpp
-
-CMakeFiles/client.dir/client/render/sound/client_sound.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/render/sound/client_sound.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/render/sound/client_sound.cpp > CMakeFiles/client.dir/client/render/sound/client_sound.cpp.i
-
-CMakeFiles/client.dir/client/render/sound/client_sound.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/sound/client_sound.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/render/sound/client_sound.cpp -o CMakeFiles/client.dir/client/render/sound/client_sound.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o: ../client/render/sound/client_sound_manager.cpp
 CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o -MF CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o.d -o CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o -c /home/usaurio/Left4Dead/client/render/sound/client_sound_manager.cpp
 
@@ -650,23 +376,10 @@ CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.i: cmake_forc
 CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/render/sound/client_sound_manager.cpp -o CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o -MF CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o.d -o CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.o -c /home/regman/taller/left4Dead/client/render/sound/client_sound_manager.cpp
-
-CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/render/sound/client_sound_manager.cpp > CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.i
-
-CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/render/sound/client_sound_manager.cpp -o CMakeFiles/client.dir/client/render/sound/client_sound_manager.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o: ../client/render/texture/client_texture.cpp
 CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o -MF CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o.d -o CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o -c /home/usaurio/Left4Dead/client/render/texture/client_texture.cpp
 
@@ -677,23 +390,10 @@ CMakeFiles/client.dir/client/render/texture/client_texture.cpp.i: cmake_force
 CMakeFiles/client.dir/client/render/texture/client_texture.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/texture/client_texture.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/render/texture/client_texture.cpp -o CMakeFiles/client.dir/client/render/texture/client_texture.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o -MF CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o.d -o CMakeFiles/client.dir/client/render/texture/client_texture.cpp.o -c /home/regman/taller/left4Dead/client/render/texture/client_texture.cpp
-
-CMakeFiles/client.dir/client/render/texture/client_texture.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/render/texture/client_texture.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/render/texture/client_texture.cpp > CMakeFiles/client.dir/client/render/texture/client_texture.cpp.i
-
-CMakeFiles/client.dir/client/render/texture/client_texture.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/texture/client_texture.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/render/texture/client_texture.cpp -o CMakeFiles/client.dir/client/render/texture/client_texture.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o: ../client/render/texture/client_texture_manager.cpp
 CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o -MF CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o.d -o CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o -c /home/usaurio/Left4Dead/client/render/texture/client_texture_manager.cpp
 
@@ -704,23 +404,10 @@ CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.i: cmake_
 CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/client/render/texture/client_texture_manager.cpp -o CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o -MF CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o.d -o CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.o -c /home/regman/taller/left4Dead/client/render/texture/client_texture_manager.cpp
-
-CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/render/texture/client_texture_manager.cpp > CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.i
-
-CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/render/texture/client_texture_manager.cpp -o CMakeFiles/client.dir/client/render/texture/client_texture_manager.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/dipa_classes/liberror.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/dipa_classes/liberror.cpp.o: ../dipa_classes/liberror.cpp
 CMakeFiles/client.dir/dipa_classes/liberror.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/client.dir/dipa_classes/liberror.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/dipa_classes/liberror.cpp.o -MF CMakeFiles/client.dir/dipa_classes/liberror.cpp.o.d -o CMakeFiles/client.dir/dipa_classes/liberror.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/liberror.cpp
 
@@ -731,23 +418,10 @@ CMakeFiles/client.dir/dipa_classes/liberror.cpp.i: cmake_force
 CMakeFiles/client.dir/dipa_classes/liberror.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/dipa_classes/liberror.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/dipa_classes/liberror.cpp -o CMakeFiles/client.dir/dipa_classes/liberror.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/client.dir/dipa_classes/liberror.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/dipa_classes/liberror.cpp.o -MF CMakeFiles/client.dir/dipa_classes/liberror.cpp.o.d -o CMakeFiles/client.dir/dipa_classes/liberror.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/liberror.cpp
-
-CMakeFiles/client.dir/dipa_classes/liberror.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/dipa_classes/liberror.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/liberror.cpp > CMakeFiles/client.dir/dipa_classes/liberror.cpp.i
-
-CMakeFiles/client.dir/dipa_classes/liberror.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/dipa_classes/liberror.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/liberror.cpp -o CMakeFiles/client.dir/dipa_classes/liberror.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/dipa_classes/resolver.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/dipa_classes/resolver.cpp.o: ../dipa_classes/resolver.cpp
 CMakeFiles/client.dir/dipa_classes/resolver.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/client.dir/dipa_classes/resolver.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/dipa_classes/resolver.cpp.o -MF CMakeFiles/client.dir/dipa_classes/resolver.cpp.o.d -o CMakeFiles/client.dir/dipa_classes/resolver.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/resolver.cpp
 
@@ -758,23 +432,10 @@ CMakeFiles/client.dir/dipa_classes/resolver.cpp.i: cmake_force
 CMakeFiles/client.dir/dipa_classes/resolver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/dipa_classes/resolver.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/dipa_classes/resolver.cpp -o CMakeFiles/client.dir/dipa_classes/resolver.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/client.dir/dipa_classes/resolver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/dipa_classes/resolver.cpp.o -MF CMakeFiles/client.dir/dipa_classes/resolver.cpp.o.d -o CMakeFiles/client.dir/dipa_classes/resolver.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/resolver.cpp
-
-CMakeFiles/client.dir/dipa_classes/resolver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/dipa_classes/resolver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/resolver.cpp > CMakeFiles/client.dir/dipa_classes/resolver.cpp.i
-
-CMakeFiles/client.dir/dipa_classes/resolver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/dipa_classes/resolver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/resolver.cpp -o CMakeFiles/client.dir/dipa_classes/resolver.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o: ../dipa_classes/resolvererror.cpp
 CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o -MF CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o.d -o CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/resolvererror.cpp
 
@@ -785,23 +446,10 @@ CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.i: cmake_force
 CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/dipa_classes/resolvererror.cpp -o CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o -MF CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o.d -o CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp
-
-CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp > CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.i
-
-CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp -o CMakeFiles/client.dir/dipa_classes/resolvererror.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/client.dir/dipa_classes/socket.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp
 CMakeFiles/client.dir/dipa_classes/socket.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/client.dir/dipa_classes/socket.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/dipa_classes/socket.cpp.o -MF CMakeFiles/client.dir/dipa_classes/socket.cpp.o.d -o CMakeFiles/client.dir/dipa_classes/socket.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/socket.cpp
 
@@ -812,18 +460,6 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.i: cmake_force
 CMakeFiles/client.dir/dipa_classes/socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/dipa_classes/socket.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/dipa_classes/socket.cpp -o CMakeFiles/client.dir/dipa_classes/socket.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/client.dir/dipa_classes/socket.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/dipa_classes/socket.cpp.o -MF CMakeFiles/client.dir/dipa_classes/socket.cpp.o.d -o CMakeFiles/client.dir/dipa_classes/socket.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/socket.cpp
-
-CMakeFiles/client.dir/dipa_classes/socket.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/dipa_classes/socket.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/socket.cpp > CMakeFiles/client.dir/dipa_classes/socket.cpp.i
-
-CMakeFiles/client.dir/dipa_classes/socket.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/dipa_classes/socket.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/socket.cpp -o CMakeFiles/client.dir/dipa_classes/socket.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 # Object files for target client
 client_OBJECTS = \
@@ -902,11 +538,7 @@ client: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
 client: /usr/lib/x86_64-linux-gnu/libQt5Network.so.5.15.3
 client: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
 client: CMakeFiles/client.dir/link.txt
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Linking CXX executable client"
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Linking CXX executable client"
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

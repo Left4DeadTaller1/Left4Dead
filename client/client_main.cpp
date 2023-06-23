@@ -23,6 +23,8 @@ int main(int argc, char *argv[]) { try {
 
     QApplication a(argc, argv);
     MainWindow windowQT;
+    windowQT.show();
+    ret = a.exec();
 
     SDL2pp::SDL sdl(SDL_INIT_EVERYTHING);
 

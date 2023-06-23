@@ -76,7 +76,6 @@ ui_mainwindow.h: ../mainwindow.ui
 CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o: CMakeFiles/qt.dir/flags.make
 CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o: qt_autogen/mocs_compilation.cpp
 CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o: CMakeFiles/qt.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o -MF CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o -c /home/usaurio/Left4Dead/build/qt_autogen/mocs_compilation.cpp
 
@@ -87,23 +86,10 @@ CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.i: cmake_force
 CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/build/qt_autogen/mocs_compilation.cpp -o CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o -MF CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o -c /home/regman/taller/left4Dead/build/qt_autogen/mocs_compilation.cpp
-
-CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/build/qt_autogen/mocs_compilation.cpp > CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.i
-
-CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/build/qt_autogen/mocs_compilation.cpp -o CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 CMakeFiles/qt.dir/mainwindow.cpp.o: CMakeFiles/qt.dir/flags.make
 CMakeFiles/qt.dir/mainwindow.cpp.o: ../mainwindow.cpp
 CMakeFiles/qt.dir/mainwindow.cpp.o: CMakeFiles/qt.dir/compiler_depend.ts
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/qt.dir/mainwindow.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/qt.dir/mainwindow.cpp.o -MF CMakeFiles/qt.dir/mainwindow.cpp.o.d -o CMakeFiles/qt.dir/mainwindow.cpp.o -c /home/usaurio/Left4Dead/mainwindow.cpp
 
@@ -114,18 +100,6 @@ CMakeFiles/qt.dir/mainwindow.cpp.i: cmake_force
 CMakeFiles/qt.dir/mainwindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/qt.dir/mainwindow.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/mainwindow.cpp -o CMakeFiles/qt.dir/mainwindow.cpp.s
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/qt.dir/mainwindow.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/qt.dir/mainwindow.cpp.o -MF CMakeFiles/qt.dir/mainwindow.cpp.o.d -o CMakeFiles/qt.dir/mainwindow.cpp.o -c /home/regman/taller/left4Dead/mainwindow.cpp
-
-CMakeFiles/qt.dir/mainwindow.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/qt.dir/mainwindow.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/mainwindow.cpp > CMakeFiles/qt.dir/mainwindow.cpp.i
-
-CMakeFiles/qt.dir/mainwindow.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/qt.dir/mainwindow.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/mainwindow.cpp -o CMakeFiles/qt.dir/mainwindow.cpp.s
->>>>>>> caba5539a9f81d9d1019d0417356e71acfbba203
 
 # Object files for target qt
 qt_OBJECTS = \

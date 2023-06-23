@@ -34,6 +34,7 @@ void Client::sendInitialAction() {
 
 
 void Client::run() { try {
+    //chequear retorno
     sendInitialAction();
     eventManagerThread.start();
     senderThread.start();
