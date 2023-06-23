@@ -3,8 +3,7 @@
 
 tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o
  /home/usaurio/Left4Dead/tests/server_tests/collisions_tests.cpp
- /home/usaurio/Left4Dead/build/tests/<<<<<<<
- /home/usaurio/Left4Dead/build/tests/HEAD
+ /usr/include/stdc-predef.h
 
 tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o
  /home/usaurio/Left4Dead/tests/server_tests/entity_tests.cpp
