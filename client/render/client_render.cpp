@@ -132,8 +132,49 @@ std::string traducir(int state){
     }
     if (state == IDLE){
         return "idle";
+    }
+    if (state == DEAD){
+        return "dead";
+    } 
+    if (state == HURT){
+        return "hurt";
+    }
+    if (state == RELOADING){
+        return "reloading";
+    }
+    if (state == SHOOTING){
+        return "shooting";
+    }
+    if (state == ATTACK){
+        return "attack";
+    }
+    if (state == JUMP){
+        return "jump";
+    }
+    if (state == SCREAM){
+        return "scream";
     }else {
         return "otro";
+    }
+}
+
+std::string traducirType(int typeInfected){
+    if (typeInfected == SOLDIER1){
+        return "soldier1";
+    }
+    if (typeInfected == JUMPER){
+        return "jumper";
+    }
+    if (typeInfected == VENOM){
+        return "venom";
+    }
+    if (typeInfected == WITCH){
+        return "witch";
+    }
+    if (typeInfected == ZOMBIE){
+        return "zombie";
+    }else {
+        return "TIPO NO IDENTIFICADO";
     }
 }
 
@@ -166,20 +207,37 @@ int ClientRenderer::looprender(void) {
             if (gameStateDTO){
 
                 for (auto &currentPlayer : gameStateDTO->players) {
-                    std::cout << "PLAYER\n";
                     std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
                     if (iter != previousGameStateDTO->players.end()) {
+                    std::cout << "type: " << "soldier1" << "\n";
                     std::cout << "idPlayer: " << (int)(currentPlayer.second.idPlayer) << "\n";
                     std::cout << "state: " << traducir((int)(currentPlayer.second.state)) << "\n";
-                    std::cout << "action counter: " << (int)(currentPlayer.second.actionCounter) << "\n";
+                    //std::cout << "action counter: " << (int)(currentPlayer.second.actionCounter) << "\n";
                     std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
                     std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
-                    std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
+                    //std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
                     std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
                     } else {
                     std::cout << "no encontro al player\n";
                     }
                 }
+
+                for (auto &currentPlayer : gameStateDTO->infected) {
+                    std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentPlayer.first);
+                    if (iter != previousGameStateDTO->infected.end()) {
+                    std::cout << "type: " << traducirType((int)(currentPlayer.second.typeInfected)) << "\n";
+                    std::cout << "idZombi: " << traducir((int)(currentPlayer.second.idInfected)) << "\n";
+                    std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
+                    //std::cout << "action counter: " << (int)(currentPlayer.second.actionCounter) << "\n";
+                    std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
+                    std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
+                    //std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
+                    std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
+                    } else {
+                    std::cout << "no encontro al player\n";
+                    }
+                }
+
                 renderer.Clear();
 
                 drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
@@ -224,23 +282,6 @@ int ClientRenderer::looprender(void) {
     std::cout << "SALE DEL RENDER\n";
 }
 
-
-/*for (auto &currentPlayer : gameStateDTO->infected) {
-    std::cout << "ZOMBI\n";
-    std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentPlayer.first);
-    if (iter != previousGameStateDTO->infected.end()) {
-    std::cout << "idZombi: " << (int)(currentPlayer.second.idInfected) << "\n";
-    std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
-    std::cout << "action counter: " << (int)(currentPlayer.second.actionCounter) << "\n";
-    std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
-    std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
-    std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
-    std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
-    std::cout << "type: " << (int)(currentPlayer.second.typeInfected) << "\n";
-    } else {
-    std::cout << "no encontro al player\n";
-    }
-    }*/
 
 
 

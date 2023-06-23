@@ -1,7 +1,7 @@
 CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o: \
- /home/regman/taller/left4Dead/build/qt_autogen/mocs_compilation.cpp \
+ /home/usaurio/Left4Dead/build/qt_autogen/mocs_compilation.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/build/qt_autogen/EWIEGA46WW/moc_mainwindow.cpp \
+ /home/usaurio/Left4Dead/build/qt_autogen/EWIEGA46WW/moc_mainwindow.cpp \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -118,7 +118,7 @@ CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/regman/taller/left4Dead/build/qt_autogen/EWIEGA46WW/../../../mainwindow.h \
+ /home/usaurio/Left4Dead/build/qt_autogen/EWIEGA46WW/../../../mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
@@ -317,6 +317,6 @@ CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
  /usr/include/x86_64-linux-gnu/qt5/QtMultimedia/qaudio.h \
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qnetworkconfiguration.h \
- /home/regman/taller/left4Dead/build/qt_autogen/EWIEGA46WW/../../../client/actions/action_client.h \
- /home/regman/taller/left4Dead/build/qt_autogen/EWIEGA46WW/../../../client/actions/action_create.h \
- /home/regman/taller/left4Dead/build/qt_autogen/EWIEGA46WW/../../../client/actions/action_client.h
+ /home/usaurio/Left4Dead/build/qt_autogen/EWIEGA46WW/../../../client/actions/action_client.h \
+ /home/usaurio/Left4Dead/build/qt_autogen/EWIEGA46WW/../../../client/actions/action_create.h \
+ /home/usaurio/Left4Dead/build/qt_autogen/EWIEGA46WW/../../../client/actions/action_client.h

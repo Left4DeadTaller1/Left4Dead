@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/regman/taller/left4Dead
+CMAKE_SOURCE_DIR = /home/usaurio/Left4Dead
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/regman/taller/left4Dead/build
+CMAKE_BINARY_DIR = /home/usaurio/Left4Dead/build
 
 # Include any dependencies generated for this target.
 include tests/CMakeFiles/server_tests.dir/depend.make
@@ -72,114 +72,114 @@ include tests/CMakeFiles/server_tests.dir/flags.make
 tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o: tests/CMakeFiles/server_tests.dir/flags.make
 tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o: ../tests/server_tests/collisions_tests.cpp
 tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o: tests/CMakeFiles/server_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o -c /home/regman/taller/left4Dead/tests/server_tests/collisions_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o"
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o -c /home/usaurio/Left4Dead/tests/server_tests/collisions_tests.cpp
 
 tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/server_tests/collisions_tests.cpp > CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/tests/server_tests/collisions_tests.cpp > CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.i
 
 tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/server_tests/collisions_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/tests/server_tests/collisions_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.s
 
 tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o: tests/CMakeFiles/server_tests.dir/flags.make
 tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o: ../tests/server_tests/entity_tests.cpp
 tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o: tests/CMakeFiles/server_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o -c /home/regman/taller/left4Dead/tests/server_tests/entity_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o"
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o -c /home/usaurio/Left4Dead/tests/server_tests/entity_tests.cpp
 
 tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/server_tests/entity_tests.cpp > CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/tests/server_tests/entity_tests.cpp > CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.i
 
 tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/server_tests/entity_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/tests/server_tests/entity_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.s
 
 tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o: tests/CMakeFiles/server_tests.dir/flags.make
 tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o: ../tests/server_tests/game_config_tests.cpp
 tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o: tests/CMakeFiles/server_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o -c /home/regman/taller/left4Dead/tests/server_tests/game_config_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o"
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o -c /home/usaurio/Left4Dead/tests/server_tests/game_config_tests.cpp
 
 tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/server_tests/game_config_tests.cpp > CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/tests/server_tests/game_config_tests.cpp > CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.i
 
 tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/server_tests/game_config_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/tests/server_tests/game_config_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.s
 
 tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o: tests/CMakeFiles/server_tests.dir/flags.make
 tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o: ../tests/server_tests/game_tests.cpp
 tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o: tests/CMakeFiles/server_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o -c /home/regman/taller/left4Dead/tests/server_tests/game_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o"
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o -c /home/usaurio/Left4Dead/tests/server_tests/game_tests.cpp
 
 tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/server_tests/game_tests.cpp > CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/tests/server_tests/game_tests.cpp > CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.i
 
 tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/server_tests/game_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/tests/server_tests/game_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.s
 
 tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: tests/CMakeFiles/server_tests.dir/flags.make
 tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: ../tests/server_tests/games_manager_tests.cpp
 tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: tests/CMakeFiles/server_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o -c /home/regman/taller/left4Dead/tests/server_tests/games_manager_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o"
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o -c /home/usaurio/Left4Dead/tests/server_tests/games_manager_tests.cpp
 
 tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/server_tests/games_manager_tests.cpp > CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/tests/server_tests/games_manager_tests.cpp > CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.i
 
 tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/server_tests/games_manager_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/tests/server_tests/games_manager_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.s
 
 tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o: tests/CMakeFiles/server_tests.dir/flags.make
 tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o: ../tests/server_tests/main_tests.cpp
 tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o: tests/CMakeFiles/server_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o -c /home/regman/taller/left4Dead/tests/server_tests/main_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o"
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o -c /home/usaurio/Left4Dead/tests/server_tests/main_tests.cpp
 
 tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/server_tests/main_tests.cpp > CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/tests/server_tests/main_tests.cpp > CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.i
 
 tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/server_tests/main_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/tests/server_tests/main_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.s
 
 tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o: tests/CMakeFiles/server_tests.dir/flags.make
 tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o: ../tests/server_tests/server_protocol_tests.cpp
 tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o: tests/CMakeFiles/server_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o -c /home/regman/taller/left4Dead/tests/server_tests/server_protocol_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o"
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o -c /home/usaurio/Left4Dead/tests/server_tests/server_protocol_tests.cpp
 
 tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/server_tests/server_protocol_tests.cpp > CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/tests/server_tests/server_protocol_tests.cpp > CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.i
 
 tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/server_tests/server_protocol_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/tests/server_tests/server_protocol_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.s
 
 tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o: tests/CMakeFiles/server_tests.dir/flags.make
 tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o: ../tests/server_tests/zombie_spawner_tests.cpp
 tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o: tests/CMakeFiles/server_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o -c /home/regman/taller/left4Dead/tests/server_tests/zombie_spawner_tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o"
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o -MF CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o.d -o CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o -c /home/usaurio/Left4Dead/tests/server_tests/zombie_spawner_tests.cpp
 
 tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/server_tests/zombie_spawner_tests.cpp > CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/tests/server_tests/zombie_spawner_tests.cpp > CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.i
 
 tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/server_tests/zombie_spawner_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/tests/server_tests/zombie_spawner_tests.cpp -o CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.s
 
 # Object files for target server_tests
 server_tests_OBJECTS = \
@@ -208,19 +208,19 @@ tests/server_tests: libserver_lib.a
 tests/server_tests: lib/libgtest_main.a
 tests/server_tests: lib/libgtest.a
 tests/server_tests: tests/CMakeFiles/server_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable server_tests"
-	cd /home/regman/taller/left4Dead/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server_tests.dir/link.txt --verbose=$(VERBOSE)
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/cmake -D TEST_TARGET=server_tests -D TEST_EXECUTABLE=/home/regman/taller/left4Dead/build/tests/server_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/regman/taller/left4Dead/build/tests -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=server_tests_TESTS -D CTEST_FILE=/home/regman/taller/left4Dead/build/tests/server_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.22/Modules/GoogleTestAddTests.cmake
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable server_tests"
+	cd /home/usaurio/Left4Dead/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server_tests.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/usaurio/Left4Dead/build/tests && /usr/bin/cmake -D TEST_TARGET=server_tests -D TEST_EXECUTABLE=/home/usaurio/Left4Dead/build/tests/server_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/usaurio/Left4Dead/build/tests -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=server_tests_TESTS -D CTEST_FILE=/home/usaurio/Left4Dead/build/tests/server_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.22/Modules/GoogleTestAddTests.cmake
 
 # Rule to build all files generated by this target.
 tests/CMakeFiles/server_tests.dir/build: tests/server_tests
 .PHONY : tests/CMakeFiles/server_tests.dir/build
 
 tests/CMakeFiles/server_tests.dir/clean:
-	cd /home/regman/taller/left4Dead/build/tests && $(CMAKE_COMMAND) -P CMakeFiles/server_tests.dir/cmake_clean.cmake
+	cd /home/usaurio/Left4Dead/build/tests && $(CMAKE_COMMAND) -P CMakeFiles/server_tests.dir/cmake_clean.cmake
 .PHONY : tests/CMakeFiles/server_tests.dir/clean
 
 tests/CMakeFiles/server_tests.dir/depend:
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/regman/taller/left4Dead /home/regman/taller/left4Dead/tests /home/regman/taller/left4Dead/build /home/regman/taller/left4Dead/build/tests /home/regman/taller/left4Dead/build/tests/CMakeFiles/server_tests.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/usaurio/Left4Dead /home/usaurio/Left4Dead/tests /home/usaurio/Left4Dead/build /home/usaurio/Left4Dead/build/tests /home/usaurio/Left4Dead/build/tests/CMakeFiles/server_tests.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : tests/CMakeFiles/server_tests.dir/depend
 

@@ -1,7 +1,7 @@
-/home/regman/taller/left4Dead/build/qt_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/regman/taller/left4Dead/mainwindow.h \
-  /home/regman/taller/left4Dead/build/qt_autogen/moc_predefs.h \
-  /home/regman/taller/left4Dead/client/actions/action_client.h \
-  /home/regman/taller/left4Dead/client/actions/action_create.h \
+/home/usaurio/Left4Dead/build/qt_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/usaurio/Left4Dead/mainwindow.h \
+  /home/usaurio/Left4Dead/build/qt_autogen/moc_predefs.h \
+  /home/usaurio/Left4Dead/client/actions/action_client.h \
+  /home/usaurio/Left4Dead/client/actions/action_create.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
   /usr/include/assert.h \

@@ -1,5 +1,5 @@
 CMakeFiles/client.dir/dipa_classes/liberror.cpp.o: \
- /home/regman/taller/left4Dead/dipa_classes/liberror.cpp \
+ /home/usaurio/Left4Dead/dipa_classes/liberror.cpp \
  /usr/include/stdc-predef.h /usr/include/errno.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -36,7 +36,7 @@ CMakeFiles/client.dir/dipa_classes/liberror.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /home/regman/taller/left4Dead/dipa_classes/./liberror.h \
+ /home/usaurio/Left4Dead/dipa_classes/./liberror.h \
  /usr/include/c++/11/exception /usr/include/c++/11/bits/exception.h \
  /usr/include/c++/11/bits/exception_ptr.h \
  /usr/include/c++/11/bits/exception_defines.h \
