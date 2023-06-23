@@ -1,2 +1,0 @@
-/usr/bin/ar qc libqt.a CMakeFiles/qt.dir/qt_autogen/mocs_compilation.cpp.o CMakeFiles/qt.dir/mainwindow.cpp.o
-/usr/bin/ranlib libqt.a

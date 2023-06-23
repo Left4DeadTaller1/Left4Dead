@@ -166,8 +166,6 @@ Attack Player::attack() {
             break;
     }
 
-    actionCounter = weapon.getCooldown();
-
     // return weapon.shoot(x, attackDirection, y, y + height);
     Attack bullet = weapon.shoot(x, attackDirection, y, (y + height));
     actionCounter = weapon.getCooldown();
