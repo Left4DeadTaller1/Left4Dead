@@ -3935,6 +3935,10 @@ CMakeFiles/client.dir/client/client_main.cpp.o
  /home/regman/taller/left4Dead/client/render/sound/client_sound.h
  /home/regman/taller/left4Dead/client/render/texture/client_texture.h
 
+CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o
+ /home/regman/taller/left4Dead/client/configuration/renderer_config.cpp
+ /usr/include/stdc-predef.h
+
 CMakeFiles/client.dir/client/render/client_render.cpp.o
  /home/regman/taller/left4Dead/client/render/client_render.cpp
  /usr/include/stdc-predef.h

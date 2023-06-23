@@ -23,6 +23,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/regman/taller/left4Dead/client/client_connection/client_sender.cpp" "CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o" "gcc" "CMakeFiles/client.dir/client/client_connection/client_sender.cpp.o.d"
   "/home/regman/taller/left4Dead/client/client_event_manager.cc" "CMakeFiles/client.dir/client/client_event_manager.cc.o" "gcc" "CMakeFiles/client.dir/client/client_event_manager.cc.o.d"
   "/home/regman/taller/left4Dead/client/client_main.cpp" "CMakeFiles/client.dir/client/client_main.cpp.o" "gcc" "CMakeFiles/client.dir/client/client_main.cpp.o.d"
+  "/home/regman/taller/left4Dead/client/configuration/renderer_config.cpp" "CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o" "gcc" "CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o.d"
   "/home/regman/taller/left4Dead/client/render/client_render.cpp" "CMakeFiles/client.dir/client/render/client_render.cpp.o" "gcc" "CMakeFiles/client.dir/client/render/client_render.cpp.o.d"
   "/home/regman/taller/left4Dead/client/render/game/client_player.cpp" "CMakeFiles/client.dir/client/render/game/client_player.cpp.o" "gcc" "CMakeFiles/client.dir/client/render/game/client_player.cpp.o.d"
   "/home/regman/taller/left4Dead/client/render/game/infected.cpp" "CMakeFiles/client.dir/client/render/game/infected.cpp.o" "gcc" "CMakeFiles/client.dir/client/render/game/infected.cpp.o.d"

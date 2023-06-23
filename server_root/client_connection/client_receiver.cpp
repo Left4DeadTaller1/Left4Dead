@@ -1,5 +1,6 @@
 #include "client_receiver.h"
 
+#include <iostream>
 #include <string>
 
 ClientReceiver::ClientReceiver(Socket &clientSocket, GamesManager &gamesManager, Queue<std::shared_ptr<std::vector<uint8_t>>> &gameResponses)
@@ -125,15 +126,7 @@ void ClientReceiver::handleStartMove(int movementType, int directionXType, int d
 }
 
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
-    int movementType;
-    if (directionXType == 2 && directionYType == 2) {
-        movementType = 2;
-        Action action(playerId, movementType, directionXType, directionYType);
-        game->pushAction(action);
-        return;
-    }
-
-    movementType = 6;
+    int movementType = 6;
     Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }

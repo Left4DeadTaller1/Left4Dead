@@ -73,99 +73,99 @@ tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: test
 tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: ../tests/client_tests/client_protocol_tests.cpp
 tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o: tests/CMakeFiles/client_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o -MF CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o.d -o CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o -c /home/regman/taller/left4Dead/tests/client_tests/client_protocol_tests.cpp
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o -MF CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o.d -o CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o -c /home/regman/taller/left4Dead/tests/client_tests/client_protocol_tests.cpp
 
 tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/client_tests/client_protocol_tests.cpp > CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.i
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/client_tests/client_protocol_tests.cpp > CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.i
 
 tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/client_tests/client_protocol_tests.cpp -o CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.s
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/client_tests/client_protocol_tests.cpp -o CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.s
 
 tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o: tests/CMakeFiles/client_tests.dir/flags.make
 tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o: ../tests/client_tests/main_client_test.cpp
 tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o: tests/CMakeFiles/client_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o -MF CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o.d -o CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o -c /home/regman/taller/left4Dead/tests/client_tests/main_client_test.cpp
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o -MF CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o.d -o CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o -c /home/regman/taller/left4Dead/tests/client_tests/main_client_test.cpp
 
 tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/client_tests/main_client_test.cpp > CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.i
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/tests/client_tests/main_client_test.cpp > CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.i
 
 tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/client_tests/main_client_test.cpp -o CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.s
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/tests/client_tests/main_client_test.cpp -o CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.s
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o: tests/CMakeFiles/client_tests.dir/flags.make
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o: ../dipa_classes/resolver.cpp
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o: tests/CMakeFiles/client_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o -MF CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o.d -o CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/resolver.cpp
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o -MF CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o.d -o CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/resolver.cpp
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/resolver.cpp > CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.i
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/resolver.cpp > CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.i
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/resolver.cpp -o CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.s
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/resolver.cpp -o CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.s
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o: tests/CMakeFiles/client_tests.dir/flags.make
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o: ../dipa_classes/liberror.cpp
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o: tests/CMakeFiles/client_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o -MF CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o.d -o CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/liberror.cpp
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o -MF CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o.d -o CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/liberror.cpp
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/liberror.cpp > CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.i
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/liberror.cpp > CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.i
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/liberror.cpp -o CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.s
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/liberror.cpp -o CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.s
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o: tests/CMakeFiles/client_tests.dir/flags.make
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o: ../dipa_classes/resolvererror.cpp
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o: tests/CMakeFiles/client_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o -MF CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o.d -o CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o -MF CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o.d -o CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp > CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.i
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp > CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.i
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp -o CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.s
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp -o CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.s
 
 tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o: tests/CMakeFiles/client_tests.dir/flags.make
 tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o: ../client/client_connection/client_protocol.cpp
 tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o: tests/CMakeFiles/client_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o -MF CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o.d -o CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o -c /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o -MF CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o.d -o CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o -c /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp
 
 tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp > CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.i
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp > CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.i
 
 tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp -o CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.s
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp -o CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.s
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o: tests/CMakeFiles/client_tests.dir/flags.make
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o: tests/CMakeFiles/client_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o -MF CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o.d -o CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/socket.cpp
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o -MF CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o.d -o CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o -c /home/regman/taller/left4Dead/dipa_classes/socket.cpp
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.i"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/socket.cpp > CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.i
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/regman/taller/left4Dead/dipa_classes/socket.cpp > CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.i
 
 tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.s"
-	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/socket.cpp -o CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.s
+	cd /home/regman/taller/left4Dead/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/regman/taller/left4Dead/dipa_classes/socket.cpp -o CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.s
 
 # Object files for target client_tests
 client_tests_OBJECTS = \

@@ -3920,6 +3920,9 @@ CMakeFiles/client.dir/client/client_main.cpp.o: ../client/client_main.cpp \
   ../client/render/sound/client_sound.h \
   ../client/render/texture/client_texture.h
 
+CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o: ../client/configuration/renderer_config.cpp \
+  /usr/include/stdc-predef.h
+
 CMakeFiles/client.dir/client/render/client_render.cpp.o: ../client/render/client_render.cpp \
   /usr/include/stdc-predef.h \
   ../client/render/client_render.h \
@@ -8010,6 +8013,8 @@ CMakeFiles/client.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp \
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h:
 
 ../client/render/sound/client_sound.cpp:
+
+../client/configuration/renderer_config.cpp:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/mmintrin.h:
 

@@ -232,7 +232,7 @@
 	"MOC_PATH_PREFIX" : false,
 	"MOC_PREDEFS_CMD" : 
 	[
-		"/usr/bin/g++",
+		"/usr/bin/c++",
 		"-dM",
 		"-E",
 		"-c",
