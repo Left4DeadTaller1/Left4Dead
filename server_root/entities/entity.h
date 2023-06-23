@@ -84,7 +84,7 @@ class Entity {
     int getHealth();
     int getMovementSpeed();
     int getActionCounter();
-    void decreaseActionCounter();
+    virtual void decreaseActionCounter();
 
     virtual bool isMoving() = 0;
     virtual void takeDamage(int amountOfDamage) = 0;

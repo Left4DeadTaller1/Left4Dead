@@ -140,6 +140,21 @@ bool Player::canAttack() {
     return weapon.canShoot();
 }
 
+void Player::decreaseActionCounter() {
+    // std::cout << "decrease action counter" << std::endl;
+    // std::cout << "actionCounter: " << actionCounter << std::endl;
+
+    if (actionCounter > 0) {
+        actionCounter--;
+        // std::cout << "actionCounter: " << actionCounter << std::endl;
+    } else if (checkIfDead())
+        kill();
+    else if (actionCounter == 0 && !isMoving())
+        idle();
+    else if (actionCounter == 0 && actionState == PLAYER_RELOADING)
+        idle();
+}
+
 Attack Player::attack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();

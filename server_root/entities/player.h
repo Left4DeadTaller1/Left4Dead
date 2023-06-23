@@ -44,6 +44,7 @@ class Player : public Entity {
     void idle() override;
     std::tuple<int, int> getDirectionsAmount();
     void takeDamage(int damage) override;
+    void decreaseActionCounter() override;
 
     void decreaseATKCooldown();
 

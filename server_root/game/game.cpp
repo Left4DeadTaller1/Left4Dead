@@ -246,7 +246,8 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
 }
 
 void Game::reloadPlayer(Player& player) {
-    if (player.getActionState() == PLAYER_RELOADING)
+    if (player.getActionState() == PLAYER_RELOADING && player.getActionCounter() == 0)
+        // TIODO THIS IS RELOADING INF
         player.reload();
 }
 
