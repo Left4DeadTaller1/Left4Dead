@@ -12,6 +12,8 @@ EntityType Zombie::getType() {
 }
 
 bool Zombie::canAttack() {
+    if (actionCounter != 0)
+        return false;
     for (const auto& pair : attacksCooldowns) {
         if (pair.second == 0) {
             return true;
@@ -32,10 +34,13 @@ void Zombie::fillBaseZombieDTO(std::shared_ptr<ZombieDTO> dto) {
 }
 
 void Zombie::decideTarget(std::vector<std::shared_ptr<Player>>& players) {
-    if (players.empty() || actionCounter != 0) {
+    if (players.empty()) {
         idle();
         return;  // i mean you will never have 0 players but just in case
     }
+    // if you are already doing something else don't decide a targetokis
+    if (actionCounter != 0)
+        return;
 
     int closestPlayerX = players[0]->getX();
     int closestPlayerY = players[0]->getY();

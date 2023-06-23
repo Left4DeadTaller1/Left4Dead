@@ -61,7 +61,7 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
     // } else {  // 15%
     //     zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
     // }
-    zombiePtr = std::make_shared<Infected>(spawnX, spawnY, zombieId, mutationLevel);
+    zombiePtr = std::make_shared<Witch>(spawnX, spawnY, zombieId, mutationLevel);
 
     spawnInterval = spawnSettings["SPAWN_INTERVAL"];
 

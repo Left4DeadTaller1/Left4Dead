@@ -1,7 +1,7 @@
 CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: \
- /home/usaurio/Left4Dead/server_root/server/server.cpp \
+ /home/regman/taller/left4Dead/server_root/server/server.cpp \
  /usr/include/stdc-predef.h \
- /home/usaurio/Left4Dead/server_root/server/server.h \
+ /home/regman/taller/left4Dead/server_root/server/server.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -155,11 +155,11 @@ CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/usaurio/Left4Dead/server_root/server/acceptor.h \
+ /home/regman/taller/left4Dead/server_root/server/acceptor.h \
  /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
  /usr/include/c++/11/bits/list.tcc \
- /home/usaurio/Left4Dead/server_root/server/../client_connection/client_connection.h \
- /home/usaurio/Left4Dead/server_root/server/../client_connection/../game/games_manager.h \
+ /home/regman/taller/left4Dead/server_root/server/../client_connection/client_connection.h \
+ /home/regman/taller/left4Dead/server_root/server/../client_connection/../game/games_manager.h \
  /usr/include/c++/11/mutex /usr/include/c++/11/chrono \
  /usr/include/c++/11/ratio /usr/include/c++/11/limits \
  /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
@@ -173,22 +173,22 @@ CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: \
  /usr/include/c++/11/bits/node_handle.h \
  /usr/include/c++/11/bits/unordered_map.h \
  /usr/include/c++/11/bits/erase_if.h \
- /home/usaurio/Left4Dead/server_root/server/../client_connection/../game/game.h \
+ /home/regman/taller/left4Dead/server_root/server/../client_connection/../game/game.h \
  /usr/include/c++/11/queue /usr/include/c++/11/deque \
  /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
  /usr/include/c++/11/bits/stl_heap.h /usr/include/c++/11/bits/stl_queue.h \
- /home/usaurio/Left4Dead/server_root/server/../client_connection/../game/action.h \
- /home/usaurio/Left4Dead/server_root/entities/collision_detector.h \
- /home/usaurio/Left4Dead/server_root/entities/attack.h \
- /home/usaurio/Left4Dead/server_root/entities/entity.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
+ /home/regman/taller/left4Dead/server_root/server/../client_connection/../game/action.h \
+ /home/regman/taller/left4Dead/server_root/entities/collision_detector.h \
+ /home/regman/taller/left4Dead/server_root/entities/attack.h \
+ /home/regman/taller/left4Dead/server_root/entities/entity.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/infected.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /home/usaurio/Left4Dead/server_root/entities/attack.h \
- /home/usaurio/Left4Dead/server_root/entities/entity.h \
- /home/usaurio/Left4Dead/server_root/entities/player.h \
+ /home/regman/taller/left4Dead/server_root/entities/attack.h \
+ /home/regman/taller/left4Dead/server_root/entities/entity.h \
+ /home/regman/taller/left4Dead/server_root/entities/player.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
  /usr/include/c++/11/bits/locale_classes.h \
@@ -204,17 +204,17 @@ CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/usaurio/Left4Dead/server_root/entities/weapon.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
- /home/usaurio/Left4Dead/server_root/entities/player.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
- /home/usaurio/Left4Dead/dipa_classes/queue.h \
+ /home/regman/taller/left4Dead/server_root/entities/weapon.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/jumper.h \
+ /home/regman/taller/left4Dead/server_root/entities/player.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/spear.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/venom.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/witch.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h \
+ /home/regman/taller/left4Dead/dipa_classes/queue.h \
  /usr/include/c++/11/condition_variable \
- /home/usaurio/Left4Dead/server_root/server/../client_connection/../game/server_message.h \
- /home/usaurio/Left4Dead/server_root/client_connection/server_protocol.h \
+ /home/regman/taller/left4Dead/server_root/server/../client_connection/../game/server_message.h \
+ /home/regman/taller/left4Dead/server_root/client_connection/server_protocol.h \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
@@ -237,20 +237,20 @@ CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: \
  /usr/include/string.h /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /home/usaurio/Left4Dead/server_root/game/action.h \
- /home/usaurio/Left4Dead/server_root/game/server_message.h \
- /home/usaurio/Left4Dead/dipa_classes/socket.h \
- /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
- /usr/include/c++/11/bits/std_thread.h \
+ /home/regman/taller/left4Dead/server_root/game/action.h \
+ /home/regman/taller/left4Dead/server_root/game/server_message.h \
+ /home/regman/taller/left4Dead/dipa_classes/socket.h \
+ /home/regman/taller/left4Dead/dipa_classes/thread.h \
+ /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
- /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
- /home/usaurio/Left4Dead/server_root/server/../client_connection/../game/server_message.h \
- /home/usaurio/Left4Dead/server_root/server/../client_connection/client_receiver.h \
- /home/usaurio/Left4Dead/server_root/server/../client_connection/server_protocol.h \
- /home/usaurio/Left4Dead/server_root/server/../client_connection/client_sender.h \
- /home/usaurio/Left4Dead/server_root/server/../game/games_manager.h
+ /home/regman/taller/left4Dead/server_root/entities/zombies/zombie_spawner.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/infected.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/jumper.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/spear.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/venom.h \
+ /home/regman/taller/left4Dead/server_root/entities/zombies/witch.h \
+ /home/regman/taller/left4Dead/server_root/server/../client_connection/../game/server_message.h \
+ /home/regman/taller/left4Dead/server_root/server/../client_connection/client_receiver.h \
+ /home/regman/taller/left4Dead/server_root/server/../client_connection/server_protocol.h \
+ /home/regman/taller/left4Dead/server_root/server/../client_connection/client_sender.h \
+ /home/regman/taller/left4Dead/server_root/server/../game/games_manager.h

@@ -137,22 +137,19 @@ void Player::reload() {
 }
 
 bool Player::canAttack() {
+    if (actionCounter != 0)
+        return false;
     return weapon.canShoot();
 }
 
 void Player::decreaseActionCounter() {
-    // std::cout << "decrease action counter" << std::endl;
-    // std::cout << "actionCounter: " << actionCounter << std::endl;
-
+    // TODO remove this one
     if (actionCounter > 0) {
         actionCounter--;
-        // std::cout << "actionCounter: " << actionCounter << std::endl;
+        if (actionCounter == 0 && !isMoving() && !isDead())
+            idle();
     } else if (checkIfDead())
         kill();
-    else if (actionCounter == 0 && !isMoving())
-        idle();
-    else if (actionCounter == 0 && actionState == PLAYER_RELOADING)
-        idle();
 }
 
 Attack Player::attack() {

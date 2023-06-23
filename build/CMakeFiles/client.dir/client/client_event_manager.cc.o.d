@@ -1,9 +1,10 @@
 CMakeFiles/client.dir/client/client_event_manager.cc.o: \
- /home/usaurio/Left4Dead/client/client_event_manager.cc \
+ /home/regman/taller/left4Dead/client/client_event_manager.cc \
  /usr/include/stdc-predef.h \
- /home/usaurio/Left4Dead/client/client_event_manager.h \
- /home/usaurio/Left4Dead/dipa_classes/queue.h /usr/include/c++/11/mutex \
- /usr/include/c++/11/tuple /usr/include/c++/11/utility \
+ /home/regman/taller/left4Dead/client/client_event_manager.h \
+ /home/regman/taller/left4Dead/dipa_classes/queue.h \
+ /usr/include/c++/11/mutex /usr/include/c++/11/tuple \
+ /usr/include/c++/11/utility \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -158,8 +159,8 @@ CMakeFiles/client.dir/client/client_event_manager.cc.o: \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_queue.h \
- /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
- /usr/include/c++/11/bits/std_thread.h \
+ /home/regman/taller/left4Dead/dipa_classes/thread.h \
+ /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
@@ -243,7 +244,7 @@ CMakeFiles/client.dir/client/client_event_manager.cc.o: \
  /usr/include/c++/11/pstl/execution_defs.h \
  /usr/local/include/SDL2pp/StreamRWops.hh /usr/include/c++/11/cassert \
  /usr/include/assert.h /usr/local/include/SDL2pp/SDLTTF.hh \
- /usr/local/include/SDL2pp/Font.hh /usr/include/SDL2/SDL_ttf.h \
+ /usr/local/include/SDL2pp/Font.hh /usr/local/include/SDL2/SDL_ttf.h \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
  /usr/include/SDL2/SDL_assert.h /usr/include/SDL2/SDL_audio.h \
  /usr/include/SDL2/SDL_clipboard.h /usr/include/SDL2/SDL_cpuinfo.h \
@@ -345,9 +346,10 @@ CMakeFiles/client.dir/client/client_event_manager.cc.o: \
  /usr/include/SDL2/SDL_shape.h /usr/include/SDL2/SDL_system.h \
  /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
  /usr/include/SDL2/SDL_locale.h /usr/include/SDL2/SDL_misc.h \
+ /usr/include/SDL2/begin_code.h /usr/include/SDL2/close_code.h \
  /usr/local/include/SDL2pp/SDLImage.hh /usr/local/include/SDL2pp/Chunk.hh \
- /usr/include/SDL2/SDL_mixer.h /usr/local/include/SDL2pp/Mixer.hh \
- /usr/include/c++/11/memory \
+ /usr/local/include/SDL2/SDL_mixer.h /usr/include/SDL2/SDL_endian.h \
+ /usr/local/include/SDL2pp/Mixer.hh /usr/include/c++/11/memory \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
  /usr/include/c++/11/bits/shared_ptr_atomic.h \
@@ -356,14 +358,14 @@ CMakeFiles/client.dir/client/client_event_manager.cc.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/local/include/SDL2pp/Music.hh /usr/local/include/SDL2pp/SDLMixer.hh \
- /home/usaurio/Left4Dead/client/actions/action_client.h \
- /home/usaurio/Left4Dead/client/actions/action_create.h \
- /home/usaurio/Left4Dead/client/actions/action_client.h \
- /home/usaurio/Left4Dead/client/actions/action_start_move.h \
- /home/usaurio/Left4Dead/client/actions/action_end_move.h \
- /home/usaurio/Left4Dead/client/actions/action_join.h \
- /home/usaurio/Left4Dead/client/actions/action_start_game.h \
- /home/usaurio/Left4Dead/client/actions/action_exit_game.h \
- /home/usaurio/Left4Dead/client/actions/action_recharge.h \
- /home/usaurio/Left4Dead/client/actions/action_start_shoot.h \
- /home/usaurio/Left4Dead/client/actions/action_end_shoot.h
+ /home/regman/taller/left4Dead/client/actions/action_client.h \
+ /home/regman/taller/left4Dead/client/actions/action_create.h \
+ /home/regman/taller/left4Dead/client/actions/action_client.h \
+ /home/regman/taller/left4Dead/client/actions/action_start_move.h \
+ /home/regman/taller/left4Dead/client/actions/action_end_move.h \
+ /home/regman/taller/left4Dead/client/actions/action_join.h \
+ /home/regman/taller/left4Dead/client/actions/action_start_game.h \
+ /home/regman/taller/left4Dead/client/actions/action_exit_game.h \
+ /home/regman/taller/left4Dead/client/actions/action_recharge.h \
+ /home/regman/taller/left4Dead/client/actions/action_start_shoot.h \
+ /home/regman/taller/left4Dead/client/actions/action_end_shoot.h
