@@ -81,15 +81,11 @@ bool Jumper::isMoving() {
 }
 
 void Jumper::takeDamage(int damage) {
-    std::cout << "Jumper taking damage: " << damage << std::endl;
-    std::cout << "Health: " << health << std::endl;
-
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
     if (health <= 0) {
         health = 0;
-        std::cout << "Jumper Dying, health: " << health << std::endl;
         actionState = JUMPER_DYING;
         actionCounter = entityParams["JUMPER_DYING_DURATION"];
     } else {

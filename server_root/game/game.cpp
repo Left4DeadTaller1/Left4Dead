@@ -117,7 +117,7 @@ void Game::spawnPlayer(std::string playerId) {
     int spawnX = gameWidth / 2 + (numPlayers % 2 == 0 ? playerWidth : 0);
     int spawnY = gameHeight / 2 - (numPlayers / 2) * playerHeight;
 
-    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SMG);
+    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SNIPER);
     entities.push_back(player);
     players.push_back(player);
 }
@@ -131,6 +131,12 @@ void Game::removePlayer(std::string playerId) {
 }
 
 void Game::startGame() {
+    // TODO debuging
+    // zombieSpawner.increaseTotalZombies();
+    // int totalZombies = zombieSpawner.getTotalZombies();
+    // std::string zombieId = "zombie" + std::to_string(totalZombies);
+    // entities.push_back(std::make_shared<Witch>(100, 50, zombieId, 0));
+
     gameRunning = true;
     while (gameRunning) {
         auto start = std::chrono::steady_clock::now();
@@ -169,9 +175,11 @@ void Game::getPlayersActions() {
 }
 
 void Game::updateState() {
+    // todo: i think this is not efficient
     removeDeadEntities();
+    int i = 0;
+
     for (auto& entity : entities) {
-        // skip entity if dead
         if (entity->isDead()) {
             entity->decreaseActionCounter();
             continue;
@@ -193,6 +201,7 @@ void Game::updateState() {
         move(*entity);
         attack(*entity);
         useSkill(*entity);
+        i++;
     }
 
     // Every min mutate zombies
@@ -326,8 +335,8 @@ void Game::attack(Entity& entity) {
 }
 
 void Game::useSkill(Entity& entity) {
-    // if (entity.isDead())
-    //     return;
+    if (entity.isDead())
+        return;
     std::shared_ptr<Ability> ability = entity.useSkill();
     switch (ability->type) {
         case WAIL: {
@@ -344,7 +353,6 @@ void Game::useSkill(Entity& entity) {
                 int rightOfWitch = wailAbility->WitchX + witchWidth + 15;
                 int upOfWitch = wailAbility->WitchY + witchHeight + 15;
                 int downOfWitch = wailAbility->WitchY - infectedHeight - 15;
-                std::cout << "Witch used ability" << std::endl;
 
                 switch (wailAbility->witchInfectionLevel) {
                     case 3:

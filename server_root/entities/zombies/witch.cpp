@@ -46,7 +46,8 @@ std::shared_ptr<Ability> Witch::useSkill() {
         noneAbility->type = INVALID;
         return noneAbility;
     }
-    std::cout << "witch using wail" << std::endl;
+
+    std::cout << "Witch used Wail, and its state is: " << actionState << std::endl;
 
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
@@ -127,16 +128,16 @@ bool Witch::checkIfDead() {
 void Witch::kill() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
-    actionState = WITCH_DYING;
+    actionState = WITCH_DEAD;
     actionCounter = entityParams["WITCH_DEATH_DURATION"];
 }
 
 bool Witch::isDead() {
-    return (actionState == WITCH_DEAD && actionCounter == WITCH_DYING);
+    return (actionState == WITCH_DEAD || actionState == WITCH_DYING);
 }
 
 bool Witch::isRemovable() {
-    return actionState == WITCH_DYING && actionCounter == 0;
+    return (actionCounter == 0 && actionState == WITCH_DEAD);
 }
 
 Witch::~Witch() {}
