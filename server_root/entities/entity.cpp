@@ -1,5 +1,4 @@
 #include "entity.h"
-
 Entity::Entity(int xPosition, int yPosition, std::string id)
     : x(xPosition), y(yPosition), entityId(id), movementDirectionX(ENTITY_NONE_X), movementDirectionY(ENTITY_NONE_Y), facingDirection(FACING_RIGHT), actionCounter(0) {
 }
@@ -14,6 +13,12 @@ MovementDirectionY Entity::getMovementDirectionY() {
 
 int Entity::getMovementSpeed() {
     return movementSpeed;
+}
+
+std::shared_ptr<Ability> Entity::useSkill() {
+    std::shared_ptr<Ability> noneAbility = std::make_shared<Ability>();
+    noneAbility->type = INVALID;
+    return noneAbility;
 }
 
 void Entity::move(int deltaX, int deltaY) {
@@ -42,9 +47,13 @@ int Entity::getActionCounter() {
 }
 
 void Entity::decreaseActionCounter() {
-    if (actionCounter > 0)
+    // std::cout << "decrease action counter" << std::endl;
+    // std::cout << "actionCounter: " << actionCounter << std::endl;
+
+    if (actionCounter > 0) {
         actionCounter--;
-    else if (checkIfDead())
+        // std::cout << "actionCounter: " << actionCounter << std::endl;
+    } else if (checkIfDead())
         kill();
     else if (actionCounter == 0 && !isMoving())
         idle();

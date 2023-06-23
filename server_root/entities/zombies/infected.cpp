@@ -31,11 +31,11 @@ std::shared_ptr<EntityDTO> Infected::getDto() {
     return infectedDto;
 }
 
-int Infected::getAttackRange() {
-    GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> entityParams = config.getEntitiesParams();
-    return entityParams["INFECTED_ATTACK_RANGE"];
-}
+// int Infected::getAttackRange() {
+//     GameConfig& config = GameConfig::getInstance();
+//     std::map<std::string, int> entityParams = config.getEntitiesParams();
+//     return entityParams["INFECTED_ATTACK_RANGE"];
+// }
 
 Attack Infected::attack() {
     GameConfig& config = GameConfig::getInstance();
@@ -60,7 +60,8 @@ Attack Infected::attack() {
     attacksCooldowns["melee"] = entityParams["INFECTED_ATTACK_COOLDOWN"];
     atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"] + mutationIncrease;
     actionState = INFECTED_ATTACKING;
-    return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
+    int attackRange = entityParams["INFECTED_ATTACK_RANGE"];
+    return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
 }
 
 void Infected::takeDamage(int damage) {

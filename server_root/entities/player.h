@@ -44,12 +44,14 @@ class Player : public Entity {
     void idle() override;
     std::tuple<int, int> getDirectionsAmount();
     void takeDamage(int damage) override;
+    void decreaseActionCounter() override;
 
     void decreaseATKCooldown();
 
     void reload();
     bool canAttack() override;
     Attack attack();
+    void startMoving() override;
 
     bool checkIfDead() override;
     void kill() override;

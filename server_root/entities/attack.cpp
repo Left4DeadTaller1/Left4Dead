@@ -1,6 +1,6 @@
 #include "attack.h"
 
-Attack::Attack(AttackType type, int damage, int xOrigin, int direction, int lowerY, int upperY) : type(type), damage(damage), xOrigin(xOrigin), lowerY(lowerY), upperY(upperY) {
+Attack::Attack(AttackType type, int damage, int xOrigin, int direction, int lowerY, int upperY, int range) : type(type), damage(damage), xOrigin(xOrigin), lowerY(lowerY), upperY(upperY), range(range) {
     if (direction == 0) {
         this->direction = LEFT;
     } else {
@@ -22,6 +22,10 @@ AttackType Attack::getType() {
 
 int Attack::getDamage() {
     return damage;
+}
+
+int Attack::getRange() {
+    return range;
 }
 
 Attack::~Attack() {}

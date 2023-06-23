@@ -23,7 +23,7 @@ class Infected : public Zombie {
    public:
     Infected(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     std::shared_ptr<EntityDTO> getDto() override;
-    int getAttackRange() override;
+    // int getAttackRange() override;
     Attack attack() override;
     void takeDamage(int damage) override;
     void startMoving() override;

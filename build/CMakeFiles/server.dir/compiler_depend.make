@@ -2314,7 +2314,31 @@ CMakeFiles/server.dir/server_root/entities/entity.cpp.o: ../server_root/entities
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
-  ../server_root/entities/attack.h
+  ../server_root/entities/attack.h \
+  /usr/include/c++/11/iostream \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/system_error \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+  /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/bits/istream.tcc
 
 CMakeFiles/server.dir/server_root/entities/player.cpp.o: ../server_root/entities/player.cpp \
   /usr/include/stdc-predef.h \
@@ -2779,6 +2803,16 @@ CMakeFiles/server.dir/server_root/entities/weapon.cpp.o: ../server_root/entities
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/climits \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/ostream \
   /usr/include/c++/11/ios \
@@ -7353,6 +7387,16 @@ CMakeFiles/server.dir/server_root/server/server_main.cpp.o: ../server_root/serve
 
 ../server_root/entities/zombies/zombie.cpp:
 
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
+
 ../server_root/entities/weapon.cpp:
 
 ../server_root/entities/player.cpp:
@@ -7513,13 +7557,615 @@ CMakeFiles/server.dir/server_root/server/server_main.cpp.o: ../server_root/serve
 
 /usr/include/c++/11/limits:
 
+<<<<<<< HEAD
 /usr/include/c++/11/thread:
+=======
+/usr/include/c++/11/mutex:
+
+/usr/include/c++/11/pstl/glue_memory_defs.h:
+
+/usr/include/c++/11/queue:
+
+/usr/include/c++/11/bits/shared_ptr_atomic.h:
+
+../server_root/entities/player.h:
+
+/usr/include/c++/11/ext/concurrence.h:
+
+/usr/include/c++/11/bits/allocated_ptr.h:
+
+/usr/include/c++/11/tuple:
+
+../server_root/entities/zombies/witch.cpp:
+
+/usr/include/limits.h:
+
+/usr/include/c++/11/bits/stl_relops.h:
+
+/usr/include/c++/11/bits/unique_ptr.h:
+
+/usr/include/c++/11/bits/unique_lock.h:
+
+/usr/include/c++/11/bits/uses_allocator.h:
+
+/usr/include/c++/11/bit:
+
+/usr/include/c++/11/bits/align.h:
+
+/usr/include/c++/11/bits/stl_raw_storage_iter.h:
+
+../server_root/client_connection/client_connection.cpp:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/wchar.h:
+
+/usr/include/c++/11/ostream:
+
+/usr/include/assert.h:
+
+../dipa_classes/socket.cpp:
+
+/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+/usr/include/arpa/inet.h:
+
+/usr/include/x86_64-linux-gnu/bits/netdb.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket2.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/asm-generic/posix_types.h:
+
+/usr/include/x86_64-linux-gnu/asm/posix_types.h:
+
+/usr/include/c++/11/bits/refwrap.h:
+
+/usr/include/linux/stddef.h:
+
+/usr/include/c++/11/bits/invoke.h:
+
+/usr/include/asm-generic/socket.h:
+
+../server_root/entities/zombies/infected.cpp:
+
+/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/c++/11/cwchar:
+
+/usr/include/x86_64-linux-gnu/bits/select2.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/x86_64-linux-gnu/asm/socket.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/c++/11/ext/aligned_buffer.h:
+
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/c++/11/bits/stl_queue.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/netdb.h:
+
+/usr/include/c++/11/bits/stl_uninitialized.h:
+
+../dipa_classes/resolver.cpp:
+
+/usr/include/c++/11/memory:
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+../server_root/server/server.cpp:
+
+../server_root/entities/zombies/infected.h:
+
+/usr/include/c++/11/bits/stl_vector.h:
+
+/usr/include/c++/11/cstddef:
+
+../server_root/entities/zombies/venom.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
+
+/usr/include/c++/11/atomic:
+
+../server_root/game/server_message.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/strings.h:
+
+../server_root/game/action.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/yaml-cpp/emittermanip.h:
+
+/usr/include/c++/11/tr1/bessel_function.tcc:
+
+/home/usaurio/Left4Dead/server_root/entities/weapon.h:
+
+/home/usaurio/Left4Dead/server_root/entities/zombies/witch.h:
+
+/usr/include/locale.h:
+
+../dipa_classes/resolvererror.cpp:
+
+/usr/include/c++/11/bits/atomic_lockfree_defines.h:
+
+/usr/include/yaml-cpp/noexcept.h:
+
+../dipa_classes/resolvererror.h:
+
+/home/usaurio/Left4Dead/dipa_classes/thread.h:
+
+/usr/include/c++/11/deque:
+
+/home/usaurio/Left4Dead/dipa_classes/resolver.h:
+
+../dipa_classes/socket.h:
+
+../server_root/game/game.h:
+
+/home/usaurio/Left4Dead/dipa_classes/socket.h:
+
+/usr/include/c++/11/istream:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/include/c++/11/bits/streambuf_iterator.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
+
+/usr/include/c++/11/cwctype:
+
+/usr/include/c++/11/streambuf:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
+
+/usr/include/c++/11/bits/functexcept.h:
+
+/usr/include/c++/11/bits/locale_classes.tcc:
+
+/usr/include/c++/11/bits/node_handle.h:
+
+/usr/include/c++/11/iostream:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
+
+/usr/include/c++/11/backward/auto_ptr.h:
+
+../server_root/entities/zombies/spear.h:
+
+/usr/include/yaml-cpp/emitter.h:
+
+/usr/include/c++/11/cstdio:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+/usr/include/c++/11/bits/charconv.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/home/usaurio/Left4Dead/server_root/entities/zombies/venom.h:
+
+/usr/include/alloca.h:
+
+/usr/include/stdlib.h:
+
+../server_root/entities/attack.h:
+
+/usr/include/yaml-cpp/node/detail/node_data.h:
+
+/usr/include/c++/11/cstdlib:
+
+/usr/include/c++/11/bits/stl_iterator_base_types.h:
+
+/usr/include/c++/11/bits/std_mutex.h:
+
+/usr/include/c++/11/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/11/bits/move.h:
+
+/usr/include/c++/11/bits/hash_bytes.h:
+
+../server_root/entities/attack.cpp:
+
+/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+
+../server_root/client_connection/server_protocol.h:
+
+/usr/include/c++/11/bits/functional_hash.h:
+
+/usr/include/c++/11/bits/shared_ptr.h:
+
+/usr/include/c++/11/bits/stl_construct.h:
+
+/usr/include/c++/11/tr1/exp_integral.tcc:
+
+/usr/include/c++/11/utility:
+
+/usr/include/c++/11/ios:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
+
+../server_root/game/configuration/game_config.cpp:
+
+/usr/include/c++/11/bits/cxxabi_forced.h:
+
+../server_root/game/game.cpp:
+
+/usr/include/yaml-cpp/node/iterator.h:
+
+/usr/include/c++/11/cctype:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/c++/11/bits/ios_base.h:
+
+../server_root/entities/zombies/zombie.h:
+
+/usr/include/c++/11/set:
+
+/usr/include/c++/11/bits/istream.tcc:
+
+../server_root/client_connection/client_sender.cpp:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/c++/11/tr1/hypergeometric.tcc:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
+
+/usr/include/unistd.h:
+
+/usr/include/c++/11/bits/stl_algobase.h:
+
+/usr/include/pthread.h:
+
+/usr/include/c++/11/bits/stl_tempbuf.h:
+
+/usr/include/c++/11/bits/std_function.h:
+
+/usr/include/c++/11/pstl/pstl_config.h:
+
+/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
+
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+../server_root/client_connection/server_protocol.cpp:
+
+/usr/include/c++/11/clocale:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h:
+
+/home/usaurio/Left4Dead/server_root/game/server_message.h:
+
+/usr/include/c++/11/bits/ostream.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+../server_root/entities/zombies/jumper.h:
+
+/usr/include/c++/11/bits/enable_special_members.h:
+
+/usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/c++/11/ext/new_allocator.h:
+
+/usr/include/ctype.h:
+
+/usr/include/c++/11/bits/stream_iterator.h:
+
+/usr/include/c++/11/ext/type_traits.h:
+
+/home/usaurio/Left4Dead/server_root/entities/zombies/spear.h:
+
+/usr/include/c++/11/ext/numeric_traits.h:
+
+/usr/include/yaml-cpp/exceptions.h:
+
+/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/c++/11/bits/erase_if.h:
+
+/usr/include/endian.h:
+
+/usr/include/c++/11/bits/ptr_traits.h:
+
+/usr/include/stdint.h:
+
+/usr/include/asm-generic/bitsperlong.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
+
+/usr/include/c++/11/bits/concept_check.h:
+
+/usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/c++/11/bits/std_abs.h:
+
+/usr/include/c++/11/system_error:
+
+/usr/include/c++/11/bits/memoryfwd.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h:
+
+/usr/include/x86_64-linux-gnu/sys/socket.h:
+
+/usr/include/c++/11/bits/stl_function.h:
+
+/usr/include/c++/11/bits/stl_pair.h:
+
+/usr/include/c++/11/ext/atomicity.h:
+
+/home/usaurio/Left4Dead/server_root/entities/entity.h:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/linux/close_range.h:
+
+../server_root/entities/weapon.h:
+
+../server_root/server/acceptor.h:
+
+../server_root/client_connection/client_sender.h:
+
+/usr/include/c++/11/bits/localefwd.h:
+
+../server_root/entities/zombies/zombie_spawner.h:
+
+/usr/include/c++/11/tr1/special_function_util.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
+
+/usr/include/c++/11/bits/locale_classes.h:
+
+/usr/include/yaml-cpp/node/emit.h:
+
+../dipa_classes/liberror.h:
+
+/usr/include/c++/11/bits/basic_string.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
+
+/usr/include/yaml-cpp/mark.h:
+
+../server_root/entities/zombies/venom.cpp:
+
+/usr/include/c++/11/iosfwd:
+
+/usr/include/c++/11/initializer_list:
+
+/usr/include/x86_64-linux-gnu/bits/errno.h:
+
+../dipa_classes/liberror.cpp:
+
+/usr/include/wctype.h:
+
+/usr/include/sched.h:
+
+/usr/include/c++/11/ext/alloc_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/c++/11/cstdint:
+
+/usr/include/c++/11/tr1/poly_hermite.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/uio_lim.h:
+
+/usr/include/c++/11/string:
+
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
+
+/usr/include/c++/11/cerrno:
+
+/usr/include/c++/11/bits/locale_facets.tcc:
+
+/usr/include/c++/11/bits/this_thread_sleep.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
+
+/usr/include/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/c++/11/bits/stl_bvector.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+../server_root/entities/zombies/witch.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
+
+/usr/include/c++/11/bits/specfun.h:
+
+/usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
+
+/usr/include/c++/11/backward/binders.h:
+
+../server_root/client_connection/client_connection.h:
+
+/home/usaurio/Left4Dead/dipa_classes/liberror.h:
+
+/usr/include/c++/11/algorithm:
+
+/usr/include/c++/11/bits/atomic_base.h:
+
+/usr/include/yaml-cpp/node/type.h:
+
+/usr/include/c++/11/bits/stl_set.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
+
+/usr/include/c++/11/bits/char_traits.h:
+
+../server_root/entities/collision_detector.cpp:
+
+/usr/include/linux/errno.h:
+
+/usr/include/c++/11/functional:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
+
+/usr/include/c++/11/bits/allocator.h:
+
+/usr/include/c++/11/cmath:
+
+/usr/include/yaml-cpp/binary.h:
+
+/home/usaurio/Left4Dead/server_root/game/action.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/c++/11/bits/ostream_insert.h:
+
+/usr/include/rpc/netdb.h:
+
+../dipa_classes/thread.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/c++/11/bits/shared_ptr_base.h:
+
+/usr/include/c++/11/bits/basic_string.h:
+
+/usr/include/c++/11/bits/stl_deque.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/c++/11/exception:
+
+../dipa_classes/resolver.h:
+
+/usr/include/c++/11/bits/locale_facets.h:
+
+/usr/include/c++/11/bits/exception.h:
+
+/usr/include/c++/11/bits/basic_ios.h:
+
+/usr/include/c++/11/bits/uniform_int_dist.h:
+
+../server_root/entities/zombies/jumper.cpp:
+
+/usr/include/c++/11/bits/nested_exception.h:
+>>>>>>> 5e036b2a194eb0a2054e5e7d4767497f5594f8a5
 
 /usr/include/c++/11/condition_variable:
 
 /usr/include/c++/11/ratio:
 
+<<<<<<< HEAD
 /usr/include/c++/11/mutex:
+=======
+/usr/include/c++/11/thread:
+
+/usr/include/stdio.h:
+
+/usr/include/c++/11/bits/cpp_type_traits.h:
+
+/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
+
+/usr/include/yaml-cpp/stlemitter.h:
+
+/usr/include/c++/11/bits/std_thread.h:
+
+/usr/include/c++/11/sstream:
+
+/usr/include/c++/11/climits:
+
+/usr/include/c++/11/new:
+
+/usr/include/c++/11/bits/sstream.tcc:
+
+/usr/include/c++/11/bits/stl_algo.h:
+
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+/usr/include/c++/11/pstl/execution_defs.h:
+>>>>>>> 5e036b2a194eb0a2054e5e7d4767497f5594f8a5
 
 /usr/include/c++/11/bits/algorithmfwd.h:
 
@@ -7667,7 +8313,21 @@ CMakeFiles/server.dir/server_root/server/server_main.cpp.o: ../server_root/serve
 
 /usr/include/x86_64-linux-gnu/asm/socket.h:
 
+<<<<<<< HEAD
 /usr/include/stdlib.h:
+=======
+/usr/include/errno.h:
+
+/usr/include/features.h:
+
+../server_root/game/games_manager.cpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
+
+/usr/include/c++/11/debug/debug.h:
+
+/usr/include/features-time64.h:
+>>>>>>> 5e036b2a194eb0a2054e5e7d4767497f5594f8a5
 
 /usr/include/yaml-cpp/node/detail/node_iterator.h:
 

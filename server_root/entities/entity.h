@@ -7,6 +7,16 @@
 
 #include "attack.h"
 
+enum AbilityType {
+    INVALID,
+    WAIL,
+};
+
+struct Ability {
+    AbilityType type;
+    virtual ~Ability() {}
+};
+
 class CollisionDetector;
 
 enum MovementDirectionX {
@@ -74,7 +84,7 @@ class Entity {
     int getHealth();
     int getMovementSpeed();
     int getActionCounter();
-    void decreaseActionCounter();
+    virtual void decreaseActionCounter();
 
     virtual bool isMoving() = 0;
     virtual void takeDamage(int amountOfDamage) = 0;
@@ -85,8 +95,9 @@ class Entity {
     virtual bool isRemovable() = 0;
     virtual void idle() = 0;
 
+    virtual std::shared_ptr<Ability> useSkill();
     virtual Attack attack() = 0;
-
+    virtual void startMoving() = 0;
     virtual EntityType getType() = 0;
 
     virtual std::shared_ptr<EntityDTO> getDto();

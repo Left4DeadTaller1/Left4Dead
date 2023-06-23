@@ -24,5 +24,7 @@ class ZombieSpawner {
    public:
     ZombieSpawner();
     std::shared_ptr<Entity> spawn();
+    int getTotalZombies();
+    void increaseTotalZombies();
     void mutate();
 };

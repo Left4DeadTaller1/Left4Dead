@@ -35,6 +35,8 @@ class CollisionDetector {
     bool willCollideHorizontally(Entity& e1, Entity& e2);
     bool willCollideVertically(Entity& e1, Entity& e2);
     bool isColliding(Entity& e1, int deltaX, int deltaY, Entity& e2);
+    bool isColliding(Entity& entity, int x, int y);
+    bool isEmptySpace(std::list<std::shared_ptr<Entity>>& entities, int x, int y);
     std::tuple<int, int> checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities);
 
     // Player's attacks
@@ -42,7 +44,7 @@ class CollisionDetector {
 
     // Zombie's attacks
     // TODO:change the MovementDirectionX to a FACING DIRECTION
-    std::shared_ptr<Player>& getPlayersInRange(int attackRange, Attack& attack, std::vector<std::shared_ptr<Player>>& players);
+    std::shared_ptr<Player> getPlayersInRange(int attackRange, Attack& attack, std::vector<std::shared_ptr<Player>>& players);
 
    private:
     // for the player's attacks

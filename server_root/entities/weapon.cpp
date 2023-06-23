@@ -1,5 +1,6 @@
 #include "weapon.h"
 
+#include <climits>
 #include <iostream>
 
 #include "game_config.h"
@@ -53,7 +54,7 @@ Attack Weapon::shoot(int bulletXOrigin, int bulletDirection, int bulletLowerY, i
             break;
 
         default:
-            return Attack(BULLET, 0, 0, RIGHT, 0, 0);
+            return Attack(BULLET, 0, 0, RIGHT, 0, 0, INT_MAX);
     }
 
     if (bullets - bulletsShot > 0)
@@ -62,9 +63,9 @@ Attack Weapon::shoot(int bulletXOrigin, int bulletDirection, int bulletLowerY, i
         bullets = 0;
 
     if (type == SNIPER) {
-        return Attack(PIERCING_BULLET, damage, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY);
+        return Attack(PIERCING_BULLET, damage, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY, INT_MAX);
     } else {
-        return Attack(BULLET, damage, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY);
+        return Attack(BULLET, damage, bulletXOrigin, bulletDirection, bulletLowerY, bulletLowerY + bulletUpperY, INT_MAX);
     }
 }
 

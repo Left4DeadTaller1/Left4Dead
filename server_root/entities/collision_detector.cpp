@@ -30,6 +30,37 @@ bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& 
     return false;
 }
 
+bool CollisionDetector::isColliding(Entity& entity, int targetX, int targetY) {
+    // TODO WE SHOULD ALSO CHECK GAME BOUDNARIeS
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> infectedDimensions = config.getEntitiesParams();
+    int infectedWidth = infectedDimensions["INFECTED_WIDTH"];
+    int infectedHeight = infectedDimensions["INFECTED_HEIGHT"];
+
+    if ((entity.x + entity.width) < targetX || (entity.x) > targetX + infectedWidth) {
+        return false;
+    }
+
+    if ((entity.y) + entity.width < targetY || (entity.y) > targetY + infectedHeight) {
+        return false;
+    }
+
+    // TODO: i think this is not needed and is overkill
+    if (targetX + infectedWidth >= entity.x && targetX <= entity.x + entity.width &&
+        targetY + infectedHeight >= entity.y && targetY <= entity.y + entity.height) {
+        return true;  // collision with another entity
+    }
+    return true;
+}
+
+bool CollisionDetector::isEmptySpace(std::list<std::shared_ptr<Entity>>& entities, int x, int y) {
+    for (auto& entity : entities) {
+        if (!isColliding(*entity, x, y))
+            return true;
+    }
+    return false;
+}
+
 bool CollisionDetector::willCollideHorizontally(Entity& e1, Entity& e2) {
     // discard cuz they are not in the same "depth"
     if ((e1.y) + e1.height < e2.y || (e1.y) > e2.y + e2.height)
@@ -133,11 +164,10 @@ void CollisionDetector::shootZombie(const std::shared_ptr<Entity>& entity, Attac
     }
 }
 
-std::shared_ptr<Player>& CollisionDetector::getPlayersInRange(int attackRange, Attack& attack, std::vector<std::shared_ptr<Player>>& players) {
+std::shared_ptr<Player> CollisionDetector::getPlayersInRange(int attackRange, Attack& attack, std::vector<std::shared_ptr<Player>>& players) {
     std::list<std::shared_ptr<Player>> playersInRange;
 
     for (const auto& player : players) {
-        // This is discarding for descarting units that are not in the direction of the attack
         if (player->isDead() ||
             (attack.attackingLeft() && player->x > attack.xOrigin) ||
             (attack.attackingRight() && player->x < attack.xOrigin)) {
@@ -146,7 +176,12 @@ std::shared_ptr<Player>& CollisionDetector::getPlayersInRange(int attackRange, A
 
         attackPlayers(attackRange, player, attack, playersInRange);
     }
-    return playersInRange.front();
+
+    if (!playersInRange.empty()) {
+        return playersInRange.front();
+    } else {
+        return std::shared_ptr<Player>();
+    }
 }
 
 void CollisionDetector::attackPlayers(int range, const std::shared_ptr<Player>& player, Attack& attack, std::list<std::shared_ptr<Player>>& playersInRange) {

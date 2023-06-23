@@ -32,11 +32,11 @@ std::shared_ptr<EntityDTO> Jumper::getDto() {
     return jumperDto;
 }
 
-int Jumper::getAttackRange() {
-    GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> entityParams = config.getEntitiesParams();
-    return entityParams["JUMPER_ATTACK_RANGE"];
-}
+// int Jumper::getAttackRange() {
+//     GameConfig& config = GameConfig::getInstance();
+//     std::map<std::string, int> entityParams = config.getEntitiesParams();
+//     return entityParams["JUMPER_ATTACK_RANGE"];
+// }
 
 Attack Jumper::attack() {
     GameConfig& config = GameConfig::getInstance();
@@ -60,7 +60,8 @@ Attack Jumper::attack() {
     attacksCooldowns["melee"] = entityParams["JUMPER_ATTACK_COOLDOWN"];
     atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] + mutationIncrease;
     actionState = JUMPER_ATTACKING;
-    return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
+    int attackRange = entityParams["JUMPER_ATTACK_RANGE"];
+    return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
 }
 
 void Jumper::startMoving() {
