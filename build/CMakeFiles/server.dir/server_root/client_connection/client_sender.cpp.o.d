@@ -220,7 +220,6 @@ CMakeFiles/server.dir/server_root/client_connection/client_sender.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
-<<<<<<< HEAD
  /home/usaurio/Left4Dead/server_root/entities/entity.h \
  /home/usaurio/Left4Dead/server_root/entities/weapon.h \
  /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
@@ -232,17 +231,4 @@ CMakeFiles/server.dir/server_root/client_connection/client_sender.cpp.o: \
  /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
  /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
  /usr/include/c++/11/bits/std_thread.h \
-=======
- /home/regman/taller/left4Dead/server_root/entities/entity.h \
- /home/regman/taller/left4Dead/server_root/entities/weapon.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/jumper.h \
- /home/regman/taller/left4Dead/server_root/game/server_message.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/spear.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/venom.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/witch.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h \
- /home/regman/taller/left4Dead/dipa_classes/thread.h \
- /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
->>>>>>> 65b0fc35010c82d1a86a91939f61d2b2ce996592
  /usr/include/c++/11/bits/this_thread_sleep.h

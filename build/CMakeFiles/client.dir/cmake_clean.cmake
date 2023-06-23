@@ -29,6 +29,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/client.dir/client/client_event_manager.cc.o.d"
   "CMakeFiles/client.dir/client/client_main.cpp.o"
   "CMakeFiles/client.dir/client/client_main.cpp.o.d"
+  "CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o"
+  "CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o.d"
   "CMakeFiles/client.dir/client/render/client_render.cpp.o"
   "CMakeFiles/client.dir/client/render/client_render.cpp.o.d"
   "CMakeFiles/client.dir/client/render/game/client_player.cpp.o"

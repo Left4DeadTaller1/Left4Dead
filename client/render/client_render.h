@@ -57,16 +57,16 @@ class ClientRenderer {
    void drawBackground(SDL2pp::Texture& background);
 
    void drawPlayer(player_t& previousPlayer, 
-                  player_t& currentPlayer);
+                  player_t& currentPlayer, int it);
 
    void drawInfected(infected_t& previousInfected, 
-            infected_t& currentInfected);
+            infected_t& currentInfected, int it);
 
    void renderLifeBar(player_t& currentPlayer);
 
-   void  drawPlayers(std::map<uint8_t, player_t>& players);
+   void  drawPlayers(std::map<uint8_t, player_t>& players, int it);
 
-   void  drawInfected(std::map<uint8_t, infected_t>& infected);
+   void  drawInfected(std::map<uint8_t, infected_t>& infected, int it);
 
    void  drawInicio(void);
 

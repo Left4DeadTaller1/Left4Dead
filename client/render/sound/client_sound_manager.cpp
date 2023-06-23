@@ -19,11 +19,12 @@ SoundManager::~SoundManager() {
 }
 
 void SoundManager::playSound(typeEntity_t typeEntity, state_t state, int playMode){
-    if (state == IDLE){
+    if (state == IDLE || state == WALKING){
         return;
     }
     if (state == WALKING_SHOOTING){
         state = WALKING;
+        return;
     }
     if (state == RUNNING_SHOOTING){
         state = RUNNING;

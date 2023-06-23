@@ -49,12 +49,12 @@ void ClientRenderer::renderLifeBar(player_t& currentPlayer){
 }
 
 void ClientRenderer::drawInfected(infected_t& previousInfected, 
-                                infected_t& currentInfected){
+                                infected_t& currentInfected, int it){
     
     GameTexture& texture = textureManager.getTexture(currentInfected.typeInfected, 
                                                         currentInfected.state);
 
-    Rect srcRect((texture.width / texture.n)* (previousInfected.x % texture.n),
+    Rect srcRect((texture.width / texture.n)* (it % texture.n),
                 0,
                 texture.width / texture.n, 
                 texture.height);
@@ -68,11 +68,11 @@ void ClientRenderer::drawInfected(infected_t& previousInfected,
 }
 
 void ClientRenderer::drawPlayer(player_t& previousPlayer, 
-                                player_t& currentPlayer){
+                                player_t& currentPlayer, int it){
     
     GameTexture& texture = textureManager.getTexture(SOLDIER1, currentPlayer.state);
 
-    Rect srcRect((texture.width / texture.n)* (previousPlayer.x % texture.n),
+    Rect srcRect((texture.width / texture.n) * (it % texture.n),
                 0,
                 texture.width / texture.n, 
                 texture.height);
@@ -95,24 +95,24 @@ void ClientRenderer::drawBackground(Texture& background){
     renderer.Copy(background);
 }
 
-void  ClientRenderer::drawPlayers(std::map<uint8_t, player_t>& players){
+void  ClientRenderer::drawPlayers(std::map<uint8_t, player_t>& players, int it){
     for (auto &currentPlayer : players){
         std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
         if (iter != previousGameStateDTO->players.end()) {
-            drawPlayer(iter->second, currentPlayer.second);
+            drawPlayer(iter->second, currentPlayer.second, it);
         } else {
-            drawPlayer(currentPlayer.second, currentPlayer.second);
+            drawPlayer(currentPlayer.second, currentPlayer.second, it);
         }
     }   
 }
 
-void  ClientRenderer::drawInfected(std::map<uint8_t, infected_t>& infected){
+void  ClientRenderer::drawInfected(std::map<uint8_t, infected_t>& infected, int it){
     for (auto &currentInfected : infected){
         std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentInfected.first);
         if (iter != previousGameStateDTO->infected.end()) {
-            drawInfected(iter->second, currentInfected.second);
+            drawInfected(iter->second, currentInfected.second, it);
         } else {
-            drawInfected(currentInfected.second, currentInfected.second);
+            drawInfected(currentInfected.second, currentInfected.second, it);
         }
     }
 }
@@ -127,8 +127,12 @@ int ClientRenderer::looprender(void) {
     drawInicio();
     previousGameStateDTO = qServerToRender.pop();
 
+    uint32_t t1 = SDL_GetTicks();
+    int counterFrame = 0;
+    int rate = 1000 / MS_PER_FRAME;
+    int it = 0;
+
     while (isConnected) {
-        auto start = std::chrono::steady_clock::now();
 
         for (int i = 0; i < 10; i++){
             std::shared_ptr<ActionClient> action;
@@ -137,7 +141,6 @@ int ClientRenderer::looprender(void) {
                 //procesar accion
                 if (action->isExit()){
                     qServerToRender.close();
-                    //qEventsToRender.close();
                     return 0;
                 }
             }
@@ -147,38 +150,6 @@ int ClientRenderer::looprender(void) {
             std::shared_ptr<gameStateDTO_t> gameStateDTO;
             qServerToRender.try_pop(gameStateDTO);
             if (gameStateDTO){
-                for (auto &currentPlayer : gameStateDTO->players) {
-                    std::cout << "PLAYER\n";
-                    std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
-                    if (iter != previousGameStateDTO->players.end()) {
-                    std::cout << "idPlayer: " << (int)(currentPlayer.second.idPlayer) << "\n";
-                    std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
-                    std::cout << "action counter: " << (int)(currentPlayer.second.actionCounter) << "\n";
-                    std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
-                    std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
-                    std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
-                    std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
-                    } else {
-                    std::cout << "no encontro al player\n";
-                    }
-                    }
-                for (auto &currentPlayer : gameStateDTO->infected) {
-                    std::cout << "ZOMBI\n";
-                    std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentPlayer.first);
-                    if (iter != previousGameStateDTO->infected.end()) {
-                    std::cout << "idZombi: " << (int)(currentPlayer.second.idInfected) << "\n";
-                    std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
-                    std::cout << "action counter: " << (int)(currentPlayer.second.actionCounter) << "\n";
-                    std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
-                    std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
-                    std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
-                    std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
-                    std::cout << "type: " << (int)(currentPlayer.second.typeInfected) << "\n";
-                    } else {
-                    std::cout << "no encontro al player\n";
-                    }
-                    }
-
                 renderer.Clear();
 
                 drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
@@ -191,8 +162,8 @@ int ClientRenderer::looprender(void) {
 
                 SDL_RenderSetViewport(renderer.Get(), &viewport);
 
-                drawPlayers(gameStateDTO->players);
-                drawInfected(gameStateDTO->infected);
+                drawPlayers(gameStateDTO->players, it);
+                drawInfected(gameStateDTO->infected, it);
 
                 renderer.Present();
                 SDL_RenderSetViewport(renderer.Get(), nullptr);
@@ -200,16 +171,61 @@ int ClientRenderer::looprender(void) {
                 previousGameStateDTO = gameStateDTO;
             }
         }
+        uint32_t t2 = SDL_GetTicks();
+        int rest = rate - (t2 - t1);
+        if (rest < 0) {
+            int behind = -rest;
+            int lost = behind - behind % rate;
+            t1 += lost;
+            it += int(lost / rate);
+        } else {
+            SDL_Delay(rest);
+        }
+        t1 += rate;
 
-        auto end = std::chrono::steady_clock::now();
-        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-
-        if (elapsed.count() < MS_PER_FRAME) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(MS_PER_FRAME) - elapsed);
+        counterFrame++;
+        if (counterFrame == 5){
+            it++;
+            counterFrame = 0;
         }
     }
+
     return 0;
+    std::cout << "SALE DEL RENDER\n";
 }
+
+
+/*for (auto &currentPlayer : gameStateDTO->players) {
+    std::cout << "PLAYER\n";
+    std::map<uint8_t, player_t>::iterator iter = (previousGameStateDTO->players).find(currentPlayer.first);
+    if (iter != previousGameStateDTO->players.end()) {
+    std::cout << "idPlayer: " << (int)(currentPlayer.second.idPlayer) << "\n";
+    std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
+    std::cout << "action counter: " << (int)(currentPlayer.second.actionCounter) << "\n";
+    std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
+    std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
+    std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
+    std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
+    } else {
+    std::cout << "no encontro al player\n";
+    }
+    }*/
+/*for (auto &currentPlayer : gameStateDTO->infected) {
+    std::cout << "ZOMBI\n";
+    std::map<uint8_t, infected_t>::iterator iter = (previousGameStateDTO->infected).find(currentPlayer.first);
+    if (iter != previousGameStateDTO->infected.end()) {
+    std::cout << "idZombi: " << (int)(currentPlayer.second.idInfected) << "\n";
+    std::cout << "state: " << (int)(currentPlayer.second.state) << "\n";
+    std::cout << "action counter: " << (int)(currentPlayer.second.actionCounter) << "\n";
+    std::cout << "x: " << (int)(currentPlayer.second.x) << "\n";
+    std::cout << "y: " << (int)(currentPlayer.second.y) << "\n";
+    std::cout << "lookingTo: " << (int)(currentPlayer.second.lookingTo) << "\n";
+    std::cout << "health: " << (int)(currentPlayer.second.health) << "\n";
+    std::cout << "type: " << (int)(currentPlayer.second.typeInfected) << "\n";
+    } else {
+    std::cout << "no encontro al player\n";
+    }
+    }*/
 
 
 

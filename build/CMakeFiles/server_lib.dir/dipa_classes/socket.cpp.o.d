@@ -1,9 +1,5 @@
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: \
-<<<<<<< HEAD
  /home/usaurio/Left4Dead/dipa_classes/socket.cpp \
-=======
- /home/regman/taller/left4Dead/dipa_classes/socket.cpp \
->>>>>>> 65b0fc35010c82d1a86a91939f61d2b2ce996592
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -189,12 +185,6 @@ CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
-<<<<<<< HEAD
  /home/usaurio/Left4Dead/dipa_classes/socket.h \
  /home/usaurio/Left4Dead/dipa_classes/resolver.h \
  /home/usaurio/Left4Dead/dipa_classes/liberror.h
-=======
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/dipa_classes/resolver.h \
- /home/regman/taller/left4Dead/dipa_classes/liberror.h
->>>>>>> 65b0fc35010c82d1a86a91939f61d2b2ce996592

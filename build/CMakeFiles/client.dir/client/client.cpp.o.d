@@ -358,7 +358,6 @@ CMakeFiles/client.dir/client/client.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/local/include/SDL2pp/Music.hh /usr/local/include/SDL2pp/SDLMixer.hh \
-<<<<<<< HEAD
  /home/usaurio/Left4Dead/client/actions/action_client.h \
  /home/usaurio/Left4Dead/client/actions/action_create.h \
  /home/usaurio/Left4Dead/client/actions/action_client.h \
@@ -384,33 +383,6 @@ CMakeFiles/client.dir/client/client.cpp.o: \
  /usr/include/c++/11/atomic \
  /home/usaurio/Left4Dead/client/client_connection/client_receiver.h \
  /home/usaurio/Left4Dead/client/render/client_render.h \
-=======
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/actions/action_create.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/actions/action_start_move.h \
- /home/regman/taller/left4Dead/client/actions/action_end_move.h \
- /home/regman/taller/left4Dead/client/actions/action_join.h \
- /home/regman/taller/left4Dead/client/actions/action_start_game.h \
- /home/regman/taller/left4Dead/client/actions/action_exit_game.h \
- /home/regman/taller/left4Dead/client/actions/action_recharge.h \
- /home/regman/taller/left4Dead/client/actions/action_start_shoot.h \
- /home/regman/taller/left4Dead/client/actions/action_end_shoot.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/client/client_connection/../render/game/client_game_state.h \
- /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
- /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/bits/stl_multimap.h \
- /home/regman/taller/left4Dead/client/client_connection/client_sender.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
- /home/regman/taller/left4Dead/client/client_connection/client_receiver.h \
- /home/regman/taller/left4Dead/dipa_classes/liberror.h \
- /home/regman/taller/left4Dead/client/render/game/client_game_state.h \
- /usr/include/c++/11/atomic \
- /home/regman/taller/left4Dead/client/client_connection/client_receiver.h \
- /home/regman/taller/left4Dead/client/render/client_render.h \
->>>>>>> 65b0fc35010c82d1a86a91939f61d2b2ce996592
  /usr/local/include/SDL2/SDL_mixer.h \
  /home/usaurio/Left4Dead/client/render/texture/client_texture_manager.h \
  /home/usaurio/Left4Dead/client/render/texture/client_texture.h \

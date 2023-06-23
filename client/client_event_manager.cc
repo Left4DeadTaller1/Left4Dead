@@ -28,6 +28,7 @@ void EventManagerThread::run() {
                     action = std::make_shared<Exit>();
                     qEventsToSender.close();
                     qEventsToRender.push(action);
+                    qEventsToRender.close();
                     return;
                 } else if (event.type == SDL_KEYDOWN) {
                     switch (event.key.keysym.sym) {
