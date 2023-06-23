@@ -241,7 +241,7 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
                 player.setMovementDirectionY(movementDirectionY);
             }
 
-            if (player.getMovementDirectionX() == ENTITY_NONE_X && player.getMovementDirectionY() == ENTITY_NONE_Y) {
+            if (player.isMoving() && player.getMovementDirectionX() == ENTITY_NONE_X && player.getMovementDirectionY() == ENTITY_NONE_Y) {
                 player.idle();
             }
 

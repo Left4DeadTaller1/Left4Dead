@@ -15,10 +15,17 @@ The CXX compiler identification is GNU, found in "/home/usaurio/Left4Dead/build/
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp
 
+<<<<<<< HEAD
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_66e04/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_66e04.dir/build.make CMakeFiles/cmTC_66e04.dir/build
 gmake[1]: Entering directory '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp'
 Building CXX object CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o
 /usr/bin/c++   -v -o CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+=======
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c525e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c525e.dir/build.make CMakeFiles/cmTC_c525e.dir/build
+gmake[1]: Entering directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++   -v -o CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+>>>>>>> 6ba8261 (Fix error with states)
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -27,10 +34,17 @@ Target: x86_64-linux-gnu
 Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04.1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-aYxV0E/gcc-11-11.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-aYxV0E/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
 Thread model: posix
 Supported LTO compression algorithms: zlib zstd
+<<<<<<< HEAD
 gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04.1) 
 COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_66e04.dir/'
  /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_66e04.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccJhQ4kT.s
 GNU C++17 (Ubuntu 11.3.0-1ubuntu1~22.04.1) version 11.3.0 (x86_64-linux-gnu)
+=======
+gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c525e.dir/'
+ /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_c525e.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccgwRHqf.s
+GNU C++17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)
+>>>>>>> 6ba8261 (Fix error with states)
 	compiled by GNU C version 11.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
@@ -52,6 +66,7 @@ GNU C++17 (Ubuntu 11.3.0-1ubuntu1~22.04.1) version 11.3.0 (x86_64-linux-gnu)
 	compiled by GNU C version 11.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+<<<<<<< HEAD
 Compiler executable checksum: 2b9b53ff7f3a6952e2fe60119c16be53
 COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_66e04.dir/'
  as -v --64 -o CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccJhQ4kT.s
@@ -62,6 +77,18 @@ COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp
 Linking CXX executable cmTC_66e04
 /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66e04.dir/link.txt --verbose=1
 /usr/bin/c++  -v CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_66e04 
+=======
+Compiler executable checksum: 449548cbb29044828dc7ea158b577b98
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c525e.dir/'
+ as -v --64 -o CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccgwRHqf.s
+GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.'
+Linking CXX executable cmTC_c525e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c525e.dir/link.txt --verbose=1
+/usr/bin/c++  -v CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_c525e 
+>>>>>>> 6ba8261 (Fix error with states)
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
@@ -74,10 +101,17 @@ Supported LTO compression algorithms: zlib zstd
 gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04.1) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+<<<<<<< HEAD
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_66e04' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_66e04.'
  /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJRFHHO.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_66e04 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
 COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_66e04' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_66e04.'
 gmake[1]: Leaving directory '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp'
+=======
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c525e' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_c525e.'
+ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cczFU1J7.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c525e /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c525e' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_c525e.'
+gmake[1]: Leaving directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp'
+>>>>>>> 6ba8261 (Fix error with states)
 
 
 
@@ -106,10 +140,17 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp]
   ignore line: []
+<<<<<<< HEAD
   ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_66e04/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_66e04.dir/build.make CMakeFiles/cmTC_66e04.dir/build]
   ignore line: [gmake[1]: Entering directory '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp']
   ignore line: [Building CXX object CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o]
   ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+=======
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c525e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c525e.dir/build.make CMakeFiles/cmTC_c525e.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+>>>>>>> 6ba8261 (Fix error with states)
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -118,10 +159,17 @@ Parsed CXX implicit link information from above output:
   ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04.1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-aYxV0E/gcc-11-11.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-aYxV0E/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
   ignore line: [Thread model: posix]
   ignore line: [Supported LTO compression algorithms: zlib zstd]
+<<<<<<< HEAD
   ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04.1) ]
   ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_66e04.dir/']
   ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_66e04.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccJhQ4kT.s]
   ignore line: [GNU C++17 (Ubuntu 11.3.0-1ubuntu1~22.04.1) version 11.3.0 (x86_64-linux-gnu)]
+=======
+  ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c525e.dir/']
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_c525e.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccgwRHqf.s]
+  ignore line: [GNU C++17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)]
+>>>>>>> 6ba8261 (Fix error with states)
   ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
@@ -143,6 +191,7 @@ Parsed CXX implicit link information from above output:
   ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+<<<<<<< HEAD
   ignore line: [Compiler executable checksum: 2b9b53ff7f3a6952e2fe60119c16be53]
   ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_66e04.dir/']
   ignore line: [ as -v --64 -o CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccJhQ4kT.s]
@@ -153,6 +202,18 @@ Parsed CXX implicit link information from above output:
   ignore line: [Linking CXX executable cmTC_66e04]
   ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66e04.dir/link.txt --verbose=1]
   ignore line: [/usr/bin/c++  -v CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_66e04 ]
+=======
+  ignore line: [Compiler executable checksum: 449548cbb29044828dc7ea158b577b98]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c525e.dir/']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccgwRHqf.s]
+  ignore line: [GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [Linking CXX executable cmTC_c525e]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c525e.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++  -v CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_c525e ]
+>>>>>>> 6ba8261 (Fix error with states)
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper]
@@ -165,13 +226,22 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04.1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+<<<<<<< HEAD
   ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_66e04' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_66e04.']
   link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJRFHHO.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_66e04 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c525e' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_c525e.']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cczFU1J7.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c525e /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+>>>>>>> 6ba8261 (Fix error with states)
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper] ==> ignore
+<<<<<<< HEAD
     arg [-plugin-opt=-fresolution=/tmp/ccJRFHHO.res] ==> ignore
+=======
+    arg [-plugin-opt=-fresolution=/tmp/cczFU1J7.res] ==> ignore
+>>>>>>> 6ba8261 (Fix error with states)
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -189,7 +259,11 @@ Parsed CXX implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
+<<<<<<< HEAD
     arg [cmTC_66e04] ==> ignore
+=======
+    arg [cmTC_c525e] ==> ignore
+>>>>>>> 6ba8261 (Fix error with states)
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o]
@@ -201,7 +275,11 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..]
+<<<<<<< HEAD
     arg [CMakeFiles/cmTC_66e04.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+=======
+    arg [CMakeFiles/cmTC_c525e.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+>>>>>>> 6ba8261 (Fix error with states)
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -244,10 +322,17 @@ The C compiler identification is GNU, found in "/home/usaurio/Left4Dead/build/CM
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp
 
+<<<<<<< HEAD
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_bb120/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_bb120.dir/build.make CMakeFiles/cmTC_bb120.dir/build
 gmake[1]: Entering directory '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o
 /usr/bin/cc   -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L    -v -o CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+=======
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_4235d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_4235d.dir/build.make CMakeFiles/cmTC_4235d.dir/build
+gmake[1]: Entering directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc   -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L    -v -o CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+>>>>>>> 6ba8261 (Fix error with states)
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -256,10 +341,17 @@ Target: x86_64-linux-gnu
 Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04.1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-aYxV0E/gcc-11-11.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-aYxV0E/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
 Thread model: posix
 Supported LTO compression algorithms: zlib zstd
+<<<<<<< HEAD
 gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04.1) 
 COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_bb120.dir/'
  /usr/lib/gcc/x86_64-linux-gnu/11/cc1 -quiet -v -imultiarch x86_64-linux-gnu -D DEBUG -D _POSIX_C_SOURCE=200809L /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_bb120.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -ggdb -O3 -Wall -Wpedantic -pedantic-errors -version -fno-inline -fasynchronous-unwind-tables -fstack-protector-strong -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc8pcOVT.s
 GNU C17 (Ubuntu 11.3.0-1ubuntu1~22.04.1) version 11.3.0 (x86_64-linux-gnu)
+=======
+gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) 
+COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4235d.dir/'
+ /usr/lib/gcc/x86_64-linux-gnu/11/cc1 -quiet -v -imultiarch x86_64-linux-gnu -D DEBUG -D _POSIX_C_SOURCE=200809L /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_4235d.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -ggdb -O3 -Wall -Wpedantic -pedantic-errors -version -fno-inline -fasynchronous-unwind-tables -fstack-protector-strong -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccMqFE8Y.s
+GNU C17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)
+>>>>>>> 6ba8261 (Fix error with states)
 	compiled by GNU C version 11.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
@@ -277,6 +369,7 @@ GNU C17 (Ubuntu 11.3.0-1ubuntu1~22.04.1) version 11.3.0 (x86_64-linux-gnu)
 	compiled by GNU C version 11.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+<<<<<<< HEAD
 Compiler executable checksum: e13e2dc98bfa673227c4000e476a9388
 COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_bb120.dir/'
  as -v --gdwarf-5 --64 -o CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o /tmp/cc8pcOVT.s
@@ -287,6 +380,18 @@ COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' '
 Linking C executable cmTC_bb120
 /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bb120.dir/link.txt --verbose=1
 /usr/bin/cc  -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L   -v CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o -o cmTC_bb120 
+=======
+Compiler executable checksum: 3f6cb05d963ad324b8f9442822c95179
+COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4235d.dir/'
+ as -v --gdwarf-5 --64 -o CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o /tmp/ccMqFE8Y.s
+GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.'
+Linking C executable cmTC_4235d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4235d.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L   -v CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o -o cmTC_4235d 
+>>>>>>> 6ba8261 (Fix error with states)
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
@@ -299,10 +404,17 @@ Supported LTO compression algorithms: zlib zstd
 gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04.1) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+<<<<<<< HEAD
 COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'cmTC_bb120' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_bb120.'
  /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccRSWS0T.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_bb120 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
 COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'cmTC_bb120' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_bb120.'
 gmake[1]: Leaving directory '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp'
+=======
+COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'cmTC_4235d' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_4235d.'
+ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cc1PtkD3.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4235d /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'cmTC_4235d' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_4235d.'
+gmake[1]: Leaving directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp'
+>>>>>>> 6ba8261 (Fix error with states)
 
 
 
@@ -325,10 +437,17 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp]
   ignore line: []
+<<<<<<< HEAD
   ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_bb120/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_bb120.dir/build.make CMakeFiles/cmTC_bb120.dir/build]
   ignore line: [gmake[1]: Entering directory '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp']
   ignore line: [Building C object CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o]
   ignore line: [/usr/bin/cc   -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L    -v -o CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
+=======
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_4235d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_4235d.dir/build.make CMakeFiles/cmTC_4235d.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc   -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L    -v -o CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
+>>>>>>> 6ba8261 (Fix error with states)
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -337,10 +456,17 @@ Parsed C implicit link information from above output:
   ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04.1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-aYxV0E/gcc-11-11.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-aYxV0E/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
   ignore line: [Thread model: posix]
   ignore line: [Supported LTO compression algorithms: zlib zstd]
+<<<<<<< HEAD
   ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04.1) ]
   ignore line: [COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_bb120.dir/']
   ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1 -quiet -v -imultiarch x86_64-linux-gnu -D DEBUG -D _POSIX_C_SOURCE=200809L /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_bb120.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -ggdb -O3 -Wall -Wpedantic -pedantic-errors -version -fno-inline -fasynchronous-unwind-tables -fstack-protector-strong -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc8pcOVT.s]
   ignore line: [GNU C17 (Ubuntu 11.3.0-1ubuntu1~22.04.1) version 11.3.0 (x86_64-linux-gnu)]
+=======
+  ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4235d.dir/']
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1 -quiet -v -imultiarch x86_64-linux-gnu -D DEBUG -D _POSIX_C_SOURCE=200809L /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_4235d.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -ggdb -O3 -Wall -Wpedantic -pedantic-errors -version -fno-inline -fasynchronous-unwind-tables -fstack-protector-strong -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccMqFE8Y.s]
+  ignore line: [GNU C17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)]
+>>>>>>> 6ba8261 (Fix error with states)
   ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
@@ -358,6 +484,7 @@ Parsed C implicit link information from above output:
   ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+<<<<<<< HEAD
   ignore line: [Compiler executable checksum: e13e2dc98bfa673227c4000e476a9388]
   ignore line: [COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_bb120.dir/']
   ignore line: [ as -v --gdwarf-5 --64 -o CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o /tmp/cc8pcOVT.s]
@@ -368,6 +495,18 @@ Parsed C implicit link information from above output:
   ignore line: [Linking C executable cmTC_bb120]
   ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bb120.dir/link.txt --verbose=1]
   ignore line: [/usr/bin/cc  -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L   -v CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o -o cmTC_bb120 ]
+=======
+  ignore line: [Compiler executable checksum: 3f6cb05d963ad324b8f9442822c95179]
+  ignore line: [COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4235d.dir/']
+  ignore line: [ as -v --gdwarf-5 --64 -o CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o /tmp/ccMqFE8Y.s]
+  ignore line: [GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.']
+  ignore line: [Linking C executable cmTC_4235d]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4235d.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc  -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L   -v CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o -o cmTC_4235d ]
+>>>>>>> 6ba8261 (Fix error with states)
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper]
@@ -380,13 +519,22 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04.1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+<<<<<<< HEAD
   ignore line: [COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'cmTC_bb120' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_bb120.']
   link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccRSWS0T.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_bb120 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-Wall' '-Wpedantic' '-pedantic-errors' '-O3' '-ggdb' '-D' 'DEBUG' '-fno-inline' '-D' '_POSIX_C_SOURCE=200809L' '-v' '-o' 'cmTC_4235d' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_4235d.']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cc1PtkD3.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4235d /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+>>>>>>> 6ba8261 (Fix error with states)
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper] ==> ignore
+<<<<<<< HEAD
     arg [-plugin-opt=-fresolution=/tmp/ccRSWS0T.res] ==> ignore
+=======
+    arg [-plugin-opt=-fresolution=/tmp/cc1PtkD3.res] ==> ignore
+>>>>>>> 6ba8261 (Fix error with states)
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -404,7 +552,11 @@ Parsed C implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
+<<<<<<< HEAD
     arg [cmTC_bb120] ==> ignore
+=======
+    arg [cmTC_4235d] ==> ignore
+>>>>>>> 6ba8261 (Fix error with states)
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o]
@@ -416,7 +568,11 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..]
+<<<<<<< HEAD
     arg [CMakeFiles/cmTC_bb120.dir/CMakeCCompilerABI.c.o] ==> ignore
+=======
+    arg [CMakeFiles/cmTC_4235d.dir/CMakeCCompilerABI.c.o] ==> ignore
+>>>>>>> 6ba8261 (Fix error with states)
     arg [-lgcc] ==> lib [gcc]
     arg [--push-state] ==> ignore
     arg [--as-needed] ==> ignore
@@ -450,6 +606,7 @@ Parsed C implicit link information from above output:
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp
 
+<<<<<<< HEAD
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_caede/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_caede.dir/build.make CMakeFiles/cmTC_caede.dir/build
 gmake[1]: se entra en el directorio '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_caede.dir/CheckIncludeFile.c.o
@@ -458,12 +615,23 @@ Linking C executable cmTC_caede
 /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_caede.dir/link.txt --verbose=1
 /usr/bin/cc  -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L  CMakeFiles/cmTC_caede.dir/CheckIncludeFile.c.o -o cmTC_caede 
 gmake[1]: se sale del directorio '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp'
+=======
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ec301/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ec301.dir/build.make CMakeFiles/cmTC_ec301.dir/build
+gmake[1]: Entering directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ec301.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L  -o CMakeFiles/cmTC_ec301.dir/CheckIncludeFile.c.o -c /home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_ec301
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ec301.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L  CMakeFiles/cmTC_ec301.dir/CheckIncludeFile.c.o -o cmTC_ec301 
+gmake[1]: Leaving directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp'
+>>>>>>> 6ba8261 (Fix error with states)
 
 
 
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD succeeded with the following output:
 Change Dir: /home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp
 
+<<<<<<< HEAD
 Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_05ea7/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_05ea7.dir/build.make CMakeFiles/cmTC_05ea7.dir/build
 gmake[1]: se entra en el directorio '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp'
 Building C object CMakeFiles/cmTC_05ea7.dir/src.c.o
@@ -472,6 +640,16 @@ Linking C executable cmTC_05ea7
 /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_05ea7.dir/link.txt --verbose=1
 /usr/bin/cc  -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L  CMakeFiles/cmTC_05ea7.dir/src.c.o -o cmTC_05ea7 
 gmake[1]: se sale del directorio '/home/usaurio/Left4Dead/build/CMakeFiles/CMakeTmp'
+=======
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_87747/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_87747.dir/build.make CMakeFiles/cmTC_87747.dir/build
+gmake[1]: Entering directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_87747.dir/src.c.o
+/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L  -o CMakeFiles/cmTC_87747.dir/src.c.o -c /home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_87747
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_87747.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -pedantic -pedantic-errors -O3 -ggdb -DDEBUG -fno-inline -D _POSIX_C_SOURCE=200809L  CMakeFiles/cmTC_87747.dir/src.c.o -o cmTC_87747 
+gmake[1]: Leaving directory '/home/regman/taller/left4Dead/build/CMakeFiles/CMakeTmp'
+>>>>>>> 6ba8261 (Fix error with states)
 
 
 Source file was:
