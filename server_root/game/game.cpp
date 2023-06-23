@@ -231,6 +231,7 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
                     player.setActionState(playerState);
                 }
             }
+
             if (actionMovementDirectionX != NO_CHANGE_X) {
                 MovementDirectionX movementDirectionX = static_cast<MovementDirectionX>(actionMovementDirectionX);
                 player.setMovementDirectionX(movementDirectionX);
@@ -239,6 +240,11 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
                 MovementDirectionY movementDirectionY = static_cast<MovementDirectionY>(actionMovementDirectionY);
                 player.setMovementDirectionY(movementDirectionY);
             }
+
+            if (player.getMovementDirectionX() == ENTITY_NONE_X && player.getMovementDirectionY() == ENTITY_NONE_Y) {
+                player.idle();
+            }
+
         } else {
             break;
         }
@@ -246,19 +252,13 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
 }
 
 void Game::reloadPlayer(Player& player) {
-    if (player.getActionState() == PLAYER_RELOADING && player.getActionCounter() == 0) {
-        std::cout << "player reloaded" << std::endl;
-        std::cout << player.getActionState() << std::endl;
-
+    if (player.getActionState() == PLAYER_RELOADING && player.getActionCounter() == 0)
         player.reload();
-    }
 }
 
 void Game::move(Entity& entity) {
-    if (!entity.isMoving()) {
-        std::cout << "entity is not moving" << std::endl;
+    if (!entity.isMoving())
         return;
-    }
 
     int deltaX = 0;
     int deltaY = 0;
@@ -275,7 +275,6 @@ void Game::move(Entity& entity) {
 
 void Game::attack(Entity& entity) {
     if (entity.canAttack()) {
-        std::cout << "entity can attack" << std::endl;
         if (entity.getType() == PLAYER) {
             Player* player = dynamic_cast<Player*>(&entity);
             // TODO; change this to gral state
@@ -326,6 +325,8 @@ void Game::attack(Entity& entity) {
 }
 
 void Game::useSkill(Entity& entity) {
+    // if (entity.isDead())
+    //     return;
     std::shared_ptr<Ability> ability = entity.useSkill();
     switch (ability->type) {
         case WAIL: {

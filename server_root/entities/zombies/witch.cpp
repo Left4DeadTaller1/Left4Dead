@@ -29,7 +29,6 @@ std::shared_ptr<EntityDTO> Witch::getDto() {
 
     // Fill in the WitchDTO specific parts
     witchDto->zombieType = WITCH;
-    std::cout << "Action state before DTO: " << actionState << std::endl;
     witchDto->actionState = this->actionState;
 
     return witchDto;
