@@ -51,7 +51,7 @@ class Zombie : public Entity {
 
     std::tuple<int, int> getDirectionsAmount();
 
-    virtual int getAttackRange() = 0;
+    // virtual int getAttackRange() = 0;
 
     virtual Attack attack() = 0;
 

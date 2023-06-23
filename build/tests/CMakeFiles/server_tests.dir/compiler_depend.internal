@@ -4,6 +4,7 @@
 tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o
  /home/usaurio/Left4Dead/tests/server_tests/collisions_tests.cpp
  /usr/include/stdc-predef.h
+<<<<<<< HEAD
  /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest.h
  /usr/include/c++/11/cstddef
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h
@@ -364,6 +365,8 @@ tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o
  /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h
  /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h
  /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h
+=======
+>>>>>>> c2c48a5 (Made Players take dmg)
 
 tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o
  /home/usaurio/Left4Dead/tests/server_tests/entity_tests.cpp

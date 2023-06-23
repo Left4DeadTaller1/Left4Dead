@@ -3171,6 +3171,16 @@ CMakeFiles/server_lib.dir/server_root/entities/weapon.cpp.o: ../server_root/enti
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/climits \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/ostream \
   /usr/include/c++/11/ios \
@@ -7745,6 +7755,16 @@ CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: ../server_root/s
 
 ../server_root/entities/zombies/zombie.cpp:
 
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
+
 ../server_root/entities/weapon.cpp:
 
 ../server_root/entities/player.cpp:
@@ -7806,6 +7826,8 @@ CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: ../server_root/s
 /usr/include/c++/11/tuple:
 
 ../server_root/entities/zombies/witch.cpp:
+
+/usr/include/limits.h:
 
 /usr/include/c++/11/bits/stl_relops.h:
 
@@ -8251,6 +8273,8 @@ CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: ../server_root/s
 
 /usr/include/c++/11/tr1/poly_hermite.tcc:
 
+/usr/include/x86_64-linux-gnu/bits/uio_lim.h:
+
 /usr/include/c++/11/string:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
@@ -8331,6 +8355,8 @@ CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: ../server_root/s
 
 ../dipa_classes/thread.h:
 
+/usr/include/linux/limits.h:
+
 /usr/include/c++/11/bits/shared_ptr_base.h:
 
 /usr/include/c++/11/bits/basic_string.h:
@@ -8372,6 +8398,8 @@ CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: ../server_root/s
 /usr/include/c++/11/bits/std_thread.h:
 
 /usr/include/c++/11/sstream:
+
+/usr/include/c++/11/climits:
 
 /usr/include/c++/11/new:
 
@@ -8514,6 +8542,8 @@ CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: ../server_root/s
 /usr/include/features.h:
 
 ../server_root/game/games_manager.cpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
 
 /usr/include/c++/11/debug/debug.h:
 

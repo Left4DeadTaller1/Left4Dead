@@ -32,12 +32,12 @@ std::shared_ptr<EntityDTO> Venom::getDto() {
     return venomDto;
 }
 
-int Venom::getAttackRange() {
-    // TODO: change this to depending of atks cd
-    GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> entityParams = config.getEntitiesParams();
-    return entityParams["VENOM_ATTACK_RANGE"];
-}
+// int Venom::getAttackRange() {
+//     // TODO: change this to depending of atks cd
+//     GameConfig& config = GameConfig::getInstance();
+//     std::map<std::string, int> entityParams = config.getEntitiesParams();
+//     return entityParams["VENOM_ATTACK_RANGE"];
+// }
 
 Attack Venom::attack() {
     GameConfig& config = GameConfig::getInstance();
@@ -63,12 +63,14 @@ Attack Venom::attack() {
         attacksCooldowns["proyectile"] = entityParams["VENOM_PROYECTILE_COOLDOWN"];
         atkDmg = entityParams["VENOM_PROYECTILE_DAMAGE"] + mutationIncrease;
         actionState = VENOM_SHOOTING;
-        return Attack(LONG_VENOM, atkDmg, attackX, attackDirection, y, y + height);
+        int attackRange = entityParams["VENOM_PROYECTILE_RANGE"];
+        return Attack(LONG_VENOM, atkDmg, attackX, attackDirection, y, y + height, attackRange);
     } else {
         attacksCooldowns["spray"] = entityParams["VENOM_SPRAY_COOLDOWN"];
         atkDmg = entityParams["VENOM_SPRAY_DAMAGE"] + mutationIncrease;
         actionState = VENOM_ATTACKING;
-        return Attack(SHORT_VENOM, atkDmg, attackX, attackDirection, y, y + height);
+        int attackRange = entityParams["VENOM_SPRAY_RANGE"];
+        return Attack(SHORT_VENOM, atkDmg, attackX, attackDirection, y, y + height, attackRange);
     }
 }
 

@@ -70,6 +70,7 @@ class Game : public Thread {
     void updatePlayerState(Player& player, std::queue<Action>& playerActions);
     void move(Entity& entity);
     void attack(Entity& entity);
+    void useSkill(Entity& entity);
     void getPlayersActions();
     void removeDeadEntities();
     void reloadPlayer(Player& player);

@@ -17,6 +17,7 @@ Witch::Witch(int xPosition, int yPosition, std::string zombieId, int mutationLev
     movementSpeed = entityParams["WITCH_SPEED"] + mutationIncrease;
     // Todo: add jump ATk
     attacksCooldowns.insert(std::make_pair("melee", entityParams["WITCH_ATTACK_COOLDOWN"]));
+    attacksCooldowns.insert(std::make_pair("wail", entityParams["WITCH_WAIL_COOLDOWN"]));
 }
 
 std::shared_ptr<EntityDTO> Witch::getDto() {
@@ -32,10 +33,29 @@ std::shared_ptr<EntityDTO> Witch::getDto() {
     return witchDto;
 }
 
-int Witch::getAttackRange() {
+// int Witch::getAttackRange() {
+//     GameConfig& config = GameConfig::getInstance();
+//     std::map<std::string, int> entityParams = config.getEntitiesParams();
+//     return entityParams["WITCH_ATTACK_RANGE"];
+// }
+
+std::shared_ptr<Ability> Witch::useSkill() {
+    if (attacksCooldowns["wail"] != 0) {
+        std::shared_ptr<Ability> noneAbility = std::make_shared<Ability>();
+        noneAbility->type = INVALID;
+        return noneAbility;
+    }
+
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
-    return entityParams["WITCH_ATTACK_RANGE"];
+    attacksCooldowns["wail"] = entityParams["WITCH_WAIL_COOLDOWN"];
+    actionState = WITCH_SHOUTING;
+    actionCounter = entityParams["WITCH_WAIL_DURATION"];
+    std::shared_ptr<Wail> wailAbility = std::make_shared<Wail>();
+    wailAbility->WitchX = x;
+    wailAbility->WitchY = y;
+    wailAbility->witchInfectionLevel = mutationLevel;
+    return wailAbility;
 }
 
 Attack Witch::attack() {
@@ -60,7 +80,8 @@ Attack Witch::attack() {
     attacksCooldowns["melee"] = entityParams["WITCH_ATTACK_COOLDOWN"];
     atkDmg = entityParams["WITCH_ATTACK_DAMAGE"] + mutationIncrease;
     actionState = WITCH_ATTACKING;
-    return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
+    int attackRange = entityParams["WITCH_ATTACK_RANGE"];
+    return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
 }
 
 void Witch::startMoving() {

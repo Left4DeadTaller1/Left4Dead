@@ -63,7 +63,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     // }
     // std::cout << std::endl;
 
-    // EXPECT_EQ(encodedMessage, expectedMessage);
+    EXPECT_EQ(encodedMessage, expectedMessage);
 }
 
 TEST(ServerProtocolTest, TestExtractId) {

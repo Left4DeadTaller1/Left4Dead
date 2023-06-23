@@ -50,6 +50,7 @@ class Player : public Entity {
     void reload();
     bool canAttack() override;
     Attack attack();
+    void startMoving() override;
 
     bool checkIfDead() override;
     void kill() override;

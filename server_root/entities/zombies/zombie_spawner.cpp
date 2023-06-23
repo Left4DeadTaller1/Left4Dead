@@ -38,8 +38,6 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
         return nullptr;
     }
 
-    std::cout << "Spawning zombie" << std::endl;
-
     int spawnPointToSpawn = rand() % spawnPoints.size();
 
     int spawnX = spawnPoints[spawnPointToSpawn].x;
@@ -63,11 +61,19 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
     // } else {  // 15%
     //     zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
     // }
-    zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
+    zombiePtr = std::make_shared<Infected>(spawnX, spawnY, zombieId, mutationLevel);
 
     spawnInterval = spawnSettings["SPAWN_INTERVAL"];
 
     return std::static_pointer_cast<Entity>(zombiePtr);
+}
+
+int ZombieSpawner::getTotalZombies() {
+    return totalZombies;
+}
+
+void ZombieSpawner::increaseTotalZombies() {
+    totalZombies += 1;
 }
 
 void ZombieSpawner::mutate() {

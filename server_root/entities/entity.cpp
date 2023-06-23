@@ -16,6 +16,12 @@ int Entity::getMovementSpeed() {
     return movementSpeed;
 }
 
+std::shared_ptr<Ability> Entity::useSkill() {
+    std::shared_ptr<Ability> noneAbility = std::make_shared<Ability>();
+    noneAbility->type = INVALID;
+    return noneAbility;
+}
+
 void Entity::move(int deltaX, int deltaY) {
     x += deltaX;
     y += deltaY;

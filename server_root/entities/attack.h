@@ -26,15 +26,17 @@ class Attack {
     AttackDirection direction;
     int lowerY;
     int upperY;
+    int range;
 
     friend class CollisionDetector;
 
    public:
-    Attack(AttackType type, int damage, int xOrigin, int direction, int lowerY, int upperY);
+    Attack(AttackType type, int damage, int xOrigin, int direction, int lowerY, int upperY, int range);
     bool attackingLeft();  // return true if attacking left
     bool attackingRight();
     AttackType getType();
     int getDamage();
+    int getRange();
     ~Attack();
 };
 

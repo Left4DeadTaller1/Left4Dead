@@ -3,6 +3,15 @@
 
 #include "zombie.h"
 
+struct Wail : Ability {
+    Wail() {
+        type = WAIL;
+    }
+    int WitchX;
+    int WitchY;
+    int witchInfectionLevel;
+};
+
 enum WitchActionState {
     WITCH_MOVING,
     WITCH_HURT,
@@ -24,9 +33,10 @@ class Witch : public Zombie {
    public:
     Witch(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     std::shared_ptr<EntityDTO> getDto() override;
-    int getAttackRange() override;
+    // int getAttackRange() override;
     Attack attack() override;
     void startMoving() override;
+    std::shared_ptr<Ability> useSkill() override;
     bool isMoving() override;
     void idle() override;
     void takeDamage(int damage) override;

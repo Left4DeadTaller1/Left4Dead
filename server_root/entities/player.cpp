@@ -117,6 +117,10 @@ std::shared_ptr<EntityDTO> Player::getDto() {
     return dto;
 }
 
+void Player::startMoving() {
+    actionState = PLAYER_WALKING;
+}
+
 void Player::decreaseATKCooldown() {
     weapon.decreaseCooldown();
 }
@@ -126,7 +130,10 @@ void Player::idle() {
 }
 
 void Player::reload() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
     weapon.reload();
+    actionCounter = entityParams["PLAYER_RELOAD_DURATION"];
 }
 
 bool Player::canAttack() {

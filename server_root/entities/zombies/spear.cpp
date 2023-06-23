@@ -32,11 +32,11 @@ std::shared_ptr<EntityDTO> Spear::getDto() {
     return spearDto;
 }
 
-int Spear::getAttackRange() {
-    GameConfig& config = GameConfig::getInstance();
-    std::map<std::string, int> entityParams = config.getEntitiesParams();
-    return entityParams["SPEAR_ATTACK_RANGE"];
-}
+// int Spear::getAttackRange() {
+//     GameConfig& config = GameConfig::getInstance();
+//     std::map<std::string, int> entityParams = config.getEntitiesParams();
+//     return entityParams["SPEAR_ATTACK_RANGE"];
+// }
 
 Attack Spear::attack() {
     GameConfig& config = GameConfig::getInstance();
@@ -60,7 +60,8 @@ Attack Spear::attack() {
     attacksCooldowns["melee"] = entityParams["SPEAR_ATTACK_COOLDOWN"];
     atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"] + mutationIncrease;
     actionState = SPEAR_ATTACKING;
-    return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height);
+    int attackRange = entityParams["SPEAR_ATTACK_RANGE"];
+    return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
 }
 
 void Spear::startMoving() {
