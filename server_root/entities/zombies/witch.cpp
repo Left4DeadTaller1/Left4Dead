@@ -60,12 +60,13 @@ std::shared_ptr<Ability> Witch::useSkill() {
     return wailAbility;
 }
 
-Attack Witch::attack() {
+Attack Witch::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
     int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
-    int atkDmg;
+    int atkDmg = entityParams["WITCH_ATTACK_DAMAGE"] + mutationIncrease;
+    int attackRange = entityParams["WITCH_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
 
@@ -79,11 +80,15 @@ Attack Witch::attack() {
             attackX = x + width;
             break;
     }
-    attacksCooldowns["melee"] = entityParams["WITCH_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["WITCH_ATTACK_DAMAGE"] + mutationIncrease;
-    actionState = WITCH_ATTACKING;
-    int attackRange = entityParams["WITCH_ATTACK_RANGE"];
+
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
+}
+
+void Witch::attackPlayer() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    attacksCooldowns["melee"] = entityParams["WITCH_ATTACK_COOLDOWN"];
+    actionState = WITCH_ATTACKING;
 }
 
 void Witch::startMoving() {

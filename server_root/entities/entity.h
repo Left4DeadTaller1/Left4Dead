@@ -96,7 +96,7 @@ class Entity {
     virtual void idle() = 0;
 
     virtual std::shared_ptr<Ability> useSkill();
-    virtual Attack attack() = 0;
+    virtual Attack generateAttack() = 0;
     virtual void startMoving() = 0;
     virtual EntityType getType() = 0;
 

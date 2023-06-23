@@ -37,13 +37,14 @@ std::shared_ptr<EntityDTO> Infected::getDto() {
 //     return entityParams["INFECTED_ATTACK_RANGE"];
 // }
 
-Attack Infected::attack() {
+Attack Infected::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
     int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
 
-    int atkDmg;
+    int atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"] + mutationIncrease;
+    int attackRange = entityParams["INFECTED_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
 
@@ -57,11 +58,15 @@ Attack Infected::attack() {
             attackX = x + width;
             break;
     }
-    attacksCooldowns["melee"] = entityParams["INFECTED_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"] + mutationIncrease;
-    actionState = INFECTED_ATTACKING;
-    int attackRange = entityParams["INFECTED_ATTACK_RANGE"];
+
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
+}
+
+void Infected::attackPlayer() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    attacksCooldowns["melee"] = entityParams["INFECTED_ATTACK_COOLDOWN"];
+    actionState = INFECTED_ATTACKING;
 }
 
 void Infected::takeDamage(int damage) {

@@ -1,7 +1,9 @@
 #include "server_protocol.h"
 
 #include <arpa/inet.h>
+#include <netinet/in.h>
 
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -138,6 +140,28 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedHealth)[0]);
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedHealth)[1]);
     }
+
+    std::cout << "Encoded Message: ";
+
+    int byteCount = 0;
+    for (auto byte : *encodedMsg) {
+        byteCount++;
+
+        // Skip the first 3 bytes (game type and entity count)
+        if (byteCount <= 3) {
+            std::cout << static_cast<int>(byte) << " ";
+            continue;
+        }
+
+        // Add separator between entities (after 12 bytes for the first player and then after every 13 bytes for zombies)
+        if ((byteCount == 16) || (byteCount > 16 && (byteCount - 16) % 13 == 0)) {
+            std::cout << "| ";
+        }
+
+        // Print byte in decimal
+        std::cout << static_cast<int>(byte) << " ";
+    }
+    std::cout << std::endl;
 
     return encodedMsg;
 }

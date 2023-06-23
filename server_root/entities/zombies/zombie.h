@@ -53,7 +53,8 @@ class Zombie : public Entity {
 
     // virtual int getAttackRange() = 0;
 
-    virtual Attack attack() = 0;
+    virtual Attack generateAttack() = 0;
+    virtual void attackPlayer() = 0;
 
     bool canAttack() override;  // added canAttack function declaration here
 };

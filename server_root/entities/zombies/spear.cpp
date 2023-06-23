@@ -38,12 +38,13 @@ std::shared_ptr<EntityDTO> Spear::getDto() {
 //     return entityParams["SPEAR_ATTACK_RANGE"];
 // }
 
-Attack Spear::attack() {
+Attack Spear::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
     int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
-    int atkDmg;
+    int atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"] + mutationIncrease;
+    int attackRange = entityParams["SPEAR_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
 
@@ -57,11 +58,15 @@ Attack Spear::attack() {
             attackX = x + width;
             break;
     }
-    attacksCooldowns["melee"] = entityParams["SPEAR_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"] + mutationIncrease;
-    actionState = SPEAR_ATTACKING;
-    int attackRange = entityParams["SPEAR_ATTACK_RANGE"];
+
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
+}
+
+void Spear::attackPlayer() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    attacksCooldowns["melee"] = entityParams["SPEAR_ATTACK_COOLDOWN"];
+    actionState = SPEAR_ATTACKING;
 }
 
 void Spear::startMoving() {

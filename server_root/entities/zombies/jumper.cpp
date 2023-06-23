@@ -38,12 +38,13 @@ std::shared_ptr<EntityDTO> Jumper::getDto() {
 //     return entityParams["JUMPER_ATTACK_RANGE"];
 // }
 
-Attack Jumper::attack() {
+Attack Jumper::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
     int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
-    int atkDmg;
+    int atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] + mutationIncrease;
+    int attackRange = entityParams["JUMPER_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
 
@@ -57,11 +58,14 @@ Attack Jumper::attack() {
             attackX = x + width;
             break;
     }
-    attacksCooldowns["melee"] = entityParams["JUMPER_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] + mutationIncrease;
-    actionState = JUMPER_ATTACKING;
-    int attackRange = entityParams["JUMPER_ATTACK_RANGE"];
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
+}
+
+void Jumper::attackPlayer() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    attacksCooldowns["melee"] = entityParams["JUMPER_ATTACK_COOLDOWN"];
+    actionState = JUMPER_ATTACKING;
 }
 
 void Jumper::startMoving() {
