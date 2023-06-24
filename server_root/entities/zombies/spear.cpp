@@ -16,7 +16,7 @@ Spear::Spear(int xPosition, int yPosition, std::string zombieId, int mutationLev
     health = entityParams["SPEAR_HEALTH"] + mutationIncrease;
     movementSpeed = entityParams["SPEAR_SPEED"] + mutationIncrease;
     // Todo: add jump ATk
-    attacksCooldowns.insert(std::make_pair("melee", entityParams["SPEAR_ATTACK_COOLDOWN"]));
+    attacksCooldowns.insert(std::make_pair("melee", 0));
 }
 
 std::shared_ptr<EntityDTO> Spear::getDto() {

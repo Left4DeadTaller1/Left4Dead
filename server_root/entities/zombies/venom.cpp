@@ -15,8 +15,8 @@ Venom::Venom(int xPosition, int yPosition, std::string zombieId, int mutationLev
     height = entityParams["VENOM_HEIGHT"];
     health = entityParams["VENOM_HEALTH"] + mutationIncrease;
     movementSpeed = entityParams["VENOM_SPEED"] + mutationIncrease;
-    attacksCooldowns.insert(std::make_pair("spray", entityParams["VENOM_SPRAY_COOLDOWN"]));
-    attacksCooldowns.insert(std::make_pair("proyectile", entityParams["VENOM_PROYECTILE_COOLDOWN"]));
+    attacksCooldowns.insert(std::make_pair("spray", 0));
+    attacksCooldowns.insert(std::make_pair("proyectile", 0));
 }
 
 std::shared_ptr<EntityDTO> Venom::getDto() {

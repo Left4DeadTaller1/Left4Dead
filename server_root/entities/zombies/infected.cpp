@@ -15,7 +15,7 @@ Infected::Infected(int xPosition, int yPosition, std::string zombieId, int mutat
     height = entityParams["INFECTED_HEIGHT"];
     health = entityParams["INFECTED_HEALTH"] + mutationIncrease;
     movementSpeed = entityParams["INFECTED_SPEED"] + mutationIncrease;
-    attacksCooldowns.insert(std::make_pair("melee", entityParams["INFECTED_ATTACK_COOLDOWN"]));
+    attacksCooldowns.insert(std::make_pair("melee", 0));
 }
 
 std::shared_ptr<EntityDTO> Infected::getDto() {

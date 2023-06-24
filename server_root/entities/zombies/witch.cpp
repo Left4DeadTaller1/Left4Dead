@@ -16,8 +16,8 @@ Witch::Witch(int xPosition, int yPosition, std::string zombieId, int mutationLev
     height = entityParams["WITCH_HEIGHT"];
     health = entityParams["WITCH_HEALTH"] + mutationIncrease;
     movementSpeed = entityParams["WITCH_SPEED"] + mutationIncrease;
-    // Todo: add jump ATk
-    attacksCooldowns.insert(std::make_pair("melee", entityParams["WITCH_ATTACK_COOLDOWN"]));
+
+    attacksCooldowns.insert(std::make_pair("melee", 0));
     attacksCooldowns.insert(std::make_pair("wail", entityParams["WITCH_WAIL_COOLDOWN"]));
 }
 

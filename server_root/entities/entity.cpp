@@ -48,7 +48,6 @@ int Entity::getActionCounter() {
 
 void Entity::decreaseActionCounter() {
     if (actionCounter > 0) {
-        // DYING & AC = 1
         actionCounter--;
     }
 
@@ -56,8 +55,6 @@ void Entity::decreaseActionCounter() {
         kill();
         return;
     }
-    // RELOADING AC 0
-    // DYING & AC = 0
     if (actionCounter == 0 && !isMoving() && !isDead())
         idle();
 }

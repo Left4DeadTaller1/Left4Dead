@@ -16,7 +16,7 @@ Jumper::Jumper(int xPosition, int yPosition, std::string zombieId, int mutationL
     health = entityParams["JUMPER_HEALTH"] + mutationIncrease;
     movementSpeed = entityParams["JUMPER_SPEED"] + mutationIncrease;
     // Todo: add jump ATk
-    attacksCooldowns.insert(std::make_pair("melee", entityParams["JUMPER_ATTACK_COOLDOWN"]));
+    attacksCooldowns.insert(std::make_pair("melee", 0));
 }
 
 std::shared_ptr<EntityDTO> Jumper::getDto() {
@@ -92,9 +92,6 @@ void Jumper::takeDamage(int damage) {
         actionState = JUMPER_HURT;
         actionCounter = entityParams["JUMPER_HURT_DURATION"];
     }
-
-    std::cout << "Health after dmg: " << health << std::endl
-              << std::endl;
 }
 
 bool Jumper::checkIfDead() {

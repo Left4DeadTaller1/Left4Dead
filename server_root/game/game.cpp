@@ -175,10 +175,8 @@ void Game::getPlayersActions() {
 }
 
 void Game::updateState() {
-    // todo: i think this is not efficient
+    // todo: i think this is not efficient and should go int o the if in line 181
     removeDeadEntities();
-    int i = 0;
-
     for (auto& entity : entities) {
         if (entity->isDead()) {
             entity->decreaseActionCounter();
@@ -201,7 +199,6 @@ void Game::updateState() {
         move(*entity);
         attack(*entity);
         useSkill(*entity);
-        i++;
     }
 
     // Every min mutate zombies
