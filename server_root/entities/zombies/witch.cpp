@@ -16,8 +16,8 @@ Witch::Witch(int xPosition, int yPosition, std::string zombieId, int mutationLev
     height = entityParams["WITCH_HEIGHT"];
     health = entityParams["WITCH_HEALTH"] + mutationIncrease;
     movementSpeed = entityParams["WITCH_SPEED"] + mutationIncrease;
-    // Todo: add jump ATk
-    attacksCooldowns.insert(std::make_pair("melee", entityParams["WITCH_ATTACK_COOLDOWN"]));
+
+    attacksCooldowns.insert(std::make_pair("melee", 0));
     attacksCooldowns.insert(std::make_pair("wail", entityParams["WITCH_WAIL_COOLDOWN"]));
 }
 
@@ -46,7 +46,8 @@ std::shared_ptr<Ability> Witch::useSkill() {
         noneAbility->type = INVALID;
         return noneAbility;
     }
-    std::cout << "witch using wail" << std::endl;
+
+    std::cout << "Witch used Wail, and its state is: " << actionState << std::endl;
 
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
@@ -60,12 +61,13 @@ std::shared_ptr<Ability> Witch::useSkill() {
     return wailAbility;
 }
 
-Attack Witch::attack() {
+Attack Witch::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
     int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
-    int atkDmg;
+    int atkDmg = entityParams["WITCH_ATTACK_DAMAGE"] + mutationIncrease;
+    int attackRange = entityParams["WITCH_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
 
@@ -79,11 +81,15 @@ Attack Witch::attack() {
             attackX = x + width;
             break;
     }
-    attacksCooldowns["melee"] = entityParams["WITCH_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["WITCH_ATTACK_DAMAGE"] + mutationIncrease;
-    actionState = WITCH_ATTACKING;
-    int attackRange = entityParams["WITCH_ATTACK_RANGE"];
+
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
+}
+
+void Witch::attackPlayer() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    attacksCooldowns["melee"] = entityParams["WITCH_ATTACK_COOLDOWN"];
+    actionState = WITCH_ATTACKING;
 }
 
 void Witch::startMoving() {
@@ -122,16 +128,16 @@ bool Witch::checkIfDead() {
 void Witch::kill() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
-    actionState = WITCH_DYING;
+    actionState = WITCH_DEAD;
     actionCounter = entityParams["WITCH_DEATH_DURATION"];
 }
 
 bool Witch::isDead() {
-    return (actionState == WITCH_DEAD && actionCounter == WITCH_DYING);
+    return (actionState == WITCH_DEAD || actionState == WITCH_DYING);
 }
 
 bool Witch::isRemovable() {
-    return actionState == WITCH_DYING && actionCounter == 0;
+    return (actionCounter == 0 && actionState == WITCH_DEAD);
 }
 
 Witch::~Witch() {}

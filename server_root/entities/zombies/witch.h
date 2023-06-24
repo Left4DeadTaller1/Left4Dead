@@ -33,8 +33,8 @@ class Witch : public Zombie {
    public:
     Witch(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     std::shared_ptr<EntityDTO> getDto() override;
-    // int getAttackRange() override;
-    Attack attack() override;
+    Attack generateAttack() override;
+    void attackPlayer() override;
     void startMoving() override;
     std::shared_ptr<Ability> useSkill() override;
     bool isMoving() override;

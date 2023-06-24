@@ -25,7 +25,8 @@ class Jumper : public Zombie {
     Jumper(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     std::shared_ptr<EntityDTO> getDto() override;
     // int getAttackRange() override;
-    Attack attack() override;
+    Attack generateAttack() override;
+    void attackPlayer() override;
     void startMoving() override;
     void takeDamage(int damage) override;
     bool isMoving() override;

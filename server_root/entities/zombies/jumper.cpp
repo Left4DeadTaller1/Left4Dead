@@ -16,7 +16,7 @@ Jumper::Jumper(int xPosition, int yPosition, std::string zombieId, int mutationL
     health = entityParams["JUMPER_HEALTH"] + mutationIncrease;
     movementSpeed = entityParams["JUMPER_SPEED"] + mutationIncrease;
     // Todo: add jump ATk
-    attacksCooldowns.insert(std::make_pair("melee", entityParams["JUMPER_ATTACK_COOLDOWN"]));
+    attacksCooldowns.insert(std::make_pair("melee", 0));
 }
 
 std::shared_ptr<EntityDTO> Jumper::getDto() {
@@ -38,12 +38,13 @@ std::shared_ptr<EntityDTO> Jumper::getDto() {
 //     return entityParams["JUMPER_ATTACK_RANGE"];
 // }
 
-Attack Jumper::attack() {
+Attack Jumper::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
     int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
-    int atkDmg;
+    int atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] + mutationIncrease;
+    int attackRange = entityParams["JUMPER_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
 
@@ -57,11 +58,14 @@ Attack Jumper::attack() {
             attackX = x + width;
             break;
     }
-    attacksCooldowns["melee"] = entityParams["JUMPER_ATTACK_COOLDOWN"];
-    atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] + mutationIncrease;
-    actionState = JUMPER_ATTACKING;
-    int attackRange = entityParams["JUMPER_ATTACK_RANGE"];
     return Attack(MELEE, atkDmg, attackX, attackDirection, y, y + height, attackRange);
+}
+
+void Jumper::attackPlayer() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    attacksCooldowns["melee"] = entityParams["JUMPER_ATTACK_COOLDOWN"];
+    actionState = JUMPER_ATTACKING;
 }
 
 void Jumper::startMoving() {
@@ -77,24 +81,17 @@ bool Jumper::isMoving() {
 }
 
 void Jumper::takeDamage(int damage) {
-    std::cout << "Jumper taking damage: " << damage << std::endl;
-    std::cout << "Health: " << health << std::endl;
-
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
     if (health <= 0) {
         health = 0;
-        std::cout << "Jumper Dying, health: " << health << std::endl;
         actionState = JUMPER_DYING;
         actionCounter = entityParams["JUMPER_DYING_DURATION"];
     } else {
         actionState = JUMPER_HURT;
         actionCounter = entityParams["JUMPER_HURT_DURATION"];
     }
-
-    std::cout << "Health after dmg: " << health << std::endl
-              << std::endl;
 }
 
 bool Jumper::checkIfDead() {

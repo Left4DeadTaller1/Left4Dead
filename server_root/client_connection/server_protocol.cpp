@@ -1,7 +1,9 @@
 #include "server_protocol.h"
 
 #include <arpa/inet.h>
+#include <netinet/in.h>
 
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -138,6 +140,38 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedHealth)[0]);
         encodedMsg->push_back(reinterpret_cast<uint8_t *>(&encodedHealth)[1]);
     }
+
+    // std::cout << "Encoded Message: ";
+
+    // int byteCount = 0;
+    // int entityByteCount = -3;  // Exclude the first 3 bytes for counting bytes in entities
+    // for (auto byte : *encodedMsg) {
+    //     byteCount++;
+    //     entityByteCount++;
+
+    //     // Add separator after the first 3 bytes
+    //     if (byteCount == 4) {
+    //         std::cout << "| ";
+    //     }
+
+    //     // Add separator between entities (after every 13 bytes for zombies, excluding the first 3 bytes)
+    //     if (byteCount > 4 && entityByteCount % 13 == 0) {
+    //         std::cout << "| ";
+    //     }
+
+    //     // Color the 4th byte of zombies red and the 3rd byte blue
+    //     if (byteCount > 4) {
+    //         if (entityByteCount % 13 == 3) {
+    //             std::cout << blueText;
+    //         } else if (entityByteCount % 13 == 4) {
+    //             std::cout << redText;
+    //         }
+    //     }
+
+    //     // Print byte in decimal
+    //     std::cout << static_cast<int>(byte) << " ";
+    // }
+    // std::cout << std::endl;
 
     return encodedMsg;
 }

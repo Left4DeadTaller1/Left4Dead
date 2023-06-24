@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-338ce3078b5e90b8ff7f3947e66491cc CMakeFiles/qt_autogen
-1219a6dbe2e367f4b8ad0467bc6e22ae ui_mainwindow.h

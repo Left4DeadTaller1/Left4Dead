@@ -50,18 +50,17 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
 
     std::shared_ptr<Zombie> zombiePtr;
 
-    // if (zombieType < 50) {  // 50%
-    //     zombiePtr = std::make_shared<Infected>(spawnX, spawnY, zombieId, mutationLevel);
-    // } else if (zombieType < 55) {  // 5%
-    //     zombiePtr = std::make_shared<Witch>(spawnX, spawnY, zombieId, mutationLevel);
-    // } else if (zombieType < 70) {  // 15%
-    //     zombiePtr = std::make_shared<Venom>(spawnX, spawnY, zombieId, mutationLevel);
-    // } else if (zombieType < 85) {  // 15%
-    //     zombiePtr = std::make_shared<Spear>(spawnX, spawnY, zombieId, mutationLevel);
-    // } else {  // 15%
-    //     zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
-    // }
-    zombiePtr = std::make_shared<Witch>(spawnX, spawnY, zombieId, mutationLevel);
+    if (zombieType < 50) {  // 50%
+        zombiePtr = std::make_shared<Infected>(spawnX, spawnY, zombieId, mutationLevel);
+    } else if (zombieType < 55) {  // 5%
+        zombiePtr = std::make_shared<Witch>(spawnX, spawnY, zombieId, mutationLevel);
+    } else if (zombieType < 70) {  // 15%
+        zombiePtr = std::make_shared<Venom>(spawnX, spawnY, zombieId, mutationLevel);
+    } else if (zombieType < 85) {  // 15%
+        zombiePtr = std::make_shared<Spear>(spawnX, spawnY, zombieId, mutationLevel);
+    } else {  // 15%
+        zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
+    }
 
     spawnInterval = spawnSettings["SPAWN_INTERVAL"];
 

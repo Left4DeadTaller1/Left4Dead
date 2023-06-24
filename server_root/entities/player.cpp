@@ -152,7 +152,7 @@ void Player::decreaseActionCounter() {
         kill();
 }
 
-Attack Player::attack() {
+Attack Player::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     AttackDirection attackDirection = RIGHT;  // some default values to avoid warnings
@@ -165,8 +165,6 @@ Attack Player::attack() {
             attackDirection = RIGHT;
             break;
     }
-
-    actionCounter = weapon.getCooldown();
 
     // return weapon.shoot(x, attackDirection, y, y + height);
     Attack bullet = weapon.shoot(x, attackDirection, y, (y + height));

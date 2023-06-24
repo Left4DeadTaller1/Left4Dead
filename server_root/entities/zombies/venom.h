@@ -25,7 +25,8 @@ class Venom : public Zombie {
     Venom(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     std::shared_ptr<EntityDTO> getDto() override;
     // int getAttackRange() override;
-    Attack attack() override;
+    Attack generateAttack() override;
+    void attackPlayer() override;
     void startMoving() override;
     bool isMoving() override;
     void idle() override;

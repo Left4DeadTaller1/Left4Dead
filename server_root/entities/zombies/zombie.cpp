@@ -107,7 +107,8 @@ std::tuple<int, int> Zombie::getDirectionsAmount() {
 
 void Zombie::decreaseATKCooldown() {
     for (auto& pair : attacksCooldowns) {
-        pair.second -= 1;
+        if (pair.second != 0)
+            pair.second -= 1;
     }
 }
 

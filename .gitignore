@@ -108,12 +108,25 @@ link.txt
 
 /build/
 
-build/.cmake/api/v1/reply/cmakeFiles-v1-92a14105ea02cc930887.json
-build/tests/CMakeFiles/server_tests.dir/compiler_depend.internal
-build/tests/CMakeFiles/client_tests.dir/compiler_depend.make
-build/tests/CMakeFiles/client_tests.dir/compiler_depend.internal
-build/tests/server_tests
-build/tests/CMakeFiles/server_tests.dir/compiler_depend.internal
-build/CMakeFiles/qt_autogen.dir/AutogenInfo.json
-build/.cmake/api/v1/reply/index-2023-06-23T19-28-15-0615.json
-build/.cmake/api/v1/reply/cmakeFiles-v1-92a14105ea02cc930887.json
+# QtCreator
+*.autosave
+*.pro.user
+*.pro.user.*
+*.creator.user
+*.creator.user.*
+*.filelist
+*.filelist.*
+*.includes
+*.includes.*
+*.layout
+
+# QtCtreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
+*.qmlproject.user.*
+*.qmlproject.*
+
+# QtCtreator CMake
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+CMakeLists.txt.user.*
