@@ -1,6 +1,7 @@
 #ifndef CLIENT_RENDER_H
 #define CLIENT_RENDER_H
 
+#include "../../server_root/game/configuration/game_config.h"
 #include <SDL2pp/SDL2pp.hh>
 #include <SDL2/SDL_mixer.h>
 #include <exception>
@@ -13,6 +14,7 @@
 #include "client_texture_manager.h"
 #include "client_sound_manager.h"
 #include "client_game_state.h"
+#include "client_game.h"
 #include "client_texture.h"
 #include "queue.h"
 #include <atomic>
@@ -52,7 +54,7 @@ class ClientRenderer {
    SDL2pp::Renderer renderer;
    TextureManager textureManager;
    SoundManager soundManager;
-   std::shared_ptr<gameStateDTO_t> previousGameStateDTO;
+   ClientGame game;
 
    void drawBackground(SDL2pp::Texture& background);
 

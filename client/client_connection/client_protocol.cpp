@@ -19,9 +19,29 @@ int ClientProtocol::receiveTypeCommand(bool& wasClosed){
     return messageType;
 }
 
+std::string traducirType_(int typeInfected){
+    if (typeInfected == SOLDIER1){
+        return "soldier1";
+    }
+    if (typeInfected == JUMPER){
+        return "jumper";
+    }
+    if (typeInfected == VENOM){
+        return "venom";
+    }
+    if (typeInfected == WITCH){
+        return "witch";
+    }
+    if (typeInfected == ZOMBIE){
+        return "zombie";
+    }else {
+        return "TIPO NO IDENTIFICADO";
+    }
+}
+
 std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed){
-    std::map<uint8_t, player_t> mapPlayers;
-    std::map<uint8_t, infected_t> mapInfected;
+    std::vector<player_t> vecPlayers;
+    std::vector<infected_t> vecInfected;
 
     uint16_t amountEntities;
     skt.recvall(&amountEntities, 2, &wasClosed);
@@ -29,6 +49,7 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         return NULL;
     }
     amountEntities = ntohs(amountEntities);
+    //std::cout << "amount entities: " << amountEntities << "\n";
 
     for (int i = 0; i < amountEntities; i++){
         uint8_t typeEntity;
@@ -36,6 +57,12 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         if(wasClosed){
             return NULL;
         }
+
+        /*if ((int)typeEntity == INFECTED){
+            std::cout << "es un infectado\n";
+        } else {
+            std::cout << "es un player\n";
+        }*/
 
         uint16_t idEntity;
         skt.recvall(&idEntity, 2, &wasClosed);
@@ -52,6 +79,7 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
                 return NULL;
             }
             typeInfected = static_cast<typeEntity_t>(typeInfected_);
+            //std::cout << "typeInfected: " << traducirType_((int)typeInfected) << "\n";
         }
 
         uint8_t state_;
@@ -105,7 +133,7 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             player.lookingTo = lookingTo;
             player.health = health;
 
-            mapPlayers[idEntity] = player;
+            vecPlayers.push_back(player);
         }
 
         if ((int)typeEntity == INFECTED){
@@ -120,12 +148,14 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             infected.lookingTo = lookingTo;
             infected.health = health;
 
-            mapInfected[idEntity] = infected;
+            //std::cout << "se entra a guardar infected con id: " << infected.idInfected << "\n";
+
+            vecInfected.push_back(infected);
         }
     }
     std::shared_ptr<gameStateDTO_t> gameStateDTO = std::make_shared<gameStateDTO_t>();
-    gameStateDTO->players = mapPlayers;
-    gameStateDTO->infected = mapInfected;
+    gameStateDTO->players = vecPlayers;
+    gameStateDTO->infected = vecInfected;
     return gameStateDTO;
 }
 

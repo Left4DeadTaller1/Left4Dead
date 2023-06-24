@@ -96,4 +96,4 @@ gameParams:
 
   spawns:
     MUTATION_STRENGTH: 10
-    SPAWN_INTERVAL: 4000
+    SPAWN_INTERVAL: 300

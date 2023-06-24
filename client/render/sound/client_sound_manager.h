@@ -11,22 +11,20 @@
 
 class SoundManager {
     private:
-    std::map<std::string, std::shared_ptr<Sound>> sounds;
+    std::map<state_t, std::shared_ptr<Sound>> soundsSoldier1;
+    std::map<state_t, std::shared_ptr<Sound>> soundsJumper;
+    std::map<state_t, std::shared_ptr<Sound>> soundsSpear;
+    std::map<state_t, std::shared_ptr<Sound>> soundsVenom;
+    std::map<state_t, std::shared_ptr<Sound>> soundsWitch;
+    std::map<state_t, std::shared_ptr<Sound>> soundsZombie;
     std::map<typeEntity_t, std::string> translationTypeEntity;
-    std::map<state_t, std::string> translationState;
 
     void loadSounds();
-
-    void loadTranslations(void);
 
     public:
     SoundManager();
 
-    void playSound(const std::string& nameSound, int playMode);
-
-    void playSound(typeEntity_t typeEntity, state_t state, int playMode);
-
-    void stopSound(typeEntity_t typeEntity, state_t state);
+    std::map<state_t, std::shared_ptr<Sound>>& getSounds(typeEntity_t type);
 
     ~SoundManager();
 };

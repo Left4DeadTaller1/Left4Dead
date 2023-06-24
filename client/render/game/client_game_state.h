@@ -2,7 +2,7 @@
 #ifndef CLIENT_GAME_STATE_H_
 #define CLIENT_GAME_STATE_H_
 
-#include <map>
+#include <vector>
 
 typedef struct player player_t;
 typedef struct infected infected_t;
@@ -67,8 +67,8 @@ struct infected {
 };
 
 struct gameStateDTO {
-    std::map<uint8_t, player_t> players;
-    std::map<uint8_t, infected_t> infected;
+    std::vector<player_t> players;
+    std::vector<infected_t> infected;
 };
 
 #endif

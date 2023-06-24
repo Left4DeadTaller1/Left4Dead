@@ -10,7 +10,6 @@ SoundManager::SoundManager(){
         std::cerr << "Failed to open audio: " << Mix_GetError() << std::endl;
     }
     loadSounds();
-    loadTranslations();
 }
 
 SoundManager::~SoundManager() {
@@ -18,87 +17,34 @@ SoundManager::~SoundManager() {
     Mix_Quit();
 }
 
-void SoundManager::playSound(typeEntity_t typeEntity, state_t state, int playMode){
-    if (state == IDLE || state == WALKING){
-        return;
+std::map<state_t, std::shared_ptr<Sound>>& SoundManager::getSounds(typeEntity_t type){
+    if (type == JUMPER){
+        return soundsJumper;
     }
-    if (state == WALKING_SHOOTING){
-        state = WALKING;
-        return;
+    if (type == SPEAR){
+        return soundsSpear;
     }
-    if (state == RUNNING_SHOOTING){
-        state = RUNNING;
+    if (type == VENOM){
+        return soundsVenom;
     }
-    std::string nameSound = translationTypeEntity[typeEntity] + "-" + translationState[state];
-    std::map<std::string, std::shared_ptr<Sound>>::iterator iter = sounds.find(nameSound);
-    if (iter == sounds.end()) {
-        std::cout << "NO SE ENCONTRO SONIDO: " << nameSound << "\n";
-        //lanzar excepcion
+    if (type == WITCH){
+        return soundsWitch;
     }
-    (iter->second)->play(playMode);
-}
-
-void SoundManager::stopSound(typeEntity_t typeEntity, state_t state){
-    if (state == IDLE){
-        return;
+    if (type == ZOMBIE){
+        return soundsZombie;
     }
-    if (state == WALKING_SHOOTING){
-        state = WALKING;
+    if (type == SOLDIER1){
+        return soundsSoldier1;
     }
-    if (state == RUNNING_SHOOTING){
-        state = RUNNING;
-    }
-    std::string nameSound = translationTypeEntity[typeEntity] + "-" + translationState[state];
-    std::map<std::string, std::shared_ptr<Sound>>::iterator iter = sounds.find(nameSound);
-    if (iter == sounds.end()) {
-        std::cout << "NO SE ENCONTRO SONIDO: " << nameSound << "\n";
-        //lanzar excepcion
-        return;
-    }
-    (iter->second)->stop();
-}
-
-void SoundManager::loadTranslations(){
-    translationTypeEntity[JUMPER] = "jumper";
-    translationTypeEntity[SPEAR] = "spear";
-    translationTypeEntity[VENOM] = "venom";
-    translationTypeEntity[WITCH] = "witch";
-    translationTypeEntity[ZOMBIE] = "zombie";
-    translationTypeEntity[SOLDIER1] = "soldier1";
-    translationTypeEntity[SOLDIER2] = "soldier2";
-    translationTypeEntity[SOLDIER3] = "soldier3";
-
-    translationState[WALKING] = "walk";
-    translationState[RUNNING] = "run";
-    translationState[IDLE] = "idle";
-    translationState[DEAD] = "dead";
-    translationState[HURT] = "hurt";
-    translationState[RELOADING] = "recharge";
-    translationState[SHOOTING] = "shot1";
-    translationState[ATTACK] = "attack";
-    translationState[ATTACK1] = "attack1";
-    translationState[ATTACK2] = "attack2";
-    translationState[ATTACK3] = "attack3";
-    translationState[EATING] = "eating";
-    translationState[JUMP] = "jump";
-    translationState[FALL] = "fall";
-    translationState[PROTECT] = "protect";
-    translationState[RUN_AND_ATTACK] = "run+attack";
-    translationState[ATTACK1a] = "attack1a";
-    translationState[SCREAM] = "scream";
-    translationState[BITE] = "bite";
 }
 
 void SoundManager::loadSounds(){
     //load sounds soldier 1
-    sounds.emplace("soldier1-attack", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo3.wav", 2));
-    sounds.emplace("soldier1-dead", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/dead.wav", 3));
-    sounds.emplace("soldier1-explosion", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/explosion.wav", 4));
-    sounds.emplace("soldier1-grenade", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/granada.wav", 5));
-    sounds.emplace("soldier1-hurt", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/grito_de_ayuda.wav", 6));
-    sounds.emplace("soldier1-recharge", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/cargar_arma1.wav", 7));
-    sounds.emplace("soldier1-run", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/trotar.wav", 8));
-    sounds.emplace("soldier1-shot1", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo1.wav", 9));
-    sounds.emplace("soldier1-shot2", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo1.wav", 10));
-    sounds.emplace("soldier1-walk", std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/caminar2.wav", 11));
+    soundsSoldier1.emplace(ATTACK, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo3.wav", 2));
+    soundsSoldier1.emplace(DEAD, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/dead.wav", 3));
+    soundsSoldier1.emplace(HURT, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/grito_de_ayuda.wav", 6));
+    soundsSoldier1.emplace(RELOADING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/cargar_arma1.wav", 7));
+    soundsSoldier1.emplace(RUNNING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/trotar.wav", 8));
+    soundsSoldier1.emplace(SHOOTING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo1.wav", 9));
+    soundsSoldier1.emplace(WALKING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/caminar2.wav", 11));
 }

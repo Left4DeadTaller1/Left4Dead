@@ -13,6 +13,7 @@ class GameTexture {
 
     friend class ClientRenderer;
     friend class ClientPlayer;
+    friend class ClientInfected;
 
     public:
     GameTexture(SDL2pp::Renderer& renderer, int divisionTexture, const std::string& texturePath);

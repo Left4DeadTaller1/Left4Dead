@@ -372,9 +372,6 @@ CMakeFiles/client.dir/client/client.cpp.o: \
  /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
  /home/usaurio/Left4Dead/dipa_classes/socket.h \
  /home/usaurio/Left4Dead/client/client_connection/../render/game/client_game_state.h \
- /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
- /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/bits/stl_multimap.h \
  /home/usaurio/Left4Dead/client/client_connection/client_sender.h \
  /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
  /home/usaurio/Left4Dead/client/client_connection/client_receiver.h \
@@ -383,11 +380,46 @@ CMakeFiles/client.dir/client/client.cpp.o: \
  /usr/include/c++/11/atomic \
  /home/usaurio/Left4Dead/client/client_connection/client_receiver.h \
  /home/usaurio/Left4Dead/client/render/client_render.h \
+ /home/usaurio/Left4Dead/client/render/../../server_root/game/configuration/game_config.h \
+ /usr/include/yaml-cpp/yaml.h /usr/include/yaml-cpp/parser.h \
+ /usr/include/yaml-cpp/dll.h /usr/include/yaml-cpp/emitter.h \
+ /usr/include/c++/11/cstddef /usr/include/c++/11/sstream \
+ /usr/include/c++/11/bits/sstream.tcc /usr/include/yaml-cpp/binary.h \
+ /usr/include/yaml-cpp/emitterdef.h /usr/include/yaml-cpp/emittermanip.h \
+ /usr/include/yaml-cpp/null.h /usr/include/yaml-cpp/ostream_wrapper.h \
+ /usr/include/yaml-cpp/emitterstyle.h /usr/include/yaml-cpp/stlemitter.h \
+ /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/list.tcc /usr/include/c++/11/set \
+ /usr/include/c++/11/bits/stl_tree.h /usr/include/c++/11/bits/stl_set.h \
+ /usr/include/c++/11/bits/stl_multiset.h /usr/include/c++/11/map \
+ /usr/include/c++/11/bits/stl_map.h \
+ /usr/include/c++/11/bits/stl_multimap.h \
+ /usr/include/yaml-cpp/exceptions.h /usr/include/yaml-cpp/mark.h \
+ /usr/include/yaml-cpp/noexcept.h /usr/include/yaml-cpp/traits.h \
+ /usr/include/yaml-cpp/node/node.h \
+ /usr/include/yaml-cpp/node/detail/iterator_fwd.h \
+ /usr/include/yaml-cpp/node/ptr.h /usr/include/yaml-cpp/node/type.h \
+ /usr/include/yaml-cpp/node/impl.h \
+ /usr/include/yaml-cpp/node/detail/memory.h \
+ /usr/include/yaml-cpp/node/detail/node.h \
+ /usr/include/yaml-cpp/node/detail/node_ref.h \
+ /usr/include/yaml-cpp/node/detail/node_data.h \
+ /usr/include/yaml-cpp/node/detail/node_iterator.h \
+ /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
+ /usr/include/yaml-cpp/node/iterator.h \
+ /usr/include/yaml-cpp/node/detail/iterator.h \
+ /usr/include/yaml-cpp/node/convert.h \
+ /usr/include/yaml-cpp/node/detail/impl.h \
+ /usr/include/yaml-cpp/node/parse.h /usr/include/yaml-cpp/node/emit.h \
  /usr/local/include/SDL2/SDL_mixer.h \
  /home/usaurio/Left4Dead/client/render/texture/client_texture_manager.h \
  /home/usaurio/Left4Dead/client/render/texture/client_texture.h \
  /home/usaurio/Left4Dead/client/render/sound/client_sound_manager.h \
  /home/usaurio/Left4Dead/client/render/sound/client_sound.h \
+ /home/usaurio/Left4Dead/client/render/game/client_game.h \
+ /home/usaurio/Left4Dead/client/render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/render/game/client_player.h \
+ /home/usaurio/Left4Dead/client/render/game/client_infected.h \
  /home/usaurio/Left4Dead/client/render/texture/client_texture.h \
  /home/usaurio/Left4Dead/client/../mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
@@ -395,7 +427,6 @@ CMakeFiles/client.dir/client/client.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtguiglobal.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h \
- /usr/include/c++/11/cstddef \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qconfig.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qtcore-config.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsystemdetection.h \
@@ -425,7 +456,6 @@ CMakeFiles/client.dir/client/client.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
- /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringliteral.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringalgorithms.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringview.h \
@@ -438,8 +468,6 @@ CMakeFiles/client.dir/client/client.cpp.o: \
  /usr/include/c++/11/pstl/glue_numeric_defs.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainertools_impl.h \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/list.tcc \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \

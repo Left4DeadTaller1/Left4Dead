@@ -33,12 +33,14 @@ void ClientReceiver::run() {
 
             switch (typeCommand) {
                 case CREATE:
+                    //std::string name = protocol.receiveCreate(wasClosed, clientSocket);
                     protocol.receiveCreate(wasClosed, clientSocket);
                     if (!game)
                         handleCreateAction();
                     break;
                 case JOIN:
                     dataJoin = protocol.receiveJoin(wasClosed, clientSocket);
+                    //std::string name = dataJoin.namePlayer;
                     std::cout << "code: " << dataJoin.code << "\n";
                     if (!game->isGameRunning())
                         handleJoinAction(dataJoin.code);
