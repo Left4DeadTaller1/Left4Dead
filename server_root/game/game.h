@@ -74,6 +74,7 @@ class Game : public Thread {
     void getPlayersActions();
     void removeDeadEntities();
     void reloadPlayer(Player& player);
+    void revivePlayer(Player& player);
 
     void sendState();
     std::vector<std::shared_ptr<EntityDTO>> getDtos();

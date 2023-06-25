@@ -117,6 +117,16 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
             }
         }
 
+        // Lara desp descomenta esto
+        //  if (entity->type == PLAYER) {
+        //      auto playerEntity = std::dynamic_pointer_cast<PlayerDTO>(entity);
+        //      if (playerEntity) {
+        //          std::string nickName = playerEntity->nickName;
+        //          // Encode length of nickName (1 byte), and nickName (in len(nickName) bytes)
+        //          encodePlayerNickName(encodedMsg, nickName);
+        //      }
+        //  }
+
         // Encode and add the general state (1 byte)
         GeneralState generalState = determineGeneralState(entity);
         encodedMsg->push_back(static_cast<uint8_t>(generalState));
@@ -416,6 +426,15 @@ GeneralState ServerProtocol::determineVenomState(const std::shared_ptr<ZombieDTO
             return GeneralState::WALKING;
             break;
     }
+}
+
+void ServerProtocol::encodePlayerNickName(std::shared_ptr<std::vector<uint8_t>> &encodedMsg, const std::string &nickName) {
+    // Encode and add the length of the nickname (1 byte)
+    uint8_t nickName_len = static_cast<uint8_t>(nickName.size());
+    encodedMsg->push_back(nickName_len);
+
+    // Encode and add the nickname
+    encodedMsg->insert(encodedMsg->end(), nickName.begin(), nickName.end());
 }
 
 std::shared_ptr<std::vector<uint8_t>>

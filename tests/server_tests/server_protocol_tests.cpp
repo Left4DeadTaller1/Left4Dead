@@ -29,27 +29,28 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     std::vector<uint8_t>& encodedMessage = *encodedMessagePtr;
 
     std::vector<uint8_t> expectedMessage = {
-        9,                     // Message type gameState (1 byte)
-        0, 2,                  // 2 entities  (2 bytes)
-        0,                     // Entity type: Player (1 byte)
-        0, 1,                  // ID: Player1 (2 bytes)
-        7,                     // General State: HURT since got attacked (1 byte)
-        playerActionCooldown,  // Action Counter: 45 since it got hurt (1 byte)
-        0, 5,                  // X position: 5 (network byte order) (2 bytes)
-        0, 10,                 // Y position: 10 (network byte order) (2 bytes)
-        1,                     // facingDirection: FACING_RIGHT (1 byte)
-        0, playerHealth,       // Health: 80 (2 byte)
-        1,                     // Entity type: Zombie (1 byte)
-        0, 15,                 // ID: Zombie1 (2 bytes)
-        0,                     // Zombie type: INFECTED (1 byte)
-        10,                    // General State: IDLE (1 byte) //till here is okey
-        0,                     // Action Counter: 0 since i didn't do anything (1 byte)
-        0, 15,                 // X position: 15 (network byte order) (2 bytes)
-        0, 20,                 // Y position: 20 (network byte order) (2 bytes)
-        1,                     // facingDirection: FACING_RIGHT (1 byte)
-        0, zombieHealth};      // Health: 100 (2 byte)
+        9,                           // Message type gameState (1 byte)
+        0, 2,                        // 2 entities  (2 bytes)
+        0,                           // Entity type: Player (1 byte)
+        0, 1,                        // ID: Player1 (2 bytes)
+        5, 'a', 'm', 'u', 'n', 'd',  // Length of "amund" and the characters themselves
+        9,                           // General State: HURT since got attacked (1 byte)
+        playerActionCooldown,        // Action Counter: 45 since it got hurt (1 byte)
+        0, 5,                        // X position: 5 (network byte order) (2 bytes)
+        0, 10,                       // Y position: 10 (network byte order) (2 bytes)
+        1,                           // facingDirection: FACING_RIGHT (1 byte)
+        0, playerHealth,             // Health: 80 (2 byte)
+        1,                           // Entity type: Zombie (1 byte)
+        0, 15,                       // ID: Zombie1 (2 bytes)
+        0,                           // Zombie type: INFECTED (1 byte)
+        12,                          // General State: IDLE (1 byte) //till here is okey
+        0,                           // Action Counter: 0 since i didn't do anything (1 byte)
+        0, 15,                       // X position: 15 (network byte order) (2 bytes)
+        0, 20,                       // Y position: 20 (network byte order) (2 bytes)
+        1,                           // facingDirection: FACING_RIGHT (1 byte)
+        0, zombieHealth};            // Health: 100 (2 byte)
 
-    // // For debugging purposes
+    // For debugging purposes
     // std::cout << "encodMessage: ";
     // for (auto byte : encodedMessage) {
     //     std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(byte) << " ";

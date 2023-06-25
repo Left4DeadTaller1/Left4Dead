@@ -14,14 +14,18 @@ enum PlayerActionState {
     PLAYER_SHOOTING,   // 3
     PLAYER_RELOADING,  // 4
     PLAYER_ATTACKING,  // 5
-    PLAYER_HURT,       // 6
-    PLAYER_DYING,      // 7
-    PLAYER_DEAD,       // 8
+    PLAYER_REVIVING,   // 6
+    PLAYER_HURT,       // 7
+    PLAYER_DYING,      // 8
+    PLAYER_DEAD,       // 9
 };
+
+// TODO add this to action class
 
 struct PlayerDTO : EntityDTO {
     int bullets;
     PlayerActionState actionState;
+    std::string nickName;
 };
 
 class Player : public Entity {
@@ -29,6 +33,8 @@ class Player : public Entity {
     Weapon weapon;
     PlayerActionState actionState;
     std::string nickName;
+    int knockDowns;
+    std::shared_ptr<Player> revivingPlayer;
 
    public:
     Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon, std::string nickName);
@@ -46,6 +52,11 @@ class Player : public Entity {
     std::tuple<int, int> getDirectionsAmount();
     void takeDamage(int damage) override;
     void decreaseActionCounter() override;
+
+    std::shared_ptr<Player> getClosestRevivablePlayer(std::vector<std::shared_ptr<Player>>& players);
+    void setClosestRevivablePlayer(std::shared_ptr<Player> player);
+    void setRevivalState();
+    void revive();
 
     void decreaseATKCooldown();
 

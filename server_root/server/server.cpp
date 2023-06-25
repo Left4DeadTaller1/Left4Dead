@@ -1,36 +1,30 @@
 #include "server.h"
-// #define SHUT_RDWR 2
 
-#include <cstring>
 #include <iostream>
 #include <string>
 
 #include "acceptor.h"
 
-Server::Server(const char* servname) : svr_socket(servname), acep_th(nullptr) {}
+Server::Server(const char* servname) : svr_socket(servname), acep_th(svr_socket), isAcceptorRunning(false) {}
+
 void Server::run() {
-    try {
-        acep_th = std::make_unique<Acceptor>(svr_socket);
-        acep_th->start();
+    // Start the Acceptor thread
+    acep_th.start();
+    isAcceptorRunning = true;
 
-        std::string input;
-        while (std::cin >> input) {
-            if (input == "q") {
-                break;
-            }
+    std::string input;
+    while (std::cin >> input) {
+        if (input == "q") {
+            break;
         }
-
-    } catch (const std::exception& e) {
-        std::cerr << "Error in server: " << e.what() << std::endl;
-    } catch (...) {
-        std::cerr << "Unknown error in server" << std::endl;
     }
 }
 
 Server::~Server() {
-    if (acep_th) {
-        acep_th->shutdown();
-        acep_th->join();
+    if (isAcceptorRunning) {
+        acep_th.shutdown();
+        acep_th.join();
+        isAcceptorRunning = false;
     }
 }
 
