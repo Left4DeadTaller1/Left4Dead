@@ -20,12 +20,12 @@ Game::Game()
     playerQueues.resize(4, nullptr);
 }
 
-std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
+std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname) {
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
     std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
-    spawnPlayer(playerId);
+    spawnPlayer(playerId, playerNickname);
     playerQueues[nextPlayerIndex] = &gameResponses;
 
     playersActions[playerId] = std::queue<Action>();
@@ -102,7 +102,7 @@ Game::~Game() {}
 -----------------------Api for Game-----------------------------
 ________________________________________________________________*/
 
-void Game::spawnPlayer(std::string playerId) {
+void Game::spawnPlayer(std::string playerId, std::string nickName) {
     // TODO: Here the game should figure out what weapon give each player
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
@@ -117,7 +117,7 @@ void Game::spawnPlayer(std::string playerId) {
     int spawnX = gameWidth / 2 + (numPlayers % 2 == 0 ? playerWidth : 0);
     int spawnY = gameHeight / 2 - (numPlayers / 2) * playerHeight;
 
-    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SNIPER);
+    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SNIPER, nickName);
     entities.push_back(player);
     players.push_back(player);
 }

@@ -30,7 +30,7 @@ class Game : public Thread {
    public:
     explicit Game();
     void run() override;
-    std::string addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses);
+    std::string addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string nickName);
     void removePlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses);
     Queue<Action>& getInputQueue();
 
@@ -64,7 +64,7 @@ class Game : public Thread {
     int framesCounter;
 
     void
-    spawnPlayer(std::string idPlayer);
+    spawnPlayer(std::string idPlayer, std::string playerNickname);
     void removePlayer(std::string idPlayer);
     void updateState();
     void updatePlayerState(Player& player, std::queue<Action>& playerActions);

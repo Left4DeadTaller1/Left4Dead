@@ -27,46 +27,54 @@ void ClientReceiver::run() {
                 break;
             }
 
-            int code;
             std::vector<int> data;
             dataJoin_t dataJoin;
 
             switch (typeCommand) {
-                case CREATE:
-                    protocol.receiveCreate(wasClosed, clientSocket);
-                    if (!game)
-                        handleCreateAction();
+                case CREATE: {
+                    std::string playernickName = protocol.receiveCreate(wasClosed, clientSocket);
+                    if (!game)  // If not on a game already
+                        std::cout << "name: " << playernickName << std::endl;
+                    handleCreateAction(playernickName);
                     break;
-                case JOIN:
-                    dataJoin = protocol.receiveJoin(wasClosed, clientSocket);
-                    std::cout << "code: " << dataJoin.code << "\n";
-                    if (!game->isGameRunning())
-                        handleJoinAction(dataJoin.code);
+                }
+                case JOIN: {
+                    if (!game) {
+                        dataJoin_t dataJoin = protocol.receiveJoin(wasClosed, clientSocket);
+                        std::cout << "code: " << dataJoin.code << "\n";
+                        std::cout << "name: " << dataJoin.playerName << "\n";
+                        handleJoinAction(dataJoin.code, dataJoin.playerName);
+                    }
                     break;
-                case START_GAME:
+                }
+                case START_GAME: {
                     // TODO receive the gameCode and pass it to the startGame
                     if (!game->isGameRunning())
                         gamesManager.startGame(0);
                     break;
-                case START_MOVE:
-                    data = protocol.receiveStartMove(wasClosed, clientSocket);
+                }
+                case START_MOVE: {
+                    std::vector<int> data = protocol.receiveStartMove(wasClosed, clientSocket);
                     handleStartMove(data[0], data[1], data[2]);
                     break;
-                case END_MOVE:
-                    data = protocol.receiveEndMove(wasClosed, clientSocket);
+                }
+                case END_MOVE: {
+                    std::vector<int> data = protocol.receiveEndMove(wasClosed, clientSocket);
                     handleEndMove(data[0], data[1]);
                     break;
-                case START_SHOOT:
+                }
+                case START_SHOOT: {
                     handleStartShoot();
                     break;
-                case END_SHOOT:
+                }
+                case END_SHOOT: {
                     handleEndShoot();
                     break;
-                case RECHARGE:
+                }
+                case RECHARGE: {
                     handleRecharge();
                     break;
-                    /*case EXIT:
-                        break;*/
+                }
             }
         }
     }
@@ -84,8 +92,8 @@ void ClientReceiver::run() {
     isRunning = false;
 }
 
-void ClientReceiver::handleCreateAction() {
-    GameRecord gameRecord = gamesManager.createLobby(gameResponses);
+void ClientReceiver::handleCreateAction(std::string nickName) {
+    GameRecord gameRecord = gamesManager.createLobby(gameResponses, nickName);
     game = gameRecord.game;
     playerId = gameRecord.playerId;
     // std::cout << "Created match: " << newGameCode << std::endl;
@@ -94,9 +102,9 @@ void ClientReceiver::handleCreateAction() {
     // queue.push(createResponse);
 }
 
-void ClientReceiver::handleJoinAction(const int code) {
+void ClientReceiver::handleJoinAction(const int code, std::string playerNickname) {
     try {
-        GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses);
+        GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses, playerNickname);
         game = gameRecord.game;
         playerId = gameRecord.playerId;
     } catch (const std::out_of_range &e) {

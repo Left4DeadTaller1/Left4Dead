@@ -28,9 +28,10 @@ class Player : public Entity {
    private:
     Weapon weapon;
     PlayerActionState actionState;
+    std::string nickName;
 
    public:
-    Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon);
+    Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon, std::string nickName);
 
     void setMovementDirectionX(MovementDirectionX movementDirectionX);
     void setMovementDirectionY(MovementDirectionY movementDirectionY);

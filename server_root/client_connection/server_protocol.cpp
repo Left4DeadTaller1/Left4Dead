@@ -21,11 +21,12 @@ std::string ServerProtocol::receiveCreate(bool &wasClosed, Socket &peer) {
     uint8_t name_len;
     peer.recvall(&name_len, 1, &wasClosed);
 
-    char buf_name[500];
-    peer.recvall(buf_name, name_len, &wasClosed);
-    buf_name[name_len] = '\0';
+    std::vector<uint8_t> buf_name(name_len);
+    if (name_len > 0) {
+        peer.recvall(buf_name.data(), name_len, &wasClosed);
+    }
 
-    return buf_name;
+    return std::string(buf_name.begin(), buf_name.end());
 }
 
 dataJoin_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
@@ -38,10 +39,12 @@ dataJoin_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
     uint8_t name_len;
     peer.recvall(&name_len, 1, &wasClosed);
 
-    char buf_name[500];
-    peer.recvall(buf_name, name_len, &wasClosed);
-    buf_name[name_len] = '\0';
-    dataJoin.namePlayer = buf_name;
+    std::vector<uint8_t> buf_name(name_len);
+    if (name_len > 0) {
+        peer.recvall(buf_name.data(), name_len, &wasClosed);
+    }
+
+    dataJoin.playerName = std::string(buf_name.begin(), buf_name.end());
 
     return dataJoin;
 }

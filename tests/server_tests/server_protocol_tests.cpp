@@ -9,7 +9,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     // Create mock Player
-    std::shared_ptr<Player> player = std::make_shared<Player>(5, 10, "Player1", SMG);
+    std::shared_ptr<Player> player = std::make_shared<Player>(5, 10, "Player1", SMG, "amund");
     player->setMovementDirectionX(ENTITY_RIGHT);
     player->takeDamage(20);
     uint8_t playerHealth = static_cast<uint8_t>(entityParams["PLAYER_HEALTH"] - 20);
@@ -115,7 +115,7 @@ TEST(ServerProtocolTest, TestEncodeJoinMessage) {
 
 TEST(ServerProtocolTest, TestPlayerActionStateEncoding) {
     ServerProtocol protocol;
-    std::shared_ptr<Player> player = std::make_shared<Player>(5, 10, "Player1", SMG);
+    std::shared_ptr<Player> player = std::make_shared<Player>(5, 10, "Player1", SMG, "amund");
 
     // Initially, the player should be in IDLE state
     GeneralState idleState = protocol.determinePlayerState(std::static_pointer_cast<PlayerDTO>(player->getDto()));

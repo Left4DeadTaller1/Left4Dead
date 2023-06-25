@@ -23,7 +23,7 @@
 
 typedef struct dataJoin {
     uint8_t code;
-    std::string namePlayer;
+    std::string playerName;
 } dataJoin_t;
 
 typedef enum {
