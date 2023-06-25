@@ -4,11 +4,7 @@
 
 #include <vector>
 
-typedef struct player player_t;
-typedef struct infected infected_t;
-typedef struct gameStateDTO gameStateDTO_t;
-
-typedef enum state_t : uint8_t {
+enum state_t : uint8_t {
     WALKING,            //all
     RUNNING,            //all
     WALKING_SHOOTING,   //      soldier1
@@ -33,7 +29,7 @@ typedef enum state_t : uint8_t {
     BITE                //                                              zombie
 };
 
-typedef enum typeEntity_t : uint8_t {
+enum typeEntity_t : uint8_t {
     ZOMBIE,
     JUMPER,
     WITCH,
@@ -44,7 +40,12 @@ typedef enum typeEntity_t : uint8_t {
     SOLDIER3
 };
 
-struct player {
+
+/*typedef struct player player_t;
+typedef struct infected infected_t;
+typedef struct gameStateDTO gameStateDTO_t;*/
+
+typedef struct player {
     uint16_t idPlayer;
     state_t state;
     uint8_t actionCounter;
@@ -53,9 +54,9 @@ struct player {
     uint8_t lookingTo;
     uint16_t health;
     //uint8_t typePlayer;
-};
+} player_t;
 
-struct infected {
+typedef struct infected {
     uint16_t idInfected;
     typeEntity_t typeInfected;
     state_t state;
@@ -64,12 +65,12 @@ struct infected {
     uint16_t y;
     uint8_t lookingTo;
     uint16_t health;
-};
+} infected_t;
 
-struct gameStateDTO {
+typedef struct gameStateDTO {
     std::vector<player_t> players;
     std::vector<infected_t> infected;
-};
+} gameStateDTO_t;
 
 #endif
 

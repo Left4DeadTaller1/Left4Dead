@@ -26,7 +26,7 @@ class TextureManager {
 
     std::map<state_t, GameTexture>& getTextures(typeEntity_t type);
 
-    GameTexture& getBackgroundTexture(const std::string& nameTexture);
+    GameTexture& getTexture(const std::string& nameTexture);
 };
 
 #endif

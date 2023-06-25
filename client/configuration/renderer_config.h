@@ -1,4 +1,4 @@
-/*#ifndef RENDERER_CONFIG_H
+#ifndef RENDERER_CONFIG_H
 #define RENDERER_CONFIG_H
 
 #include <yaml-cpp/yaml.h>
@@ -9,11 +9,8 @@
 
 class RendererConfig {
     private:
-    std::vector<std::string> mapFiles;
-    std::map<std::string, int> rendererDimensions;
-    // Crear un std::map para almacenar los valores
-    std::map<std::string, std::pair<std::string, int>> texturesParams;
-    //std::map<std::string, int> soundsParams;
+    std::map<std::string, int> dimensionsWindows;
+    std::map<std::string, int> dimensionsLifeBar;
 
     RendererConfig();
     RendererConfig(const RendererConfig&) = delete;
@@ -21,11 +18,8 @@ class RendererConfig {
     
     public:
     static RendererConfig& getInstance();
-
-    std::vector<std::string> getMapFiles() const;
-    std::map<std::string, int> getrendererDimensions() const;
-    //std::map<std::string, int> getTexturesParams() const;
-    //std::map<std::string, int> getSoundsParams() const;
+    std::map<std::string, int> getDimensionsWindows() const;
+    std::map<std::string, int> getDimensionsLifeBar() const;
 };
 
-#endif  // GAME_CONFIG_H*/
+#endif  // GAME_CONFIG_H

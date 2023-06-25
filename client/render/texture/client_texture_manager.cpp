@@ -6,7 +6,7 @@ TextureManager::TextureManager(Renderer& renderer){
     loadTextures(renderer);
 }
 
-GameTexture& TextureManager::getBackgroundTexture(const std::string& nameTexture){
+GameTexture& TextureManager::getTexture(const std::string& nameTexture){
     std::map<std::string, GameTexture>::iterator iter = texturesBackground.find(nameTexture);
     if (iter == texturesBackground.end()) {
         //lanzar excepcion

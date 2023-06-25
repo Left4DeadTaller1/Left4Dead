@@ -40,9 +40,30 @@ void ClientGame::updateInfected(std::vector<infected_t>& zombies){
     } 
 }
 
+void ClientGame::updateLifeBar(std::vector<player_t>& players_){
+    for (auto &newPlayer : players_){
+        std::map<uint8_t, std::shared_ptr<LifeBar>>::iterator iter = barLife.find(newPlayer.idPlayer);
+        if (iter != barLife.end()) {
+            (iter->second)->updateLifeBar(newPlayer.health, newPlayer.x, 
+                                        newPlayer.y, newPlayer.lookingTo);
+        } else {
+            GameTexture& texture = textureManager.getTexture("barras-vida");
+            std::shared_ptr<LifeBar> newLifeBar = std::make_shared<LifeBar>(texture,
+                                                                            newPlayer.health,
+                                                                            newPlayer.x,
+                                                                            newPlayer.y,
+                                                                            newPlayer.lookingTo, 
+                                                                            SOLDIER1);
+            barLife.emplace(newPlayer.idPlayer, newLifeBar);
+        }
+    }
+}
+
+
 void ClientGame::updateGame(std::shared_ptr<gameStateDTO_t> newGame){
     updatePlayers(newGame->players);
     updateInfected(newGame->infected);
+    updateLifeBar(newGame->players);
 }
 
 void ClientGame::drawPlayers(SDL2pp::Renderer& renderer, int it){                

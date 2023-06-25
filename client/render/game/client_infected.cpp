@@ -15,6 +15,17 @@ ClientInfected::ClientInfected(std::map<state_t, GameTexture>& textures,
     y = currentInfected.y;
     lookingTo = currentInfected.lookingTo;
 
+    RendererConfig& config = RendererConfig::getInstance();
+    std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
+    std::map<std::string, int> dimensionsLifeBar = config.getDimensionsLifeBar();
+
+    viewportWidth = dimensionsWindows["WINDOW_WIDTH"] + 2 * dimensionsWindows["IMAGE_BORDER_PADDING"];
+    viewportHeight = dimensionsWindows["WINDOW_HEIGHT"];
+    gameWidth = dimensionsWindows["GAME_WIDTH"];
+    gameHeight = dimensionsWindows["GAME_HEIGHT"];
+    width = dimensionsWindows["WINDOW_WIDTH"] / 6;
+    height = dimensionsWindows["WINDOW_HEIGHT"] / 4;
+
 };
 
 GameTexture& ClientInfected::getTextureInfected(state_t state){
@@ -62,8 +73,9 @@ void ClientInfected::draw(SDL2pp::Renderer& renderer, int it){
 
     GameTexture& texture = getTextureInfected(currentState);
 
-    std::cout << "ENTRA A RENDERIZAR ZOMBIE\n";
     int frame = it % texture.n;
+    
+    /*std::cout << "ENTRA A RENDERIZAR ZOMBIE\n";
     if (currentState == DYING){
         std::cout << "state: dying\n";
     }
@@ -79,17 +91,17 @@ void ClientInfected::draw(SDL2pp::Renderer& renderer, int it){
     if ((currentState == DYING || currentState == DEAD) && comingEndDeath == true){
         std::cout << "entra a setear el frame en: " << texture.n - 1 << "\n";
         frame = texture.n - 1;
-    }
+    }*/
 
     Rect srcRect((texture.width / texture.n) * frame,
                 0,
                 texture.width / texture.n, 
                 texture.height);
 
-    Rect dstRect((x * VIEWPORT_WIDTH) / GAME_WIDTH,
-                VIEWPORT_HEIGHT - y - GAME_HEIGHT,
-                ENTITY_WIDTH, 
-                ENTITY_HEIGHT);
+    Rect dstRect((x * viewportWidth) / gameWidth,
+                viewportHeight - y - gameHeight,
+                width, 
+                height);
 
     if (lookingTo == ENTITY_LOOKING_LEFT) {
         SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_HORIZONTAL);

@@ -14,7 +14,15 @@ ClientRenderer::ClientRenderer(std::atomic<bool>& isConnected,
                     renderer(window_, -1, SDL_RENDERER_ACCELERATED),
                     textureManager(renderer),
                     soundManager(),
-                    game(textureManager, soundManager){}
+                    game(textureManager, soundManager){
+
+    RendererConfig& config = RendererConfig::getInstance();
+    std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
+
+    viewportXInicial = - dimensionsWindows["IMAGE_BORDER_PADDING"];
+    viewportWidth = dimensionsWindows["WINDOW_WIDTH"] + 2 * dimensionsWindows["IMAGE_BORDER_PADDING"];
+    viewportHeight = dimensionsWindows["WINDOW_HEIGHT"];
+}
 
 
 void ClientRenderer::drawBackground(Texture& background){
@@ -23,8 +31,64 @@ void ClientRenderer::drawBackground(Texture& background){
 
 void ClientRenderer::drawInicio(void) {
     renderer.Clear();
-    drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
+    drawBackground(textureManager.getTexture("background-war1-pale-war").texture);
     renderer.Present();
+}
+
+std::string traducir(int state){
+    if (state == WALKING){
+        return "walk";
+    }
+    if (state == RUNNING){
+        return "run";
+    }
+    if (state == IDLE){
+        return "idle";
+    }
+    if (state == DEAD){
+        return "dead";
+    } 
+    if (state == HURT){
+        return "hurt";
+    }
+    if (state == RELOADING){
+        return "reloading";
+    }
+    if (state == SHOOTING){
+        return "shooting";
+    }
+    if (state == ATTACK){
+        return "attack";
+    }
+    if (state == JUMP){
+        return "jump";
+    }
+    if (state == SCREAM){
+        return "scream";
+    }else {
+        std::cout << "OTRO - state: " << state << "\n";
+        return "otro";
+    }
+}
+
+std::string traducirType(int typeInfected){
+    if (typeInfected == SOLDIER1){
+        return "soldier1";
+    }
+    if (typeInfected == JUMPER){
+        return "jumper";
+    }
+    if (typeInfected == VENOM){
+        return "venom";
+    }
+    if (typeInfected == WITCH){
+        return "witch";
+    }
+    if (typeInfected == ZOMBIE){
+        return "zombie";
+    }else {
+        return "TIPO NO IDENTIFICADO";
+    }
 }
 
 int ClientRenderer::looprender(void) {
@@ -53,16 +117,33 @@ int ClientRenderer::looprender(void) {
             std::shared_ptr<gameStateDTO_t> gameStateDTO;
             qServerToRender.try_pop(gameStateDTO);
             if (gameStateDTO){
+                for (auto &currentPlayer : gameStateDTO->players) {
+                    std::cout << "type: " << "soldier1" << "\n";
+                    std::cout << "idPlayer: " << (int)(currentPlayer.idPlayer) << "\n";
+                    std::cout << "state: " << traducir((int)(currentPlayer.state)) << "\n";
+                    std::cout << "x: " << (int)(currentPlayer.x) << "\n";
+                    std::cout << "y: " << (int)(currentPlayer.y) << "\n";
+                    std::cout << "health: " << (int)(currentPlayer.health) << "\n";
+                }
+
+                /*for (auto &currentPlayer : gameStateDTO->infected) {
+                    std::cout << "type: " << traducirType((int)(currentPlayer.typeInfected)) << "\n";
+                    std::cout << "idZombi: " << currentPlayer.idInfected << "\n";
+                    std::cout << "state: " << traducir((int)(currentPlayer.state)) << "\n";
+                    std::cout << "x: " << (int)(currentPlayer.x) << "\n";
+                    std::cout << "y: " << (int)(currentPlayer.y) << "\n";
+                    std::cout << "health: " << (int)(currentPlayer.health) << "\n";
+                }*/
                 game.updateGame(gameStateDTO);
                 renderer.Clear();
 
-                drawBackground(textureManager.getBackgroundTexture("background-war1-pale-war").texture);
+                drawBackground(textureManager.getTexture("background-war1-pale-war").texture);
 
                 SDL_Rect viewport;
-                viewport.x = VIEWPORT_X_INITIAL;
+                viewport.x = viewportXInicial;
                 viewport.y = 0;
-                viewport.w = VIEWPORT_WIDTH;
-                viewport.h = VIEWPORT_HEIGHT;
+                viewport.w = viewportWidth;
+                viewport.h = viewportHeight;
 
                 SDL_RenderSetViewport(renderer.Get(), &viewport);
 
@@ -93,7 +174,6 @@ int ClientRenderer::looprender(void) {
     }
 
     return 0;
-    std::cout << "SALE DEL RENDER\n";
 }
 
 

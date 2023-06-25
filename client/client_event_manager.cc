@@ -117,6 +117,12 @@ void EventManagerThread::run() {
                     if (action) {
                         qEventsToSender.push(action);
                     }
+                } else if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED){
+                    int newWidth = event.window.data1;
+                    int newHeight = event.window.data2;
+                    std::cout << "Entra a resize con: " << newWidth << " y " << newHeight << "\n";
+                    /*action = std::make_shared<Resize>(newWidth, newHeight);
+                    qEventsToRender.push(action);*/ 
                 }
             }
         }

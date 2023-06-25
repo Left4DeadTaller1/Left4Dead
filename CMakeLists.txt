@@ -49,6 +49,7 @@ target_include_directories(client
     ${CMAKE_SOURCE_DIR}/client/render/sound
     ${CMAKE_SOURCE_DIR}/client/render/texture
     ${CMAKE_SOURCE_DIR}/client/client_connection
+    ${CMAKE_SOURCE_DIR}/client/configuration
     ${SDL2PP_INCLUDE_DIRS}
 )
 

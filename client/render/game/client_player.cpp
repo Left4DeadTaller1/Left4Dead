@@ -15,6 +15,16 @@ ClientPlayer::ClientPlayer(std::map<state_t, GameTexture>& textures,
     y = currentPlayer.y;
     lookingTo = currentPlayer.lookingTo;
 
+    RendererConfig& config = RendererConfig::getInstance();
+    std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
+    std::map<std::string, int> dimensionsLifeBar = config.getDimensionsLifeBar();
+
+    viewportWidth = dimensionsWindows["WINDOW_WIDTH"] + 2 * dimensionsWindows["IMAGE_BORDER_PADDING"];
+    viewportHeight = dimensionsWindows["WINDOW_HEIGHT"];
+    gameWidth = dimensionsWindows["GAME_WIDTH"];
+    gameHeight = dimensionsWindows["GAME_HEIGHT"];
+    width = dimensionsWindows["WINDOW_WIDTH"] / 6;
+    height = dimensionsWindows["WINDOW_HEIGHT"] / 4;
 };
 
 GameTexture& ClientPlayer::getTexturePlayer(state_t state){
@@ -75,10 +85,10 @@ void ClientPlayer::draw(SDL2pp::Renderer& renderer, int it){
                 texture.width / texture.n, 
                 texture.height);
 
-    Rect dstRect((x * VIEWPORT_WIDTH) / GAME_WIDTH,
-                VIEWPORT_HEIGHT - y - GAME_HEIGHT,
-                ENTITY_WIDTH, 
-                ENTITY_HEIGHT);
+    Rect dstRect((x * viewportWidth) / gameWidth,
+                viewportHeight - y - gameHeight,
+                width, 
+                height);
 
     if (lookingTo == ENTITY_LOOKING_LEFT) {
         SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_HORIZONTAL);

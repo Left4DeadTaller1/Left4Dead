@@ -6,9 +6,9 @@
 
 class StartMove : public ActionClient {
    private:
+    TypeMove typeMove;
     int8_t dirX;
     int8_t dirY;
-    TypeMove typeMove;
 
    public:
     StartMove(TypeMove typeMove, DirectionMove directionMove);
