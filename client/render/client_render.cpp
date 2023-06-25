@@ -46,7 +46,10 @@ std::string traducir(int state){
         return "idle";
     }
     if (state == DEAD){
-        return "dead";
+        return "DEADDDDDDDDDD";
+    } 
+    if (state == DYING){
+        return "DYINGGGG";
     } 
     if (state == HURT){
         return "hurt";
@@ -117,14 +120,14 @@ int ClientRenderer::looprender(void) {
             std::shared_ptr<gameStateDTO_t> gameStateDTO;
             qServerToRender.try_pop(gameStateDTO);
             if (gameStateDTO){
-                for (auto &currentPlayer : gameStateDTO->players) {
+                /*for (auto &currentPlayer : gameStateDTO->players) {
                     std::cout << "type: " << "soldier1" << "\n";
                     std::cout << "idPlayer: " << (int)(currentPlayer.idPlayer) << "\n";
                     std::cout << "state: " << traducir((int)(currentPlayer.state)) << "\n";
                     std::cout << "x: " << (int)(currentPlayer.x) << "\n";
                     std::cout << "y: " << (int)(currentPlayer.y) << "\n";
                     std::cout << "health: " << (int)(currentPlayer.health) << "\n";
-                }
+                }*/
 
                 /*for (auto &currentPlayer : gameStateDTO->infected) {
                     std::cout << "type: " << traducirType((int)(currentPlayer.typeInfected)) << "\n";

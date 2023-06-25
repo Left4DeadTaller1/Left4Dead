@@ -75,23 +75,12 @@ void ClientInfected::draw(SDL2pp::Renderer& renderer, int it){
 
     int frame = it % texture.n;
     
-    /*std::cout << "ENTRA A RENDERIZAR ZOMBIE\n";
-    if (currentState == DYING){
-        std::cout << "state: dying\n";
-    }
-    if (currentState == DEAD){
-        std::cout << "state: dead\n";
-    }
-    std::cout << "frame: " << frame << "\n";
-    std::cout << "texture.n - 1: " << texture.n - 1 << "\n";
     if ((currentState == DYING || currentState == DEAD) && (frame == texture.n - 1)){
-        std::cout << "entra a poner comingEndDeath en true\n";
-        comingEndDeath == true;
+        comingEndDeath = true;
     }
     if ((currentState == DYING || currentState == DEAD) && comingEndDeath == true){
-        std::cout << "entra a setear el frame en: " << texture.n - 1 << "\n";
         frame = texture.n - 1;
-    }*/
+    }
 
     Rect srcRect((texture.width / texture.n) * frame,
                 0,

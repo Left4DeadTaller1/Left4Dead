@@ -123,16 +123,16 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         health = ntohs(health);
 
         if ((int)typeEntity == PLAYER){
-            std::cout << "ENTRA A GUARDAR SOLDADO\n";
+            //std::cout << "ENTRA A GUARDAR SOLDADO\n";
             player_t player;
 
             player.idPlayer = idEntity;
             player.state = state;
             player.actionCounter = actionCounter;
             player.x = x;
-            std::cout << "player.x: " << (int)player.x << "\n";
+            //std::cout << "player.x: " << (int)player.x << "\n";
             player.y = y;
-            std::cout << "player.y: " << (int)player.y << "\n";
+            //std::cout << "player.y: " << (int)player.y << "\n";
             player.lookingTo = lookingTo;
             player.health = health;
 
