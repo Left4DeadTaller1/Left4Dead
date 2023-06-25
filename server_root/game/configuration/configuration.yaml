@@ -97,8 +97,4 @@ gameParams:
 
   spawns:
     MUTATION_STRENGTH: 10
-<<<<<<< HEAD
-    SPAWN_INTERVAL: 300
-=======
     SPAWN_INTERVAL: 120
->>>>>>> 96fa7b18f9e7d6485886ea5eb9494929933875b7
