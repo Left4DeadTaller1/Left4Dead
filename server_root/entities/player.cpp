@@ -172,6 +172,7 @@ std::shared_ptr<EntityDTO> Player::getDto() {
     // TODO check if i need to remove this one
     dto->movementDirectionX = static_cast<int>(this->getMovementDirectionX());
     dto->facingDirection = this->facingDirection;
+    dto->weaponType = static_cast<int>(weapon.getType());
     dto->bullets = this->weapon.getBullets();
     dto->nickName = this->nickName;
     return dto;
