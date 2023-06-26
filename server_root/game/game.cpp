@@ -204,6 +204,7 @@ void Game::updateState() {
         // TODO change this so the dmg is made if actionCounter is 0
         attack(*entity);
         useSkill(*entity);
+        performEntitySkill(*entity);
     }
 
     // Every min mutate zombies
@@ -355,67 +356,90 @@ void Game::attack(Entity& entity) {
 }
 
 void Game::useSkill(Entity& entity) {
-    if (entity.isDead())
+    if (entity.isDead() && entity.getActionCounter > 0)
         return;
-    std::shared_ptr<Ability> ability = entity.useSkill();
-    switch (ability->type) {
-        case WAIL: {
-            std::shared_ptr<Wail> wailAbility = std::dynamic_pointer_cast<Wail>(ability);
-            if (wailAbility) {
-                GameConfig& config = GameConfig::getInstance();
-                std::map<std::string, int> entitiesDimensions = config.getEntitiesParams();
-                int witchWidth = entitiesDimensions["WITCH_WIDTH"];
-                int witchHeight = entitiesDimensions["WITCH_HEIGHT"];
-                int infectedWidth = entitiesDimensions["INFECTED_WIDTH"];
-                int infectedHeight = entitiesDimensions["INFECTED_HEIGHT"];
 
-                int leftOfWitch = wailAbility->WitchX - infectedWidth - 15;
-                int rightOfWitch = wailAbility->WitchX + witchWidth + 15;
-                int upOfWitch = wailAbility->WitchY + witchHeight + 15;
-                int downOfWitch = wailAbility->WitchY - infectedHeight - 15;
+    entity.useSkill(players);
+}
 
-                switch (wailAbility->witchInfectionLevel) {
-                    case 3:
-                        // Spawn zombie to the top left of the witch
-                        if (collisionDetector.isEmptySpace(entities, leftOfWitch, upOfWitch)) {
-                            zombieSpawner.increaseTotalZombies();
-                            int totalZombies = zombieSpawner.getTotalZombies();
-                            std::string zombieId = "zombie" + std::to_string(totalZombies);
-                            entities.push_back(std::make_shared<Infected>(leftOfWitch, upOfWitch, zombieId, wailAbility->witchInfectionLevel));
-                        }
-                    case 2:
-                        // Spawn zombie to the top right of the witch
-                        if (collisionDetector.isEmptySpace(entities, rightOfWitch, upOfWitch)) {
-                            zombieSpawner.increaseTotalZombies();
-                            int totalZombies = zombieSpawner.getTotalZombies();
-                            std::string zombieId = "zombie" + std::to_string(totalZombies);
-                            entities.push_back(std::make_shared<Infected>(rightOfWitch, upOfWitch, zombieId, wailAbility->witchInfectionLevel));
-                        }
-                    case 1:
-                        // Spawn zombie to the bottom left of the witch
-                        if (collisionDetector.isEmptySpace(entities, leftOfWitch, downOfWitch)) {
-                            zombieSpawner.increaseTotalZombies();
-                            int totalZombies = zombieSpawner.getTotalZombies();
-                            std::string zombieId = "zombie" + std::to_string(totalZombies);
-                            entities.push_back(std::make_shared<Infected>(leftOfWitch, downOfWitch, zombieId, wailAbility->witchInfectionLevel));
-                        }
-                    case 0:
-                        // Spawn zombie to the bottom right of the witch
-                        if (collisionDetector.isEmptySpace(entities, rightOfWitch, downOfWitch)) {
-                            zombieSpawner.increaseTotalZombies();
-                            int totalZombies = zombieSpawner.getTotalZombies();
-                            std::string zombieId = "zombie" + std::to_string(totalZombies);
-                            entities.push_back(std::make_shared<Infected>(rightOfWitch, downOfWitch, zombieId, wailAbility->witchInfectionLevel));
-                        }
-                        break;
-                    default:
-                        break;
+void Game::performEntitySkill(Entity& entity) {
+    Zombie* zombie = dynamic_cast<Zombie*>(&entity);
+    std::shared_ptr<Ability> ability = zombie->useActiveSkill();
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+
+    if (ability->type == WAIL && zombie->getActionCounter() == entityParams["WITCH_WAIL_DURATION"]) {
+        int witchWidth = entityParams["WITCH_WIDTH"];
+        int witchHeight = entityParams["WITCH_HEIGHT"];
+        int infectedWidth = entityParams["INFECTED_WIDTH"];
+        int infectedHeight = entityParams["INFECTED_HEIGHT"];
+
+        int leftOfWitch = zombie->getX() - infectedWidth - 15;
+        int rightOfWitch = zombie->getX() + witchWidth + 15;
+        int upOfWitch = zombie->getY() + witchHeight + 15;
+        int downOfWitch = zombie->getY() - infectedHeight - 15;
+
+        switch (zombie->getMutationLevel()) {
+            case 3:
+                // Spawn zombie to the top left of the witch
+                if (collisionDetector.isEmptySpace(entities, leftOfWitch, upOfWitch)) {
+                    zombieSpawner.increaseTotalZombies();
+                    int totalZombies = zombieSpawner.getTotalZombies();
+                    std::string zombieId = "zombie" + std::to_string(totalZombies);
+                    entities.push_back(std::make_shared<Infected>(leftOfWitch, upOfWitch, zombieId, wailAbility->witchInfectionLevel));
+                }
+            case 2:
+                // Spawn zombie to the top right of the witch
+                if (collisionDetector.isEmptySpace(entities, rightOfWitch, upOfWitch)) {
+                    zombieSpawner.increaseTotalZombies();
+                    int totalZombies = zombieSpawner.getTotalZombies();
+                    std::string zombieId = "zombie" + std::to_string(totalZombies);
+                    entities.push_back(std::make_shared<Infected>(rightOfWitch, upOfWitch, zombieId, wailAbility->witchInfectionLevel));
+                }
+            case 1:
+                // Spawn zombie to the bottom left of the witch
+                if (collisionDetector.isEmptySpace(entities, leftOfWitch, downOfWitch)) {
+                    zombieSpawner.increaseTotalZombies();
+                    int totalZombies = zombieSpawner.getTotalZombies();
+                    std::string zombieId = "zombie" + std::to_string(totalZombies);
+                    entities.push_back(std::make_shared<Infected>(leftOfWitch, downOfWitch, zombieId, wailAbility->witchInfectionLevel));
+                }
+            case 0:
+                // Spawn zombie to the bottom right of the witch
+                if (collisionDetector.isEmptySpace(entities, rightOfWitch, downOfWitch)) {
+                    zombieSpawner.increaseTotalZombies();
+                    int totalZombies = zombieSpawner.getTotalZombies();
+                    std::string zombieId = "zombie" + std::to_string(totalZombies);
+                    entities.push_back(std::make_shared<Infected>(rightOfWitch, downOfWitch, zombieId, wailAbility->witchInfectionLevel));
+                }
+                break;
+            default:
+                break;
+        }
+    } else if (ability->type == JUMP && zombie->getActionCounter > 0) {
+        Jumper* jumper = dynamic_cast<Jumper*>(&entity);
+        if (jumper) {
+            GameConfig& config = GameConfig::getInstance();
+            std::map<std::string, int> entityParams = config.getEntitiesParams();
+            int deltaX = entityParams["JUMPER_JUMP_DISTANCE"] / entityParams["JUMPER_JUMP_DURATION"];
+            int deltaY = 0;
+
+            // Checks For collisions while jumping
+            // TODO REMOVE THE DELTAY
+            std::shared_ptr<Entity> collidedEntity = collisionDetector.collidesWhileJumping(*jumper, deltaX, deltaY, entities);
+
+            if (collidedEntity == nullptr && jumper->getHasCrashed()) {
+                jumper.move(deltaX, deltaY);
+            }
+
+            else if (collidedEntity != nullptr && jumper->getHasCrashed()) {
+                jumper->startCrashing();
+                if (collidedEntity->getType() == PLAYER) {
+                    int jumpDamage = entityParams["JUMPER_JUMP_DAMAGE"];
+                    collidedEntity->takeDamage(jumpDamage);
                 }
             }
-            break;
         }
-        default:
-            break;
     }
 }
 

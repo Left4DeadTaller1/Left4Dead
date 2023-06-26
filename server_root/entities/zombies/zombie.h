@@ -40,6 +40,7 @@ class Zombie : public Entity {
     ~Zombie();
 
     EntityType getType() override;
+    int getMutationLevel();
     virtual std::shared_ptr<EntityDTO> getDto() = 0;
     void fillBaseZombieDTO(std::shared_ptr<ZombieDTO> dto);
 
@@ -57,6 +58,7 @@ class Zombie : public Entity {
     virtual void attackPlayer() = 0;
 
     bool canAttack() override;  // added canAttack function declaration here
+    virtual std::shared_ptr<Ability> getActiveSkill();
 };
 
 #endif  // ZOMBIE_H

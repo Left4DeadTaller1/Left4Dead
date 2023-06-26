@@ -8,13 +8,12 @@
 #include "attack.h"
 
 enum AbilityType {
-    INVALID,
     WAIL,
+    JUMP,
 };
 
 struct Ability {
     AbilityType type;
-    virtual ~Ability() {}
 };
 
 class CollisionDetector;
@@ -94,8 +93,10 @@ class Entity {
     virtual bool isDead() = 0;
     virtual bool isRemovable() = 0;
     virtual void idle() = 0;
+    bool facingLeft();
+    bool facingRight();
 
-    virtual std::shared_ptr<Ability> useSkill();
+    virtual void useSkill(std::vector<std::shared_ptr<Player>> &players);
     virtual Attack generateAttack() = 0;
     virtual void startMoving() = 0;
     virtual EntityType getType() = 0;

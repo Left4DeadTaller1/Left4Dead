@@ -40,24 +40,21 @@ std::shared_ptr<EntityDTO> Witch::getDto() {
 //     return entityParams["WITCH_ATTACK_RANGE"];
 // }
 
-std::shared_ptr<Ability> Witch::useSkill() {
+void Witch::useSkill(std::vector<std::shared_ptr<Player>>& players) {
     if (attacksCooldowns["wail"] != 0) {
-        std::shared_ptr<Ability> noneAbility = std::make_shared<Ability>();
-        noneAbility->type = INVALID;
-        return noneAbility;
+        return;
     }
-
-    std::cout << "Witch used Wail, and its state is: " << actionState << std::endl;
 
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     attacksCooldowns["wail"] = entityParams["WITCH_WAIL_COOLDOWN"];
     actionState = WITCH_SHOUTING;
     actionCounter = entityParams["WITCH_WAIL_DURATION"];
-    std::shared_ptr<Wail> wailAbility = std::make_shared<Wail>();
-    wailAbility->WitchX = x;
-    wailAbility->WitchY = y;
-    wailAbility->witchInfectionLevel = mutationLevel;
+}
+
+std::shared_ptr<Ability> Witch::getActiveSkill() {
+    std::shared_ptr<Ability> wailAbility = std::make_shared<Ability>();
+    wailAbility->type = WAIL;
     return wailAbility;
 }
 

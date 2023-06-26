@@ -74,7 +74,7 @@ std::shared_ptr<Player> Player::getClosestRevivablePlayer(std::vector<std::share
     for (const auto& player : players) {
         if (player == this || player->getActionState != PLAYER_DYING) continue;
 
-        int distance = std::sqrt(std::pow((x - closestRevivablePlayer->getX()), 2) + std::pow((y - closestRevivablePlayer->getY()), 2));
+        int distance = std::sqrt(std::pow((x - player->getX()), 2) + std::pow((y - player->getY()), 2));
 
         if (distance <= maxRevivalDistance && (closestRevivablePlayer == nullptr || distance < distanceToClosestPlayer)) {
             closestRevivablePlayer = player;

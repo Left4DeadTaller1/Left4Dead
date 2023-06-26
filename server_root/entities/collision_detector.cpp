@@ -30,6 +30,34 @@ bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& 
     return false;
 }
 
+std::list<std::shared_ptr<Entity>> collidesWhileJumping(Zombie& jumper, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities) {
+    std::list<std::shared_ptr<Entity>> entitiesBeingCrashed;
+
+    for (const auto& entity : entities) {
+        if (isColliding(jumper, deltaX, deltaY, entity)) {
+            if (entitiesBeingCrashed.empty()) {
+                entitiesBeingCrashed.push_back(entity);
+            } else {
+                auto it = entitiesBeingCrashed.begin();
+                for (; it != entitiesBeingCrashed.end(); ++it) {
+                    if ((jumper.facingLeft() && entity->x > (*it)->x) ||
+                        (jumper.facingRight() && entity->x < (*it)->x)) {
+                        entitiesBeingCrashed.insert(it, entity);
+                        break;
+                    }
+                }
+                if (it == entitiesBeingCrashed.end()) {
+                    entitiesBeingCrashed.push_back(entity);
+                }
+            }
+        }
+    }
+
+    return entitiesBeingCrashed.front();
+}
+
+//
+
 bool CollisionDetector::isColliding(Entity& entity, int targetX, int targetY) {
     // TODO WE SHOULD ALSO CHECK GAME BOUDNARIeS
     GameConfig& config = GameConfig::getInstance();

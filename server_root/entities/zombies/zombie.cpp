@@ -33,6 +33,10 @@ void Zombie::fillBaseZombieDTO(std::shared_ptr<ZombieDTO> dto) {
     dto->actionCounter = this->actionCounter;
 }
 
+int Zombie::getMutationLevel() {
+    return mutationLevel;
+}
+
 void Zombie::decideTarget(std::vector<std::shared_ptr<Player>>& players) {
     if (players.empty()) {
         idle();
@@ -113,6 +117,10 @@ void Zombie::decreaseATKCooldown() {
         if (pair.second != 0)
             pair.second -= 1;
     }
+}
+
+std::shared_ptr<Ability> Zombie::getActiveSkill() {
+    return;
 }
 
 Zombie::~Zombie() {
