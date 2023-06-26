@@ -60,6 +60,19 @@ Create::~Create()
     }
 }
 
+std::string Create::typeWeaponToString(TypeWeapon_t type){
+    if (type == P90){
+        return "P90";
+    }
+    if (type == RIFLE){
+        return "Rifle";
+    }
+    if (type == SNIPER){
+        return "Sniper";
+    }
+    return "";
+}
+
 void Create::handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers, 
                             std::vector<infoPlayerDTO_t>& infoPlayers)
 {
@@ -67,7 +80,7 @@ void Create::handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers,
     ui->textEdit->clear();
     ui->textEdit->append("Amount players in game: " + QString::number(amountPlayers));
 
-    for (auto player& : infoPlayers){
+    for (auto &player : infoPlayers){
         QString nickname = QString::fromStdString(player.nickname);
         QString weapon = QString::fromStdString(typeWeaponToString(player.typeWeapon));
 

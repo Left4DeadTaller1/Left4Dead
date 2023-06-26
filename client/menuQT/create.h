@@ -29,8 +29,10 @@ private slots:
     void startButtonClicked();
     void closeEvent(QCloseEvent *event);
     void sliderChanged(int value);
-    void handleJoinReceived(const QString& nickname, const QString& weapon);
+    void handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers, 
+                            std::vector<infoPlayerDTO_t>& infoPlayers);
     void handleClosed(int exitCode);
+    std::string typeWeaponToString(TypeWeapon_t type);
 
 private:
     ClientProtocol& protocol;

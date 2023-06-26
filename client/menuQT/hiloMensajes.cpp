@@ -19,7 +19,9 @@ std::string HiloMensajes::typeWeaponToString(TypeWeapon_t type){
 void HiloMensajes::run() {
     bool wasClosed = false;
     std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
-    emit infoGameReceived(typeMap, amountPlayers, infoPlayers);
+    emit infoGameReceived(infoGame->typeMap, 
+                        infoGame->amountPlayers, 
+                        infoGame->infoPlayers);
     while (!wasClosed)
     {
         int typeMessage = protocol.receiveTypeMessage(wasClosed);
@@ -27,11 +29,11 @@ void HiloMensajes::run() {
             break;
         }
         if (typeMessage == MSG_JOIN){
-            infoPlayerJoin_t player = protocol.receiveJoin(wasClosed);
+            std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
 
-            //desempaquetar info
-
-            emit infoGameReceived(typeMap, amountPlayers, infoPlayers);
+            emit infoGameReceived(infoGame->typeMap, 
+                                infoGame->amountPlayers, 
+                                infoGame->infoPlayers);
         }
     }
     emit closedWithoutError(0);

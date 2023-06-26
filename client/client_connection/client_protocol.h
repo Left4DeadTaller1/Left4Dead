@@ -20,17 +20,17 @@
     TypeMap_t typeMap;
 } infoPlayerJoin_t;*/
 
-typedef struct infoGameDTO {
-    TypeMap_t typeMap;
-    int amountPlayers;   
-    std::vector<infoPlayerDTO_t> infoPlayers;
-} infoGameDTO_t;
-
 typedef struct infoPlayerDTO {
     int id;
     std::string nickname;
     TypeWeapon_t typeWeapon;
 } infoPlayerDTO_t;
+
+typedef struct infoGameDTO {
+    TypeMap_t typeMap;
+    int amountPlayers;   
+    std::vector<infoPlayerDTO_t> infoPlayers;
+} infoGameDTO_t;
 
 class ClientProtocol {
    private:

@@ -81,20 +81,33 @@ void Join::startReceiving()
     }
 }
 
-void Create::handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers, 
+std::string Join::typeWeaponToString(TypeWeapon_t type){
+    if (type == P90){
+        return "P90";
+    }
+    if (type == RIFLE){
+        return "Rifle";
+    }
+    if (type == SNIPER){
+        return "Sniper";
+    }
+    return "";
+}
+
+void Join::handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers, 
                             std::vector<infoPlayerDTO_t>& infoPlayers)
 {
 
-    ui->textEdit->clear();
-    ui->textEdit->append("Amount players in game: " + QString::number(amountPlayers));
+    ui->textEdit3->clear();
+    ui->textEdit3->append("Amount players in game: " + QString::number(amountPlayers));
 
-    for (auto player& : infoPlayers){
+    for (auto &player : infoPlayers){
         QString nickname = QString::fromStdString(player.nickname);
         QString weapon = QString::fromStdString(typeWeaponToString(player.typeWeapon));
 
-        ui->textEdit->append("Nickname: " + nickname);
-        ui->textEdit->append("Weapon: " + weapon);
-        ui->textEdit->append("------------------------------------------------------");
+        ui->textEdit3->append("Nickname: " + nickname);
+        ui->textEdit3->append("Weapon: " + weapon);
+        ui->textEdit3->append("------------------------------------------------------");
     }
 }
 
