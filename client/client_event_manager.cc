@@ -36,10 +36,13 @@ void EventManagerThread::run() {
                         case SDLK_LSHIFT:
                             shiftPressed = true;
                             break;
+                        case SDLK_g:
+                            action = std::make_shared<Revive>();
+                            break;
                         case SDLK_r:
                             action = std::make_shared<Recharge>();
                             break;
-                        case SDLK_x:
+                        case SDLK_f:
                             if (!shootSent) {
                                 action = std::make_shared<StartShoot>();
                                 shootSent = true;

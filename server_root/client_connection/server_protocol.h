@@ -59,7 +59,7 @@ typedef enum {
     START_SHOOT,
     END_SHOOT,
     RECHARGE,
-    EXIT
+    REVIVE
 } Type;
 
 enum class GeneralState {

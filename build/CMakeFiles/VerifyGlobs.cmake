@@ -18,6 +18,8 @@ set(OLD_GLOB
   "/home/usaurio/Left4Dead/client/actions/action_recharge.h"
   "/home/usaurio/Left4Dead/client/actions/action_render.cpp"
   "/home/usaurio/Left4Dead/client/actions/action_render.h"
+  "/home/usaurio/Left4Dead/client/actions/action_revive.cpp"
+  "/home/usaurio/Left4Dead/client/actions/action_revive.h"
   "/home/usaurio/Left4Dead/client/actions/action_start_game.cpp"
   "/home/usaurio/Left4Dead/client/actions/action_start_game.h"
   "/home/usaurio/Left4Dead/client/actions/action_start_move.cpp"

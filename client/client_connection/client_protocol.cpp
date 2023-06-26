@@ -186,36 +186,6 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
     return gameStateDTO;
 }
 
-/*int ClientProtocol::receiveCreate(bool& wasClosed){
-    uint8_t code;
-    skt.recvall(&code, 1, &wasClosed);
-    return code;
-}*/
-
-/*infoPlayerJoin_t ClientProtocol::receiveJoin(bool& wasClosed){
-    uint8_t code;
-    skt.recvall(&code, 1, &wasClosed);
-    infoPlayerJoin_t info;
-
-    uint8_t nickname_len;
-    skt.recvall(&nickname_len, 1, &wasClosed);
-
-    char buf_nickname[500];
-    skt.recvall(buf_nickname, nickname_len, &wasClosed);
-    buf_nickname[nickname_len] = '\0';
-    info.nickname = buf_nickname;
-
-    uint8_t typeWeapon;
-    skt.recvall(&typeWeapon, 1, &wasClosed);
-    info.typeWeapon = static_cast<TypeWeapon_t>(typeWeapon);
-
-    uint8_t typeMap;
-    skt.recvall(&typeMap, 1, &wasClosed);
-    info.typeMap = static_cast<TypeMap_t>(typeMap);
-
-    return info;
-}*/
-
 std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClosed){
     //std::cout << "EN CLIENT PROTOCOL\n";
     std::shared_ptr<infoGameDTO_t> infoGameDTO = std::make_shared<infoGameDTO_t>();

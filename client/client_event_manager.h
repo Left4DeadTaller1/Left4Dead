@@ -13,6 +13,7 @@
 #include "action_start_shoot.h"
 #include "action_end_shoot.h"
 #include "action_render.h"
+#include "action_revive.h"
 
 
 class EventManagerThread : public Thread {

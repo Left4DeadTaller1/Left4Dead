@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/usaurio/Left4Dead/client/actions/action_join.cpp" "CMakeFiles/client.dir/client/actions/action_join.cpp.o" "gcc" "CMakeFiles/client.dir/client/actions/action_join.cpp.o.d"
   "/home/usaurio/Left4Dead/client/actions/action_recharge.cpp" "CMakeFiles/client.dir/client/actions/action_recharge.cpp.o" "gcc" "CMakeFiles/client.dir/client/actions/action_recharge.cpp.o.d"
   "/home/usaurio/Left4Dead/client/actions/action_render.cpp" "CMakeFiles/client.dir/client/actions/action_render.cpp.o" "gcc" "CMakeFiles/client.dir/client/actions/action_render.cpp.o.d"
+  "/home/usaurio/Left4Dead/client/actions/action_revive.cpp" "CMakeFiles/client.dir/client/actions/action_revive.cpp.o" "gcc" "CMakeFiles/client.dir/client/actions/action_revive.cpp.o.d"
   "/home/usaurio/Left4Dead/client/actions/action_start_game.cpp" "CMakeFiles/client.dir/client/actions/action_start_game.cpp.o" "gcc" "CMakeFiles/client.dir/client/actions/action_start_game.cpp.o.d"
   "/home/usaurio/Left4Dead/client/actions/action_start_move.cpp" "CMakeFiles/client.dir/client/actions/action_start_move.cpp.o" "gcc" "CMakeFiles/client.dir/client/actions/action_start_move.cpp.o.d"
   "/home/usaurio/Left4Dead/client/actions/action_start_shoot.cpp" "CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o" "gcc" "CMakeFiles/client.dir/client/actions/action_start_shoot.cpp.o.d"

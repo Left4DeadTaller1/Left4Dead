@@ -83,6 +83,10 @@ void ClientReceiver::run() {
                     handleRecharge();
                     break;
                 }
+                case REVIVE: {
+                    std::cout << "llega revivir\n";
+                    break;
+                }
             }
         }
     }

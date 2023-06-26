@@ -13,6 +13,7 @@ typedef enum {
     START_SHOOT,
     END_SHOOT,
     RECHARGE,
+    REVIVE
 } Type;
 
 typedef enum : int8_t{
