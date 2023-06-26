@@ -131,11 +131,11 @@ void Game::removePlayer(std::string playerId) {
 }
 
 void Game::startGame() {
-    // TODO debuging
-    // zombieSpawner.increaseTotalZombies();
-    // int totalZombies = zombieSpawner.getTotalZombies();
-    // std::string zombieId = "zombie" + std::to_string(totalZombies);
-    // entities.push_back(std::make_shared<Witch>(100, 50, zombieId, 0));
+    // TODO this is for debuging
+    zombieSpawner.increaseTotalZombies();
+    int totalZombies = zombieSpawner.getTotalZombies();
+    std::string zombieId = "zombie" + std::to_string(totalZombies);
+    entities.push_back(std::make_shared<Jumper>(100, 50, zombieId, 0));
 
     gameRunning = true;
     while (gameRunning) {
@@ -213,10 +213,10 @@ void Game::updateState() {
         zombieSpawner.mutate();
 
     // spawn zombies
-    std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
-    if (spawnedZombie) {
-        entities.push_back(spawnedZombie);
-    }
+    // std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
+    // if (spawnedZombie) {
+    //     entities.push_back(spawnedZombie);
+    // }
 }
 
 void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
@@ -363,8 +363,10 @@ void Game::attack(Entity& entity) {
 void Game::useSkill(Entity& entity) {
     if (entity.isDead() && entity.getActionCounter() > 0)
         return;
+
     // TODO changethis so i pass every Entity and not just the players
     std::vector<std::shared_ptr<Entity>> targetEntities(players.begin(), players.end());
+
     entity.useSkill(targetEntities);
 }
 
@@ -383,18 +385,22 @@ void Game::performEntitySkill(Entity& entity) {
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     if (ability->type == WAIL_ABILITY && zombie->getActionCounter() == entityParams["WITCH_WAIL_DURATION"]) {
+        Witch* witch = dynamic_cast<Witch*>(zombie);
+        if (witch == nullptr || witch->getActionState() != WITCH_SHOUTING)
+            return;
+
         int witchWidth = entityParams["WITCH_WIDTH"];
         int witchHeight = entityParams["WITCH_HEIGHT"];
         int infectedWidth = entityParams["INFECTED_WIDTH"];
         int infectedHeight = entityParams["INFECTED_HEIGHT"];
-        int mutationLevel = zombie->getMutationLevel();
+        int mutationLevel = witch->getMutationLevel();
 
-        int leftOfWitch = zombie->getX() - infectedWidth - 15;
-        int rightOfWitch = zombie->getX() + witchWidth + 15;
-        int upOfWitch = zombie->getY() + witchHeight + 15;
-        int downOfWitch = zombie->getY() - infectedHeight - 15;
+        int leftOfWitch = witch->getX() - infectedWidth - 15;
+        int rightOfWitch = witch->getX() + witchWidth + 15;
+        int upOfWitch = witch->getY() + witchHeight + 15;
+        int downOfWitch = witch->getY() - infectedHeight - 15;
 
-        switch (zombie->getMutationLevel()) {
+        switch (witch->getMutationLevel()) {
             case 3:
                 // Spawn zombie to the top left of the witch
                 if (collisionDetector.isEmptySpace(entities, leftOfWitch, upOfWitch)) {
@@ -432,27 +438,30 @@ void Game::performEntitySkill(Entity& entity) {
                 break;
         }
     } else if (ability->type == JUMP_ABILITY && zombie->getActionCounter() > 0) {
-        Jumper* jumper = dynamic_cast<Jumper*>(&entity);
-        if (jumper) {
-            GameConfig& config = GameConfig::getInstance();
-            std::map<std::string, int> entityParams = config.getEntitiesParams();
-            int deltaX = entityParams["JUMPER_JUMP_DISTANCE"] / entityParams["JUMPER_JUMP_DURATION"];
-            int deltaY = 0;
+        Jumper* jumper = dynamic_cast<Jumper*>(zombie);
+        if (!jumper || jumper->getActionState() != JUMPER_JUMPING)
+            return;
 
-            // Checks For collisions while jumping
-            // TODO REMOVE THE DELTAY
-            std::shared_ptr<Entity> collidedEntity = collisionDetector.collidesWhileJumping(*jumper, deltaX, deltaY, entities);
+        std::cout << "Jumping" << std::endl;
 
-            if (collidedEntity == nullptr && jumper->getHasCrashed()) {
-                jumper->move(deltaX, deltaY);
-            }
+        GameConfig& config = GameConfig::getInstance();
+        std::map<std::string, int> entityParams = config.getEntitiesParams();
+        int deltaX = entityParams["JUMPER_JUMP_DISTANCE"] / entityParams["JUMPER_JUMP_DURATION"];
+        int deltaY = 0;
 
-            else if (collidedEntity != nullptr && jumper->getHasCrashed()) {
-                jumper->startCrashing();
-                if (collidedEntity->getType() == PLAYER) {
-                    int jumpDamage = entityParams["JUMPER_JUMP_DAMAGE"];
-                    collidedEntity->takeDamage(jumpDamage);
-                }
+        // Checks For collisions while jumping
+        // TODO REMOVE THE DELTAY
+        std::shared_ptr<Entity> collidedEntity = collisionDetector.collidesWhileJumping(*jumper, deltaX, deltaY, entities);
+
+        if (collidedEntity == nullptr && jumper->getHasCrashed()) {
+            jumper->move(deltaX, deltaY);
+        }
+
+        else if (collidedEntity != nullptr && jumper->getHasCrashed()) {
+            jumper->startCrashing();
+            if (collidedEntity->getType() == PLAYER) {
+                int jumpDamage = entityParams["JUMPER_JUMP_DAMAGE"];
+                collidedEntity->takeDamage(jumpDamage);
             }
         }
     }
