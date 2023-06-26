@@ -94,21 +94,10 @@ std::string Join::typeWeaponToString(TypeWeapon_t type){
     return "";
 }
 
-void Join::handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers, 
-                            std::vector<infoPlayerDTO_t>& infoPlayers)
+void Join::handlerInfoGameReceived(const QString& messageInfoGame)
 {
-
     ui->textEdit3->clear();
-    ui->textEdit3->append("Amount players in game: " + QString::number(amountPlayers));
-
-    for (auto &player : infoPlayers){
-        QString nickname = QString::fromStdString(player.nickname);
-        QString weapon = QString::fromStdString(typeWeaponToString(player.typeWeapon));
-
-        ui->textEdit3->append("Nickname: " + nickname);
-        ui->textEdit3->append("Weapon: " + weapon);
-        ui->textEdit3->append("------------------------------------------------------");
-    }
+    ui->textEdit3->append(messageInfoGame);
 }
 
 

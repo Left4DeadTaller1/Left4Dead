@@ -16,12 +16,36 @@ std::string HiloMensajes::typeWeaponToString(TypeWeapon_t type){
     return "";
 }
 
+const QString HiloMensajes::encodeInfoGame(TypeMap_t typeMap, int amountPlayers, 
+                            std::vector<infoPlayerDTO_t>& infoPlayers){
+
+    std::string infoGame;
+    infoGame += "Amount players in game: ";
+    infoGame += amountPlayers + "\n";
+
+    for (auto &player : infoPlayers){
+        infoGame += "Nickname: " + player.nickname + "\n";
+        infoGame += "Weapon: " + typeWeaponToString(player.typeWeapon) + "\n";
+        infoGame += "---------------------------------------------------------------\n";
+    }
+
+    return QString::fromStdString(infoGame);
+}
+
 void HiloMensajes::run() {
+    //std::cout << "METODO RUN HILO MENSAJES\n";
     bool wasClosed = false;
-    std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
-    emit infoGameReceived(infoGame->typeMap, 
-                        infoGame->amountPlayers, 
-                        infoGame->infoPlayers);
+    int typeMessage = protocol.receiveTypeMessage(wasClosed);
+    //std::cout << "typeMessage: " << typeMessage << "\n";
+    if (typeMessage == MSG_JOIN){
+        //std::cout << "ENTRA A RECIBIR JOIN\n";
+        std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
+        /*std::cout << "infoGame->typeMap: " << (int)infoGame->typeMap << "\n";
+        std::cout << "infoGame->code: " << (int)infoGame->code << "\n";
+        std::cout << "infoGame->amountPlayers: " << (int)infoGame->amountPlayers << "\n";*/
+        emit infoGameReceived(encodeInfoGame(infoGame->typeMap, infoGame->amountPlayers, 
+                            infoGame->infoPlayers));
+    }
     while (!wasClosed)
     {
         int typeMessage = protocol.receiveTypeMessage(wasClosed);
@@ -31,9 +55,8 @@ void HiloMensajes::run() {
         if (typeMessage == MSG_JOIN){
             std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
 
-            emit infoGameReceived(infoGame->typeMap, 
-                                infoGame->amountPlayers, 
-                                infoGame->infoPlayers);
+            emit infoGameReceived(encodeInfoGame(infoGame->typeMap, infoGame->amountPlayers, 
+                                infoGame->infoPlayers));
         }
     }
     emit closedWithoutError(0);

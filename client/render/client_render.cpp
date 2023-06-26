@@ -98,7 +98,7 @@ std::string traducirType(int typeInfected){
 
 int ClientRenderer::handlerAction(std::shared_ptr<ActionRender> action){
     if (action->typeAction() == EXIT){
-        std::cout << "ENTRA A SALIR DEL RENDER\n";
+        //std::cout << "ENTRA A SALIR DEL RENDER\n";
         isConnected = false;
         qServerToRender.close();
         return -1;
@@ -126,7 +126,7 @@ int ClientRenderer::looprender(void) {
             std::shared_ptr<ActionRender> action;
             qEventsToRender.try_pop(action);
             if (action){
-                std::cout << "se popea accion\n";
+                //std::cout << "se popea accion\n";
                 std::cout << action->typeAction() << "\n";
                 if (handlerAction(action) == -1){
                     return 0;
@@ -138,23 +138,23 @@ int ClientRenderer::looprender(void) {
             std::shared_ptr<gameStateDTO_t> gameStateDTO;
             qServerToRender.try_pop(gameStateDTO);
             if (gameStateDTO){
-                /*for (auto &currentPlayer : gameStateDTO->players) {
+                for (auto &currentPlayer : gameStateDTO->players) {
                     std::cout << "type: " << "soldier1" << "\n";
                     std::cout << "idPlayer: " << (int)(currentPlayer.idPlayer) << "\n";
                     std::cout << "state: " << traducir((int)(currentPlayer.state)) << "\n";
                     std::cout << "x: " << (int)(currentPlayer.x) << "\n";
                     std::cout << "y: " << (int)(currentPlayer.y) << "\n";
                     std::cout << "health: " << (int)(currentPlayer.health) << "\n";
-                }*/
+                }
 
-                /*for (auto &currentPlayer : gameStateDTO->infected) {
+                for (auto &currentPlayer : gameStateDTO->infected) {
                     std::cout << "type: " << traducirType((int)(currentPlayer.typeInfected)) << "\n";
                     std::cout << "idZombi: " << currentPlayer.idInfected << "\n";
                     std::cout << "state: " << traducir((int)(currentPlayer.state)) << "\n";
                     std::cout << "x: " << (int)(currentPlayer.x) << "\n";
                     std::cout << "y: " << (int)(currentPlayer.y) << "\n";
                     std::cout << "health: " << (int)(currentPlayer.health) << "\n";
-                }*/
+                }
                 game.updateGame(gameStateDTO);
                 renderer.Clear();
 

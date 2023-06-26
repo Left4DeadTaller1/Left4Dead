@@ -82,6 +82,17 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             //std::cout << "typeInfected: " << traducirType_((int)typeInfected) << "\n";
         }
 
+        std::string nickname;
+        if ((int)typeEntity == PLAYER){
+            uint8_t nickname_len;
+            skt.recvall(&nickname_len, 1, &wasClosed);
+
+            char buf_nickname[500];
+            skt.recvall(buf_nickname, nickname_len, &wasClosed);
+            buf_nickname[nickname_len] = '\0';
+            nickname = buf_nickname;
+        }
+
         uint8_t state_;
         skt.recvall(&state_, 1, &wasClosed);
         if(wasClosed){
@@ -193,8 +204,17 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
 }*/
 
 std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClosed){
+    //std::cout << "EN CLIENT PROTOCOL\n";
     std::shared_ptr<infoGameDTO_t> infoGameDTO = std::make_shared<infoGameDTO_t>();
     std::vector<infoPlayerDTO_t> infoPlayers;
+
+    uint8_t code;
+    skt.recvall(&code, 1, &wasClosed);
+    if(wasClosed){
+        return NULL;
+    }
+    infoGameDTO->code = code;
+    //std::cout << "code: " << (int)code << "\n";
 
     uint8_t typeMap;
     skt.recvall(&typeMap, 1, &wasClosed);
@@ -202,6 +222,7 @@ std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClos
         return NULL;
     }
     infoGameDTO->typeMap = static_cast<TypeMap_t>(typeMap);
+    //std::cout << "typeMap: " << (int)typeMap << "\n";
 
     uint8_t amountPlayers;
     skt.recvall(&amountPlayers, 1, &wasClosed);
@@ -209,6 +230,7 @@ std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClos
         return NULL;
     }
     infoGameDTO->amountPlayers = amountPlayers;
+    //std::cout << "amountPlayers: " << (int)amountPlayers << "\n";
 
     for (int i = 0; i < amountPlayers; i++){
         infoPlayerDTO_t player;
@@ -216,6 +238,7 @@ std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClos
         uint8_t id;
         skt.recvall(&id, 1, &wasClosed);
         player.id = id;
+        //std::cout << "id: " << (int)id << "\n";
 
         uint8_t nickname_len;
         skt.recvall(&nickname_len, 1, &wasClosed);
@@ -224,12 +247,16 @@ std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClos
         skt.recvall(buf_nickname, nickname_len, &wasClosed);
         buf_nickname[nickname_len] = '\0';
         player.nickname = buf_nickname;
+        //std::cout << "player.nickname: " << player.nickname << "\n";
 
         uint8_t typeWeapon;
         skt.recvall(&typeWeapon, 1, &wasClosed);
         player.typeWeapon = static_cast<TypeWeapon_t>(typeWeapon);
+        //std::cout << "player.typeWeapon: " << (int)player.typeWeapon << "\n";
 
-        infoPlayers[i] = player;
+        //std::cout << "antes de push back\n";
+        infoPlayers.push_back(player);
+        //std::cout << "despues de push back\n";
     }
 
     infoGameDTO->infoPlayers = infoPlayers;

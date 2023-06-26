@@ -25,8 +25,7 @@ signals:
 private slots:
     void closeEvent(QCloseEvent *event);
     void sliderChanged(int value);
-    void handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers, 
-                            std::vector<infoPlayerDTO_t>& infoPlayers);
+    void handlerInfoGameReceived(const QString& messageInfoGame);
     void handleClosed(int exitCode);
     std::string typeWeaponToString(TypeWeapon_t type);
 

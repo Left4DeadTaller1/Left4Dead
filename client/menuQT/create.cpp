@@ -73,21 +73,11 @@ std::string Create::typeWeaponToString(TypeWeapon_t type){
     return "";
 }
 
-void Create::handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers, 
-                            std::vector<infoPlayerDTO_t>& infoPlayers)
+void Create::handlerInfoGameReceived(const QString& messageInfoGame)
 {
 
     ui->textEdit->clear();
-    ui->textEdit->append("Amount players in game: " + QString::number(amountPlayers));
-
-    for (auto &player : infoPlayers){
-        QString nickname = QString::fromStdString(player.nickname);
-        QString weapon = QString::fromStdString(typeWeaponToString(player.typeWeapon));
-
-        ui->textEdit->append("Nickname: " + nickname);
-        ui->textEdit->append("Weapon: " + weapon);
-        ui->textEdit->append("------------------------------------------------------");
-    }
+    ui->textEdit->append(messageInfoGame);
 }
 
 void Create::startReceiving()
@@ -98,7 +88,9 @@ void Create::startReceiving()
     
     show();
     if (hiloMensajes) {
+        std::cout << "antes de lanzar el hilo\n";
         hiloMensajes->start();
+        std::cout << "despues de lanzar el hilo\n";
     }
 }
 

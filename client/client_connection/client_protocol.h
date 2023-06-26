@@ -27,6 +27,7 @@ typedef struct infoPlayerDTO {
 } infoPlayerDTO_t;
 
 typedef struct infoGameDTO {
+    uint8_t code;
     TypeMap_t typeMap;
     int amountPlayers;   
     std::vector<infoPlayerDTO_t> infoPlayers;

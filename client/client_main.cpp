@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) { try {
     ret = a.exec();
     
     if (ret == 0){
+        std::cout << "SE RETORNA CERO Y ARRANCA SDL\n";
         RendererConfig& config = RendererConfig::getInstance();
         std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
 
