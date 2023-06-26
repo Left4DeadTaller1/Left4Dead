@@ -21,22 +21,17 @@
 #include "witch.h"
 #include "zombie.h"
 
-
-typedef enum : int8_t{
-    P90,
-    RIFLE,
-    SNIPER
+typedef enum : int8_t {
+    WEAPON1,
+    WEAPON2,
+    WEAPON3
 } TypeWeapon_t;
 
-typedef enum : int8_t{
-    WAR1_BRIGHT,
-    WAR1_PALE,
-    WAR2_BRIGHT,
-    WAR2_PALE,
-    WAR3_BRIGHT,
-    WAR3_PALE,
-    WAR4_BRIGHT,
-    WAR4_PALE,
+typedef enum : int8_t {
+    MAP1,
+    MAP2,
+    MAP3,
+    MAP4
 } TypeMap_t;
 
 
@@ -117,9 +112,8 @@ class ServerProtocol {
     GeneralState determineVenomState(const std::shared_ptr<ZombieDTO> &zombie);
     void encodePlayerNickName(std::shared_ptr<std::vector<uint8_t>> &encodedMsg, const std::string &nickName);
 
-    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, const std::string &playerId);
-    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, bool serverResponse);
-    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage();
+    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, int typeMap, std::vector<LobbyPlayerDTO> &playersInfo);
+    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType);
 };
 
 #endif

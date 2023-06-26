@@ -3,10 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "entity.h"
 #include "weapon.h"
-#include <vector>
 
 enum PlayerActionState {
     PLAYER_WALKING,    // 0
@@ -29,6 +29,12 @@ struct PlayerDTO : EntityDTO {
     std::string nickName;
 };
 
+struct LobbyPlayerDTO {
+    std::string id;
+    std::string nickName;
+    int weaponType;
+};
+
 class Player : public Entity {
    private:
     Weapon weapon;
@@ -39,6 +45,8 @@ class Player : public Entity {
 
    public:
     Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon, std::string nickName);
+
+    LobbyPlayerDTO getLobbyDto();
 
     void setMovementDirectionX(MovementDirectionX movementDirectionX);
     void setMovementDirectionY(MovementDirectionY movementDirectionY);

@@ -20,6 +20,7 @@ class Weapon {
    public:
     Weapon(WeaponType type);
     ~Weapon();
+    WeaponType getType();
     Attack shoot(int bulletXOrigin, int bulletDirection, int bulletLowerY, int bulletUpperY);
     void decreaseCooldown();
     int getCooldown();

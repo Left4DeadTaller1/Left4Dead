@@ -15,23 +15,36 @@
 -------------------Api for clientCommunication------------------
 ________________________________________________________________*/
 
-Game::Game()
+Game::Game(int mapType)
     : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0) {
+    if (mapType >= MAP1_BACKGROUND && mapType <= MAP4_BACKGROUND) {
+        mapBackground = static_cast<MapType>(mapType);
+    } else {
+        // TODO launch an exception
+        std::cout << "Unkown map" << std::endl;
+    }
+
     playerQueues.resize(4, nullptr);
 }
 
-std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname) {
+std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname, int weaponType) {
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
     std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
-    spawnPlayer(playerId, playerNickname);
+    spawnPlayer(playerId, playerNickname, weaponType);
     playerQueues[nextPlayerIndex] = &gameResponses;
 
     playersActions[playerId] = std::queue<Action>();
     nextPlayerIndex++;
 
-    std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinMsg", playerId);
+    std::vector<LobbyPlayerDTO> playersInfo;
+    for (const std::shared_ptr<Player>& player : players) {
+        playersInfo.push_back(player->getLobbyDto());
+    }
+
+    int intMapType = static_cast<int>(mapBackground);
+    std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinLobby", intMapType, playersInfo);
 
     // Add message to all player queues that are not null
     for (auto playerQueue : playerQueues) {
@@ -74,12 +87,12 @@ void Game::pushAction(Action action) {
 
 void Game::run() {
     // Start the game when the thread starts running
-    /*std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage();
+    std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("GameStarted");
     for (auto playerQueue : playerQueues) {
         if (playerQueue != nullptr) {
             playerQueue->try_push(joinMessage);
         }
-    }*/
+    }
 
     startGame();
 }
@@ -102,8 +115,7 @@ Game::~Game() {}
 -----------------------Api for Game-----------------------------
 ________________________________________________________________*/
 
-void Game::spawnPlayer(std::string playerId, std::string nickName) {
-    // TODO: Here the game should figure out what weapon give each player
+void Game::spawnPlayer(std::string playerId, std::string nickName, int weaponTypeInput) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
     int gameWidth = gameDimensions["GAME_WIDTH"];
@@ -117,7 +129,25 @@ void Game::spawnPlayer(std::string playerId, std::string nickName) {
     int spawnX = gameWidth / 2 + (numPlayers % 2 == 0 ? playerWidth : 0);
     int spawnY = gameHeight / 2 - (numPlayers / 2) * playerHeight;
 
-    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SNIPER, nickName);
+    WeaponType weaponType;
+
+    switch (weaponTypeInput) {
+        case 0:
+            weaponType = SMG;
+            break;
+        case 1:
+            weaponType = RIFLE;
+            break;
+        case 2:
+            weaponType = SNIPER;
+            break;
+
+        default:
+            weaponType = SMG;
+            break;
+    }
+
+    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, weaponType, nickName);
     entities.push_back(player);
     players.push_back(player);
 }
@@ -131,11 +161,11 @@ void Game::removePlayer(std::string playerId) {
 }
 
 void Game::startGame() {
-    // TODO debuging
-    // zombieSpawner.increaseTotalZombies();
-    // int totalZombies = zombieSpawner.getTotalZombies();
-    // std::string zombieId = "zombie" + std::to_string(totalZombies);
-    // entities.push_back(std::make_shared<Witch>(100, 50, zombieId, 0));
+    // TODO this is for debuging
+    zombieSpawner.increaseTotalZombies();
+    int totalZombies = zombieSpawner.getTotalZombies();
+    std::string zombieId = "zombie" + std::to_string(totalZombies);
+    entities.push_back(std::make_shared<Jumper>(100, 50, zombieId, 0));
 
     gameRunning = true;
     while (gameRunning) {
@@ -213,10 +243,10 @@ void Game::updateState() {
         zombieSpawner.mutate();
 
     // spawn zombies
-    std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
-    if (spawnedZombie) {
-        entities.push_back(spawnedZombie);
-    }
+    // std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
+    // if (spawnedZombie) {
+    //     entities.push_back(spawnedZombie);
+    // }
 }
 
 void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
@@ -363,8 +393,10 @@ void Game::attack(Entity& entity) {
 void Game::useSkill(Entity& entity) {
     if (entity.isDead() && entity.getActionCounter() > 0)
         return;
+
     // TODO changethis so i pass every Entity and not just the players
     std::vector<std::shared_ptr<Entity>> targetEntities(players.begin(), players.end());
+
     entity.useSkill(targetEntities);
 }
 
@@ -383,18 +415,22 @@ void Game::performEntitySkill(Entity& entity) {
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     if (ability->type == WAIL_ABILITY && zombie->getActionCounter() == entityParams["WITCH_WAIL_DURATION"]) {
+        Witch* witch = dynamic_cast<Witch*>(zombie);
+        if (witch == nullptr || witch->getActionState() != WITCH_SHOUTING)
+            return;
+
         int witchWidth = entityParams["WITCH_WIDTH"];
         int witchHeight = entityParams["WITCH_HEIGHT"];
         int infectedWidth = entityParams["INFECTED_WIDTH"];
         int infectedHeight = entityParams["INFECTED_HEIGHT"];
-        int mutationLevel = zombie->getMutationLevel();
+        int mutationLevel = witch->getMutationLevel();
 
-        int leftOfWitch = zombie->getX() - infectedWidth - 15;
-        int rightOfWitch = zombie->getX() + witchWidth + 15;
-        int upOfWitch = zombie->getY() + witchHeight + 15;
-        int downOfWitch = zombie->getY() - infectedHeight - 15;
+        int leftOfWitch = witch->getX() - infectedWidth - 15;
+        int rightOfWitch = witch->getX() + witchWidth + 15;
+        int upOfWitch = witch->getY() + witchHeight + 15;
+        int downOfWitch = witch->getY() - infectedHeight - 15;
 
-        switch (zombie->getMutationLevel()) {
+        switch (witch->getMutationLevel()) {
             case 3:
                 // Spawn zombie to the top left of the witch
                 if (collisionDetector.isEmptySpace(entities, leftOfWitch, upOfWitch)) {
@@ -432,27 +468,30 @@ void Game::performEntitySkill(Entity& entity) {
                 break;
         }
     } else if (ability->type == JUMP_ABILITY && zombie->getActionCounter() > 0) {
-        Jumper* jumper = dynamic_cast<Jumper*>(&entity);
-        if (jumper) {
-            GameConfig& config = GameConfig::getInstance();
-            std::map<std::string, int> entityParams = config.getEntitiesParams();
-            int deltaX = entityParams["JUMPER_JUMP_DISTANCE"] / entityParams["JUMPER_JUMP_DURATION"];
-            int deltaY = 0;
+        Jumper* jumper = dynamic_cast<Jumper*>(zombie);
+        if (!jumper || jumper->getActionState() != JUMPER_JUMPING)
+            return;
 
-            // Checks For collisions while jumping
-            // TODO REMOVE THE DELTAY
-            std::shared_ptr<Entity> collidedEntity = collisionDetector.collidesWhileJumping(*jumper, deltaX, deltaY, entities);
+        std::cout << "Jumping" << std::endl;
 
-            if (collidedEntity == nullptr && jumper->getHasCrashed()) {
-                jumper->move(deltaX, deltaY);
-            }
+        GameConfig& config = GameConfig::getInstance();
+        std::map<std::string, int> entityParams = config.getEntitiesParams();
+        int deltaX = entityParams["JUMPER_JUMP_DISTANCE"] / entityParams["JUMPER_JUMP_DURATION"];
+        int deltaY = 0;
 
-            else if (collidedEntity != nullptr && jumper->getHasCrashed()) {
-                jumper->startCrashing();
-                if (collidedEntity->getType() == PLAYER) {
-                    int jumpDamage = entityParams["JUMPER_JUMP_DAMAGE"];
-                    collidedEntity->takeDamage(jumpDamage);
-                }
+        // Checks For collisions while jumping
+        // TODO REMOVE THE DELTAY
+        std::shared_ptr<Entity> collidedEntity = collisionDetector.collidesWhileJumping(*jumper, deltaX, deltaY, entities);
+
+        if (collidedEntity == nullptr && jumper->getHasCrashed()) {
+            jumper->move(deltaX, deltaY);
+        }
+
+        else if (collidedEntity != nullptr && jumper->getHasCrashed()) {
+            jumper->startCrashing();
+            if (collidedEntity->getType() == PLAYER) {
+                int jumpDamage = entityParams["JUMPER_JUMP_DAMAGE"];
+                collidedEntity->takeDamage(jumpDamage);
             }
         }
     }

@@ -124,6 +124,7 @@ void Jumper::useSkill(std::vector<std::shared_ptr<Entity>>& players) {
         return;
 
     if (getplayerWithinRange(players)) {
+        std::cout << "Jumper starting to jump" << std::endl;
         GameConfig& config = GameConfig::getInstance();
         std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -184,6 +185,10 @@ bool Jumper::isDead() {
 
 bool Jumper::isRemovable() {
     return (actionCounter == 0 && actionState == JUMPER_DEAD);
+}
+
+JumperActionState Jumper::getActionState() {
+    return actionState;
 }
 
 Jumper::~Jumper() {}

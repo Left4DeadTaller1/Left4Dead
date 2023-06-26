@@ -42,6 +42,7 @@ class Jumper : public Zombie {
     void kill() override;
     bool isDead() override;
     bool isRemovable() override;
+    JumperActionState getActionState();
     ~Jumper();
 };
 

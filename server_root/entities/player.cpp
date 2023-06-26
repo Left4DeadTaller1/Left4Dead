@@ -13,6 +13,14 @@ Player::Player(int xPosition, int yPosition, std::string playerId, WeaponType we
     movementSpeed = entityParams["PLAYER_SPEED"];
 }
 
+LobbyPlayerDTO Player::getLobbyDto() {
+    LobbyPlayerDTO lobbyDto;
+    lobbyDto.id = this->entityId;
+    lobbyDto.nickName = this->nickName;
+    lobbyDto.weaponType = static_cast<int>(weapon.getType());
+    return lobbyDto;
+}
+
 EntityType Player::getType() {
     return PLAYER;
 }
@@ -87,7 +95,7 @@ std::shared_ptr<Player> Player::getClosestRevivablePlayer(std::vector<std::share
     return nullptr;
 }
 
-std::shared_ptr<Player> Player::getRevivingPlayer(){
+std::shared_ptr<Player> Player::getRevivingPlayer() {
     return revivingPlayer;
 }
 
