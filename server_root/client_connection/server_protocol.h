@@ -109,6 +109,7 @@ class ServerProtocol {
     GeneralState determineWitchState(const std::shared_ptr<ZombieDTO> &zombie);
     GeneralState determineSpearState(const std::shared_ptr<ZombieDTO> &zombie);
     GeneralState determineVenomState(const std::shared_ptr<ZombieDTO> &zombie);
+    void encodePlayerNickName(std::shared_ptr<std::vector<uint8_t>> &encodedMsg, const std::string &nickName);
 
     std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, const std::string &playerId);
     std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, bool serverResponse);

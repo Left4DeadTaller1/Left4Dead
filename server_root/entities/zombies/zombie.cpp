@@ -47,6 +47,9 @@ void Zombie::decideTarget(std::vector<std::shared_ptr<Player>>& players) {
     int closestPlayerDistance = std::sqrt(std::pow((x - closestPlayerX), 2) + std::pow((y - closestPlayerY), 2));
 
     for (std::size_t i = 1; i < players.size(); i++) {
+        if (players[i]->isDead())
+            continue;
+
         int newDistance = std::sqrt(std::pow((x - players[i]->getX()), 2) + std::pow((y - players[i]->getY()), 2));
         if (newDistance < closestPlayerDistance) {
             closestPlayerX = players[i]->getX();

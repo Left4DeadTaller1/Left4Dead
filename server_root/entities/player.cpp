@@ -2,8 +2,8 @@
 
 #include "game_config.h"
 
-Player::Player(int xPosition, int yPosition, std::string playerId, WeaponType weaponType)
-    : Entity(xPosition, yPosition, playerId), weapon(weaponType), actionState(PLAYER_IDLE) {
+Player::Player(int xPosition, int yPosition, std::string playerId, WeaponType weaponType, std::string nickName)
+    : Entity(xPosition, yPosition, playerId), weapon(weaponType), actionState(PLAYER_IDLE), nickName(nickName), knockDowns(0), revivingPlayer(nullptr) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -59,6 +59,50 @@ std::tuple<int, int> Player::getDirectionsAmount() {
     return std::make_tuple(xAmount, yAmount);
 }
 
+std::shared_ptr<Player> Player::getClosestRevivablePlayer(std::vector<std::shared_ptr<Player>>& players) {
+    if (players.size() <= 1) {
+        return;
+    }
+
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    int maxRevivalDistance = entityParams["PLAYER_REVIVE_DISTANCE"];
+    int distanceToClosestPlayer;
+
+    std::shared_ptr<Player> closestRevivablePlayer = nullptr;
+
+    for (const auto& player : players) {
+        if (player == this || player->getActionState != PLAYER_DYING) continue;
+
+        int distance = std::sqrt(std::pow((x - closestRevivablePlayer->getX()), 2) + std::pow((y - closestRevivablePlayer->getY()), 2));
+
+        if (distance <= maxRevivalDistance && (closestRevivablePlayer == nullptr || distance < distanceToClosestPlayer)) {
+            closestRevivablePlayer = player;
+            distanceToClosestPlayer = distance;
+        }
+
+        return closestRevivablePlayer;
+    }
+}
+
+void Player::setClosestRevivablePlayer(std::shared_ptr<Player> player) {
+    this->revivingPlayer = player;
+}
+
+void Player::setRevivalState() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    this->actionState = PLAYER_REVIVING;
+    this->actionCounter = entityParams["PLAYER_REVIVAL_DURATION"];
+}
+
+void Player::revive() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    this->actionState = PLAYER_IDLE;
+    this->health = (entityParams["PLAYER_HEALTH"] / 2);
+}
+
 void Player::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
@@ -67,6 +111,7 @@ void Player::takeDamage(int damage) {
         health = 0;
         actionState = PLAYER_DYING;
         actionCounter = entityParams["PLAYER_DYING_DURATION"];
+        knockDowns++;
     } else {
         actionState = PLAYER_HURT;
         actionCounter = entityParams["PLAYER_HURT_DURATION"];
@@ -114,6 +159,7 @@ std::shared_ptr<EntityDTO> Player::getDto() {
     dto->movementDirectionX = static_cast<int>(this->getMovementDirectionX());
     dto->facingDirection = this->facingDirection;
     dto->bullets = this->weapon.getBullets();
+    dto->nickName = this->nickName;
     return dto;
 }
 
@@ -174,7 +220,8 @@ Attack Player::generateAttack() {
 }
 
 bool Player::checkIfDead() {
-    if (actionState == PLAYER_DYING && actionCounter == 0)
+    // TODO test knockdowns
+    if ((actionState == PLAYER_DYING && actionCounter == 0) || (actionState == PLAYER_DYING && knockDowns >= 3))
         return true;
 
     return false;

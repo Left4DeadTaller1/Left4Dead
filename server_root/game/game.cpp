@@ -20,12 +20,12 @@ Game::Game()
     playerQueues.resize(4, nullptr);
 }
 
-std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses) {
+std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname) {
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
     std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
-    spawnPlayer(playerId);
+    spawnPlayer(playerId, playerNickname);
     playerQueues[nextPlayerIndex] = &gameResponses;
 
     playersActions[playerId] = std::queue<Action>();
@@ -102,7 +102,7 @@ Game::~Game() {}
 -----------------------Api for Game-----------------------------
 ________________________________________________________________*/
 
-void Game::spawnPlayer(std::string playerId) {
+void Game::spawnPlayer(std::string playerId, std::string nickName) {
     // TODO: Here the game should figure out what weapon give each player
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
@@ -117,7 +117,7 @@ void Game::spawnPlayer(std::string playerId) {
     int spawnX = gameWidth / 2 + (numPlayers % 2 == 0 ? playerWidth : 0);
     int spawnY = gameHeight / 2 - (numPlayers / 2) * playerHeight;
 
-    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SNIPER);
+    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SNIPER, nickName);
     entities.push_back(player);
     players.push_back(player);
 }
@@ -188,7 +188,9 @@ void Game::updateState() {
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
             updatePlayerState(*player, playersActions[player->getId()]);
+            // TODO: add a perform method that checks the state of entity
             reloadPlayer(*player);
+            revivePlayer(*player);
         }
 
         else {
@@ -196,7 +198,10 @@ void Game::updateState() {
             zombie->decideTarget(players);
         }
 
+        // performAction(*entity)
+
         move(*entity);
+        // TODO change this so the dmg is made if actionCounter is 0
         attack(*entity);
         useSkill(*entity);
     }
@@ -214,23 +219,33 @@ void Game::updateState() {
 
 void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
     while (!playerActions.empty()) {
-        if (player.getActionCounter() == 0) {
-            Action action = playerActions.front();
-            playerActions.pop();
+        if (player.getActionCounter() != 0) {
+            continue;
+        }
+        Action action = playerActions.front();
+        playerActions.pop();
 
-            int actionPlayerState = action.getInputType();
-            int actionMovementDirectionX = action.getDirectionXType();
-            int actionMovementDirectionY = action.getDirectionYType();
+        int actionPlayerState = action.getInputType();
+        int actionMovementDirectionX = action.getDirectionXType();
+        int actionMovementDirectionY = action.getDirectionYType();
 
-            if (actionPlayerState == DISCONNECTION) {
-                removePlayer(player.getId());
-                break;
-            }
-            if (actionPlayerState != NO_CHANGE) {
-                if (actionPlayerState == INPUT_SHOOTING) {
-                    if (player.canAttack()) {
-                        PlayerActionState playerState = static_cast<PlayerActionState>(actionPlayerState);
-                        player.setActionState(playerState);
+        if (actionPlayerState == DISCONNECTION) {
+            removePlayer(player.getId());
+            break;
+        }
+        if (actionPlayerState != NO_CHANGE) {
+            if (actionPlayerState == INPUT_SHOOTING) {
+                if (player.canAttack()) {
+                    PlayerActionState playerState = static_cast<PlayerActionState>(actionPlayerState);
+                    player.setActionState(playerState);
+                } else if (actionPlayerState == INPUT_REVIVE) {
+                    if (player.getActionState != PLAYER_REVIVING) {
+                        std::shared_ptr<Player> revivalTarget = player.getClosestRevivablePlayer(std::vector<std::shared_ptr<Player>> & players);
+
+                        if (revivalTarget) {
+                            player.setClosestRevivablePlayer(revivalTarget);
+                            player.setRevivalState();
+                        }
                     }
                 } else {
                     PlayerActionState playerState = static_cast<PlayerActionState>(actionPlayerState);
@@ -258,8 +273,16 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
 }
 
 void Game::reloadPlayer(Player& player) {
-    if (player.getActionState() == PLAYER_RELOADING && player.getActionCounter() == 0)
+    // TODO: CHANGE THIS SO YOU RELOAD IN FRAME 1
+    if (player.getActionState() == PLAYER_RELOADING && player.getActionCounter() == 0) {
         player.reload();
+    }
+}
+
+void Game::revivePlayer(Player& player) {
+    if (player.getActionState() == PLAYER_REVIVING && player.getActionCounter() == 1) {
+        player.getRevivingPlayer()->revive();
+    }
 }
 
 void Game::move(Entity& entity) {

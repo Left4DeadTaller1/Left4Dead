@@ -26,10 +26,10 @@ class GamesManager {
 
     void startGame(unsigned int gameCode);
 
-    GameRecord createLobby(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses);
+    GameRecord createLobby(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string nickName);
 
     // method may return a reference to the Queue (when a Game with the given game code is found), or it may return an empty std::optional (when there's no Game with the given game code)
-    GameRecord joinLobby(unsigned int gameCode, Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses);
+    GameRecord joinLobby(unsigned int gameCode, Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname);
 
     // Method for Testing do not use them in production
     int _getNextGameId();

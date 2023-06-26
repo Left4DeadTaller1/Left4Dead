@@ -3,7 +3,7 @@
 cmake_policy(SET CMP0009 NEW)
 
 # CLIENT_SRC at CMakeLists.txt:28 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/usaurio/Left4Dead/client/*")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/regman/taller/left4Dead/client/*")
 set(OLD_GLOB
   "/home/usaurio/Left4Dead/client/actions/action_client.h"
   "/home/usaurio/Left4Dead/client/actions/action_create.cpp"
@@ -286,110 +286,110 @@ set(OLD_GLOB
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "/home/usaurio/Left4Dead/build/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "/home/regman/taller/left4Dead/build/CMakeFiles/cmake.verify_globs")
 endif()
 
 # COMMON_SRC at CMakeLists.txt:27 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/usaurio/Left4Dead/dipa_classes/*")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/regman/taller/left4Dead/dipa_classes/*")
 set(OLD_GLOB
-  "/home/usaurio/Left4Dead/dipa_classes/liberror.cpp"
-  "/home/usaurio/Left4Dead/dipa_classes/liberror.h"
-  "/home/usaurio/Left4Dead/dipa_classes/queue.h"
-  "/home/usaurio/Left4Dead/dipa_classes/resolver.cpp"
-  "/home/usaurio/Left4Dead/dipa_classes/resolver.h"
-  "/home/usaurio/Left4Dead/dipa_classes/resolvererror.cpp"
-  "/home/usaurio/Left4Dead/dipa_classes/resolvererror.h"
-  "/home/usaurio/Left4Dead/dipa_classes/socket.cpp"
-  "/home/usaurio/Left4Dead/dipa_classes/socket.h"
-  "/home/usaurio/Left4Dead/dipa_classes/thread.h"
+  "/home/regman/taller/left4Dead/dipa_classes/liberror.cpp"
+  "/home/regman/taller/left4Dead/dipa_classes/liberror.h"
+  "/home/regman/taller/left4Dead/dipa_classes/queue.h"
+  "/home/regman/taller/left4Dead/dipa_classes/resolver.cpp"
+  "/home/regman/taller/left4Dead/dipa_classes/resolver.h"
+  "/home/regman/taller/left4Dead/dipa_classes/resolvererror.cpp"
+  "/home/regman/taller/left4Dead/dipa_classes/resolvererror.h"
+  "/home/regman/taller/left4Dead/dipa_classes/socket.cpp"
+  "/home/regman/taller/left4Dead/dipa_classes/socket.h"
+  "/home/regman/taller/left4Dead/dipa_classes/thread.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "/home/usaurio/Left4Dead/build/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "/home/regman/taller/left4Dead/build/CMakeFiles/cmake.verify_globs")
 endif()
 
 # SERVER_SRC at CMakeLists.txt:29 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/usaurio/Left4Dead/server_root/*")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/regman/taller/left4Dead/server_root/*")
 set(OLD_GLOB
-  "/home/usaurio/Left4Dead/server_root/client_connection/client_connection.cpp"
-  "/home/usaurio/Left4Dead/server_root/client_connection/client_connection.h"
-  "/home/usaurio/Left4Dead/server_root/client_connection/client_receiver.cpp"
-  "/home/usaurio/Left4Dead/server_root/client_connection/client_receiver.h"
-  "/home/usaurio/Left4Dead/server_root/client_connection/client_sender.cpp"
-  "/home/usaurio/Left4Dead/server_root/client_connection/client_sender.h"
-  "/home/usaurio/Left4Dead/server_root/client_connection/server_protocol.cpp"
-  "/home/usaurio/Left4Dead/server_root/client_connection/server_protocol.h"
-  "/home/usaurio/Left4Dead/server_root/entities/attack.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/attack.h"
-  "/home/usaurio/Left4Dead/server_root/entities/collision_detector.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/collision_detector.h"
-  "/home/usaurio/Left4Dead/server_root/entities/entity.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/entity.h"
-  "/home/usaurio/Left4Dead/server_root/entities/player.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/player.h"
-  "/home/usaurio/Left4Dead/server_root/entities/weapon.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/weapon.h"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/infected.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/infected.h"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/jumper.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/spear.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/spear.h"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/venom.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/venom.h"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/witch.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/witch.h"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/zombie.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.cpp"
-  "/home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.h"
-  "/home/usaurio/Left4Dead/server_root/game/action.cpp"
-  "/home/usaurio/Left4Dead/server_root/game/action.h"
-  "/home/usaurio/Left4Dead/server_root/game/configuration/configuration.yaml"
-  "/home/usaurio/Left4Dead/server_root/game/configuration/game_config.cpp"
-  "/home/usaurio/Left4Dead/server_root/game/configuration/game_config.h"
-  "/home/usaurio/Left4Dead/server_root/game/game.cpp"
-  "/home/usaurio/Left4Dead/server_root/game/game.h"
-  "/home/usaurio/Left4Dead/server_root/game/games_manager.cpp"
-  "/home/usaurio/Left4Dead/server_root/game/games_manager.h"
-  "/home/usaurio/Left4Dead/server_root/game/server_message.cpp"
-  "/home/usaurio/Left4Dead/server_root/game/server_message.h"
-  "/home/usaurio/Left4Dead/server_root/server/acceptor.cpp"
-  "/home/usaurio/Left4Dead/server_root/server/acceptor.h"
-  "/home/usaurio/Left4Dead/server_root/server/server.cpp"
-  "/home/usaurio/Left4Dead/server_root/server/server.h"
-  "/home/usaurio/Left4Dead/server_root/server/server_main.cpp"
-  "/home/usaurio/Left4Dead/server_root/server_documentation.md"
+  "/home/regman/taller/left4Dead/server_root/client_connection/client_connection.cpp"
+  "/home/regman/taller/left4Dead/server_root/client_connection/client_connection.h"
+  "/home/regman/taller/left4Dead/server_root/client_connection/client_receiver.cpp"
+  "/home/regman/taller/left4Dead/server_root/client_connection/client_receiver.h"
+  "/home/regman/taller/left4Dead/server_root/client_connection/client_sender.cpp"
+  "/home/regman/taller/left4Dead/server_root/client_connection/client_sender.h"
+  "/home/regman/taller/left4Dead/server_root/client_connection/server_protocol.cpp"
+  "/home/regman/taller/left4Dead/server_root/client_connection/server_protocol.h"
+  "/home/regman/taller/left4Dead/server_root/entities/attack.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/attack.h"
+  "/home/regman/taller/left4Dead/server_root/entities/collision_detector.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/collision_detector.h"
+  "/home/regman/taller/left4Dead/server_root/entities/entity.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/entity.h"
+  "/home/regman/taller/left4Dead/server_root/entities/player.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/player.h"
+  "/home/regman/taller/left4Dead/server_root/entities/weapon.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/weapon.h"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/infected.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/infected.h"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/jumper.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/jumper.h"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/spear.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/spear.h"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/venom.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/venom.h"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/witch.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/witch.h"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/zombie.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/zombie_spawner.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/zombies/zombie_spawner.h"
+  "/home/regman/taller/left4Dead/server_root/game/action.cpp"
+  "/home/regman/taller/left4Dead/server_root/game/action.h"
+  "/home/regman/taller/left4Dead/server_root/game/configuration/configuration.yaml"
+  "/home/regman/taller/left4Dead/server_root/game/configuration/game_config.cpp"
+  "/home/regman/taller/left4Dead/server_root/game/configuration/game_config.h"
+  "/home/regman/taller/left4Dead/server_root/game/game.cpp"
+  "/home/regman/taller/left4Dead/server_root/game/game.h"
+  "/home/regman/taller/left4Dead/server_root/game/games_manager.cpp"
+  "/home/regman/taller/left4Dead/server_root/game/games_manager.h"
+  "/home/regman/taller/left4Dead/server_root/game/server_message.cpp"
+  "/home/regman/taller/left4Dead/server_root/game/server_message.h"
+  "/home/regman/taller/left4Dead/server_root/server/acceptor.cpp"
+  "/home/regman/taller/left4Dead/server_root/server/acceptor.h"
+  "/home/regman/taller/left4Dead/server_root/server/server.cpp"
+  "/home/regman/taller/left4Dead/server_root/server/server.h"
+  "/home/regman/taller/left4Dead/server_root/server/server_main.cpp"
+  "/home/regman/taller/left4Dead/server_root/server_documentation.md"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "/home/usaurio/Left4Dead/build/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "/home/regman/taller/left4Dead/build/CMakeFiles/cmake.verify_globs")
 endif()
 
 # CLIENT_TESTS_SRC at tests/CMakeLists.txt:18 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/usaurio/Left4Dead/tests/client_tests/*.cpp")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/regman/taller/left4Dead/tests/client_tests/*.cpp")
 set(OLD_GLOB
-  "/home/usaurio/Left4Dead/tests/client_tests/client_protocol_tests.cpp"
-  "/home/usaurio/Left4Dead/tests/client_tests/main_client_test.cpp"
+  "/home/regman/taller/left4Dead/tests/client_tests/client_protocol_tests.cpp"
+  "/home/regman/taller/left4Dead/tests/client_tests/main_client_test.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "/home/usaurio/Left4Dead/build/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "/home/regman/taller/left4Dead/build/CMakeFiles/cmake.verify_globs")
 endif()
 
 # SERVER_TESTS_SRC at tests/CMakeLists.txt:17 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/usaurio/Left4Dead/tests/server_tests/*.cpp")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/regman/taller/left4Dead/tests/server_tests/*.cpp")
 set(OLD_GLOB
-  "/home/usaurio/Left4Dead/tests/server_tests/collisions_tests.cpp"
-  "/home/usaurio/Left4Dead/tests/server_tests/entity_tests.cpp"
-  "/home/usaurio/Left4Dead/tests/server_tests/game_config_tests.cpp"
-  "/home/usaurio/Left4Dead/tests/server_tests/game_tests.cpp"
-  "/home/usaurio/Left4Dead/tests/server_tests/games_manager_tests.cpp"
-  "/home/usaurio/Left4Dead/tests/server_tests/main_tests.cpp"
-  "/home/usaurio/Left4Dead/tests/server_tests/server_protocol_tests.cpp"
-  "/home/usaurio/Left4Dead/tests/server_tests/zombie_spawner_tests.cpp"
+  "/home/regman/taller/left4Dead/tests/server_tests/collisions_tests.cpp"
+  "/home/regman/taller/left4Dead/tests/server_tests/entity_tests.cpp"
+  "/home/regman/taller/left4Dead/tests/server_tests/game_config_tests.cpp"
+  "/home/regman/taller/left4Dead/tests/server_tests/game_tests.cpp"
+  "/home/regman/taller/left4Dead/tests/server_tests/games_manager_tests.cpp"
+  "/home/regman/taller/left4Dead/tests/server_tests/main_tests.cpp"
+  "/home/regman/taller/left4Dead/tests/server_tests/server_protocol_tests.cpp"
+  "/home/regman/taller/left4Dead/tests/server_tests/zombie_spawner_tests.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "/home/usaurio/Left4Dead/build/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "/home/regman/taller/left4Dead/build/CMakeFiles/cmake.verify_globs")
 endif()

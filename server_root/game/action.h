@@ -24,8 +24,9 @@ enum Input {
     INPUT_SHOOTING,   // 3
     INPUT_RELOADING,  // 4
     INPUT_ATTACKING,  // 5
-    NO_CHANGE,        // 6
-    DISCONNECTION,    // 7
+    INPUT_REVIVE,     // 6
+    NO_CHANGE,        // 7
+    DISCONNECTION,    // 8
 };
 
 class Action {

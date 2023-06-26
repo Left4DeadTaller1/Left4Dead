@@ -16,7 +16,7 @@ TEST(EntityTest, TestTakingDamage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
-    Player player(5, 10, "Player1", SMG);
+    Player player(5, 10, "Player1", SMG, "amund");
     Infected zombie(15, 20, "Zombie1", 0);
     zombie.takeDamage(20);
     player.takeDamage(20);
@@ -28,7 +28,7 @@ TEST(EntityTest, TestTakingDamage) {
 TEST(PlayerTest, TestPlayerInitialization) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
-    Player player(5, 10, "Player1", SMG);
+    Player player(5, 10, "Player1", SMG, "amund");
     EXPECT_EQ(player.getId(), "Player1");
     EXPECT_EQ(player.getX(), 5);
     EXPECT_EQ(player.getY(), 10);
@@ -40,13 +40,13 @@ TEST(PlayerTest, TestPlayerInitialization) {
 TEST(PlayerTest, TestPlayerTakeDamage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
-    Player player(5, 10, "Player1", SMG);
+    Player player(5, 10, "Player1", SMG, "amund");
     player.takeDamage(20);
     EXPECT_EQ(player.getHealth(), entityParams["PLAYER_HEALTH"] - 20);
 }
 
 TEST(PlayerTest, TestPlayerMovement) {
-    Player player(5, 10, "Player1", SMG);
+    Player player(5, 10, "Player1", SMG, "amund");
     player.move(3, 2);
     EXPECT_EQ(player.getX(), 8);
     EXPECT_EQ(player.getY(), 12);
@@ -72,9 +72,9 @@ TEST(ZombieTest, TestZombieTakeDamage) {
 TEST(ZombieTest, TestZombieDecideTarget) {
     Infected zombie(10, 10, "Zombie1", 0);
 
-    auto player1 = std::make_shared<Player>(5, 5, "Player1", SMG);
-    auto player2 = std::make_shared<Player>(20, 20, "Player2", SMG);
-    auto player3 = std::make_shared<Player>(15, 5, "Player3", SMG);
+    auto player1 = std::make_shared<Player>(5, 5, "Player1", SMG, "amund");
+    auto player2 = std::make_shared<Player>(20, 20, "Player2", SMG, "amund");
+    auto player3 = std::make_shared<Player>(15, 5, "Player3", SMG, "amund");
 
     std::vector<std::shared_ptr<Player>> players = {player1, player2, player3};
 

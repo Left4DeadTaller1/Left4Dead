@@ -28,7 +28,6 @@ void ClientReceiver::run() {
                 break;
             }
 
-            int code;
             std::vector<int> data;
             infoCreate_t infoCreate;
             infoJoin_t infoJoin;
@@ -41,16 +40,17 @@ void ClientReceiver::run() {
                     std::cout << "typeMap: " << (int)infoCreate.typeMap << "\n";
                     std::cout << "nickname: " << infoCreate.nickname << "\n";
                     if (!game)
-                        handleCreateAction();
+                        handleCreateAction(infoCreate.nickname);
                     break;
                 case JOIN:
-                    std::cout << "SE RECIBE JOIN CON:\n";
-                    infoJoin = protocol.receiveJoin(wasClosed, clientSocket);
-                    std::cout << "typeWeapon: " << (int)infoJoin.typeWeapon << "\n";
-                    std::cout << "code: " << (int)infoJoin.code << "\n";
-                    std::cout << "nickname: " << infoJoin.nickname << "\n";
-                    if (!game->isGameRunning())
-                        handleJoinAction(infoJoin.code);
+                    if (!game) {
+                        std::cout << "SE RECIBE JOIN CON:\n";
+                        infoJoin = protocol.receiveJoin(wasClosed, clientSocket);
+                        std::cout << "typeWeapon: " << (int)infoJoin.typeWeapon << "\n";
+                        std::cout << "code: " << (int)infoJoin.code << "\n";
+                        std::cout << "nickname: " << infoJoin.nickname << "\n";
+                        handleJoinAction(infoJoin.code, infoJoin.nickname);
+                    }
                     break;
                 case START_GAME:
                     std::cout << "SE RECIBE START\n";
@@ -58,25 +58,29 @@ void ClientReceiver::run() {
                     if (!game->isGameRunning())
                         gamesManager.startGame(0);
                     break;
-                case START_MOVE:
-                    data = protocol.receiveStartMove(wasClosed, clientSocket);
+                }
+                case START_MOVE: {
+                    std::vector<int> data = protocol.receiveStartMove(wasClosed, clientSocket);
                     handleStartMove(data[0], data[1], data[2]);
                     break;
-                case END_MOVE:
-                    data = protocol.receiveEndMove(wasClosed, clientSocket);
+                }
+                case END_MOVE: {
+                    std::vector<int> data = protocol.receiveEndMove(wasClosed, clientSocket);
                     handleEndMove(data[0], data[1]);
                     break;
-                case START_SHOOT:
+                }
+                case START_SHOOT: {
                     handleStartShoot();
                     break;
-                case END_SHOOT:
+                }
+                case END_SHOOT: {
                     handleEndShoot();
                     break;
-                case RECHARGE:
+                }
+                case RECHARGE: {
                     handleRecharge();
                     break;
-                    /*case EXIT:
-                        break;*/
+                }
             }
         }
     }
@@ -94,8 +98,8 @@ void ClientReceiver::run() {
     isRunning = false;
 }
 
-void ClientReceiver::handleCreateAction() {
-    GameRecord gameRecord = gamesManager.createLobby(gameResponses);
+void ClientReceiver::handleCreateAction(std::string nickName) {
+    GameRecord gameRecord = gamesManager.createLobby(gameResponses, nickName);
     game = gameRecord.game;
     playerId = gameRecord.playerId;
     // std::cout << "Created match: " << newGameCode << std::endl;
@@ -104,9 +108,9 @@ void ClientReceiver::handleCreateAction() {
     // queue.push(createResponse);
 }
 
-void ClientReceiver::handleJoinAction(const int code) {
+void ClientReceiver::handleJoinAction(const int code, std::string playerNickname) {
     try {
-        GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses);
+        GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses, playerNickname);
         game = gameRecord.game;
         playerId = gameRecord.playerId;
     } catch (const std::out_of_range &e) {
