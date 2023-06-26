@@ -82,6 +82,7 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             //std::cout << "typeInfected: " << traducirType_((int)typeInfected) << "\n";
         }
 
+        std::cout << "hola\n";
         std::string nickname;
         if ((int)typeEntity == PLAYER){
             uint8_t nickname_len;
