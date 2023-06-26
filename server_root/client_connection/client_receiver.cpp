@@ -28,12 +28,12 @@ void ClientReceiver::run() {
                 break;
             }
 
-            std::vector<int> data;
+            //std::vector<int> data;
             infoCreate_t infoCreate;
             infoJoin_t infoJoin;
 
             switch (typeCommand) {
-                case CREATE:
+                case CREATE: {
                     std::cout << "SE RECIBE CREATE CON:\n";
                     infoCreate = protocol.receiveCreate(wasClosed, clientSocket);
                     std::cout << "typeWeapon: " << (int)infoCreate.typeWeapon << "\n";
@@ -42,7 +42,8 @@ void ClientReceiver::run() {
                     if (!game)
                         handleCreateAction(infoCreate.nickname);
                     break;
-                case JOIN:
+                }
+                case JOIN: {
                     if (!game) {
                         std::cout << "SE RECIBE JOIN CON:\n";
                         infoJoin = protocol.receiveJoin(wasClosed, clientSocket);
@@ -52,7 +53,8 @@ void ClientReceiver::run() {
                         handleJoinAction(infoJoin.code, infoJoin.nickname);
                     }
                     break;
-                case START_GAME:
+                }
+                case START_GAME: {
                     std::cout << "SE RECIBE START\n";
                     // TODO receive the gameCode and pass it to the startGame
                     if (!game->isGameRunning())

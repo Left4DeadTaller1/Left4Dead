@@ -17,12 +17,12 @@ MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     ui->frame->setStyleSheet("background-color: rgba(255, 255, 255, 0.5);");
 
     //imagen de fondo
-    QPixmap pixmapFondo("/home/usaurio/Descargas/fondoqt2.jpeg");
+    QPixmap pixmapFondo(IMAGEN_FONDO_QT);
     ui->fondo->setPixmap(pixmapFondo);
     ui->fondo->setScaledContents(true);
 
     //icono sonido
-    QPixmap pixmapIconoSonido("/home/usaurio/Descargas/images-removebg-preview.png");
+    QPixmap pixmapIconoSonido(ICONO_SONIDO_QT);
     ui->iconoSonido->setPixmap(pixmapIconoSonido);
     ui->iconoSonido->setScaledContents(true);
 
@@ -80,7 +80,7 @@ MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     connect(ui->slider, SIGNAL(valueChanged(int)), this, SLOT(sliderChanged(int)));
 
     player = new QMediaPlayer(this);
-    player->setMedia(QUrl::fromLocalFile("/home/usaurio/Descargas/18 left for death.mp3"));
+    player->setMedia(QUrl::fromLocalFile(SOUND_FONDO_QT));
     player->setVolume(20);
 
     slider->show();
@@ -156,11 +156,6 @@ void MainWindow::sliderChanged(int value)
     qreal volume = value;
     player->setVolume(volume);
 }
-
-/*void MainWindow::closeEvent(QCloseEvent *event)
-{
-    QMainWindow::closeEvent(event);
-}*/
 
 void MainWindow::handleCreateClosed(int code)
 {

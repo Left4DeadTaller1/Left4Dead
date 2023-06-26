@@ -163,11 +163,14 @@ target_include_directories(qt
 
 message("Generating UI headers: ${UIS_HEADERS}")
 
-set(FONDO_QT "${CMAKE_SOURCE_DIR}/client/render/resources/sounds/fondo3.mp3")
+set(SOUND_FONDO_QT "${CMAKE_SOURCE_DIR}/client/render/resources/sounds/fondo3.mp3")
 target_compile_definitions(qt PRIVATE FONDO_QT="${FONDO_QT}")
 
 set(IMAGEN_FONDO_QT "${CMAKE_SOURCE_DIR}/client/render/resources/fondoqt2.jpeg")
 target_compile_definitions(qt PRIVATE IMAGEN_FONDO_QT="${IMAGEN_FONDO_QT}")
+
+set(ICONO_SONIDO_QT "${CMAKE_SOURCE_DIR}/client/render/resources/icono_sonido.png")
+target_compile_definitions(qt PRIVATE ICONO_SONIDO_QT="${ICONO_SONIDO_QT}")
 
 target_link_libraries(qt PRIVATE Qt5::Widgets Qt5::Multimedia)
 

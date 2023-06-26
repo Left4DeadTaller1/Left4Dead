@@ -14,12 +14,12 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     ui->frame2->setStyleSheet("background-color: rgba(255, 255, 255, 0.5);");
 
     // Imagen de fondo
-    QPixmap pixmapFondo2("/home/usaurio/Descargas/fondoqt2.jpeg");
+    QPixmap pixmapFondo2(SOUND_FONDO_QT);
     ui->fondo2->setPixmap(pixmapFondo2);
     ui->fondo2->setScaledContents(true);
 
     // Icono de sonido
-    QPixmap pixmapIconoSonido("/home/usaurio/Descargas/images-removebg-preview.png");
+    QPixmap pixmapIconoSonido(ICONO_SONIDO_QT);
     ui->iconoSonido2->setPixmap(pixmapIconoSonido);
     ui->iconoSonido2->setScaledContents(true);
 
@@ -35,7 +35,7 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     });
 
     player = new QMediaPlayer(this);
-    player->setMedia(QUrl::fromLocalFile("/home/usaurio/Descargas/18 left for death.mp3"));
+    player->setMedia(QUrl::fromLocalFile(SOUND_FONDO_QT));
     player->setVolume(20);
     player->play();
 }
