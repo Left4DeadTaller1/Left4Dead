@@ -17,7 +17,7 @@ ________________________________________________________________*/
 
 Game::Game(int mapType)
     : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0) {
-    if (mapType >= MAP1 && mapType <= MAP4) {
+    if (mapType >= MAP1_BACKGROUND && mapType <= MAP4_BACKGROUND) {
         mapBackground = static_cast<MapType>(mapType);
     } else {
         // TODO launch an exception
