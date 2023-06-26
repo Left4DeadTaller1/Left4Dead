@@ -21,7 +21,6 @@ Game::Game()
 }
 
 std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname) {
-    std::cout << "IN addPlayer" << std::endl;
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
@@ -189,7 +188,6 @@ void Game::updateState() {
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
             updatePlayerState(*player, playersActions[player->getId()]);
-            std::cout << "Player state: " << player->getActionState() << ", action counter: " << player->getActionCounter() << std::endl;
             // TODO: add a perform method that checks the state of entity
             reloadPlayer(*player);
             revivePlayer(*player);
@@ -205,7 +203,6 @@ void Game::updateState() {
         move(*entity);
         // TODO change this so the dmg is made if actionCounter is 0
         attack(*entity);
-        std::cout << "After attack" << std::endl;
         useSkill(*entity);
 
         performEntitySkill(*entity);
@@ -223,9 +220,6 @@ void Game::updateState() {
 }
 
 void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
-    std::cout << "Player state BEFORE While: " << player.getActionState() << ", action counter: " << player.getActionCounter() << std::endl;
-    if (!playerActions.empty())
-        std::cout << "not empty" << std::endl;
     while (!playerActions.empty()) {
         if (player.getActionCounter() != 0) {
             return;
@@ -237,8 +231,6 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
         int actionPlayerState = action.getInputType();
         int actionMovementDirectionX = action.getDirectionXType();
         int actionMovementDirectionY = action.getDirectionYType();
-
-        std::cout << "Action state: " << actionPlayerState << std::endl;
 
         if (actionPlayerState == DISCONNECTION) {
             removePlayer(player.getId());
