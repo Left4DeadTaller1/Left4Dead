@@ -83,7 +83,7 @@ void ClientReceiver::run() {
                     break;
                 }
                 case REVIVE: {
-                    std::cout << "llega revivir\n";
+                    handleRevive();
                     break;
                 }
             }
@@ -147,6 +147,11 @@ void ClientReceiver::handleStartMove(int movementType, int directionXType, int d
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
     int movementType = 7;
     Action action(playerId, movementType, directionXType, directionYType);
+    game->pushAction(action);
+}
+
+void ClientReceiver::handleRevive() {
+    Action action(playerId, 6, 3, 3);
     game->pushAction(action);
 }
 

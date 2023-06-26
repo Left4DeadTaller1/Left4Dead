@@ -33,6 +33,7 @@ class ClientReceiver : public Thread {
     void handleStartShoot();
     void handleEndShoot();
     void handleRecharge();
+    void handleRevive();
     void handlePlayerDisconnection();
     // void handleBroadcastAction(Socket &clientSocket, bool &was_closed);
     virtual void run() override;

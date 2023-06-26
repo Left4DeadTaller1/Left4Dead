@@ -34,6 +34,7 @@ enum MovementDirectionY {
 enum EntityType {
     PLAYER,
     ZOMBIE,
+    OBSTACLE,
 };
 
 enum FacingDirection {
@@ -96,6 +97,8 @@ class Entity {
     virtual void idle() = 0;
     bool facingLeft();
     bool facingRight();
+
+    virtual bool isAttackable();
 
     virtual void useSkill(std::vector<std::shared_ptr<Entity>> &players);
     virtual Attack generateAttack() = 0;

@@ -328,6 +328,8 @@ set(OLD_GLOB
   "/home/regman/taller/left4Dead/server_root/entities/collision_detector.h"
   "/home/regman/taller/left4Dead/server_root/entities/entity.cpp"
   "/home/regman/taller/left4Dead/server_root/entities/entity.h"
+  "/home/regman/taller/left4Dead/server_root/entities/obstacle.cpp"
+  "/home/regman/taller/left4Dead/server_root/entities/obstacle.h"
   "/home/regman/taller/left4Dead/server_root/entities/player.cpp"
   "/home/regman/taller/left4Dead/server_root/entities/player.h"
   "/home/regman/taller/left4Dead/server_root/entities/weapon.cpp"

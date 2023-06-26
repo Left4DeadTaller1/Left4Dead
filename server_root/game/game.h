@@ -16,6 +16,7 @@
 #include "zombie.h"
 #include "zombie_spawner.h"
 
+// TODO add craters where it needs to depending on the map
 enum MapType {
     MAP1_BACKGROUND,
     MAP2_BACKGROUND,

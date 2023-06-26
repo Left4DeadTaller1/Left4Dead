@@ -148,6 +148,10 @@ void Game::spawnPlayer(std::string playerId, std::string nickName, int weaponTyp
     }
 
     auto player = std::make_shared<Player>(spawnX, spawnY, playerId, weaponType, nickName);
+    // TODO remove this later
+    if (players.size() == 1) {
+        player->takeDamage(1000);
+    }
     entities.push_back(player);
     players.push_back(player);
 }
@@ -208,6 +212,9 @@ void Game::updateState() {
     // todo: i think this is not efficient and should go int o the if in line 181
     removeDeadEntities();
     for (auto& entity : entities) {
+        if (entity->getType() == OBSTACLE)
+            continue;
+
         if (entity->isDead()) {
             entity->decreaseActionCounter();
             continue;

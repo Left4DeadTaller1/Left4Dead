@@ -176,7 +176,7 @@ std::list<std::shared_ptr<Entity>> CollisionDetector::shoot(Attack& attack, std:
 }
 
 void CollisionDetector::shootZombie(const std::shared_ptr<Entity>& entity, Attack& attack, std::list<std::shared_ptr<Entity>>& entitiesBeingATK) {
-    if (entity->getType() == PLAYER)
+    if (entity->getType() == PLAYER || entity->getType() == OBSTACLE)
         return;
 
     if ((attack.lowerY <= entity->y && entity->y <= attack.upperY) ||

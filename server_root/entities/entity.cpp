@@ -23,6 +23,10 @@ bool Entity::facingRight() {
     return facingDirection == FACING_RIGHT;
 }
 
+bool Entity::isAttackable() {
+    return true;
+}
+
 void Entity::useSkill(std::vector<std::shared_ptr<Entity>> &players) {
     return;
 }
