@@ -12,19 +12,19 @@
 #include "client_receiver.h"
 #include "client_render.h"
 #include "action_client.h"
-#include "../mainwindow.h"
 #include "liberror.h"
 #include "queue.h"
 #include "socket.h"
 #include "thread.h"
 #include <atomic>
+#include "action_render.h"
 
 #define TAM_MAX_QUEUE 16000
 
 class Client {
    public:
     Client(const char* hostname, const char* servname, 
-            SDL2pp::Window& window, MainWindow& windowQT);
+            SDL2pp::Window& window, ClientProtocol& protocol);
 
     ~Client();
 
@@ -32,19 +32,18 @@ class Client {
 
    private:
     std::atomic<bool> wasClosed;
-    ClientProtocol protocol;
+    ClientProtocol& protocol;
     std::atomic<bool> isConnected;
     Queue<std::shared_ptr<ActionClient>> qEventsToSender;
     Queue<std::shared_ptr<gameStateDTO_t>> qServerToRender;
-    Queue<std::shared_ptr<ActionClient>> qEventsToRender;
+    Queue<std::shared_ptr<ActionRender>> qEventsToRender;
     SDL2pp::Window& window;
-    MainWindow& windowQT;
     ClientRenderer renderer;
     SenderThread senderThread;
     ReceiverThread receiverThread;
     EventManagerThread eventManagerThread;
 
-    void sendInitialAction();
+    //void sendInitialAction();
 
     void leave();
 };

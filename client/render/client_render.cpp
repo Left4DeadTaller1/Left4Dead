@@ -2,10 +2,11 @@
 
 using namespace SDL2pp;
 #define MS_PER_FRAME 33
+#define LOOPS_TO_ADVANCE_FRAME 5
 
 ClientRenderer::ClientRenderer(std::atomic<bool>& isConnected,
                     Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
-                    Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
+                    Queue<std::shared_ptr<ActionRender>>& qEventsToRender, 
                     Window& window_):
                     isConnected(isConnected),
                     qServerToRender(qServerToRender),
@@ -94,25 +95,37 @@ std::string traducirType(int typeInfected){
     }
 }
 
+int ClientRenderer::handlerAction(std::shared_ptr<ActionRender> action){
+    if (action->typeAction() == EXIT){
+        qServerToRender.close();
+        return -1;
+    }
+    if (action->typeAction() == RESIZE){
+        game.updateSizeWindow(action);
+    }
+    if (action->typeAction() == STOP_SOUND){
+        //parar sonido
+    }
+    return 0;
+}
+
 int ClientRenderer::looprender(void) {
     drawInicio();
 
     uint32_t t1 = SDL_GetTicks();
     int counterFrame = 0;
-    int rate = 1000 / 50;//MS_PER_FRAME;
+    int rate = 1000 / MS_PER_FRAME;
     int it = 0;
 
     while (isConnected) {
 
         for (int i = 0; i < 10; i++){
-            std::shared_ptr<ActionClient> action;
+            std::shared_ptr<ActionRender> action;
             qEventsToRender.try_pop(action);
             if (action){
-                //procesar accion
-                if (action->isExit()){
-                    qServerToRender.close();
+                if (handlerAction(action) == -1){
                     return 0;
-                }
+                }              
             }
         }
 
@@ -170,7 +183,7 @@ int ClientRenderer::looprender(void) {
         t1 += rate;
 
         counterFrame++;
-        if (counterFrame == 5){
+        if (counterFrame == LOOPS_TO_ADVANCE_FRAME){
             it++;
             counterFrame = 0;
         }

@@ -13,7 +13,7 @@ void ClientProtocol::sendAction(std::shared_ptr<ActionClient> action, bool& wasC
     skt.sendall(&data[0], data.size(), &wasClosed);
 }
 
-int ClientProtocol::receiveTypeCommand(bool& wasClosed){
+int ClientProtocol::receiveTypeMessage(bool& wasClosed){
     uint8_t messageType;
     skt.recvall(&messageType, 1, &wasClosed);
     return messageType;
@@ -162,14 +162,37 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
     return gameStateDTO;
 }
 
-int ClientProtocol::receiveCreateorJoin(bool& wasClosed){
+int ClientProtocol::receiveCreate(bool& wasClosed){
     uint8_t code;
     skt.recvall(&code, 1, &wasClosed);
     return code;
 }
 
-void ClientProtocol::receiveExit(bool& wasClosed){
+infoPlayerJoin_t ClientProtocol::receiveJoin(bool& wasClosed){
     uint8_t code;
     skt.recvall(&code, 1, &wasClosed);
+    infoPlayerJoin_t info;
+
+    info.nickname = "nickname";
+    info.typeWeapon = WEAPON1;
+    info.typeMap = MAP1;
+    /*uint8_t nickname_len;
+    skt.recvall(&nickname_len, 1, &wasClosed);
+
+    char buf_nickname[500];
+    skt.recvall(buf_nickname, nickname_len, &wasClosed);
+    buf_nickname[nickname_len] = '\0';
+    info.nickname = buf_nickname;
+
+    uint8_t typeWeapon;
+    skt.recvall(&typeWeapon, 1, &wasClosed);
+    info.typeWeapon = static_cast<TypeWeapon_t>(typeWeapon);
+
+    uint8_t typeMap;
+    skt.recvall(&typeMap, 1, &wasClosed);
+    info.typeMap = static_cast<TypeMap_t>(typeMap);*/
+
+    return info;
 }
+
 

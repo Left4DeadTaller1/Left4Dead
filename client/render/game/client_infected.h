@@ -21,7 +21,8 @@ class ClientInfected {
     int x;
     int y;
     int lookingTo;
-    bool comingEndDeath;
+    bool isDead;
+    int counterDeath;
     std::map<state_t, GameTexture>& texturesInfected;
     std::map<state_t, std::shared_ptr<Sound>>& sounds;
 
@@ -44,6 +45,8 @@ class ClientInfected {
                     infected_t& currentInfected);
 
     void draw(SDL2pp::Renderer& renderer, int it);
+
+    bool isZombieDead(void);
 
     void updateInfected(infected_t& newCurrentInfected);
 };

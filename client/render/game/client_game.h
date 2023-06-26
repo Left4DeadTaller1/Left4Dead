@@ -12,6 +12,7 @@
 #include "client_lifeBar.h"
 #include "client_texture_manager.h"
 #include "client_sound_manager.h"
+#include "action_render.h"
 
 class ClientGame {
     private:
@@ -27,6 +28,8 @@ class ClientGame {
 
     void updateLifeBar(std::vector<player_t>& players_);
 
+    void cleanDead(std::map<uint8_t, std::shared_ptr<ClientInfected>>& infected);
+
     public:
     ClientGame(TextureManager& textureManager, SoundManager& soundManager);
 
@@ -35,6 +38,8 @@ class ClientGame {
     void drawPlayers(SDL2pp::Renderer& renderer, int it);
 
     void drawInfected(SDL2pp::Renderer& renderer, int it);
+
+    void updateSizeWindow(std::shared_ptr<ActionRender> action);
 
 };
 

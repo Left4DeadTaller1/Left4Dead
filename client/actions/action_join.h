@@ -5,13 +5,16 @@
 #include <memory>
 #include <string>
 
-class Join : public ActionClient {
+class JoinAction : public ActionClient {
    private:
-    int8_t code;
     std::string namePlayer;
+    int8_t code;
+    TypeWeapon_t typeWeapon;
 
    public:
-    Join(int8_t code, std::string namePlayer);
+    JoinAction(std::string namePlayer, 
+                std::string weaponPlayer, 
+                std::string code);
 
     virtual std::vector<int8_t> serialize() const override;
 

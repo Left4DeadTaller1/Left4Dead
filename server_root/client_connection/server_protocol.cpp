@@ -17,23 +17,16 @@ int ServerProtocol::receiveTypeCommand(bool &wasClosed, Socket &peer) {
     return type;
 }
 
-std::string ServerProtocol::receiveCreate(bool &wasClosed, Socket &peer) {
-    uint8_t name_len;
-    peer.recvall(&name_len, 1, &wasClosed);
+infoCreate_t ServerProtocol::receiveCreate(bool &wasClosed, Socket &peer) {
+    infoCreate_t info;
 
-    char buf_name[500];
-    peer.recvall(buf_name, name_len, &wasClosed);
-    buf_name[name_len] = '\0';
+    uint8_t typeWeapon;
+    peer.recvall(&typeWeapon, 1, &wasClosed);
+    info.typeWeapon = static_cast<TypeWeapon_t>(typeWeapon);
 
-    return buf_name;
-}
-
-dataJoin_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
-    dataJoin_t dataJoin;
-
-    uint8_t code;
-    peer.recvall(&code, 1, &wasClosed);
-    dataJoin.code = code;
+    uint8_t typeMap;
+    peer.recvall(&typeMap, 1, &wasClosed);
+    info.typeMap = static_cast<TypeMap_t>(typeMap);
 
     uint8_t name_len;
     peer.recvall(&name_len, 1, &wasClosed);
@@ -41,16 +34,33 @@ dataJoin_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
     char buf_name[500];
     peer.recvall(buf_name, name_len, &wasClosed);
     buf_name[name_len] = '\0';
-    dataJoin.namePlayer = buf_name;
+    info.nickname = buf_name;
 
-    return dataJoin;
+    return info;
 }
 
-/*uint8_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
+infoJoin_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
+    infoJoin_t info;
+
     uint8_t code;
     peer.recvall(&code, 1, &wasClosed);
-    return code;
-}*/
+    info.code = code;
+
+    uint8_t typeWeapon;
+    peer.recvall(&typeWeapon, 1, &wasClosed);
+    info.typeWeapon = static_cast<TypeWeapon_t>(typeWeapon);
+
+    uint8_t name_len;
+    peer.recvall(&name_len, 1, &wasClosed);
+
+    char buf_name[500];
+    peer.recvall(buf_name, name_len, &wasClosed);
+    buf_name[name_len] = '\0';
+    info.nickname = buf_name;
+
+    return info;
+}
+
 
 std::vector<int> ServerProtocol::receiveStartMove(bool &wasClosed, Socket &peer) {
     std::vector<int> vector;

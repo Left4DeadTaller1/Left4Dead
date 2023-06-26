@@ -3,19 +3,22 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "socket.h"
 #include "action_client.h"
-#include "action_create.h"
-#include "action_start_move.h"
-#include "action_end_move.h"
-#include "action_join.h"
 #include "../render/game/client_game_state.h"
 
 #define MSG_CREATE 2
 #define MSG_JOIN 2
-#define MSG_EXIT 3
+#define MSG_START 3
 #define MSG_GAME_STATE 9
+
+typedef struct infoPlayerJoin {
+    std::string nickname;
+    TypeWeapon_t typeWeapon;
+    TypeMap_t typeMap;
+} infoPlayerJoin_t;
 
 class ClientProtocol {
    private:
@@ -28,11 +31,11 @@ class ClientProtocol {
 
     std::shared_ptr<gameStateDTO_t> receiveStateGame(bool& was_closed);
 
-    int receiveCreateorJoin(bool& wasClosed);
+    infoPlayerJoin_t receiveJoin(bool& wasClosed);
 
-    void receiveExit(bool& wasClosed);
+    int receiveCreate(bool& wasClosed);
 
-    int receiveTypeCommand(bool& wasClosed);
+    int receiveTypeMessage(bool& wasClosed);
 
     ClientProtocol(const ClientProtocol&) = delete;
     ClientProtocol& operator=(const ClientProtocol&) = delete;

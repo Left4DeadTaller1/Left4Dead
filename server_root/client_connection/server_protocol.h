@@ -21,10 +21,30 @@
 #include "witch.h"
 #include "zombie.h"
 
-typedef struct dataJoin {
-    uint8_t code;
-    std::string namePlayer;
-} dataJoin_t;
+typedef enum : int8_t{
+    WEAPON1,
+    WEAPON2,
+    WEAPON3
+} TypeWeapon_t;
+
+typedef enum : int8_t{
+    MAP1,
+    MAP2,
+    MAP3,
+    MAP4
+} TypeMap_t;
+
+typedef struct infoCreate {
+    TypeWeapon_t typeWeapon;
+    TypeMap_t typeMap;
+    std::string nickname;
+} infoCreate_t;
+
+typedef struct infoJoin {
+    int8_t code;
+    TypeWeapon_t typeWeapon;
+    std::string nickname;
+} infoJoin_t;
 
 typedef enum {
     CREATE,
@@ -60,9 +80,9 @@ class ServerProtocol {
 
     int receiveTypeCommand(bool &wasClosed, Socket &peer);
 
-    std::string receiveCreate(bool &wasClosed, Socket &peer);
+    infoCreate_t receiveCreate(bool &wasClosed, Socket &peer);
 
-    dataJoin_t receiveJoin(bool &wasClosed, Socket &peer);
+    infoJoin_t receiveJoin(bool &wasClosed, Socket &peer);
 
     void notifyCreate(uint32_t code, Socket &peer, bool &wasClosed);
 

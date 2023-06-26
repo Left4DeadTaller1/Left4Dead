@@ -3,7 +3,7 @@
 using namespace SDL2pp;
 
 EventManagerThread::EventManagerThread(Queue<std::shared_ptr<ActionClient>>& qEventsToSender,
-                                       Queue<std::shared_ptr<ActionClient>>& qEventsToRender,
+                                       Queue<std::shared_ptr<ActionRender>>& qEventsToRender,
                                        SDL2pp::Window& window, std::atomic<bool>& isConnected) : 
                                                                     qEventsToSender(qEventsToSender),
                                                                     qEventsToRender(qEventsToRender),
@@ -25,7 +25,7 @@ void EventManagerThread::run() {
                 std::shared_ptr<ActionClient> action;
 
                 if (event.type == SDL_QUIT) {
-                    action = std::make_shared<Exit>();
+                    std::shared_ptr<ActionRender> action = std::make_shared<ActionRender>(EXIT, 0, 0);
                     qEventsToSender.close();
                     qEventsToRender.push(action);
                     qEventsToRender.close();
@@ -34,9 +34,6 @@ void EventManagerThread::run() {
                     switch (event.key.keysym.sym) {
                         case SDLK_LSHIFT:
                             shiftPressed = true;
-                            break;
-                        case SDLK_s:
-                            action = std::make_shared<StartGame>();
                             break;
                         case SDLK_r:
                             action = std::make_shared<Recharge>();
@@ -121,8 +118,8 @@ void EventManagerThread::run() {
                     int newWidth = event.window.data1;
                     int newHeight = event.window.data2;
                     std::cout << "Entra a resize con: " << newWidth << " y " << newHeight << "\n";
-                    /*action = std::make_shared<Resize>(newWidth, newHeight);
-                    qEventsToRender.push(action);*/ 
+                    std::shared_ptr<ActionRender> action = std::make_shared<ActionRender>(RESIZE, newWidth, newHeight);
+                    qEventsToRender.push(action);
                 }
             }
         }

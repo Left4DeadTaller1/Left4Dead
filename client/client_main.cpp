@@ -1,14 +1,15 @@
 //  Copyright NULL
 
 #include <SDL2pp/SDL2pp.hh>
-#include "../mainwindow.h"
 #include <QApplication>
 #include <stdio.h>
 #include <iostream>
 #include "client.h"
+#include "client_protocol.h"
+#include "menuQT/mainwindow.h"
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1400
+#define WINDOW_HEIGHT 800
 
 int main(int argc, char *argv[]) { try {
     int ret = -1;
@@ -21,20 +22,24 @@ int main(int argc, char *argv[]) { try {
     const char *hostname = argv[1];
     const char *servname = argv[2];
 
+    ClientProtocol protocol(hostname, servname);
+
     QApplication a(argc, argv);
-    MainWindow windowQT;
+    MainWindow windowQT(protocol);
     windowQT.show();
     ret = a.exec();
+    
+    if (ret == 0){
+        SDL2pp::SDL sdl(SDL_INIT_EVERYTHING);
 
-    SDL2pp::SDL sdl(SDL_INIT_EVERYTHING);
+        SDL2pp::Window window("Left4Dead",
+                    SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                    WINDOW_WIDTH, WINDOW_HEIGHT,
+                    SDL_WINDOW_RESIZABLE);
 
-    SDL2pp::Window window("Left4Dead",
-                  SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                  WINDOW_WIDTH, WINDOW_HEIGHT,
-                  SDL_WINDOW_RESIZABLE);
-
-    Client client(hostname, servname, window, windowQT);
-    client.run();
+        Client client(hostname, servname, window, protocol);
+        client.run();
+    }
     return ret;
 
     } catch (const std::exception &e) {

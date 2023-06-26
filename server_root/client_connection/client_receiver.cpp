@@ -21,6 +21,7 @@ void ClientReceiver::run() {
 
             try {
                 typeCommand = protocol.receiveTypeCommand(wasClosed, clientSocket);
+                std::cout << "type command: " << typeCommand << "\n";
             } catch (const std::runtime_error &e) {
                 std::cerr << "Player disconnected: " << e.what() << std::endl;
                 handlePlayerDisconnection();
@@ -29,21 +30,30 @@ void ClientReceiver::run() {
 
             int code;
             std::vector<int> data;
-            dataJoin_t dataJoin;
+            infoCreate_t infoCreate;
+            infoJoin_t infoJoin;
 
             switch (typeCommand) {
                 case CREATE:
-                    protocol.receiveCreate(wasClosed, clientSocket);
+                    std::cout << "SE RECIBE CREATE CON:\n";
+                    infoCreate = protocol.receiveCreate(wasClosed, clientSocket);
+                    std::cout << "typeWeapon: " << (int)infoCreate.typeWeapon << "\n";
+                    std::cout << "typeMap: " << (int)infoCreate.typeMap << "\n";
+                    std::cout << "nickname: " << infoCreate.nickname << "\n";
                     if (!game)
                         handleCreateAction();
                     break;
                 case JOIN:
-                    dataJoin = protocol.receiveJoin(wasClosed, clientSocket);
-                    std::cout << "code: " << dataJoin.code << "\n";
+                    std::cout << "SE RECIBE JOIN CON:\n";
+                    infoJoin = protocol.receiveJoin(wasClosed, clientSocket);
+                    std::cout << "typeWeapon: " << (int)infoJoin.typeWeapon << "\n";
+                    std::cout << "code: " << (int)infoJoin.code << "\n";
+                    std::cout << "nickname: " << infoJoin.nickname << "\n";
                     if (!game->isGameRunning())
-                        handleJoinAction(dataJoin.code);
+                        handleJoinAction(infoJoin.code);
                     break;
                 case START_GAME:
+                    std::cout << "SE RECIBE START\n";
                     // TODO receive the gameCode and pass it to the startGame
                     if (!game->isGameRunning())
                         gamesManager.startGame(0);

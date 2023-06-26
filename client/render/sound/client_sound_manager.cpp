@@ -42,6 +42,7 @@ void SoundManager::loadSounds(){
     //load sounds soldier 1
     soundsSoldier1.emplace(ATTACK, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo3.wav", 2));
     soundsSoldier1.emplace(DEAD, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/dead.wav", 3));
+    soundsSoldier1.emplace(DYING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/dead.wav", 4));
     soundsSoldier1.emplace(HURT, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/grito_de_ayuda.wav", 6));
     soundsSoldier1.emplace(RELOADING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/cargar_arma1.wav", 7));
     soundsSoldier1.emplace(RUNNING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/trotar.wav", 8));

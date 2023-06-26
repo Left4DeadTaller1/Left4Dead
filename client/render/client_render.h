@@ -17,6 +17,7 @@
 #include "client_game.h"
 #include "client_texture.h"
 #include "renderer_config.h"
+#include "action_render.h"
 #include "queue.h"
 #include <atomic>
 
@@ -24,7 +25,7 @@ class ClientRenderer {
    private:
    std::atomic<bool>& isConnected;
    Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender;
-   Queue<std::shared_ptr<ActionClient>>& qEventsToRender;
+   Queue<std::shared_ptr<ActionRender>>& qEventsToRender;
    SDL2pp::Window& window;
    SDL2pp::Renderer renderer;
    TextureManager textureManager;
@@ -39,10 +40,12 @@ class ClientRenderer {
 
    void  drawInicio(void);
 
+   int handlerAction(std::shared_ptr<ActionRender> action);
+
    public:
    ClientRenderer(std::atomic<bool>& isConnected, 
                   Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
-                  Queue<std::shared_ptr<ActionClient>>& qEventsToRender, 
+                  Queue<std::shared_ptr<ActionRender>>& qEventsToRender, 
                   SDL2pp::Window& window_);
 
    void copySprite(SDL2pp::Texture& texture, 

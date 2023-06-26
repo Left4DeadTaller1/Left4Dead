@@ -130,13 +130,35 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 REQUIRED COMPONENTS Widgets Multimedia)
 
 qt5_wrap_ui(UIS_HEADERS
-  mainwindow.ui
+    client/menuQT/mainwindow.ui
+    client/menuQT/create.ui
+    client/menuQT/join.ui
 )
 
 add_library(qt
-    mainwindow.cpp
-    mainwindow.h
+    client/menuQT/mainwindow.cpp
+    client/menuQT/mainwindow.h
+    client/menuQT/create.cpp
+    client/menuQT/create.h
+    client/menuQT/join.cpp
+    client/menuQT/join.h
+    client/menuQT/hiloMensajes.cpp
+    client/menuQT/hiloMensajes.h
     ${UIS_HEADERS}
+)
+
+# Include directories
+target_include_directories(qt
+    PRIVATE
+    ${CMAKE_SOURCE_DIR}/dipa_classes
+    ${CMAKE_SOURCE_DIR}/client/actions
+    ${CMAKE_SOURCE_DIR}/client
+    ${CMAKE_SOURCE_DIR}/client/render/game
+    ${CMAKE_SOURCE_DIR}/client/render
+    ${CMAKE_SOURCE_DIR}/client/render/sound
+    ${CMAKE_SOURCE_DIR}/client/render/texture
+    ${CMAKE_SOURCE_DIR}/client/client_connection
+    ${SDL2PP_INCLUDE_DIRS}
 )
 
 message("Generating UI headers: ${UIS_HEADERS}")

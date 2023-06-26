@@ -12,7 +12,7 @@ void ReceiverThread::run() {
     bool wasClosed = false;
     while (!wasClosed && isConnected) {
         try {
-            int messageType = protocol.receiveTypeCommand(wasClosed);
+            int messageType = protocol.receiveTypeMessage(wasClosed);
             if (messageType == MSG_GAME_STATE){
                 std::shared_ptr<gameStateDTO_t> gameStateDTO = protocol.receiveStateGame(wasClosed);
                 qServerToRender.push(gameStateDTO);
@@ -21,7 +21,6 @@ void ReceiverThread::run() {
             break;
         }
     }
-    std::cout << "SALE DEL RECEIVER\n";
 }
 
 ReceiverThread::~ReceiverThread(){

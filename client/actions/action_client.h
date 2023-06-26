@@ -13,13 +13,25 @@ typedef enum {
     START_SHOOT,
     END_SHOOT,
     RECHARGE,
-    EXIT
 } Type;
 
 typedef enum : int8_t{
     WALK,
     RUN
 } TypeMove;
+
+typedef enum : int8_t{
+    WEAPON1,
+    WEAPON2,
+    WEAPON3
+} TypeWeapon_t;
+
+typedef enum : int8_t{
+    MAP1,
+    MAP2,
+    MAP3,
+    MAP4
+} TypeMap_t;
 
 typedef enum {
     RIGHT,

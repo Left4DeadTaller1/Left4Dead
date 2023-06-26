@@ -18,7 +18,6 @@ void SenderThread::run() {
             break;
         }
     }
-    std::cout << "SALE DEL SENDER\n";
 }
 
 SenderThread::~SenderThread(){

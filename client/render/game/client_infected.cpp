@@ -1,13 +1,15 @@
 #include "client_infected.h"
 
 using namespace SDL2pp;
+#define LOOPS_TO_ADVANCE_FRAME 5
 
 ClientInfected::ClientInfected(std::map<state_t, GameTexture>& textures,
                             std::map<state_t, std::shared_ptr<Sound>>& sounds,
                             infected_t& currentInfected) : 
                             texturesInfected(textures),
                             sounds(sounds),
-                            comingEndDeath(false) {
+                            isDead(false),
+                            counterDeath(counterDeath) {
 
     previousState = currentInfected.state;
     currentState = currentInfected.state;
@@ -34,6 +36,10 @@ GameTexture& ClientInfected::getTextureInfected(state_t state){
         //lanzar excepcion
     }
     return iter->second;
+}
+
+bool ClientInfected::isZombieDead(void){
+    return isDead;
 }
 
 void ClientInfected::playSound(state_t state, int playMode){
@@ -75,11 +81,14 @@ void ClientInfected::draw(SDL2pp::Renderer& renderer, int it){
 
     int frame = it % texture.n;
     
-    if ((currentState == DYING || currentState == DEAD) && (frame == texture.n - 1)){
-        comingEndDeath = true;
+    if ((currentState == DYING || currentState == DEAD)){
+        counterDeath++;
     }
-    if ((currentState == DYING || currentState == DEAD) && comingEndDeath == true){
+    if ((currentState == DYING || currentState == DEAD) && counterDeath * LOOPS_TO_ADVANCE_FRAME > texture.n){
         frame = texture.n - 1;
+    }
+    if (counterDeath / LOOPS_TO_ADVANCE_FRAME > 10){
+        isDead = true;
     }
 
     Rect srcRect((texture.width / texture.n) * frame,

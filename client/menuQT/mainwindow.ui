@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1400</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="fondo">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1400</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>150</y>
+      <width>900</width>
+      <height>450</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(246, 245, 244);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="createButton">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>360</y>
+       <width>321</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 500 14pt &quot;Ubuntu&quot;;
+border-color: rgb(154, 153, 150);</string>
+     </property>
+     <property name="text">
+      <string>Create</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="joinButton">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>360</y>
+       <width>321</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 500 14pt &quot;Ubuntu&quot;;
+border-color: rgb(154, 153, 150);</string>
+     </property>
+     <property name="text">
+      <string>Join</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="weapons">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>100</y>
+       <width>321</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="nickname">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>100</y>
+       <width>321</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelNickname">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>60</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 500 18pt &quot;Ubuntu&quot;;</string>
+     </property>
+     <property name="text">
+      <string>nickname</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelWeapon">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>60</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 500 18pt &quot;Ubuntu&quot;;</string>
+     </property>
+     <property name="text">
+      <string>weapon</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="code">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>270</y>
+       <width>321</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+    </widget>
+    <widget class="Line" name="horizontalLine">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>170</y>
+       <width>811</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);
+border-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="Line" name="verticalLine">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>220</y>
+       <width>20</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);
+border-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="mapas">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>270</y>
+       <width>321</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelMap">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>220</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 500 18pt &quot;Ubuntu&quot;;</string>
+     </property>
+     <property name="text">
+      <string>map</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelCode">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>230</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 500 18pt &quot;Ubuntu&quot;;</string>
+     </property>
+     <property name="text">
+      <string>codeGame</string>
+     </property>
+    </widget>
+    <zorder>createButton</zorder>
+    <zorder>joinButton</zorder>
+    <zorder>labelNickname</zorder>
+    <zorder>nickname</zorder>
+    <zorder>labelWeapon</zorder>
+    <zorder>weapons</zorder>
+    <zorder>code</zorder>
+    <zorder>horizontalLine</zorder>
+    <zorder>verticalLine</zorder>
+    <zorder>mapas</zorder>
+    <zorder>labelMap</zorder>
+    <zorder>labelCode</zorder>
+   </widget>
+   <widget class="QSlider" name="slider">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>770</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="iconoSonido">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>770</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

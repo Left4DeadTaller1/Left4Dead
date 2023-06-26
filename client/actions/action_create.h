@@ -4,12 +4,16 @@
 #include "action_client.h"
 #include <string>
 
-class Create : public ActionClient {
+class CreateAction : public ActionClient {
    private:
     std::string namePlayer;
+    TypeWeapon_t typeWeapon;
+    TypeMap_t typeMap;
 
    public:
-    Create(std::string namePlayer);
+    CreateAction(std::string namePlayer, 
+                std::string weaponPlayer, 
+                std::string map);
 
     virtual std::vector<int8_t> serialize() const override;
 

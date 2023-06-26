@@ -30,14 +30,27 @@ void ClientGame::updateInfected(std::vector<infected_t>& zombies){
         if (iter != infected.end()) {
             (iter->second)->updateInfected(newInfected);
         } else {
-            std::map<state_t, GameTexture>& textures = textureManager.getTextures(newInfected.typeInfected);
-            std::map<state_t, std::shared_ptr<Sound>>& sounds = soundManager.getSounds(newInfected.typeInfected);
-            std::shared_ptr<ClientInfected> newClientInfected = std::make_shared<ClientInfected>(textures,
-                                                                            sounds,
-                                                                            newInfected);
-            infected.emplace(newInfected.idInfected, newClientInfected);
+            if (newInfected.state != DEAD && newInfected.state != DYING){
+                std::map<state_t, GameTexture>& textures = textureManager.getTextures(newInfected.typeInfected);
+                std::map<state_t, std::shared_ptr<Sound>>& sounds = soundManager.getSounds(newInfected.typeInfected);
+                std::shared_ptr<ClientInfected> newClientInfected = std::make_shared<ClientInfected>(textures,
+                                                                                sounds,
+                                                                                newInfected);
+                infected.emplace(newInfected.idInfected, newClientInfected);
+            }
         }
-    } 
+    }
+    cleanDead(infected);
+}
+
+void ClientGame::cleanDead(std::map<uint8_t, std::shared_ptr<ClientInfected>>& infected) {
+    for (auto it = infected.begin(); it != infected.end(); ) {
+        if (it->second->isZombieDead()) {
+            it = infected.erase(it);
+        } else {
+            ++it;
+        }
+    }
 }
 
 void ClientGame::updateLifeBar(std::vector<player_t>& players_){
@@ -76,4 +89,9 @@ void ClientGame::drawInfected(SDL2pp::Renderer& renderer, int it){
     for (auto &infec : infected){
         (infec.second)->draw(renderer, it);
     }
+}
+
+void ClientGame::updateSizeWindow(std::shared_ptr<ActionRender> action){
+    action->getParam1();
+    action->getParam2();
 }
