@@ -7,6 +7,7 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     ServerProtocol protocol;
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::map<std::string, int> weaponsParams = config.getWeaponsParams();
 
     // Create mock Player
     std::shared_ptr<Player> player = std::make_shared<Player>(5, 10, "Player1", SMG, "amund");
@@ -14,9 +15,11 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
     player->takeDamage(20);
     uint8_t playerHealth = static_cast<uint8_t>(entityParams["PLAYER_HEALTH"] - 20);
     uint8_t playerActionCooldown = static_cast<uint8_t>(entityParams["PLAYER_HURT_DURATION"]);
+    uint8_t bullets = static_cast<uint8_t>(weaponsParams["SMG_MAX_BULLETS"]);
 
     // Create mock Zombie
-    std::shared_ptr<Infected> zombie = std::make_shared<Infected>(15, 20, "Zombie15", 0);
+    std::shared_ptr<Infected>
+        zombie = std::make_shared<Infected>(15, 20, "Zombie15", 0);
     uint8_t zombieHealth = static_cast<uint8_t>(entityParams["INFECTED_HEALTH"]);
 
     // Add entities to a vector
@@ -34,6 +37,8 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
         0,                           // Entity type: Player (1 byte)
         0, 1,                        // ID: Player1 (2 bytes)
         5, 'a', 'm', 'u', 'n', 'd',  // Length of "amund" and the characters themselves
+        0,                           // Weapon Type (SMG is 0)
+        bullets,                     // Bullets of player (1 byte)
         9,                           // General State: HURT since got attacked (1 byte)
         playerActionCooldown,        // Action Counter: 45 since it got hurt (1 byte)
         0, 5,                        // X position: 5 (network byte order) (2 bytes)
