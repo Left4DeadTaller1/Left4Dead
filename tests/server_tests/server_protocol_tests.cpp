@@ -110,14 +110,15 @@ TEST(ServerProtocolTest, TestEncodeJoinMessage) {
     std::vector<LobbyPlayerDTO> playersInfo = {player1Dto, player2Dto};
 
     // Encode the Join Message
-    std::shared_ptr<std::vector<uint8_t>> encodedMessagePtr = protocol.encodeServerMessage(msgType, typeMap, playersInfo);
+    std::shared_ptr<std::vector<uint8_t>> encodedMessagePtr = protocol.encodeServerMessage(msgType, typeMap, playersInfo, 0);
     std::vector<uint8_t>& encodedMessage = *encodedMessagePtr;
 
     // Construct the expected message
     std::vector<uint8_t> expectedMessage = {
-        2,
-        1,
-        2,
+        2,  // Type of Msg (1 byte)
+        0,  // Game code (1 byte)
+        1,  // Type of map (1 byte)
+        2,  // Amount of players (2 bytes)
 
         1,                           // Id = 1
         5, 'a', 'm', 'u', 'n', 'd',  // Length of "amund" and the characters themselves

@@ -444,11 +444,14 @@ void ServerProtocol::encodePlayerNickName(std::shared_ptr<std::vector<uint8_t>> 
 }
 
 std::shared_ptr<std::vector<uint8_t>>
-ServerProtocol::encodeServerMessage(const std::string &msgType, int typeMap, std::vector<LobbyPlayerDTO> &playersInfo) {
+ServerProtocol::encodeServerMessage(const std::string &msgType, int typeMap, std::vector<LobbyPlayerDTO> &playersInfo, int gameCode) {
     std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
     if (msgType == "JoinLobby") {
         encodedMsg->push_back(2);
+
+        // Adding the game code (1 byte)
+        encodedMsg->push_back(static_cast<uint8_t>(gameCode));
 
         // Adding the map type (1 byte)
         encodedMsg->push_back(static_cast<uint8_t>(typeMap));

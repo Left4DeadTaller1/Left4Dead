@@ -37,7 +37,7 @@ class Game : public Thread {
    public:
     explicit Game(int mapType);
     void run() override;
-    std::string addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string nickName, int weaponType);
+    std::string addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string nickName, int weaponType, int gameCode);
     void removePlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses);
     Queue<Action>& getInputQueue();
 

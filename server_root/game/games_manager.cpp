@@ -9,11 +9,11 @@ GameRecord GamesManager::createLobby(Queue<std::shared_ptr<std::vector<uint8_t>>
     std::lock_guard<std::mutex> lock(m);
     auto game = std::make_shared<Game>(typeMap);
     games.emplace(nextGameId, game);
-    nextGameId++;
     // Creates struct representing game
     GameRecord gameRecord;
     // TODO Catch full lobby exception in Receiver
-    gameRecord.playerId = game->addPlayer(gameResponses, nickName, weaponType);
+    gameRecord.playerId = game->addPlayer(gameResponses, nickName, weaponType, nextGameId);
+    nextGameId++;
     gameRecord.game = game;
     return gameRecord;
 }
@@ -33,7 +33,7 @@ GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::shared_ptr<
         GameRecord gameRecord;
         gameRecord.game = it->second;
         //  Access Game and return a pointer to the inputQueue
-        gameRecord.playerId = it->second->addPlayer(gameResponses, playerNickname, weaponType);
+        gameRecord.playerId = it->second->addPlayer(gameResponses, playerNickname, weaponType, gameCode);
         return gameRecord;
     }
     return GameRecord{};

@@ -22,7 +22,7 @@ TEST(GameTest, AddPlayer) {
     Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses(MAX_QUEUE_SIZE);
     // Check that the first player queue is null
     EXPECT_EQ(gameInstance._getPlayerQueues()[0], nullptr);
-    gameInstance.addPlayer(gameResponses, "amund", 0);
+    gameInstance.addPlayer(gameResponses, "amund", 0, 0);
     // Check that the first player queue is not null after adding player
     EXPECT_NE(gameInstance._getPlayerQueues()[0], nullptr);
 }
@@ -31,8 +31,8 @@ TEST(GameTest, RemovePlayer) {
     Game gameInstance(0);
     Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses1(MAX_QUEUE_SIZE);
     Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses2(MAX_QUEUE_SIZE);
-    gameInstance.addPlayer(gameResponses1, "amund", 0);
-    gameInstance.addPlayer(gameResponses2, "amund", 0);
+    gameInstance.addPlayer(gameResponses1, "amund", 0, 0);
+    gameInstance.addPlayer(gameResponses2, "amund", 0, 0);
     // Check that the first two player queues are not null
     EXPECT_NE(gameInstance._getPlayerQueues()[0], nullptr);
     EXPECT_NE(gameInstance._getPlayerQueues()[1], nullptr);

@@ -112,7 +112,7 @@ class ServerProtocol {
     GeneralState determineVenomState(const std::shared_ptr<ZombieDTO> &zombie);
     void encodePlayerNickName(std::shared_ptr<std::vector<uint8_t>> &encodedMsg, const std::string &nickName);
 
-    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, int typeMap, std::vector<LobbyPlayerDTO> &playersInfo);
+    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, int typeMap, std::vector<LobbyPlayerDTO> &playersInfo, int gameCode);
     std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType);
 };
 
