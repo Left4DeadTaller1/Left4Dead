@@ -54,15 +54,19 @@ MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     ui->labelCode->setStyleSheet("background-color: transparent;");
 
     //opciones de armas
-    ui->weapons->addItem("Opción 1");
-    ui->weapons->addItem("Opción 2");
-    ui->weapons->addItem("Opción 3");
+    ui->weapons->addItem("P90");
+    ui->weapons->addItem("Rifle");
+    ui->weapons->addItem("Sniper");
 
     //opciones de mapas
-    ui->mapas->addItem("Opción 1");
-    ui->mapas->addItem("Opción 2");
-    ui->mapas->addItem("Opción 3");
-    ui->mapas->addItem("Opción 4");
+    ui->mapas->addItem("War 1 Bright");
+    ui->mapas->addItem("War 1 Pale");
+    ui->mapas->addItem("War 2 Bright");
+    ui->mapas->addItem("War 2 Pale");
+    ui->mapas->addItem("War 3 Bright");
+    ui->mapas->addItem("War 3 Pale");
+    ui->mapas->addItem("War 4 Bright");
+    ui->mapas->addItem("War 4 Pale");
 
     c = new Create(protocol, this);
     connect(ui->createButton, &QPushButton::clicked, this, &MainWindow::createButtonClicked);

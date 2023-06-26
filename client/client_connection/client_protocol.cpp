@@ -168,15 +168,12 @@ int ClientProtocol::receiveCreate(bool& wasClosed){
     return code;
 }
 
-infoPlayerJoin_t ClientProtocol::receiveJoin(bool& wasClosed){
+/*infoPlayerJoin_t ClientProtocol::receiveJoin(bool& wasClosed){
     uint8_t code;
     skt.recvall(&code, 1, &wasClosed);
     infoPlayerJoin_t info;
 
-    info.nickname = "nickname";
-    info.typeWeapon = WEAPON1;
-    info.typeMap = MAP1;
-    /*uint8_t nickname_len;
+    uint8_t nickname_len;
     skt.recvall(&nickname_len, 1, &wasClosed);
 
     char buf_nickname[500];
@@ -190,9 +187,50 @@ infoPlayerJoin_t ClientProtocol::receiveJoin(bool& wasClosed){
 
     uint8_t typeMap;
     skt.recvall(&typeMap, 1, &wasClosed);
-    info.typeMap = static_cast<TypeMap_t>(typeMap);*/
+    info.typeMap = static_cast<TypeMap_t>(typeMap);
 
     return info;
+}*/
+
+std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClosed){
+    std::shared_ptr<infoGameDTO_t> infoGameDTO = std::make_shared<infoGameDTO_t>();
+    std::vector<infoPlayerDTO_t> infoPlayers;
+
+    uint8_t typeMap;
+    skt.recvall(&typeMap, 1, &wasClosed);
+    if(wasClosed){
+        return NULL;
+    }
+    infoGameDTO->typeMap = static_cast<TypeMap_t>(typeMap);
+
+    uint8_t amountPlayers;
+    skt.recvall(&amountPlayers, 1, &wasClosed);
+    if(wasClosed){
+        return NULL;
+    }
+    infoGameDTO->amountPlayers = amountPlayers;
+
+    for (int i = 0; i < amountPlayers; i++){
+        uint8_t id;
+        skt.recvall(&id, 1, &wasClosed);
+        infoPlayers.id = id;
+
+        uint8_t nickname_len;
+        skt.recvall(&nickname_len, 1, &wasClosed);
+
+        char buf_nickname[500];
+        skt.recvall(buf_nickname, nickname_len, &wasClosed);
+        buf_nickname[nickname_len] = '\0';
+        infoPlayers.nickname = buf_nickname;
+
+        uint8_t typeWeapon;
+        skt.recvall(&typeWeapon, 1, &wasClosed);
+        infoPlayers.typeWeapon = static_cast<TypeWeapon_t>(typeWeapon);
+    }
+
+    infoGameDTO->infoPlayers = infoPlayers;
+
+    return infoGameDTO;
 }
 
 /*void ClientProtocol::closeSocket(){

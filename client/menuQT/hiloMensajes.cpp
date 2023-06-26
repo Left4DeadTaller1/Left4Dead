@@ -4,20 +4,22 @@ HiloMensajes::HiloMensajes(ClientProtocol& protocol):
                                 protocol(protocol){}
 
 std::string HiloMensajes::typeWeaponToString(TypeWeapon_t type){
-    if (type == WEAPON1){
-        return "weapon1";
+    if (type == P90){
+        return "P90";
     }
-    if (type == WEAPON2){
-        return "weapon2";
+    if (type == RIFLE){
+        return "Rifle";
     }
-    if (type == WEAPON3){
-        return "weapon3";
+    if (type == SNIPER){
+        return "Sniper";
     }
     return "";
 }
 
 void HiloMensajes::run() {
     bool wasClosed = false;
+    std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
+    emit infoGameReceived(typeMap, amountPlayers, infoPlayers);
     while (!wasClosed)
     {
         int typeMessage = protocol.receiveTypeMessage(wasClosed);
@@ -27,10 +29,9 @@ void HiloMensajes::run() {
         if (typeMessage == MSG_JOIN){
             infoPlayerJoin_t player = protocol.receiveJoin(wasClosed);
 
-            QString nickname = QString::fromStdString(player.nickname);
-            QString weapon = QString::fromStdString(typeWeaponToString(player.typeWeapon));
+            //desempaquetar info
 
-            emit joinReceived(nickname, weapon);
+            emit infoGameReceived(typeMap, amountPlayers, infoPlayers);
         }
     }
     emit closedWithoutError(0);

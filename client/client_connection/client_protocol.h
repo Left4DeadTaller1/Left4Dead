@@ -11,14 +11,26 @@
 
 #define MSG_CREATE 2
 #define MSG_JOIN 2
-#define MSG_START 3
+#define MSG_START 4
 #define MSG_GAME_STATE 9
 
-typedef struct infoPlayerJoin {
+/*typedef struct infoPlayerJoin {
     std::string nickname;
     TypeWeapon_t typeWeapon;
     TypeMap_t typeMap;
-} infoPlayerJoin_t;
+} infoPlayerJoin_t;*/
+
+typedef struct infoGameDTO {
+    TypeMap_t typeMap;
+    int amountPlayers;   
+    std::vector<infoPlayerDTO_t> infoPlayers;
+} infoGameDTO_t;
+
+typedef struct infoPlayerDTO {
+    int id;
+    std::string nickname;
+    TypeWeapon_t typeWeapon;
+} infoPlayerDTO_t;
 
 class ClientProtocol {
    private:
@@ -31,9 +43,11 @@ class ClientProtocol {
 
     std::shared_ptr<gameStateDTO_t> receiveStateGame(bool& was_closed);
 
-    infoPlayerJoin_t receiveJoin(bool& wasClosed);
+    //infoPlayerJoin_t receiveJoin(bool& wasClosed);
 
-    int receiveCreate(bool& wasClosed);
+    //int receiveCreate(bool& wasClosed);
+
+    std::shared_ptr<infoGameDTO_t> receiveCreateorJoin(bool& wasClosed);
 
     int receiveTypeMessage(bool& wasClosed);
 

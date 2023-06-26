@@ -73,7 +73,7 @@ Join::~Join()
 void Join::startReceiving()
 {
     hiloMensajes = new HiloMensajes(protocol);
-    connect(hiloMensajes, &HiloMensajes::joinReceived, this, &Join::handleJoinReceived);
+    connect(hiloMensajes, &HiloMensajes::infoGameReceived, this, &Join::handlerInfoGameReceived);
     connect(hiloMensajes, &HiloMensajes::closedWithoutError, this, &Join::handleClosed);
     show();
     if (hiloMensajes) {
@@ -81,11 +81,21 @@ void Join::startReceiving()
     }
 }
 
-void Join::handleJoinReceived(const QString& nickname, const QString& weapon)
+void Create::handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers, 
+                            std::vector<infoPlayerDTO_t>& infoPlayers)
 {
-    ui->textEdit3->append("Nickname: " + nickname);
-    ui->textEdit3->append("Weapon: " + weapon);
-    ui->textEdit3->append("------------------------------------------------------");
+
+    ui->textEdit->clear();
+    ui->textEdit->append("Amount players in game: " + QString::number(amountPlayers));
+
+    for (auto player& : infoPlayers){
+        QString nickname = QString::fromStdString(player.nickname);
+        QString weapon = QString::fromStdString(typeWeaponToString(player.typeWeapon));
+
+        ui->textEdit->append("Nickname: " + nickname);
+        ui->textEdit->append("Weapon: " + weapon);
+        ui->textEdit->append("------------------------------------------------------");
+    }
 }
 
 

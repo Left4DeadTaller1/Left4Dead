@@ -3,16 +3,16 @@
 JoinAction::JoinAction(std::string namePlayer, 
                 std::string weaponPlayer, 
                 std::string code): namePlayer(namePlayer),
-                typeWeapon(WEAPON1), code(0) {
+                typeWeapon(P90), code(0) {
 
-    if (weaponPlayer == "weapon1"){
-        typeWeapon = WEAPON1;
+    if (weaponPlayer == "P90"){
+        typeWeapon = P90;
     }
-    if (weaponPlayer == "weapon2"){
-        typeWeapon = WEAPON2;
+    if (weaponPlayer == "Rifle"){
+        typeWeapon = RIFLE;
     }
-    if (weaponPlayer == "weapon3"){
-        typeWeapon = WEAPON3;
+    if (weaponPlayer == "Sniper"){
+        typeWeapon = SNIPER;
     }
     code = std::stoi(code);
 }

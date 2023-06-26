@@ -60,24 +60,30 @@ Create::~Create()
     }
 }
 
-void Create::handleJoinReceived(const QString& nickname, const QString& weapon)
+void Create::handlerInfoGameReceived(TypeMap_t typeMap, int amountPlayers, 
+                            std::vector<infoPlayerDTO_t>& infoPlayers)
 {
-    // Actualizar la interfaz de usuario con los datos recibidos
-    ui->textEdit->append("Nickname: " + nickname);
-    ui->textEdit->append("Weapon: " + weapon);
-    ui->textEdit->append("------------------------------------------------------");
+
+    ui->textEdit->clear();
+    ui->textEdit->append("Amount players in game: " + QString::number(amountPlayers));
+
+    for (auto player& : infoPlayers){
+        QString nickname = QString::fromStdString(player.nickname);
+        QString weapon = QString::fromStdString(typeWeaponToString(player.typeWeapon));
+
+        ui->textEdit->append("Nickname: " + nickname);
+        ui->textEdit->append("Weapon: " + weapon);
+        ui->textEdit->append("------------------------------------------------------");
+    }
 }
 
 void Create::startReceiving()
 {
     hiloMensajes = new HiloMensajes(protocol);
-    connect(hiloMensajes, &HiloMensajes::joinReceived, this, &Create::handleJoinReceived);
+    connect(hiloMensajes, &HiloMensajes::infoGameReceived, this, &Create::handlerInfoGameReceived);
     connect(hiloMensajes, &HiloMensajes::closedWithoutError, this, &Create::handleClosed);
     
     show();
-    bool wasClosed = false;
-    protocol.receiveTypeMessage(wasClosed);
-    protocol.receiveCreate(wasClosed);
     if (hiloMensajes) {
         hiloMensajes->start();
     }

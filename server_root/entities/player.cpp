@@ -102,10 +102,6 @@ void Player::setRevivalState() {
     this->actionCounter = entityParams["PLAYER_REVIVAL_DURATION"];
 }
 
-std::shared_ptr<Player> Player::getRevivingPlayer() {
-    return revivingPlayer;
-}
-
 void Player::revive() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();

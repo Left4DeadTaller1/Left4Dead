@@ -22,7 +22,9 @@ public:
     virtual void run() override;
 
 signals:
-    void joinReceived(QString nickname, QString weapon);
+    void infoGameReceived(TypeMap_t typeMap, int amountPlayers, 
+                            std::vector<infoPlayerDTO_t>& infoPlayers);
+
     void closedWithoutError(int exitCode);
 
 };

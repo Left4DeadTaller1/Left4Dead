@@ -3,28 +3,40 @@
 CreateAction::CreateAction(std::string namePlayer, 
                 std::string weaponPlayer, 
                 std::string map) : namePlayer(namePlayer),
-                typeWeapon(WEAPON1), typeMap(MAP1) {
+                typeWeapon(P90), typeMap(WAR1_BRIGHT) {
 
-    if (weaponPlayer == "weapon1"){
-        typeWeapon = WEAPON1;
+    if (weaponPlayer == "P90"){
+        typeWeapon = P90;
     }
-    if (weaponPlayer == "weapon2"){
-        typeWeapon = WEAPON2;
+    if (weaponPlayer == "Rifle"){
+        typeWeapon = RIFLE;
     }
-    if (weaponPlayer == "weapon3"){
-        typeWeapon = WEAPON3;
+    if (weaponPlayer == "Sniper"){
+        typeWeapon = SNIPER;
     }
-    if (map == "map1"){
-        typeMap = MAP1;
+    if (map == "War 1 Bright"){
+        typeMap = WAR1_BRIGHT;
     }
-    if (map == "map2"){
-        typeMap = MAP2;
+    if (map == "War 1 Pale"){
+        typeMap = WAR1_PALE;
     }
-    if (map == "map3"){
-        typeMap = MAP3;
+    if (map == "War 2 Bright"){
+        typeMap = WAR2_BRIGHT;
     }
-    if (map == "map4"){
-        typeMap = MAP3;
+    if (map == "War 2 Pale"){
+        typeMap = WAR2_PALE;
+    }
+    if (map == "War 3 Bright"){
+        typeMap = WAR3_BRIGHT;
+    }
+    if (map == "War 2 Pale"){
+        typeMap = WAR3_PALE;
+    }
+    if (map == "War 4 Bright"){
+        typeMap = WAR4_BRIGHT;
+    }
+    if (map == "War 4 Pale"){
+        typeMap = WAR4_PALE;
     }
 
 }

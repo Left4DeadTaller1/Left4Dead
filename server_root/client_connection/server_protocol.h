@@ -21,18 +21,24 @@
 #include "witch.h"
 #include "zombie.h"
 
+
 typedef enum : int8_t{
-    WEAPON1,
-    WEAPON2,
-    WEAPON3
+    P90,
+    RIFLE,
+    SNIPER
 } TypeWeapon_t;
 
 typedef enum : int8_t{
-    MAP1,
-    MAP2,
-    MAP3,
-    MAP4
+    WAR1_BRIGHT,
+    WAR1_PALE,
+    WAR2_BRIGHT,
+    WAR2_PALE,
+    WAR3_BRIGHT,
+    WAR3_PALE,
+    WAR4_BRIGHT,
+    WAR4_PALE,
 } TypeMap_t;
+
 
 typedef struct infoCreate {
     TypeWeapon_t typeWeapon;
