@@ -6,11 +6,8 @@
 #include "client/client_connection/client_protocol.h"
 #include "client/actions/action_start_game.h"
 #include "client/actions/action_client.h"
-#include <iostream>
 #include "hiloMensajes.h"
 #include <memory>
-#include <utility>
-
 
 namespace Ui {
 class Create;

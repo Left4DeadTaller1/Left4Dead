@@ -7,9 +7,7 @@
 #include "client.h"
 #include "client_protocol.h"
 #include "menuQT/mainwindow.h"
-
-#define WINDOW_WIDTH 1400
-#define WINDOW_HEIGHT 800
+#include "renderer_config.h"
 
 int main(int argc, char *argv[]) { try {
     int ret = -1;
@@ -30,11 +28,15 @@ int main(int argc, char *argv[]) { try {
     ret = a.exec();
     
     if (ret == 0){
+        RendererConfig& config = RendererConfig::getInstance();
+        std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
+
         SDL2pp::SDL sdl(SDL_INIT_EVERYTHING);
 
         SDL2pp::Window window("Left4Dead",
                     SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                    WINDOW_WIDTH, WINDOW_HEIGHT,
+                    dimensionsWindows["WINDOW_WIDTH"], 
+                    dimensionsWindows["WINDOW_HEIGHT"],
                     SDL_WINDOW_RESIZABLE);
 
         Client client(hostname, servname, window, protocol);

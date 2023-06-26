@@ -37,6 +37,8 @@ class ClientProtocol {
 
     int receiveTypeMessage(bool& wasClosed);
 
+    void closeSocket();
+
     ClientProtocol(const ClientProtocol&) = delete;
     ClientProtocol& operator=(const ClientProtocol&) = delete;
 

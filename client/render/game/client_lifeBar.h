@@ -11,9 +11,6 @@
 #include "client_texture_manager.h"
 #include "client_sound_manager.h"
 
-#define ENTITY_LOOKING_LEFT 0
-#define ENTITY_LOOKING_RIGHT 1
-
 class LifeBar {
     private:
     uint32_t health;
@@ -27,6 +24,7 @@ class LifeBar {
     uint32_t viewportHeight;
     uint32_t gameWidth;
     uint32_t gameHeight;
+    uint32_t padding;
 
     uint32_t width;
     uint32_t height;
@@ -46,6 +44,8 @@ class LifeBar {
 
     void updateLifeBar(uint32_t health, uint32_t x, 
                         uint32_t y, uint8_t lookingTo);
+
+    void updateSizeWindow(uint32_t newWidth, uint32_t newHeight);
 };
 
 #endif

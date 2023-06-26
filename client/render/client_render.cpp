@@ -7,10 +7,11 @@ using namespace SDL2pp;
 ClientRenderer::ClientRenderer(std::atomic<bool>& isConnected,
                     Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
                     Queue<std::shared_ptr<ActionRender>>& qEventsToRender, 
-                    Window& window_):
+                    Window& window_, ClientProtocol& protocol):
                     isConnected(isConnected),
                     qServerToRender(qServerToRender),
                     qEventsToRender(qEventsToRender),
+                    protocol(protocol),
                     window(window_),
                     renderer(window_, -1, SDL_RENDERER_ACCELERATED),
                     textureManager(renderer),
@@ -97,6 +98,8 @@ std::string traducirType(int typeInfected){
 
 int ClientRenderer::handlerAction(std::shared_ptr<ActionRender> action){
     if (action->typeAction() == EXIT){
+        std::cout << "ENTRA A SALIR DEL RENDER\n";
+        isConnected = false;
         qServerToRender.close();
         return -1;
     }
@@ -123,6 +126,8 @@ int ClientRenderer::looprender(void) {
             std::shared_ptr<ActionRender> action;
             qEventsToRender.try_pop(action);
             if (action){
+                std::cout << "se popea accion\n";
+                std::cout << action->typeAction() << "\n";
                 if (handlerAction(action) == -1){
                     return 0;
                 }              

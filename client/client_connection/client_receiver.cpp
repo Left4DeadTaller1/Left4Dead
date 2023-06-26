@@ -21,6 +21,7 @@ void ReceiverThread::run() {
             break;
         }
     }
+    std::cout << "ENTRA A SALIR DEL RECEIVER\n";
 }
 
 ReceiverThread::~ReceiverThread(){

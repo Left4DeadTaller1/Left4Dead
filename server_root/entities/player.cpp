@@ -61,7 +61,7 @@ std::tuple<int, int> Player::getDirectionsAmount() {
 
 std::shared_ptr<Player> Player::getClosestRevivablePlayer(std::vector<std::shared_ptr<Player>>& players) {
     if (players.size() <= 1) {
-        return;
+        return nullptr;
     }
 
     GameConfig& config = GameConfig::getInstance();
@@ -72,7 +72,7 @@ std::shared_ptr<Player> Player::getClosestRevivablePlayer(std::vector<std::share
     std::shared_ptr<Player> closestRevivablePlayer = nullptr;
 
     for (const auto& player : players) {
-        if (player == this || player->getActionState != PLAYER_DYING) continue;
+        if (player.get() == this || player->getActionState() != PLAYER_DYING) continue;
 
         int distance = std::sqrt(std::pow((x - closestRevivablePlayer->getX()), 2) + std::pow((y - closestRevivablePlayer->getY()), 2));
 
@@ -83,6 +83,10 @@ std::shared_ptr<Player> Player::getClosestRevivablePlayer(std::vector<std::share
 
         return closestRevivablePlayer;
     }
+}
+
+std::shared_ptr<Player> Player::getRevivingPlayer(){
+    return revivingPlayer;
 }
 
 void Player::setClosestRevivablePlayer(std::shared_ptr<Player> player) {

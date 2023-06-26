@@ -14,12 +14,12 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     ui->frame2->setStyleSheet("background-color: rgba(255, 255, 255, 0.5);");
 
     // Imagen de fondo
-    QPixmap pixmapFondo2(SOUND_FONDO_QT);
+    QPixmap pixmapFondo2(DATA_PATH "/client/render/resources/fondoqt2.jpeg");
     ui->fondo2->setPixmap(pixmapFondo2);
     ui->fondo2->setScaledContents(true);
 
     // Icono de sonido
-    QPixmap pixmapIconoSonido(ICONO_SONIDO_QT);
+    QPixmap pixmapIconoSonido(DATA_PATH "/client/render/resources/icono_sonido.png");
     ui->iconoSonido2->setPixmap(pixmapIconoSonido);
     ui->iconoSonido2->setScaledContents(true);
 
@@ -35,7 +35,7 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     });
 
     player = new QMediaPlayer(this);
-    player->setMedia(QUrl::fromLocalFile(SOUND_FONDO_QT));
+    player->setMedia(QUrl::fromLocalFile(DATA_PATH "/client/render/resources/sounds/fondo3.mp3"));
     player->setVolume(20);
     player->play();
 }

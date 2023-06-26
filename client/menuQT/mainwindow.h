@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
+#include <QUrl>
 #include "create.h"
 #include "join.h"
 #include <iostream>

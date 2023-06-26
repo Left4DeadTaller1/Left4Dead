@@ -239,8 +239,8 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
                     PlayerActionState playerState = static_cast<PlayerActionState>(actionPlayerState);
                     player.setActionState(playerState);
                 } else if (actionPlayerState == INPUT_REVIVE) {
-                    if (player.getActionState != PLAYER_REVIVING) {
-                        std::shared_ptr<Player> revivalTarget = player.getClosestRevivablePlayer(std::vector<std::shared_ptr<Player>> & players);
+                    if (player.getActionState() != PLAYER_REVIVING) {
+                        std::shared_ptr<Player> revivalTarget = player.getClosestRevivablePlayer(players);
 
                         if (revivalTarget) {
                             player.setClosestRevivablePlayer(revivalTarget);

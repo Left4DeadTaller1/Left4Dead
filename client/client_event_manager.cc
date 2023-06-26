@@ -25,6 +25,7 @@ void EventManagerThread::run() {
                 std::shared_ptr<ActionClient> action;
 
                 if (event.type == SDL_QUIT) {
+                    std::cout << "SE ENTRA A MANDAR EXIT\n";
                     std::shared_ptr<ActionRender> action = std::make_shared<ActionRender>(EXIT, 0, 0);
                     qEventsToSender.close();
                     qEventsToRender.push(action);

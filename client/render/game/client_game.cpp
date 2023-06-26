@@ -92,6 +92,15 @@ void ClientGame::drawInfected(SDL2pp::Renderer& renderer, int it){
 }
 
 void ClientGame::updateSizeWindow(std::shared_ptr<ActionRender> action){
-    action->getParam1();
-    action->getParam2();
+    uint32_t newWidth = action->getParam1();
+    uint32_t newHeight = action->getParam2();
+    for (auto &player : players){
+        (player.second)->updateSizeWindow(newWidth, newHeight);
+    }
+    for (auto &infec : infected){
+        (infec.second)->updateSizeWindow(newWidth, newHeight);
+    }
+    /*for (auto &lifeBar : lifeBar){
+        (lifeBar.second)->updateSizeWindow(newWidth, newHeight);
+    }*/
 }

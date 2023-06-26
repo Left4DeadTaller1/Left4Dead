@@ -16,6 +16,7 @@ LifeBar::LifeBar(GameTexture& texture, uint32_t health,
     viewportHeight = dimensionsWindows["WINDOW_HEIGHT"];
     gameWidth = dimensionsWindows["GAME_WIDTH"];
     gameHeight = dimensionsWindows["GAME_HEIGHT"];
+    padding = dimensionsWindows["IMAGE_BORDER_PADDING"];
 
     width = dimensionsLifeBar["LIFE_BAR_WIDTH"];
     height = dimensionsLifeBar["LIFE_BAR_HEIGHT"];
@@ -57,4 +58,9 @@ void LifeBar::updateLifeBar(uint32_t health, uint32_t x,
     this->x = x;
     this->y = y;
     this->lookingTo = lookingTo;
+}
+
+void LifeBar::updateSizeWindow(uint32_t newWidth, uint32_t newHeight){
+    viewportWidth = newWidth + 2 * padding;
+    viewportHeight = newHeight;
 }

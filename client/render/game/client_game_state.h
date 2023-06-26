@@ -2,6 +2,9 @@
 #ifndef CLIENT_GAME_STATE_H_
 #define CLIENT_GAME_STATE_H_
 
+#define ENTITY_LOOKING_LEFT 0
+#define ENTITY_LOOKING_RIGHT 1
+
 #include <vector>
 
 enum state_t : uint8_t {
@@ -39,11 +42,6 @@ enum typeEntity_t : uint8_t {
     SOLDIER2,
     SOLDIER3
 };
-
-
-/*typedef struct player player_t;
-typedef struct infected infected_t;
-typedef struct gameStateDTO gameStateDTO_t;*/
 
 typedef struct player {
     uint16_t idPlayer;

@@ -16,6 +16,7 @@ ClientPlayer::ClientPlayer(std::map<state_t, GameTexture>& textures,
     lookingTo = currentPlayer.lookingTo;
 
     RendererConfig& config = RendererConfig::getInstance();
+    //ver si aca van referencias
     std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
     std::map<std::string, int> dimensionsLifeBar = config.getDimensionsLifeBar();
 
@@ -23,8 +24,8 @@ ClientPlayer::ClientPlayer(std::map<state_t, GameTexture>& textures,
     viewportHeight = dimensionsWindows["WINDOW_HEIGHT"];
     gameWidth = dimensionsWindows["GAME_WIDTH"];
     gameHeight = dimensionsWindows["GAME_HEIGHT"];
-    width = dimensionsWindows["WINDOW_WIDTH"] / 6;
-    height = dimensionsWindows["WINDOW_HEIGHT"] / 4;
+    width = dimensionsWindows["WINDOW_WIDTH"] / dimensionsWindows["CTE_DIVISION_WIDTH_ENTITY"];
+    height = dimensionsWindows["WINDOW_HEIGHT"] / dimensionsWindows["CTE_DIVISION_HEIGHT_ENTITY"];
 };
 
 GameTexture& ClientPlayer::getTexturePlayer(state_t state){
@@ -111,4 +112,14 @@ void ClientPlayer::updatePlayer(player_t& newCurrentPlayer){
     x = newCurrentPlayer.x;
     y = newCurrentPlayer.y;
     lookingTo = newCurrentPlayer.lookingTo;
+}
+
+void ClientPlayer::updateSizeWindow(uint32_t newWidth, uint32_t newHeight){
+    RendererConfig& config = RendererConfig::getInstance();
+    std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
+
+    viewportWidth = newWidth + 2 * dimensionsWindows["IMAGE_BORDER_PADDING"];
+    viewportHeight = newHeight;
+    width = newWidth/ dimensionsWindows["CTE_DIVISION_WIDTH_ENTITY"];
+    height = newHeight / dimensionsWindows["CTE_DIVISION_HEIGHT_ENTITY"];
 }

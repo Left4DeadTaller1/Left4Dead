@@ -195,4 +195,9 @@ infoPlayerJoin_t ClientProtocol::receiveJoin(bool& wasClosed){
     return info;
 }
 
+/*void ClientProtocol::closeSocket(){
+    skt.shutdown(2);
+    skt.close();
+}*/
+
 

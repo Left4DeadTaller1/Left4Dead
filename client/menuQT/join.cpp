@@ -1,6 +1,8 @@
 #include "join.h"
 #include "ui_join.h"
 
+#include <QUrl>
+
 Join::Join(ClientProtocol& protocol, QWidget *parent) :
     protocol(protocol),
     QDialog(parent),
@@ -14,12 +16,12 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
     ui->frame3->setStyleSheet("background-color: rgba(255, 255, 255, 0.5);");
 
     //imagen de fondo
-    QPixmap pixmapFondo2(IMAGEN_FONDO_QT);
+    QPixmap pixmapFondo2(DATA_PATH "/client/render/resources/fondoqt2.jpeg");
     ui->fondo3->setPixmap(pixmapFondo2);
     ui->fondo3->setScaledContents(true);
 
     //icono sonido
-    QPixmap pixmapIconoSonido(ICONO_SONIDO_QT);
+    QPixmap pixmapIconoSonido(DATA_PATH "/client/render/resources/icono_sonido.png");
     ui->iconoSonido3->setPixmap(pixmapIconoSonido);
     ui->iconoSonido3->setScaledContents(true);
 
@@ -36,7 +38,7 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
     connect(ui->slider3, SIGNAL(valueChanged(int)), this, SLOT(sliderChanged(int)));
 
     player3 = new QMediaPlayer(this);
-    player3->setMedia(QUrl::fromLocalFile(SOUND_FONDO_QT));
+    player3->setMedia(QUrl::fromLocalFile(DATA_PATH "/client/render/resources/sounds/fondo3.mp3"));
     player3->setVolume(20);
 
     slider3->show();

@@ -42,8 +42,6 @@ typedef enum {
 
 class ActionClient {
    public:
-    //ActionClient(void) {}
-
     //preguntas: devuelvo un puntero para no hacer una copia?
     virtual std::vector<int8_t> serialize() const = 0;
 

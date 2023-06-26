@@ -18,6 +18,7 @@ class ClientGame {
     private:
     TextureManager& textureManager;
     SoundManager& soundManager;
+    //no tienen porque ser punteros cambiar!!!
     std::map<uint8_t, std::shared_ptr<ClientPlayer>> players;
     std::map<uint8_t, std::shared_ptr<ClientInfected>> infected;
     std::map<uint8_t, std::shared_ptr<LifeBar>> barLife;

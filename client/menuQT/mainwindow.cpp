@@ -17,12 +17,12 @@ MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     ui->frame->setStyleSheet("background-color: rgba(255, 255, 255, 0.5);");
 
     //imagen de fondo
-    QPixmap pixmapFondo(IMAGEN_FONDO_QT);
+    QPixmap pixmapFondo(DATA_PATH "/client/render/resources/fondoqt2.jpeg");
     ui->fondo->setPixmap(pixmapFondo);
     ui->fondo->setScaledContents(true);
 
     //icono sonido
-    QPixmap pixmapIconoSonido(ICONO_SONIDO_QT);
+    QPixmap pixmapIconoSonido(DATA_PATH "/client/render/resources/icono_sonido.png");
     ui->iconoSonido->setPixmap(pixmapIconoSonido);
     ui->iconoSonido->setScaledContents(true);
 
@@ -80,7 +80,7 @@ MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     connect(ui->slider, SIGNAL(valueChanged(int)), this, SLOT(sliderChanged(int)));
 
     player = new QMediaPlayer(this);
-    player->setMedia(QUrl::fromLocalFile(SOUND_FONDO_QT));
+    player->setMedia(QUrl::fromLocalFile(DATA_PATH "/client/render/resources/sounds/fondo3.mp3"));
     player->setVolume(20);
 
     slider->show();

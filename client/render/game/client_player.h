@@ -11,9 +11,6 @@
 #include "client_texture_manager.h"
 #include "client_sound_manager.h"
 
-#define ENTITY_LOOKING_LEFT 0
-#define ENTITY_LOOKING_RIGHT 1
-
 class ClientPlayer {
     private:
     state_t previousState;
@@ -46,6 +43,8 @@ class ClientPlayer {
     void draw(SDL2pp::Renderer& renderer, int it);
 
     void updatePlayer(player_t& newCurrentPlayer);
+
+    void updateSizeWindow(uint32_t newWidth, uint32_t newHeight);
 };
 
 #endif
