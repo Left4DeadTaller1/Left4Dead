@@ -24,6 +24,7 @@ enum PlayerActionState {
 // TODO add this to action class
 
 struct PlayerDTO : EntityDTO {
+    int weaponType;
     int bullets;
     PlayerActionState actionState;
     std::string nickName;

@@ -131,6 +131,12 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
                 // Encode length of nickName (1 byte), and nickName (in len(nickName) bytes)
                 encodePlayerNickName(encodedMsg, nickName);
             }
+
+            // Adding the weapon type (1 byte)
+            encodedMsg->push_back(static_cast<uint8_t>(playerEntity->weaponType));
+
+            // Adding the player bullets (1 byte)
+            encodedMsg->push_back(static_cast<uint8_t>(playerEntity->bullets));
         }
 
         // Encode and add the general state (1 byte)
