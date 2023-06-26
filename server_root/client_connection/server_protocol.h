@@ -31,9 +31,12 @@ typedef enum : int8_t {
     MAP1,
     MAP2,
     MAP3,
-    MAP4
+    MAP4,
+    MAP5,
+    MAP6,
+    MAP7,
+    MAP8,
 } TypeMap_t;
-
 
 typedef struct infoCreate {
     TypeWeapon_t typeWeapon;
