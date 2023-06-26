@@ -15,23 +15,36 @@
 -------------------Api for clientCommunication------------------
 ________________________________________________________________*/
 
-Game::Game()
+Game::Game(int mapType)
     : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0) {
+    if (mapType >= MAP1 && mapType <= MAP4) {
+        mapBackground = static_cast<MapType>(mapType);
+    } else {
+        // TODO launch an exception
+        std::cout << "Unkown map" << std::endl;
+    }
+
     playerQueues.resize(4, nullptr);
 }
 
-std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname) {
+std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname, int weaponType) {
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
     std::string playerId = "Player" + std::to_string(nextPlayerIndex + 1);
-    spawnPlayer(playerId, playerNickname);
+    spawnPlayer(playerId, playerNickname, weaponType);
     playerQueues[nextPlayerIndex] = &gameResponses;
 
     playersActions[playerId] = std::queue<Action>();
     nextPlayerIndex++;
 
-    std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinMsg", playerId);
+    std::vector<LobbyPlayerDTO> playersInfo;
+    for (const std::shared_ptr<Player>& player : players) {
+        playersInfo.push_back(player->getLobbyDto());
+    }
+
+    int intMapType = static_cast<int>(mapBackground);
+    std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinLobby", intMapType, playersInfo);
 
     // Add message to all player queues that are not null
     for (auto playerQueue : playerQueues) {
@@ -74,12 +87,12 @@ void Game::pushAction(Action action) {
 
 void Game::run() {
     // Start the game when the thread starts running
-    /*std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage();
+    std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("GameStarted");
     for (auto playerQueue : playerQueues) {
         if (playerQueue != nullptr) {
             playerQueue->try_push(joinMessage);
         }
-    }*/
+    }
 
     startGame();
 }
@@ -102,8 +115,7 @@ Game::~Game() {}
 -----------------------Api for Game-----------------------------
 ________________________________________________________________*/
 
-void Game::spawnPlayer(std::string playerId, std::string nickName) {
-    // TODO: Here the game should figure out what weapon give each player
+void Game::spawnPlayer(std::string playerId, std::string nickName, int weaponTypeInput) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameDimensions = config.getGameDimensions();
     int gameWidth = gameDimensions["GAME_WIDTH"];
@@ -117,7 +129,25 @@ void Game::spawnPlayer(std::string playerId, std::string nickName) {
     int spawnX = gameWidth / 2 + (numPlayers % 2 == 0 ? playerWidth : 0);
     int spawnY = gameHeight / 2 - (numPlayers / 2) * playerHeight;
 
-    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, SNIPER, nickName);
+    WeaponType weaponType;
+
+    switch (weaponTypeInput) {
+        case 0:
+            weaponType = SMG;
+            break;
+        case 1:
+            weaponType = RIFLE;
+            break;
+        case 2:
+            weaponType = SNIPER;
+            break;
+
+        default:
+            weaponType = SMG;
+            break;
+    }
+
+    auto player = std::make_shared<Player>(spawnX, spawnY, playerId, weaponType, nickName);
     entities.push_back(player);
     players.push_back(player);
 }

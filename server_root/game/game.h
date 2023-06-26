@@ -16,6 +16,13 @@
 #include "zombie.h"
 #include "zombie_spawner.h"
 
+enum MapType {
+    MAP1_BACKGROUND,
+    MAP2_BACKGROUND,
+    MAP3_BACKGROUND,
+    MAP4_BACKGROUND,
+};
+
 // change to Game
 class Game : public Thread {
     /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
@@ -28,9 +35,9 @@ class Game : public Thread {
     int nextPlayerIndex;
 
    public:
-    explicit Game();
+    explicit Game(int mapType);
     void run() override;
-    std::string addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string nickName);
+    std::string addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string nickName, int weaponType);
     void removePlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses);
     Queue<Action>& getInputQueue();
 
@@ -52,6 +59,7 @@ class Game : public Thread {
     -----------------------Api for Game-----------------------------
     ________________________________________________________________*/
    private:
+    MapType mapBackground;
     bool gameRunning;
     CollisionDetector collisionDetector;
     std::unordered_map<std::string, std::queue<Action>>
@@ -64,7 +72,7 @@ class Game : public Thread {
     int framesCounter;
 
     void
-    spawnPlayer(std::string idPlayer, std::string playerNickname);
+    spawnPlayer(std::string idPlayer, std::string playerNickname, int weaponType);
     void removePlayer(std::string idPlayer);
     void updateState();
     void updatePlayerState(Player& player, std::queue<Action>& playerActions);

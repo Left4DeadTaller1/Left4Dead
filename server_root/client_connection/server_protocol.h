@@ -21,13 +21,13 @@
 #include "witch.h"
 #include "zombie.h"
 
-typedef enum : int8_t{
+typedef enum : int8_t {
     WEAPON1,
     WEAPON2,
     WEAPON3
 } TypeWeapon_t;
 
-typedef enum : int8_t{
+typedef enum : int8_t {
     MAP1,
     MAP2,
     MAP3,
@@ -111,9 +111,8 @@ class ServerProtocol {
     GeneralState determineVenomState(const std::shared_ptr<ZombieDTO> &zombie);
     void encodePlayerNickName(std::shared_ptr<std::vector<uint8_t>> &encodedMsg, const std::string &nickName);
 
-    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, const std::string &playerId);
-    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, bool serverResponse);
-    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage();
+    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, int typeMap, std::vector<LobbyPlayerDTO> &playersInfo);
+    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType);
 };
 
 #endif

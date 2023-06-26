@@ -12,7 +12,7 @@ TEST(GamesManagerTest, CreateLobby) {
     int nextGameId = manager._getNextGameId();
     EXPECT_EQ(nextGameId, 0);
 
-    GameRecord gameRecord = manager.createLobby(gameResponses, "amund");
+    GameRecord gameRecord = manager.createLobby(gameResponses, "amund", 0, 0);
     nextGameId = manager._getNextGameId();
 
     EXPECT_EQ(nextGameId, 1);
@@ -33,9 +33,9 @@ TEST(GamesManagerTest, JoinExistingLobby) {
     GamesManager manager;
     Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses(10);
 
-    GameRecord gameRecord = manager.createLobby(gameResponses, "amund");
+    GameRecord gameRecord = manager.createLobby(gameResponses, "amund", 0, 0);
 
-    GameRecord gameRecordJoin = manager.joinLobby(0, gameResponses, "amund");
+    GameRecord gameRecordJoin = manager.joinLobby(0, gameResponses, "amund", 0);
 
     EXPECT_EQ(gameRecordJoin.playerId, "Player2");  // Since player1 is the creator of the game
     EXPECT_EQ(gameRecordJoin.game, gameRecord.game);
@@ -48,11 +48,11 @@ TEST(GamesManagerTest, ForthPlayerJoinsLobby) {
     Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses3(10);
     Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses4(10);
 
-    GameRecord gameRecord = manager.createLobby(gameResponses1, "amund");
+    GameRecord gameRecord = manager.createLobby(gameResponses1, "amund", 0, 0);
 
-    GameRecord gameRecordJoin2 = manager.joinLobby(0, gameResponses2, "amund");
-    GameRecord gameRecordJoin3 = manager.joinLobby(0, gameResponses3, "amund");
-    GameRecord gameRecordJoin4 = manager.joinLobby(0, gameResponses4, "amund");
+    GameRecord gameRecordJoin2 = manager.joinLobby(0, gameResponses2, "amund", 0);
+    GameRecord gameRecordJoin3 = manager.joinLobby(0, gameResponses3, "amund", 0);
+    GameRecord gameRecordJoin4 = manager.joinLobby(0, gameResponses4, "amund", 0);
 
     EXPECT_EQ(gameRecordJoin2.playerId, "Player2");  // Since player1 is the creator of the game
     EXPECT_EQ(gameRecordJoin3.playerId, "Player3");
@@ -70,21 +70,21 @@ TEST(GamesManagerTest, FifthPlayerJoinsLobby_PlayerListFull) {
     Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses4(10);
     Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses5(10);
 
-    GameRecord gameRecord = manager.createLobby(gameResponses1, "amund");
+    GameRecord gameRecord = manager.createLobby(gameResponses1, "amund", 0, 0);
 
-    GameRecord gameRecordJoin2 = manager.joinLobby(0, gameResponses2, "amund");
-    GameRecord gameRecordJoin3 = manager.joinLobby(0, gameResponses3, "amund");
-    GameRecord gameRecordJoin4 = manager.joinLobby(0, gameResponses4, "amund");
+    GameRecord gameRecordJoin2 = manager.joinLobby(0, gameResponses2, "amund", 0);
+    GameRecord gameRecordJoin3 = manager.joinLobby(0, gameResponses3, "amund", 0);
+    GameRecord gameRecordJoin4 = manager.joinLobby(0, gameResponses4, "amund", 0);
 
     // Attempt to add the fifth player
-    EXPECT_THROW(manager.joinLobby(0, gameResponses5, "amund"), std::out_of_range);
+    EXPECT_THROW(manager.joinLobby(0, gameResponses5, "amund", 0), std::out_of_range);
 }
 
 TEST(GamesManagerTest, JoinNonexistentLobby) {
     GamesManager manager;
     Queue<std::shared_ptr<std::vector<uint8_t>>> gameResponses(10);
 
-    GameRecord gameRecordJoin = manager.joinLobby(0, gameResponses, "amund");
+    GameRecord gameRecordJoin = manager.joinLobby(0, gameResponses, "amund", 0);
 
     EXPECT_EQ(gameRecordJoin.game, nullptr);
 }

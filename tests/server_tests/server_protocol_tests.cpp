@@ -51,17 +51,17 @@ TEST(ServerProtocolTest, TestEncodeServerMessage) {
         0, zombieHealth};            // Health: 100 (2 byte)
 
     // For debugging purposes
-    // std::cout << "encodMessage: ";
-    // for (auto byte : encodedMessage) {
-    //     std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(byte) << " ";
-    // }
-    // std::cout << std::endl;
+    std::cout << "encodMessage: ";
+    for (auto byte : encodedMessage) {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(byte) << " ";
+    }
+    std::cout << std::endl;
 
-    // std::cout << "expecMessage: ";
-    // for (auto byte : expectedMessage) {
-    //     std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(byte) << " ";
-    // }
-    // std::cout << std::endl;
+    std::cout << "expecMessage: ";
+    for (auto byte : expectedMessage) {
+        std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(byte) << " ";
+    }
+    std::cout << std::endl;
 
     EXPECT_EQ(encodedMessage, expectedMessage);
 }
@@ -95,23 +95,41 @@ TEST(ServerProtocolTest, TestExtractId) {
 
 TEST(ServerProtocolTest, TestEncodeJoinMessage) {
     ServerProtocol protocol;
-    std::string msgType = "JoinMsg";
-    std::string playerId1 = "Player1";
-    std::string playerId2 = "Player4";
+    std::string msgType = "JoinLobby";
+    int typeMap = 1;  // Example value for typeMap
+
+    // Create players
+    std::shared_ptr<Player> player1 = std::make_shared<Player>(5, 10, "Player1", SMG, "amund");
+    std::shared_ptr<Player> player2 = std::make_shared<Player>(6, 11, "Player4", SMG, "john");
+
+    // Get LobbyPlayerDTOs from the players
+    LobbyPlayerDTO player1Dto = player1->getLobbyDto();
+    LobbyPlayerDTO player2Dto = player2->getLobbyDto();
+
+    // Create a vector of LobbyPlayerDTO representing the players info
+    std::vector<LobbyPlayerDTO> playersInfo = {player1Dto, player2Dto};
 
     // Encode the Join Message
-    std::shared_ptr<std::vector<uint8_t>> encodedMessage1Ptr = protocol.encodeServerMessage(msgType, playerId1);
-    std::vector<uint8_t>& encodedMessage1 = *encodedMessage1Ptr;
+    std::shared_ptr<std::vector<uint8_t>> encodedMessagePtr = protocol.encodeServerMessage(msgType, typeMap, playersInfo);
+    std::vector<uint8_t>& encodedMessage = *encodedMessagePtr;
 
-    std::shared_ptr<std::vector<uint8_t>> encodedMessage2Ptr = protocol.encodeServerMessage(msgType, playerId2);
-    std::vector<uint8_t>& encodedMessage2 = *encodedMessage2Ptr;
+    // Construct the expected message
+    std::vector<uint8_t> expectedMessage = {
+        2,
+        1,
+        2,
 
-    // Check the encoded message
-    std::vector<uint8_t> expectedMessage1 = {2, 1};  // Message type JoinMsg with Player ID 1
-    std::vector<uint8_t> expectedMessage2 = {2, 4};  // Message type JoinMsg with Player ID 4
-    EXPECT_EQ(encodedMessage1, expectedMessage1);
-    // TODO ASK FEDE WTF this doesn't work, bc in ForthPlayerJoinsLobby test it works perfectly
-    EXPECT_EQ(encodedMessage2, expectedMessage2);
+        1,                           // Id = 1
+        5, 'a', 'm', 'u', 'n', 'd',  // Length of "amund" and the characters themselves
+        0,                           // SMG is index 0
+
+        4,                      // Id = 4
+        4, 'j', 'o', 'h', 'n',  // Length of "john" and the characters themselves
+        0                       // SMG is index 0
+
+    };
+    // Compare the encoded message with the expected message
+    EXPECT_EQ(encodedMessage, expectedMessage);
 }
 
 TEST(ServerProtocolTest, TestPlayerActionStateEncoding) {

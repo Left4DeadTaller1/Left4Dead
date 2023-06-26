@@ -32,6 +32,10 @@ Weapon::Weapon(WeaponType type)
     }
 }
 
+WeaponType Weapon::getType() {
+    return type;
+}
+
 Attack Weapon::shoot(int bulletXOrigin, int bulletDirection, int bulletLowerY, int bulletUpperY) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> weaponsParams = config.getWeaponsParams();

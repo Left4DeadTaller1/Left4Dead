@@ -18,7 +18,7 @@ int ServerProtocol::receiveTypeCommand(bool &wasClosed, Socket &peer) {
 }
 
 infoCreate_t ServerProtocol::receiveCreate(bool &wasClosed, Socket &peer) {
-    //despues modificar como lo puso reg
+    // despues modificar como lo puso reg
     infoCreate_t info;
 
     uint8_t typeWeapon;
@@ -61,7 +61,6 @@ infoJoin_t ServerProtocol::receiveJoin(bool &wasClosed, Socket &peer) {
 
     return info;
 }
-
 
 std::vector<int> ServerProtocol::receiveStartMove(bool &wasClosed, Socket &peer) {
     std::vector<int> vector;
@@ -125,15 +124,14 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(std::s
             }
         }
 
-        // Lara desp descomenta esto
-        //  if (entity->type == PLAYER) {
-        //      auto playerEntity = std::dynamic_pointer_cast<PlayerDTO>(entity);
-        //      if (playerEntity) {
-        //          std::string nickName = playerEntity->nickName;
-        //          // Encode length of nickName (1 byte), and nickName (in len(nickName) bytes)
-        //          encodePlayerNickName(encodedMsg, nickName);
-        //      }
-        //  }
+        if (entity->type == PLAYER) {
+            auto playerEntity = std::dynamic_pointer_cast<PlayerDTO>(entity);
+            if (playerEntity) {
+                std::string nickName = playerEntity->nickName;
+                // Encode length of nickName (1 byte), and nickName (in len(nickName) bytes)
+                encodePlayerNickName(encodedMsg, nickName);
+            }
+        }
 
         // Encode and add the general state (1 byte)
         GeneralState generalState = determineGeneralState(entity);
@@ -446,44 +444,46 @@ void ServerProtocol::encodePlayerNickName(std::shared_ptr<std::vector<uint8_t>> 
 }
 
 std::shared_ptr<std::vector<uint8_t>>
-ServerProtocol::encodeServerMessage(const std::string &msgType, const std::string &playerId) {
+ServerProtocol::encodeServerMessage(const std::string &msgType, int typeMap, std::vector<LobbyPlayerDTO> &playersInfo) {
     std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
 
-    if (msgType == "JoinMsg") {
+    if (msgType == "JoinLobby") {
         encodedMsg->push_back(2);
 
-        // Extracting the number from the playerId string
-        std::string idNumberStr = extractId(playerId);
-        int id = std::stoi(idNumberStr);
+        // Adding the map type (1 byte)
+        encodedMsg->push_back(static_cast<uint8_t>(typeMap));
 
-        // Cast to uint8_t and add it to the encoded message
-        encodedMsg->push_back(static_cast<uint8_t>(id));
-    }
+        // Adding the amount of players (1 byte)
+        encodedMsg->push_back(static_cast<uint8_t>(playersInfo.size()));
 
-    return encodedMsg;
-}
+        for (const auto &player : playersInfo) {
+            // Extracting the number from the playerId string
+            std::string idNumberStr = extractId(player.id);
+            int id = std::stoi(idNumberStr);
+            // Cast to uint8_t and add it to the encoded message (1 byte)
+            encodedMsg->push_back(static_cast<uint8_t>(id));
 
-std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const std::string &msgType, bool serverResponse) {
-    std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
-    if (msgType == "JoinMsg") {
-        encodedMsg->push_back(2);
+            std::string nickName = player.nickName;
+            // Encode length of nickName (1 byte), and nickName (in len(nickName) bytes)
+            encodePlayerNickName(encodedMsg, nickName);
 
-        if (serverResponse) {
-            encodedMsg->push_back(1);
-            // TODO: maybe here also push the game code or something?
-        } else {
-            encodedMsg->push_back(0);
+            // Adding the weapon type (1 byte)
+            encodedMsg->push_back(static_cast<uint8_t>(player.weaponType));
         }
     }
 
     return encodedMsg;
 }
 
-std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage() {
-    // Yeah i know this method seems pointless i just need a msg to send to the clients to tell them the game started
+std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const std::string &msgType) {
     std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
+    if (msgType == "JoinLobbyFailed") {
+        encodedMsg->push_back(3);
+    }
 
-    encodedMsg->push_back(3);
+    if (msgType == "GameStarted") {
+        encodedMsg->push_back(4);
+    }
 
     return encodedMsg;
 }

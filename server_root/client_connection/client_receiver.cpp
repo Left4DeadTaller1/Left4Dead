@@ -40,7 +40,7 @@ void ClientReceiver::run() {
                     std::cout << "typeMap: " << (int)infoCreate.typeMap << "\n";
                     std::cout << "nickname: " << infoCreate.nickname << "\n";
                     if (!game)
-                        handleCreateAction(infoCreate.nickname);
+                        handleCreateAction(infoCreate.nickname, infoCreate.typeWeapon, infoCreate.typeMap);
                     break;
                 }
                 case JOIN: {
@@ -50,7 +50,7 @@ void ClientReceiver::run() {
                         std::cout << "typeWeapon: " << (int)infoJoin.typeWeapon << "\n";
                         std::cout << "code: " << (int)infoJoin.code << "\n";
                         std::cout << "nickname: " << infoJoin.nickname << "\n";
-                        handleJoinAction(infoJoin.code, infoJoin.nickname);
+                        handleJoinAction(infoJoin.code, infoJoin.nickname, infoJoin.typeWeapon);
                     }
                     break;
                 }
@@ -100,8 +100,8 @@ void ClientReceiver::run() {
     isRunning = false;
 }
 
-void ClientReceiver::handleCreateAction(std::string nickName) {
-    GameRecord gameRecord = gamesManager.createLobby(gameResponses, nickName);
+void ClientReceiver::handleCreateAction(std::string nickName, int typeWeapon, int typeMap) {
+    GameRecord gameRecord = gamesManager.createLobby(gameResponses, nickName, typeWeapon, typeMap);
     game = gameRecord.game;
     playerId = gameRecord.playerId;
     // std::cout << "Created match: " << newGameCode << std::endl;
@@ -110,13 +110,13 @@ void ClientReceiver::handleCreateAction(std::string nickName) {
     // queue.push(createResponse);
 }
 
-void ClientReceiver::handleJoinAction(const int code, std::string playerNickname) {
+void ClientReceiver::handleJoinAction(const int code, std::string playerNickname, int weaponType) {
     try {
-        GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses, playerNickname);
+        GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses, playerNickname, weaponType);
         game = gameRecord.game;
         playerId = gameRecord.playerId;
     } catch (const std::out_of_range &e) {
-        std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinMsg", false);
+        std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinLobbyFailed");
         gameResponses.push(joinMessage);
     }
 }
