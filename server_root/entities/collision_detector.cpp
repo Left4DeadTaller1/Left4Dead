@@ -30,18 +30,18 @@ bool CollisionDetector::isColliding(Entity& e1, int deltaX, int deltaY, Entity& 
     return false;
 }
 
-std::list<std::shared_ptr<Entity>> collidesWhileJumping(Zombie& jumper, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities) {
+std::shared_ptr<Entity> CollisionDetector::collidesWhileJumping(Zombie& jumper, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities) {
     std::list<std::shared_ptr<Entity>> entitiesBeingCrashed;
 
     for (const auto& entity : entities) {
-        if (isColliding(jumper, deltaX, deltaY, entity)) {
+        if (isColliding(jumper, deltaX, deltaY, *entity)) {
             if (entitiesBeingCrashed.empty()) {
                 entitiesBeingCrashed.push_back(entity);
             } else {
                 auto it = entitiesBeingCrashed.begin();
                 for (; it != entitiesBeingCrashed.end(); ++it) {
-                    if ((jumper.facingLeft() && entity->x > (*it)->x) ||
-                        (jumper.facingRight() && entity->x < (*it)->x)) {
+                    if ((jumper.facingLeft() && entity->x > (*it)->getX()) ||
+                        (jumper.facingRight() && entity->x < (*it)->getX())) {
                         entitiesBeingCrashed.insert(it, entity);
                         break;
                     }

@@ -23,7 +23,7 @@ bool Entity::facingRight() {
     return facingDirection == FACING_RIGHT;
 }
 
-void Entity::useSkill(std::vector<std::shared_ptr<Player>> &players) {
+void Entity::useSkill(std::vector<std::shared_ptr<Entity>> &players) {
     return;
 }
 

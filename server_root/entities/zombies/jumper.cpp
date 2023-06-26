@@ -118,7 +118,7 @@ void Jumper::takeDamage(int damage) {
     }
 }
 
-void Jumper::useSkill(std::vector<std::shared_ptr<Player>>& players) {
+void Jumper::useSkill(std::vector<std::shared_ptr<Entity>>& players) {
     // TODO just change it to a nullptr
     if (attacksCooldowns["jump"] != 0)
         return;
@@ -136,19 +136,22 @@ void Jumper::useSkill(std::vector<std::shared_ptr<Player>>& players) {
 
 std::shared_ptr<Ability> Jumper::getActiveSkill() {
     std::shared_ptr<Ability> jumpAbility = std::make_shared<Ability>();
-    jumpAbility->type = JUMP;
+    jumpAbility->type = JUMP_ABILITY;
     return jumpAbility;
 }
 
-bool Jumper::getplayerWithinRange(std::vector<std::shared_ptr<Player>>& players) {
+bool Jumper::getplayerWithinRange(std::vector<std::shared_ptr<Entity>>& entities) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     int maxJumpRange = entityParams["JUMPER_JUMP_DISTANCE"];
 
-    for (const auto& player : players) {
-        int distance = std::sqrt(std::pow((x - player->getX()), 2) + std::pow((y - player->getY()), 2));
-        if (distance <= maxJumpRange)
-            return true;
+    for (const auto& entity : entities) {
+        std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
+        if (player) {
+            int distance = std::sqrt(std::pow((x - player->getX()), 2) + std::pow((y - player->getY()), 2));
+            if (distance <= maxJumpRange)
+                return true;
+        }
     }
     return false;
 }

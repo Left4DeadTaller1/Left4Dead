@@ -32,9 +32,9 @@ class Jumper : public Zombie {
     void startMoving() override;
     void takeDamage(int damage) override;
     bool isMoving() override;
-    void useSkill(std::vector<std::shared_ptr<Player>> &players) override;
+    void useSkill(std::vector<std::shared_ptr<Entity>> &players) override;
     std::shared_ptr<Ability> getActiveSkill();
-    bool getplayerWithinRange(std::vector<std::shared_ptr<Player>> &players);
+    bool getplayerWithinRange(std::vector<std::shared_ptr<Entity>> &players);
     bool getHasCrashed();
     void startCrashing();
     void idle() override;

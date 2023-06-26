@@ -40,7 +40,7 @@ std::shared_ptr<EntityDTO> Witch::getDto() {
 //     return entityParams["WITCH_ATTACK_RANGE"];
 // }
 
-void Witch::useSkill(std::vector<std::shared_ptr<Player>>& players) {
+void Witch::useSkill(std::vector<std::shared_ptr<Entity>>& players) {
     if (attacksCooldowns["wail"] != 0) {
         return;
     }
@@ -54,7 +54,7 @@ void Witch::useSkill(std::vector<std::shared_ptr<Player>>& players) {
 
 std::shared_ptr<Ability> Witch::getActiveSkill() {
     std::shared_ptr<Ability> wailAbility = std::make_shared<Ability>();
-    wailAbility->type = WAIL;
+    wailAbility->type = WAIL_ABILITY;
     return wailAbility;
 }
 

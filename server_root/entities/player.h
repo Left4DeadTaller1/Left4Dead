@@ -56,6 +56,7 @@ class Player : public Entity {
     std::shared_ptr<Player> getClosestRevivablePlayer(std::vector<std::shared_ptr<Player>>& players);
     void setClosestRevivablePlayer(std::shared_ptr<Player> player);
     void setRevivalState();
+    std::shared_ptr<Player> getRevivingPlayer();
     void revive();
 
     void decreaseATKCooldown();

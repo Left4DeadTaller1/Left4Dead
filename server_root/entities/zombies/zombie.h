@@ -36,7 +36,6 @@ class Zombie : public Entity {
    public:
     // Constructor
     Zombie(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
-    void move();
     ~Zombie();
 
     EntityType getType() override;

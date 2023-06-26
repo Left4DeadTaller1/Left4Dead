@@ -4,12 +4,13 @@
 #include <memory>
 #include <string>
 #include <tuple>
+#include <vector>
 
 #include "attack.h"
 
 enum AbilityType {
-    WAIL,
-    JUMP,
+    WAIL_ABILITY,
+    JUMP_ABILITY,
 };
 
 struct Ability {
@@ -96,7 +97,7 @@ class Entity {
     bool facingLeft();
     bool facingRight();
 
-    virtual void useSkill(std::vector<std::shared_ptr<Player>> &players);
+    virtual void useSkill(std::vector<std::shared_ptr<Entity>> &players);
     virtual Attack generateAttack() = 0;
     virtual void startMoving() = 0;
     virtual EntityType getType() = 0;

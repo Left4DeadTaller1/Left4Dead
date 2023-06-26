@@ -28,7 +28,7 @@ void ClientReceiver::run() {
                 break;
             }
 
-            //std::vector<int> data;
+            // std::vector<int> data;
             infoCreate_t infoCreate;
             infoJoin_t infoJoin;
 
@@ -142,7 +142,7 @@ void ClientReceiver::handleStartMove(int movementType, int directionXType, int d
 }
 
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
-    int movementType = 6;
+    int movementType = 7;
     Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }

@@ -27,7 +27,7 @@ class Witch : public Zombie {
     Attack generateAttack() override;
     void attackPlayer() override;
     void startMoving() override;
-    void useSkill(std::vector<std::shared_ptr<Player>> &players) override;
+    void useSkill(std::vector<std::shared_ptr<Entity>> &players);
     std::shared_ptr<Ability> getActiveSkill();
     bool isMoving() override;
     void idle() override;

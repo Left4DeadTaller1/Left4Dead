@@ -120,7 +120,7 @@ void Zombie::decreaseATKCooldown() {
 }
 
 std::shared_ptr<Ability> Zombie::getActiveSkill() {
-    return;
+    return nullptr;
 }
 
 Zombie::~Zombie() {
