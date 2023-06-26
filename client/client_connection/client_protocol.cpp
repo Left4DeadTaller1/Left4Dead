@@ -91,6 +91,18 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             skt.recvall(buf_nickname, nickname_len, &wasClosed);
             buf_nickname[nickname_len] = '\0';
             nickname = buf_nickname;
+
+            uint8_t typeWeapon;
+            skt.recvall(&typeWeapon, 1, &wasClosed);
+            if(wasClosed){
+                return NULL;
+            }
+
+            uint8_t bullets;
+            skt.recvall(&bullets, 1, &wasClosed);
+            if(wasClosed){
+                return NULL;
+            }
         }
 
         uint8_t state_;
