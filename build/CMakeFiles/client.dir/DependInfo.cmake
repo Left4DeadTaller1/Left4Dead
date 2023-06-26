@@ -48,8 +48,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/usaurio/Left4Dead/build/CMakeFiles/server_lib.dir/DependInfo.cmake"
-  "/home/usaurio/Left4Dead/build/CMakeFiles/menuQT.dir/DependInfo.cmake"
+  "/home/regman/taller/left4Dead/build/CMakeFiles/server_lib.dir/DependInfo.cmake"
+  "/home/regman/taller/left4Dead/build/CMakeFiles/menuQT.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

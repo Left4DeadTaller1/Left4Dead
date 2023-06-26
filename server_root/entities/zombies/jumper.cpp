@@ -124,7 +124,6 @@ void Jumper::useSkill(std::vector<std::shared_ptr<Entity>>& players) {
         return;
 
     if (getplayerWithinRange(players)) {
-        std::cout << "Jumper starting to jump" << std::endl;
         GameConfig& config = GameConfig::getInstance();
         std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -150,8 +149,9 @@ bool Jumper::getplayerWithinRange(std::vector<std::shared_ptr<Entity>>& entities
         std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
         if (player) {
             int distance = std::sqrt(std::pow((x - player->getX()), 2) + std::pow((y - player->getY()), 2));
-            if (distance <= maxJumpRange)
+            if (distance <= maxJumpRange) {
                 return true;
+            }
         }
     }
     return false;

@@ -34,6 +34,10 @@ std::shared_ptr<Entity> CollisionDetector::collidesWhileJumping(Zombie& jumper, 
     std::list<std::shared_ptr<Entity>> entitiesBeingCrashed;
 
     for (const auto& entity : entities) {
+        if (&jumper == entity.get()) {
+            continue;
+        }
+
         if (isColliding(jumper, deltaX, deltaY, *entity)) {
             if (entitiesBeingCrashed.empty()) {
                 entitiesBeingCrashed.push_back(entity);
@@ -51,6 +55,11 @@ std::shared_ptr<Entity> CollisionDetector::collidesWhileJumping(Zombie& jumper, 
                 }
             }
         }
+    }
+
+    // Safety check: return nullptr if there are no collided entities
+    if (entitiesBeingCrashed.empty()) {
+        return nullptr;
     }
 
     return entitiesBeingCrashed.front();

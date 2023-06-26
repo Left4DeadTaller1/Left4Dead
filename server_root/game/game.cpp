@@ -472,18 +472,20 @@ void Game::performEntitySkill(Entity& entity) {
         if (!jumper || jumper->getActionState() != JUMPER_JUMPING)
             return;
 
-        std::cout << "Jumping" << std::endl;
-
         GameConfig& config = GameConfig::getInstance();
         std::map<std::string, int> entityParams = config.getEntitiesParams();
         int deltaX = entityParams["JUMPER_JUMP_DISTANCE"] / entityParams["JUMPER_JUMP_DURATION"];
         int deltaY = 0;
 
+        if (jumper->facingLeft()) {
+            deltaX = -deltaX;
+        }
+
         // Checks For collisions while jumping
         // TODO REMOVE THE DELTAY
         std::shared_ptr<Entity> collidedEntity = collisionDetector.collidesWhileJumping(*jumper, deltaX, deltaY, entities);
 
-        if (collidedEntity == nullptr && jumper->getHasCrashed()) {
+        if (collidedEntity == nullptr && !jumper->getHasCrashed()) {
             jumper->move(deltaX, deltaY);
         }
 

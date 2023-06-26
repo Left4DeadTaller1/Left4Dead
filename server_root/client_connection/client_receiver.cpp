@@ -21,7 +21,6 @@ void ClientReceiver::run() {
 
             try {
                 typeCommand = protocol.receiveTypeCommand(wasClosed, clientSocket);
-                std::cout << "type command: " << typeCommand << "\n";
             } catch (const std::runtime_error &e) {
                 std::cerr << "Player disconnected: " << e.what() << std::endl;
                 handlePlayerDisconnection();

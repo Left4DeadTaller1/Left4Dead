@@ -97,6 +97,45 @@ TEST(ZombieTest, TestZombieMutation) {
     EXPECT_EQ(generateAttack.getDamage(), entityParams["INFECTED_ATTACK_DAMAGE"] + mutationIncrease);
 }
 
+TEST(JumperTest, TestJumperPLayerInRangeDetection) {
+    std::vector<std::shared_ptr<Entity>> players;
+
+    // Create a player close to the jumper
+    auto player = std::make_shared<Player>(105, 105, "Player1", SMG, "amund");
+
+    Jumper jumper(100, 100, "Zombie1", 5);
+
+    // Add the player to the vector
+    players.push_back(player);
+
+    // Use the jumper skill
+    jumper.useSkill(players);
+
+    // Check if the jumper is in jumping state after using the skill
+    EXPECT_EQ(jumper.getActionState(), JUMPER_JUMPING);
+}
+
+TEST(JumperTest, TestGetPlayerWithinRange) {
+    std::vector<std::shared_ptr<Entity>> players;
+
+    // Create a player close to the jumper
+    auto player = std::make_shared<Player>(105, 105, "Player1", SMG, "amund");
+
+    Jumper jumper(100, 100, "Zombie1", 5);
+
+    // Add the player to the vector
+    players.push_back(player);
+
+    // Check if getPlayerWithinRange returns true
+    EXPECT_TRUE(jumper.getplayerWithinRange(players));
+
+    // Position the jumper far from the player
+    jumper.move(400, 400);  // Move jumper to 500,500
+
+    // Check if getPlayerWithinRange returns false
+    EXPECT_FALSE(jumper.getplayerWithinRange(players));
+}
+
 // // Weapon Test Cases
 TEST(WeaponTest, TestWeaponShooting) {
     Weapon smg(SMG);
