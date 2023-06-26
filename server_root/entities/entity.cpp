@@ -15,10 +15,16 @@ int Entity::getMovementSpeed() {
     return movementSpeed;
 }
 
-std::shared_ptr<Ability> Entity::useSkill() {
-    std::shared_ptr<Ability> noneAbility = std::make_shared<Ability>();
-    noneAbility->type = INVALID;
-    return noneAbility;
+bool Entity::facingLeft() {
+    return facingDirection == FACING_LEFT;
+}
+
+bool Entity::facingRight() {
+    return facingDirection == FACING_RIGHT;
+}
+
+void Entity::useSkill(std::vector<std::shared_ptr<Entity>> &players) {
+    return;
 }
 
 void Entity::move(int deltaX, int deltaY) {

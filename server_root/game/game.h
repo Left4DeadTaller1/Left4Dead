@@ -71,6 +71,7 @@ class Game : public Thread {
     void move(Entity& entity);
     void attack(Entity& entity);
     void useSkill(Entity& entity);
+    void performEntitySkill(Entity& entity);
     void getPlayersActions();
     void removeDeadEntities();
     void reloadPlayer(Player& player);

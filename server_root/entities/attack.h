@@ -16,6 +16,7 @@ enum AttackType {
     SPEAR_ATTACK,
     SHORT_VENOM,
     LONG_VENOM,
+    JUMP,
 };
 
 class Attack {

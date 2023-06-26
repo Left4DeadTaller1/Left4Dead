@@ -68,13 +68,14 @@ std::shared_ptr<Player> Player::getClosestRevivablePlayer(std::vector<std::share
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     int maxRevivalDistance = entityParams["PLAYER_REVIVE_DISTANCE"];
     int distanceToClosestPlayer;
+    // this gets initialized bc of shortcircuiting
 
     std::shared_ptr<Player> closestRevivablePlayer = nullptr;
 
     for (const auto& player : players) {
         if (player.get() == this || player->getActionState() != PLAYER_DYING) continue;
 
-        int distance = std::sqrt(std::pow((x - closestRevivablePlayer->getX()), 2) + std::pow((y - closestRevivablePlayer->getY()), 2));
+        int distance = std::sqrt(std::pow((x - player->getX()), 2) + std::pow((y - player->getY()), 2));
 
         if (distance <= maxRevivalDistance && (closestRevivablePlayer == nullptr || distance < distanceToClosestPlayer)) {
             closestRevivablePlayer = player;
@@ -83,6 +84,7 @@ std::shared_ptr<Player> Player::getClosestRevivablePlayer(std::vector<std::share
 
         return closestRevivablePlayer;
     }
+    return nullptr;
 }
 
 std::shared_ptr<Player> Player::getRevivingPlayer(){
@@ -98,6 +100,10 @@ void Player::setRevivalState() {
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     this->actionState = PLAYER_REVIVING;
     this->actionCounter = entityParams["PLAYER_REVIVAL_DURATION"];
+}
+
+std::shared_ptr<Player> Player::getRevivingPlayer() {
+    return revivingPlayer;
 }
 
 void Player::revive() {

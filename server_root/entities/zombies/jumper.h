@@ -20,16 +20,23 @@ struct JumperDTO : ZombieDTO {
 class Jumper : public Zombie {
    private:
     JumperActionState actionState;
+    bool hasCrashed;
 
    public:
     Jumper(int xPosition, int yPosition, std::string zombieId, int mutationLevel);
     std::shared_ptr<EntityDTO> getDto() override;
     // int getAttackRange() override;
     Attack generateAttack() override;
+    Attack generateJumpAttack();
     void attackPlayer() override;
     void startMoving() override;
     void takeDamage(int damage) override;
     bool isMoving() override;
+    void useSkill(std::vector<std::shared_ptr<Entity>> &players) override;
+    std::shared_ptr<Ability> getActiveSkill();
+    bool getplayerWithinRange(std::vector<std::shared_ptr<Entity>> &players);
+    bool getHasCrashed();
+    void startCrashing();
     void idle() override;
     bool checkIfDead() override;
     void kill() override;

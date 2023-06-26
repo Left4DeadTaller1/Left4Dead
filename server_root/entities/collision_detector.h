@@ -35,6 +35,7 @@ class CollisionDetector {
     bool willCollideHorizontally(Entity& e1, Entity& e2);
     bool willCollideVertically(Entity& e1, Entity& e2);
     bool isColliding(Entity& e1, int deltaX, int deltaY, Entity& e2);
+    std::shared_ptr<Entity> collidesWhileJumping(Zombie& jumper, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities);
     bool isColliding(Entity& entity, int x, int y);
     bool isEmptySpace(std::list<std::shared_ptr<Entity>>& entities, int x, int y);
     std::tuple<int, int> checkForCollisions(Entity& entity, int deltaX, int deltaY, std::list<std::shared_ptr<Entity>>& entities);
