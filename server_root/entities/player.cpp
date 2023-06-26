@@ -234,6 +234,10 @@ Attack Player::generateAttack() {
     return bullet;
 }
 
+int Player::getWeaponDamageFalloff() {
+    return weapon.getDamageFalloff();
+}
+
 bool Player::checkIfDead() {
     // TODO test knockdowns
     if ((actionState == PLAYER_DYING && actionCounter == 0) || (actionState == PLAYER_DYING && knockDowns >= 3))

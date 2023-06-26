@@ -28,4 +28,8 @@ int Attack::getRange() {
     return range;
 }
 
+int Attack::getOrigin() {
+    return xOrigin;
+}
+
 Attack::~Attack() {}

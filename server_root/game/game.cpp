@@ -162,10 +162,10 @@ void Game::removePlayer(std::string playerId) {
 
 void Game::startGame() {
     // TODO this is for debuging
-    zombieSpawner.increaseTotalZombies();
-    int totalZombies = zombieSpawner.getTotalZombies();
-    std::string zombieId = "zombie" + std::to_string(totalZombies);
-    entities.push_back(std::make_shared<Jumper>(100, 50, zombieId, 0));
+    // zombieSpawner.increaseTotalZombies();
+    // int totalZombies = zombieSpawner.getTotalZombies();
+    // std::string zombieId = "zombie" + std::to_string(totalZombies);
+    // entities.push_back(std::make_shared<Jumper>(100, 50, zombieId, 0));
 
     gameRunning = true;
     while (gameRunning) {
@@ -353,17 +353,17 @@ void Game::attack(Entity& entity) {
                         GameConfig& config = GameConfig::getInstance();
                         std::map<std::string, int> weaponsParams = config.getWeaponsParams();
                         int bulletLostDmg = weaponsParams["SNIPER_DMG_LOST_PER_PIERCE"];
-                        int enemiesPierce = 0;
+                        int enemiesPierced = 0;
 
                         if (!damagedEntities.empty()) {
-                            int effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierce);
+                            int effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierced);
 
                             while (effectiveDamage > 0 && !damagedEntities.empty()) {
                                 damagedEntities.front()->takeDamage(effectiveDamage);
                                 damagedEntities.pop_front();
 
-                                enemiesPierce++;
-                                effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierce);
+                                enemiesPierced++;
+                                effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierced);
                             }
                         }
 
@@ -371,8 +371,11 @@ void Game::attack(Entity& entity) {
                     }
                     default:
                         if (!damagedEntities.empty()) {
-                            // TODO make the takeDamage for ALL zombies
-                            damagedEntities.front()->takeDamage(attack.getDamage());
+                            // TODO Test dmgs
+                            int distanceTraveled = abs(attack.getOrigin() - damagedEntities.front()->getX());
+                            int effectiveDamage = attack.getDamage() - (distanceTraveled / player->getWeaponDamageFalloff());
+
+                            damagedEntities.front()->takeDamage(effectiveDamage);
                         }
                         break;
                 }

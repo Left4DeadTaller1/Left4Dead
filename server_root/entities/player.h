@@ -76,6 +76,8 @@ class Player : public Entity {
     Attack generateAttack();
     void startMoving() override;
 
+    int getWeaponDamageFalloff();
+
     bool checkIfDead() override;
     void kill() override;
     bool isDead() override;

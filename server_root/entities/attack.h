@@ -38,6 +38,7 @@ class Attack {
     AttackType getType();
     int getDamage();
     int getRange();
+    int getOrigin();
     ~Attack();
 };
 

@@ -80,6 +80,23 @@ bool Weapon::canShoot() {
         return false;
 }
 
+int Weapon::getDamageFalloff() {
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> weaponsParams = config.getWeaponsParams();
+    switch (type) {
+        case SMG:
+            return weaponsParams["SMG_DAMAGE_FALLOFF"];
+            break;
+        case RIFLE:
+            return weaponsParams["RIFLE_DAMAGE_FALLOFF"];
+            break;
+
+        default:
+            return 0;
+            break;
+    }
+}
+
 void Weapon::decreaseCooldown() {
     if (cooldown > 0)
         cooldown--;
