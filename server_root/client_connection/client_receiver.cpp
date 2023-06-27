@@ -24,6 +24,7 @@ void ClientReceiver::run() {
             } catch (const std::runtime_error &e) {
                 std::cerr << "Player disconnected: " << e.what() << std::endl;
                 handlePlayerDisconnection();
+                stop();
                 break;
             }
 
@@ -38,8 +39,10 @@ void ClientReceiver::run() {
                     std::cout << "typeWeapon: " << (int)infoCreate.typeWeapon << "\n";
                     std::cout << "typeMap: " << (int)infoCreate.typeMap << "\n";
                     std::cout << "nickname: " << infoCreate.nickname << "\n";
-                    if (!game)
+                    if (!game) {
+                        std::cout << "entered here" << std::endl;
                         handleCreateAction(infoCreate.nickname, infoCreate.typeWeapon, infoCreate.typeMap);
+                    }
                     break;
                 }
                 case JOIN: {
@@ -100,6 +103,7 @@ void ClientReceiver::run() {
         // Other unknown exceptions
         std::cerr << "ClientReceiver: Unknown exception caught. Ending thread." << std::endl;
     }
+    std::cout << "out of run loop" << std::endl;
     isRunning = false;
 }
 
@@ -169,6 +173,7 @@ void ClientReceiver::handleRevive() {
 }
 
 void ClientReceiver::stop() {
+    std::cout << "stop being call" << std::endl;
     isRunning = false;
 }
 

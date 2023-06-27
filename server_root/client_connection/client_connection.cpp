@@ -14,12 +14,13 @@ ClientConnection::ClientConnection(Socket &&skt, GamesManager &gamesManager)
 void ClientConnection::connectToClient() {
     std::cout << "ENTRA A CLIENT CONNECTION\n";
     // Iniciar los hilos sender y receiver
+
     sender.start();
     receiver.start();
 }
 
 void ClientConnection::checkThreads() {
-    if (!receiver.getIsRunning() || !sender.getIsRunning()) {
+    if (!receiver.getIsRunning() && !sender.getIsRunning()) {
         alive = false;
     }
 }

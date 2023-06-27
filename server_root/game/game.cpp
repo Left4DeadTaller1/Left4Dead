@@ -16,7 +16,7 @@
 ________________________________________________________________*/
 
 Game::Game(int mapType)
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0) {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), gameStarted(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0) {
     if (mapType >= MAP1_BACKGROUND && mapType <= MAP8_BACKGROUND) {
         mapBackground = static_cast<MapType>(mapType);
     } else {
@@ -115,6 +115,10 @@ bool Game::isGameRunning() {
     return gameRunning;
 }
 
+bool Game::hasGameStarted() {
+    return gameStarted;
+}
+
 bool Game::hasActivePlayers() {
     for (auto queuePtr : playerQueues) {
         if (queuePtr != nullptr) {
@@ -201,6 +205,7 @@ void Game::removePlayer(Player& playerToRemove) {
 }
 
 void Game::startGame() {
+    gameStarted = true;
     // TODO this is for debuging
     // zombieSpawner.increaseTotalZombies();
     // int totalZombies = zombieSpawner.getTotalZombies();
