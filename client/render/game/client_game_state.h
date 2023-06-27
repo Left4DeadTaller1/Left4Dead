@@ -6,6 +6,7 @@
 #define ENTITY_LOOKING_RIGHT 1
 
 #include <vector>
+#include <string>
 
 enum state_t : uint8_t {
     WALKING,            //all
@@ -43,9 +44,29 @@ enum typeEntity_t : uint8_t {
     SOLDIER3
 };
 
+typedef enum : int8_t{
+    P90,
+    RIFLE,
+    SNIPER
+} TypeWeapon_t;
+
+typedef enum : int8_t{
+    WAR1_BRIGHT,
+    WAR1_PALE,
+    WAR2_BRIGHT,
+    WAR2_PALE,
+    WAR3_BRIGHT,
+    WAR3_PALE,
+    WAR4_BRIGHT,
+    WAR4_PALE,
+} TypeMap_t;
+
 typedef struct player {
     uint16_t idPlayer;
     state_t state;
+    std::string nickname;
+    TypeWeapon_t typeWeapon;
+    uint8_t bullets;
     uint8_t actionCounter;
     uint16_t x;
     uint16_t y;

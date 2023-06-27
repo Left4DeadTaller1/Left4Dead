@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) { try {
                     dimensionsWindows["WINDOW_HEIGHT"],
                     SDL_WINDOW_RESIZABLE);
 
-        Client client(hostname, servname, window, protocol);
+        Client client(hostname, servname, window, protocol, windowQT);
         client.run();
     }
     return ret;

@@ -7,7 +7,7 @@ using namespace SDL2pp;
 ClientRenderer::ClientRenderer(std::atomic<bool>& isConnected,
                     Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
                     Queue<std::shared_ptr<ActionRender>>& qEventsToRender, 
-                    Window& window_, ClientProtocol& protocol):
+                    Window& window_, ClientProtocol& protocol, MainWindow& windowQT):
                     isConnected(isConnected),
                     qServerToRender(qServerToRender),
                     qEventsToRender(qEventsToRender),
@@ -16,7 +16,8 @@ ClientRenderer::ClientRenderer(std::atomic<bool>& isConnected,
                     renderer(window_, -1, SDL_RENDERER_ACCELERATED),
                     textureManager(renderer),
                     soundManager(),
-                    game(textureManager, soundManager){
+                    game(textureManager, soundManager, windowQT),
+                    windowQT(windowQT){
 
     RendererConfig& config = RendererConfig::getInstance();
     std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
@@ -113,8 +114,11 @@ int ClientRenderer::handlerAction(std::shared_ptr<ActionRender> action){
 }
 
 int ClientRenderer::looprender(void) {
+    TTF_Init();
+    GameTexture& map = textureManager.getTexture("background-war1-pale-war");
     drawInicio();
 
+    uint32_t initialTime = SDL_GetTicks();
     uint32_t t1 = SDL_GetTicks();
     int counterFrame = 0;
     int rate = 1000 / MS_PER_FRAME;
@@ -138,7 +142,7 @@ int ClientRenderer::looprender(void) {
             std::shared_ptr<gameStateDTO_t> gameStateDTO;
             qServerToRender.try_pop(gameStateDTO);
             if (gameStateDTO){
-                for (auto &currentPlayer : gameStateDTO->players) {
+                /*for (auto &currentPlayer : gameStateDTO->players) {
                     std::cout << "type: " << "soldier1" << "\n";
                     std::cout << "idPlayer: " << (int)(currentPlayer.idPlayer) << "\n";
                     std::cout << "state: " << traducir((int)(currentPlayer.state)) << "\n";
@@ -154,11 +158,11 @@ int ClientRenderer::looprender(void) {
                     std::cout << "x: " << (int)(currentPlayer.x) << "\n";
                     std::cout << "y: " << (int)(currentPlayer.y) << "\n";
                     std::cout << "health: " << (int)(currentPlayer.health) << "\n";
-                }
+                }*/
                 game.updateGame(gameStateDTO);
                 renderer.Clear();
 
-                drawBackground(textureManager.getTexture("background-war1-pale-war").texture);
+                drawBackground(map.texture);
 
                 SDL_Rect viewport;
                 viewport.x = viewportXInicial;
@@ -168,8 +172,13 @@ int ClientRenderer::looprender(void) {
 
                 SDL_RenderSetViewport(renderer.Get(), &viewport);
 
+                uint32_t currentTime = SDL_GetTicks();
+                uint32_t gameTime = (currentTime - initialTime);
+                game.drawGameTime(renderer, gameTime);
+
                 game.drawPlayers(renderer, it);
                 game.drawInfected(renderer, it);
+                game.drawLifeBar(renderer);
 
                 renderer.Present();
                 SDL_RenderSetViewport(renderer.Get(), nullptr);
@@ -193,7 +202,7 @@ int ClientRenderer::looprender(void) {
             counterFrame = 0;
         }
     }
-
+    TTF_Quit();
     return 0;
 }
 

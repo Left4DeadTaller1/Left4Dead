@@ -24,7 +24,8 @@
 class Client {
    public:
     Client(const char* hostname, const char* servname, 
-            SDL2pp::Window& window, ClientProtocol& protocol);
+            SDL2pp::Window& window, ClientProtocol& protocol,
+            MainWindow& windowQT);
 
     ~Client();
 

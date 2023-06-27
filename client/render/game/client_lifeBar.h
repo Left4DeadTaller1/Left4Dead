@@ -40,7 +40,7 @@ class LifeBar {
                 uint32_t x, uint32_t y, uint8_t lookingTo, 
                 typeEntity_t typeEntity);
                 
-    void draw(SDL2pp::Renderer& renderer, int it);
+    void draw(SDL2pp::Renderer& renderer);
 
     void updateLifeBar(uint32_t health, uint32_t x, 
                         uint32_t y, uint8_t lookingTo);

@@ -10,6 +10,7 @@
 #include <thread>
 
 #include "liberror.h"
+#include "mainwindow.h"
 #include "action_client.h"
 #include "client_texture_manager.h"
 #include "client_sound_manager.h"
@@ -33,6 +34,7 @@ class ClientRenderer {
    TextureManager textureManager;
    SoundManager soundManager;
    ClientGame game;
+   MainWindow& windowQT;
 
    uint32_t viewportXInicial;
    uint32_t viewportWidth;
@@ -48,7 +50,8 @@ class ClientRenderer {
    ClientRenderer(std::atomic<bool>& isConnected, 
                   Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender, 
                   Queue<std::shared_ptr<ActionRender>>& qEventsToRender, 
-                  SDL2pp::Window& window_, ClientProtocol& protocol);
+                  SDL2pp::Window& window_, ClientProtocol& protocol, 
+                  MainWindow& windowQT);
 
    void copySprite(SDL2pp::Texture& texture, 
                   SDL2pp::Rect& srcRect, 

@@ -50,6 +50,7 @@ target_include_directories(client
     ${CMAKE_SOURCE_DIR}/client/render/texture
     ${CMAKE_SOURCE_DIR}/client/client_connection
     ${CMAKE_SOURCE_DIR}/client/configuration
+    ${CMAKE_SOURCE_DIR}/client/menuQT
     ${SDL2PP_INCLUDE_DIRS}
 )
 

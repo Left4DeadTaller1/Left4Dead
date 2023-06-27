@@ -8,6 +8,7 @@
 #include "client/actions/action_client.h"
 #include "hiloMensajes.h"
 #include <memory>
+#include <QStandardItemModel>
 
 namespace Ui {
 class Create;
@@ -32,12 +33,16 @@ private slots:
     void handlerInfoGameReceived(const QString& messageInfoGame);
     void handleClosed(int exitCode);
     std::string typeWeaponToString(TypeWeapon_t type);
+    std::string getImageMap(QString& map);
+    std::string getImageSoldier(QString& weapon);
 
 private:
     ClientProtocol& protocol;
     Ui::Create *ui;
     QMediaPlayer *player;
     HiloMensajes* hiloMensajes;
+    QStandardItemModel model;
+
 };
 
 #endif // CREATE_H

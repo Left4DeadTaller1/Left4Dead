@@ -79,11 +79,11 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
                 return NULL;
             }
             typeInfected = static_cast<typeEntity_t>(typeInfected_);
-            //std::cout << "typeInfected: " << traducirType_((int)typeInfected) << "\n";
         }
 
-        std::cout << "hola\n";
         std::string nickname;
+        uint8_t bullets;
+        TypeWeapon_t typeWeapon;
         if ((int)typeEntity == PLAYER){
             uint8_t nickname_len;
             skt.recvall(&nickname_len, 1, &wasClosed);
@@ -93,13 +93,13 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             buf_nickname[nickname_len] = '\0';
             nickname = buf_nickname;
 
-            uint8_t typeWeapon;
-            skt.recvall(&typeWeapon, 1, &wasClosed);
+            uint8_t type;
+            skt.recvall(&type, 1, &wasClosed);
             if(wasClosed){
                 return NULL;
             }
+            typeWeapon = static_cast<TypeWeapon_t>(type);
 
-            uint8_t bullets;
             skt.recvall(&bullets, 1, &wasClosed);
             if(wasClosed){
                 return NULL;
@@ -147,16 +147,16 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         health = ntohs(health);
 
         if ((int)typeEntity == PLAYER){
-            //std::cout << "ENTRA A GUARDAR SOLDADO\n";
             player_t player;
 
             player.idPlayer = idEntity;
             player.state = state;
+            player.nickname = nickname;
+            player.bullets = bullets;
+            player.typeWeapon = typeWeapon;
             player.actionCounter = actionCounter;
             player.x = x;
-            //std::cout << "player.x: " << (int)player.x << "\n";
             player.y = y;
-            //std::cout << "player.y: " << (int)player.y << "\n";
             player.lookingTo = lookingTo;
             player.health = health;
 

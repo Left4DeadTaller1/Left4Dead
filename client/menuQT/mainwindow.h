@@ -7,6 +7,7 @@
 #include "create.h"
 #include "join.h"
 #include <iostream>
+#include "client_game_state.h"
 #include "client/client_connection/client_protocol.h"
 
 namespace Ui { class MainWindow; }
@@ -17,13 +18,14 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(ClientProtocol& protocol, QWidget *parent = nullptr);
+    std::string getNamePlayer(void);
+    TypeMap_t getTypeMap(void);
     ~MainWindow();
 
 private slots:
     void createButtonClicked();
     void joinButtonClicked();
     void sliderChanged(int value);
-    //void closeEvent(QCloseEvent *event);
     void handleCreateClosed(int code);
     void handleJoinClosed(int code);
 
@@ -36,5 +38,7 @@ private:
     QMediaPlayer *player;
     Create *c;
     Join *j;
+    std::string namePlayer;
+    TypeMap_t typeMap;
 };
 #endif // MAINWINDOW_H

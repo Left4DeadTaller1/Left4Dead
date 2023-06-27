@@ -1,7 +1,8 @@
 #include "client.h"
 
 Client::Client(const char* hostname, const char* servname, 
-                SDL2pp::Window& window, ClientProtocol& protocol) : 
+                SDL2pp::Window& window, ClientProtocol& protocol,
+                MainWindow& windowQT) : 
                                             wasClosed(false),
                                             protocol(protocol),
                                             isConnected(true),
@@ -10,7 +11,7 @@ Client::Client(const char* hostname, const char* servname,
                                             qEventsToRender(TAM_MAX_QUEUE),
                                             window(window),
                                             renderer(isConnected, qServerToRender, qEventsToRender, 
-                                            window, protocol),
+                                                        window, protocol, windowQT),
                                             senderThread(isConnected, protocol, qEventsToSender),
                                             receiverThread(isConnected, protocol, qServerToRender),
                                             eventManagerThread(qEventsToSender,

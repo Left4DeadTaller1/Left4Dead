@@ -16,6 +16,7 @@ class TextureManager {
     std::map<state_t, GameTexture> texturesVenom;
     std::map<state_t, GameTexture> texturesWitch;
     std::map<state_t, GameTexture> texturesZombie;
+    std::map<TypeWeapon_t, GameTexture> texturesWeapon;
     std::map<std::string, GameTexture> texturesBackground;
     //GameTexture lifeBar;
 
@@ -27,6 +28,8 @@ class TextureManager {
     std::map<state_t, GameTexture>& getTextures(typeEntity_t type);
 
     GameTexture& getTexture(const std::string& nameTexture);
+
+    std::map<TypeWeapon_t, GameTexture>& getTexturesWeapon();
 };
 
 #endif

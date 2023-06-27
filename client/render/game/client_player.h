@@ -8,6 +8,7 @@
 #include <map>
 #include "client_game_state.h"
 #include "renderer_config.h"
+#include "../../../server_root/game/configuration/game_config.h"
 #include "client_texture_manager.h"
 #include "client_sound_manager.h"
 
@@ -19,8 +20,13 @@ class ClientPlayer {
     int y;
     int lookingTo;
     bool comingEndDeath;
+    TypeWeapon_t weapon;
+    std::string nickname;
+    int bullets;
+    bool isMyWindow;
     std::map<state_t, GameTexture>& texturesPlayer;
     std::map<state_t, std::shared_ptr<Sound>>& sounds;
+    std::map<TypeWeapon_t, GameTexture>& texturesWeapon;
 
     uint32_t width;
     uint32_t height;
@@ -29,15 +35,25 @@ class ClientPlayer {
     uint32_t gameWidth;
     uint32_t gameHeight;
 
+    int p90MaxBullets;
+    int rifleMaxBullets;
+    int sniperMaxBullets;
+
     GameTexture& getTexturePlayer(state_t state);
+    GameTexture& getTextureWeapon(TypeWeapon_t weapon);
+    int maxBullets(TypeWeapon_t type);
 
     void playSound(state_t state, int playMode);
 
     void stopSound(state_t state);
+    void drawWeaponAndBullets(SDL2pp::Renderer& renderer);
+    std::string typeWeaponToString(TypeWeapon_t type);
 
     public:
     ClientPlayer(std::map<state_t, GameTexture>& textures,
                     std::map<state_t, std::shared_ptr<Sound>>& sounds,
+                    std::map<TypeWeapon_t, GameTexture>& texturesWeapon,
+                    bool isMyWindow,
                     player_t& currentPlayer);
 
     void draw(SDL2pp::Renderer& renderer, int it);

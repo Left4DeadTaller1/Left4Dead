@@ -16,33 +16,58 @@ std::string HiloMensajes::typeWeaponToString(TypeWeapon_t type){
     return "";
 }
 
+std::string HiloMensajes::typeMapToString(TypeMap_t typeMap){
+    if (typeMap == WAR1_BRIGHT){
+        return "War 1 Bright";
+    }
+    if (typeMap == WAR1_PALE){
+        return "War 1 Pale";
+    }
+    if (typeMap == WAR2_BRIGHT){
+        return "War 2 Bright";
+    }
+    if (typeMap == WAR2_PALE){
+        return "War 2 Pale";
+    }
+    if (typeMap == WAR3_BRIGHT){
+        return "War 3 Bright";
+    }
+    if (typeMap == WAR3_PALE){
+        return "War 3 Pale";
+    }
+    if (typeMap == WAR4_BRIGHT){
+        return "War 4 Bright";
+    }
+    if (typeMap == WAR4_PALE){
+        return "War 4 Pale";
+    }
+    return "";
+}
+
 const QString HiloMensajes::encodeInfoGame(TypeMap_t typeMap, int amountPlayers, 
                             std::vector<infoPlayerDTO_t>& infoPlayers){
 
     std::string infoGame;
-    infoGame += "Amount players in game: ";
-    infoGame += amountPlayers + "\n";
+    infoGame += typeMapToString(typeMap);
+    infoGame += ";";
+    infoGame += std::to_string(amountPlayers);
+    infoGame += ";";
 
     for (auto &player : infoPlayers){
-        infoGame += "Nickname: " + player.nickname + "\n";
-        infoGame += "Weapon: " + typeWeaponToString(player.typeWeapon) + "\n";
-        infoGame += "---------------------------------------------------------------\n";
+        infoGame += player.nickname;
+        infoGame += ";";
+        infoGame += typeWeaponToString(player.typeWeapon);
+        infoGame += ";";
     }
 
     return QString::fromStdString(infoGame);
 }
 
 void HiloMensajes::run() {
-    //std::cout << "METODO RUN HILO MENSAJES\n";
     bool wasClosed = false;
     int typeMessage = protocol.receiveTypeMessage(wasClosed);
-    //std::cout << "typeMessage: " << typeMessage << "\n";
     if (typeMessage == MSG_JOIN){
-        //std::cout << "ENTRA A RECIBIR JOIN\n";
         std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
-        /*std::cout << "infoGame->typeMap: " << (int)infoGame->typeMap << "\n";
-        std::cout << "infoGame->code: " << (int)infoGame->code << "\n";
-        std::cout << "infoGame->amountPlayers: " << (int)infoGame->amountPlayers << "\n";*/
         emit infoGameReceived(encodeInfoGame(infoGame->typeMap, infoGame->amountPlayers, 
                             infoGame->infoPlayers));
     }

@@ -28,7 +28,7 @@ LifeBar::LifeBar(GameTexture& texture, uint32_t health,
     lifeLevels = dimensionsLifeBar["LIFE_LEVELS_SOLDIER"];
 };
 
-void LifeBar::draw(SDL2pp::Renderer& renderer, int it){
+void LifeBar::draw(SDL2pp::Renderer& renderer){
     SDL_Rect srcRect;
     srcRect.x = (texture.width / texture.n)* ((maxHealth - health) / lifeLevels);
     srcRect.y = 0;

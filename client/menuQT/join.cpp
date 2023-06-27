@@ -7,7 +7,8 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
     protocol(protocol),
     QDialog(parent),
     ui(new Ui::Join),
-    hiloMensajes(nullptr)
+    hiloMensajes(nullptr),
+    model(this)
 {
     ui->setupUi(this);
 
@@ -31,18 +32,25 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
     });
 
     //barra de volumen
-    QSlider *slider3 = new QSlider(Qt::Horizontal, this);
-    ui->slider3->setRange(0, 100);
-    ui->slider3->setValue(20);
+    QSlider *slider2 = new QSlider(Qt::Horizontal, this);
+    ui->slider2->setRange(0, 100);
+    ui->slider2->setValue(20);
 
-    connect(ui->slider3, SIGNAL(valueChanged(int)), this, SLOT(sliderChanged(int)));
+    connect(ui->slider2, SIGNAL(valueChanged(int)), this, SLOT(sliderChanged(int)));
 
     player3 = new QMediaPlayer(this);
     player3->setMedia(QUrl::fromLocalFile(DATA_PATH "/client/render/resources/sounds/fondo3.mp3"));
     player3->setVolume(20);
 
-    slider3->show();
+    slider2->show();
     player3->play();
+
+    (ui->layout3)->addWidget(ui->listView3);
+    (ui->listView3)->setModel(&model);
+    (ui->listView3)->setSpacing(10);
+    (ui->listView3)->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    QString itemStyle = "QListView::item { border-bottom: 1px solid gray; }";
+    ui->listView3->setStyleSheet(itemStyle);
 }
 
 void Join::closeEvent(QCloseEvent *event)
@@ -94,10 +102,88 @@ std::string Join::typeWeaponToString(TypeWeapon_t type){
     return "";
 }
 
+std::string Join::getImageSoldier(QString& weapon){
+    if (weapon == "P90"){
+        return DATA_PATH "/client/render/resources/Soldier_1/Idle.png";
+    }
+    if (weapon == "Rifle"){
+        return DATA_PATH "/client/render/resources/Soldier_2/Idle.png";
+    }
+    if (weapon == "Sniper"){
+        return DATA_PATH "/client/render/resources/Soldier_3/Idle.png";
+    }
+    return "";
+}
+
+std::string Join::getImageMap(QString& map){
+    if (map == "War 1 Bright"){
+        return DATA_PATH "/client/render/resources/backgrounds/War1/Bright/War.png";
+    }
+    if (map == "War 1 Pale"){
+        return DATA_PATH "/client/render/resources/backgrounds/War1/Pale/War.png";
+    }
+    if (map == "War 2 Bright"){
+        return DATA_PATH "/client/render/resources/backgrounds/War2/Bright/War.png";
+    }
+    if (map == "War 2 Pale"){
+        return DATA_PATH "/client/render/resources/backgrounds/War2/Pale/War.png";
+    }
+    if (map == "War 3 Bright"){
+        return DATA_PATH "/client/render/resources/backgrounds/War3/Bright/War.png";
+    }
+    if (map == "War 2 Pale"){
+        return DATA_PATH "/client/render/resources/backgrounds/War3/Pale/War.png";
+    }
+    if (map == "War 4 Bright"){
+        return DATA_PATH "/client/render/resources/backgrounds/War4/Bright/War.png";
+    }
+    if (map == "War 4 Pale"){
+        return DATA_PATH "/client/render/resources/backgrounds/War4/Pale/War.png";
+    }
+    return "";
+}
+
 void Join::handlerInfoGameReceived(const QString& messageInfoGame)
 {
-    ui->textEdit3->clear();
-    ui->textEdit3->append(messageInfoGame);
+    int rowCount = model.rowCount();
+    for (int i = 0; i < rowCount; ++i) {
+        QStandardItem* item = model.item(i);
+        if (item) {
+            delete item;
+        }
+    }
+    model.clear();
+
+    QStringList message = messageInfoGame.split(';');
+    QString map = message.value(0);
+    int cantidadEntidades = message.value(1).toInt();
+
+    ui->infoGame3->setText(map);
+
+    //imagen de mapa
+    std::string mapPath = getImageMap(map);
+    QPixmap mapa(QString::fromStdString(mapPath));
+    ui->map3->setPixmap(mapa);
+    ui->map3->setScaledContents(true);
+
+    for (int i = 0; i < cantidadEntidades; i++) {
+        QString nickname = message.value(i * 2 + 2);
+        QString weapon = message.value(i * 2 + 3);
+
+        std::string imageSoldierPath = getImageSoldier(weapon);
+        QPixmap imageSoldier(QString::fromStdString(imageSoldierPath));
+
+        int width = 100;
+        int height = 100;
+        QPixmap imageSoldierSmall = imageSoldier.scaled(width, height, Qt::KeepAspectRatio);
+
+        QStandardItem* item = new QStandardItem;
+        item->setData(nickname, Qt::DisplayRole);
+        item->setData(weapon, Qt::DisplayRole);
+        item->setData(imageSoldierSmall, Qt::DecorationRole);
+
+        model.appendRow(item);
+    }
 }
 
 

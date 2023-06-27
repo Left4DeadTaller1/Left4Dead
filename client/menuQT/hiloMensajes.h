@@ -16,6 +16,7 @@ class HiloMensajes : public QObject, public Thread
 private:
     ClientProtocol& protocol;
     std::string typeWeaponToString(TypeWeapon_t type);
+    std::string typeMapToString(TypeMap_t typeMap);
     const QString encodeInfoGame(TypeMap_t typeMap, int amountPlayers, 
                             std::vector<infoPlayerDTO_t>& infoPlayers);
 
@@ -25,7 +26,6 @@ public:
 
 signals:
     void infoGameReceived(const QString& messageInfoGame);
-
     void closedWithoutError(int exitCode);
 
 };

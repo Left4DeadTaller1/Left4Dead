@@ -6,6 +6,18 @@ TextureManager::TextureManager(Renderer& renderer){
     loadTextures(renderer);
 }
 
+/*GameTexture& TextureManager::getTextureWeapon(TypeWeapon_t type){
+    std::map<std::string, GameTexture>::iterator iter = texturesWeapon.find(type);
+    if (iter == texturesWeapon.end()) {
+        //lanzar excepcion
+    }
+    return iter->second;
+}*/
+
+std::map<TypeWeapon_t, GameTexture>& TextureManager::getTexturesWeapon(){
+    return texturesWeapon;
+}
+
 GameTexture& TextureManager::getTexture(const std::string& nameTexture){
     std::map<std::string, GameTexture>::iterator iter = texturesBackground.find(nameTexture);
     if (iter == texturesBackground.end()) {
@@ -208,4 +220,12 @@ void TextureManager::loadTextures(Renderer& renderer){
                                         DATA_PATH "/client/render/resources/Zombie/Run.png"));
     texturesZombie.emplace(WALKING, GameTexture(renderer, 8,
                                         DATA_PATH "/client/render/resources/Zombie/Walk.png"));
+
+    //load weapons
+    texturesWeapon.emplace(P90, GameTexture(renderer, 1,
+                                                DATA_PATH "/client/render/resources/arma1.png"));
+    texturesWeapon.emplace(RIFLE, GameTexture(renderer, 1,
+                                                DATA_PATH "/client/render/resources/arma2.png"));
+    texturesWeapon.emplace(SNIPER, GameTexture(renderer, 1,
+                                                DATA_PATH "/client/render/resources/arma3.png"));                                                    
 }

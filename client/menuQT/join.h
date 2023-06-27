@@ -5,6 +5,7 @@
 #include <QMediaPlayer>
 #include "client/client_connection/client_protocol.h"
 #include "hiloMensajes.h"
+#include <QStandardItemModel>
 
 namespace Ui {
 class Join;
@@ -28,12 +29,15 @@ private slots:
     void handlerInfoGameReceived(const QString& messageInfoGame);
     void handleClosed(int exitCode);
     std::string typeWeaponToString(TypeWeapon_t type);
+    std::string getImageMap(QString& map);
+    std::string getImageSoldier(QString& weapon);
 
 private:
     ClientProtocol& protocol;
     Ui::Join *ui;
     QMediaPlayer *player3;
     HiloMensajes* hiloMensajes;
+    QStandardItemModel model;
 };
 
 #endif // JOIN_H

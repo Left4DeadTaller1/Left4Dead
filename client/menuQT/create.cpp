@@ -5,7 +5,8 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     QDialog(parent),
     protocol(protocol),
     ui(new Ui::Create),
-    hiloMensajes(nullptr)
+    hiloMensajes(nullptr),
+    model(this)
 {
     ui->setupUi(this);
 
@@ -38,6 +39,13 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     player->setMedia(QUrl::fromLocalFile(DATA_PATH "/client/render/resources/sounds/fondo3.mp3"));
     player->setVolume(20);
     player->play();
+
+    (ui->layout)->addWidget(ui->listView);
+    (ui->listView)->setModel(&model);
+    (ui->listView)->setSpacing(10);
+    (ui->listView)->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    QString itemStyle = "QListView::item { border-bottom: 1px solid gray; }";
+    ui->listView->setStyleSheet(itemStyle);
 }
 
 void Create::handleClosed(int exitCode)
@@ -73,11 +81,88 @@ std::string Create::typeWeaponToString(TypeWeapon_t type){
     return "";
 }
 
+std::string Create::getImageSoldier(QString& weapon){
+    if (weapon == "P90"){
+        return DATA_PATH "/client/render/resources/Soldier_1/Idle.png";
+    }
+    if (weapon == "Rifle"){
+        return DATA_PATH "/client/render/resources/Soldier_2/Idle.png";
+    }
+    if (weapon == "Sniper"){
+        return DATA_PATH "/client/render/resources/Soldier_3/Idle.png";
+    }
+    return "";
+}
+
+std::string Create::getImageMap(QString& map){
+    if (map == "War 1 Bright"){
+        return DATA_PATH "/client/render/resources/backgrounds/War1/Bright/War.png";
+    }
+    if (map == "War 1 Pale"){
+        return DATA_PATH "/client/render/resources/backgrounds/War1/Pale/War.png";
+    }
+    if (map == "War 2 Bright"){
+        return DATA_PATH "/client/render/resources/backgrounds/War2/Bright/War.png";
+    }
+    if (map == "War 2 Pale"){
+        return DATA_PATH "/client/render/resources/backgrounds/War2/Pale/War.png";
+    }
+    if (map == "War 3 Bright"){
+        return DATA_PATH "/client/render/resources/backgrounds/War3/Bright/War.png";
+    }
+    if (map == "War 2 Pale"){
+        return DATA_PATH "/client/render/resources/backgrounds/War3/Pale/War.png";
+    }
+    if (map == "War 4 Bright"){
+        return DATA_PATH "/client/render/resources/backgrounds/War4/Bright/War.png";
+    }
+    if (map == "War 4 Pale"){
+        return DATA_PATH "/client/render/resources/backgrounds/War4/Pale/War.png";
+    }
+    return "";
+}
+
 void Create::handlerInfoGameReceived(const QString& messageInfoGame)
 {
+    int rowCount = model.rowCount();
+    for (int i = 0; i < rowCount; ++i) {
+        QStandardItem* item = model.item(i);
+        if (item) {
+            delete item;
+        }
+    }
+    model.clear();
 
-    ui->textEdit->clear();
-    ui->textEdit->append(messageInfoGame);
+    QStringList message = messageInfoGame.split(';');
+    QString map = message.value(0);
+    int cantidadEntidades = message.value(1).toInt();
+
+    ui->infoGame->setText(map);
+
+    //imagen de mapa
+    std::string mapPath = getImageMap(map);
+    QPixmap mapa(QString::fromStdString(mapPath));
+    ui->map->setPixmap(mapa);
+    ui->map->setScaledContents(true);
+
+    for (int i = 0; i < cantidadEntidades; i++) {
+        QString nickname = message.value(i * 2 + 2);
+        QString weapon = message.value(i * 2 + 3);
+
+        std::string imageSoldierPath = getImageSoldier(weapon);
+        QPixmap imageSoldier(QString::fromStdString(imageSoldierPath));
+
+        int width = 100;
+        int height = 100;
+        QPixmap imageSoldierSmall = imageSoldier.scaled(width, height, Qt::KeepAspectRatio);
+
+        QStandardItem* item = new QStandardItem;
+        item->setData(nickname, Qt::DisplayRole);
+        item->setData(weapon, Qt::DisplayRole);
+        item->setData(imageSoldierSmall, Qt::DecorationRole);
+
+        model.appendRow(item);
+    }
 }
 
 void Create::startReceiving()

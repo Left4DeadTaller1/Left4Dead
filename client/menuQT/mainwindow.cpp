@@ -111,7 +111,7 @@ void MainWindow::createButtonClicked()
 
     if (indiceWeapon != -1 && !nickname.isEmpty() && indiceMapa != -1) {
         bool wasClosed = false;
-        std::string namePlayer = nickname.toStdString();
+        namePlayer = nickname.toStdString();
         std::string weaponPlayer = weapon.toStdString();
         std::string map = mapa.toStdString();
         std::shared_ptr<ActionClient> action = std::make_shared<CreateAction>(namePlayer,
@@ -139,7 +139,7 @@ void MainWindow::joinButtonClicked()
 
     if (indiceWeapon != -1 && !nickname.isEmpty() && !code.isEmpty()) {
         bool wasClosed = false;
-        std::string namePlayer = nickname.toStdString();
+        namePlayer = nickname.toStdString();
         std::string weaponPlayer = weapon.toStdString();
         std::string codeGame = code.toStdString();
         std::shared_ptr<ActionClient> action = std::make_shared<JoinAction>(namePlayer,
@@ -177,5 +177,13 @@ void MainWindow::handleJoinClosed(int code)
     } else {
         QApplication::exit(code);
     }
+}
+
+std::string MainWindow::getNamePlayer(void){
+    return namePlayer;
+}
+
+TypeMap_t getTypeMap(void){
+    return WAR1_BRIGHT;
 }
 
