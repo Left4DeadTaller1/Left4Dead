@@ -4,11 +4,10 @@ using namespace SDL2pp;
 
 EventManagerThread::EventManagerThread(Queue<std::shared_ptr<ActionClient>>& qEventsToSender,
                                        Queue<std::shared_ptr<ActionRender>>& qEventsToRender,
-                                       SDL2pp::Window& window, std::atomic<bool>& isConnected) : 
-                                                                    qEventsToSender(qEventsToSender),
-                                                                    qEventsToRender(qEventsToRender),
-                                                                    window(window),
-                                                                    isConnected(isConnected) {}
+                                       SDL2pp::Window& window, std::atomic<bool>& isConnected) : qEventsToSender(qEventsToSender),
+                                                                                                 qEventsToRender(qEventsToRender),
+                                                                                                 window(window),
+                                                                                                 isConnected(isConnected) {}
 
 void EventManagerThread::run() {
     try {
@@ -80,8 +79,8 @@ void EventManagerThread::run() {
 
                 } else if (event.type == SDL_KEYUP) {
                     switch (event.key.keysym.sym) {
-                        case SDLK_x:
-                            if (shootSent){
+                        case SDLK_f:
+                            if (shootSent) {
                                 action = std::make_shared<EndShoot>();
                                 shootSent = false;
                             }
@@ -118,7 +117,7 @@ void EventManagerThread::run() {
                     if (action) {
                         qEventsToSender.push(action);
                     }
-                } else if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED){
+                } else if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED) {
                     int newWidth = event.window.data1;
                     int newHeight = event.window.data2;
                     std::cout << "Entra a resize con: " << newWidth << " y " << newHeight << "\n";
