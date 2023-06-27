@@ -14,8 +14,6 @@ class EndMove : public ActionClient {
     EndMove(DirectionMove directionMove);
 
     virtual std::vector<int8_t> serialize() const override;
-
-    virtual bool isExit(void) const override;
 };
 
 #endif  // ACTION_END_MOVE_H_

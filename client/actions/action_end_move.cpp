@@ -24,6 +24,3 @@ std::vector<int8_t> EndMove::serialize() const {
     return data;
 };
 
-bool EndMove::isExit(void) const {
-    return false;
-}

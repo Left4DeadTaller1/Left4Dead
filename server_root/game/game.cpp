@@ -28,6 +28,7 @@ Game::Game(int mapType)
 }
 
 std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname, int weaponType, int gameCode) {
+    std::cout << "entre add player\n";
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
@@ -46,10 +47,13 @@ std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameRe
     }
 
     int intMapType = static_cast<int>(mapBackground);
+    std::cout << "antes de generar mensaje\n";
     std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinLobby", intMapType, playersInfo, gameCode);
+    std::cout << "despues de generar mensaje\n";
 
     // Add message to all player queues that are not null
     for (auto playerQueue : playerQueues) {
+        std::cout << "entra a mandar\n";
         if (playerQueue != nullptr) {
             playerQueue->try_push(joinMessage);
         }

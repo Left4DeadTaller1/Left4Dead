@@ -66,6 +66,7 @@ const QString HiloMensajes::encodeInfoGame(TypeMap_t typeMap, int amountPlayers,
 void HiloMensajes::run() {try {
     bool wasClosed = false;
     int typeMessage = protocol.receiveTypeMessage(wasClosed);
+    std::cout << "RECIBE typeMessage: " << typeMessage << "\n";
     if (typeMessage == MSG_JOIN){
         std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
         emit infoGameReceived(encodeInfoGame(infoGame->typeMap, infoGame->amountPlayers, 

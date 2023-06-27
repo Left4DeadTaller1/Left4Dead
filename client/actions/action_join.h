@@ -17,8 +17,6 @@ class JoinAction : public ActionClient {
                 std::string code);
 
     virtual std::vector<int8_t> serialize() const override;
-
-    virtual bool isExit(void) const override;
 };
 
 #endif  // ACTION_JOIN_H_

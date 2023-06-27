@@ -25,7 +25,3 @@ std::vector<int8_t> StartMove::serialize() const {
     std::vector<int8_t> data = {START_MOVE, static_cast<int8_t>(typeMove), dirX, dirY};
     return data;
 };
-
-bool StartMove::isExit(void) const {
-    return false;
-}

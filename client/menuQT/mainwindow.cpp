@@ -94,30 +94,42 @@ MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     connect(j, &Join::emitTypeMap, this, &MainWindow::handlerTypeMap);
 }
 
-TypeMap_t MainWindow::StringToTypeMap(const std::string& str) {
-    if (str == "War 1 Bright") {
+TypeMap_t MainWindow::StringToTypeMap(const std::string& map) {
+    if (map == "War 1 Bright") {
         return WAR1_BRIGHT;
     }
-    if (str == "War 1 Pale") {
+    if (map == "War 1 Pale") {
         return WAR1_PALE;
     }
-    if (str == "War 2 Bright") {
+    if (map == "War 2 Bright") {
         return WAR2_BRIGHT;
     }
-    if (str == "War 2 Pale") {
+    if (map == "War 2 Pale") {
         return WAR2_PALE;
     }
-    if (str == "War 3 Bright") {
+    if (map == "War 3 Bright") {
         return WAR3_BRIGHT;
     }
-    if (str == "War 3 Pale") {
+    if (map == "War 3 Pale") {
         return WAR3_PALE;
     }
-    if (str == "War 4 Bright") {
+    if (map == "War 4 Bright") {
         return WAR4_BRIGHT;
     }
-    if (str == "War 4 Pale") {
+    if (map == "War 4 Pale") {
         return WAR4_PALE;
+    }
+}
+
+TypeWeapon_t MainWindow::StringToTypeWeapon(const std::string& weaponPlayer) {
+    if (weaponPlayer == "P90"){
+        return P90;
+    }
+    if (weaponPlayer == "Rifle"){
+        return RIFLE;
+    }
+    if (weaponPlayer == "Sniper"){
+        return SNIPER;
     }
 }
 

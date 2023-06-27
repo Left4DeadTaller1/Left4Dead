@@ -26,7 +26,3 @@ std::vector<int8_t> JoinAction::serialize() const {
     data.insert(data.end(), namePlayer.begin(), namePlayer.end());
     return data;
 };
-
-bool JoinAction::isExit(void) const {
-    return false;
-}

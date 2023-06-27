@@ -28,7 +28,8 @@ private slots:
     void sliderChanged(int value);
     void handleCreateClosed(int code);
     void handleJoinClosed(int code);
-    TypeMap_t StringToTypeMap(const std::string& str);
+    TypeMap_t StringToTypeMap(const std::string& map);
+    TypeWeapon_t StringToTypeWeapon(const std::string& weaponPlayer);
     void handlerTypeMap(const QString& typeMap);
 
 signals:

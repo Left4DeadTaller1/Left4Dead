@@ -114,6 +114,7 @@ void ClientReceiver::handleCreateAction(std::string nickName, int typeWeapon, in
 }
 
 void ClientReceiver::handleJoinAction(const int code, std::string playerNickname, int weaponType) {
+    std::cout << "entra handleJoinAction\n";
     try {
         GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses, playerNickname, weaponType);
         game = gameRecord.game;

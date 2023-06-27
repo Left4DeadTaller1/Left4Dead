@@ -7,8 +7,6 @@
 class Recharge : public ActionClient {
    public:
     std::vector<int8_t> serialize() const;
-
-    virtual bool isExit(void) const override;
 };
 
 #endif  // ACTION_RECHARGE_H_

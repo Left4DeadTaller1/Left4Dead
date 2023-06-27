@@ -5,6 +5,3 @@ std::vector<int8_t> StartShoot::serialize() const {
     return data;
 };
 
-bool StartShoot::isExit(void) const {
-    return false;
-}

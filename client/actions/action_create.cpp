@@ -38,6 +38,7 @@ CreateAction::CreateAction(std::string namePlayer,
     if (map == "War 4 Pale"){
         typeMap = WAR4_PALE;
     }
+
 }
 
 std::vector<int8_t> CreateAction::serialize() const {
