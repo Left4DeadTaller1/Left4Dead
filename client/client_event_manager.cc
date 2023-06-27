@@ -80,11 +80,7 @@ void EventManagerThread::run() {
                 } else if (event.type == SDL_KEYUP) {
                     switch (event.key.keysym.sym) {
                         case SDLK_f:
-<<<<<<< HEAD
-                            if (shootSent){
-=======
                             if (shootSent) {
->>>>>>> 822c0ee95773a21b8a3ed3f08ce38c3056d693fb
                                 action = std::make_shared<EndShoot>();
                                 shootSent = false;
                             }

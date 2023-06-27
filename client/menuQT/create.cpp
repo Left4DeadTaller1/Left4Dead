@@ -83,13 +83,13 @@ std::string Create::typeWeaponToString(TypeWeapon_t type){
 
 std::string Create::getImageSoldier(QString& weapon){
     if (weapon == "P90"){
-        return DATA_PATH "/client/render/resources/Soldier_1/Idle.png";
+        return DATA_PATH "/client/render/resources/iconSoldier1.png";
     }
     if (weapon == "Rifle"){
-        return DATA_PATH "/client/render/resources/Soldier_2/Idle.png";
+        return DATA_PATH "/client/render/resources/iconSoldier2.png";
     }
     if (weapon == "Sniper"){
-        return DATA_PATH "/client/render/resources/Soldier_3/Idle.png";
+        return DATA_PATH "/client/render/resources/iconSoldier3.png";
     }
     return "";
 }
@@ -157,9 +157,12 @@ void Create::handlerInfoGameReceived(const QString& messageInfoGame)
         QPixmap imageSoldierSmall = imageSoldier.scaled(width, height, Qt::KeepAspectRatio);
 
         QStandardItem* item = new QStandardItem;
-        item->setData(nickname, Qt::DisplayRole);
-        item->setData(weapon, Qt::DisplayRole);
+        QString infoPlayer = "Nickname: " + nickname + "\n\n" + "Weapon: " + weapon + "\n";
+        item->setData(infoPlayer, Qt::DisplayRole);
         item->setData(imageSoldierSmall, Qt::DecorationRole);
+
+        QSize sizeHint(width, height);
+        item->setSizeHint(sizeHint);
 
         model.appendRow(item);
     }
