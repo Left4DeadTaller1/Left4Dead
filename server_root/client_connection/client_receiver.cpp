@@ -130,35 +130,35 @@ void ClientReceiver::handleJoinAction(const int code, std::string playerNickname
 }
 
 void ClientReceiver::handleStartShoot() {
-    if (isGameFinish())
+    if (!game->isGameRunning() || isGameFinish())
         return;
     Action action(playerId, 3, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleEndShoot() {
-    if (isGameFinish())
+    if (!game->isGameRunning() || isGameFinish())
         return;
     Action action(playerId, 2, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleRecharge() {
-    if (isGameFinish())
+    if (!game->isGameRunning() || isGameFinish())
         return;
     Action action(playerId, 4, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleStartMove(int movementType, int directionXType, int directionYType) {
-    if (isGameFinish())
+    if (!game->isGameRunning() || isGameFinish())
         return;
     Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
-    if (isGameFinish())
+    if (!game->isGameRunning() || isGameFinish())
         return;
     int movementType = 7;
     Action action(playerId, movementType, directionXType, directionYType);
@@ -166,7 +166,7 @@ void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
 }
 
 void ClientReceiver::handleRevive() {
-    if (isGameFinish())
+    if (!game->isGameRunning() || isGameFinish())
         return;
     Action action(playerId, 6, 3, 3);
     game->pushAction(action);
@@ -182,7 +182,7 @@ bool ClientReceiver::getIsRunning() {
 }
 
 void ClientReceiver::handlePlayerDisconnection() {
-    if (isGameFinish())
+    if (!game->isGameRunning() || isGameFinish())
         return;
     // game->removePlayer(gameResponses);
     Action action(playerId, 8, 2, 2);

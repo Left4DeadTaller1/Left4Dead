@@ -108,7 +108,9 @@ void Game::sendAction(Action action) {
 }
 
 void Game::stop() {
+    std::cout << "Game stop being call" << std::endl;
     gameRunning = false;
+    closePlayerQueues();  // this should go here
 }
 
 bool Game::isGameRunning() {
@@ -129,6 +131,7 @@ bool Game::hasActivePlayers() {
 }
 
 void Game::closePlayerQueues() {
+    std::cout << "Closing Queues being call" << std::endl;
     for (auto queuePtr : playerQueues) {
         if (queuePtr) {
             queuePtr->close();
@@ -137,7 +140,8 @@ void Game::closePlayerQueues() {
 }
 
 void Game::killGame() {
-    gameRunning = false;
+    std::cout << "Game kill being call" << std::endl;
+    stop();
 }
 
 Game::~Game() {
