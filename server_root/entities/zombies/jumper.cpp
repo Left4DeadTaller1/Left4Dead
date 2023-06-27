@@ -104,7 +104,7 @@ bool Jumper::isMoving() {
     return actionState == JUMPER_MOVING;
 }
 
-void Jumper::takeDamage(int damage) {
+bool Jumper::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
@@ -112,10 +112,13 @@ void Jumper::takeDamage(int damage) {
         health = 0;
         actionState = JUMPER_DYING;
         actionCounter = entityParams["JUMPER_DYING_DURATION"];
+        return true;
     } else {
         actionState = JUMPER_HURT;
         actionCounter = entityParams["JUMPER_HURT_DURATION"];
+        return false;
     }
+    return false;
 }
 
 void Jumper::useSkill(std::vector<std::shared_ptr<Entity>>& players) {

@@ -31,7 +31,7 @@ class Witch : public Zombie {
     std::shared_ptr<Ability> getActiveSkill();
     bool isMoving() override;
     void idle() override;
-    void takeDamage(int damage) override;
+    bool takeDamage(int damage) override;
     bool checkIfDead() override;
     void kill() override;
     bool isDead() override;

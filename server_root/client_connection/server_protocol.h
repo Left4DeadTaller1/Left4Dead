@@ -117,6 +117,7 @@ class ServerProtocol {
 
     std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType, int typeMap, std::vector<LobbyPlayerDTO> &playersInfo, int gameCode);
     std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(const std::string &msgType);
+    std::shared_ptr<std::vector<uint8_t>> encodeServerMessage(int timePlayed, int zombiesKilled);
 };
 
 #endif

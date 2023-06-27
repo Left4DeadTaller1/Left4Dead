@@ -81,7 +81,7 @@ void Spear::idle() {
     actionState = SPEAR_IDLE;
 }
 
-void Spear::takeDamage(int damage) {
+bool Spear::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
@@ -89,10 +89,13 @@ void Spear::takeDamage(int damage) {
         health = 0;
         actionState = SPEAR_DYING;
         actionCounter = entityParams["SPEAR_DYING_DURATION"];
+        return true;
     } else {
         actionState = SPEAR_HURT;
         actionCounter = entityParams["SPEAR_HURT_DURATION"];
+        return false;
     }
+    return false;
 }
 
 bool Spear::checkIfDead() {

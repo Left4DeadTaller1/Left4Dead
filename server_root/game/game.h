@@ -79,12 +79,13 @@ class Game : public Thread {
     ServerProtocol protocol;
     ZombieSpawner zombieSpawner;
     int framesCounter;
+    int zombiesKilled;
 
     void
     spawnPlayer(std::string idPlayer, std::string playerNickname, int weaponType);
     void removePlayer(Player& playerToRemove);
     void updateState();
-    void updatePlayerState(Player& player, std::queue<Action>& playerActions);
+    bool updatePlayerState(Player& player, std::queue<Action>& playerActions);
     void move(Entity& entity);
     void attack(Entity& entity);
     void useSkill(Entity& entity);
@@ -99,6 +100,7 @@ class Game : public Thread {
 
     void sendState();
     std::vector<std::shared_ptr<EntityDTO>> getDtos();
+    void sendScoreScreen();
 
    public:
     // Methods for Testing do not use in production

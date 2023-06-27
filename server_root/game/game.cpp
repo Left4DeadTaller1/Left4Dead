@@ -16,8 +16,8 @@
 ________________________________________________________________*/
 
 Game::Game(int mapType)
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0) {
-    if (mapType >= MAP1_BACKGROUND && mapType <= MAP4_BACKGROUND) {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0) {
+    if (mapType >= MAP1_BACKGROUND && mapType <= MAP8_BACKGROUND) {
         mapBackground = static_cast<MapType>(mapType);
     } else {
         // TODO launch an exception
@@ -248,7 +248,7 @@ void Game::getPlayersActions() {
 }
 
 void Game::updateState() {
-    std::vector<Player*> afkPlayers;
+    std::vector<Player*> playersToRemove;
 
     for (auto& entity : entities) {
         if (entity->getType() == OBSTACLE)
@@ -263,10 +263,10 @@ void Game::updateState() {
         entity->decreaseATKCooldown();  // yes they need to be 2 separe methods
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
-            updatePlayerState(*player, playersActions[player->getId()]);
-            if (checkAfk(*player)) {
-                // player was afk an therefore removed
-                afkPlayers.push_back(player);
+            bool shouldRemove = updatePlayerState(*player, playersActions[player->getId()]);
+            if (shouldRemove || checkAfk(*player)) {
+                // player was afk or disconnected, and therefore removed
+                playersToRemove.push_back(player);
                 continue;
             }
 
@@ -291,9 +291,9 @@ void Game::updateState() {
     }
 
     // remove the afk entities
-    for (auto& afkPlayer : afkPlayers) {
+    for (auto& playerToRemove : playersToRemove) {
         // TODO send a disconection msg to client before removing queue
-        disconnectPlayer(*afkPlayer);
+        disconnectPlayer(*playerToRemove);
     }
 
     // TODO copy logic from afks
@@ -310,13 +310,13 @@ void Game::updateState() {
     // }
 }
 
-void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
-    // while (!playerActions.empty()) {
+bool Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
     if (playerActions.empty()) {
         player.increaseAfkTimer();
+        return false;
     } else {
         if (player.getActionCounter() != 0) {
-            return;
+            return false;
         }
 
         Action action = playerActions.front();
@@ -328,8 +328,7 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
         int actionMovementDirectionY = action.getDirectionYType();
 
         if (actionPlayerState == DISCONNECTION) {
-            // TODO check it this is produces a seg fault
-            disconnectPlayer(player);
+            return true;
         }
 
         if (actionPlayerState != NO_CHANGE) {
@@ -370,6 +369,8 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
         if (player.isMoving() && player.getMovementDirectionX() == ENTITY_NONE_X && player.getMovementDirectionY() == ENTITY_NONE_Y) {
             player.idle();
         }
+
+        return false;
     }
 }
 
@@ -422,7 +423,8 @@ void Game::attack(Entity& entity) {
                             int effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierced);
 
                             while (effectiveDamage > 0 && !damagedEntities.empty()) {
-                                damagedEntities.front()->takeDamage(effectiveDamage);
+                                if (damagedEntities.front()->takeDamage(effectiveDamage))
+                                    zombiesKilled++;
                                 damagedEntities.pop_front();
 
                                 enemiesPierced++;
@@ -438,7 +440,8 @@ void Game::attack(Entity& entity) {
                             int distanceTraveled = abs(attack.getOrigin() - damagedEntities.front()->getX());
                             int effectiveDamage = attack.getDamage() - (distanceTraveled / player->getWeaponDamageFalloff());
                             // Todo change this to bool return
-                            damagedEntities.front()->takeDamage(effectiveDamage);
+                            if (damagedEntities.front()->takeDamage(effectiveDamage))
+                                zombiesKilled++;
                         }
                         break;
                 }
@@ -622,6 +625,12 @@ void Game::sendState() {
             playerQueue->push(serializedState);
         }
     }
+}
+
+void Game::sendScoreScreen() {
+    // in a refactor i would get the 30 from somewhere not hardcode it like this
+    int timePlayed = framesCounter / 30;
+    std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage(timePlayed, zombiesKilled);
 }
 
 std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {

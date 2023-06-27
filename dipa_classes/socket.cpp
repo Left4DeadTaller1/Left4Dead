@@ -286,18 +286,14 @@ int Socket::recvall(
     void *data,
     unsigned int sz,
     bool *was_closed) {
-    std::cout << "Entering recvall" << std::endl;
     unsigned int received = 0;
     *was_closed = false;
 
     while (received < sz) {
-        std::cout << "Calling recvsome" << std::endl;
         int s = recvsome(
             (char *)data + received,
             sz - received,
             was_closed);
-
-        std::cout << "recvsome returned: " << s << std::endl;
 
         if (s <= 0) {
             /*

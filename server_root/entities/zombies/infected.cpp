@@ -69,7 +69,7 @@ void Infected::attackPlayer() {
     actionState = INFECTED_ATTACKING;
 }
 
-void Infected::takeDamage(int damage) {
+bool Infected::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
@@ -77,10 +77,13 @@ void Infected::takeDamage(int damage) {
         health = 0;
         actionState = INFECTED_DYING;
         actionCounter = entityParams["INFECTED_DYING_DURATION"];
+        return true;
     } else {
         actionState = INFECTED_HURT;
         actionCounter = entityParams["INFECTED_HURT_DURATION"];
+        return false;
     }
+    return false;
 }
 
 void Infected::startMoving() {
