@@ -1,6 +1,7 @@
 #ifndef CLIENT_RECEIVER_H
 #define CLIENT_RECEIVER_H
 
+#include <atomic>
 #include <iostream>
 #include <vector>
 
@@ -18,9 +19,10 @@ class ClientReceiver : public Thread {
     GamesManager &gamesManager;
     std::shared_ptr<Game> game;
     std::string playerId;
-    bool isRunning;
+    std::atomic<bool> isRunning;
     Queue<std::shared_ptr<std::vector<uint8_t>>> &gameResponses;
     ServerProtocol protocol;
+    void resetGame();
 
    public:
     // TODO: la queue es para recibir los msgs del cliente pero creeeo que con un recv que ya es bloqueante estaria..., pensar bien desp q no se frene el servidor y sobretodo el juego
@@ -38,7 +40,10 @@ class ClientReceiver : public Thread {
     virtual void run() override;
     bool getIsRunning();
     bool isGameFinish();
+
     void stop();
+
+    ~ClientReceiver();
 };
 
 #endif  // CLIENT_RECEIVER_H

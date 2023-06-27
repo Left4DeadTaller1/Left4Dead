@@ -52,7 +52,6 @@ void ClientSender::run() {
     } catch (...) {
         std::cerr << "ClientSender: Unknown exception caught. Ending thread." << std::endl;
     }
-    std::cout << "out of start loop Sender" << std::endl;
     isRunning = false;
 }
 
@@ -61,10 +60,8 @@ bool ClientSender::getIsRunning() {
 }
 
 void ClientSender::stop() {
-    std::cout << "Sender stop being call" << std::endl;
     isRunning = false;
 }
 
 ClientSender::~ClientSender() {
-    // Destructor implementation
 }

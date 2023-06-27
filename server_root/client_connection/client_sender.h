@@ -1,6 +1,7 @@
 #ifndef CLIENT_SENDER_H
 #define CLIENT_SENDER_H
 
+#include <atomic>
 #include <string>
 #include <vector>
 
@@ -14,7 +15,7 @@ class ClientSender : public Thread {
    private:
     Socket& clientSocket;
     Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses;
-    bool isRunning;
+    std::atomic<bool> isRunning;
     ServerProtocol protocol;
 
    public:

@@ -57,19 +57,19 @@ bool ClientConnection::isRemovable() {
 
 void ClientConnection::kill() {
     keepTalking = false;
-    std::cout << "Killing client connection" << std::endl;
 
-    // Socket follows RAII no need for those
-    // clientSocket.shutdown(MY_SHUT_RDWR);
-    // clientSocket.close();
+    clientSocket.shutdown(MY_SHUT_RDWR);
+    clientSocket.close();
 
     sender.stop();
     receiver.stop();
 
-    // The game closes the queue in the destructor
-    //  gameResponses.close();
+    // The game closes the queue in the destructor if this is not closed already
+    if (!gameResponses.isClosed())
+        gameResponses.close();
 
     sender.join();
+
     receiver.join();
 
     alive = false;

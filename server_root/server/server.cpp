@@ -22,7 +22,6 @@ void Server::run() {
 
 Server::~Server() {
     if (isAcceptorRunning) {
-        std::cout << "Stopping acceptor thread" << std::endl;
         acep_th.shutdown();
         acep_th.join();
         isAcceptorRunning = false;

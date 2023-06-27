@@ -355,10 +355,10 @@ void Game::updateState() {
         zombieSpawner.mutate();
 
     // spawn zombies
-    // std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
-    // if (spawnedZombie) {
-    //     entities.push_back(spawnedZombie);
-    // }
+    std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
+    if (spawnedZombie) {
+        entities.push_back(spawnedZombie);
+    }
 }
 
 bool Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {

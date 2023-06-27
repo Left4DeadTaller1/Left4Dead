@@ -116,7 +116,6 @@ void ClientReceiver::handleCreateAction(std::string nickName, int typeWeapon, in
 }
 
 void ClientReceiver::handleJoinAction(const int code, std::string playerNickname, int weaponType) {
-    std::cout << "entra handleJoinAction\n";
     try {
         GameRecord gameRecord = gamesManager.joinLobby(code, gameResponses, playerNickname, weaponType);
         game = gameRecord.game;
@@ -171,9 +170,11 @@ void ClientReceiver::handleRevive() {
 }
 
 void ClientReceiver::stop() {
-    std::cout << "stop Receiver being call" << std::endl;
-    game.reset();  // Reset the shared_ptr when game is not running
     isRunning = false;
+}
+
+void ClientReceiver::resetGame() {
+    game.reset();  // Reset the shared_ptr when game is not running
 }
 
 bool ClientReceiver::getIsRunning() {
@@ -181,8 +182,13 @@ bool ClientReceiver::getIsRunning() {
 }
 
 void ClientReceiver::handlePlayerDisconnection() {
+    if (game == nullptr) {
+        return;
+    }
+
     if (!game->isGameRunning() || isGameFinish())
         return;
+
     // We send the game a msg telling that the player disconnected
     Action action(playerId, 8, 2, 2);
     game->pushAction(action);
@@ -193,4 +199,8 @@ bool ClientReceiver::isGameFinish() {
         return true;
     }
     return false;
+}
+
+ClientReceiver::~ClientReceiver() {
+    resetGame();
 }
