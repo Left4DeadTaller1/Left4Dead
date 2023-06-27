@@ -61,7 +61,7 @@ class Player : public Entity {
     bool isMoving() override;
     void idle() override;
     std::tuple<int, int> getDirectionsAmount();
-    void takeDamage(int damage) override;
+    bool takeDamage(int damage) override;
     void decreaseActionCounter() override;
 
     std::shared_ptr<Player> getClosestRevivablePlayer(std::vector<std::shared_ptr<Player>>& players);

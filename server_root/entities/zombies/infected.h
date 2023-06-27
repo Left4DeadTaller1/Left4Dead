@@ -26,7 +26,7 @@ class Infected : public Zombie {
     // int getAttackRange() override;
     Attack generateAttack() override;
     void attackPlayer() override;
-    void takeDamage(int damage) override;
+    bool takeDamage(int damage) override;
     void startMoving() override;
     bool isMoving() override;
     void idle() override;

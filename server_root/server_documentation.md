@@ -40,9 +40,9 @@
 
 
 
- - bug Lo de el disparo unico
- - sacar Afks
- - matar partida si no hay jugadores
+- Agregar logica para matar juegos que no estan activos desde GamesManager
+- liberar todos los recursos de Game correctamente
+- Desconectar al Jugador desde el Lado Del Server
  - MEtadata de tiempo y puntaje
  - settear crateres
  - airstrike

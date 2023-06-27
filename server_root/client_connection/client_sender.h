@@ -22,8 +22,6 @@ class ClientSender : public Thread {
 
     void run() override;
 
-    void menu();  //  TODO: Preguntar a Fede si el menu es monothread
-
     bool getIsRunning();
     void stop();
 

@@ -101,7 +101,7 @@ void Witch::idle() {
     actionState = WITCH_IDLE;
 }
 
-void Witch::takeDamage(int damage) {
+bool Witch::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
@@ -109,10 +109,13 @@ void Witch::takeDamage(int damage) {
         health = 0;
         actionState = WITCH_DYING;
         actionCounter = entityParams["WITCH_DYING_DURATION"];
+        return true;
     } else {
         actionState = WITCH_HURT;
         actionCounter = entityParams["WITCH_HURT_DURATION"];
+        return false;
     }
+    return false;
 }
 
 bool Witch::checkIfDead() {

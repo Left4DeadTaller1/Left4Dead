@@ -88,7 +88,7 @@ class Entity {
     virtual void decreaseActionCounter();
 
     virtual bool isMoving() = 0;
-    virtual void takeDamage(int amountOfDamage) = 0;
+    virtual bool takeDamage(int amountOfDamage) = 0;
     virtual void decreaseATKCooldown() = 0;
     virtual bool checkIfDead() = 0;
     virtual void kill() = 0;

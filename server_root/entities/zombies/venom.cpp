@@ -95,7 +95,7 @@ void Venom::idle() {
     actionState = VENOM_IDLE;
 }
 
-void Venom::takeDamage(int damage) {
+bool Venom::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
@@ -103,10 +103,13 @@ void Venom::takeDamage(int damage) {
         health = 0;
         actionState = VENOM_DYING;
         actionCounter = entityParams["VENOM_DYING_DURATION"];
+        return true;
     } else {
         actionState = VENOM_HURT;
         actionCounter = entityParams["VENOM_HURT_DURATION"];
+        return false;
     }
+    return true;
 }
 
 bool Venom::checkIfDead() {

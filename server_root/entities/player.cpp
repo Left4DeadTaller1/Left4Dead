@@ -117,7 +117,7 @@ void Player::revive() {
     this->health = (entityParams["PLAYER_HEALTH"] / 2);
 }
 
-void Player::takeDamage(int damage) {
+bool Player::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;
@@ -126,10 +126,13 @@ void Player::takeDamage(int damage) {
         actionState = PLAYER_DYING;
         actionCounter = entityParams["PLAYER_DYING_DURATION"];
         knockDowns++;
+        return true;
     } else {
         actionState = PLAYER_HURT;
         actionCounter = entityParams["PLAYER_HURT_DURATION"];
+        return false;
     }
+    return false;
 }
 
 void Player::setMovementDirectionX(MovementDirectionX movementDirectionX) {

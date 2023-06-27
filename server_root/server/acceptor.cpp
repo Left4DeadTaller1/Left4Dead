@@ -16,11 +16,12 @@ void Acceptor::run() {
             auto th = std::make_shared<ClientConnection>(std::move(clientSocket), gamesManager);
             th->connectToClient();
             clients.push_back(th);
-            reap_dead();
             // Limpieza de clients viejos
+            reap_dead();
+            // remove finished games
+            gamesManager.removeFinishedGames();
         }
     } catch (const LibError& e) {
-        // TODO here gamesManager should tell each game to finish
         kill_all();
     } catch (const std::exception& e) {
         std::cerr << "An exception occurred in Acceptor::run(): " << e.what() << std::endl;
@@ -43,6 +44,10 @@ void Acceptor::reap_dead() {
 }
 
 void Acceptor::kill_all() {
+    // We stop all games
+    gamesManager.killGames();
+
+    // We kill all clients
     for (auto& c : clients) {
         c->kill();
     }

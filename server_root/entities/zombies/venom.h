@@ -30,7 +30,7 @@ class Venom : public Zombie {
     void startMoving() override;
     bool isMoving() override;
     void idle() override;
-    void takeDamage(int damage) override;
+    bool takeDamage(int damage) override;
     bool checkIfDead() override;
     void kill() override;
     bool isDead() override;

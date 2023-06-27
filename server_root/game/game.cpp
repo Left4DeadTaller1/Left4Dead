@@ -16,8 +16,8 @@
 ________________________________________________________________*/
 
 Game::Game(int mapType)
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0) {
-    if (mapType >= MAP1_BACKGROUND && mapType <= MAP4_BACKGROUND) {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0) {
+    if (mapType >= MAP1_BACKGROUND && mapType <= MAP8_BACKGROUND) {
         mapBackground = static_cast<MapType>(mapType);
     } else {
         // TODO launch an exception
@@ -120,7 +120,22 @@ bool Game::hasActivePlayers() {
     return false;
 }
 
-Game::~Game() {}
+void Game::closePlayerQueues() {
+    for (auto queuePtr : playerQueues) {
+        if (queuePtr) {
+            queuePtr->close();
+        }
+    }
+}
+
+void Game::killGame() {
+    gameRunning = false;
+}
+
+Game::~Game() {
+    std::cout << "game being destroyed" << std::endl;
+    closePlayerQueues();
+}
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 -----------------------Api for Game-----------------------------
@@ -197,9 +212,9 @@ void Game::startGame() {
         updateState();  // update game state
 
         // Checks if there is any players left
-        if (!hasActivePlayers()) {
-            std::cout << "No active players left. Closing the game..." << std::endl;
-            gameRunning = false;
+        if (!hasActivePlayers() || !hasAlivePlayers(players)) {
+            std::cout << "No players left. Closing the game." << std::endl;
+            stop();
             break;
         }
 
@@ -233,10 +248,9 @@ void Game::getPlayersActions() {
 }
 
 void Game::updateState() {
-    std::vector<Player*> afkPlayers;
+    std::vector<Player*> playersToRemove;
 
     for (auto& entity : entities) {
-        std::cout << "iteration" << std::endl;
         if (entity->getType() == OBSTACLE)
             continue;
 
@@ -249,10 +263,10 @@ void Game::updateState() {
         entity->decreaseATKCooldown();  // yes they need to be 2 separe methods
         Player* player = dynamic_cast<Player*>(entity.get());
         if (player) {
-            updatePlayerState(*player, playersActions[player->getId()]);
-            if (checkAfk(*player)) {
-                // player was afk an therefore removed
-                afkPlayers.push_back(player);
+            bool shouldRemove = updatePlayerState(*player, playersActions[player->getId()]);
+            if (shouldRemove || checkAfk(*player)) {
+                // player was afk or disconnected, and therefore removed
+                playersToRemove.push_back(player);
                 continue;
             }
 
@@ -277,9 +291,9 @@ void Game::updateState() {
     }
 
     // remove the afk entities
-    for (auto& afkPlayer : afkPlayers) {
+    for (auto& playerToRemove : playersToRemove) {
         // TODO send a disconection msg to client before removing queue
-        disconnectPlayer(*afkPlayer);
+        disconnectPlayer(*playerToRemove);
     }
 
     // TODO copy logic from afks
@@ -296,13 +310,13 @@ void Game::updateState() {
     // }
 }
 
-void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
-    // while (!playerActions.empty()) {
+bool Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
     if (playerActions.empty()) {
         player.increaseAfkTimer();
+        return false;
     } else {
         if (player.getActionCounter() != 0) {
-            return;
+            return false;
         }
 
         Action action = playerActions.front();
@@ -314,8 +328,7 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
         int actionMovementDirectionY = action.getDirectionYType();
 
         if (actionPlayerState == DISCONNECTION) {
-            // TODO check it this is produces a seg fault
-            disconnectPlayer(player);
+            return true;
         }
 
         if (actionPlayerState != NO_CHANGE) {
@@ -356,6 +369,8 @@ void Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
         if (player.isMoving() && player.getMovementDirectionX() == ENTITY_NONE_X && player.getMovementDirectionY() == ENTITY_NONE_Y) {
             player.idle();
         }
+
+        return false;
     }
 }
 
@@ -408,7 +423,8 @@ void Game::attack(Entity& entity) {
                             int effectiveDamage = attack.getDamage() - (bulletLostDmg * enemiesPierced);
 
                             while (effectiveDamage > 0 && !damagedEntities.empty()) {
-                                damagedEntities.front()->takeDamage(effectiveDamage);
+                                if (damagedEntities.front()->takeDamage(effectiveDamage))
+                                    zombiesKilled++;
                                 damagedEntities.pop_front();
 
                                 enemiesPierced++;
@@ -424,7 +440,8 @@ void Game::attack(Entity& entity) {
                             int distanceTraveled = abs(attack.getOrigin() - damagedEntities.front()->getX());
                             int effectiveDamage = attack.getDamage() - (distanceTraveled / player->getWeaponDamageFalloff());
                             // Todo change this to bool return
-                            damagedEntities.front()->takeDamage(effectiveDamage);
+                            if (damagedEntities.front()->takeDamage(effectiveDamage))
+                                zombiesKilled++;
                         }
                         break;
                 }
@@ -557,7 +574,6 @@ const std::unordered_map<std::string, std::queue<Action>>& Game::_getPlayersActi
 bool Game::checkAfk(Player& player) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameParams = config.getGameDimensions();
-    std::cout << "frams Player: " << player.getAfkTimer() << std::endl;
 
     if (player.getAfkTimer() >= gameParams["PLAYER_MAX_AFK_TIME"]) {
         std::cout << "Removing Player: " << player.getId() << " for AFK." << std::endl;
@@ -592,6 +608,14 @@ void Game::removeDeadEntities() {
     }
 }
 
+bool Game::hasAlivePlayers(std::vector<std::shared_ptr<Player>> players) {
+    for (auto& player : players) {
+        if (!player->isDead())
+            return true;
+    }
+    return false;
+}
+
 void Game::sendState() {
     std::vector<std::shared_ptr<EntityDTO>> entitiesDtos = getDtos();
     std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage("gameState", entitiesDtos);
@@ -603,9 +627,17 @@ void Game::sendState() {
     }
 }
 
+void Game::sendScoreScreen() {
+    // in a refactor i would get the 30 from somewhere not hardcode it like this
+    int timePlayed = framesCounter / 30;
+    std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage(timePlayed, zombiesKilled);
+}
+
 std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {
     std::vector<std::shared_ptr<EntityDTO>> dtos;
     for (auto& entity : entities) {
+        if (entity->getType() == OBSTACLE)
+            continue;
         auto dto = entity->getDto();
         dtos.push_back(dto);
     }
