@@ -34,13 +34,12 @@ void ClientReceiver::run() {
 
             switch (typeCommand) {
                 case CREATE: {
-                    std::cout << "SE RECIBE CREATE CON:\n";
+                    // std::cout << "SE RECIBE CREATE CON:\n";
                     infoCreate = protocol.receiveCreate(wasClosed, clientSocket);
-                    std::cout << "typeWeapon: " << (int)infoCreate.typeWeapon << "\n";
-                    std::cout << "typeMap: " << (int)infoCreate.typeMap << "\n";
-                    std::cout << "nickname: " << infoCreate.nickname << "\n";
+                    // std::cout << "typeWeapon: " << (int)infoCreate.typeWeapon << "\n";
+                    // std::cout << "typeMap: " << (int)infoCreate.typeMap << "\n";
+                    // std::cout << "nickname: " << infoCreate.nickname << "\n";
                     if (!game) {
-                        std::cout << "entered here" << std::endl;
                         handleCreateAction(infoCreate.nickname, infoCreate.typeWeapon, infoCreate.typeMap);
                     }
                     break;
@@ -103,7 +102,6 @@ void ClientReceiver::run() {
         // Other unknown exceptions
         std::cerr << "ClientReceiver: Unknown exception caught. Ending thread." << std::endl;
     }
-    std::cout << "out of run loop" << std::endl;
     isRunning = false;
 }
 
@@ -174,6 +172,7 @@ void ClientReceiver::handleRevive() {
 
 void ClientReceiver::stop() {
     std::cout << "stop Receiver being call" << std::endl;
+    game.reset();  // Reset the shared_ptr when game is not running
     isRunning = false;
 }
 
@@ -184,15 +183,13 @@ bool ClientReceiver::getIsRunning() {
 void ClientReceiver::handlePlayerDisconnection() {
     if (!game->isGameRunning() || isGameFinish())
         return;
-    // game->removePlayer(gameResponses);
+    // We send the game a msg telling that the player disconnected
     Action action(playerId, 8, 2, 2);
     game->pushAction(action);
 }
 
 bool ClientReceiver::isGameFinish() {
     if (game && !game->isGameRunning()) {
-        game.reset();  // Reset the shared_ptr when game is not running
-        stop();
         return true;
     }
     return false;

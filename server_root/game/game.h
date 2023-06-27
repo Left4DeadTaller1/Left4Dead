@@ -8,6 +8,7 @@
 #include "action.h"
 #include "collision_detector.h"
 #include "entity.h"
+#include "obstacle.h"
 #include "player.h"
 #include "queue.h"
 #include "server_message.h"
@@ -18,14 +19,14 @@
 
 // TODO add craters where it needs to depending on the map
 enum MapType {
-    MAP1_BACKGROUND,
-    MAP2_BACKGROUND,
-    MAP3_BACKGROUND,
-    MAP4_BACKGROUND,
-    MAP5_BACKGROUND,
-    MAP6_BACKGROUND,
-    MAP7_BACKGROUND,
-    MAP8_BACKGROUND,
+    MAP1_BACKGROUND,  // 0
+    MAP2_BACKGROUND,  // 1
+    MAP3_BACKGROUND,  // 2
+    MAP4_BACKGROUND,  // 3
+    MAP5_BACKGROUND,  // 4
+    MAP6_BACKGROUND,  // 5
+    MAP7_BACKGROUND,  // 6
+    MAP8_BACKGROUND,  // 7
 };
 
 class Game : public Thread {
@@ -83,8 +84,8 @@ class Game : public Thread {
     int framesCounter;
     int zombiesKilled;
 
-    void
-    spawnPlayer(std::string idPlayer, std::string playerNickname, int weaponType);
+    void createObstacles(MapType mapBackground);
+    void spawnPlayer(std::string idPlayer, std::string playerNickname, int weaponType);
     void removePlayer(Player& playerToRemove);
     void updateState();
     bool updatePlayerState(Player& player, std::queue<Action>& playerActions);

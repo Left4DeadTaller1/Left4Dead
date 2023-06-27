@@ -13,6 +13,7 @@ void Acceptor::run() {
     try {
         while (true) {
             Socket clientSocket = skt.accept();
+            std::cout << "New client connected" << std::endl;
             auto th = std::make_shared<ClientConnection>(std::move(clientSocket), gamesManager);
             th->connectToClient();
             clients.push_back(th);

@@ -57,6 +57,8 @@ bool ClientConnection::isRemovable() {
 
 void ClientConnection::kill() {
     keepTalking = false;
+    std::cout << "Killing client connection" << std::endl;
+
     // Socket follows RAII no need for those
     // clientSocket.shutdown(MY_SHUT_RDWR);
     // clientSocket.close();

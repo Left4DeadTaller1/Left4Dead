@@ -19,12 +19,47 @@ Game::Game(int mapType)
     : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), gameStarted(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0) {
     if (mapType >= MAP1_BACKGROUND && mapType <= MAP8_BACKGROUND) {
         mapBackground = static_cast<MapType>(mapType);
+        // createObstacles(mapBackground);
     } else {
         // TODO launch an exception
         std::cout << "Unkown map" << std::endl;
     }
 
     playerQueues.resize(4, nullptr);
+}
+
+void Game::createObstacles(MapType mapBackground) {
+    switch (mapBackground) {
+        case MAP1_BACKGROUND:
+        case MAP2_BACKGROUND: {
+            auto crater1 = std::make_shared<Obstacle>(130, 30, "crater1", 50, 170);
+            auto crater2 = std::make_shared<Obstacle>(430, 90, "crater2", 40, 120);
+            auto crater3 = std::make_shared<Obstacle>(900, 50, "crater3", 60, 260);
+
+            entities.push_back(crater1);
+            entities.push_back(crater2);
+            entities.push_back(crater3);
+
+            break;
+        }
+        case MAP7_BACKGROUND:
+        case MAP8_BACKGROUND: {
+            auto tire1 = std::make_shared<Obstacle>(90, 35, "tire1", 50, 190);
+            auto tire2 = std::make_shared<Obstacle>(570, 15, "tire2", 60, 130);
+            auto tire3 = std::make_shared<Obstacle>(700, 80, "tire3", 30, 130);
+            auto tire4 = std::make_shared<Obstacle>(1110, 50, "tire4", 70, 150);
+
+            entities.push_back(tire1);
+            entities.push_back(tire2);
+            entities.push_back(tire3);
+            entities.push_back(tire4);
+
+            break;
+        }
+
+        default:
+            break;
+    }
 }
 
 std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname, int weaponType, int gameCode) {
@@ -224,7 +259,8 @@ void Game::startGame() {
 
         updateState();  // update game state
 
-        // Checks if there is any players left
+        // Todo break this into 2 checks hasAlivePlayers to send score screen and then to close the game
+        // and active players to close the game
         if (!hasActivePlayers() || !hasAlivePlayers(players)) {
             std::cout << "No players left. Closing the game." << std::endl;
             stop();
@@ -317,10 +353,10 @@ void Game::updateState() {
         zombieSpawner.mutate();
 
     // spawn zombies
-    // std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
-    // if (spawnedZombie) {
-    //     entities.push_back(spawnedZombie);
-    // }
+    std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
+    if (spawnedZombie) {
+        entities.push_back(spawnedZombie);
+    }
 }
 
 bool Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
