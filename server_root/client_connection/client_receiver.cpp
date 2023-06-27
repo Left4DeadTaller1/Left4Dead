@@ -179,7 +179,7 @@ void ClientReceiver::handlePlayerDisconnection() {
     if (isGameFinish())
         return;
     // game->removePlayer(gameResponses);
-    Action action(playerId, 7, 2, 2);
+    Action action(playerId, 8, 2, 2);
     game->pushAction(action);
 }
 

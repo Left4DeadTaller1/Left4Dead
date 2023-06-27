@@ -251,7 +251,6 @@ void Game::updateState() {
     std::vector<Player*> afkPlayers;
 
     for (auto& entity : entities) {
-        std::cout << "iteration" << std::endl;
         if (entity->getType() == OBSTACLE)
             continue;
 
@@ -572,7 +571,6 @@ const std::unordered_map<std::string, std::queue<Action>>& Game::_getPlayersActi
 bool Game::checkAfk(Player& player) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> gameParams = config.getGameDimensions();
-    std::cout << "frams Player: " << player.getAfkTimer() << std::endl;
 
     if (player.getAfkTimer() >= gameParams["PLAYER_MAX_AFK_TIME"]) {
         std::cout << "Removing Player: " << player.getId() << " for AFK." << std::endl;
@@ -629,6 +627,8 @@ void Game::sendState() {
 std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {
     std::vector<std::shared_ptr<EntityDTO>> dtos;
     for (auto& entity : entities) {
+        if (entity->getType() == OBSTACLE)
+            continue;
         auto dto = entity->getDto();
         dtos.push_back(dto);
     }
