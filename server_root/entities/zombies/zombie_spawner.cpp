@@ -1,6 +1,8 @@
 #include "zombie_spawner.h"
 
 #include <cstdlib>
+#include <memory>
+#include <random>
 
 #include "game_config.h"
 
@@ -46,7 +48,12 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
     totalZombies += 1;
     std::string zombieId = "zombie" + std::to_string(totalZombies);
 
-    int zombieType = rand() % 100;
+    // Seed the random number generator
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dis(0, 99);  // Range from 0 to 99 inclusive
+
+    int zombieType = dis(gen);
 
     std::shared_ptr<Zombie> zombiePtr;
 
@@ -61,7 +68,6 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
     } else {  // 15%
         zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
     }
-
     spawnInterval = spawnSettings["SPAWN_INTERVAL"];
 
     return std::static_pointer_cast<Entity>(zombiePtr);

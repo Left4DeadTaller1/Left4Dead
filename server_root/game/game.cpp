@@ -19,7 +19,7 @@ Game::Game(int mapType)
     : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), gameStarted(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0) {
     if (mapType >= MAP1_BACKGROUND && mapType <= MAP8_BACKGROUND) {
         mapBackground = static_cast<MapType>(mapType);
-        // createObstacles(mapBackground);
+        createObstacles(mapBackground);
     } else {
         // TODO launch an exception
         std::cout << "Unkown map" << std::endl;

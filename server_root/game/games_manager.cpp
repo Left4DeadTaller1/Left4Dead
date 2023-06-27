@@ -56,8 +56,6 @@ void GamesManager::removeFinishedGames() {
 
                 it = games.erase(it);  // erase returns the next iterator so no increase here
                 std::cout << "Finished removing game." << std::endl;
-
-                std::cout << "Reference count after erasing: " << gamePtr.use_count() << std::endl;
             } else {
                 ++it;
             }
