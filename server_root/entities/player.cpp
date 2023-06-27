@@ -3,7 +3,7 @@
 #include "game_config.h"
 
 Player::Player(int xPosition, int yPosition, std::string playerId, WeaponType weaponType, std::string nickName)
-    : Entity(xPosition, yPosition, playerId), weapon(weaponType), actionState(PLAYER_IDLE), nickName(nickName), knockDowns(0), revivingPlayer(nullptr) {
+    : Entity(xPosition, yPosition, playerId), weapon(weaponType), actionState(PLAYER_IDLE), nickName(nickName), knockDowns(0), revivingPlayer(nullptr), framesAfk(0) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
@@ -236,6 +236,18 @@ Attack Player::generateAttack() {
 
 int Player::getWeaponDamageFalloff() {
     return weapon.getDamageFalloff();
+}
+
+void Player::increaseAfkTimer() {
+    framesAfk++;
+}
+
+void Player::resetAfkTimer() {
+    framesAfk = 0;
+}
+
+int Player::getAfkTimer() {
+    return framesAfk;
 }
 
 bool Player::checkIfDead() {

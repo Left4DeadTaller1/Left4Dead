@@ -43,6 +43,7 @@ class Player : public Entity {
     std::string nickName;
     int knockDowns;
     std::shared_ptr<Player> revivingPlayer;
+    int framesAfk;
 
    public:
     Player(int xPosition, int yPosition, std::string idPlayer, WeaponType weapon, std::string nickName);
@@ -77,6 +78,10 @@ class Player : public Entity {
     void startMoving() override;
 
     int getWeaponDamageFalloff();
+
+    void increaseAfkTimer();
+    void resetAfkTimer();
+    int getAfkTimer();
 
     bool checkIfDead() override;
     void kill() override;

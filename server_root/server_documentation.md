@@ -37,5 +37,15 @@
  checekar si recvall() devuelve 0, (si queres sumale el was_closed), eso es q el cliente se murio -> quitalo
  capaz algo que haga que cuando se cierre el server le envie un msg a cada cliente?
  limitar el tipo de acciones que puede recibir el receiver cuando el juego esta corriendo
+
+
+
+ - bug Lo de el disparo unico
+ - sacar Afks
+ - matar partida si no hay jugadores
+ - MEtadata de tiempo y puntaje
+ - settear crateres
+ - airstrike
+ -testear el Venom
  
  

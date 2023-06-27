@@ -36,6 +36,8 @@ class Game : public Thread {
    private:
     // This is the big Queue where all the clients push their actions
     Queue<Action> inputQueue;
+    // This is for managing the vector
+    std::unordered_map<std::string, size_t> playerIdToQueueIndex;
     std::vector<Queue<std::shared_ptr<std::vector<uint8_t>>>*> playerQueues;
     int nextPlayerIndex;
 
@@ -53,6 +55,7 @@ class Game : public Thread {
     void sendAction(Action action);
     void stop();
     bool isGameRunning();
+    bool hasActivePlayers();
     // leaveGame();
 
     ~Game();
@@ -78,7 +81,7 @@ class Game : public Thread {
 
     void
     spawnPlayer(std::string idPlayer, std::string playerNickname, int weaponType);
-    void removePlayer(std::string idPlayer);
+    void removePlayer(Player& playerToRemove);
     void updateState();
     void updatePlayerState(Player& player, std::queue<Action>& playerActions);
     void move(Entity& entity);
@@ -89,6 +92,8 @@ class Game : public Thread {
     void removeDeadEntities();
     void reloadPlayer(Player& player);
     void revivePlayer(Player& player);
+    bool checkAfk(Player& player);
+    void disconnectPlayer(Player& player);
 
     void sendState();
     std::vector<std::shared_ptr<EntityDTO>> getDtos();
