@@ -2,8 +2,8 @@
 
 Obstacle::Obstacle(int xPosition, int yPosition, std::string obstacleId, int height, int width)
     : Entity(xPosition, yPosition, obstacleId) {
-    height = height;
-    width = width;
+    this->width = width;
+    this->height = height;
 }
 
 bool Obstacle::isAttackable() {

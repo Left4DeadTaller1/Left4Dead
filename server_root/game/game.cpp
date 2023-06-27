@@ -32,9 +32,9 @@ void Game::createObstacles(MapType mapBackground) {
     switch (mapBackground) {
         case MAP1_BACKGROUND:
         case MAP2_BACKGROUND: {
-            auto crater1 = std::make_shared<Obstacle>(130, 30, "crater1", 50, 170);
+            auto crater1 = std::make_shared<Obstacle>(110, 25, "crater1", 40, 160);
             auto crater2 = std::make_shared<Obstacle>(430, 90, "crater2", 40, 120);
-            auto crater3 = std::make_shared<Obstacle>(900, 50, "crater3", 60, 260);
+            auto crater3 = std::make_shared<Obstacle>(900, 35, "crater3", 50, 260);
 
             entities.push_back(crater1);
             entities.push_back(crater2);
@@ -44,15 +44,17 @@ void Game::createObstacles(MapType mapBackground) {
         }
         case MAP7_BACKGROUND:
         case MAP8_BACKGROUND: {
-            auto tire1 = std::make_shared<Obstacle>(90, 35, "tire1", 50, 190);
-            auto tire2 = std::make_shared<Obstacle>(570, 15, "tire2", 60, 130);
-            auto tire3 = std::make_shared<Obstacle>(700, 80, "tire3", 30, 130);
-            auto tire4 = std::make_shared<Obstacle>(1110, 50, "tire4", 70, 150);
+            auto tire1 = std::make_shared<Obstacle>(70, 35, "tire1", 50, 120);
+            auto tire2 = std::make_shared<Obstacle>(95, 45, "tire2", 50, 120);
+            auto tire3 = std::make_shared<Obstacle>(570, 15, "tire3", 45, 120);
+            auto tire4 = std::make_shared<Obstacle>(700, 80, "tire4", 100, 130);
+            auto tire5 = std::make_shared<Obstacle>(1115, 60, "tire5", 120, 150);
 
             entities.push_back(tire1);
             entities.push_back(tire2);
             entities.push_back(tire3);
             entities.push_back(tire4);
+            entities.push_back(tire5);
 
             break;
         }
@@ -353,10 +355,10 @@ void Game::updateState() {
         zombieSpawner.mutate();
 
     // spawn zombies
-    std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
-    if (spawnedZombie) {
-        entities.push_back(spawnedZombie);
-    }
+    // std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
+    // if (spawnedZombie) {
+    //     entities.push_back(spawnedZombie);
+    // }
 }
 
 bool Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) {
