@@ -10,6 +10,8 @@ void ClientSender::run() {
     isRunning = true;
     try {
         while (isRunning) {
+            bool was_closed = false;
+
             // Now gameSnapShot is a vector of bytes representing the game state
             std::shared_ptr<std::vector<uint8_t>> gameSnapShotPtr = gameResponses.pop();
 
@@ -21,7 +23,15 @@ void ClientSender::run() {
 
             std::vector<uint8_t> gameSnapShot = *gameSnapShotPtr;
 
-            bool was_closed = false;
+            if (gameSnapShotPtr && !gameSnapShotPtr->empty()) {
+                uint8_t firstByte = (*gameSnapShotPtr)[0];
+
+                // Disconnection
+                if (firstByte == 5) {
+                    clientSocket.sendall(gameSnapShot.data(), gameSnapShot.size(), &was_closed);
+                    stop();
+                }
+            }
 
             if (gameSnapShot.size() > 0) {
                 clientSocket.sendall(gameSnapShot.data(), gameSnapShot.size(), &was_closed);

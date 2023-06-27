@@ -102,8 +102,6 @@ bool CollisionDetector::willCollideHorizontally(Entity& e1, Entity& e2) {
     // discard cuz they are not in the same "depth"
     if ((e1.y) + e1.height < e2.y || (e1.y) > e2.y + e2.height)
         return false;
-
-    std::cout << "collide horizontally" << std::endl;
     return true;
 }
 
@@ -111,8 +109,6 @@ bool CollisionDetector::willCollideVertically(Entity& e1, Entity& e2) {
     // discard cuz they are not in the same "depth"
     if ((e1.x) + e1.width < e2.x || (e1.x > e2.x + e2.width))
         return false;
-
-    std::cout << "collide vertically" << std::endl;
     return true;
 }
 

@@ -460,8 +460,6 @@ ServerProtocol::encodeServerMessage(const std::string &msgType, int typeMap, std
         encodedMsg->push_back(static_cast<uint8_t>(gameCode));
 
         // Adding the map type (1 byte)
-        std::cout << "typeMap server: " << (int)typeMap << "\n";
-        std::cout << "typeMap server: " << (int)static_cast<uint8_t>(typeMap) << "\n";
         encodedMsg->push_back(static_cast<uint8_t>(typeMap));
 
         // Adding the amount of players (1 byte)
@@ -500,6 +498,7 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const 
 }
 
 std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(int timePlayed, int zombiesKilled) {
+    std::cout << "In encodeServerMessage" << std::endl;
     std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
     encodedMsg->push_back(5);
 
@@ -508,4 +507,5 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(int ti
 
     // Adding the zombies Kill count (1 byte)
     encodedMsg->push_back(static_cast<uint8_t>(zombiesKilled));
+    return encodedMsg;
 }

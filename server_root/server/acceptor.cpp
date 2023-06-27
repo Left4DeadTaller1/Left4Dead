@@ -13,14 +13,18 @@ void Acceptor::run() {
     try {
         while (true) {
             Socket clientSocket = skt.accept();
-            std::cout << "New client connected" << std::endl;
+            std::cout << "\nNew client connected" << std::endl;
             auto th = std::make_shared<ClientConnection>(std::move(clientSocket), gamesManager);
-            th->connectToClient();
+            // th->connectToClient();
             clients.push_back(th);
+
             // Limpieza de clients viejos
             reap_dead();
+
             // remove finished games
+            std::cout << "Removing finished games" << std::endl;
             gamesManager.removeFinishedGames();
+            std::cout << "FINISH Removing finished games" << std::endl;
         }
     } catch (const LibError& e) {
         kill_all();
@@ -33,6 +37,7 @@ void Acceptor::run() {
 }
 
 void Acceptor::reap_dead() {
+    std::cout << "Cleaning old clients" << std::endl;
     // las funciones lambdas en c++ parecen re herejes viniendo de js
     clients.remove_if([](const std::shared_ptr<ClientConnection>& c) {
         c->checkThreads();
@@ -51,6 +56,7 @@ void Acceptor::kill_all() {
 
     // We kill all clients
     for (auto& c : clients) {
+        std::cout << "Player is removable" << std::endl;
         c->kill();
     }
     clients.clear();
@@ -62,7 +68,9 @@ void Acceptor::shutdown() {
 }
 
 Acceptor::~Acceptor() {
+    std::cout << "In Acceptor destructor" << std::endl;
     for (auto& client : clients) {
         client->kill();
     }
+    std::cout << "Finish Acceptor destructor" << std::endl;
 }

@@ -63,7 +63,6 @@ void Game::createObstacles(MapType mapBackground) {
 }
 
 std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname, int weaponType, int gameCode) {
-    std::cout << "entre add player\n";
     if (nextPlayerIndex >= 4) {
         throw std::out_of_range("Player list is full!");
     }
@@ -82,13 +81,10 @@ std::string Game::addPlayer(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameRe
     }
 
     int intMapType = static_cast<int>(mapBackground);
-    std::cout << "antes de generar mensaje\n";
     std::shared_ptr<std::vector<uint8_t>> joinMessage = protocol.encodeServerMessage("JoinLobby", intMapType, playersInfo, gameCode);
-    std::cout << "despues de generar mensaje\n";
 
     // Add message to all player queues that are not null
     for (auto playerQueue : playerQueues) {
-        std::cout << "entra a mandar\n";
         if (playerQueue != nullptr) {
             playerQueue->try_push(joinMessage);
         }
@@ -176,12 +172,12 @@ void Game::closePlayerQueues() {
 
 void Game::killGame() {
     std::cout << "Game kill being call" << std::endl;
-    stop();
+    if (gameRunning == true)
+        stop();
 }
 
 Game::~Game() {
     std::cout << "game being destroyed" << std::endl;
-    closePlayerQueues();
 }
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
@@ -259,9 +255,13 @@ void Game::startGame() {
 
         updateState();  // update game state
 
-        // Todo break this into 2 checks hasAlivePlayers to send score screen and then to close the game
-        // and active players to close the game
-        if (!hasActivePlayers() || !hasAlivePlayers(players)) {
+        auto alivePlayersStatus = hasAlivePlayers(players);
+        if (alivePlayersStatus.has_value() && !alivePlayersStatus.value()) {
+            std::cout << "All players are dead. Closing the game." << std::endl;
+            sendScoreScreen();
+            stop();
+            break;
+        } else if (!alivePlayersStatus.has_value() || !hasActivePlayers()) {
             std::cout << "No players left. Closing the game." << std::endl;
             stop();
             break;
@@ -377,6 +377,7 @@ bool Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
         int actionMovementDirectionY = action.getDirectionYType();
 
         if (actionPlayerState == DISCONNECTION) {
+            std::cout << "Player " << player.getId() << " disconnected." << std::endl;
             return true;
         }
 
@@ -657,7 +658,11 @@ void Game::removeDeadEntities() {
     }
 }
 
-bool Game::hasAlivePlayers(std::vector<std::shared_ptr<Player>> players) {
+std::optional<bool> Game::hasAlivePlayers(std::vector<std::shared_ptr<Player>> players) {
+    if (players.empty()) {
+        return std::nullopt;
+    }
+
     for (auto& player : players) {
         if (!player->isDead())
             return true;
@@ -679,7 +684,15 @@ void Game::sendState() {
 void Game::sendScoreScreen() {
     // in a refactor i would get the 30 from somewhere not hardcode it like this
     int timePlayed = framesCounter / 30;
+
     std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage(timePlayed, zombiesKilled);
+    for (Queue<std::shared_ptr<std::vector<uint8_t>>>* playerQueue : playerQueues) {
+        if (playerQueue) {
+            std::cout << "Score screen in quee" << std::endl;
+            playerQueue->push(serializedState);
+        }
+    }
+    std::cout << "ALL Score screen sent" << std::endl;
 }
 
 std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {

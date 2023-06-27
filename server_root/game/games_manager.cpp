@@ -8,12 +8,10 @@ GamesManager::GamesManager() : nextGameId(0) {}
 GameRecord GamesManager::createLobby(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string nickName, int weaponType, int typeMap) {
     std::lock_guard<std::mutex> lock(m);
     auto game = std::make_shared<Game>(typeMap);
-    std::cout << "nextGameId: " << nextGameId << "\n";
     games.emplace(nextGameId, game);
     // Creates struct representing game
     GameRecord gameRecord;
     // TODO Catch full lobby exception in Receiver
-    std::cout << "agregar jugador a la partida:\n";
     gameRecord.playerId = game->addPlayer(gameResponses, nickName, weaponType, nextGameId);
     nextGameId++;
     gameRecord.game = game;
@@ -46,17 +44,33 @@ GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::shared_ptr<
 
 void GamesManager::removeFinishedGames() {
     std::lock_guard<std::mutex> lock(m);
-    for (auto it = games.begin(); it != games.end();) {
-        if (!it->second->isGameRunning() && it->second->hasGameStarted()) {
-            std::cout << "Game: " << it->first << " finished, removing it." << std::endl;
-            it = games.erase(it);  // erase returns the next iterator so no increase here
-        } else {
-            ++it;
+    try {
+        for (auto it = games.begin(); it != games.end();) {
+            auto& gamePtr = it->second;
+            if (!gamePtr->isGameRunning() && gamePtr->hasGameStarted()) {
+                std::cout << "Game: " << it->first << " finished, removing it." << std::endl;
+
+                std::cout << "Reference count before erasing: " << gamePtr.use_count() << std::endl;
+
+                gamePtr->join();
+
+                it = games.erase(it);  // erase returns the next iterator so no increase here
+                std::cout << "Finished removing game." << std::endl;
+
+                std::cout << "Reference count after erasing: " << gamePtr.use_count() << std::endl;
+            } else {
+                ++it;
+            }
         }
+    } catch (const std::exception& e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Unknown exception caught" << std::endl;
     }
 }
 
 void GamesManager::killGames() {
+    std::cout << "In kill game games Manager" << std::endl;
     std::lock_guard<std::mutex> lock(m);
     for (auto& [gameId, game] : games) {
         game->killGame();

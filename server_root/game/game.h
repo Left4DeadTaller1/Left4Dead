@@ -2,6 +2,7 @@
 #define GAME_H_
 
 #include <list>
+#include <optional>
 #include <queue>
 #include <unordered_map>
 
@@ -99,7 +100,7 @@ class Game : public Thread {
     void revivePlayer(Player& player);
     bool checkAfk(Player& player);
     void disconnectPlayer(Player& player);
-    bool hasAlivePlayers(std::vector<std::shared_ptr<Player>> players);
+    std::optional<bool> hasAlivePlayers(std::vector<std::shared_ptr<Player>> players);
 
     void sendState();
     std::vector<std::shared_ptr<EntityDTO>> getDtos();

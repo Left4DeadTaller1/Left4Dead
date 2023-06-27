@@ -9,14 +9,14 @@ ClientConnection::ClientConnection(Socket &&skt, GamesManager &gamesManager)
       gamesManager(gamesManager),
       gameResponses(QUEUE_SIZE),
       sender(clientSocket, gameResponses),
-      receiver(clientSocket, gamesManager, gameResponses) {}
+      receiver(clientSocket, gamesManager, gameResponses) {
+    sender.start();
+    receiver.start();
+}
 
 void ClientConnection::connectToClient() {
     std::cout << "ENTRA A CLIENT CONNECTION\n";
     // Iniciar los hilos sender y receiver
-
-    sender.start();
-    receiver.start();
 }
 
 void ClientConnection::checkThreads() {
