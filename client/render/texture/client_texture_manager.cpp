@@ -2,28 +2,25 @@
 
 using namespace SDL2pp;
 
-TextureManager::TextureManager(Renderer& renderer){
+TextureManager::TextureManager(Renderer& renderer):
+    lifeBar(renderer, 11 ,DATA_PATH "/client/render/resources/vida/barrasvida.png"){
     loadTextures(renderer);
 }
-
-/*GameTexture& TextureManager::getTextureWeapon(TypeWeapon_t type){
-    std::map<std::string, GameTexture>::iterator iter = texturesWeapon.find(type);
-    if (iter == texturesWeapon.end()) {
-        //lanzar excepcion
-    }
-    return iter->second;
-}*/
 
 std::map<TypeWeapon_t, GameTexture>& TextureManager::getTexturesWeapon(){
     return texturesWeapon;
 }
 
-GameTexture& TextureManager::getTexture(const std::string& nameTexture){
-    std::map<std::string, GameTexture>::iterator iter = texturesBackground.find(nameTexture);
+GameTexture& TextureManager::getTexture(TypeMap_t typeMap){
+    std::map<TypeMap_t, GameTexture>::iterator iter = texturesBackground.find(typeMap);
     if (iter == texturesBackground.end()) {
         //lanzar excepcion
     }
     return iter->second;
+}
+
+GameTexture& TextureManager::getTextureLifeBar(void){
+    return lifeBar;
 }
 
 std::map<state_t, GameTexture>& TextureManager::getTextures(typeEntity_t type){
@@ -50,24 +47,22 @@ std::map<state_t, GameTexture>& TextureManager::getTextures(typeEntity_t type){
 void TextureManager::loadTextures(Renderer& renderer){
 
     //load backgrounds
-    texturesBackground.emplace("background-war1-bright-war", GameTexture(renderer, 1,
+    texturesBackground.emplace(WAR1_BRIGHT, GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/backgrounds/War1/Bright/War.png"));
-    texturesBackground.emplace("background-war1-pale-war", GameTexture(renderer, 1,
+    texturesBackground.emplace(WAR1_PALE, GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/backgrounds/War1/Pale/War.png"));
-    texturesBackground.emplace("background-war2-bright-war", GameTexture(renderer, 1,
+    texturesBackground.emplace(WAR2_BRIGHT, GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/backgrounds/War2/Bright/War2.png"));                                                    
-    texturesBackground.emplace("background-war2-pale-war", GameTexture(renderer, 1,
+    texturesBackground.emplace(WAR2_PALE, GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/backgrounds/War2/Pale/War2.png"));
-    texturesBackground.emplace("background-war3-bright-war", GameTexture(renderer, 1,
+    texturesBackground.emplace(WAR3_BRIGHT, GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/backgrounds/War3/Bright/War3.png"));
-    texturesBackground.emplace("background-war3-pale-war", GameTexture(renderer, 1,
+    texturesBackground.emplace(WAR3_PALE, GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/backgrounds/War3/Pale/War3.png"));
-    texturesBackground.emplace("background-war4-bright-war", GameTexture(renderer, 1,
+    texturesBackground.emplace(WAR4_BRIGHT, GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/backgrounds/War4/Bright/War4.png"));
-    texturesBackground.emplace("background-war4-pale-war", GameTexture(renderer, 1,
+    texturesBackground.emplace(WAR4_PALE, GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/backgrounds/War4/Pale/War4.png"));
-    texturesBackground.emplace("barras-vida", GameTexture(renderer, 11,
-                                                DATA_PATH "/client/render/resources/vida/barrasvida.png"));
 
     //load textures soldier 1
     texturesSoldier1.emplace(ATTACK, GameTexture(renderer, 3,

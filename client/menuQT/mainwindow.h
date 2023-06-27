@@ -28,6 +28,8 @@ private slots:
     void sliderChanged(int value);
     void handleCreateClosed(int code);
     void handleJoinClosed(int code);
+    TypeMap_t StringToTypeMap(const std::string& str);
+    void handlerTypeMap(const QString& typeMap);
 
 signals:
     void exitApp(int exitCode);

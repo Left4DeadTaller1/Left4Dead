@@ -27,17 +27,6 @@ ClientRenderer::ClientRenderer(std::atomic<bool>& isConnected,
     viewportHeight = dimensionsWindows["WINDOW_HEIGHT"];
 }
 
-
-void ClientRenderer::drawBackground(Texture& background){
-    renderer.Copy(background);
-}
-
-void ClientRenderer::drawInicio(void) {
-    renderer.Clear();
-    drawBackground(textureManager.getTexture("background-war1-pale-war").texture);
-    renderer.Present();
-}
-
 std::string traducir(int state){
     if (state == WALKING){
         return "walk";
@@ -121,8 +110,10 @@ int ClientRenderer::looprender(void) {
     TTF_Init();
 
     soundManager.playMusic();
-    GameTexture& map = textureManager.getTexture("background-war1-pale-war");
-    drawInicio();
+    TypeMap_t typeMap = windowQT.getTypeMap();
+    std::cout << "TYPE MAP: " << (int)typeMap << "\n";
+    GameTexture& textureMap = textureManager.getTexture(typeMap);
+    renderer.Copy(textureMap.texture);
 
     uint32_t initialTime = SDL_GetTicks();
     uint32_t t1 = SDL_GetTicks();
@@ -168,7 +159,7 @@ int ClientRenderer::looprender(void) {
                 game.updateGame(gameStateDTO);
                 renderer.Clear();
 
-                drawBackground(map.texture);
+                renderer.Copy(textureMap.texture);
 
                 SDL_Rect viewport;
                 viewport.x = viewportXInicial;

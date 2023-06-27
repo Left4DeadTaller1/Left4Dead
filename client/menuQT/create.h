@@ -25,6 +25,7 @@ public:
 
 signals:
     void closedWithError(int exitCode);
+    void emitTypeMap(const QString& typeMap);
 
 private slots:
     void startButtonClicked();
@@ -32,6 +33,7 @@ private slots:
     void sliderChanged(int value);
     void handlerInfoGameReceived(const QString& messageInfoGame);
     void handleClosed(int exitCode);
+    void handlerTypeMap(const QString& typeMap);
     std::string typeWeaponToString(TypeWeapon_t type);
     std::string getImageMap(QString& map);
     std::string getImageSoldier(QString& weapon);

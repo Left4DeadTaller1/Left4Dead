@@ -17,8 +17,8 @@ class TextureManager {
     std::map<state_t, GameTexture> texturesWitch;
     std::map<state_t, GameTexture> texturesZombie;
     std::map<TypeWeapon_t, GameTexture> texturesWeapon;
-    std::map<std::string, GameTexture> texturesBackground;
-    //GameTexture lifeBar;
+    std::map<TypeMap_t, GameTexture> texturesBackground;
+    GameTexture lifeBar;
 
     void loadTextures(SDL2pp::Renderer& renderer);
 
@@ -26,10 +26,9 @@ class TextureManager {
     TextureManager(SDL2pp::Renderer& renderer);
 
     std::map<state_t, GameTexture>& getTextures(typeEntity_t type);
-
-    GameTexture& getTexture(const std::string& nameTexture);
-
     std::map<TypeWeapon_t, GameTexture>& getTexturesWeapon();
+    GameTexture& getTexture(TypeMap_t typeMap);
+    GameTexture& getTextureLifeBar(void);
 };
 
 #endif

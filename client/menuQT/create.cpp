@@ -41,6 +41,12 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     player->setVolume(20);
     player->play();
 
+    // qlabel titulo map transparente
+    QFont font("Arial", 12, QFont::Bold);
+    ui->infoGame->setFont(font);
+    ui->infoGame->setAttribute(Qt::WA_TranslucentBackground);
+    ui->infoGame->setStyleSheet("background-color: transparent;");
+
     (ui->layout)->addWidget(ui->listView);
     (ui->listView)->setModel(&model);
     (ui->listView)->setSpacing(10);
@@ -127,6 +133,10 @@ std::string Create::getImageMap(QString& map){
     return "";
 }
 
+void Create::handlerTypeMap(const QString& typeMap){
+    emit emitTypeMap(typeMap);
+}
+
 void Create::handlerInfoGameReceived(const QString& messageInfoGame)
 {
     int rowCount = model.rowCount();
@@ -142,7 +152,11 @@ void Create::handlerInfoGameReceived(const QString& messageInfoGame)
     QString map = message.value(0);
     int cantidadEntidades = message.value(1).toInt();
 
-    ui->infoGame->setText(map);
+    QString infoMap = "Game map: " + map + "              ";
+    QString infoPlayers = "Number of players in the game: " + QString::number(cantidadEntidades) + "\n";
+
+    ui->infoGame->setText(infoMap);
+    ui->infoGame->insert(infoPlayers);
 
     //imagen de mapa
     std::string mapPath = getImageMap(map);
@@ -162,7 +176,9 @@ void Create::handlerInfoGameReceived(const QString& messageInfoGame)
         QPixmap imageSoldierSmall = imageSoldier.scaled(width, height, Qt::KeepAspectRatio);
 
         QStandardItem* item = new QStandardItem;
-        QString infoPlayer = "Nickname: " + nickname + "\n\n" + "Weapon: " + weapon + "\n";
+        QString infoPlayer = "Nickname: " + nickname;
+        infoPlayer += "                          ";
+        infoPlayer += "Weapon: " + weapon + "\n";
         item->setData(infoPlayer, Qt::DisplayRole);
         item->setData(imageSoldierSmall, Qt::DecorationRole);
 
@@ -177,6 +193,7 @@ void Create::startReceiving()
 {
     hiloMensajes = new HiloMensajes(protocol);
     connect(hiloMensajes, &HiloMensajes::infoGameReceived, this, &Create::handlerInfoGameReceived);
+    connect(hiloMensajes, &HiloMensajes::typeMapReceived, this, &Create::handlerTypeMap);
     connect(hiloMensajes, &HiloMensajes::closedWithoutError, this, &Create::handleClosed);
     
     show();

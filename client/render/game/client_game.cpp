@@ -82,7 +82,7 @@ void ClientGame::updateLifeBar(std::vector<player_t>& players_){
             (iter->second)->updateLifeBar(newPlayer.health, newPlayer.x, 
                                         newPlayer.y, newPlayer.lookingTo);
         } else {
-            GameTexture& texture = textureManager.getTexture("barras-vida");
+            GameTexture& texture = textureManager.getTextureLifeBar();
             std::shared_ptr<LifeBar> newLifeBar = std::make_shared<LifeBar>(texture,
                                                                             newPlayer.health,
                                                                             newPlayer.x,
@@ -101,7 +101,7 @@ void ClientGame::updateLifeBar2(std::vector<infected_t>& players_){
             (iter->second)->updateLifeBar(newPlayer.health, newPlayer.x, 
                                         newPlayer.y, newPlayer.lookingTo);
         } else {
-            GameTexture& texture = textureManager.getTexture("barras-vida");
+            GameTexture& texture = textureManager.getTextureLifeBar();
             std::shared_ptr<LifeBar> newLifeBar = std::make_shared<LifeBar>(texture,
                                                                             newPlayer.health,
                                                                             newPlayer.x,

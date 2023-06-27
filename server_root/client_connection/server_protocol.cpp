@@ -460,6 +460,8 @@ ServerProtocol::encodeServerMessage(const std::string &msgType, int typeMap, std
         encodedMsg->push_back(static_cast<uint8_t>(gameCode));
 
         // Adding the map type (1 byte)
+        std::cout << "typeMap server: " << (int)typeMap << "\n";
+        std::cout << "typeMap server: " << (int)static_cast<uint8_t>(typeMap) << "\n";
         encodedMsg->push_back(static_cast<uint8_t>(typeMap));
 
         // Adding the amount of players (1 byte)

@@ -38,7 +38,6 @@ CreateAction::CreateAction(std::string namePlayer,
     if (map == "War 4 Pale"){
         typeMap = WAR4_PALE;
     }
-
 }
 
 std::vector<int8_t> CreateAction::serialize() const {
@@ -50,7 +49,3 @@ std::vector<int8_t> CreateAction::serialize() const {
     data.insert(data.end(), namePlayer.begin(), namePlayer.end());
     return data;
 };
-
-bool CreateAction::isExit(void) const {
-    return false;
-}

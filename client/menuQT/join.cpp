@@ -46,6 +46,12 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
     slider2->show();
     player3->play();
 
+    // qlabel titulo map transparente
+    QFont font("Arial", 16, QFont::Bold);
+    ui->infoGame3->setFont(font);
+    ui->infoGame3->setAttribute(Qt::WA_TranslucentBackground);
+    ui->infoGame3->setStyleSheet("background-color: transparent;");
+
     (ui->layout3)->addWidget(ui->listView3);
     (ui->listView3)->setModel(&model);
     (ui->listView3)->setSpacing(10);
@@ -92,11 +98,16 @@ void Join::startReceiving()
 {
     hiloMensajes = new HiloMensajes(protocol);
     connect(hiloMensajes, &HiloMensajes::infoGameReceived, this, &Join::handlerInfoGameReceived);
+    connect(hiloMensajes, &HiloMensajes::typeMapReceived, this, &Join::handlerTypeMap);
     connect(hiloMensajes, &HiloMensajes::closedWithoutError, this, &Join::handleClosed);
     show();
     if (hiloMensajes) {
         hiloMensajes->start();
     }
+}
+
+void Join::handlerTypeMap(const QString& typeMap){
+    emit emitTypeMap(typeMap);
 }
 
 std::string Join::typeWeaponToString(TypeWeapon_t type){
@@ -168,7 +179,11 @@ void Join::handlerInfoGameReceived(const QString& messageInfoGame)
     QString map = message.value(0);
     int cantidadEntidades = message.value(1).toInt();
 
-    ui->infoGame3->setText(map);
+    QString infoMap = "Game map: " + map + "              ";
+    QString infoPlayers = "Number of players in the game: " + QString::number(cantidadEntidades) + "\n";
+
+    ui->infoGame3->setText(infoMap);
+    ui->infoGame3->insert(infoPlayers);
 
     //imagen de mapa
     std::string mapPath = getImageMap(map);
@@ -188,7 +203,9 @@ void Join::handlerInfoGameReceived(const QString& messageInfoGame)
         QPixmap imageSoldierSmall = imageSoldier.scaled(width, height, Qt::KeepAspectRatio);
 
         QStandardItem* item = new QStandardItem;
-        QString infoPlayer = "Nickname: " + nickname + "\n\n" + "Weapon: " + weapon + "\n";
+        QString infoPlayer = "Nickname: " + nickname;
+        infoPlayer += "                          ";
+        infoPlayer += "Weapon: " + weapon + "\n";
         item->setData(infoPlayer, Qt::DisplayRole);
         item->setData(imageSoldierSmall, Qt::DecorationRole);
 

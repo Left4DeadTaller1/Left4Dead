@@ -40,10 +40,6 @@ class ClientRenderer {
    uint32_t viewportWidth;
    uint32_t viewportHeight;
 
-   void drawBackground(SDL2pp::Texture& background);
-
-   void  drawInicio(void);
-
    int handlerAction(std::shared_ptr<ActionRender> action);
 
    public:

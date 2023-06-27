@@ -90,6 +90,40 @@ MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     slider->show();
     player->play();
 
+    connect(c, &Create::emitTypeMap, this, &MainWindow::handlerTypeMap);
+    connect(j, &Join::emitTypeMap, this, &MainWindow::handlerTypeMap);
+}
+
+TypeMap_t MainWindow::StringToTypeMap(const std::string& str) {
+    if (str == "War 1 Bright") {
+        return WAR1_BRIGHT;
+    }
+    if (str == "War 1 Pale") {
+        return WAR1_PALE;
+    }
+    if (str == "War 2 Bright") {
+        return WAR2_BRIGHT;
+    }
+    if (str == "War 2 Pale") {
+        return WAR2_PALE;
+    }
+    if (str == "War 3 Bright") {
+        return WAR3_BRIGHT;
+    }
+    if (str == "War 3 Pale") {
+        return WAR3_PALE;
+    }
+    if (str == "War 4 Bright") {
+        return WAR4_BRIGHT;
+    }
+    if (str == "War 4 Pale") {
+        return WAR4_PALE;
+    }
+}
+
+void MainWindow::handlerTypeMap(const QString& typeMap_){
+    std::cout << "type map: " << typeMap_.toStdString() << "\n";
+    typeMap = StringToTypeMap(typeMap_.toStdString());
 }
 
 MainWindow::~MainWindow()
@@ -116,6 +150,7 @@ void MainWindow::createButtonClicked()
         namePlayer = nickname.toStdString();
         std::string weaponPlayer = weapon.toStdString();
         std::string map = mapa.toStdString();
+        std::cout << "map que se envia: " << map << "\n";
         std::shared_ptr<ActionClient> action = std::make_shared<CreateAction>(namePlayer,
                                                                         weaponPlayer,
                                                                         map);
@@ -185,7 +220,7 @@ std::string MainWindow::getNamePlayer(void){
     return namePlayer;
 }
 
-TypeMap_t getTypeMap(void){
-    return WAR1_BRIGHT;
+TypeMap_t MainWindow::getTypeMap(void){
+    return typeMap;
 }
 

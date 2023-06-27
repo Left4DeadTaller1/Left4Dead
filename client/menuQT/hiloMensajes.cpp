@@ -70,6 +70,7 @@ void HiloMensajes::run() {try {
         std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
         emit infoGameReceived(encodeInfoGame(infoGame->typeMap, infoGame->amountPlayers, 
                             infoGame->infoPlayers));
+        emit typeMapReceived(QString::fromStdString(typeMapToString(infoGame->typeMap)));
     } while (!wasClosed) {
         int typeMessage = protocol.receiveTypeMessage(wasClosed);
         if (typeMessage == MSG_START){

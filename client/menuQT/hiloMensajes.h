@@ -26,6 +26,7 @@ public:
 
 signals:
     void infoGameReceived(const QString& messageInfoGame);
+    void typeMapReceived(const QString& typeMap);
     void closedWithoutError(int exitCode);
 
 };
