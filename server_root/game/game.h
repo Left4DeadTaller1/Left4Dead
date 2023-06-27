@@ -54,6 +54,7 @@ class Game : public Thread {
     void sendAction(Action action);
     void stop();
     bool isGameRunning();
+    bool hasGameStarted();
     bool hasActivePlayers();
     void closePlayerQueues();
 
@@ -70,6 +71,7 @@ class Game : public Thread {
    private:
     MapType mapBackground;
     bool gameRunning;
+    bool gameStarted;
     CollisionDetector collisionDetector;
     std::unordered_map<std::string, std::queue<Action>>
         playersActions;

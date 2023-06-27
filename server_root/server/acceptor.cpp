@@ -34,8 +34,9 @@ void Acceptor::run() {
 void Acceptor::reap_dead() {
     // las funciones lambdas en c++ parecen re herejes viniendo de js
     clients.remove_if([](const std::shared_ptr<ClientConnection>& c) {
-        // c->checkThreads();
+        c->checkThreads();
         if (c->isRemovable()) {
+            std::cout << "Player is removable" << std::endl;
             c->kill();
             return true;
         }

@@ -42,7 +42,7 @@ GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::shared_ptr<
 void GamesManager::removeFinishedGames() {
     std::lock_guard<std::mutex> lock(m);
     for (auto it = games.begin(); it != games.end();) {
-        if (!it->second->isGameRunning()) {
+        if (!it->second->isGameRunning() && it->second->hasGameStarted()) {
             std::cout << "Game: " << it->first << " finished, removing it." << std::endl;
             it = games.erase(it);  // erase returns the next iterator so no increase here
         } else {
