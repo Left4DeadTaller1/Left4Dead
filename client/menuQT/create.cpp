@@ -6,7 +6,8 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     protocol(protocol),
     ui(new Ui::Create),
     hiloMensajes(nullptr),
-    model(this)
+    model(this),
+    exitCode(-1)
 {
     ui->setupUi(this);
 
@@ -48,9 +49,11 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     ui->listView->setStyleSheet(itemStyle);
 }
 
-void Create::handleClosed(int exitCode)
+void Create::handleClosed(int _exitCode)
 {
-    emit closedWithError(exitCode);
+    std::cout << "entra a handleClosed en create\n";
+    exitCode = _exitCode;
+    emit closedWithError(_exitCode);
 }
 
 void Create::sliderChanged(int value)
@@ -61,6 +64,8 @@ void Create::sliderChanged(int value)
 
 Create::~Create()
 {
+    player->stop();
+    delete player;
     delete ui;
     if (hiloMensajes) {
         hiloMensajes->join();
@@ -176,9 +181,7 @@ void Create::startReceiving()
     
     show();
     if (hiloMensajes) {
-        std::cout << "antes de lanzar el hilo\n";
         hiloMensajes->start();
-        std::cout << "despues de lanzar el hilo\n";
     }
 }
 
@@ -191,7 +194,12 @@ void Create::startButtonClicked()
 
 void Create::closeEvent(QCloseEvent *event)
 {
-    emit closedWithError(-1);
+    std::cout << "entra a closeEvent en create\n";
+    std::cout << "exit code: " << exitCode << "\n";
+    if (exitCode == -1){
+        protocol.closeSocket();
+    }
+    emit closedWithError(exitCode);
 }
 
 

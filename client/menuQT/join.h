@@ -38,6 +38,7 @@ private:
     QMediaPlayer *player3;
     HiloMensajes* hiloMensajes;
     QStandardItemModel model;
+    int exitCode;
 };
 
 #endif // JOIN_H

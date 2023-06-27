@@ -26,9 +26,9 @@ int main(int argc, char *argv[]) { try {
     MainWindow windowQT(protocol);
     windowQT.show();
     ret = a.exec();
+    std::cout << "RET = " << ret << "\n";
     
     if (ret == 0){
-        std::cout << "SE RETORNA CERO Y ARRANCA SDL\n";
         RendererConfig& config = RendererConfig::getInstance();
         std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
 

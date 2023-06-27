@@ -8,7 +8,8 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Join),
     hiloMensajes(nullptr),
-    model(this)
+    model(this),
+    exitCode(-1)
 {
     ui->setupUi(this);
 
@@ -55,12 +56,19 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
 
 void Join::closeEvent(QCloseEvent *event)
 {
-    emit closedWithError(-1);
+    std::cout << "entra a closeEvent en join\n";
+    std::cout << "exit code: " << exitCode << "\n";
+    if (exitCode == -1){
+        protocol.closeSocket();
+    }
+    emit closedWithError(exitCode);
 }
 
-void Join::handleClosed(int exitCode)
+void Join::handleClosed(int _exitCode)
 {
-    emit closedWithError(exitCode);
+    std::cout << "entra a handleClosed\n";
+    exitCode = _exitCode;
+    emit closedWithError(_exitCode);
 }
 
 void Join::sliderChanged(int value)
@@ -71,6 +79,8 @@ void Join::sliderChanged(int value)
 
 Join::~Join()
 {
+    player3->stop();
+    delete player3;
     delete ui;
     if (hiloMensajes) {
         hiloMensajes->join();

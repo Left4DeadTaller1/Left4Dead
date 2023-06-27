@@ -6,8 +6,9 @@
 
 typedef enum {
     EXIT,
-    STOP_SOUND,
-    RESIZE
+    MUTE,
+    RESIZE,
+    UNMUTE
 } TypeAction_t;
 
 class ActionRender {

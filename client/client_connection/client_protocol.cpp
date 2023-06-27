@@ -247,9 +247,9 @@ std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClos
     return infoGameDTO;
 }
 
-/*void ClientProtocol::closeSocket(){
+void ClientProtocol::closeSocket(){
     skt.shutdown(2);
     skt.close();
-}*/
+}
 
 

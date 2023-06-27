@@ -18,6 +18,7 @@ class SoundManager {
     std::map<state_t, std::shared_ptr<Sound>> soundsWitch;
     std::map<state_t, std::shared_ptr<Sound>> soundsZombie;
     std::map<typeEntity_t, std::string> translationTypeEntity;
+    std::shared_ptr<Sound> music;
 
     void loadSounds();
 
@@ -25,6 +26,8 @@ class SoundManager {
     SoundManager();
 
     std::map<state_t, std::shared_ptr<Sound>>& getSounds(typeEntity_t type);
+    void playMusic(void);
+    void stopMusic(void);
 
     ~SoundManager();
 };

@@ -13,6 +13,7 @@ ClientGame::ClientGame(TextureManager& textureManager,
     std::vector<infected_t> infected;
 
 void ClientGame::updatePlayers(std::vector<player_t>& players_){
+    std::set<int> idsPlayers;
     for (auto &newPlayer : players_){
         std::map<uint8_t, std::shared_ptr<ClientPlayer>>::iterator iter = players.find(newPlayer.idPlayer);
         if (iter != players.end()) {
@@ -31,6 +32,16 @@ void ClientGame::updatePlayers(std::vector<player_t>& players_){
                                                                             isMyWindow,
                                                                             newPlayer);
             players.emplace(newPlayer.idPlayer, newClientPlayer);
+        }
+        idsPlayers.insert(newPlayer.idPlayer);
+    }
+    auto it = players.begin();
+    while (it != players.end()) {
+        int player_id = it->first;
+        if (idsPlayers.find(player_id) == idsPlayers.end()) {
+            it = players.erase(it);
+        } else {
+            ++it;
         }
     }
 }
@@ -101,7 +112,6 @@ void ClientGame::updateLifeBar2(std::vector<infected_t>& players_){
         }
     }
 }
-
 
 void ClientGame::updateGame(std::shared_ptr<gameStateDTO_t> newGame){
     updatePlayers(newGame->players);

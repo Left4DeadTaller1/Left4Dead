@@ -97,6 +97,8 @@ MainWindow::~MainWindow()
     delete ui;
     delete c;
     delete j;
+    player->stop();
+    delete player;
 }
 
 void MainWindow::createButtonClicked()

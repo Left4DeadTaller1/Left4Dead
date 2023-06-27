@@ -63,18 +63,17 @@ const QString HiloMensajes::encodeInfoGame(TypeMap_t typeMap, int amountPlayers,
     return QString::fromStdString(infoGame);
 }
 
-void HiloMensajes::run() {
+void HiloMensajes::run() {try {
     bool wasClosed = false;
     int typeMessage = protocol.receiveTypeMessage(wasClosed);
     if (typeMessage == MSG_JOIN){
         std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
         emit infoGameReceived(encodeInfoGame(infoGame->typeMap, infoGame->amountPlayers, 
                             infoGame->infoPlayers));
-    }
-    while (!wasClosed)
-    {
+    } while (!wasClosed) {
         int typeMessage = protocol.receiveTypeMessage(wasClosed);
         if (typeMessage == MSG_START){
+            emit closedWithoutError(0);
             break;
         }
         if (typeMessage == MSG_JOIN){
@@ -84,6 +83,8 @@ void HiloMensajes::run() {
                                 infoGame->infoPlayers));
         }
     }
-    emit closedWithoutError(0);
+    }catch (const std::exception &e) {
+        std::cout << "PONER UN BOOL\n";
+    }
 }
 

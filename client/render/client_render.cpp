@@ -99,22 +99,28 @@ std::string traducirType(int typeInfected){
 
 int ClientRenderer::handlerAction(std::shared_ptr<ActionRender> action){
     if (action->typeAction() == EXIT){
-        //std::cout << "ENTRA A SALIR DEL RENDER\n";
+        std::cout << "ENTRA A SALIR DEL RENDER\n";
         isConnected = false;
+        protocol.closeSocket();
         qServerToRender.close();
         return -1;
     }
     if (action->typeAction() == RESIZE){
         game.updateSizeWindow(action);
     }
-    if (action->typeAction() == STOP_SOUND){
-        //parar sonido
+    if (action->typeAction() == MUTE){
+        soundManager.stopMusic();
+    }
+    if (action->typeAction() == UNMUTE){
+        soundManager.playMusic();
     }
     return 0;
 }
 
 int ClientRenderer::looprender(void) {
     TTF_Init();
+
+    soundManager.playMusic();
     GameTexture& map = textureManager.getTexture("background-war1-pale-war");
     drawInicio();
 

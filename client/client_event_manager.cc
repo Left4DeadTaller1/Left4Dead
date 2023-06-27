@@ -17,6 +17,7 @@ void EventManagerThread::run() {
         bool upMoveSent = false;
         bool downMoveSent = false;
         bool shootSent = false;
+        bool muteSent = false;
 
         while (true) {
             SDL_Event event;
@@ -35,6 +36,18 @@ void EventManagerThread::run() {
                         case SDLK_LSHIFT:
                             shiftPressed = true;
                             break;
+                        case SDLK_m:
+                            if (!muteSent){
+                                std::shared_ptr<ActionRender> action = std::make_shared<ActionRender>(MUTE, 0, 0);
+                                qEventsToRender.push(action);
+                                muteSent = true;
+                                break;    
+                            } else {
+                                std::shared_ptr<ActionRender> action = std::make_shared<ActionRender>(UNMUTE, 0, 0);
+                                qEventsToRender.push(action);
+                                muteSent = false;
+                                break;
+                            }              
                         case SDLK_g:
                             action = std::make_shared<Revive>();
                             break;
