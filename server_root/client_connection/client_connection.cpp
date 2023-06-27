@@ -56,13 +56,15 @@ bool ClientConnection::isRemovable() {
 
 void ClientConnection::kill() {
     keepTalking = false;
-    clientSocket.shutdown(MY_SHUT_RDWR);
-    clientSocket.close();
+    // Socket follows RAII no need for those
+    // clientSocket.shutdown(MY_SHUT_RDWR);
+    // clientSocket.close();
 
     sender.stop();
     receiver.stop();
 
-    gameResponses.close();
+    // The game closes the queue in the destructor
+    //  gameResponses.close();
 
     sender.join();
     receiver.join();

@@ -39,6 +39,27 @@ GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::shared_ptr<
     return GameRecord{};
 }
 
+void GamesManager::removeFinishedGames() {
+    std::lock_guard<std::mutex> lock(m);
+    for (auto it = games.begin(); it != games.end();) {
+        if (!it->second->isGameRunning()) {
+            std::cout << "Game: " << it->first << " finished, removing it." << std::endl;
+            it = games.erase(it);  // erase returns the next iterator so no increase here
+        } else {
+            ++it;
+        }
+    }
+}
+
+void GamesManager::killGames() {
+    std::lock_guard<std::mutex> lock(m);
+    for (auto& [gameId, game] : games) {
+        game->killGame();
+        game->join();
+    }
+    games.clear();  // Remove all games from the map
+}
+
 int GamesManager::_getNextGameId() {
     return nextGameId;
 }

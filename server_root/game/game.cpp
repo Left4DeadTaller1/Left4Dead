@@ -120,7 +120,22 @@ bool Game::hasActivePlayers() {
     return false;
 }
 
-Game::~Game() {}
+void Game::closePlayerQueues() {
+    for (auto queuePtr : playerQueues) {
+        if (queuePtr) {
+            queuePtr->close();
+        }
+    }
+}
+
+void Game::killGame() {
+    gameRunning = false;
+}
+
+Game::~Game() {
+    std::cout << "game being destroyed" << std::endl;
+    closePlayerQueues();
+}
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 -----------------------Api for Game-----------------------------
@@ -197,9 +212,9 @@ void Game::startGame() {
         updateState();  // update game state
 
         // Checks if there is any players left
-        if (!hasActivePlayers()) {
-            std::cout << "No active players left. Closing the game..." << std::endl;
-            gameRunning = false;
+        if (!hasActivePlayers() || !hasAlivePlayers(players)) {
+            std::cout << "No players left. Closing the game." << std::endl;
+            stop();
             break;
         }
 
@@ -590,6 +605,14 @@ void Game::removeDeadEntities() {
             ++it;
         }
     }
+}
+
+bool Game::hasAlivePlayers(std::vector<std::shared_ptr<Player>> players) {
+    for (auto& player : players) {
+        if (!player->isDead())
+            return true;
+    }
+    return false;
 }
 
 void Game::sendState() {

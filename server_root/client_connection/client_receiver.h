@@ -27,7 +27,6 @@ class ClientReceiver : public Thread {
     ClientReceiver(Socket &clientSocket, GamesManager &gamesManager, Queue<std::shared_ptr<std::vector<uint8_t>>> &gameResponses);
     void handleCreateAction(std::string nickName, int typeWeapon, int typeMap);
     void handleJoinAction(const int code, std::string playerNickname, int weaponType);
-    void handleGameAction();
     void handleStartMove(int movementType, int directionXType, int directionYType);
     void handleEndMove(int directionXType, int directionYType);
     void handleStartShoot();
@@ -38,6 +37,7 @@ class ClientReceiver : public Thread {
     // void handleBroadcastAction(Socket &clientSocket, bool &was_closed);
     virtual void run() override;
     bool getIsRunning();
+    bool isGameFinish();
     void stop();
 };
 

@@ -125,45 +125,45 @@ void ClientReceiver::handleJoinAction(const int code, std::string playerNickname
 }
 
 void ClientReceiver::handleStartShoot() {
+    if (isGameFinish())
+        return;
     Action action(playerId, 3, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleEndShoot() {
+    if (isGameFinish())
+        return;
     Action action(playerId, 2, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleRecharge() {
+    if (isGameFinish())
+        return;
     Action action(playerId, 4, 3, 3);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleStartMove(int movementType, int directionXType, int directionYType) {
+    if (isGameFinish())
+        return;
     Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleEndMove(int directionXType, int directionYType) {
+    if (isGameFinish())
+        return;
     int movementType = 7;
     Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
 void ClientReceiver::handleRevive() {
+    if (isGameFinish())
+        return;
     Action action(playerId, 6, 3, 3);
-    game->pushAction(action);
-}
-
-// TODO prob remove this
-void ClientReceiver::handleGameAction() {
-    // We can move this to line 32
-    // int actionType = protocol.receiveActionType(clientSocket, was_closed);
-    // TODO: check if number of actionType is between the accepted range to create action
-    int movementType = 0;  // placeholder you should get the action from the protocol
-    int directionXType = 0;
-    int directionYType = 0;
-    Action action(playerId, movementType, directionXType, directionYType);
     game->pushAction(action);
 }
 
@@ -176,7 +176,18 @@ bool ClientReceiver::getIsRunning() {
 }
 
 void ClientReceiver::handlePlayerDisconnection() {
-    game->removePlayer(gameResponses);
+    if (isGameFinish())
+        return;
+    // game->removePlayer(gameResponses);
     Action action(playerId, 7, 2, 2);
     game->pushAction(action);
+}
+
+bool ClientReceiver::isGameFinish() {
+    if (game && !game->isGameRunning()) {
+        game.reset();  // Reset the shared_ptr when game is not running
+        stop();
+        return true;
+    }
+    return false;
 }

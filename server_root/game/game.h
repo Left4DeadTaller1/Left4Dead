@@ -28,7 +28,6 @@ enum MapType {
     MAP8_BACKGROUND,
 };
 
-// change to Game
 class Game : public Thread {
     /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
     -------------------Api for clientCommunication------------------
@@ -56,7 +55,9 @@ class Game : public Thread {
     void stop();
     bool isGameRunning();
     bool hasActivePlayers();
-    // leaveGame();
+    void closePlayerQueues();
+
+    void killGame();
 
     ~Game();
 
@@ -94,6 +95,7 @@ class Game : public Thread {
     void revivePlayer(Player& player);
     bool checkAfk(Player& player);
     void disconnectPlayer(Player& player);
+    bool hasAlivePlayers(std::vector<std::shared_ptr<Player>> players);
 
     void sendState();
     std::vector<std::shared_ptr<EntityDTO>> getDtos();

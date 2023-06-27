@@ -6,7 +6,7 @@ gameParams:
   dimensions:
     GAME_WIDTH: 1500
     GAME_HEIGHT: 150
-    PLAYER_MAX_AFK_TIME: 300
+    PLAYER_MAX_AFK_TIME: 900
   
   entities:
     PLAYER_WIDTH: 20
