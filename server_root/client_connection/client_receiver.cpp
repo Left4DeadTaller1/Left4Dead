@@ -173,7 +173,7 @@ void ClientReceiver::handleRevive() {
 }
 
 void ClientReceiver::stop() {
-    std::cout << "stop being call" << std::endl;
+    std::cout << "stop Receiver being call" << std::endl;
     isRunning = false;
 }
 
