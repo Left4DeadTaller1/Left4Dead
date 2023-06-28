@@ -18,12 +18,19 @@ GameRecord GamesManager::createLobby(Queue<std::shared_ptr<std::vector<uint8_t>>
     return gameRecord;
 }
 
-void GamesManager::startGame(unsigned int gameCode) {
+void GamesManager::startGame(std::shared_ptr<Game> gameToStart) {
     std::lock_guard<std::mutex> lock(m);
-    auto it = games.find(gameCode);
-    if (it != games.end()) {
-        it->second->start();
+
+    // Search for the game in the map based on the shared_ptr.
+    for (auto& gamePair : games) {
+        if (gamePair.second == gameToStart) {
+            gamePair.second->start();
+            return;
+        }
     }
+
+    // Optional: Print a message if the game was not found in the map.
+    std::cout << "Game not found\n";
 }
 
 GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname, int weaponType) {

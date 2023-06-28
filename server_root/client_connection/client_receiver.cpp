@@ -59,7 +59,7 @@ void ClientReceiver::run() {
                     std::cout << "SE RECIBE START\n";
                     // TODO receive the gameCode and pass it to the startGame
                     if (!game->isGameRunning())
-                        gamesManager.startGame(0);
+                        gamesManager.startGame(game);
                     break;
                 }
                 case START_MOVE: {

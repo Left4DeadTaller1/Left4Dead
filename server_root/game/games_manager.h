@@ -23,7 +23,7 @@ class GamesManager {
    public:
     GamesManager();
 
-    void startGame(unsigned int gameCode);
+    void startGame(std::shared_ptr<Game> gameToStart);
 
     GameRecord createLobby(Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string nickName, int typeWeapon, int typeMap);
 
