@@ -498,7 +498,6 @@ std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(const 
 }
 
 std::shared_ptr<std::vector<uint8_t>> ServerProtocol::encodeServerMessage(int timePlayed, int zombiesKilled) {
-    std::cout << "In encodeServerMessage" << std::endl;
     std::shared_ptr<std::vector<uint8_t>> encodedMsg = std::make_shared<std::vector<uint8_t>>();
     encodedMsg->push_back(5);
 
