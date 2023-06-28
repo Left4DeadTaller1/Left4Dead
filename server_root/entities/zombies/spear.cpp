@@ -13,8 +13,8 @@ Spear::Spear(int xPosition, int yPosition, std::string zombieId, int mutationLev
 
     width = entityParams["SPEAR_WIDTH"];
     height = entityParams["SPEAR_HEIGHT"];
-    health = entityParams["SPEAR_HEALTH"] + mutationIncrease;
-    movementSpeed = entityParams["SPEAR_SPEED"] + mutationIncrease;
+    health = entityParams["SPEAR_HEALTH"] * (1 + mutationIncrease);
+    movementSpeed = entityParams["SPEAR_SPEED"] * (1 + mutationIncrease);
     // Todo: add jump ATk
     attacksCooldowns.insert(std::make_pair("melee", 0));
 }
@@ -43,7 +43,7 @@ Attack Spear::generateAttack() {
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
     int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
-    int atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"] + mutationIncrease;
+    int atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"] * (1 + mutationIncrease);
     int attackRange = entityParams["SPEAR_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;

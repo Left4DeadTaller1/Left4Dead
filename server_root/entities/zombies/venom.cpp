@@ -13,8 +13,8 @@ Venom::Venom(int xPosition, int yPosition, std::string zombieId, int mutationLev
 
     width = entityParams["VENOM_WIDTH"];
     height = entityParams["VENOM_HEIGHT"];
-    health = entityParams["VENOM_HEALTH"] + mutationIncrease;
-    movementSpeed = entityParams["VENOM_SPEED"] + mutationIncrease;
+    health = entityParams["VENOM_HEALTH"] * (1 + mutationIncrease);
+    movementSpeed = entityParams["VENOM_SPEED"] * (1 + mutationIncrease);
     attacksCooldowns.insert(std::make_pair("spray", 0));
     attacksCooldowns.insert(std::make_pair("proyectile", 0));
 }
@@ -61,11 +61,11 @@ Attack Venom::generateAttack() {
     }
 
     if (attacksCooldowns["proyectile"] == 0) {
-        atkDmg = entityParams["VENOM_PROYECTILE_DAMAGE"] + mutationIncrease;
+        atkDmg = entityParams["VENOM_PROYECTILE_DAMAGE"] * (1 + mutationIncrease);
         attackRange = entityParams["VENOM_PROYECTILE_RANGE"];
         return Attack(LONG_VENOM, atkDmg, attackX, attackDirection, y, y + height, attackRange);
     } else {
-        atkDmg = entityParams["VENOM_SPRAY_DAMAGE"] + mutationIncrease;
+        atkDmg = entityParams["VENOM_SPRAY_DAMAGE"] * (1 + mutationIncrease);
         attackRange = entityParams["VENOM_SPRAY_RANGE"];
         return Attack(SHORT_VENOM, atkDmg, attackX, attackDirection, y, y + height, attackRange);
     }

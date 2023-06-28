@@ -13,8 +13,8 @@ Infected::Infected(int xPosition, int yPosition, std::string zombieId, int mutat
 
     width = entityParams["INFECTED_WIDTH"];
     height = entityParams["INFECTED_HEIGHT"];
-    health = entityParams["INFECTED_HEALTH"] + mutationIncrease;
-    movementSpeed = entityParams["INFECTED_SPEED"] + mutationIncrease;
+    health = entityParams["INFECTED_HEALTH"] * (1 * (1 + mutationIncrease));
+    movementSpeed = entityParams["INFECTED_SPEED"] * (1 * (1 + mutationIncrease));
     attacksCooldowns.insert(std::make_pair("melee", 0));
 }
 
@@ -43,7 +43,7 @@ Attack Infected::generateAttack() {
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
     int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
 
-    int atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"] + mutationIncrease;
+    int atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"] * (1 * (1 + mutationIncrease));
     int attackRange = entityParams["INFECTED_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;

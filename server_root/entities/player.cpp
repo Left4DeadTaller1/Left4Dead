@@ -120,12 +120,14 @@ void Player::revive() {
 bool Player::takeDamage(int damage) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
+    std::cout << "player took dmg" << std::endl;
     health -= damage;
     if (health <= 0) {
         health = 0;
         actionState = PLAYER_DYING;
         actionCounter = entityParams["PLAYER_DYING_DURATION"];
         knockDowns++;
+        std::cout << "Player " << entityId << " died" << std::endl;
         return true;
     } else {
         actionState = PLAYER_HURT;
