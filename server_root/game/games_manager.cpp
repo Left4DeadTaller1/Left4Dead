@@ -75,7 +75,6 @@ void GamesManager::removeFinishedGames() {
 }
 
 void GamesManager::killGames() {
-    std::cout << "In kill game games Manager" << std::endl;
     std::lock_guard<std::mutex> lock(m);
     for (auto& [gameId, game] : games) {
         game->killGame();

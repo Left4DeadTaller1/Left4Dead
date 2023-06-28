@@ -141,9 +141,8 @@ void Game::sendAction(Action action) {
 }
 
 void Game::stop() {
-    std::cout << "Game stop being call" << std::endl;
     gameRunning = false;
-    closePlayerQueues();  // this should go here
+    closePlayerQueues();
 }
 
 bool Game::isGameRunning() {
@@ -164,7 +163,6 @@ bool Game::hasActivePlayers() {
 }
 
 void Game::closePlayerQueues() {
-    std::cout << "Closing Queues being call" << std::endl;
     for (auto queuePtr : playerQueues) {
         if (queuePtr) {
             queuePtr->close();
@@ -173,13 +171,12 @@ void Game::closePlayerQueues() {
 }
 
 void Game::killGame() {
-    std::cout << "Game kill being call" << std::endl;
     if (gameRunning == true)
         stop();
 }
 
 Game::~Game() {
-    std::cout << "game being destroyed" << std::endl;
+    std::cout << "Game being destroyed" << std::endl;
 }
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
@@ -379,7 +376,7 @@ bool Game::updatePlayerState(Player& player, std::queue<Action>& playerActions) 
         int actionMovementDirectionY = action.getDirectionYType();
 
         if (actionPlayerState == DISCONNECTION) {
-            std::cout << "Player " << player.getId() << " disconnected." << std::endl;
+            std::cout << "\nPlayer " << player.getId() << " disconnected." << std::endl;
             return true;
         }
 

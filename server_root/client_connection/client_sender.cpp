@@ -43,12 +43,11 @@ void ClientSender::run() {
             }
         }
     } catch (const ClosedQueue &e) {
-        std::cout << "Sender stop being call" << std::endl;
         // The queue is closed.
         stop();
-        std::cerr << "ClientSender: Queue is closed. Ending thread." << std::endl;
+        std::cerr << "ClientSender Exception caught: Queue is closed. Ending thread." << std::endl;
     } catch (const std::exception &e) {
-        std::cerr << "ClientSender: Exception caught: " << e.what() << std::endl;
+        std::cerr << "ClientSender Exception caught: " << e.what() << std::endl;
     } catch (...) {
         std::cerr << "ClientSender: Unknown exception caught. Ending thread." << std::endl;
     }
