@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmenuQT.a CMakeFiles/menuQT.dir/menuQT_autogen/mocs_compilation.cpp.o CMakeFiles/menuQT.dir/client/menuQT/mainwindow.cpp.o CMakeFiles/menuQT.dir/client/menuQT/create.cpp.o CMakeFiles/menuQT.dir/client/menuQT/join.cpp.o CMakeFiles/menuQT.dir/client/menuQT/hiloMensajes.cpp.o
+/usr/bin/ranlib libmenuQT.a
