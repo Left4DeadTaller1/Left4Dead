@@ -1,15 +1,15 @@
 {
-	"BUILD_DIR" : "/home/regman/taller/left4Dead/build/menuQT_autogen",
-	"CMAKE_BINARY_DIR" : "/home/regman/taller/left4Dead/build",
-	"CMAKE_CURRENT_BINARY_DIR" : "/home/regman/taller/left4Dead/build",
-	"CMAKE_CURRENT_SOURCE_DIR" : "/home/regman/taller/left4Dead",
+	"BUILD_DIR" : "/home/usaurio/Left4Dead/build/menuQT_autogen",
+	"CMAKE_BINARY_DIR" : "/home/usaurio/Left4Dead/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/usaurio/Left4Dead/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/usaurio/Left4Dead",
 	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
 	"CMAKE_LIST_FILES" : 
 	[
-		"/home/regman/taller/left4Dead/CMakeLists.txt",
-		"/home/regman/taller/left4Dead/build/CMakeFiles/3.22.1/CMakeSystem.cmake",
+		"/home/usaurio/Left4Dead/CMakeLists.txt",
+		"/home/usaurio/Left4Dead/build/CMakeFiles/3.22.1/CMakeSystem.cmake",
 		"/usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake",
-		"/home/regman/taller/left4Dead/build/CMakeFiles/3.22.1/CMakeCXXCompiler.cmake",
+		"/home/usaurio/Left4Dead/build/CMakeFiles/3.22.1/CMakeCXXCompiler.cmake",
 		"/usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake",
 		"/usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake",
 		"/usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake",
@@ -113,52 +113,49 @@
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Network/Qt5Network_QNetworkManagerEnginePlugin.cmake"
 	],
-	"CMAKE_SOURCE_DIR" : "/home/regman/taller/left4Dead",
+	"CMAKE_SOURCE_DIR" : "/home/usaurio/Left4Dead",
 	"DEP_FILE" : "",
 	"DEP_FILE_RULE_NAME" : "",
 	"HEADERS" : 
 	[
 		[
-			"/home/regman/taller/left4Dead/client/menuQT/create.h",
+			"/home/usaurio/Left4Dead/client/menuQT/create.h",
 			"MU",
 			"Z27WL6GE6B/moc_create.cpp",
 			null
 		],
 		[
-			"/home/regman/taller/left4Dead/client/menuQT/hiloMensajes.h",
+			"/home/usaurio/Left4Dead/client/menuQT/hiloMensajes.h",
 			"MU",
 			"Z27WL6GE6B/moc_hiloMensajes.cpp",
 			null
 		],
 		[
-			"/home/regman/taller/left4Dead/client/menuQT/join.h",
+			"/home/usaurio/Left4Dead/client/menuQT/join.h",
 			"MU",
 			"Z27WL6GE6B/moc_join.cpp",
 			null
 		],
 		[
-			"/home/regman/taller/left4Dead/client/menuQT/mainwindow.h",
+			"/home/usaurio/Left4Dead/client/menuQT/mainwindow.h",
 			"MU",
 			"Z27WL6GE6B/moc_mainwindow.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "/home/regman/taller/left4Dead/build/menuQT_autogen/include",
-	"MOC_COMPILATION_FILE" : "/home/regman/taller/left4Dead/build/menuQT_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "/home/usaurio/Left4Dead/build/menuQT_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/usaurio/Left4Dead/build/menuQT_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
-		"BASE_PATH=\"/home/regman/taller/left4Dead\"",
-		"DATA_PATH=\"/home/regman/taller/left4Dead\"",
-		"ICONO_SONIDO_QT=\"/home/regman/taller/left4Dead/client/render/resources/icono_sonido.png\"",
-		"IMAGEN_FONDO_QT=\"/home/regman/taller/left4Dead/client/render/resources/fondoqt2.jpeg\"",
+		"BASE_PATH=\"/home/usaurio/Left4Dead\"",
+		"DATA_PATH=\"/home/usaurio/Left4Dead\"",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_MULTIMEDIA_LIB",
 		"QT_NETWORK_LIB",
 		"QT_NO_DEBUG",
-		"QT_WIDGETS_LIB",
-		"SOUND_FONDO_QT=\"/home/regman/taller/left4Dead/client/render/resources/sounds/fondo3.mp3\""
+		"QT_WIDGETS_LIB"
 	],
 	"MOC_DEPEND_FILTERS" : 
 	[
@@ -169,17 +166,12 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/home/regman/taller/left4Dead/build",
-		"/home/regman/taller/left4Dead",
-		"/home/regman/taller/left4Dead/dipa_classes",
-		"/home/regman/taller/left4Dead/client/actions",
-		"/home/regman/taller/left4Dead/client",
-		"/home/regman/taller/left4Dead/client/render/game",
-		"/home/regman/taller/left4Dead/client/render",
-		"/home/regman/taller/left4Dead/client/render/sound",
-		"/home/regman/taller/left4Dead/client/render/texture",
-		"/home/regman/taller/left4Dead/client/client_connection",
-		"/home/regman/taller/left4Dead/client/menuQT",
+		"/home/usaurio/Left4Dead/build",
+		"/home/usaurio/Left4Dead",
+		"/home/usaurio/Left4Dead/dipa_classes",
+		"/home/usaurio/Left4Dead/client/actions",
+		"/home/usaurio/Left4Dead/client/render/game",
+		"/home/usaurio/Left4Dead/client/client_connection",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui",
@@ -206,47 +198,39 @@
 		"-c",
 		"/usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "/home/regman/taller/left4Dead/build/menuQT_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "/home/usaurio/Left4Dead/build/menuQT_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : 
 	[
-		"/home/regman/taller/left4Dead/build/ui_create.h",
-		"/home/regman/taller/left4Dead/build/ui_join.h",
-		"/home/regman/taller/left4Dead/build/ui_mainwindow.h"
+		"/home/usaurio/Left4Dead/build/ui_create.h",
+		"/home/usaurio/Left4Dead/build/ui_join.h",
+		"/home/usaurio/Left4Dead/build/ui_mainwindow.h"
 	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 4,
-	"PARSE_CACHE_FILE" : "/home/regman/taller/left4Dead/build/CMakeFiles/menuQT_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "/home/usaurio/Left4Dead/build/CMakeFiles/menuQT_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/usr/lib/qt5/bin/moc",
 	"QT_UIC_EXECUTABLE" : "/usr/lib/qt5/bin/uic",
 	"QT_VERSION_MAJOR" : 5,
 	"QT_VERSION_MINOR" : 15,
-	"SETTINGS_FILE" : "/home/regman/taller/left4Dead/build/CMakeFiles/menuQT_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "/home/usaurio/Left4Dead/build/CMakeFiles/menuQT_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "/home/regman/taller/left4Dead/client/menuQT/create.cpp", "MU", null ],
-		[
-			"/home/regman/taller/left4Dead/client/menuQT/hiloMensajes.cpp",
-			"MU",
-			null
-		],
-		[ "/home/regman/taller/left4Dead/client/menuQT/join.cpp", "MU", null ],
-		[
-			"/home/regman/taller/left4Dead/client/menuQT/mainwindow.cpp",
-			"MU",
-			null
-		]
+		[ "/home/usaurio/Left4Dead/client/menuQT/create.cpp", "MU", null ],
+		[ "/home/usaurio/Left4Dead/client/menuQT/hiloMensajes.cpp", "MU", null ],
+		[ "/home/usaurio/Left4Dead/client/menuQT/join.cpp", "MU", null ],
+		[ "/home/usaurio/Left4Dead/client/menuQT/mainwindow.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : 
 	[
-		"/home/regman/taller/left4Dead/build/ui_create.h",
-		"/home/regman/taller/left4Dead/build/ui_join.h",
-		"/home/regman/taller/left4Dead/build/ui_mainwindow.h",
-		"/home/regman/taller/left4Dead/client/menuQT/create.ui",
-		"/home/regman/taller/left4Dead/client/menuQT/join.ui",
-		"/home/regman/taller/left4Dead/client/menuQT/mainwindow.ui"
+		"/home/usaurio/Left4Dead/build/ui_create.h",
+		"/home/usaurio/Left4Dead/build/ui_join.h",
+		"/home/usaurio/Left4Dead/build/ui_mainwindow.h",
+		"/home/usaurio/Left4Dead/client/menuQT/create.ui",
+		"/home/usaurio/Left4Dead/client/menuQT/join.ui",
+		"/home/usaurio/Left4Dead/client/menuQT/mainwindow.ui"
 	],
 	"UIC_UI_FILES" : [],
 	"VERBOSITY" : 0

@@ -10,6 +10,7 @@
 #include "renderer_config.h"
 #include "client_texture_manager.h"
 #include "client_sound_manager.h"
+#include "client_lifeBar.h"
 
 class ClientInfected {
     private:
@@ -20,6 +21,7 @@ class ClientInfected {
     int lookingTo;
     bool isDead;
     int counterDeath;
+    LifeBar lifeBar;
     std::map<state_t, GameTexture>& texturesInfected;
     std::map<state_t, std::shared_ptr<Sound>>& sounds;
 
@@ -39,7 +41,8 @@ class ClientInfected {
     public:
     ClientInfected(std::map<state_t, GameTexture>& textures,
                     std::map<state_t, std::shared_ptr<Sound>>& sounds,
-                    infected_t& currentInfected);
+                    infected_t& currentInfected,
+                    GameTexture& textureLifeBar);
 
     void draw(SDL2pp::Renderer& renderer, int it);
 

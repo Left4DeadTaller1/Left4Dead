@@ -1,11 +1,11 @@
-/home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_hiloMensajes.cpp: /home/regman/taller/left4Dead/client/menuQT/hiloMensajes.h \
-  /home/regman/taller/left4Dead/build/menuQT_autogen/moc_predefs.h \
-  /home/regman/taller/left4Dead/client/actions/action_client.h \
-  /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
-  /home/regman/taller/left4Dead/client/render/game/client_game_state.h \
-  /home/regman/taller/left4Dead/dipa_classes/liberror.h \
-  /home/regman/taller/left4Dead/dipa_classes/socket.h \
-  /home/regman/taller/left4Dead/dipa_classes/thread.h \
+/home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_hiloMensajes.cpp: /home/usaurio/Left4Dead/client/menuQT/hiloMensajes.h \
+  /home/usaurio/Left4Dead/build/menuQT_autogen/moc_predefs.h \
+  /home/usaurio/Left4Dead/client/actions/action_client.h \
+  /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
+  /home/usaurio/Left4Dead/client/render/game/client_game_state.h \
+  /home/usaurio/Left4Dead/dipa_classes/liberror.h \
+  /home/usaurio/Left4Dead/dipa_classes/socket.h \
+  /home/usaurio/Left4Dead/dipa_classes/thread.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
   /usr/include/assert.h \

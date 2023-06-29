@@ -9,7 +9,6 @@ RendererConfig::RendererConfig() {
         YAML::Node config = YAML::LoadFile(filename);
 
         if (config["rendererParams"]) {
-            // Load game dimensions
             if (config["rendererParams"]["dimensionsWindows"]) {
                 dimensionsWindows = config["rendererParams"]["dimensionsWindows"].as<std::map<std::string, int>>();
             }

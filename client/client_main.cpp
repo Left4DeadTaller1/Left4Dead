@@ -26,7 +26,6 @@ int main(int argc, char *argv[]) { try {
     MainWindow windowQT(protocol);
     windowQT.show();
     ret = a.exec();
-    std::cout << "RET = " << ret << "\n";
     
     if (ret == 0){
         RendererConfig& config = RendererConfig::getInstance();

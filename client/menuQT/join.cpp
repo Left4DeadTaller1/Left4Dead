@@ -9,7 +9,8 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
     ui(new Ui::Join),
     hiloMensajes(nullptr),
     model(this),
-    exitCode(-1)
+    exitCode(-1),
+    isConnected(true)
 {
     ui->setupUi(this);
 
@@ -60,43 +61,15 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
     ui->listView3->setStyleSheet(itemStyle);
 }
 
-void Join::closeEvent(QCloseEvent *event)
-{
-    std::cout << "entra a closeEvent en join\n";
-    std::cout << "exit code: " << exitCode << "\n";
-    if (exitCode == -1){
-        protocol.closeSocket();
-    }
-    emit closedWithError(exitCode);
-}
-
-void Join::handleClosed(int _exitCode)
-{
-    std::cout << "entra a handleClosed\n";
-    exitCode = _exitCode;
-    emit closedWithError(_exitCode);
-}
-
 void Join::sliderChanged(int value)
 {
     qreal volume = value;
     player3->setVolume(volume);
 }
 
-Join::~Join()
-{
-    player3->stop();
-    delete player3;
-    delete ui;
-    if (hiloMensajes) {
-        hiloMensajes->join();
-        delete hiloMensajes;
-    }
-}
-
 void Join::startReceiving()
 {
-    hiloMensajes = new HiloMensajes(protocol);
+    hiloMensajes = new HiloMensajes(protocol, isConnected);
     connect(hiloMensajes, &HiloMensajes::infoGameReceived, this, &Join::handlerInfoGameReceived);
     connect(hiloMensajes, &HiloMensajes::typeMapReceived, this, &Join::handlerTypeMap);
     connect(hiloMensajes, &HiloMensajes::closedWithoutError, this, &Join::handleClosed);
@@ -216,4 +189,29 @@ void Join::handlerInfoGameReceived(const QString& messageInfoGame)
     }
 }
 
+void Join::closeEvent(QCloseEvent *event)
+{
+    if (exitCode == -1){
+        isConnected = false;
+        protocol.closeSocket();
+    }
+    emit closedWithError(exitCode);
+}
+
+void Join::handleClosed(int _exitCode)
+{
+    exitCode = _exitCode;
+    emit closedWithError(_exitCode);
+}
+
+Join::~Join()
+{
+    player3->stop();
+    delete player3;
+    delete ui;
+    if (hiloMensajes) {
+        hiloMensajes->join();
+        delete hiloMensajes;
+    }
+}
 

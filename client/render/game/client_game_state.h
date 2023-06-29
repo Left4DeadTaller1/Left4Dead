@@ -72,7 +72,6 @@ typedef struct player {
     uint16_t y;
     uint8_t lookingTo;
     uint16_t health;
-    //uint8_t typePlayer;
 } player_t;
 
 typedef struct infected {

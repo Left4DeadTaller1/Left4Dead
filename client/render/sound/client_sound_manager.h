@@ -24,11 +24,9 @@ class SoundManager {
 
     public:
     SoundManager();
-
     std::map<state_t, std::shared_ptr<Sound>>& getSounds(typeEntity_t type);
     void playMusic(void);
     void stopMusic(void);
-
     ~SoundManager();
 };
 

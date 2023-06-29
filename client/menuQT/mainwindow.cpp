@@ -134,17 +134,7 @@ TypeWeapon_t MainWindow::StringToTypeWeapon(const std::string& weaponPlayer) {
 }
 
 void MainWindow::handlerTypeMap(const QString& typeMap_){
-    std::cout << "type map: " << typeMap_.toStdString() << "\n";
     typeMap = StringToTypeMap(typeMap_.toStdString());
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-    delete c;
-    delete j;
-    player->stop();
-    delete player;
 }
 
 void MainWindow::createButtonClicked()
@@ -162,10 +152,9 @@ void MainWindow::createButtonClicked()
         namePlayer = nickname.toStdString();
         std::string weaponPlayer = weapon.toStdString();
         std::string map = mapa.toStdString();
-        std::cout << "map que se envia: " << map << "\n";
         std::shared_ptr<ActionClient> action = std::make_shared<CreateAction>(namePlayer,
-                                                                        weaponPlayer,
-                                                                        map);
+                                                                StringToTypeWeapon(weaponPlayer),
+                                                                StringToTypeMap(map));
         protocol.sendAction(std::move(action), wasClosed);
         player->stop();
         hide();
@@ -192,8 +181,8 @@ void MainWindow::joinButtonClicked()
         std::string weaponPlayer = weapon.toStdString();
         std::string codeGame = code.toStdString();
         std::shared_ptr<ActionClient> action = std::make_shared<JoinAction>(namePlayer,
-                                                                    weaponPlayer,
-                                                                    codeGame);
+                                                                    StringToTypeWeapon(weaponPlayer),
+                                                                    std::stoi(codeGame));
         protocol.sendAction(std::move(action), wasClosed);
         player->stop();
         hide();
@@ -234,5 +223,14 @@ std::string MainWindow::getNamePlayer(void){
 
 TypeMap_t MainWindow::getTypeMap(void){
     return typeMap;
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+    delete c;
+    delete j;
+    player->stop();
+    delete player;
 }
 

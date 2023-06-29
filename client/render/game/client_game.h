@@ -21,18 +21,13 @@ class ClientGame {
     TextureManager& textureManager;
     SoundManager& soundManager;
     MainWindow& windowQT;
+
     //no tienen porque ser punteros cambiar!!!
     std::map<uint8_t, std::shared_ptr<ClientPlayer>> players;
     std::map<uint8_t, std::shared_ptr<ClientInfected>> infected;
-    std::map<uint8_t, std::shared_ptr<LifeBar>> lifeBar;
 
     void updatePlayers(std::vector<player_t>& players);
-
     void updateInfected(std::vector<infected_t>& zombies);
-
-    void updateLifeBar(std::vector<player_t>& players_);
-    void updateLifeBar2(std::vector<infected_t>& players_);
-
     void cleanDead(std::map<uint8_t, std::shared_ptr<ClientInfected>>& infected);
     std::string formatTime(int milliseconds);
 
@@ -42,17 +37,10 @@ class ClientGame {
                 MainWindow& windowQT);
 
     void updateGame(std::shared_ptr<gameStateDTO_t> newGame);
-
     void drawPlayers(SDL2pp::Renderer& renderer, int it);
-
     void drawInfected(SDL2pp::Renderer& renderer, int it);
-
-    void drawLifeBar(SDL2pp::Renderer& renderer);
-
     void drawGameTime(SDL2pp::Renderer& renderer, int gameTime);
-
     void updateSizeWindow(std::shared_ptr<ActionRender> action);
-
 };
 
 #endif

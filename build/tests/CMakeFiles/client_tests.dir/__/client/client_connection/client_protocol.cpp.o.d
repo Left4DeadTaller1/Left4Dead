@@ -1,7 +1,7 @@
 tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o: \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.cpp \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -158,10 +158,10 @@ tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cp
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/regman/taller/left4Dead/tests/../dipa_classes/socket.h \
- /home/regman/taller/left4Dead/tests/../client/actions/action_client.h \
- /home/regman/taller/left4Dead/tests/../client/actions/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/client_connection/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/tests/../dipa_classes/socket.h \
+ /home/usaurio/Left4Dead/tests/../client/actions/action_client.h \
+ /home/usaurio/Left4Dead/tests/../client/actions/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/client_connection/../render/game/client_game_state.h \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \

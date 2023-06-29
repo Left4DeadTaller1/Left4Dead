@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/regman/taller/left4Dead
+CMAKE_SOURCE_DIR = /home/usaurio/Left4Dead
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/regman/taller/left4Dead/build
+CMAKE_BINARY_DIR = /home/usaurio/Left4Dead/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/regman/taller/left4Dead/build/CMakeFiles /home/regman/taller/left4Dead/build/tests//CMakeFiles/progress.marks
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/regman/taller/left4Dead/build/CMakeFiles 0
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/usaurio/Left4Dead/build/CMakeFiles /home/usaurio/Left4Dead/build/tests//CMakeFiles/progress.marks
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/usaurio/Left4Dead/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/clean
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,23 +148,23 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/preinstall
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/preinstall
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -P /home/regman/taller/left4Dead/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -P /home/usaurio/Left4Dead/build/CMakeFiles/VerifyGlobs.cmake
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 tests/CMakeFiles/server_tests.dir/rule:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/server_tests.dir/rule
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/server_tests.dir/rule
 .PHONY : tests/CMakeFiles/server_tests.dir/rule
 
 # Convenience name for target.
@@ -173,12 +173,12 @@ server_tests: tests/CMakeFiles/server_tests.dir/rule
 
 # fast build rule for target.
 server_tests/fast:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/build
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/build
 .PHONY : server_tests/fast
 
 # Convenience name for target.
 tests/CMakeFiles/client_tests.dir/rule:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/client_tests.dir/rule
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/client_tests.dir/rule
 .PHONY : tests/CMakeFiles/client_tests.dir/rule
 
 # Convenience name for target.
@@ -187,7 +187,7 @@ client_tests: tests/CMakeFiles/client_tests.dir/rule
 
 # fast build rule for target.
 client_tests/fast:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/build
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/build
 .PHONY : client_tests/fast
 
 __/client/client_connection/client_protocol.o: __/client/client_connection/client_protocol.cpp.o
@@ -195,7 +195,7 @@ __/client/client_connection/client_protocol.o: __/client/client_connection/clien
 
 # target to build an object file
 __/client/client_connection/client_protocol.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.o
 .PHONY : __/client/client_connection/client_protocol.cpp.o
 
 __/client/client_connection/client_protocol.i: __/client/client_connection/client_protocol.cpp.i
@@ -203,7 +203,7 @@ __/client/client_connection/client_protocol.i: __/client/client_connection/clien
 
 # target to preprocess a source file
 __/client/client_connection/client_protocol.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.i
 .PHONY : __/client/client_connection/client_protocol.cpp.i
 
 __/client/client_connection/client_protocol.s: __/client/client_connection/client_protocol.cpp.s
@@ -211,7 +211,7 @@ __/client/client_connection/client_protocol.s: __/client/client_connection/clien
 
 # target to generate assembly for a file
 __/client/client_connection/client_protocol.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/client/client_connection/client_protocol.cpp.s
 .PHONY : __/client/client_connection/client_protocol.cpp.s
 
 __/dipa_classes/liberror.o: __/dipa_classes/liberror.cpp.o
@@ -219,7 +219,7 @@ __/dipa_classes/liberror.o: __/dipa_classes/liberror.cpp.o
 
 # target to build an object file
 __/dipa_classes/liberror.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.o
 .PHONY : __/dipa_classes/liberror.cpp.o
 
 __/dipa_classes/liberror.i: __/dipa_classes/liberror.cpp.i
@@ -227,7 +227,7 @@ __/dipa_classes/liberror.i: __/dipa_classes/liberror.cpp.i
 
 # target to preprocess a source file
 __/dipa_classes/liberror.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.i
 .PHONY : __/dipa_classes/liberror.cpp.i
 
 __/dipa_classes/liberror.s: __/dipa_classes/liberror.cpp.s
@@ -235,7 +235,7 @@ __/dipa_classes/liberror.s: __/dipa_classes/liberror.cpp.s
 
 # target to generate assembly for a file
 __/dipa_classes/liberror.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/liberror.cpp.s
 .PHONY : __/dipa_classes/liberror.cpp.s
 
 __/dipa_classes/resolver.o: __/dipa_classes/resolver.cpp.o
@@ -243,7 +243,7 @@ __/dipa_classes/resolver.o: __/dipa_classes/resolver.cpp.o
 
 # target to build an object file
 __/dipa_classes/resolver.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.o
 .PHONY : __/dipa_classes/resolver.cpp.o
 
 __/dipa_classes/resolver.i: __/dipa_classes/resolver.cpp.i
@@ -251,7 +251,7 @@ __/dipa_classes/resolver.i: __/dipa_classes/resolver.cpp.i
 
 # target to preprocess a source file
 __/dipa_classes/resolver.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.i
 .PHONY : __/dipa_classes/resolver.cpp.i
 
 __/dipa_classes/resolver.s: __/dipa_classes/resolver.cpp.s
@@ -259,7 +259,7 @@ __/dipa_classes/resolver.s: __/dipa_classes/resolver.cpp.s
 
 # target to generate assembly for a file
 __/dipa_classes/resolver.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolver.cpp.s
 .PHONY : __/dipa_classes/resolver.cpp.s
 
 __/dipa_classes/resolvererror.o: __/dipa_classes/resolvererror.cpp.o
@@ -267,7 +267,7 @@ __/dipa_classes/resolvererror.o: __/dipa_classes/resolvererror.cpp.o
 
 # target to build an object file
 __/dipa_classes/resolvererror.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.o
 .PHONY : __/dipa_classes/resolvererror.cpp.o
 
 __/dipa_classes/resolvererror.i: __/dipa_classes/resolvererror.cpp.i
@@ -275,7 +275,7 @@ __/dipa_classes/resolvererror.i: __/dipa_classes/resolvererror.cpp.i
 
 # target to preprocess a source file
 __/dipa_classes/resolvererror.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.i
 .PHONY : __/dipa_classes/resolvererror.cpp.i
 
 __/dipa_classes/resolvererror.s: __/dipa_classes/resolvererror.cpp.s
@@ -283,7 +283,7 @@ __/dipa_classes/resolvererror.s: __/dipa_classes/resolvererror.cpp.s
 
 # target to generate assembly for a file
 __/dipa_classes/resolvererror.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/resolvererror.cpp.s
 .PHONY : __/dipa_classes/resolvererror.cpp.s
 
 __/dipa_classes/socket.o: __/dipa_classes/socket.cpp.o
@@ -291,7 +291,7 @@ __/dipa_classes/socket.o: __/dipa_classes/socket.cpp.o
 
 # target to build an object file
 __/dipa_classes/socket.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.o
 .PHONY : __/dipa_classes/socket.cpp.o
 
 __/dipa_classes/socket.i: __/dipa_classes/socket.cpp.i
@@ -299,7 +299,7 @@ __/dipa_classes/socket.i: __/dipa_classes/socket.cpp.i
 
 # target to preprocess a source file
 __/dipa_classes/socket.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.i
 .PHONY : __/dipa_classes/socket.cpp.i
 
 __/dipa_classes/socket.s: __/dipa_classes/socket.cpp.s
@@ -307,7 +307,7 @@ __/dipa_classes/socket.s: __/dipa_classes/socket.cpp.s
 
 # target to generate assembly for a file
 __/dipa_classes/socket.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/__/dipa_classes/socket.cpp.s
 .PHONY : __/dipa_classes/socket.cpp.s
 
 client_tests/client_protocol_tests.o: client_tests/client_protocol_tests.cpp.o
@@ -315,7 +315,7 @@ client_tests/client_protocol_tests.o: client_tests/client_protocol_tests.cpp.o
 
 # target to build an object file
 client_tests/client_protocol_tests.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.o
 .PHONY : client_tests/client_protocol_tests.cpp.o
 
 client_tests/client_protocol_tests.i: client_tests/client_protocol_tests.cpp.i
@@ -323,7 +323,7 @@ client_tests/client_protocol_tests.i: client_tests/client_protocol_tests.cpp.i
 
 # target to preprocess a source file
 client_tests/client_protocol_tests.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.i
 .PHONY : client_tests/client_protocol_tests.cpp.i
 
 client_tests/client_protocol_tests.s: client_tests/client_protocol_tests.cpp.s
@@ -331,7 +331,7 @@ client_tests/client_protocol_tests.s: client_tests/client_protocol_tests.cpp.s
 
 # target to generate assembly for a file
 client_tests/client_protocol_tests.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/client_protocol_tests.cpp.s
 .PHONY : client_tests/client_protocol_tests.cpp.s
 
 client_tests/main_client_test.o: client_tests/main_client_test.cpp.o
@@ -339,7 +339,7 @@ client_tests/main_client_test.o: client_tests/main_client_test.cpp.o
 
 # target to build an object file
 client_tests/main_client_test.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.o
 .PHONY : client_tests/main_client_test.cpp.o
 
 client_tests/main_client_test.i: client_tests/main_client_test.cpp.i
@@ -347,7 +347,7 @@ client_tests/main_client_test.i: client_tests/main_client_test.cpp.i
 
 # target to preprocess a source file
 client_tests/main_client_test.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.i
 .PHONY : client_tests/main_client_test.cpp.i
 
 client_tests/main_client_test.s: client_tests/main_client_test.cpp.s
@@ -355,7 +355,7 @@ client_tests/main_client_test.s: client_tests/main_client_test.cpp.s
 
 # target to generate assembly for a file
 client_tests/main_client_test.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/client_tests.dir/build.make tests/CMakeFiles/client_tests.dir/client_tests/main_client_test.cpp.s
 .PHONY : client_tests/main_client_test.cpp.s
 
 server_tests/collisions_tests.o: server_tests/collisions_tests.cpp.o
@@ -363,7 +363,7 @@ server_tests/collisions_tests.o: server_tests/collisions_tests.cpp.o
 
 # target to build an object file
 server_tests/collisions_tests.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.o
 .PHONY : server_tests/collisions_tests.cpp.o
 
 server_tests/collisions_tests.i: server_tests/collisions_tests.cpp.i
@@ -371,7 +371,7 @@ server_tests/collisions_tests.i: server_tests/collisions_tests.cpp.i
 
 # target to preprocess a source file
 server_tests/collisions_tests.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.i
 .PHONY : server_tests/collisions_tests.cpp.i
 
 server_tests/collisions_tests.s: server_tests/collisions_tests.cpp.s
@@ -379,7 +379,7 @@ server_tests/collisions_tests.s: server_tests/collisions_tests.cpp.s
 
 # target to generate assembly for a file
 server_tests/collisions_tests.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/collisions_tests.cpp.s
 .PHONY : server_tests/collisions_tests.cpp.s
 
 server_tests/entity_tests.o: server_tests/entity_tests.cpp.o
@@ -387,7 +387,7 @@ server_tests/entity_tests.o: server_tests/entity_tests.cpp.o
 
 # target to build an object file
 server_tests/entity_tests.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.o
 .PHONY : server_tests/entity_tests.cpp.o
 
 server_tests/entity_tests.i: server_tests/entity_tests.cpp.i
@@ -395,7 +395,7 @@ server_tests/entity_tests.i: server_tests/entity_tests.cpp.i
 
 # target to preprocess a source file
 server_tests/entity_tests.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.i
 .PHONY : server_tests/entity_tests.cpp.i
 
 server_tests/entity_tests.s: server_tests/entity_tests.cpp.s
@@ -403,7 +403,7 @@ server_tests/entity_tests.s: server_tests/entity_tests.cpp.s
 
 # target to generate assembly for a file
 server_tests/entity_tests.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/entity_tests.cpp.s
 .PHONY : server_tests/entity_tests.cpp.s
 
 server_tests/game_config_tests.o: server_tests/game_config_tests.cpp.o
@@ -411,7 +411,7 @@ server_tests/game_config_tests.o: server_tests/game_config_tests.cpp.o
 
 # target to build an object file
 server_tests/game_config_tests.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.o
 .PHONY : server_tests/game_config_tests.cpp.o
 
 server_tests/game_config_tests.i: server_tests/game_config_tests.cpp.i
@@ -419,7 +419,7 @@ server_tests/game_config_tests.i: server_tests/game_config_tests.cpp.i
 
 # target to preprocess a source file
 server_tests/game_config_tests.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.i
 .PHONY : server_tests/game_config_tests.cpp.i
 
 server_tests/game_config_tests.s: server_tests/game_config_tests.cpp.s
@@ -427,7 +427,7 @@ server_tests/game_config_tests.s: server_tests/game_config_tests.cpp.s
 
 # target to generate assembly for a file
 server_tests/game_config_tests.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_config_tests.cpp.s
 .PHONY : server_tests/game_config_tests.cpp.s
 
 server_tests/game_tests.o: server_tests/game_tests.cpp.o
@@ -435,7 +435,7 @@ server_tests/game_tests.o: server_tests/game_tests.cpp.o
 
 # target to build an object file
 server_tests/game_tests.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.o
 .PHONY : server_tests/game_tests.cpp.o
 
 server_tests/game_tests.i: server_tests/game_tests.cpp.i
@@ -443,7 +443,7 @@ server_tests/game_tests.i: server_tests/game_tests.cpp.i
 
 # target to preprocess a source file
 server_tests/game_tests.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.i
 .PHONY : server_tests/game_tests.cpp.i
 
 server_tests/game_tests.s: server_tests/game_tests.cpp.s
@@ -451,7 +451,7 @@ server_tests/game_tests.s: server_tests/game_tests.cpp.s
 
 # target to generate assembly for a file
 server_tests/game_tests.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/game_tests.cpp.s
 .PHONY : server_tests/game_tests.cpp.s
 
 server_tests/games_manager_tests.o: server_tests/games_manager_tests.cpp.o
@@ -459,7 +459,7 @@ server_tests/games_manager_tests.o: server_tests/games_manager_tests.cpp.o
 
 # target to build an object file
 server_tests/games_manager_tests.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o
 .PHONY : server_tests/games_manager_tests.cpp.o
 
 server_tests/games_manager_tests.i: server_tests/games_manager_tests.cpp.i
@@ -467,7 +467,7 @@ server_tests/games_manager_tests.i: server_tests/games_manager_tests.cpp.i
 
 # target to preprocess a source file
 server_tests/games_manager_tests.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.i
 .PHONY : server_tests/games_manager_tests.cpp.i
 
 server_tests/games_manager_tests.s: server_tests/games_manager_tests.cpp.s
@@ -475,7 +475,7 @@ server_tests/games_manager_tests.s: server_tests/games_manager_tests.cpp.s
 
 # target to generate assembly for a file
 server_tests/games_manager_tests.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.s
 .PHONY : server_tests/games_manager_tests.cpp.s
 
 server_tests/main_tests.o: server_tests/main_tests.cpp.o
@@ -483,7 +483,7 @@ server_tests/main_tests.o: server_tests/main_tests.cpp.o
 
 # target to build an object file
 server_tests/main_tests.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.o
 .PHONY : server_tests/main_tests.cpp.o
 
 server_tests/main_tests.i: server_tests/main_tests.cpp.i
@@ -491,7 +491,7 @@ server_tests/main_tests.i: server_tests/main_tests.cpp.i
 
 # target to preprocess a source file
 server_tests/main_tests.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.i
 .PHONY : server_tests/main_tests.cpp.i
 
 server_tests/main_tests.s: server_tests/main_tests.cpp.s
@@ -499,7 +499,7 @@ server_tests/main_tests.s: server_tests/main_tests.cpp.s
 
 # target to generate assembly for a file
 server_tests/main_tests.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/main_tests.cpp.s
 .PHONY : server_tests/main_tests.cpp.s
 
 server_tests/server_protocol_tests.o: server_tests/server_protocol_tests.cpp.o
@@ -507,7 +507,7 @@ server_tests/server_protocol_tests.o: server_tests/server_protocol_tests.cpp.o
 
 # target to build an object file
 server_tests/server_protocol_tests.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.o
 .PHONY : server_tests/server_protocol_tests.cpp.o
 
 server_tests/server_protocol_tests.i: server_tests/server_protocol_tests.cpp.i
@@ -515,7 +515,7 @@ server_tests/server_protocol_tests.i: server_tests/server_protocol_tests.cpp.i
 
 # target to preprocess a source file
 server_tests/server_protocol_tests.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.i
 .PHONY : server_tests/server_protocol_tests.cpp.i
 
 server_tests/server_protocol_tests.s: server_tests/server_protocol_tests.cpp.s
@@ -523,7 +523,7 @@ server_tests/server_protocol_tests.s: server_tests/server_protocol_tests.cpp.s
 
 # target to generate assembly for a file
 server_tests/server_protocol_tests.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/server_protocol_tests.cpp.s
 .PHONY : server_tests/server_protocol_tests.cpp.s
 
 server_tests/zombie_spawner_tests.o: server_tests/zombie_spawner_tests.cpp.o
@@ -531,7 +531,7 @@ server_tests/zombie_spawner_tests.o: server_tests/zombie_spawner_tests.cpp.o
 
 # target to build an object file
 server_tests/zombie_spawner_tests.cpp.o:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.o
 .PHONY : server_tests/zombie_spawner_tests.cpp.o
 
 server_tests/zombie_spawner_tests.i: server_tests/zombie_spawner_tests.cpp.i
@@ -539,7 +539,7 @@ server_tests/zombie_spawner_tests.i: server_tests/zombie_spawner_tests.cpp.i
 
 # target to preprocess a source file
 server_tests/zombie_spawner_tests.cpp.i:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.i
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.i
 .PHONY : server_tests/zombie_spawner_tests.cpp.i
 
 server_tests/zombie_spawner_tests.s: server_tests/zombie_spawner_tests.cpp.s
@@ -547,7 +547,7 @@ server_tests/zombie_spawner_tests.s: server_tests/zombie_spawner_tests.cpp.s
 
 # target to generate assembly for a file
 server_tests/zombie_spawner_tests.cpp.s:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.s
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/server_tests.dir/build.make tests/CMakeFiles/server_tests.dir/server_tests/zombie_spawner_tests.cpp.s
 .PHONY : server_tests/zombie_spawner_tests.cpp.s
 
 # Help Target
@@ -620,7 +620,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -P /home/regman/taller/left4Dead/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -P /home/usaurio/Left4Dead/build/CMakeFiles/VerifyGlobs.cmake
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

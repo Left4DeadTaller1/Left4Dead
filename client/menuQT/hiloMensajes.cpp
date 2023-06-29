@@ -1,7 +1,9 @@
 #include "hiloMensajes.h"
 
-HiloMensajes::HiloMensajes(ClientProtocol& protocol): 
-                                protocol(protocol){}
+HiloMensajes::HiloMensajes(ClientProtocol& protocol, 
+                            std::atomic<bool>& isConnected): 
+                                protocol(protocol),
+                                isConnected(isConnected){}
 
 std::string HiloMensajes::typeWeaponToString(TypeWeapon_t type){
     if (type == P90){
@@ -63,30 +65,37 @@ const QString HiloMensajes::encodeInfoGame(TypeMap_t typeMap, int amountPlayers,
     return QString::fromStdString(infoGame);
 }
 
-void HiloMensajes::run() {try {
+void HiloMensajes::run() {
     bool wasClosed = false;
     int typeMessage = protocol.receiveTypeMessage(wasClosed);
-    std::cout << "RECIBE typeMessage: " << typeMessage << "\n";
+
     if (typeMessage == MSG_JOIN){
         std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
         emit infoGameReceived(encodeInfoGame(infoGame->typeMap, infoGame->amountPlayers, 
                             infoGame->infoPlayers));
         emit typeMapReceived(QString::fromStdString(typeMapToString(infoGame->typeMap)));
-    } while (!wasClosed) {
-        int typeMessage = protocol.receiveTypeMessage(wasClosed);
-        if (typeMessage == MSG_START){
-            emit closedWithoutError(0);
-            break;
-        }
-        if (typeMessage == MSG_JOIN){
-            std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
-
-            emit infoGameReceived(encodeInfoGame(infoGame->typeMap, infoGame->amountPlayers, 
-                                infoGame->infoPlayers));
-        }
     }
-    }catch (const std::exception &e) {
-        std::cout << "PONER UN BOOL\n";
+    while (!wasClosed) {
+        try{
+            int typeMessage = protocol.receiveTypeMessage(wasClosed);
+            if (typeMessage == MSG_START){
+                emit closedWithoutError(0);
+                break;
+            }
+            if (typeMessage == MSG_JOIN){
+                std::shared_ptr<infoGameDTO_t> infoGame = protocol.receiveCreateorJoin(wasClosed);
+
+                emit infoGameReceived(encodeInfoGame(infoGame->typeMap, infoGame->amountPlayers, 
+                                    infoGame->infoPlayers));
+            }
+        } catch (const std::exception &e) {
+            if(!isConnected){
+                std::cout << "se cerro el socket\n";
+                break;
+            } else {
+                std::cerr << "Client Main: Exception caught: " << e.what() << std::endl;
+            }
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o: \
- /home/regman/taller/left4Dead/server_root/game/server_message.cpp \
+ /home/usaurio/Left4Dead/server_root/game/server_message.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/server_root/game/server_message.h \
+ /home/usaurio/Left4Dead/server_root/game/server_message.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

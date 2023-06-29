@@ -24,7 +24,6 @@ class TextureManager {
 
     public:
     TextureManager(SDL2pp::Renderer& renderer);
-
     std::map<state_t, GameTexture>& getTextures(typeEntity_t type);
     std::map<TypeWeapon_t, GameTexture>& getTexturesWeapon();
     GameTexture& getTexture(TypeMap_t typeMap);

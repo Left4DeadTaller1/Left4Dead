@@ -43,8 +43,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/client.dir/client/menuQT/mainwindow.cpp.o.d"
   "CMakeFiles/client.dir/client/render/client_render.cpp.o"
   "CMakeFiles/client.dir/client/render/client_render.cpp.o.d"
-  "CMakeFiles/client.dir/client/render/game/client_bullets.cpp.o"
-  "CMakeFiles/client.dir/client/render/game/client_bullets.cpp.o.d"
   "CMakeFiles/client.dir/client/render/game/client_game.cpp.o"
   "CMakeFiles/client.dir/client/render/game/client_game.cpp.o.d"
   "CMakeFiles/client.dir/client/render/game/client_infected.cpp.o"

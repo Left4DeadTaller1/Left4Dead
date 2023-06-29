@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/regman/taller/left4Dead
+CMAKE_SOURCE_DIR = /home/usaurio/Left4Dead
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/regman/taller/left4Dead/build
+CMAKE_BINARY_DIR = /home/usaurio/Left4Dead/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/regman/taller/left4Dead/build/CMakeFiles /home/regman/taller/left4Dead/build/lib/googletest//CMakeFiles/progress.marks
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/googletest/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/regman/taller/left4Dead/build/CMakeFiles 0
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/usaurio/Left4Dead/build/CMakeFiles /home/usaurio/Left4Dead/build/lib/googletest//CMakeFiles/progress.marks
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/googletest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/usaurio/Left4Dead/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/googletest/clean
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/googletest/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,18 +148,18 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/googletest/preinstall
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/googletest/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/regman/taller/left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/googletest/preinstall
+	cd /home/usaurio/Left4Dead/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/googletest/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -P /home/regman/taller/left4Dead/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -P /home/usaurio/Left4Dead/build/CMakeFiles/VerifyGlobs.cmake
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -185,7 +185,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -P /home/regman/taller/left4Dead/build/CMakeFiles/VerifyGlobs.cmake
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -P /home/usaurio/Left4Dead/build/CMakeFiles/VerifyGlobs.cmake
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

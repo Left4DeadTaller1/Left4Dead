@@ -24,7 +24,6 @@ void SenderThread::run() {
             }
         }
     }
-    std::cout << "ENTRA A SALIR DEL SENDER\n";
 }
 
 SenderThread::~SenderThread(){

@@ -25,7 +25,6 @@ void EventManagerThread::run() {
                 std::shared_ptr<ActionClient> action;
 
                 if (event.type == SDL_QUIT) {
-                    std::cout << "SE ENTRA A MANDAR EXIT\n";
                     std::shared_ptr<ActionRender> action = std::make_shared<ActionRender>(EXIT, 0, 0);
                     qEventsToSender.close();
                     qEventsToRender.push(action);
@@ -133,7 +132,6 @@ void EventManagerThread::run() {
                 } else if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED) {
                     int newWidth = event.window.data1;
                     int newHeight = event.window.data2;
-                    std::cout << "Entra a resize con: " << newWidth << " y " << newHeight << "\n";
                     std::shared_ptr<ActionRender> action = std::make_shared<ActionRender>(RESIZE, newWidth, newHeight);
                     qEventsToRender.push(action);
                 }

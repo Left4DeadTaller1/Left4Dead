@@ -24,9 +24,32 @@ LifeBar::LifeBar(GameTexture& texture, uint32_t health,
     distXToEntityLookingRight = dimensionsLifeBar["DIST_X_LIFE_BAR_TO_ENTITY_LOOKING_RIGHT"];
     distYToEntity = dimensionsLifeBar["DIST_Y_LIFE_BAR_TO_ENTITY"];
 
-    maxHealth = dimensionsLifeBar["MAX_HEALTH_SOLDIER"];
     lifeLevels = dimensionsLifeBar["LIFE_LEVELS_SOLDIER"];
+
+    GameConfig& configGame = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = configGame.getEntitiesParams();
+
+    maxHealth = getMaxHealth(entityParams, typeEntity);
 };
+
+int LifeBar::getMaxHealth(std::map<std::string, int>& entityParams, typeEntity_t typeEntity){
+    switch (typeEntity) {
+        case ZOMBIE:
+            return entityParams["INFECTED_HEALTH"];
+        case JUMPER:
+            return entityParams["JUMPER_HEALTH"];
+        case WITCH:
+            return entityParams["WITCH_HEALTH"];
+        case SPEAR:
+            return entityParams["SPEAR_HEALTH"];
+        case VENOM:
+            return entityParams["VENOM_HEALTH"];
+        case SOLDIER1:
+            return entityParams["PLAYER_HEALTH"];
+        default:
+            return 100;
+    }
+}
 
 void LifeBar::draw(SDL2pp::Renderer& renderer){
     SDL_Rect srcRect;

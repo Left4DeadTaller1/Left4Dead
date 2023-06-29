@@ -8,6 +8,7 @@
 #include "client/actions/action_client.h"
 #include "hiloMensajes.h"
 #include <memory>
+#include <atomic>
 #include <QStandardItemModel>
 
 namespace Ui {
@@ -45,7 +46,7 @@ private:
     HiloMensajes* hiloMensajes;
     QStandardItemModel model;
     int exitCode;
-
+    std::atomic<bool> isConnected;
 };
 
 #endif // CREATE_H

@@ -1,7 +1,7 @@
 CMakeFiles/client.dir/client/menuQT/mainwindow.cpp.o: \
- /home/regman/taller/left4Dead/client/menuQT/mainwindow.cpp \
+ /home/usaurio/Left4Dead/client/menuQT/mainwindow.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/client/menuQT/mainwindow.h \
+ /home/usaurio/Left4Dead/client/menuQT/mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
@@ -316,22 +316,22 @@ CMakeFiles/client.dir/client/menuQT/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtMultimedia/qaudio.h \
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qnetworkconfiguration.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QUrl \
- /home/regman/taller/left4Dead/client/menuQT/create.h \
+ /home/usaurio/Left4Dead/client/menuQT/create.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialog \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/actions/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/client_connection/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/actions/action_start_game.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/menuQT/hiloMensajes.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
- /home/regman/taller/left4Dead/dipa_classes/liberror.h \
- /home/regman/taller/left4Dead/dipa_classes/thread.h \
- /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/actions/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/client_connection/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/actions/action_start_game.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/menuQT/hiloMensajes.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
+ /home/usaurio/Left4Dead/dipa_classes/liberror.h \
+ /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
+ /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/basic_ios.h \
@@ -348,9 +348,9 @@ CMakeFiles/client.dir/client/menuQT/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QStandardItemModel \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qstandarditemmodel.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractitemmodel.h \
- /home/regman/taller/left4Dead/client/menuQT/join.h \
- /home/regman/taller/left4Dead/client/render/game/client_game_state.h \
- /home/regman/taller/left4Dead/build/ui_mainwindow.h \
+ /home/usaurio/Left4Dead/client/menuQT/join.h \
+ /home/usaurio/Left4Dead/client/render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/build/ui_mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h \
@@ -389,5 +389,5 @@ CMakeFiles/client.dir/client/menuQT/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qslider.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
- /home/regman/taller/left4Dead/client/actions/action_create.h \
- /home/regman/taller/left4Dead/client/actions/action_join.h
+ /home/usaurio/Left4Dead/client/actions/action_create.h \
+ /home/usaurio/Left4Dead/client/actions/action_join.h

@@ -1,7 +1,7 @@
 CMakeFiles/client.dir/client/render/game/client_player.cpp.o: \
- /home/regman/taller/left4Dead/client/render/game/client_player.cpp \
+ /home/usaurio/Left4Dead/client/render/game/client_player.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/client/render/game/client_player.h \
+ /home/usaurio/Left4Dead/client/render/game/client_player.h \
  /usr/local/include/SDL2pp/SDL2pp.hh /usr/local/include/SDL2pp/Config.hh \
  /usr/local/include/SDL2pp/SDL.hh /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
@@ -229,7 +229,7 @@ CMakeFiles/client.dir/client/render/game/client_player.cpp.o: \
  /usr/include/c++/11/pstl/execution_defs.h \
  /usr/local/include/SDL2pp/StreamRWops.hh /usr/include/c++/11/cassert \
  /usr/include/assert.h /usr/local/include/SDL2pp/SDLTTF.hh \
- /usr/local/include/SDL2pp/Font.hh /usr/local/include/SDL2/SDL_ttf.h \
+ /usr/local/include/SDL2pp/Font.hh /usr/include/SDL2/SDL_ttf.h \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
  /usr/include/SDL2/SDL_assert.h /usr/include/SDL2/SDL_audio.h \
  /usr/include/SDL2/SDL_clipboard.h /usr/include/SDL2/SDL_cpuinfo.h \
@@ -331,10 +331,9 @@ CMakeFiles/client.dir/client/render/game/client_player.cpp.o: \
  /usr/include/SDL2/SDL_shape.h /usr/include/SDL2/SDL_system.h \
  /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
  /usr/include/SDL2/SDL_locale.h /usr/include/SDL2/SDL_misc.h \
- /usr/include/SDL2/begin_code.h /usr/include/SDL2/close_code.h \
  /usr/local/include/SDL2pp/SDLImage.hh /usr/local/include/SDL2pp/Chunk.hh \
- /usr/local/include/SDL2/SDL_mixer.h /usr/include/SDL2/SDL_endian.h \
- /usr/local/include/SDL2pp/Mixer.hh /usr/include/c++/11/memory \
+ /usr/include/SDL2/SDL_mixer.h /usr/local/include/SDL2pp/Mixer.hh \
+ /usr/include/c++/11/memory \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
  /usr/include/c++/11/bits/unique_ptr.h \
@@ -351,8 +350,8 @@ CMakeFiles/client.dir/client/render/game/client_player.cpp.o: \
  /usr/local/include/SDL2/SDL_mixer.h /usr/include/c++/11/map \
  /usr/include/c++/11/bits/stl_tree.h /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /home/regman/taller/left4Dead/client/render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/configuration/renderer_config.h \
+ /home/usaurio/Left4Dead/client/render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/configuration/renderer_config.h \
  /usr/include/yaml-cpp/yaml.h /usr/include/yaml-cpp/parser.h \
  /usr/include/yaml-cpp/dll.h /usr/include/yaml-cpp/emitter.h \
  /usr/include/c++/11/cstddef /usr/include/c++/11/sstream \
@@ -381,9 +380,11 @@ CMakeFiles/client.dir/client/render/game/client_player.cpp.o: \
  /usr/include/yaml-cpp/node/convert.h \
  /usr/include/yaml-cpp/node/detail/impl.h \
  /usr/include/yaml-cpp/node/parse.h /usr/include/yaml-cpp/node/emit.h \
- /home/regman/taller/left4Dead/client/render/game/../../../server_root/game/configuration/game_config.h \
- /home/regman/taller/left4Dead/client/render/texture/client_texture_manager.h \
- /home/regman/taller/left4Dead/client/render/texture/client_texture.h \
- /home/regman/taller/left4Dead/client/render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/render/sound/client_sound_manager.h \
- /home/regman/taller/left4Dead/client/render/sound/client_sound.h
+ /home/usaurio/Left4Dead/client/render/game/../../../server_root/game/configuration/game_config.h \
+ /home/usaurio/Left4Dead/client/render/texture/client_texture_manager.h \
+ /home/usaurio/Left4Dead/client/render/texture/client_texture.h \
+ /home/usaurio/Left4Dead/client/render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/render/texture/client_texture.h \
+ /home/usaurio/Left4Dead/client/render/sound/client_sound_manager.h \
+ /home/usaurio/Left4Dead/client/render/sound/client_sound.h \
+ /home/usaurio/Left4Dead/client/render/game/client_lifeBar.h

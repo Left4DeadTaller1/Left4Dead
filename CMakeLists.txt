@@ -153,26 +153,17 @@ target_include_directories(menuQT
     PRIVATE
     ${CMAKE_SOURCE_DIR}/dipa_classes
     ${CMAKE_SOURCE_DIR}/client/actions
-    ${CMAKE_SOURCE_DIR}/client
+#    ${CMAKE_SOURCE_DIR}/client
     ${CMAKE_SOURCE_DIR}/client/render/game
-    ${CMAKE_SOURCE_DIR}/client/render
-    ${CMAKE_SOURCE_DIR}/client/render/sound
-    ${CMAKE_SOURCE_DIR}/client/render/texture
+#    ${CMAKE_SOURCE_DIR}/client/render
+#    ${CMAKE_SOURCE_DIR}/client/render/sound
+#    ${CMAKE_SOURCE_DIR}/client/render/texture
     ${CMAKE_SOURCE_DIR}/client/client_connection
-    ${CMAKE_SOURCE_DIR}/client/menuQT
-    ${SDL2PP_INCLUDE_DIRS}
+#    ${CMAKE_SOURCE_DIR}/client/menuQT
+#    ${SDL2PP_INCLUDE_DIRS}
 )
 
 message("Generating UI headers: ${UIS_HEADERS}")
-
-set(SOUND_FONDO_QT "${CMAKE_SOURCE_DIR}/client/render/resources/sounds/fondo3.mp3")
-target_compile_definitions(menuQT PRIVATE SOUND_FONDO_QT="${SOUND_FONDO_QT}")
-
-set(IMAGEN_FONDO_QT "${CMAKE_SOURCE_DIR}/client/render/resources/fondoqt2.jpeg")
-target_compile_definitions(menuQT PRIVATE IMAGEN_FONDO_QT="${IMAGEN_FONDO_QT}")
-
-set(ICONO_SONIDO_QT "${CMAKE_SOURCE_DIR}/client/render/resources/icono_sonido.png")
-target_compile_definitions(menuQT PRIVATE ICONO_SONIDO_QT="${ICONO_SONIDO_QT}")
 
 target_link_libraries(menuQT PRIVATE Qt5::Widgets Qt5::Multimedia)
 

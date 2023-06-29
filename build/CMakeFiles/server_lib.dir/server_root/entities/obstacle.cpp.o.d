@@ -1,7 +1,7 @@
 CMakeFiles/server_lib.dir/server_root/entities/obstacle.cpp.o: \
- /home/regman/taller/left4Dead/server_root/entities/obstacle.cpp \
+ /home/usaurio/Left4Dead/server_root/entities/obstacle.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/server_root/entities/obstacle.h \
+ /home/usaurio/Left4Dead/server_root/entities/obstacle.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -132,7 +132,7 @@ CMakeFiles/server_lib.dir/server_root/entities/obstacle.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/11/bits/charconv.h \
  /usr/include/c++/11/bits/basic_string.tcc \
- /home/regman/taller/left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
@@ -159,4 +159,4 @@ CMakeFiles/server_lib.dir/server_root/entities/obstacle.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/regman/taller/left4Dead/server_root/entities/attack.h
+ /home/usaurio/Left4Dead/server_root/entities/attack.h

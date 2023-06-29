@@ -19,6 +19,7 @@ int ClientProtocol::receiveTypeMessage(bool& wasClosed){
     return messageType;
 }
 
+//####SACAR
 std::string traducirType_(int typeInfected){
     if (typeInfected == SOLDIER1){
         return "soldier1";
@@ -49,7 +50,6 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         return NULL;
     }
     amountEntities = ntohs(amountEntities);
-    //std::cout << "amount entities: " << amountEntities << "\n";
 
     for (int i = 0; i < amountEntities; i++){
         uint8_t typeEntity;
@@ -57,12 +57,6 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
         if(wasClosed){
             return NULL;
         }
-
-        /*if ((int)typeEntity == INFECTED){
-            std::cout << "es un infectado\n";
-        } else {
-            std::cout << "es un player\n";
-        }*/
 
         uint16_t idEntity;
         skt.recvall(&idEntity, 2, &wasClosed);
@@ -175,8 +169,6 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
             infected.lookingTo = lookingTo;
             infected.health = health;
 
-            //std::cout << "se entra a guardar infected con id: " << infected.idInfected << "\n";
-
             vecInfected.push_back(infected);
         }
     }
@@ -187,27 +179,22 @@ std::shared_ptr<gameStateDTO_t> ClientProtocol::receiveStateGame(bool& wasClosed
 }
 
 std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClosed){
-    //std::cout << "EN CLIENT PROTOCOL\n";
     std::shared_ptr<infoGameDTO_t> infoGameDTO = std::make_shared<infoGameDTO_t>();
     std::vector<infoPlayerDTO_t> infoPlayers;
 
     uint8_t code;
-    std::cout << "en el protocolo: \n";
     skt.recvall(&code, 1, &wasClosed);
     if(wasClosed){
         return NULL;
     }
     infoGameDTO->code = code;
-    std::cout << "code: " << (int)code << "\n";
 
     uint8_t type;
     skt.recvall(&type, 1, &wasClosed);
     if(wasClosed){
         return NULL;
     }
-    std::cout << "typeMap: " << (int)type << "\n";
     infoGameDTO->typeMap = static_cast<TypeMap_t>(type);
-    std::cout << "typeMap: " << (int)(infoGameDTO->typeMap) << "\n";
 
     uint8_t amountPlayers;
     skt.recvall(&amountPlayers, 1, &wasClosed);
@@ -215,7 +202,6 @@ std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClos
         return NULL;
     }
     infoGameDTO->amountPlayers = amountPlayers;
-    std::cout << "amountPlayers: " << (int)amountPlayers << "\n";
 
     for (int i = 0; i < amountPlayers; i++){
         infoPlayerDTO_t player;
@@ -223,7 +209,6 @@ std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClos
         uint8_t id;
         skt.recvall(&id, 1, &wasClosed);
         player.id = id;
-        std::cout << "id: " << (int)id << "\n";
 
         uint8_t nickname_len;
         skt.recvall(&nickname_len, 1, &wasClosed);
@@ -232,20 +217,14 @@ std::shared_ptr<infoGameDTO_t> ClientProtocol::receiveCreateorJoin(bool& wasClos
         skt.recvall(buf_nickname, nickname_len, &wasClosed);
         buf_nickname[nickname_len] = '\0';
         player.nickname = buf_nickname;
-        //std::cout << "player.nickname: " << player.nickname << "\n";
 
         uint8_t typeWeapon;
         skt.recvall(&typeWeapon, 1, &wasClosed);
         player.typeWeapon = static_cast<TypeWeapon_t>(typeWeapon);
-        //std::cout << "player.typeWeapon: " << (int)player.typeWeapon << "\n";
 
-        //std::cout << "antes de push back\n";
         infoPlayers.push_back(player);
-        //std::cout << "despues de push back\n";
     }
-
     infoGameDTO->infoPlayers = infoPlayers;
-
     return infoGameDTO;
 }
 

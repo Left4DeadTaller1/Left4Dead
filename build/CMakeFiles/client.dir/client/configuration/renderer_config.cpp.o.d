@@ -1,7 +1,7 @@
 CMakeFiles/client.dir/client/configuration/renderer_config.cpp.o: \
- /home/regman/taller/left4Dead/client/configuration/renderer_config.cpp \
+ /home/usaurio/Left4Dead/client/configuration/renderer_config.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/client/configuration/renderer_config.h \
+ /home/usaurio/Left4Dead/client/configuration/renderer_config.h \
  /usr/include/yaml-cpp/yaml.h /usr/include/yaml-cpp/parser.h \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \

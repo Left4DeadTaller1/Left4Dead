@@ -7,7 +7,8 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     ui(new Ui::Create),
     hiloMensajes(nullptr),
     model(this),
-    exitCode(-1)
+    exitCode(-1),
+    isConnected(true)
 {
     ui->setupUi(this);
 
@@ -55,28 +56,10 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     ui->listView->setStyleSheet(itemStyle);
 }
 
-void Create::handleClosed(int _exitCode)
-{
-    std::cout << "entra a handleClosed en create\n";
-    exitCode = _exitCode;
-    emit closedWithError(_exitCode);
-}
-
 void Create::sliderChanged(int value)
 {
     qreal volume = value;
     player->setVolume(volume);
-}
-
-Create::~Create()
-{
-    player->stop();
-    delete player;
-    delete ui;
-    if (hiloMensajes) {
-        hiloMensajes->join();
-        delete hiloMensajes;
-    }
 }
 
 std::string Create::typeWeaponToString(TypeWeapon_t type){
@@ -191,7 +174,7 @@ void Create::handlerInfoGameReceived(const QString& messageInfoGame)
 
 void Create::startReceiving()
 {
-    hiloMensajes = new HiloMensajes(protocol);
+    hiloMensajes = new HiloMensajes(protocol, isConnected);
     connect(hiloMensajes, &HiloMensajes::infoGameReceived, this, &Create::handlerInfoGameReceived);
     connect(hiloMensajes, &HiloMensajes::typeMapReceived, this, &Create::handlerTypeMap);
     connect(hiloMensajes, &HiloMensajes::closedWithoutError, this, &Create::handleClosed);
@@ -205,19 +188,35 @@ void Create::startReceiving()
 void Create::startButtonClicked()
 {
     bool wasClosed = false;
+    std::cout << "se entra a mandar start\n";
     std::shared_ptr<ActionClient> action = std::make_shared<StartGame>();
     protocol.sendAction(std::move(action), wasClosed);
 }
 
+void Create::handleClosed(int _exitCode)
+{
+    exitCode = _exitCode;
+    emit closedWithError(_exitCode);
+}
+
 void Create::closeEvent(QCloseEvent *event)
 {
-    std::cout << "entra a closeEvent en create\n";
-    std::cout << "exit code: " << exitCode << "\n";
     if (exitCode == -1){
+        isConnected = false;
         protocol.closeSocket();
     }
     emit closedWithError(exitCode);
 }
 
+Create::~Create()
+{
+    player->stop();
+    delete player;
+    delete ui;
+    if (hiloMensajes) {
+        hiloMensajes->join();
+        delete hiloMensajes;
+    }
+}
 
 

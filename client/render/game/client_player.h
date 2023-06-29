@@ -10,7 +10,9 @@
 #include "renderer_config.h"
 #include "../../../server_root/game/configuration/game_config.h"
 #include "client_texture_manager.h"
+#include "client_texture.h"
 #include "client_sound_manager.h"
+#include "client_lifeBar.h"
 
 class ClientPlayer {
     private:
@@ -19,11 +21,12 @@ class ClientPlayer {
     int x;
     int y;
     int lookingTo;
-    bool comingEndDeath;
+    int counterDeath;
     TypeWeapon_t weapon;
     std::string nickname;
     int bullets;
     bool isMyWindow;
+    LifeBar lifeBar;
     std::map<state_t, GameTexture>& texturesPlayer;
     std::map<state_t, std::shared_ptr<Sound>>& sounds;
     std::map<TypeWeapon_t, GameTexture>& texturesWeapon;
@@ -51,10 +54,11 @@ class ClientPlayer {
 
     public:
     ClientPlayer(std::map<state_t, GameTexture>& textures,
-                    std::map<state_t, std::shared_ptr<Sound>>& sounds,
-                    std::map<TypeWeapon_t, GameTexture>& texturesWeapon,
-                    bool isMyWindow,
-                    player_t& currentPlayer);
+                            std::map<state_t, std::shared_ptr<Sound>>& sounds,
+                            std::map<TypeWeapon_t, GameTexture>& texturesWeapon,
+                            bool isMyWindow,
+                            player_t& currentPlayer,
+                            GameTexture& textureLifeBar);
 
     void draw(SDL2pp::Renderer& renderer, int it);
 

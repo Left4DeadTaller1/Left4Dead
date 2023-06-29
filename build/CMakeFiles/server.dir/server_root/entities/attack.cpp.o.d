@@ -1,7 +1,7 @@
 CMakeFiles/server.dir/server_root/entities/attack.cpp.o: \
- /home/regman/taller/left4Dead/server_root/entities/attack.cpp \
+ /home/usaurio/Left4Dead/server_root/entities/attack.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

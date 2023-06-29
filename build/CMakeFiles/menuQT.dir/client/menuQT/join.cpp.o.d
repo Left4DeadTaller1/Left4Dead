@@ -1,7 +1,6 @@
 CMakeFiles/menuQT.dir/client/menuQT/join.cpp.o: \
- /home/regman/taller/left4Dead/client/menuQT/join.cpp \
- /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/client/menuQT/join.h \
+ /home/usaurio/Left4Dead/client/menuQT/join.cpp \
+ /usr/include/stdc-predef.h /home/usaurio/Left4Dead/client/menuQT/join.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialog \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
@@ -313,16 +312,16 @@ CMakeFiles/menuQT.dir/client/menuQT/join.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
  /usr/include/x86_64-linux-gnu/qt5/QtMultimedia/qaudio.h \
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qnetworkconfiguration.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/actions/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/client_connection/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/menuQT/hiloMensajes.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
- /home/regman/taller/left4Dead/dipa_classes/liberror.h \
- /home/regman/taller/left4Dead/dipa_classes/thread.h \
- /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/actions/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/client_connection/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/menuQT/hiloMensajes.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
+ /home/usaurio/Left4Dead/dipa_classes/liberror.h \
+ /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
+ /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/basic_ios.h \
@@ -340,7 +339,7 @@ CMakeFiles/menuQT.dir/client/menuQT/join.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qstandarditemmodel.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractitemmodel.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
- /home/regman/taller/left4Dead/build/ui_join.h \
+ /home/usaurio/Left4Dead/build/ui_join.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h \

@@ -12,8 +12,8 @@ class CreateAction : public ActionClient {
 
    public:
     CreateAction(std::string namePlayer, 
-                std::string weaponPlayer, 
-                std::string map);
+                TypeWeapon_t weaponPlayer, 
+                TypeMap_t map);
 
     virtual std::vector<int8_t> serialize() const override;
 };

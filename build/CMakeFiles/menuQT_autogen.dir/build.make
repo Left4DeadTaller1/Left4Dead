@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/regman/taller/left4Dead
+CMAKE_SOURCE_DIR = /home/usaurio/Left4Dead
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/regman/taller/left4Dead/build
+CMAKE_BINARY_DIR = /home/usaurio/Left4Dead/build
 
 # Utility rule file for menuQT_autogen.
 
@@ -67,8 +67,8 @@ include CMakeFiles/menuQT_autogen.dir/compiler_depend.make
 include CMakeFiles/menuQT_autogen.dir/progress.make
 
 CMakeFiles/menuQT_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/regman/taller/left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target menuQT"
-	/usr/bin/cmake -E cmake_autogen /home/regman/taller/left4Dead/build/CMakeFiles/menuQT_autogen.dir/AutogenInfo.json ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target menuQT"
+	/usr/bin/cmake -E cmake_autogen /home/usaurio/Left4Dead/build/CMakeFiles/menuQT_autogen.dir/AutogenInfo.json ""
 
 menuQT_autogen: CMakeFiles/menuQT_autogen
 menuQT_autogen: CMakeFiles/menuQT_autogen.dir/build.make
@@ -83,6 +83,6 @@ CMakeFiles/menuQT_autogen.dir/clean:
 .PHONY : CMakeFiles/menuQT_autogen.dir/clean
 
 CMakeFiles/menuQT_autogen.dir/depend:
-	cd /home/regman/taller/left4Dead/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/regman/taller/left4Dead /home/regman/taller/left4Dead /home/regman/taller/left4Dead/build /home/regman/taller/left4Dead/build /home/regman/taller/left4Dead/build/CMakeFiles/menuQT_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/usaurio/Left4Dead/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/usaurio/Left4Dead /home/usaurio/Left4Dead /home/usaurio/Left4Dead/build /home/usaurio/Left4Dead/build /home/usaurio/Left4Dead/build/CMakeFiles/menuQT_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/menuQT_autogen.dir/depend
 

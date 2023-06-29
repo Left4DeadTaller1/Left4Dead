@@ -6,6 +6,7 @@
 #include "client/client_connection/client_protocol.h"
 #include "hiloMensajes.h"
 #include <QStandardItemModel>
+#include <atomic>
 
 namespace Ui {
 class Join;
@@ -41,6 +42,7 @@ private:
     HiloMensajes* hiloMensajes;
     QStandardItemModel model;
     int exitCode;
+    std::atomic<bool> isConnected;
 };
 
 #endif // JOIN_H

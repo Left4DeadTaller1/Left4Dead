@@ -14,7 +14,7 @@ std::map<TypeWeapon_t, GameTexture>& TextureManager::getTexturesWeapon(){
 GameTexture& TextureManager::getTexture(TypeMap_t typeMap){
     std::map<TypeMap_t, GameTexture>::iterator iter = texturesBackground.find(typeMap);
     if (iter == texturesBackground.end()) {
-        //lanzar excepcion
+        throw std::runtime_error("No se encontro textura\n");
     }
     return iter->second;
 }

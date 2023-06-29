@@ -1,8 +1,8 @@
 CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o: \
- /home/regman/taller/left4Dead/client/client_connection/client_receiver.cpp \
+ /home/usaurio/Left4Dead/client/client_connection/client_receiver.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/client/client_connection/client_receiver.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_receiver.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -159,13 +159,13 @@ CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/actions/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/client_connection/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/dipa_classes/liberror.h \
- /home/regman/taller/left4Dead/dipa_classes/thread.h \
- /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/actions/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/client_connection/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/dipa_classes/liberror.h \
+ /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
+ /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/c++/11/chrono \
  /usr/include/c++/11/ratio /usr/include/c++/11/limits \
  /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
@@ -187,12 +187,12 @@ CMakeFiles/client.dir/client/client_connection/client_receiver.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/regman/taller/left4Dead/dipa_classes/queue.h \
+ /home/usaurio/Left4Dead/dipa_classes/queue.h \
  /usr/include/c++/11/condition_variable \
  /usr/include/c++/11/bits/std_mutex.h \
  /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/deque \
  /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
  /usr/include/c++/11/mutex /usr/include/c++/11/queue \
  /usr/include/c++/11/bits/stl_heap.h /usr/include/c++/11/bits/stl_queue.h \
- /home/regman/taller/left4Dead/client/render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/render/game/client_game_state.h \
  /usr/include/c++/11/atomic
