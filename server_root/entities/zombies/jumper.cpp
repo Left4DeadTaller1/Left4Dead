@@ -151,6 +151,8 @@ bool Jumper::getplayerWithinRange(std::vector<std::shared_ptr<Entity>>& entities
     for (const auto& entity : entities) {
         std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
         if (player) {
+            if (player->isDead())
+                continue;
             int distance = std::sqrt(std::pow((x - player->getX()), 2) + std::pow((y - player->getY()), 2));
             if (distance <= maxJumpRange) {
                 return true;
