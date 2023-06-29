@@ -348,9 +348,8 @@ void Game::updateState() {
     removeDeadEntities();
 
     // Every min mutate zombies
-    if (framesCounter != 0 && framesCounter % 1800 == 0) {
+    if (framesCounter != 0 && framesCounter % 1800 == 0)
         zombieSpawner.mutate();
-    }
 
     // spawn zombies
     std::shared_ptr<Entity> spawnedZombie = zombieSpawner.spawn();
