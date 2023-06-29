@@ -8,7 +8,8 @@
 MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     : protocol(protocol),
     QMainWindow(parent), 
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    returnCode(-1)
 {
     ui->setupUi(this);
 
@@ -199,20 +200,34 @@ void MainWindow::sliderChanged(int value)
     player->setVolume(volume);
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (returnCode == 0){
+        close();
+    } else {
+        close();
+        QApplication::exit(returnCode);
+    }
+}
+
 void MainWindow::handleCreateClosed(int code)
 {
+    returnCode = code;
     if (code == 0){
         close();
     } else {
+        close();
         QApplication::exit(code);
     }
 }
 
 void MainWindow::handleJoinClosed(int code)
 {
+    returnCode = code;
     if (code == 0){
         close();
     } else {
+        close();
         QApplication::exit(code);
     }
 }

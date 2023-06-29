@@ -31,6 +31,7 @@ private slots:
     TypeMap_t StringToTypeMap(const std::string& map);
     TypeWeapon_t StringToTypeWeapon(const std::string& weaponPlayer);
     void handlerTypeMap(const QString& typeMap);
+    void closeEvent(QCloseEvent *event);
 
 signals:
     void exitApp(int exitCode);
@@ -43,5 +44,6 @@ private:
     Join *j;
     std::string namePlayer;
     TypeMap_t typeMap;
+    int returnCode;
 };
 #endif // MAINWINDOW_H
