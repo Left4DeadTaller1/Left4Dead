@@ -8,7 +8,7 @@ Spear::Spear(int xPosition, int yPosition, std::string zombieId, int mutationLev
     : Zombie(xPosition, yPosition, zombieId, mutationLevel), actionState(SPEAR_IDLE) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
     std::map<std::string, int> entityParams = config.getEntitiesParams();
 
     width = entityParams["SPEAR_WIDTH"];
@@ -42,7 +42,7 @@ Attack Spear::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
     int atkDmg = entityParams["SPEAR_ATTACK_DAMAGE"] * (1 + mutationIncrease);
     int attackRange = entityParams["SPEAR_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings

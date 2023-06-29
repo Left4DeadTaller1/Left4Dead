@@ -9,7 +9,7 @@ Venom::Venom(int xPosition, int yPosition, std::string zombieId, int mutationLev
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
 
     width = entityParams["VENOM_WIDTH"];
     height = entityParams["VENOM_HEIGHT"];
@@ -43,7 +43,7 @@ Attack Venom::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
     int atkDmg;
     int attackRange;
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
