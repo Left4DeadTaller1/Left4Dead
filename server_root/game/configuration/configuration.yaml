@@ -88,9 +88,9 @@ gameParams:
 
     
   weapons:
-    SMG_DAMAGE: 30
+    SMG_DAMAGE: 60
     SMG_DAMAGE_FALLOFF: 50
-    RIFLE_DAMAGE: 50
+    RIFLE_DAMAGE: 70
     RIFLE_DAMAGE_FALLOFF: 20
     SNIPER_DAMAGE: 200
     SNIPER_DMG_LOST_PER_PIERCE: 10
@@ -107,4 +107,5 @@ gameParams:
   spawns:
    #this will get divided by 10 in the game, 4 means a 40% increase in stats per min
     MUTATION_STRENGTH: 4
-    SPAWN_INTERVAL: 120
+    SPAWN_INTERVAL: 150
+    SPAWN_INTERVAL_DECREASE: 30

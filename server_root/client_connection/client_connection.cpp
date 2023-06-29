@@ -4,7 +4,6 @@ constexpr size_t QUEUE_SIZE = 16000;
 
 ClientConnection::ClientConnection(Socket &&skt, GamesManager &gamesManager)
     : clientSocket(std::move(skt)),
-      keepTalking(true),
       alive(true),
       gamesManager(gamesManager),
       gameResponses(QUEUE_SIZE),
@@ -56,8 +55,6 @@ bool ClientConnection::isRemovable() {
 }
 
 void ClientConnection::kill() {
-    keepTalking = false;
-
     clientSocket.shutdown(MY_SHUT_RDWR);
     clientSocket.close();
 

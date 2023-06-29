@@ -9,7 +9,7 @@ Infected::Infected(int xPosition, int yPosition, std::string zombieId, int mutat
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
 
     width = entityParams["INFECTED_WIDTH"];
     height = entityParams["INFECTED_HEIGHT"];
@@ -41,7 +41,7 @@ Attack Infected::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
 
     int atkDmg = entityParams["INFECTED_ATTACK_DAMAGE"] * (1 * (1 + mutationIncrease));
     int attackRange = entityParams["INFECTED_ATTACK_RANGE"];

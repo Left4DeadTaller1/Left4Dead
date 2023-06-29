@@ -10,7 +10,7 @@ Witch::Witch(int xPosition, int yPosition, std::string zombieId, int mutationLev
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
 
     width = entityParams["WITCH_WIDTH"];
     height = entityParams["WITCH_HEIGHT"];
@@ -62,7 +62,7 @@ Attack Witch::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
     int atkDmg = entityParams["WITCH_ATTACK_DAMAGE"] * (1 + mutationIncrease);
     int attackRange = entityParams["WITCH_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings

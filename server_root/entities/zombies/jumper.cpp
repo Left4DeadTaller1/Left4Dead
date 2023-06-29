@@ -9,7 +9,7 @@ Jumper::Jumper(int xPosition, int yPosition, std::string zombieId, int mutationL
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
 
     width = entityParams["JUMPER_WIDTH"];
     height = entityParams["JUMPER_HEIGHT"];
@@ -43,7 +43,7 @@ Attack Jumper::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
     int atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] * (1 + mutationIncrease);
     int attackRange = entityParams["JUMPER_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
@@ -66,7 +66,7 @@ Attack Jumper::generateJumpAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
     int atkDmg = entityParams["JUMPER_JUMP_DAMAGE"] * (1 + mutationIncrease);
     int attackRange = entityParams["JUMPER_JUMP_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
