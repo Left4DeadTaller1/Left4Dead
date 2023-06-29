@@ -662,10 +662,22 @@ std::optional<bool> Game::hasAlivePlayers(std::vector<std::shared_ptr<Player>> p
         return std::nullopt;
     }
 
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    int dyingBeforeGameClose = entityParams["PLAYER_DYING_DURATION"] - 150;
+
     for (auto& player : players) {
-        if (!player->isDead())
+        // Check if the player is not dead
+        if (!player->isDead()) {
+            // Player is alive, game should continue
             return true;
+        } else if (player->getActionState() == PLAYER_DYING && player->getActionCounter() > dyingBeforeGameClose) {
+            // Player is dying, but action counter has not reached the threshold, game should continue
+            return true;
+        }
     }
+
+    // If code reaches here, all players are either dead or in dying state with action counter <= dyingBeforeGameClose
     return false;
 }
 
@@ -687,11 +699,9 @@ void Game::sendScoreScreen() {
     std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage(timePlayed, zombiesKilled);
     for (Queue<std::shared_ptr<std::vector<uint8_t>>>* playerQueue : playerQueues) {
         if (playerQueue) {
-            std::cout << "Score screen in quee" << std::endl;
             playerQueue->push(serializedState);
         }
     }
-    std::cout << "ALL Score screen sent" << std::endl;
 }
 
 std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {

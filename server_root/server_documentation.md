@@ -46,6 +46,6 @@
  - MEtadata de tiempo y puntaje
  - settear crateres
  - airstrike
- -testear el Venom
+ - testear el Venom
  
  

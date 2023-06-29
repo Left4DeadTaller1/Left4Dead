@@ -9,12 +9,12 @@ Jumper::Jumper(int xPosition, int yPosition, std::string zombieId, int mutationL
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
 
     width = entityParams["JUMPER_WIDTH"];
     height = entityParams["JUMPER_HEIGHT"];
-    health = entityParams["JUMPER_HEALTH"] + mutationIncrease;
-    movementSpeed = entityParams["JUMPER_SPEED"] + mutationIncrease;
+    health = entityParams["JUMPER_HEALTH"] * (1 + mutationIncrease);
+    movementSpeed = entityParams["JUMPER_SPEED"] * (1 + mutationIncrease);
     // Todo: add jump ATk
     attacksCooldowns.insert(std::make_pair("melee", 0));
     attacksCooldowns.insert(std::make_pair("jump", 0));
@@ -43,8 +43,8 @@ Attack Jumper::generateAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
-    int atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] + mutationIncrease;
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
+    int atkDmg = entityParams["JUMPER_ATTACK_DAMAGE"] * (1 + mutationIncrease);
     int attackRange = entityParams["JUMPER_ATTACK_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
@@ -66,8 +66,8 @@ Attack Jumper::generateJumpAttack() {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = mutationLevel * spawnParams["MUTATION_STRENGTH"];
-    int atkDmg = entityParams["JUMPER_JUMP_DAMAGE"] + mutationIncrease;
+    int mutationIncrease = mutationLevel * (spawnParams["MUTATION_STRENGTH"] / 10);
+    int atkDmg = entityParams["JUMPER_JUMP_DAMAGE"] * (1 + mutationIncrease);
     int attackRange = entityParams["JUMPER_JUMP_RANGE"];
     AttackDirection attackDirection = LEFT;  // default value to avoid warnings
     int attackX = 0;
@@ -151,6 +151,8 @@ bool Jumper::getplayerWithinRange(std::vector<std::shared_ptr<Entity>>& entities
     for (const auto& entity : entities) {
         std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
         if (player) {
+            if (player->isDead())
+                continue;
             int distance = std::sqrt(std::pow((x - player->getX()), 2) + std::pow((y - player->getY()), 2));
             if (distance <= maxJumpRange) {
                 return true;
