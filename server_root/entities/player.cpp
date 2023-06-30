@@ -276,5 +276,9 @@ bool Player::isRemovable() {
     return (actionCounter == 0 && actionState == PLAYER_DEAD);
 }
 
+std::string Player::getNickName() {
+    return nickName;
+}
+
 Player::~Player() {
 }

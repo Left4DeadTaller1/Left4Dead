@@ -87,6 +87,7 @@ class Player : public Entity {
     void kill() override;
     bool isDead() override;
     bool isRemovable() override;
+    std::string getNickName();
     ~Player();
 };
 

@@ -105,6 +105,8 @@ bool Jumper::isMoving() {
 }
 
 bool Jumper::takeDamage(int damage) {
+    if (damage <= 0)
+        return false;
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     health -= damage;

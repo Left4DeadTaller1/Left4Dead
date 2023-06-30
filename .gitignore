@@ -1,132 +1,132 @@
-# # This file is used to ignore files which are generated
-# # ----------------------------------------------------------------------------
+# This file is used to ignore files which are generated
+# ----------------------------------------------------------------------------
 
-# *~
-# *.autosave
-# *.a
-# *.core
-# *.moc
-# *.o
-# *.obj
-# *.orig
-# *.rej
-# *.so
-# *.so.*
-# *_pch.h.cpp
-# *_resource.rc
-# *.qm
-# .#*
-# *.*#
-# core
-# !core/
-# tags
-# .DS_Store
-# .directory
-# *.debug
-# Makefile*
-# *.prl
-# *.app
-# moc_*.cpp
-# ui_*.h
-# qrc_*.cpp
-# Thumbs.db
-# *.res
-# *.rc
-# /.qmake.cache
-# /.qmake.stash
+*~
+*.autosave
+*.a
+*.core
+*.moc
+*.o
+*.obj
+*.orig
+*.rej
+*.so
+*.so.*
+*_pch.h.cpp
+*_resource.rc
+*.qm
+.#*
+*.*#
+core
+!core/
+tags
+.DS_Store
+.directory
+*.debug
+Makefile*
+*.prl
+*.app
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+Thumbs.db
+*.res
+*.rc
+/.qmake.cache
+/.qmake.stash
 
-# # qtcreator generated files
-# *.pro.user*
-# CMakeLists.txt.user*
+# qtcreator generated files
+*.pro.user*
+CMakeLists.txt.user*
 
-# # xemacs temporary files
-# *.flc
+# xemacs temporary files
+*.flc
 
-# # Vim temporary files
-# .*.swp
+# Vim temporary files
+.*.swp
 
-# # Visual Studio generated files
-# *.ib_pdb_index
-# *.idb
-# *.ilk
-# *.pdb
-# *.sln
-# *.suo
-# *.vcproj
-# *vcproj.*.*.user
-# *.ncb
-# *.sdf
-# *.opensdf
-# *.vcxproj
-# *vcxproj.*
+# Visual Studio generated files
+*.ib_pdb_index
+*.idb
+*.ilk
+*.pdb
+*.sln
+*.suo
+*.vcproj
+*vcproj.*.*.user
+*.ncb
+*.sdf
+*.opensdf
+*.vcxproj
+*vcxproj.*
 
-# # MinGW generated files
-# *.Debug
-# *.Release
+# MinGW generated files
+*.Debug
+*.Release
 
-# # Python byte code
-# *.pyc
+# Python byte code
+*.pyc
 
-# # Binaries
-# # --------
-# *.dll
-# *.exe
+# Binaries
+# --------
+*.dll
+*.exe
 
-# # CMake generated files
-# CMakeCache.txt
-# CMakeFiles/
-# CMakeScripts/
-# Testing/
-# Makefile
-# cmake_install.cmake
-# install_manifest.txt
-# compile_commands.json
-# CTestTestfile.cmake
-# _deps/
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
 
-# # Object files
-# *.o
-# *.o.d
+# Object files
+*.o
+*.o.d
 
-# # Dependency files
-# *.d
+# Dependency files
+*.d
 
-# # Log files
-# *.log
+# Log files
+*.log
 
-# # JSON files (if you want to ignore all JSON files)
-# # *.json (uncomment this line if you want to ignore all .json files)
+# JSON files (if you want to ignore all JSON files)
+# *.json (uncomment this line if you want to ignore all .json files)
 
-# # Generated header files
-# moc_*.h
+# Generated header files
+moc_*.h
 
-# # Internal files
-# *.internal
+# Internal files
+*.internal
 
-# # Link files
-# link.txt
+# Link files
+link.txt
 
-# /build/
+/build/
 
-# # QtCreator
-# *.autosave
-# *.pro.user
-# *.pro.user.*
-# *.creator.user
-# *.creator.user.*
-# *.filelist
-# *.filelist.*
-# *.includes
-# *.includes.*
-# *.layout
+# QtCreator
+*.autosave
+*.pro.user
+*.pro.user.*
+*.creator.user
+*.creator.user.*
+*.filelist
+*.filelist.*
+*.includes
+*.includes.*
+*.layout
 
-# # QtCtreator Qml
-# *.qmlproject.user
-# *.qmlproject.user.*
-# *.qmlproject.user.*
-# *.qmlproject.*
+# QtCtreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
+*.qmlproject.user.*
+*.qmlproject.*
 
-# # QtCtreator CMake
-# CMakeLists.txt.user
-# CMakeLists.txt.user.*
-# CMakeLists.txt.user.*
+# QtCtreator CMake
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+CMakeLists.txt.user.*

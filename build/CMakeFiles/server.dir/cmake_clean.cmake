@@ -49,6 +49,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/server_root/game/game.cpp.o.d"
   "CMakeFiles/server.dir/server_root/game/games_manager.cpp.o"
   "CMakeFiles/server.dir/server_root/game/games_manager.cpp.o.d"
+  "CMakeFiles/server.dir/server_root/game/score_saver.cpp.o"
+  "CMakeFiles/server.dir/server_root/game/score_saver.cpp.o.d"
   "CMakeFiles/server.dir/server_root/game/server_message.cpp.o"
   "CMakeFiles/server.dir/server_root/game/server_message.cpp.o.d"
   "CMakeFiles/server.dir/server_root/server/acceptor.cpp.o"

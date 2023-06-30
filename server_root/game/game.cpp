@@ -16,7 +16,7 @@
 ________________________________________________________________*/
 
 Game::Game(int mapType)
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), gameStarted(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0) {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), gameStarted(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0), scoreSaver() {
     if (mapType >= MAP1_BACKGROUND && mapType <= MAP8_BACKGROUND) {
         mapBackground = static_cast<MapType>(mapType);
         createObstacles(mapBackground);
@@ -240,6 +240,7 @@ void Game::removePlayer(Player& playerToRemove) {
 
 void Game::startGame() {
     gameStarted = true;
+    startTime = std::chrono::steady_clock::now();
     // TODO this is for debuging
     // zombieSpawner.increaseTotalZombies();
     // int totalZombies = zombieSpawner.getTotalZombies();
@@ -693,10 +694,24 @@ void Game::sendState() {
 }
 
 void Game::sendScoreScreen() {
-    // in a refactor i would get the 30 from somewhere not hardcode it like this
-    int timePlayed = framesCounter / 30;
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - startTime);
+    std::chrono::seconds elapsedSeconds = std::chrono::duration_cast<std::chrono::seconds>(elapsed);
+    int totalSeconds = elapsedSeconds.count();
 
-    std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage(timePlayed, zombiesKilled);
+    // Get top player scores
+    std::string playersNames;
+    for (std::vector<std::shared_ptr<Player>>::size_type i = 0; i < players.size(); i++) {
+        if (i == players.size() - 1)
+            playersNames += players[i]->getNickName();
+        else
+            playersNames += players[i]->getNickName() + ", ";
+    }
+
+    // Save the score entry
+    scoreSaver.saveScore(playersNames, zombiesKilled, totalSeconds);
+
+    std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage(totalSeconds, zombiesKilled);
     for (Queue<std::shared_ptr<std::vector<uint8_t>>>* playerQueue : playerQueues) {
         if (playerQueue) {
             playerQueue->push(serializedState);
