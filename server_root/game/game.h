@@ -1,6 +1,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#include <chrono>
 #include <list>
 #include <optional>
 #include <queue>
@@ -12,6 +13,7 @@
 #include "obstacle.h"
 #include "player.h"
 #include "queue.h"
+#include "score_saver.h"
 #include "server_message.h"
 #include "server_protocol.h"
 #include "thread.h"
@@ -84,6 +86,8 @@ class Game : public Thread {
     ZombieSpawner zombieSpawner;
     int framesCounter;
     int zombiesKilled;
+    ScoreSaver scoreSaver;
+    std::chrono::time_point<std::chrono::steady_clock> startTime;
 
     void createObstacles(MapType mapBackground);
     void spawnPlayer(std::string idPlayer, std::string playerNickname, int weaponType);

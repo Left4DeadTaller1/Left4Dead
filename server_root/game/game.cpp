@@ -16,7 +16,7 @@
 ________________________________________________________________*/
 
 Game::Game(int mapType)
-    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), gameStarted(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0) {
+    : inputQueue(MAX_QUEUE_SIZE), nextPlayerIndex(0), gameRunning(false), gameStarted(false), collisionDetector(), protocol(), zombieSpawner(), framesCounter(0), zombiesKilled(0), scoreSaver() {
     if (mapType >= MAP1_BACKGROUND && mapType <= MAP8_BACKGROUND) {
         mapBackground = static_cast<MapType>(mapType);
         createObstacles(mapBackground);
@@ -240,11 +240,12 @@ void Game::removePlayer(Player& playerToRemove) {
 
 void Game::startGame() {
     gameStarted = true;
+    startTime = std::chrono::steady_clock::now();
     // TODO this is for debuging
-    // zombieSpawner.increaseTotalZombies();
-    // int totalZombies = zombieSpawner.getTotalZombies();
-    // std::string zombieId = "zombie" + std::to_string(totalZombies);
-    // entities.push_back(std::make_shared<Jumper>(100, 50, zombieId, 0));
+    zombieSpawner.increaseTotalZombies();
+    int totalZombies = zombieSpawner.getTotalZombies();
+    std::string zombieId = "zombie" + std::to_string(totalZombies);
+    entities.push_back(std::make_shared<Witch>(100, 50, zombieId, 0));
 
     gameRunning = true;
     while (gameRunning) {
@@ -662,10 +663,22 @@ std::optional<bool> Game::hasAlivePlayers(std::vector<std::shared_ptr<Player>> p
         return std::nullopt;
     }
 
+    GameConfig& config = GameConfig::getInstance();
+    std::map<std::string, int> entityParams = config.getEntitiesParams();
+    int dyingBeforeGameClose = entityParams["PLAYER_DYING_DURATION"] - 150;
+
     for (auto& player : players) {
-        if (!player->isDead())
+        // Check if the player is not dead
+        if (!player->isDead()) {
+            // Player is alive, game should continue
             return true;
+        } else if (player->getActionState() == PLAYER_DYING && player->getActionCounter() > dyingBeforeGameClose) {
+            // Player is dying, but action counter has not reached the threshold, game should continue
+            return true;
+        }
     }
+
+    // If code reaches here, all players are either dead or in dying state with action counter <= dyingBeforeGameClose
     return false;
 }
 
@@ -681,17 +694,29 @@ void Game::sendState() {
 }
 
 void Game::sendScoreScreen() {
-    // in a refactor i would get the 30 from somewhere not hardcode it like this
-    int timePlayed = framesCounter / 30;
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - startTime);
+    std::chrono::seconds elapsedSeconds = std::chrono::duration_cast<std::chrono::seconds>(elapsed);
+    int totalSeconds = elapsedSeconds.count();
 
-    std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage(timePlayed, zombiesKilled);
+    // Get top player scores
+    std::string playersNames;
+    for (std::vector<std::shared_ptr<Player>>::size_type i = 0; i < players.size(); i++) {
+        if (i == players.size() - 1)
+            playersNames += players[i]->getNickName();
+        else
+            playersNames += players[i]->getNickName() + ", ";
+    }
+
+    // Save the score entry
+    scoreSaver.saveScore(playersNames, zombiesKilled, totalSeconds);
+
+    std::shared_ptr<std::vector<uint8_t>> serializedState = protocol.encodeServerMessage(totalSeconds, zombiesKilled);
     for (Queue<std::shared_ptr<std::vector<uint8_t>>>* playerQueue : playerQueues) {
         if (playerQueue) {
-            std::cout << "Score screen in quee" << std::endl;
             playerQueue->push(serializedState);
         }
     }
-    std::cout << "ALL Score screen sent" << std::endl;
 }
 
 std::vector<std::shared_ptr<EntityDTO>> Game::getDtos() {

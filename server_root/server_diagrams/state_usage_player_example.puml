@@ -1,0 +1,65 @@
+@startuml
+
+skinparam linetype ortho
+
+state "Idle" as idle
+
+state "Walking" as walking
+
+state "Running" as running
+
+state "Shooting" as shooting
+
+state "Reloading" as reloading
+
+state "Reviving" as reviving
+
+state "Hurt" as hurt
+
+state "Dying" as dying
+
+state "Dead" as dead
+
+[*] --> idle : Start
+
+idle -down-> walking : isMoving() = true\nactionCounter = 0
+idle -down-> shooting : canAttack() = true\nactionState = PLAYER_SHOOTING
+idle -down-> reviving : actionState = PLAYER_REVIVING\nRevival conditions met
+idle -down-> hurt : takesDamage()\nhealth > 0
+idle -down-> dying : takesDamage()\nhealth <= 0
+
+walking -down-> running : Speeds up\nactionCounter = 0
+walking --> idle : Stops\nactionCounter = 0
+
+running --> idle : Stops\nactionCounter = 0
+
+shooting -down-> reloading : Empty magazine\nactionState = PLAYER_RELOADING
+shooting --> idle : Stops shooting\nactionCounter = 0
+
+reloading --> shooting : Reload complete\nactionState = PLAYER_SHOOTING\nactionCounter = 0
+reloading -down-> idle : actionCounter = 0\nnot isDead()
+reloading -down-> dead : checkIfDead() = true
+
+reviving --> idle : Revival complete\nactionCounter = 0
+
+hurt --> idle : Recovers\nactionCounter = 0
+hurt --> dying : Health <= 0
+
+dying --> dead : Dying animation complete\nactionCounter = 0
+
+note right of shooting : Player canAttack() if actionCounter = 0 and has bullets
+
+note right of reviving : Revival happens if player.getActionState() = PLAYER_REVIVING and actionCounter = 1
+
+note right of reloading : actionCounter = reload time
+
+note right of dying : actionCounter = dying duration
+
+note right of dead : actionCounter = death duration
+
+note as N1
+    This design evolved naturally during coding. While it resembles the State Pattern, 
+    it was not directly modeled after it.
+end note
+
+@enduml

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <thread>
 
 ClientReceiver::ClientReceiver(Socket &clientSocket, GamesManager &gamesManager, Queue<std::shared_ptr<std::vector<uint8_t>>> &gameResponses)
     : clientSocket(clientSocket),
@@ -60,6 +61,8 @@ void ClientReceiver::run() {
                     // TODO receive the gameCode and pass it to the startGame
                     if (!game->isGameRunning())
                         gamesManager.startGame(game);
+                    // This should help with the initial lag
+                    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                     break;
                 }
                 case START_MOVE: {

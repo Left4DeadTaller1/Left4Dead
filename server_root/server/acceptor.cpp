@@ -38,6 +38,7 @@ void Acceptor::reap_dead() {
     clients.remove_if([](const std::shared_ptr<ClientConnection>& c) {
         c->checkThreads();
         if (c->isRemovable()) {
+            std::cout << "LO ENTRA A MATAR\n";
             c->kill();
             return true;
         }

@@ -40,28 +40,40 @@ int Zombie::getMutationLevel() {
 void Zombie::decideTarget(std::vector<std::shared_ptr<Player>>& players) {
     if (players.empty()) {
         idle();
-        return;  // i mean you will never have 0 players but just in case
-    }
-    // if you are already doing something else don't decide a targetokis
-    if (actionCounter != 0)
         return;
+    }
 
-    int closestPlayerX = players[0]->getX();
-    int closestPlayerY = players[0]->getY();
-    int closestPlayerDistance = std::sqrt(std::pow((x - closestPlayerX), 2) + std::pow((y - closestPlayerY), 2));
+    if (actionCounter != 0) {
+        return;
+    }
 
-    for (std::size_t i = 1; i < players.size(); i++) {
-        if (players[i]->isDead())
+    int closestPlayerX = 0;
+    int closestPlayerY = 0;
+    int closestPlayerDistance = std::numeric_limits<int>::max();
+    bool foundAlivePlayer = false;
+
+    for (std::size_t i = 0; i < players.size(); i++) {
+        if (players[i]->isDead()) {
             continue;
+        }
 
         int newDistance = std::sqrt(std::pow((x - players[i]->getX()), 2) + std::pow((y - players[i]->getY()), 2));
-        if (newDistance < closestPlayerDistance) {
+
+        if (!foundAlivePlayer || newDistance < closestPlayerDistance) {
             closestPlayerX = players[i]->getX();
             closestPlayerY = players[i]->getY();
             closestPlayerDistance = newDistance;
+            foundAlivePlayer = true;
         }
     }
 
+    // If no alive players, go idle
+    if (!foundAlivePlayer) {
+        idle();
+        return;
+    }
+
+    // Set movement direction based on the closest player
     if (closestPlayerX < x) {
         movementDirectionX = ENTITY_LEFT;
         facingDirection = FACING_LEFT;

@@ -1,0 +1,32 @@
+no idea why this on doesn't run
+@startuml
+|Game Loop|
+start
+
+:gameRunning = true;|
+
+while (gameRunning) is (true)
+  :getPlayersActions();|
+  note right: Pops players' intentions from the inputQueue and pushes them to the corresponding playerAction queue
+  :updateState();|
+  note right: Updates the game state by itarating over entities processing their intentions (updating each entity state and actionCounter) and processing its behaviors (doing the actions of each entity)
+  fork
+    :Check if any player is alive;|
+  fork again
+    :Check if any player is connected;|
+  end fork
+  :Check if no player is alive or no player is connected;|
+  if (No player alive or no player connected) then (yes)
+    :Send Score Screen;|
+    note right: Sends the game score screen to the players
+    :Stop Game;|
+    :gameRunning = false;|
+    break
+  endif
+  :sendState();|
+  note right: Sends the updated game state to the players
+  :Sleep for remaining frame time;|
+endwhile
+
+stop
+@enduml

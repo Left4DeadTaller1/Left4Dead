@@ -1,0 +1,62 @@
+@startuml
+title Client Input to Game State Update Sequence
+
+actor Client as C #yellow
+participant ClientReceiver as CR #add8e6
+participant Protocol as P #f0e68c
+participant GamesManager as GM #98fb98
+participant Game as G #dda0dd
+participant Player as Pl #ffb6c1
+
+note over C, Pl: Client sends an input to the server
+C -> CR : Send input to server
+activate C
+activate CR
+
+CR -> P : protocol.receiveTypeCommand(wasClosed, clientSocket)
+activate P
+note right of P: Decode the message
+P --> CR : return typeCommand
+deactivate P
+
+CR -> CR : switch(typeCommand)
+activate CR
+note over CR: Check the type of input to determine the action
+
+alt CREATE message and game hasn't started
+    CR -> GM : gamesManager.createLobby(gameResponses, nickname, weapon, map)
+    activate GM
+    note right of GM: Create a new game lobby
+    GM --> CR : return GameRecord
+    deactivate GM
+else JOIN message and game hasn't started
+    CR -> GM : gamesManager.joinLobby(code, gameResponses, nickname, weapon)
+    activate GM
+    note right of GM: Join an existing game lobby
+    GM --> CR : return GameRecord
+    deactivate GM
+else Other messages
+    CR -> G : game.pushAction(action)
+    activate G
+    G -> G : inputQueue.push(playerAction)
+    note right of G: Actions are queued for processing
+    G -> G : getPlayersActions()
+    G -> G : updateState()
+
+    alt update player state
+        G -> Pl : updatePlayerState(Player, playerActions)
+        activate Pl
+        Pl -> Pl : Pop action from queue
+        note right of Pl: Player state is updated
+        Pl --> G : return action
+        deactivate Pl
+    end
+    G --> CR : State updated
+    note over G: Game state updated
+    deactivate G
+end
+
+note over CR: Processing of input is complete
+deactivate CR
+deactivate C
+@enduml

@@ -10,7 +10,6 @@
 class ClientConnection {
    private:
     Socket clientSocket;
-    bool keepTalking;
     bool alive;
     GamesManager& gamesManager;
 

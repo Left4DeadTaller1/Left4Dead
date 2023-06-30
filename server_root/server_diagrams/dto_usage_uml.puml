@@ -1,0 +1,109 @@
+@startuml
+
+skinparam linetype ortho
+skinparam shadowing false
+skinparam sequenceParticipant underline
+skinparam sequenceArrowThickness 2
+
+class Entity {
+    {abstract} + getDto() : std::shared_ptr<EntityDTO>
+}
+
+class Player {
+    + getDto() : std::shared_ptr<EntityDTO>
+}
+
+class Zombie {
+    {abstract} + getDto() : std::shared_ptr<EntityDTO>
+}
+
+class Witch {}
+class Venom {}
+class Spear {}
+class Jumper {}
+class Infected {}
+
+class Game {
+    + sendState() : void
+    + getDtos() : std::vector<std::shared_ptr<EntityDTO>>
+}
+
+Player --|> Entity
+Zombie --|> Entity
+Witch --|> Zombie
+Venom --|> Zombie
+Spear --|> Zombie
+Jumper --|> Zombie
+Infected --|> Zombie
+
+Game *-- "0..*" Entity
+
+class EntityDTO {
+    + type : EntityType
+    + id : std::string
+    + x : int
+    + y : int
+    + health : int
+    + movementDirectionX : int
+    + facingDirection : FacingDirection
+    + actionCounter : int
+    + {virtual} ~EntityDTO() = default
+}
+
+class PlayerDTO {
+    + weaponType : int
+    + bullets : int
+    + actionState : PlayerActionState
+    + nickName : std::string
+}
+
+class ZombieDTO {
+    + zombieType : ZombieType
+}
+
+class WitchDTO {
+    + actionState : WitchActionState
+}
+
+class VenomDTO {
+    + actionState : VenomActionState
+}
+
+class SpearDTO {
+    + actionState : SpearActionState
+}
+
+class JumperDTO {
+    + actionState : JumperActionState
+}
+
+class InfectedDTO {
+    + actionState : InfectedActionState
+}
+
+PlayerDTO --|> EntityDTO
+ZombieDTO --|> EntityDTO
+WitchDTO --|> ZombieDTO
+VenomDTO --|> ZombieDTO
+SpearDTO --|> ZombieDTO
+JumperDTO --|> ZombieDTO
+InfectedDTO --|> ZombieDTO
+
+Entity ..> EntityDTO : <<return>>
+Player ..> PlayerDTO : <<return>>
+Zombie ..> ZombieDTO : <<return>>
+Witch ..> WitchDTO : <<return>>
+Venom ..> VenomDTO : <<return>>
+Spear ..> SpearDTO : <<return>>
+Jumper ..> JumperDTO : <<return>>
+Infected ..> InfectedDTO : <<return>>
+
+note right of Game
+    To send the game state, the Game class
+    creates a vector of EntityDTOs and encodes it.
+    This is done by iterating through each entity,
+    converting them to DTOs and adding them to
+    the vector. This vector is then serialized and sent.
+end note
+
+@enduml

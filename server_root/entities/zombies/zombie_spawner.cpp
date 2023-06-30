@@ -68,7 +68,7 @@ std::shared_ptr<Entity> ZombieSpawner::spawn() {
     } else {  // 15%
         zombiePtr = std::make_shared<Jumper>(spawnX, spawnY, zombieId, mutationLevel);
     }
-    spawnInterval = spawnSettings["SPAWN_INTERVAL"];
+    spawnInterval = spawnSettings["SPAWN_INTERVAL"] - (mutationLevel * spawnSettings["SPAWN_INTERVAL_DECREASE"]);
 
     return std::static_pointer_cast<Entity>(zombiePtr);
 }

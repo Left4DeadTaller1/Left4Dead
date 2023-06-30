@@ -1,0 +1,73 @@
+@startuml
+title Game Logic Sequence
+
+actor Client as C #yellow
+participant ClientReceiver as CR #add8e6
+participant Protocol as P #f0e68c
+participant Game as G #dda0dd
+participant Entity as E #ffb6c1
+participant Protocol as Pro #87CEEB
+participant ClientSender as CS #add8e6
+
+note over C: Client sends an action to the server
+C -> CR : Send action to server
+activate C
+activate CR
+
+CR -> P : protocol.receiveTypeCommand()
+activate P
+note right of P: Obtain the input
+P --> CR : return input
+deactivate P
+
+CR -> G : game.pushAction(action)
+activate G
+note over G: Start of Game loop
+
+G -> G : getPlayersActions()
+note right of G: Get actions from players
+
+G -> G : updateState()
+note over G: Loop through entities
+activate G
+
+loop for each Entity in entities
+    G -> E : entity.decreaseActionCounter()
+    activate E
+    note right of E: Process the entity state
+    E -> E : Perform corresponding action
+    E --> G : return entity state
+    deactivate E
+end
+
+G -> G : removeAfkPlayers()
+G -> G : removeDeadEntities()
+G -> G : mutateZombies()
+G -> G : spawnZombies()
+
+G -> Pro : protocol.encodeServerMessage("gameState", entitiesDtos)
+activate Pro
+note right of Pro: Encode the game state
+Pro --> G : return serializedState
+deactivate Pro
+
+G -> G : sendState(serializedState)
+note right of G: Send state to clients
+G -> CS : Push serializedState to sender queue
+activate CS
+
+loop while sender is running
+    CS -> CS : gameResponses.pop()
+    note right of CS: Pop the action state
+    CS -> C : clientSocket.sendall()
+    note right of CS: Send the action state
+end
+
+G -> G : sleepForFrameRate()
+note right of G: Sleep to maintain 30 FPS
+
+deactivate G
+deactivate CR
+deactivate C
+note over G: End of Game loop
+@enduml

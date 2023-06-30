@@ -1,0 +1,31 @@
+@startuml
+class GameConfig {
+    - mapFiles : std::vector<std::string>
+    - gameDimensions : std::map<std::string, int>
+    - entitiesParams : std::map<std::string, int>
+    - weaponsParams : std::map<std::string, int>
+    - spawnsParams : std::map<std::string, int>
+    + {static} getInstance() : GameConfig&
+    + getMapFiles() : std::vector<std::string>
+    + getGameDimensions() : std::map<std::string, int>
+    + getEntitiesParams() : std::map<std::string, int>
+    + getWeaponsParams() : std::map<std::string, int>
+    + getSpawnsParams() : std::map<std::string, int>
+    - GameConfig()
+}
+
+note left of GameConfig::getInstance
+  This method ensures
+  that only a single 
+  instance of GameConfig
+  is created and provides
+  a global point of access.
+end note
+
+Player ..> GameConfig : <<use>>
+Zombie ..> GameConfig : <<use>>
+Game ..> GameConfig : <<use>>
+collisionDetector ..> GameConfig : <<use>>
+zombieSpawner ..> GameConfig : <<use>>
+
+@enduml
