@@ -1,0 +1,123 @@
+@startuml
+
+scale 1800 width
+
+left to right direction
+skinparam nodesep 100
+skinparam ranksep 100
+skinparam linetype ortho
+skinparam shadowing false
+skinparam sequenceParticipant underline
+skinparam sequenceArrowThickness 2
+
+skinparam sequenceMessageAlign center
+skinparam sequenceLifeLineBorderColor black
+
+
+skinparam classArrow {
+    Color black
+    FontSize 20
+    FontStyle bold
+}
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+
+together {
+    package "Client" {
+        class ClientConnection {
+            - clientSocket : Socket
+            - alive : bool
+            - gamesManager : GamesManager&
+            - gameResponses : Queue<shared_ptr<vector<uint8_t>>>
+            - sender : ClientSender
+            - receiver : ClientReceiver
+            + ClientConnection(skt : Socket&&, gamesManager : GamesManager&)
+            + connectToClient() : void
+            + checkThreads() : void
+            + menu() : void
+            + inGame() : void
+            + isRemovable() : bool
+            + kill() : void
+            + ~ClientConnection()
+        }
+
+        class ClientReceiver {
+            - clientSocket : Socket&
+            - gamesManager : GamesManager&
+            - game : shared_ptr<Game>
+            - playerId : string
+            - isRunning : atomic<bool>
+            - gameResponses : Queue<shared_ptr<vector<uint8_t>>>&
+            - protocol : ServerProtocol
+            + ClientReceiver(clientSocket : Socket&, gamesManager : GamesManager&, gameResponses : Queue<shared_ptr<vector<uint8_t>>>&)
+            + run() : void override
+            + stop() : void
+            + ~ClientReceiver()
+        }
+
+        class ClientSender {
+            - clientSocket : Socket&
+            - gameResponses : Queue<shared_ptr<vector<uint8_t>>>&
+            - isRunning : atomic<bool>
+            - protocol : ServerProtocol
+            + ClientSender(skt : Socket&, gameResponses : Queue<shared_ptr<vector<uint8_t>>>&)
+            + run() : void override
+            + stop() : void
+            + ~ClientSender()
+        }
+    }
+
+    class Socket {
+        - skt : int
+        - closed : bool
+        + sendall(buf : const void*, numBytes : size_t) : ssize_t
+        + recvall(buf : void*, numBytes : size_t) : ssize_t
+        + shutdown(how : int) : void
+        + close() : int
+        + ~Socket()
+    }
+}
+
+class ServerProtocol {
+    + ServerProtocol()
+    + receiveTypeCommand(wasClosed : bool&, peer : Socket&) : int
+    + encodeServerMessage(msgType : string, entities : vector<shared_ptr<EntityDTO>>) : shared_ptr<vector<uint8_t>>
+    + ~ServerProtocol()
+}
+
+class Thread {
+    - thread : std::thread
+    + Thread()
+    + start() : void
+    + join() : void
+    + main() : void
+    + run() : void virtual
+    + ~Thread() virtual
+}
+
+class GamesManager {
+    - games : unordered_map<int, shared_ptr<Game>>
+    - m : mutex
+    - nextGameId : int
+    + startGame(gameToStart : shared_ptr<Game>) : void
+    + removeFinishedGames() : void
+    + killGames() : void
+    + ~GamesManager()
+}
+
+ClientConnection -[#DarkGreen]-> Socket : reference 
+ClientConnection -[#DarkGreen]-> GamesManager : reference 
+ClientConnection -[#DarkGreen]-> ClientSender 
+ClientConnection -[#DarkGreen]-> ClientReceiver 
+
+ClientReceiver -[#Blue]-> Socket : reference 
+ClientReceiver -[#Blue]-> GamesManager : reference 
+ClientReceiver -[#Blue]-> ServerProtocol 
+
+ClientSender -[#Red]-> Socket : reference 
+ClientSender -[#Red]-> ServerProtocol  
+
+ClientReceiver -[#Purple]-|> Thread   
+ClientSender -[#Purple]-|> Thread  
+
+@enduml

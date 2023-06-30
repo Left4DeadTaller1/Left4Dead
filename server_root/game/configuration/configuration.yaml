@@ -4,6 +4,7 @@ mapFiles:
   
 gameParams:
   dimensions:
+  #la verdad que esta el tamaño del mapa para modificar aca pero no deberia de estarlo ya que romperia bastante el tema de los obstaculos, lo dejo aca por tema de tiempo pero deberian ser ctes en game esto
     GAME_WIDTH: 1500
     GAME_HEIGHT: 150
     PLAYER_MAX_AFK_TIME: 1800
