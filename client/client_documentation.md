@@ -24,3 +24,18 @@ Si el codigo de retorno del menu de QT es cero significa que el juego debe arran
 
 ![esqueleto drawio](https://github.com/Left4DeadTaller1/Left4Dead/assets/83927746/55d3a2cb-e63b-4f5a-9155-58f05bb4e418)
 
+###La función LoopRender():
+
+La función looprender() es el bucle principal encargado de renderizar y actualizar el estado del juego en el cliente. Sen encarga de:
+
+Bucle principal: Se inicia un bucle que se ejecuta mientras el cliente esté conectado y el juego no haya terminado.
+
+Gestión de eventos: Se manejan eventos del juego, como acciones acciones que no requieren ir al servidor, como mutear el sonido, o actualizaciones del estado del juego provenientes del servidor.
+
+Renderizado: Se realiza el renderizado de los elementos del juego, como el mapa, los jugadores, los infectados.
+
+Control de tiempo: Se controla el tiempo y cada cuantos loops de render se avanzan al siguiente frame.
+Actualización del estado del juego: Se actualiza el estado del juego en función de los eventos y acciones recibidos, como la actualización de la posición de los personajes.
+
+![renderer drawio](https://github.com/Left4DeadTaller1/Left4Dead/assets/83927746/de5b4f7e-1c46-4267-9b5e-af7af0af4841)
+
