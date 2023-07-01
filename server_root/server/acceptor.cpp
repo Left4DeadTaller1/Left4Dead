@@ -18,7 +18,7 @@ void Acceptor::run() {
             clients.push_back(th);
 
             // Limpieza de clients viejos
-            reap_dead();
+            //reap_dead();
 
             // remove finished games
             gamesManager.removeFinishedGames();
