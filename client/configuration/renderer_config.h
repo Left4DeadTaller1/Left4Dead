@@ -11,6 +11,7 @@ class RendererConfig {
     private:
     std::map<std::string, int> dimensionsWindows;
     std::map<std::string, int> dimensionsLifeBar;
+    std::map<std::string, int> renderParams;
 
     RendererConfig();
     RendererConfig(const RendererConfig&) = delete;
@@ -18,8 +19,9 @@ class RendererConfig {
     
     public:
     static RendererConfig& getInstance();
-    std::map<std::string, int> getDimensionsWindows() const;
-    std::map<std::string, int> getDimensionsLifeBar() const;
+    std::map<std::string, int>& getDimensionsWindows();
+    std::map<std::string, int>& getDimensionsLifeBar();
+    std::map<std::string, int>& getRenderParams();
 };
 
 #endif  // GAME_CONFIG_H

@@ -13,8 +13,8 @@ class JoinAction : public ActionClient {
 
    public:
     JoinAction(std::string namePlayer, 
-                std::string weaponPlayer, 
-                std::string code);
+                TypeWeapon_t weaponPlayer, 
+                int code);
 
     virtual std::vector<int8_t> serialize() const override;
 };

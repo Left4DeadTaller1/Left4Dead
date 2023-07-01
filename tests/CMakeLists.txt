@@ -48,16 +48,9 @@ target_include_directories(client_tests
    ${CMAKE_CURRENT_SOURCE_DIR}/../client/actions
 )
 
-# Agregar los archivos de implementación
-file(GLOB CLIENT_PROTOCOL_SRC "${CMAKE_SOURCE_DIR}/client/client_connection/client_protocol.cpp")
-file(GLOB SOCKET_SRC "${CMAKE_SOURCE_DIR}/dipa_classes/socket.cpp")
-target_sources(client_tests PRIVATE "${CMAKE_SOURCE_DIR}/dipa_classes/resolver.cpp")
-target_sources(client_tests PRIVATE "${CMAKE_SOURCE_DIR}/dipa_classes/liberror.cpp")
-target_sources(client_tests PRIVATE "${CMAKE_SOURCE_DIR}/dipa_classes/resolvererror.cpp")
-
-
-# Agregar los archivos fuente a los ejecutables de prueba
-target_sources(client_tests PRIVATE ${CLIENT_PROTOCOL_SRC} ${SOCKET_SRC})
+target_sources(client_tests PRIVATE "${CMAKE_SOURCE_DIR}/client/actions/action_create.cpp")
+target_sources(client_tests PRIVATE "${CMAKE_SOURCE_DIR}/client/actions/action_join.cpp")
+target_sources(client_tests PRIVATE "${CMAKE_SOURCE_DIR}/client/actions/action_start_move.cpp")
 
 # Discover tests
 include(GoogleTest)

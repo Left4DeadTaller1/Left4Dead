@@ -8,6 +8,7 @@
 #include "client/actions/action_client.h"
 #include "hiloMensajes.h"
 #include <memory>
+#include <atomic>
 #include <QStandardItemModel>
 
 namespace Ui {
@@ -19,7 +20,10 @@ class Create : public QDialog
     Q_OBJECT
 
 public:
-    explicit Create(ClientProtocol& protocol, QWidget *parent = nullptr);
+    Create(ClientProtocol& protocol, 
+            std::map<QString, QPixmap>& textureIconSoldiers,
+            std::map<QString, QPixmap>& textureMaps,
+            QWidget *parent = nullptr);
     void startReceiving();
     ~Create();
 
@@ -35,8 +39,8 @@ private slots:
     void handleClosed(int exitCode);
     void handlerTypeMap(const QString& typeMap);
     std::string typeWeaponToString(TypeWeapon_t type);
-    std::string getImageMap(QString& map);
-    std::string getImageSoldier(QString& weapon);
+    QPixmap getTextureIconSoldier(QString typeSoldier);
+    QPixmap getTextureMap(QString typeMap);
 
 private:
     ClientProtocol& protocol;
@@ -45,7 +49,9 @@ private:
     HiloMensajes* hiloMensajes;
     QStandardItemModel model;
     int exitCode;
-
+    std::atomic<bool> isConnected;
+    std::map<QString, QPixmap>& textureIconSoldiers;
+    std::map<QString, QPixmap>& textureMaps;
 };
 
 #endif // CREATE_H

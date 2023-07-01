@@ -9,6 +9,7 @@
 #include <map>
 #include "client_game_state.h"
 #include "mainwindow.h"
+#include "renderer_config.h"
 #include "client_player.h"
 #include "client_infected.h"
 #include "client_lifeBar.h"
@@ -21,19 +22,17 @@ class ClientGame {
     TextureManager& textureManager;
     SoundManager& soundManager;
     MainWindow& windowQT;
+    infoEndGameDTO_t infoEndGameDTO;
+    uint32_t viewportWidth;
+    uint32_t viewportHeight;
+
     //no tienen porque ser punteros cambiar!!!
     std::map<uint8_t, std::shared_ptr<ClientPlayer>> players;
     std::map<uint8_t, std::shared_ptr<ClientInfected>> infected;
-    std::map<uint8_t, std::shared_ptr<LifeBar>> lifeBar;
 
     void updatePlayers(std::vector<player_t>& players);
-
     void updateInfected(std::vector<infected_t>& zombies);
-
-    void updateLifeBar(std::vector<player_t>& players_);
-    void updateLifeBar2(std::vector<infected_t>& players_);
-
-    void cleanDead(std::map<uint8_t, std::shared_ptr<ClientInfected>>& infected);
+    void cleanDead(void);
     std::string formatTime(int milliseconds);
 
     public:
@@ -41,18 +40,12 @@ class ClientGame {
                 SoundManager& soundManager,
                 MainWindow& windowQT);
 
-    void updateGame(std::shared_ptr<gameStateDTO_t> newGame);
-
+    int updateGame(std::shared_ptr<gameStateDTO_t> newGame);
     void drawPlayers(SDL2pp::Renderer& renderer, int it);
-
     void drawInfected(SDL2pp::Renderer& renderer, int it);
-
-    void drawLifeBar(SDL2pp::Renderer& renderer);
-
     void drawGameTime(SDL2pp::Renderer& renderer, int gameTime);
-
+    void drawEndGame(SDL2pp::Renderer& renderer);
     void updateSizeWindow(std::shared_ptr<ActionRender> action);
-
 };
 
 #endif

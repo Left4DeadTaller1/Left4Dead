@@ -26,11 +26,10 @@ int main(int argc, char *argv[]) { try {
     MainWindow windowQT(protocol);
     windowQT.show();
     ret = a.exec();
-    std::cout << "RET = " << ret << "\n";
     
     if (ret == 0){
         RendererConfig& config = RendererConfig::getInstance();
-        std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
+        std::map<std::string, int>& dimensionsWindows = config.getDimensionsWindows();
 
         SDL2pp::SDL sdl(SDL_INIT_EVERYTHING);
 

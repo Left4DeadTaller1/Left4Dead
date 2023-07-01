@@ -8,9 +8,11 @@
 MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     : protocol(protocol),
     QMainWindow(parent), 
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    returnCode(-1)
 {
     ui->setupUi(this);
+    loadTextures();
 
     //rectangulo con transparencias
     ui->frame->setStyleSheet("background-color: transparent;");
@@ -68,16 +70,14 @@ MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
     ui->mapas->addItem("War 4 Bright");
     ui->mapas->addItem("War 4 Pale");
 
-    c = new Create(protocol, this);
+    c = new Create(protocol, textureIconSoldiers, textureMaps, this);
     connect(ui->createButton, &QPushButton::clicked, this, &MainWindow::createButtonClicked);
     connect(c, &Create::closedWithError, this, &MainWindow::handleCreateClosed);
 
-    j = new Join(protocol, this);
+    j = new Join(protocol, textureIconSoldiers, textureMaps, this);
     connect(ui->joinButton, &QPushButton::clicked, this, &MainWindow::joinButtonClicked);
     connect(j, &Join::closedWithError, this, &MainWindow::handleJoinClosed);
 
-    //barra de volumen
-    QSlider *slider = new QSlider(Qt::Horizontal, this);
     ui->slider->setRange(0, 100);
     ui->slider->setValue(20);
 
@@ -85,13 +85,33 @@ MainWindow::MainWindow(ClientProtocol& protocol, QWidget *parent)
 
     player = new QMediaPlayer(this);
     player->setMedia(QUrl::fromLocalFile(DATA_PATH "/client/render/resources/sounds/fondo3.mp3"));
-    player->setVolume(20);
+    player->setVolume(50);
 
-    slider->show();
+    ui->slider->show();
     player->play();
 
     connect(c, &Create::emitTypeMap, this, &MainWindow::handlerTypeMap);
     connect(j, &Join::emitTypeMap, this, &MainWindow::handlerTypeMap);
+}
+
+void MainWindow::loadTextures(void) {
+    textureMaps.emplace("War 1 Bright", QPixmap(DATA_PATH "/client/render/resources/backgrounds/War1/Bright/War.png"));
+    textureMaps.emplace("War 1 Pale", QPixmap(DATA_PATH "/client/render/resources/backgrounds/War1/Pale/War.png"));
+    textureMaps.emplace("War 2 Bright", QPixmap(DATA_PATH "/client/render/resources/backgrounds/War2/Bright/War2.png"));
+    textureMaps.emplace("War 2 Pale", QPixmap(DATA_PATH "/client/render/resources/backgrounds/War2/Pale/War2.png"));
+    textureMaps.emplace("War 3 Bright", QPixmap(DATA_PATH "/client/render/resources/backgrounds/War3/Bright/War3.png"));
+    textureMaps.emplace("War 3 Pale", QPixmap(DATA_PATH "/client/render/resources/backgrounds/War3/Pale/War3.png"));
+    textureMaps.emplace("War 4 Bright", QPixmap(DATA_PATH "/client/render/resources/backgrounds/War4/Bright/War4.png"));
+    textureMaps.emplace("War 4 Pale", QPixmap(DATA_PATH "/client/render/resources/backgrounds/War4/Pale/War4.png"));
+
+    int width = 100;
+    int height = 100;
+    QPixmap imageSoldier1(DATA_PATH "/client/render/resources/iconSoldier1.png");
+    QPixmap imageSoldier2(DATA_PATH "/client/render/resources/iconSoldier2.png");
+    QPixmap imageSoldier3(DATA_PATH "/client/render/resources/iconSoldier3.png");
+    textureIconSoldiers.emplace("P90", imageSoldier1.scaled(width, height, Qt::KeepAspectRatio));
+    textureIconSoldiers.emplace("Rifle", imageSoldier2.scaled(width, height, Qt::KeepAspectRatio));
+    textureIconSoldiers.emplace("Sniper", imageSoldier3.scaled(width, height, Qt::KeepAspectRatio));
 }
 
 TypeMap_t MainWindow::StringToTypeMap(const std::string& map) {
@@ -134,17 +154,7 @@ TypeWeapon_t MainWindow::StringToTypeWeapon(const std::string& weaponPlayer) {
 }
 
 void MainWindow::handlerTypeMap(const QString& typeMap_){
-    std::cout << "type map: " << typeMap_.toStdString() << "\n";
     typeMap = StringToTypeMap(typeMap_.toStdString());
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-    delete c;
-    delete j;
-    player->stop();
-    delete player;
 }
 
 void MainWindow::createButtonClicked()
@@ -162,16 +172,16 @@ void MainWindow::createButtonClicked()
         namePlayer = nickname.toStdString();
         std::string weaponPlayer = weapon.toStdString();
         std::string map = mapa.toStdString();
-        std::cout << "map que se envia: " << map << "\n";
         std::shared_ptr<ActionClient> action = std::make_shared<CreateAction>(namePlayer,
-                                                                        weaponPlayer,
-                                                                        map);
+                                                                StringToTypeWeapon(weaponPlayer),
+                                                                StringToTypeMap(map));
         protocol.sendAction(std::move(action), wasClosed);
+        player->setVolume(0);
         player->stop();
         hide();
         c->startReceiving();
     } else {
-        //mensaje de que se deben rellanar los campos
+        QMessageBox::warning(this, "Campos vacíos", "Por favor complete todos los campos.");
     }
 
     connect(c, &Create::closedWithError, this, &MainWindow::exitApp);
@@ -192,15 +202,16 @@ void MainWindow::joinButtonClicked()
         std::string weaponPlayer = weapon.toStdString();
         std::string codeGame = code.toStdString();
         std::shared_ptr<ActionClient> action = std::make_shared<JoinAction>(namePlayer,
-                                                                    weaponPlayer,
-                                                                    codeGame);
+                                                                    StringToTypeWeapon(weaponPlayer),
+                                                                    std::stoi(codeGame));
         protocol.sendAction(std::move(action), wasClosed);
+        player->setVolume(0);
         player->stop();
         hide();
         j->show();
         j->startReceiving();
     } else {
-        //mensaje de que se deben rellanar los campos
+        QMessageBox::warning(this, "Campos vacíos", "Por favor complete todos los campos.");
     }
 }
 
@@ -210,20 +221,34 @@ void MainWindow::sliderChanged(int value)
     player->setVolume(volume);
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (returnCode == 0){
+        close();
+    } else {
+        close();
+        QApplication::exit(returnCode);
+    }
+}
+
 void MainWindow::handleCreateClosed(int code)
 {
+    returnCode = code;
     if (code == 0){
         close();
     } else {
+        close();
         QApplication::exit(code);
     }
 }
 
 void MainWindow::handleJoinClosed(int code)
 {
+    returnCode = code;
     if (code == 0){
         close();
     } else {
+        close();
         QApplication::exit(code);
     }
 }
@@ -235,4 +260,19 @@ std::string MainWindow::getNamePlayer(void){
 TypeMap_t MainWindow::getTypeMap(void){
     return typeMap;
 }
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+    delete c;
+    delete j;
+    player->stop();
+    delete player;
+}
+
+
+
+
+
+
 

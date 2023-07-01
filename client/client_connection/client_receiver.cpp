@@ -17,6 +17,10 @@ void ReceiverThread::run() {
                 std::shared_ptr<gameStateDTO_t> gameStateDTO = protocol.receiveStateGame(wasClosed);
                 qServerToRender.push(gameStateDTO);
             }
+            if (messageType == MSG_END_GAME){
+                std::shared_ptr<gameStateDTO_t> gameStateDTO = protocol.receiveEndGame(wasClosed);
+                qServerToRender.push(gameStateDTO);
+            }
         } catch (const ClosedQueue&) {
             break;
         }catch (const std::exception &e) {
@@ -24,6 +28,7 @@ void ReceiverThread::run() {
                 break;
             } else {
                 std::cerr << "Client Main: Exception caught: " << e.what() << std::endl;
+                break;
             }
         }
     }

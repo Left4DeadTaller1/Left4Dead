@@ -1,17 +1,23 @@
 #include "client_player.h"
 
 using namespace SDL2pp;
+#define LOOPS_TO_ADVANCE_FRAME 5
 
 ClientPlayer::ClientPlayer(std::map<state_t, GameTexture>& textures,
                             std::map<state_t, std::shared_ptr<Sound>>& sounds,
                             std::map<TypeWeapon_t, GameTexture>& texturesWeapon,
                             bool isMyWindow,
-                            player_t& currentPlayer) :
+                            player_t& currentPlayer,
+                            GameTexture& textureLifeBar) :
                             isMyWindow(isMyWindow),
+                            lifeBar(textureLifeBar, currentPlayer.health, currentPlayer.x,
+                            currentPlayer.y, currentPlayer.lookingTo, SOLDIER1),
                             texturesPlayer(textures),
                             sounds(sounds),
                             texturesWeapon(texturesWeapon),
-                            comingEndDeath(false) {
+                            counterDeath(0),
+                            isDead(false),
+                            currentSound(IDLE) {
 
     previousState = currentPlayer.state;
     currentState = currentPlayer.state;
@@ -24,8 +30,8 @@ ClientPlayer::ClientPlayer(std::map<state_t, GameTexture>& textures,
 
     RendererConfig& config = RendererConfig::getInstance();
     //ver si aca van referencias
-    std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
-    std::map<std::string, int> dimensionsLifeBar = config.getDimensionsLifeBar();
+    std::map<std::string, int>& dimensionsWindows = config.getDimensionsWindows();
+    //std::map<std::string, int> dimensionsLifeBar = config.getDimensionsLifeBar();
 
     viewportWidth = dimensionsWindows["WINDOW_WIDTH"] + 2 * dimensionsWindows["IMAGE_BORDER_PADDING"];
     viewportHeight = dimensionsWindows["WINDOW_HEIGHT"];
@@ -42,10 +48,14 @@ ClientPlayer::ClientPlayer(std::map<state_t, GameTexture>& textures,
     sniperMaxBullets = weaponParams["SNIPER_MAX_BULLETS"];
 };
 
+bool ClientPlayer::isPlayerDead(void){
+    return isDead;
+}
+
 GameTexture& ClientPlayer::getTextureWeapon(TypeWeapon_t weapon){
     std::map<TypeWeapon_t, GameTexture>::iterator iter = texturesWeapon.find(weapon);
     if (iter == texturesWeapon.end()) {
-        //lanzar excepcion
+        throw std::runtime_error("Error al cargar la textura");
     }
     return iter->second;
 }
@@ -53,7 +63,7 @@ GameTexture& ClientPlayer::getTextureWeapon(TypeWeapon_t weapon){
 GameTexture& ClientPlayer::getTexturePlayer(state_t state){
     std::map<state_t, GameTexture>::iterator iter = texturesPlayer.find(state);
     if (iter == texturesPlayer.end()) {
-        //lanzar excepcion
+        throw std::runtime_error("Error al cargar la textura");
     }
     return iter->second;
 }
@@ -70,13 +80,15 @@ void ClientPlayer::playSound(state_t state, int playMode){
     }
     std::map<state_t, std::shared_ptr<Sound>>::iterator iter = sounds.find(state);
     if (iter == sounds.end()) {
-        std::cout << "NO SE ENCONTRO SONIDO: " << state << "\n";
-        //lanzar excepcion
+        throw std::runtime_error("No se encontró el sonido");
     }
     (iter->second)->play(playMode);  
 }
 
 void ClientPlayer::stopSound(state_t state){
+    if (state == IDLE){
+        return;
+    }
     if (state == WALKING_SHOOTING){
         state = WALKING;
     }
@@ -85,8 +97,7 @@ void ClientPlayer::stopSound(state_t state){
     }
     std::map<state_t, std::shared_ptr<Sound>>::iterator iter = sounds.find(state);
     if (iter == sounds.end()) {
-        std::cout << "NO SE ENCONTRO SONIDO: " << state << "\n";
-        //lanzar excepcion
+        throw std::runtime_error("No se encontró el sonido");
     }
     (iter->second)->stop();   
 }
@@ -96,11 +107,16 @@ void ClientPlayer::draw(SDL2pp::Renderer& renderer, int it){
     GameTexture& texture = getTexturePlayer(currentState);
 
     int frame = it % texture.n;
-    if ((currentState == DYING || currentState == DEAD) && (frame == texture.n - 1)){
-        comingEndDeath == true;
+    if (currentState == DYING){
+        counterDeath++;
+    } else {
+        counterDeath = 0;
     }
-    if ((currentState == DYING || currentState == DEAD) && comingEndDeath){
+    if ((currentState == DYING) && counterDeath * LOOPS_TO_ADVANCE_FRAME > texture.n){
         frame = texture.n - 1;
+    }
+    if (counterDeath / LOOPS_TO_ADVANCE_FRAME > 10){
+        isDead = true;
     }
 
     Rect srcRect((texture.width / texture.n) * frame,
@@ -119,18 +135,20 @@ void ClientPlayer::draw(SDL2pp::Renderer& renderer, int it){
         SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
     }
 
-    //no va aca
+    drawNickname(renderer);
+
     if (isMyWindow){
         drawWeaponAndBullets(renderer);
     }
 
-    //y si soy
-    if (currentState != previousState){
-        playSound(currentState, -1);
+    if (currentState != currentSound && isMyWindow){
+        stopSound(currentSound);
+        if (!isDead){
+            playSound(currentState, -1);
+            currentSound = currentState;
+        }
     }
-    if (currentState != previousState && currentState == IDLE){
-        stopSound(previousState);
-    }
+    lifeBar.draw(renderer);
 }
 
 void ClientPlayer::updatePlayer(player_t& newCurrentPlayer){
@@ -140,7 +158,8 @@ void ClientPlayer::updatePlayer(player_t& newCurrentPlayer){
     y = newCurrentPlayer.y;
     lookingTo = newCurrentPlayer.lookingTo;
     bullets = newCurrentPlayer.bullets;
-
+    lifeBar.updateLifeBar(newCurrentPlayer.health, newCurrentPlayer.x, 
+                    newCurrentPlayer.y, newCurrentPlayer.lookingTo);
 }
 
 void ClientPlayer::updateSizeWindow(uint32_t newWidth, uint32_t newHeight){
@@ -151,6 +170,8 @@ void ClientPlayer::updateSizeWindow(uint32_t newWidth, uint32_t newHeight){
     viewportHeight = newHeight;
     width = newWidth/ dimensionsWindows["CTE_DIVISION_WIDTH_ENTITY"];
     height = newHeight / dimensionsWindows["CTE_DIVISION_HEIGHT_ENTITY"];
+
+    lifeBar.updateSizeWindow(newWidth, newHeight);
 }
 
 std::string ClientPlayer::typeWeaponToString(TypeWeapon_t type){
@@ -195,7 +216,6 @@ void ClientPlayer::drawWeaponAndBullets(SDL2pp::Renderer& renderer) {
 
     std::string text = "Bullets: " + std::to_string(bullets) + "/" + std::to_string(maxBullets(weapon));
     
-    //esto esta muy mal
     Surface textSurface(font.RenderText_Solid(text.c_str(), SDL_Color{ 0, 0, 0}));
     Texture textTexture(renderer, textSurface);
 
@@ -204,8 +224,7 @@ void ClientPlayer::drawWeaponAndBullets(SDL2pp::Renderer& renderer) {
     renderer.Copy(textTexture, NullOpt, textRect);
 
     std::string text2 = "Weapon: " + typeWeaponToString(weapon);
-    
-    //esto esta muy mal
+
     Surface textSurface2(font.RenderText_Solid(text2.c_str(), SDL_Color{ 0, 0, 0}));
     Texture textTexture2(renderer, textSurface2);
 
@@ -213,3 +232,17 @@ void ClientPlayer::drawWeaponAndBullets(SDL2pp::Renderer& renderer) {
 
     renderer.Copy(textTexture2, NullOpt, textRect2);
 }
+
+void ClientPlayer::drawNickname(SDL2pp::Renderer& renderer){
+    Font font(DATA_PATH "/client/render/resources/font/Roboto-MediumItalic.ttf", 16);
+    Surface textSurface2(font.RenderText_Solid(nickname.c_str(), SDL_Color{ 255, 255, 255}));
+    Texture textTexture2(renderer, textSurface2);
+
+    Rect textRect2((x * viewportWidth) / gameWidth + 60, 
+                    viewportHeight - y - gameHeight + 30, 
+                    textSurface2.GetWidth(), 
+                    textSurface2.GetHeight());
+
+    renderer.Copy(textTexture2, NullOpt, textRect2);    
+}
+

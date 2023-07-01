@@ -1,0 +1,5 @@
+if(EXISTS "/home/usaurio/Left4Dead/build/tests/client_tests[1]_tests.cmake")
+  include("/home/usaurio/Left4Dead/build/tests/client_tests[1]_tests.cmake")
+else()
+  add_test(client_tests_NOT_BUILT client_tests_NOT_BUILT)
+endif()

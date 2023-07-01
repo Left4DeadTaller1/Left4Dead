@@ -14,7 +14,15 @@ std::map<TypeWeapon_t, GameTexture>& TextureManager::getTexturesWeapon(){
 GameTexture& TextureManager::getTexture(TypeMap_t typeMap){
     std::map<TypeMap_t, GameTexture>::iterator iter = texturesBackground.find(typeMap);
     if (iter == texturesBackground.end()) {
-        //lanzar excepcion
+        throw std::runtime_error("No se encontro textura\n");
+    }
+    return iter->second;
+}
+
+GameTexture& TextureManager::getTexture(std::string texture){
+    std::map<std::string, GameTexture>::iterator iter = otherTextures.find(texture);
+    if (iter == otherTextures.end()) {
+        throw std::runtime_error("No se encontro textura\n");
     }
     return iter->second;
 }
@@ -41,6 +49,12 @@ std::map<state_t, GameTexture>& TextureManager::getTextures(typeEntity_t type){
     }
     if (type == SOLDIER1){
         return texturesSoldier1;
+    }
+    if (type == SOLDIER2){
+        return texturesSoldier2;
+    }
+    if (type == SOLDIER3){
+        return texturesSoldier3;
     }
 }
 
@@ -81,10 +95,49 @@ void TextureManager::loadTextures(Renderer& renderer){
                                         DATA_PATH "/client/render/resources/Soldier_1/Run.png"));
     texturesSoldier1.emplace(SHOOTING, GameTexture(renderer, 4,
                                         DATA_PATH "/client/render/resources/Soldier_1/Shot_1.png"));
-    //texturesSoldier1.emplace(shot2, GameTexture(renderer, 4,
-    //                                    DATA_PATH "/client/render/resources/Soldier_1/Shot_2.png"));
     texturesSoldier1.emplace(WALKING, GameTexture(renderer, 7,
                                         DATA_PATH "/client/render/resources/Soldier_1/Walk.png"));
+
+
+    //load textures soldier 2
+    texturesSoldier2.emplace(ATTACK, GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Soldier_2/Attack.png"));
+    texturesSoldier2.emplace(DEAD, GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Soldier_2/Dead.png"));
+    texturesSoldier2.emplace(DYING, GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Soldier_2/Dead.png"));
+    texturesSoldier2.emplace(HURT, GameTexture(renderer, 3,
+                                        DATA_PATH "/client/render/resources/Soldier_2/Hurt.png"));
+    texturesSoldier2.emplace(IDLE, GameTexture(renderer, 9,
+                                        DATA_PATH "/client/render/resources/Soldier_2/Idle.png"));
+    texturesSoldier2.emplace(RELOADING, GameTexture(renderer, 7,
+                                        DATA_PATH "/client/render/resources/Soldier_2/Recharge.png"));
+    texturesSoldier2.emplace(RUNNING, GameTexture(renderer, 8,
+                                        DATA_PATH "/client/render/resources/Soldier_2/Run.png"));
+    texturesSoldier2.emplace(SHOOTING, GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Soldier_2/Shot_1.png"));
+    texturesSoldier2.emplace(WALKING, GameTexture(renderer, 8,
+                                        DATA_PATH "/client/render/resources/Soldier_2/Walk.png"));
+
+    //load textures soldier 3
+    texturesSoldier3.emplace(ATTACK, GameTexture(renderer, 5,
+                                        DATA_PATH "/client/render/resources/Soldier_3/Attack.png"));
+    texturesSoldier3.emplace(DEAD, GameTexture(renderer, 5,
+                                        DATA_PATH "/client/render/resources/Soldier_3/Dead.png"));
+    texturesSoldier3.emplace(DYING, GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Soldier_3/Dead.png"));
+    texturesSoldier3.emplace(HURT, GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Soldier_3/Hurt.png"));
+    texturesSoldier3.emplace(IDLE, GameTexture(renderer, 7,
+                                        DATA_PATH "/client/render/resources/Soldier_3/Idle.png"));
+    texturesSoldier3.emplace(RELOADING, GameTexture(renderer, 8,
+                                        DATA_PATH "/client/render/resources/Soldier_3/Recharge.png"));
+    texturesSoldier3.emplace(RUNNING, GameTexture(renderer, 6,
+                                        DATA_PATH "/client/render/resources/Soldier_3/Run.png"));
+    texturesSoldier3.emplace(SHOOTING, GameTexture(renderer, 4,
+                                        DATA_PATH "/client/render/resources/Soldier_3/Shot_1.png"));
+    texturesSoldier3.emplace(WALKING, GameTexture(renderer, 8,
+                                        DATA_PATH "/client/render/resources/Soldier_3/Walk.png"));
 
     //load texturesJumper jumper
     texturesJumper.emplace(ATTACK, GameTexture(renderer, 4,
@@ -222,5 +275,11 @@ void TextureManager::loadTextures(Renderer& renderer){
     texturesWeapon.emplace(RIFLE, GameTexture(renderer, 1,
                                                 DATA_PATH "/client/render/resources/arma2.png"));
     texturesWeapon.emplace(SNIPER, GameTexture(renderer, 1,
-                                                DATA_PATH "/client/render/resources/arma3.png"));                                                    
+                                                DATA_PATH "/client/render/resources/arma3.png"));
+
+    //load others textures
+    otherTextures.emplace("papiro", GameTexture(renderer, 1,
+                                            DATA_PATH "/client/render/resources/papiro.png"));
+    otherTextures.emplace("game over", GameTexture(renderer, 1,
+                                            DATA_PATH "/client/render/resources/gameover.png"));                                               
 }

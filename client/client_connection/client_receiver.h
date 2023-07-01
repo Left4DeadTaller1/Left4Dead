@@ -16,8 +16,6 @@ class ReceiverThread : public Thread {
     ClientProtocol& protocol;
     Queue<std::shared_ptr<gameStateDTO_t>>& qServerToRender;
 
-    void inGame();
-
     public:
     ReceiverThread(std::atomic<bool>& isConnected,
                     ClientProtocol& protocol, 

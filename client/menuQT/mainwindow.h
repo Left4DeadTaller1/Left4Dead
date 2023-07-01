@@ -7,6 +7,7 @@
 #include "create.h"
 #include "join.h"
 #include <iostream>
+#include <QMessageBox>
 #include "client_game_state.h"
 #include "client/client_connection/client_protocol.h"
 
@@ -31,6 +32,8 @@ private slots:
     TypeMap_t StringToTypeMap(const std::string& map);
     TypeWeapon_t StringToTypeWeapon(const std::string& weaponPlayer);
     void handlerTypeMap(const QString& typeMap);
+    void closeEvent(QCloseEvent *event);
+    void loadTextures(void);
 
 signals:
     void exitApp(int exitCode);
@@ -43,5 +46,8 @@ private:
     Join *j;
     std::string namePlayer;
     TypeMap_t typeMap;
+    int returnCode;
+    std::map<QString, QPixmap> textureIconSoldiers;
+    std::map<QString, QPixmap> textureMaps;
 };
 #endif // MAINWINDOW_H

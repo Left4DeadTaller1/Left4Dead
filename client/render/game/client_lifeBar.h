@@ -1,6 +1,7 @@
 #ifndef CLIENT_LIFE_BAR_H
 #define CLIENT_LIFE_BAR_H
 
+#include "../../../server_root/game/configuration/game_config.h"
 #include <SDL2pp/SDL2pp.hh>
 #include <SDL2/SDL_mixer.h>
 #include <string>
@@ -34,6 +35,8 @@ class LifeBar {
 
     uint32_t maxHealth;
     uint32_t lifeLevels;
+
+    int getMaxHealth(std::map<std::string, int>& entityParams, typeEntity_t typeEntity);
 
     public:
     LifeBar(GameTexture& texture, uint32_t health, 

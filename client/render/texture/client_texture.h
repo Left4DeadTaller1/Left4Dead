@@ -14,6 +14,7 @@ class GameTexture {
     friend class ClientRenderer;
     friend class ClientPlayer;
     friend class ClientInfected;
+    friend class ClientGame;
     friend class LifeBar;
 
     public:

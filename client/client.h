@@ -43,10 +43,6 @@ class Client {
     SenderThread senderThread;
     ReceiverThread receiverThread;
     EventManagerThread eventManagerThread;
-
-    //void sendInitialAction();
-
-    void leave();
 };
 
 #endif  // CLIENT_H

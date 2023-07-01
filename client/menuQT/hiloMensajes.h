@@ -15,13 +15,14 @@ class HiloMensajes : public QObject, public Thread
 
 private:
     ClientProtocol& protocol;
+    std::atomic<bool>& isConnected;
     std::string typeWeaponToString(TypeWeapon_t type);
     std::string typeMapToString(TypeMap_t typeMap);
     const QString encodeInfoGame(TypeMap_t typeMap, int amountPlayers, 
                             std::vector<infoPlayerDTO_t>& infoPlayers);
 
 public:
-    HiloMensajes(ClientProtocol& protocol);
+    HiloMensajes(ClientProtocol& protocol, std::atomic<bool>& isConnected);
     virtual void run() override;
 
 signals:

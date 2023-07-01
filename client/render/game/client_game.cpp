@@ -7,10 +7,13 @@ ClientGame::ClientGame(TextureManager& textureManager,
                         MainWindow& windowQT):
                         textureManager(textureManager),
                         soundManager(soundManager),
-                        windowQT(windowQT) {}  
+                        windowQT(windowQT) {
+    RendererConfig& config = RendererConfig::getInstance();
+    std::map<std::string, int>& dimensionsWindows = config.getDimensionsWindows();
 
-    std::vector<player_t> players;
-    std::vector<infected_t> infected;
+    viewportWidth = dimensionsWindows["WINDOW_WIDTH"] + 2 * dimensionsWindows["IMAGE_BORDER_PADDING"];
+    viewportHeight = dimensionsWindows["WINDOW_HEIGHT"];
+}  
 
 void ClientGame::updatePlayers(std::vector<player_t>& players_){
     std::set<int> idsPlayers;
@@ -23,14 +26,16 @@ void ClientGame::updatePlayers(std::vector<player_t>& players_){
             if (newPlayer.nickname == windowQT.getNamePlayer()){
                 isMyWindow = true;
             }
-            std::map<state_t, GameTexture>& textures = textureManager.getTextures(SOLDIER1);
+            std::map<state_t, GameTexture>& textures = textureManager.getTextures(newPlayer.typePlayer);
             std::map<TypeWeapon_t, GameTexture>& texturesWeapon = textureManager.getTexturesWeapon();
             std::map<state_t, std::shared_ptr<Sound>>& sounds = soundManager.getSounds(SOLDIER1);
+            GameTexture& textureLifeBar = textureManager.getTextureLifeBar();
             std::shared_ptr<ClientPlayer> newClientPlayer = std::make_shared<ClientPlayer>(textures,
                                                                             sounds,
                                                                             texturesWeapon,
                                                                             isMyWindow,
-                                                                            newPlayer);
+                                                                            newPlayer,
+                                                                            textureLifeBar);
             players.emplace(newPlayer.idPlayer, newClientPlayer);
         }
         idsPlayers.insert(newPlayer.idPlayer);
@@ -55,17 +60,18 @@ void ClientGame::updateInfected(std::vector<infected_t>& zombies){
             if (newInfected.state != DEAD && newInfected.state != DYING){
                 std::map<state_t, GameTexture>& textures = textureManager.getTextures(newInfected.typeInfected);
                 std::map<state_t, std::shared_ptr<Sound>>& sounds = soundManager.getSounds(newInfected.typeInfected);
+                GameTexture& textureLifeBar = textureManager.getTextureLifeBar();
                 std::shared_ptr<ClientInfected> newClientInfected = std::make_shared<ClientInfected>(textures,
                                                                                 sounds,
-                                                                                newInfected);
+                                                                                newInfected,
+                                                                                textureLifeBar);
                 infected.emplace(newInfected.idInfected, newClientInfected);
             }
         }
     }
-    cleanDead(infected);
 }
 
-void ClientGame::cleanDead(std::map<uint8_t, std::shared_ptr<ClientInfected>>& infected) {
+void ClientGame::cleanDead(void) {
     for (auto it = infected.begin(); it != infected.end(); ) {
         if (it->second->isZombieDead()) {
             it = infected.erase(it);
@@ -73,51 +79,58 @@ void ClientGame::cleanDead(std::map<uint8_t, std::shared_ptr<ClientInfected>>& i
             ++it;
         }
     }
-}
-
-void ClientGame::updateLifeBar(std::vector<player_t>& players_){
-    for (auto &newPlayer : players_){
-        std::map<uint8_t, std::shared_ptr<LifeBar>>::iterator iter = lifeBar.find(newPlayer.idPlayer);
-        if (iter != lifeBar.end()) {
-            (iter->second)->updateLifeBar(newPlayer.health, newPlayer.x, 
-                                        newPlayer.y, newPlayer.lookingTo);
+    for (auto it = players.begin(); it != players.end(); ) {
+        if (it->second->isPlayerDead()) {
+            it = players.erase(it);
         } else {
-            GameTexture& texture = textureManager.getTextureLifeBar();
-            std::shared_ptr<LifeBar> newLifeBar = std::make_shared<LifeBar>(texture,
-                                                                            newPlayer.health,
-                                                                            newPlayer.x,
-                                                                            newPlayer.y,
-                                                                            newPlayer.lookingTo, 
-                                                                            SOLDIER1);
-            lifeBar.emplace(newPlayer.idPlayer, newLifeBar);
+            ++it;
         }
     }
 }
 
-void ClientGame::updateLifeBar2(std::vector<infected_t>& players_){
-    for (auto &newPlayer : players_){
-        std::map<uint8_t, std::shared_ptr<LifeBar>>::iterator iter = lifeBar.find(newPlayer.idInfected);
-        if (iter != lifeBar.end()) {
-            (iter->second)->updateLifeBar(newPlayer.health, newPlayer.x, 
-                                        newPlayer.y, newPlayer.lookingTo);
-        } else {
-            GameTexture& texture = textureManager.getTextureLifeBar();
-            std::shared_ptr<LifeBar> newLifeBar = std::make_shared<LifeBar>(texture,
-                                                                            newPlayer.health,
-                                                                            newPlayer.x,
-                                                                            newPlayer.y,
-                                                                            newPlayer.lookingTo, 
-                                                                            SOLDIER1);
-            lifeBar.emplace(newPlayer.idInfected, newLifeBar);
-        }
-    }
+
+void ClientGame::drawEndGame(SDL2pp::Renderer& renderer){
+    Font font(DATA_PATH "/client/render/resources/font/Roboto-MediumItalic.ttf", 24);
+
+    GameTexture& papiro = textureManager.getTexture("papiro");
+    GameTexture& gameOver = textureManager.getTexture("game over");
+
+    Rect dstRect1(viewportWidth / 4,
+        viewportHeight / 4,
+        viewportWidth / 2, 
+        viewportHeight / 2);
+
+    SDL_RenderCopyEx(renderer.Get(), papiro.texture.Get(), nullptr, &dstRect1, 0, nullptr, SDL_FLIP_NONE);
+
+    Rect dstRect2((3 / 8) * viewportWidth,
+    (3 / 8) * viewportHeight,
+    (1 / 8) * viewportWidth, 
+    (1 / 8) * viewportHeight);
+
+    SDL_RenderCopyEx(renderer.Get(), gameOver.texture.Get(), nullptr, &dstRect2, 0, nullptr, SDL_FLIP_NONE);
+
+    std::string timeText = "Game Time: " + formatTime(infoEndGameDTO.gameTime);
+    Surface textSurface1(font.RenderText_Solid(timeText.c_str(), SDL_Color{ 0, 0, 0}));
+    Texture textTexture1(renderer, textSurface1);
+    Rect textRect1(((float)3 / 8) * viewportWidth, ((float)4 / 8) * viewportHeight, textSurface1.GetWidth(), textSurface1.GetHeight());
+    renderer.Copy(textTexture1, NullOpt, textRect1);
+
+    std::string zombiesText = "Number Of Zombies Killed: " + std::to_string(infoEndGameDTO.numberOfZombiesKilled);
+    Surface textSurface2(font.RenderText_Solid(zombiesText.c_str(), SDL_Color{ 0, 0, 0}));
+    Texture textTexture2(renderer, textSurface2);
+    Rect textRect2(((float)3 / 8) * viewportWidth, ((float)4 / 8) * viewportHeight + 30, textSurface2.GetWidth(), textSurface2.GetHeight());
+    renderer.Copy(textTexture2, NullOpt, textRect2);    
 }
 
-void ClientGame::updateGame(std::shared_ptr<gameStateDTO_t> newGame){
-    updatePlayers(newGame->players);
-    updateInfected(newGame->infected);
-    updateLifeBar(newGame->players);
-    updateLifeBar2(newGame->infected);
+int ClientGame::updateGame(std::shared_ptr<gameStateDTO_t> newGame){
+    cleanDead();
+    if (newGame->endGame == false){
+        updatePlayers(newGame->players);
+        updateInfected(newGame->infected);
+        return 0;
+    }
+    infoEndGameDTO = newGame->infoEndGameDTO;
+    return 1;
 }
 
 void ClientGame::drawPlayers(SDL2pp::Renderer& renderer, int it){                
@@ -132,12 +145,6 @@ void ClientGame::drawInfected(SDL2pp::Renderer& renderer, int it){
     }
 }
 
-void ClientGame::drawLifeBar(SDL2pp::Renderer& renderer){                
-    for (auto &bar : lifeBar){
-        (bar.second)->draw(renderer);
-    }
-}
-
 void ClientGame::updateSizeWindow(std::shared_ptr<ActionRender> action){
     uint32_t newWidth = action->getParam1();
     uint32_t newHeight = action->getParam2();
@@ -146,9 +153,6 @@ void ClientGame::updateSizeWindow(std::shared_ptr<ActionRender> action){
     }
     for (auto &infec : infected){
         (infec.second)->updateSizeWindow(newWidth, newHeight);
-    }
-    for (auto &bar : lifeBar){
-        (bar.second)->updateSizeWindow(newWidth, newHeight);
     }
 }
 
