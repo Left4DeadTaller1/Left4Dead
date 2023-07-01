@@ -242,10 +242,10 @@ void Game::startGame() {
     gameStarted = true;
     startTime = std::chrono::steady_clock::now();
     // TODO this is for debuging
-    zombieSpawner.increaseTotalZombies();
-    int totalZombies = zombieSpawner.getTotalZombies();
-    std::string zombieId = "zombie" + std::to_string(totalZombies);
-    entities.push_back(std::make_shared<Witch>(100, 50, zombieId, 0));
+    // zombieSpawner.increaseTotalZombies();
+    // int totalZombies = zombieSpawner.getTotalZombies();
+    // std::string zombieId = "zombie" + std::to_string(totalZombies);
+    // entities.push_back(std::make_shared<Witch>(100, 50, zombieId, 0));
 
     gameRunning = true;
     while (gameRunning) {

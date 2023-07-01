@@ -34,12 +34,9 @@ void GamesManager::startGame(std::shared_ptr<Game> gameToStart) {
 }
 
 GameRecord GamesManager::joinLobby(unsigned int gameCode, Queue<std::shared_ptr<std::vector<uint8_t>>>& gameResponses, std::string playerNickname, int weaponType) {
-    std::cout << "joinLobby agregar jugador a la partida:\n";
     std::lock_guard<std::mutex> lock(m);
-    std::cout << "code: " << gameCode << "\n";
     auto it = games.find(gameCode);
     if (it != games.end()) {
-        std::cout << "encontro partida\n";
         GameRecord gameRecord;
         gameRecord.game = it->second;
         //  Access Game and return a pointer to the inputQueue

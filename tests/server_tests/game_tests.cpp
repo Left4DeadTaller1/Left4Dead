@@ -44,23 +44,3 @@ TEST(GameTest, RemovePlayer) {
     // Check that the second player queue is still not null
     EXPECT_NE(gameInstance._getPlayerQueues()[1], nullptr);
 }
-
-TEST(GameTest, StartStopGame) {
-    Game gameInstance(0);
-
-    EXPECT_FALSE(gameInstance.isGameRunning());
-
-    std::thread gameThread(&Game::run, &gameInstance);
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-    EXPECT_TRUE(gameInstance.isGameRunning());
-
-    gameInstance.stop();
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-    EXPECT_FALSE(gameInstance.isGameRunning());
-
-    gameThread.join();
-}

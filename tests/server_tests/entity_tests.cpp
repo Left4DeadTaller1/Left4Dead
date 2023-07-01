@@ -88,13 +88,13 @@ TEST(ZombieTest, TestZombieMutation) {
     GameConfig& config = GameConfig::getInstance();
     std::map<std::string, int> entityParams = config.getEntitiesParams();
     std::map<std::string, int> spawnParams = config.getSpawnsParams();
-    int mutationIncrease = 5 * spawnParams["MUTATION_STRENGTH"];
+    int mutationIncrease = 5 * (spawnParams["MUTATION_STRENGTH"] / 10);
     Infected zombie(15, 20, "Zombie1", 5);
     auto generateAttack = zombie.generateAttack();
 
-    EXPECT_EQ(zombie.getMovementSpeed(), entityParams["INFECTED_SPEED"] + mutationIncrease);
-    EXPECT_EQ(zombie.getHealth(), entityParams["INFECTED_HEALTH"] + mutationIncrease);
-    EXPECT_EQ(generateAttack.getDamage(), entityParams["INFECTED_ATTACK_DAMAGE"] + mutationIncrease);
+    EXPECT_EQ(zombie.getMovementSpeed(), entityParams["INFECTED_SPEED"] * (1 + mutationIncrease));
+    EXPECT_EQ(zombie.getHealth(), entityParams["INFECTED_HEALTH"] * (1 + mutationIncrease));
+    EXPECT_EQ(generateAttack.getDamage(), entityParams["INFECTED_ATTACK_DAMAGE"] * (1 + mutationIncrease));
 }
 
 TEST(JumperTest, TestJumperPLayerInRangeDetection) {

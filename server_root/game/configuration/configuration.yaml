@@ -108,5 +108,5 @@ gameParams:
   spawns:
    #this will get divided by 10 in the game, 4 means a 40% increase in stats per min
     MUTATION_STRENGTH: 4
-    SPAWN_INTERVAL: 1500
+    SPAWN_INTERVAL: 150
     SPAWN_INTERVAL_DECREASE: 30
