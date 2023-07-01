@@ -15,11 +15,8 @@ class Sound {
 
     public:
     Sound(const char* pathSound, int channel);
-
     void play(int playMode);
-
     void stop();
-
     ~Sound();
 };
 

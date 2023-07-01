@@ -21,10 +21,10 @@ void SenderThread::run() {
                 break;
             } else {
                 std::cerr << "Client Main: Exception caught: " << e.what() << std::endl;
+                break;
             }
         }
     }
-    std::cout << "ENTRA A SALIR DEL SENDER\n";
 }
 
 SenderThread::~SenderThread(){

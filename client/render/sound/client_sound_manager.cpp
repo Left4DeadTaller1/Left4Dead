@@ -28,34 +28,19 @@ SoundManager::~SoundManager() {
 }
 
 std::map<state_t, std::shared_ptr<Sound>>& SoundManager::getSounds(typeEntity_t type){
-    if (type == JUMPER){
-        return soundsJumper;
-    }
-    if (type == SPEAR){
-        return soundsSpear;
-    }
-    if (type == VENOM){
-        return soundsVenom;
-    }
-    if (type == WITCH){
-        return soundsWitch;
-    }
-    if (type == ZOMBIE){
-        return soundsZombie;
-    }
-    if (type == SOLDIER1){
-        return soundsSoldier1;
+    if (type == SOLDIER1 || type == SOLDIER2 || type == SOLDIER3){
+        return soundsSoldier;
     }
 }
 
 void SoundManager::loadSounds(){
-    //load sounds soldier 1
-    soundsSoldier1.emplace(ATTACK, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo3.wav", 2));
-    soundsSoldier1.emplace(DEAD, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/dead.wav", 3));
-    soundsSoldier1.emplace(DYING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/dead.wav", 4));
-    soundsSoldier1.emplace(HURT, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/grito_de_ayuda.wav", 6));
-    soundsSoldier1.emplace(RELOADING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/cargar_arma1.wav", 7));
-    soundsSoldier1.emplace(RUNNING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/trotar.wav", 8));
-    soundsSoldier1.emplace(SHOOTING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo1.wav", 9));
-    soundsSoldier1.emplace(WALKING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/caminar2.wav", 11));
+    soundsSoldier.emplace(ATTACK, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo3.wav", 0));
+    soundsSoldier.emplace(DEAD, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/dead.wav", 0));
+    soundsSoldier.emplace(DYING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/dead.wav", 0));
+    soundsSoldier.emplace(HURT, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/grito_de_ayuda.wav", 0));
+    soundsSoldier.emplace(RELOADING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/cargar_arma1.wav", 0));
+    soundsSoldier.emplace(RUNNING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/trotar.wav", 0));
+    soundsSoldier.emplace(SHOOTING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/disparo1.wav", 0));
+    soundsSoldier.emplace(WALKING, std::make_shared<Sound>(DATA_PATH "/client/render/resources/sounds/caminar2.wav", 0));
 }
+

@@ -6,6 +6,7 @@
 #include "client/client_connection/client_protocol.h"
 #include "hiloMensajes.h"
 #include <QStandardItemModel>
+#include <atomic>
 
 namespace Ui {
 class Join;
@@ -16,7 +17,10 @@ class Join : public QDialog
     Q_OBJECT
 
 public:
-    explicit Join(ClientProtocol& protocol, QWidget *parent = nullptr);
+    explicit Join(ClientProtocol& protocol, 
+                    std::map<QString, QPixmap>& textureIconSoldiers,
+                    std::map<QString, QPixmap>& textureMaps,
+                    QWidget *parent = nullptr);
     void startReceiving();
     ~Join();
 
@@ -31,8 +35,8 @@ private slots:
     void handleClosed(int exitCode);
     void handlerTypeMap(const QString& typeMap);
     std::string typeWeaponToString(TypeWeapon_t type);
-    std::string getImageMap(QString& map);
-    std::string getImageSoldier(QString& weapon);
+    QPixmap getTextureMap(QString typeMap);
+    QPixmap getTextureIconSoldier(QString typeSoldier);
 
 private:
     ClientProtocol& protocol;
@@ -41,6 +45,9 @@ private:
     HiloMensajes* hiloMensajes;
     QStandardItemModel model;
     int exitCode;
+    std::atomic<bool> isConnected;
+    std::map<QString, QPixmap>& textureIconSoldiers;
+    std::map<QString, QPixmap>& textureMaps;
 };
 
 #endif // JOIN_H

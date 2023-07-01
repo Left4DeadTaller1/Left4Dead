@@ -1,7 +1,6 @@
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: \
- /home/regman/taller/left4Dead/dipa_classes/socket.cpp \
- /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
+ /home/usaurio/Left4Dead/dipa_classes/socket.cpp \
+ /usr/include/stdc-predef.h /home/usaurio/Left4Dead/dipa_classes/socket.h \
  /usr/include/arpa/inet.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -185,5 +184,5 @@ CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/regman/taller/left4Dead/dipa_classes/liberror.h \
- /home/regman/taller/left4Dead/dipa_classes/resolver.h
+ /home/usaurio/Left4Dead/dipa_classes/liberror.h \
+ /home/usaurio/Left4Dead/dipa_classes/resolver.h

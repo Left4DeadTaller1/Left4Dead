@@ -11,12 +11,7 @@
 
 class SoundManager {
     private:
-    std::map<state_t, std::shared_ptr<Sound>> soundsSoldier1;
-    std::map<state_t, std::shared_ptr<Sound>> soundsJumper;
-    std::map<state_t, std::shared_ptr<Sound>> soundsSpear;
-    std::map<state_t, std::shared_ptr<Sound>> soundsVenom;
-    std::map<state_t, std::shared_ptr<Sound>> soundsWitch;
-    std::map<state_t, std::shared_ptr<Sound>> soundsZombie;
+    std::map<state_t, std::shared_ptr<Sound>> soundsSoldier;
     std::map<typeEntity_t, std::string> translationTypeEntity;
     std::shared_ptr<Sound> music;
 
@@ -24,11 +19,9 @@ class SoundManager {
 
     public:
     SoundManager();
-
     std::map<state_t, std::shared_ptr<Sound>>& getSounds(typeEntity_t type);
     void playMusic(void);
     void stopMusic(void);
-
     ~SoundManager();
 };
 

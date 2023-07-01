@@ -1,13 +1,19 @@
 #include "create.h"
 #include "ui_create.h"
 
-Create::Create(ClientProtocol& protocol, QWidget *parent) :
-    QDialog(parent),
+Create::Create(ClientProtocol& protocol, 
+                    std::map<QString, QPixmap>& textureIconSoldiers,
+                    std::map<QString, QPixmap>& textureMaps, 
+                    QWidget *parent) :
     protocol(protocol),
+    textureIconSoldiers(textureIconSoldiers),
+    textureMaps(textureMaps),
+    QDialog(parent),
     ui(new Ui::Create),
     hiloMensajes(nullptr),
     model(this),
-    exitCode(-1)
+    exitCode(-1),
+    isConnected(true)
 {
     ui->setupUi(this);
 
@@ -27,7 +33,7 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
 
     // Barra de volumen
     ui->slider2->setRange(0, 100);
-    ui->slider2->setValue(20);
+    ui->slider2->setValue(0);
 
     connect(ui->startButton, &QPushButton::clicked, this, &Create::startButtonClicked);
 
@@ -35,6 +41,8 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
         emit closedWithError(-1);
         close();
     });
+
+    connect(ui->slider2, SIGNAL(valueChanged(int)), this, SLOT(sliderChanged(int)));
 
     player = new QMediaPlayer(this);
     player->setMedia(QUrl::fromLocalFile(DATA_PATH "/client/render/resources/sounds/fondo3.mp3"));
@@ -55,28 +63,10 @@ Create::Create(ClientProtocol& protocol, QWidget *parent) :
     ui->listView->setStyleSheet(itemStyle);
 }
 
-void Create::handleClosed(int _exitCode)
-{
-    std::cout << "entra a handleClosed en create\n";
-    exitCode = _exitCode;
-    emit closedWithError(_exitCode);
-}
-
 void Create::sliderChanged(int value)
 {
     qreal volume = value;
     player->setVolume(volume);
-}
-
-Create::~Create()
-{
-    player->stop();
-    delete player;
-    delete ui;
-    if (hiloMensajes) {
-        hiloMensajes->join();
-        delete hiloMensajes;
-    }
 }
 
 std::string Create::typeWeaponToString(TypeWeapon_t type){
@@ -92,49 +82,24 @@ std::string Create::typeWeaponToString(TypeWeapon_t type){
     return "";
 }
 
-std::string Create::getImageSoldier(QString& weapon){
-    if (weapon == "P90"){
-        return DATA_PATH "/client/render/resources/iconSoldier1.png";
-    }
-    if (weapon == "Rifle"){
-        return DATA_PATH "/client/render/resources/iconSoldier2.png";
-    }
-    if (weapon == "Sniper"){
-        return DATA_PATH "/client/render/resources/iconSoldier3.png";
-    }
-    return "";
-}
-
-std::string Create::getImageMap(QString& map){
-    if (map == "War 1 Bright"){
-        return DATA_PATH "/client/render/resources/backgrounds/War1/Bright/War.png";
-    }
-    if (map == "War 1 Pale"){
-        return DATA_PATH "/client/render/resources/backgrounds/War1/Pale/War.png";
-    }
-    if (map == "War 2 Bright"){
-        return DATA_PATH "/client/render/resources/backgrounds/War2/Bright/War.png";
-    }
-    if (map == "War 2 Pale"){
-        return DATA_PATH "/client/render/resources/backgrounds/War2/Pale/War.png";
-    }
-    if (map == "War 3 Bright"){
-        return DATA_PATH "/client/render/resources/backgrounds/War3/Bright/War.png";
-    }
-    if (map == "War 2 Pale"){
-        return DATA_PATH "/client/render/resources/backgrounds/War3/Pale/War.png";
-    }
-    if (map == "War 4 Bright"){
-        return DATA_PATH "/client/render/resources/backgrounds/War4/Bright/War.png";
-    }
-    if (map == "War 4 Pale"){
-        return DATA_PATH "/client/render/resources/backgrounds/War4/Pale/War.png";
-    }
-    return "";
-}
-
 void Create::handlerTypeMap(const QString& typeMap){
     emit emitTypeMap(typeMap);
+}
+
+QPixmap Create::getTextureIconSoldier(QString typeSoldier){
+    std::map<QString, QPixmap>::iterator iter = textureIconSoldiers.find(typeSoldier);
+    if (iter == textureIconSoldiers.end()) {
+        throw std::runtime_error("Error al cargar la textura");
+    }
+    return iter->second;
+}
+
+QPixmap Create::getTextureMap(QString typeMap){
+    std::map<QString, QPixmap>::iterator iter = textureMaps.find(typeMap);
+    if (iter == textureMaps.end()) {
+        throw std::runtime_error("Error al cargar la textura");
+    }
+    return iter->second;
 }
 
 void Create::handlerInfoGameReceived(const QString& messageInfoGame)
@@ -158,22 +123,17 @@ void Create::handlerInfoGameReceived(const QString& messageInfoGame)
     ui->infoGame->setText(infoMap);
     ui->infoGame->insert(infoPlayers);
 
-    //imagen de mapa
-    std::string mapPath = getImageMap(map);
-    QPixmap mapa(QString::fromStdString(mapPath));
-    ui->map->setPixmap(mapa);
+    ui->map->setPixmap(getTextureMap(map));
     ui->map->setScaledContents(true);
 
+    int width = 100;
+    int height = 100;
+    
     for (int i = 0; i < cantidadEntidades; i++) {
         QString nickname = message.value(i * 2 + 2);
         QString weapon = message.value(i * 2 + 3);
 
-        std::string imageSoldierPath = getImageSoldier(weapon);
-        QPixmap imageSoldier(QString::fromStdString(imageSoldierPath));
-
-        int width = 100;
-        int height = 100;
-        QPixmap imageSoldierSmall = imageSoldier.scaled(width, height, Qt::KeepAspectRatio);
+        QPixmap imageSoldierSmall = getTextureIconSoldier(weapon);
 
         QStandardItem* item = new QStandardItem;
         QString infoPlayer = "Nickname: " + nickname;
@@ -191,7 +151,7 @@ void Create::handlerInfoGameReceived(const QString& messageInfoGame)
 
 void Create::startReceiving()
 {
-    hiloMensajes = new HiloMensajes(protocol);
+    hiloMensajes = new HiloMensajes(protocol, isConnected);
     connect(hiloMensajes, &HiloMensajes::infoGameReceived, this, &Create::handlerInfoGameReceived);
     connect(hiloMensajes, &HiloMensajes::typeMapReceived, this, &Create::handlerTypeMap);
     connect(hiloMensajes, &HiloMensajes::closedWithoutError, this, &Create::handleClosed);
@@ -209,15 +169,35 @@ void Create::startButtonClicked()
     protocol.sendAction(std::move(action), wasClosed);
 }
 
+void Create::handleClosed(int _exitCode)
+{
+    player->setVolume(0);
+    player->stop();
+    exitCode = _exitCode;
+    emit closedWithError(_exitCode);
+}
+
 void Create::closeEvent(QCloseEvent *event)
 {
-    std::cout << "entra a closeEvent en create\n";
-    std::cout << "exit code: " << exitCode << "\n";
+    player->setVolume(0);
+    player->stop();
     if (exitCode == -1){
+        isConnected = false;
         protocol.closeSocket();
     }
     emit closedWithError(exitCode);
 }
 
+Create::~Create()
+{
+    player->setVolume(0);
+    player->stop();
+    delete player;
+    delete ui;
+    if (hiloMensajes) {
+        hiloMensajes->join();
+        delete hiloMensajes;
+    }
+}
 
 

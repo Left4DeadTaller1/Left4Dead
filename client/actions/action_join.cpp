@@ -1,21 +1,9 @@
 #include "action_join.h"
 
 JoinAction::JoinAction(std::string namePlayer, 
-                std::string weaponPlayer, 
-                std::string code): namePlayer(namePlayer),
-                typeWeapon(P90), code(0) {
-
-    if (weaponPlayer == "P90"){
-        typeWeapon = P90;
-    }
-    if (weaponPlayer == "Rifle"){
-        typeWeapon = RIFLE;
-    }
-    if (weaponPlayer == "Sniper"){
-        typeWeapon = SNIPER;
-    }
-    code = std::stoi(code);
-}
+                TypeWeapon_t weaponPlayer, 
+                int code): namePlayer(namePlayer),
+                typeWeapon(weaponPlayer), code(code) {}
 
 std::vector<int8_t> JoinAction::serialize() const {
     std::vector<int8_t> data;

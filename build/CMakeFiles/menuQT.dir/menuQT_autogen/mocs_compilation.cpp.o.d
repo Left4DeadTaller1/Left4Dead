@@ -1,7 +1,7 @@
 CMakeFiles/menuQT.dir/menuQT_autogen/mocs_compilation.cpp.o: \
- /home/regman/taller/left4Dead/build/menuQT_autogen/mocs_compilation.cpp \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/mocs_compilation.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_create.cpp \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_create.cpp \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -118,7 +118,7 @@ CMakeFiles/menuQT.dir/menuQT_autogen/mocs_compilation.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/create.h \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/create.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialog \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
@@ -315,19 +315,19 @@ CMakeFiles/menuQT.dir/menuQT_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
  /usr/include/x86_64-linux-gnu/qt5/QtMultimedia/qaudio.h \
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qnetworkconfiguration.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/actions/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/client_connection/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/actions/action_start_game.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/hiloMensajes.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
- /home/regman/taller/left4Dead/dipa_classes/liberror.h \
- /home/regman/taller/left4Dead/dipa_classes/thread.h \
- /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/actions/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/client_connection/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/actions/action_start_game.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/hiloMensajes.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
+ /home/usaurio/Left4Dead/dipa_classes/liberror.h \
+ /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
+ /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/basic_ios.h \
@@ -345,16 +345,19 @@ CMakeFiles/menuQT.dir/menuQT_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qstandarditemmodel.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractitemmodel.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_hiloMensajes.cpp \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/hiloMensajes.h \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_join.cpp \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/join.h \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_mainwindow.cpp \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/mainwindow.h \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_hiloMensajes.cpp \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/hiloMensajes.h \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_join.cpp \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/join.h \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/moc_mainwindow.cpp \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QUrl \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/create.h \
- /home/regman/taller/left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/join.h \
- /home/regman/taller/left4Dead/client/render/game/client_game_state.h
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/create.h \
+ /home/usaurio/Left4Dead/build/menuQT_autogen/Z27WL6GE6B/../../../client/menuQT/join.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
+ /home/usaurio/Left4Dead/client/render/game/client_game_state.h

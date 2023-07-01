@@ -1,8 +1,8 @@
 CMakeFiles/client.dir/client/actions/action_start_move.cpp.o: \
- /home/regman/taller/left4Dead/client/actions/action_start_move.cpp \
+ /home/usaurio/Left4Dead/client/actions/action_start_move.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/client/actions/action_start_move.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/actions/action_start_move.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -53,7 +53,7 @@ CMakeFiles/client.dir/client/actions/action_start_move.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /home/regman/taller/left4Dead/client/actions/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/actions/../render/game/client_game_state.h \
  /usr/include/c++/11/string /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/char_traits.h \
  /usr/include/c++/11/bits/postypes.h /usr/include/c++/11/cwchar \

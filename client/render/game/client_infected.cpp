@@ -5,11 +5,15 @@ using namespace SDL2pp;
 
 ClientInfected::ClientInfected(std::map<state_t, GameTexture>& textures,
                             std::map<state_t, std::shared_ptr<Sound>>& sounds,
-                            infected_t& currentInfected) : 
+                            infected_t& currentInfected,
+                            GameTexture& textureLifeBar) : 
                             texturesInfected(textures),
                             sounds(sounds),
                             isDead(false),
-                            counterDeath(counterDeath) {
+                            counterDeath(counterDeath),
+                            lifeBar(textureLifeBar, currentInfected.health, 
+                            currentInfected.x, currentInfected.y, 
+                            currentInfected.lookingTo, currentInfected.typeInfected){
 
     previousState = currentInfected.state;
     currentState = currentInfected.state;
@@ -18,8 +22,8 @@ ClientInfected::ClientInfected(std::map<state_t, GameTexture>& textures,
     lookingTo = currentInfected.lookingTo;
 
     RendererConfig& config = RendererConfig::getInstance();
-    std::map<std::string, int> dimensionsWindows = config.getDimensionsWindows();
-    std::map<std::string, int> dimensionsLifeBar = config.getDimensionsLifeBar();
+    std::map<std::string, int>& dimensionsWindows = config.getDimensionsWindows();
+    //std::map<std::string, int>& dimensionsLifeBar = config.getDimensionsLifeBar();
 
     viewportWidth = dimensionsWindows["WINDOW_WIDTH"] + 2 * dimensionsWindows["IMAGE_BORDER_PADDING"];
     viewportHeight = dimensionsWindows["WINDOW_HEIGHT"];
@@ -32,46 +36,13 @@ ClientInfected::ClientInfected(std::map<state_t, GameTexture>& textures,
 GameTexture& ClientInfected::getTextureInfected(state_t state){
     std::map<state_t, GameTexture>::iterator iter = texturesInfected.find(state);
     if (iter == texturesInfected.end()) {
-        //lanzar excepcion
+        throw std::runtime_error("Error al cargar la textura");
     }
     return iter->second;
 }
 
 bool ClientInfected::isZombieDead(void){
     return isDead;
-}
-
-void ClientInfected::playSound(state_t state, int playMode){
-    if (state == IDLE){
-        return;
-    }
-    if (state == WALKING_SHOOTING){
-        state = WALKING;
-    }
-    if (state == RUNNING_SHOOTING){
-        state = RUNNING;
-    }
-    std::map<state_t, std::shared_ptr<Sound>>::iterator iter = sounds.find(state);
-    if (iter == sounds.end()) {
-        std::cout << "NO SE ENCONTRO SONIDO: " << state << "\n";
-        //lanzar excepcion
-    }
-    (iter->second)->play(playMode);  
-}
-
-void ClientInfected::stopSound(state_t state){
-    if (state == WALKING_SHOOTING){
-        state = WALKING;
-    }
-    if (state == RUNNING_SHOOTING){
-        state = RUNNING;
-    }
-    std::map<state_t, std::shared_ptr<Sound>>::iterator iter = sounds.find(state);
-    if (iter == sounds.end()) {
-        std::cout << "NO SE ENCONTRO SONIDO: " << state << "\n";
-        //lanzar excepcion
-    }
-    (iter->second)->stop();   
 }
 
 void ClientInfected::draw(SDL2pp::Renderer& renderer, int it){
@@ -106,13 +77,7 @@ void ClientInfected::draw(SDL2pp::Renderer& renderer, int it){
         SDL_RenderCopyEx(renderer.Get(), texture.texture.Get(), &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
     }
 
-    //y si soy
-    /*if (currentState != previousState){
-        playSound(currentState, -1);
-    }
-    if (currentState != previousState && currentState == IDLE){
-        stopSound(previousState);
-    }*/
+    lifeBar.draw(renderer);
 }
 
 void ClientInfected::updateInfected(infected_t& newCurrentInfected){
@@ -121,6 +86,8 @@ void ClientInfected::updateInfected(infected_t& newCurrentInfected){
     x = newCurrentInfected.x;
     y = newCurrentInfected.y;
     lookingTo = newCurrentInfected.lookingTo;
+    lifeBar.updateLifeBar(newCurrentInfected.health, newCurrentInfected.x, 
+                        newCurrentInfected.y, newCurrentInfected.lookingTo);
 }
 
 void ClientInfected::updateSizeWindow(uint32_t newWidth, uint32_t newHeight){
@@ -131,4 +98,6 @@ void ClientInfected::updateSizeWindow(uint32_t newWidth, uint32_t newHeight){
     viewportHeight = newHeight;
     width = newWidth/ dimensionsWindows["CTE_DIVISION_WIDTH_ENTITY"];
     height = newHeight / dimensionsWindows["CTE_DIVISION_HEIGHT_ENTITY"];
+
+    lifeBar.updateSizeWindow(newWidth, newHeight);
 }

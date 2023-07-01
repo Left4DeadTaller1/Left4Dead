@@ -1,7 +1,7 @@
 CMakeFiles/server.dir/server_root/client_connection/server_protocol.cpp.o: \
- /home/regman/taller/left4Dead/server_root/client_connection/server_protocol.cpp \
+ /home/usaurio/Left4Dead/server_root/client_connection/server_protocol.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/server_root/client_connection/server_protocol.h \
+ /home/usaurio/Left4Dead/server_root/client_connection/server_protocol.h \
  /usr/include/arpa/inet.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -177,18 +177,18 @@ CMakeFiles/server.dir/server_root/client_connection/server_protocol.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/regman/taller/left4Dead/server_root/game/action.h \
- /home/regman/taller/left4Dead/server_root/entities/entity.h \
- /home/regman/taller/left4Dead/server_root/entities/attack.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/infected.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h \
+ /home/usaurio/Left4Dead/server_root/game/action.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/node_handle.h \
  /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h \
  /usr/include/c++/11/bits/erase_if.h \
- /home/regman/taller/left4Dead/server_root/entities/attack.h \
- /home/regman/taller/left4Dead/server_root/entities/player.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/player.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
  /usr/include/c++/11/bits/locale_classes.h \
@@ -207,15 +207,15 @@ CMakeFiles/server.dir/server_root/client_connection/server_protocol.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/regman/taller/left4Dead/server_root/entities/entity.h \
- /home/regman/taller/left4Dead/server_root/entities/weapon.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/jumper.h \
- /home/regman/taller/left4Dead/server_root/game/server_message.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/spear.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/venom.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/witch.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/weapon.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
+ /home/usaurio/Left4Dead/server_root/game/server_message.h \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
  /usr/include/c++/11/iomanip /usr/include/c++/11/locale \
  /usr/include/c++/11/bits/locale_facets_nonio.h /usr/include/c++/11/ctime \
  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \

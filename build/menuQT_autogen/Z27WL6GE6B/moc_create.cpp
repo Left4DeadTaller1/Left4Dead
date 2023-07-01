@@ -22,7 +22,7 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Create_t {
-    QByteArrayData data[25];
+    QByteArrayData data[23];
     char stringdata0[287];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
@@ -52,11 +52,9 @@ QT_MOC_LITERAL(16, 190, 18), // "typeWeaponToString"
 QT_MOC_LITERAL(17, 209, 11), // "std::string"
 QT_MOC_LITERAL(18, 221, 12), // "TypeWeapon_t"
 QT_MOC_LITERAL(19, 234, 4), // "type"
-QT_MOC_LITERAL(20, 239, 11), // "getImageMap"
-QT_MOC_LITERAL(21, 251, 8), // "QString&"
-QT_MOC_LITERAL(22, 260, 3), // "map"
-QT_MOC_LITERAL(23, 264, 15), // "getImageSoldier"
-QT_MOC_LITERAL(24, 280, 6) // "weapon"
+QT_MOC_LITERAL(20, 239, 21), // "getTextureIconSoldier"
+QT_MOC_LITERAL(21, 261, 11), // "typeSoldier"
+QT_MOC_LITERAL(22, 273, 13) // "getTextureMap"
 
     },
     "Create\0closedWithError\0\0exitCode\0"
@@ -65,8 +63,9 @@ QT_MOC_LITERAL(24, 280, 6) // "weapon"
     "sliderChanged\0value\0handlerInfoGameReceived\0"
     "messageInfoGame\0handleClosed\0"
     "handlerTypeMap\0typeWeaponToString\0"
-    "std::string\0TypeWeapon_t\0type\0getImageMap\0"
-    "QString&\0map\0getImageSoldier\0weapon"
+    "std::string\0TypeWeapon_t\0type\0"
+    "getTextureIconSoldier\0typeSoldier\0"
+    "getTextureMap"
 };
 #undef QT_MOC_LITERAL
 
@@ -96,7 +95,7 @@ static const uint qt_meta_data_Create[] = {
       15,    1,   88,    2, 0x08 /* Private */,
       16,    1,   91,    2, 0x08 /* Private */,
       20,    1,   94,    2, 0x08 /* Private */,
-      23,    1,   97,    2, 0x08 /* Private */,
+      22,    1,   97,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -110,8 +109,8 @@ static const uint qt_meta_data_Create[] = {
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::QString,    5,
     0x80000000 | 17, 0x80000000 | 18,   19,
-    0x80000000 | 17, 0x80000000 | 21,   22,
-    0x80000000 | 17, 0x80000000 | 21,   24,
+    QMetaType::QPixmap, QMetaType::QString,   21,
+    QMetaType::QPixmap, QMetaType::QString,    5,
 
        0        // eod
 };
@@ -132,10 +131,10 @@ void Create::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 7: _t->handlerTypeMap((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 8: { std::string _r = _t->typeWeaponToString((*reinterpret_cast< TypeWeapon_t(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< std::string*>(_a[0]) = std::move(_r); }  break;
-        case 9: { std::string _r = _t->getImageMap((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< std::string*>(_a[0]) = std::move(_r); }  break;
-        case 10: { std::string _r = _t->getImageSoldier((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< std::string*>(_a[0]) = std::move(_r); }  break;
+        case 9: { QPixmap _r = _t->getTextureIconSoldier((*reinterpret_cast< QString(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QPixmap*>(_a[0]) = std::move(_r); }  break;
+        case 10: { QPixmap _r = _t->getTextureMap((*reinterpret_cast< QString(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QPixmap*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

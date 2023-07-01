@@ -5,7 +5,7 @@ using namespace SDL2pp;
 Sound::Sound(const char* pathSound, int channel) : sound(nullptr), channel(channel) {
     sound = Mix_LoadWAV(pathSound);
     if (sound == nullptr) {
-        //implem
+        throw std::runtime_error("Fallo Mix_LoadWAV\n");
     }
 }
 
@@ -18,7 +18,7 @@ Sound::~Sound() {
 void Sound::play(int playMode) {
     channel = Mix_PlayChannel(-1, sound, playMode);
     if (channel == -1) {
-        //implem
+        throw std::runtime_error("Fallo Mix_PlayChannel\n");
         return;
     }
 }

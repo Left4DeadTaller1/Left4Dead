@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/regman/taller/left4Dead
+CMAKE_SOURCE_DIR = /home/usaurio/Left4Dead
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/regman/taller/left4Dead/build
+CMAKE_BINARY_DIR = /home/usaurio/Left4Dead/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/regman/taller/left4Dead/build/CMakeFiles /home/regman/taller/left4Dead/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/usaurio/Left4Dead/build/CMakeFiles /home/usaurio/Left4Dead/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/regman/taller/left4Dead/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/usaurio/Left4Dead/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -158,7 +158,7 @@ preinstall/fast:
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -P /home/regman/taller/left4Dead/build/CMakeFiles/VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P /home/usaurio/Left4Dead/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
@@ -844,30 +844,6 @@ client/render/client_render.s: client/render/client_render.cpp.s
 client/render/client_render.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client/render/client_render.cpp.s
 .PHONY : client/render/client_render.cpp.s
-
-client/render/game/client_bullets.o: client/render/game/client_bullets.cpp.o
-.PHONY : client/render/game/client_bullets.o
-
-# target to build an object file
-client/render/game/client_bullets.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client/render/game/client_bullets.cpp.o
-.PHONY : client/render/game/client_bullets.cpp.o
-
-client/render/game/client_bullets.i: client/render/game/client_bullets.cpp.i
-.PHONY : client/render/game/client_bullets.i
-
-# target to preprocess a source file
-client/render/game/client_bullets.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client/render/game/client_bullets.cpp.i
-.PHONY : client/render/game/client_bullets.cpp.i
-
-client/render/game/client_bullets.s: client/render/game/client_bullets.cpp.s
-.PHONY : client/render/game/client_bullets.s
-
-# target to generate assembly for a file
-client/render/game/client_bullets.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client/render/game/client_bullets.cpp.s
-.PHONY : client/render/game/client_bullets.cpp.s
 
 client/render/game/client_game.o: client/render/game/client_game.cpp.o
 .PHONY : client/render/game/client_game.o
@@ -1969,9 +1945,6 @@ help:
 	@echo "... client/render/client_render.o"
 	@echo "... client/render/client_render.i"
 	@echo "... client/render/client_render.s"
-	@echo "... client/render/game/client_bullets.o"
-	@echo "... client/render/game/client_bullets.i"
-	@echo "... client/render/game/client_bullets.s"
 	@echo "... client/render/game/client_game.o"
 	@echo "... client/render/game/client_game.i"
 	@echo "... client/render/game/client_game.s"
@@ -2097,7 +2070,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P /home/regman/taller/left4Dead/build/CMakeFiles/VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P /home/usaurio/Left4Dead/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

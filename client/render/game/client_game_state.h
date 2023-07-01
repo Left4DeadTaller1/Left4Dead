@@ -1,4 +1,3 @@
-
 #ifndef CLIENT_GAME_STATE_H_
 #define CLIENT_GAME_STATE_H_
 
@@ -65,6 +64,7 @@ typedef struct player {
     uint16_t idPlayer;
     state_t state;
     std::string nickname;
+    typeEntity_t typePlayer;
     TypeWeapon_t typeWeapon;
     uint8_t bullets;
     uint8_t actionCounter;
@@ -72,7 +72,6 @@ typedef struct player {
     uint16_t y;
     uint8_t lookingTo;
     uint16_t health;
-    //uint8_t typePlayer;
 } player_t;
 
 typedef struct infected {
@@ -86,9 +85,16 @@ typedef struct infected {
     uint16_t health;
 } infected_t;
 
+typedef struct infoEndGameDTO {
+    uint8_t gameTime;
+    int numberOfZombiesKilled;   
+} infoEndGameDTO_t;
+
 typedef struct gameStateDTO {
+    bool endGame;
     std::vector<player_t> players;
     std::vector<infected_t> infected;
+    infoEndGameDTO_t infoEndGameDTO;
 } gameStateDTO_t;
 
 #endif

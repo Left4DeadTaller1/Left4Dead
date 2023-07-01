@@ -1,8 +1,8 @@
 CMakeFiles/client.dir/client/menuQT/hiloMensajes.cpp.o: \
- /home/regman/taller/left4Dead/client/menuQT/hiloMensajes.cpp \
+ /home/usaurio/Left4Dead/client/menuQT/hiloMensajes.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/client/menuQT/hiloMensajes.h \
- /home/regman/taller/left4Dead/client/client_connection/client_protocol.h \
+ /home/usaurio/Left4Dead/client/menuQT/hiloMensajes.h \
+ /home/usaurio/Left4Dead/client/client_connection/client_protocol.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -159,13 +159,13 @@ CMakeFiles/client.dir/client/menuQT/hiloMensajes.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/client/actions/action_client.h \
- /home/regman/taller/left4Dead/client/actions/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/client/client_connection/../render/game/client_game_state.h \
- /home/regman/taller/left4Dead/dipa_classes/liberror.h \
- /home/regman/taller/left4Dead/dipa_classes/thread.h \
- /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
+ /home/usaurio/Left4Dead/client/actions/action_client.h \
+ /home/usaurio/Left4Dead/client/actions/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/client/client_connection/../render/game/client_game_state.h \
+ /home/usaurio/Left4Dead/dipa_classes/liberror.h \
+ /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
+ /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/c++/11/chrono \
  /usr/include/c++/11/ratio /usr/include/c++/11/limits \
  /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \

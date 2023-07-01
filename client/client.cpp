@@ -3,21 +3,21 @@
 Client::Client(const char* hostname, const char* servname, 
                 SDL2pp::Window& window, ClientProtocol& protocol,
                 MainWindow& windowQT) : 
-                                            wasClosed(false),
-                                            protocol(protocol),
-                                            isConnected(true),
-                                            qEventsToSender(TAM_MAX_QUEUE),
-                                            qServerToRender(TAM_MAX_QUEUE),
-                                            qEventsToRender(TAM_MAX_QUEUE),
-                                            window(window),
-                                            renderer(isConnected, qServerToRender, qEventsToRender, 
-                                                        window, protocol, windowQT),
-                                            senderThread(isConnected, protocol, qEventsToSender),
-                                            receiverThread(isConnected, protocol, qServerToRender),
-                                            eventManagerThread(qEventsToSender,
-                                                            qEventsToRender,
-                                                            window,
-                                                            isConnected) {}
+                                    wasClosed(false),
+                                    protocol(protocol),
+                                    isConnected(true),
+                                    qEventsToSender(TAM_MAX_QUEUE),
+                                    qServerToRender(TAM_MAX_QUEUE),
+                                    qEventsToRender(TAM_MAX_QUEUE),
+                                    window(window),
+                                    renderer(isConnected, qServerToRender, qEventsToRender, 
+                                    window, protocol, windowQT),
+                                    senderThread(isConnected, protocol, qEventsToSender),
+                                    receiverThread(isConnected, protocol, qServerToRender),
+                                    eventManagerThread(qEventsToSender,
+                                                    qEventsToRender,
+                                                    window,
+                                                    isConnected) {}
 
 
 void Client::run() { try {

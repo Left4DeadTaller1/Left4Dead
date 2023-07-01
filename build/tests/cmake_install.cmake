@@ -1,4 +1,4 @@
-# Install script for directory: /home/regman/taller/left4Dead/tests
+# Install script for directory: /home/usaurio/Left4Dead/tests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

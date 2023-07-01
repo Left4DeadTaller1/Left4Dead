@@ -40,6 +40,9 @@ class ClientRenderer {
    uint32_t viewportWidth;
    uint32_t viewportHeight;
 
+   int ms_per_frame;
+   int loops_to_advance_frame;
+
    int handlerAction(std::shared_ptr<ActionRender> action);
 
    public:

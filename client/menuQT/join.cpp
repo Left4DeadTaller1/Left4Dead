@@ -3,13 +3,19 @@
 
 #include <QUrl>
 
-Join::Join(ClientProtocol& protocol, QWidget *parent) :
+Join::Join(ClientProtocol& protocol, 
+                    std::map<QString, QPixmap>& textureIconSoldiers,
+                    std::map<QString, QPixmap>& textureMaps, 
+                    QWidget *parent) :
     protocol(protocol),
+    textureIconSoldiers(textureIconSoldiers),
+    textureMaps(textureMaps),
     QDialog(parent),
     ui(new Ui::Join),
     hiloMensajes(nullptr),
     model(this),
-    exitCode(-1)
+    exitCode(-1),
+    isConnected(true)
 {
     ui->setupUi(this);
 
@@ -41,13 +47,13 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
 
     player3 = new QMediaPlayer(this);
     player3->setMedia(QUrl::fromLocalFile(DATA_PATH "/client/render/resources/sounds/fondo3.mp3"));
-    player3->setVolume(20);
+    player3->setVolume(0);
 
     slider2->show();
     player3->play();
 
     // qlabel titulo map transparente
-    QFont font("Arial", 16, QFont::Bold);
+    QFont font("Arial", 12, QFont::Bold);
     ui->infoGame3->setFont(font);
     ui->infoGame3->setAttribute(Qt::WA_TranslucentBackground);
     ui->infoGame3->setStyleSheet("background-color: transparent;");
@@ -60,43 +66,15 @@ Join::Join(ClientProtocol& protocol, QWidget *parent) :
     ui->listView3->setStyleSheet(itemStyle);
 }
 
-void Join::closeEvent(QCloseEvent *event)
-{
-    std::cout << "entra a closeEvent en join\n";
-    std::cout << "exit code: " << exitCode << "\n";
-    if (exitCode == -1){
-        protocol.closeSocket();
-    }
-    emit closedWithError(exitCode);
-}
-
-void Join::handleClosed(int _exitCode)
-{
-    std::cout << "entra a handleClosed\n";
-    exitCode = _exitCode;
-    emit closedWithError(_exitCode);
-}
-
 void Join::sliderChanged(int value)
 {
     qreal volume = value;
     player3->setVolume(volume);
 }
 
-Join::~Join()
-{
-    player3->stop();
-    delete player3;
-    delete ui;
-    if (hiloMensajes) {
-        hiloMensajes->join();
-        delete hiloMensajes;
-    }
-}
-
 void Join::startReceiving()
 {
-    hiloMensajes = new HiloMensajes(protocol);
+    hiloMensajes = new HiloMensajes(protocol, isConnected);
     connect(hiloMensajes, &HiloMensajes::infoGameReceived, this, &Join::handlerInfoGameReceived);
     connect(hiloMensajes, &HiloMensajes::typeMapReceived, this, &Join::handlerTypeMap);
     connect(hiloMensajes, &HiloMensajes::closedWithoutError, this, &Join::handleClosed);
@@ -123,45 +101,20 @@ std::string Join::typeWeaponToString(TypeWeapon_t type){
     return "";
 }
 
-std::string Join::getImageSoldier(QString& weapon){
-    if (weapon == "P90"){
-        return DATA_PATH "/client/render/resources/iconSoldier1.png";
+QPixmap Join::getTextureIconSoldier(QString typeSoldier){
+    std::map<QString, QPixmap>::iterator iter = textureIconSoldiers.find(typeSoldier);
+    if (iter == textureIconSoldiers.end()) {
+        throw std::runtime_error("Error al cargar la textura");
     }
-    if (weapon == "Rifle"){
-        return DATA_PATH "/client/render/resources/iconSoldier2.png";
-    }
-    if (weapon == "Sniper"){
-        return DATA_PATH "/client/render/resources/iconSoldier3.png";
-    }
-    return "";
+    return iter->second;
 }
 
-std::string Join::getImageMap(QString& map){
-    if (map == "War 1 Bright"){
-        return DATA_PATH "/client/render/resources/backgrounds/War1/Bright/War.png";
+QPixmap Join::getTextureMap(QString typeMap){
+    std::map<QString, QPixmap>::iterator iter = textureMaps.find(typeMap);
+    if (iter == textureMaps.end()) {
+        throw std::runtime_error("Error al cargar la textura");
     }
-    if (map == "War 1 Pale"){
-        return DATA_PATH "/client/render/resources/backgrounds/War1/Pale/War.png";
-    }
-    if (map == "War 2 Bright"){
-        return DATA_PATH "/client/render/resources/backgrounds/War2/Bright/War.png";
-    }
-    if (map == "War 2 Pale"){
-        return DATA_PATH "/client/render/resources/backgrounds/War2/Pale/War.png";
-    }
-    if (map == "War 3 Bright"){
-        return DATA_PATH "/client/render/resources/backgrounds/War3/Bright/War.png";
-    }
-    if (map == "War 2 Pale"){
-        return DATA_PATH "/client/render/resources/backgrounds/War3/Pale/War.png";
-    }
-    if (map == "War 4 Bright"){
-        return DATA_PATH "/client/render/resources/backgrounds/War4/Bright/War.png";
-    }
-    if (map == "War 4 Pale"){
-        return DATA_PATH "/client/render/resources/backgrounds/War4/Pale/War.png";
-    }
-    return "";
+    return iter->second;
 }
 
 void Join::handlerInfoGameReceived(const QString& messageInfoGame)
@@ -185,22 +138,17 @@ void Join::handlerInfoGameReceived(const QString& messageInfoGame)
     ui->infoGame3->setText(infoMap);
     ui->infoGame3->insert(infoPlayers);
 
-    //imagen de mapa
-    std::string mapPath = getImageMap(map);
-    QPixmap mapa(QString::fromStdString(mapPath));
-    ui->map3->setPixmap(mapa);
+    ui->map3->setPixmap(getTextureMap(map));
     ui->map3->setScaledContents(true);
+
+    int width = 100;
+    int height = 100;
 
     for (int i = 0; i < cantidadEntidades; i++) {
         QString nickname = message.value(i * 2 + 2);
         QString weapon = message.value(i * 2 + 3);
 
-        std::string imageSoldierPath = getImageSoldier(weapon);
-        QPixmap imageSoldier(QString::fromStdString(imageSoldierPath));
-
-        int width = 100;
-        int height = 100;
-        QPixmap imageSoldierSmall = imageSoldier.scaled(width, height, Qt::KeepAspectRatio);
+        QPixmap imageSoldierSmall = getTextureIconSoldier(weapon);
 
         QStandardItem* item = new QStandardItem;
         QString infoPlayer = "Nickname: " + nickname;
@@ -216,4 +164,30 @@ void Join::handlerInfoGameReceived(const QString& messageInfoGame)
     }
 }
 
+void Join::closeEvent(QCloseEvent *event)
+{
+    if (exitCode == -1){
+        isConnected = false;
+        protocol.closeSocket();
+    }
+    emit closedWithError(exitCode);
+}
+
+void Join::handleClosed(int _exitCode)
+{
+    exitCode = _exitCode;
+    emit closedWithError(_exitCode);
+}
+
+Join::~Join()
+{
+    player3->setVolume(0);
+    player3->stop();
+    delete player3;
+    delete ui;
+    if (hiloMensajes) {
+        hiloMensajes->join();
+        delete hiloMensajes;
+    }
+}
 

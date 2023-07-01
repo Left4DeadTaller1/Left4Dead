@@ -1,7 +1,7 @@
 CMakeFiles/server_lib.dir/server_root/entities/entity.cpp.o: \
- /home/regman/taller/left4Dead/server_root/entities/entity.cpp \
+ /home/usaurio/Left4Dead/server_root/entities/entity.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -155,4 +155,4 @@ CMakeFiles/server_lib.dir/server_root/entities/entity.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/regman/taller/left4Dead/server_root/entities/attack.h
+ /home/usaurio/Left4Dead/server_root/entities/attack.h

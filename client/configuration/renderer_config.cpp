@@ -9,13 +9,16 @@ RendererConfig::RendererConfig() {
         YAML::Node config = YAML::LoadFile(filename);
 
         if (config["rendererParams"]) {
-            // Load game dimensions
             if (config["rendererParams"]["dimensionsWindows"]) {
                 dimensionsWindows = config["rendererParams"]["dimensionsWindows"].as<std::map<std::string, int>>();
             }
 
             if (config["rendererParams"]["dimensionsLifeBar"]) {
                 dimensionsLifeBar = config["rendererParams"]["dimensionsLifeBar"].as<std::map<std::string, int>>();
+            }
+
+            if (config["rendererParams"]["renderParams"]) {
+                renderParams = config["rendererParams"]["renderParams"].as<std::map<std::string, int>>();
             }
         }
 
@@ -31,11 +34,15 @@ RendererConfig& RendererConfig::getInstance() {
     return instance;
 }
 
-std::map<std::string, int> RendererConfig::getDimensionsWindows() const {
+std::map<std::string, int>& RendererConfig::getDimensionsWindows() {
     return dimensionsWindows;
 }
 
-std::map<std::string, int> RendererConfig::getDimensionsLifeBar() const {
+std::map<std::string, int>& RendererConfig::getDimensionsLifeBar() {
     return dimensionsLifeBar;
+}
+
+std::map<std::string, int>& RendererConfig::getRenderParams(){
+    return renderParams;
 }
 

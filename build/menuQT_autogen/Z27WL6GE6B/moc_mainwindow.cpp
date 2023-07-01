@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[20];
-    char stringdata0[238];
+    QByteArrayData data[24];
+    char stringdata0[281];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,7 +51,11 @@ QT_MOC_LITERAL(15, 170, 18), // "StringToTypeWeapon"
 QT_MOC_LITERAL(16, 189, 12), // "TypeWeapon_t"
 QT_MOC_LITERAL(17, 202, 12), // "weaponPlayer"
 QT_MOC_LITERAL(18, 215, 14), // "handlerTypeMap"
-QT_MOC_LITERAL(19, 230, 7) // "typeMap"
+QT_MOC_LITERAL(19, 230, 7), // "typeMap"
+QT_MOC_LITERAL(20, 238, 10), // "closeEvent"
+QT_MOC_LITERAL(21, 249, 12), // "QCloseEvent*"
+QT_MOC_LITERAL(22, 262, 5), // "event"
+QT_MOC_LITERAL(23, 268, 12) // "loadTextures"
 
     },
     "MainWindow\0exitApp\0\0exitCode\0"
@@ -60,7 +64,8 @@ QT_MOC_LITERAL(19, 230, 7) // "typeMap"
     "code\0handleJoinClosed\0StringToTypeMap\0"
     "TypeMap_t\0std::string\0map\0StringToTypeWeapon\0"
     "TypeWeapon_t\0weaponPlayer\0handlerTypeMap\0"
-    "typeMap"
+    "typeMap\0closeEvent\0QCloseEvent*\0event\0"
+    "loadTextures"
 };
 #undef QT_MOC_LITERAL
 
@@ -70,7 +75,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -78,17 +83,19 @@ static const uint qt_meta_data_MainWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   59,    2, 0x06 /* Public */,
+       1,    1,   69,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   62,    2, 0x08 /* Private */,
-       5,    0,   63,    2, 0x08 /* Private */,
-       6,    1,   64,    2, 0x08 /* Private */,
-       8,    1,   67,    2, 0x08 /* Private */,
-      10,    1,   70,    2, 0x08 /* Private */,
-      11,    1,   73,    2, 0x08 /* Private */,
-      15,    1,   76,    2, 0x08 /* Private */,
-      18,    1,   79,    2, 0x08 /* Private */,
+       4,    0,   72,    2, 0x08 /* Private */,
+       5,    0,   73,    2, 0x08 /* Private */,
+       6,    1,   74,    2, 0x08 /* Private */,
+       8,    1,   77,    2, 0x08 /* Private */,
+      10,    1,   80,    2, 0x08 /* Private */,
+      11,    1,   83,    2, 0x08 /* Private */,
+      15,    1,   86,    2, 0x08 /* Private */,
+      18,    1,   89,    2, 0x08 /* Private */,
+      20,    1,   92,    2, 0x08 /* Private */,
+      23,    0,   95,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -102,6 +109,8 @@ static const uint qt_meta_data_MainWindow[] = {
     0x80000000 | 12, 0x80000000 | 13,   14,
     0x80000000 | 16, 0x80000000 | 13,   17,
     QMetaType::Void, QMetaType::QString,   19,
+    QMetaType::Void, 0x80000000 | 21,   22,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -123,6 +132,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 7: { TypeWeapon_t _r = _t->StringToTypeWeapon((*reinterpret_cast< const std::string(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< TypeWeapon_t*>(_a[0]) = std::move(_r); }  break;
         case 8: _t->handlerTypeMap((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 9: _t->closeEvent((*reinterpret_cast< QCloseEvent*(*)>(_a[1]))); break;
+        case 10: _t->loadTextures(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -166,13 +177,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }

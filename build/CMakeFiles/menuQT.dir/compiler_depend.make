@@ -1616,6 +1616,9 @@ CMakeFiles/menuQT.dir/client/menuQT/mainwindow.cpp.o: ../client/menuQT/mainwindo
   /usr/include/x86_64-linux-gnu/qt5/QtGui/qstandarditemmodel.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractitemmodel.h \
   ../client/menuQT/join.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
   ../client/render/game/client_game_state.h \
   ui_mainwindow.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
@@ -2070,6 +2073,9 @@ CMakeFiles/menuQT.dir/menuQT_autogen/mocs_compilation.cpp.o: menuQT_autogen/mocs
   /usr/include/x86_64-linux-gnu/qt5/QtCore/QUrl \
   ../client/menuQT/create.h \
   ../client/menuQT/join.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
   ../client/render/game/client_game_state.h
 
 
@@ -2086,6 +2092,10 @@ menuQT_autogen/mocs_compilation.cpp:
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qcombobox.h:
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QComboBox:
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h:
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox:
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow:
 

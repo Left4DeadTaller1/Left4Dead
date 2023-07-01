@@ -1,7 +1,7 @@
 tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: \
- /home/regman/taller/left4Dead/tests/server_tests/games_manager_tests.cpp \
+ /home/usaurio/Left4Dead/tests/server_tests/games_manager_tests.cpp \
  /usr/include/stdc-predef.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest.h \
  /usr/include/c++/11/cstddef \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -189,9 +189,9 @@ tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-assertion-result.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-message.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-port.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-assertion-result.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-message.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-port.h \
  /usr/include/c++/11/stdlib.h /usr/include/string.h \
  /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
@@ -211,8 +211,8 @@ tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/custom/gtest-port.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-port-arch.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/custom/gtest-port.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-port-arch.h \
  /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
@@ -228,9 +228,9 @@ tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: \
  /usr/include/c++/11/any /usr/include/c++/11/optional \
  /usr/include/c++/11/bits/enable_special_members.h \
  /usr/include/c++/11/variant \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-death-test.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-death-test-internal.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-matchers.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-death-test.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-death-test-internal.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-matchers.h \
  /usr/include/c++/11/atomic /usr/include/c++/11/functional \
  /usr/include/c++/11/bits/std_function.h \
  /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
@@ -240,8 +240,8 @@ tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-printers.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-internal.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-printers.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-internal.h \
  /usr/include/x86_64-linux-gnu/sys/wait.h /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
  /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
@@ -267,48 +267,48 @@ tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h /usr/include/c++/11/map \
  /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-filepath.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-string.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-type-util.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-filepath.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-string.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-type-util.h \
  /usr/include/c++/11/cxxabi.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/custom/gtest-printers.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-param-test.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/custom/gtest-printers.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-param-test.h \
  /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-param-util.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/internal/gtest-param-util.h \
  /usr/include/c++/11/cassert /usr/include/assert.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-test-part.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest-typed-test.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest_pred_impl.h \
- /home/regman/taller/left4Dead/lib/googletest/googletest/include/gtest/gtest_prod.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-test-part.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest-typed-test.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest_pred_impl.h \
+ /home/usaurio/Left4Dead/lib/googletest/googletest/include/gtest/gtest_prod.h \
  /usr/include/c++/11/algorithm \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
- /home/regman/taller/left4Dead/server_root/game/games_manager.h \
- /home/regman/taller/left4Dead/server_root/game/game.h \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/list.tcc /usr/include/c++/11/queue \
- /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_deque.h \
- /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/bits/stl_queue.h \
- /home/regman/taller/left4Dead/server_root/game/action.h \
- /home/regman/taller/left4Dead/server_root/entities/collision_detector.h \
- /home/regman/taller/left4Dead/server_root/entities/attack.h \
- /home/regman/taller/left4Dead/server_root/entities/entity.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/infected.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h \
- /home/regman/taller/left4Dead/server_root/entities/attack.h \
- /home/regman/taller/left4Dead/server_root/entities/entity.h \
- /home/regman/taller/left4Dead/server_root/entities/player.h \
- /home/regman/taller/left4Dead/server_root/entities/weapon.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/jumper.h \
- /home/regman/taller/left4Dead/server_root/entities/player.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/spear.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/venom.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/witch.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/zombie.h \
- /home/regman/taller/left4Dead/server_root/entities/obstacle.h \
- /home/regman/taller/left4Dead/dipa_classes/queue.h \
- /home/regman/taller/left4Dead/server_root/game/server_message.h \
- /home/regman/taller/left4Dead/server_root/client_connection/server_protocol.h \
+ /home/usaurio/Left4Dead/server_root/game/games_manager.h \
+ /home/usaurio/Left4Dead/server_root/game/game.h /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h /usr/include/c++/11/bits/list.tcc \
+ /usr/include/c++/11/queue /usr/include/c++/11/deque \
+ /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /usr/include/c++/11/bits/stl_queue.h \
+ /home/usaurio/Left4Dead/server_root/game/action.h \
+ /home/usaurio/Left4Dead/server_root/entities/collision_detector.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
+ /home/usaurio/Left4Dead/server_root/entities/attack.h \
+ /home/usaurio/Left4Dead/server_root/entities/entity.h \
+ /home/usaurio/Left4Dead/server_root/entities/player.h \
+ /home/usaurio/Left4Dead/server_root/entities/weapon.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
+ /home/usaurio/Left4Dead/server_root/entities/player.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie.h \
+ /home/usaurio/Left4Dead/server_root/entities/obstacle.h \
+ /home/usaurio/Left4Dead/dipa_classes/queue.h \
+ /home/usaurio/Left4Dead/server_root/game/server_message.h \
+ /home/usaurio/Left4Dead/server_root/client_connection/server_protocol.h \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
@@ -322,15 +322,15 @@ tests/CMakeFiles/server_tests.dir/server_tests/games_manager_tests.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
  /usr/include/x86_64-linux-gnu/bits/socket2.h \
  /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/c++/11/cstring \
- /home/regman/taller/left4Dead/server_root/game/action.h \
- /home/regman/taller/left4Dead/server_root/game/server_message.h \
- /home/regman/taller/left4Dead/dipa_classes/socket.h \
- /home/regman/taller/left4Dead/dipa_classes/thread.h \
- /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
+ /home/usaurio/Left4Dead/server_root/game/action.h \
+ /home/usaurio/Left4Dead/server_root/game/server_message.h \
+ /home/usaurio/Left4Dead/dipa_classes/socket.h \
+ /home/usaurio/Left4Dead/dipa_classes/thread.h /usr/include/c++/11/thread \
+ /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/zombie_spawner.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/infected.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/jumper.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/spear.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/venom.h \
- /home/regman/taller/left4Dead/server_root/entities/zombies/witch.h
+ /home/usaurio/Left4Dead/server_root/entities/zombies/zombie_spawner.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/infected.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/jumper.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/spear.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/venom.h \
+ /home/usaurio/Left4Dead/server_root/entities/zombies/witch.h

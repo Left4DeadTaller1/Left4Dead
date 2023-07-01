@@ -45,14 +45,14 @@
 #define __FLT32_HAS_DENORM__ 1
 #define __UINT_FAST8_MAX__ 0xff
 #define __cpp_rvalue_reference 200610L
-#define BASE_PATH "/home/regman/taller/left4Dead"
+#define BASE_PATH "/home/usaurio/Left4Dead"
 #define __cpp_nested_namespace_definitions 201411L
 #define __DEC64_MAX_EXP__ 385
 #define __INT8_C(c) c
 #define __INT_LEAST8_WIDTH__ 8
 #define __cpp_variadic_using 201611L
 #define __UINT_LEAST64_MAX__ 0xffffffffffffffffUL
-#define SOUND_FONDO_QT "/home/regman/taller/left4Dead/client/render/resources/sounds/fondo3.mp3"
+#define SOUND_FONDO_QT "/home/usaurio/Left4Dead/client/render/resources/sounds/fondo3.mp3"
 #define __INT_LEAST8_MAX__ 0x7f
 #define __cpp_capture_star_this 201603L
 #define __SHRT_MAX__ 0x7fff
@@ -287,7 +287,7 @@
 #define __cpp_structured_bindings 201606L
 #define __SIZEOF_INT__ 4
 #define __DEC32_MAX_EXP__ 97
-#define DATA_PATH "/home/regman/taller/left4Dead"
+#define DATA_PATH "/home/usaurio/Left4Dead"
 #define __INT_FAST8_MAX__ 0x7f
 #define __FLT128_MAX__ 1.18973149535723176508575932662800702e+4932F128
 #define __INTPTR_MAX__ 0x7fffffffffffffffL
@@ -326,7 +326,7 @@
 #define __INT_MAX__ 0x7fffffff
 #define __linux__ 1
 #define __INT64_TYPE__ long int
-#define ICONO_SONIDO_QT "/home/regman/taller/left4Dead/client/render/resources/icono_sonido.png"
+#define ICONO_SONIDO_QT "/home/usaurio/Left4Dead/client/render/resources/icono_sonido.png"
 #define __FLT_MAX_EXP__ 128
 #define __ORDER_BIG_ENDIAN__ 4321
 #define __DBL_MANT_DIG__ 53
@@ -369,7 +369,7 @@
 #define __STDCPP_THREADS__ 1
 #define __GNUC_STDC_INLINE__ 1
 #define __FLT64_HAS_DENORM__ 1
-#define IMAGEN_FONDO_QT "/home/regman/taller/left4Dead/client/render/resources/fondoqt2.jpeg"
+#define IMAGEN_FONDO_QT "/home/usaurio/Left4Dead/client/render/resources/fondoqt2.jpeg"
 #define __FLT32_EPSILON__ 1.19209289550781250000000000000000000e-7F32
 #define __DBL_DECIMAL_DIG__ 17
 #define __STDC_UTF_32__ 1
