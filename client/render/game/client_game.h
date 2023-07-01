@@ -26,9 +26,8 @@ class ClientGame {
     uint32_t viewportWidth;
     uint32_t viewportHeight;
 
-    //no tienen porque ser punteros cambiar!!!
-    std::map<uint8_t, std::shared_ptr<ClientPlayer>> players;
-    std::map<uint8_t, std::shared_ptr<ClientInfected>> infected;
+    std::map<uint8_t, ClientPlayer> players;
+    std::map<uint8_t, ClientInfected> infected;
 
     void updatePlayers(std::vector<player_t>& players);
     void updateInfected(std::vector<infected_t>& zombies);

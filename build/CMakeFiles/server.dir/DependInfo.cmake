@@ -33,6 +33,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/usaurio/Left4Dead/server_root/game/configuration/game_config.cpp" "CMakeFiles/server.dir/server_root/game/configuration/game_config.cpp.o" "gcc" "CMakeFiles/server.dir/server_root/game/configuration/game_config.cpp.o.d"
   "/home/usaurio/Left4Dead/server_root/game/game.cpp" "CMakeFiles/server.dir/server_root/game/game.cpp.o" "gcc" "CMakeFiles/server.dir/server_root/game/game.cpp.o.d"
   "/home/usaurio/Left4Dead/server_root/game/games_manager.cpp" "CMakeFiles/server.dir/server_root/game/games_manager.cpp.o" "gcc" "CMakeFiles/server.dir/server_root/game/games_manager.cpp.o.d"
+  "/home/usaurio/Left4Dead/server_root/game/score_saver.cpp" "CMakeFiles/server.dir/server_root/game/score_saver.cpp.o" "gcc" "CMakeFiles/server.dir/server_root/game/score_saver.cpp.o.d"
   "/home/usaurio/Left4Dead/server_root/game/server_message.cpp" "CMakeFiles/server.dir/server_root/game/server_message.cpp.o" "gcc" "CMakeFiles/server.dir/server_root/game/server_message.cpp.o.d"
   "/home/usaurio/Left4Dead/server_root/server/acceptor.cpp" "CMakeFiles/server.dir/server_root/server/acceptor.cpp.o" "gcc" "CMakeFiles/server.dir/server_root/server/acceptor.cpp.o.d"
   "/home/usaurio/Left4Dead/server_root/server/server.cpp" "CMakeFiles/server.dir/server_root/server/server.cpp.o" "gcc" "CMakeFiles/server.dir/server_root/server/server.cpp.o.d"

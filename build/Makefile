@@ -1748,6 +1748,33 @@ server_root/game/games_manager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_root/game/games_manager.cpp.s
 .PHONY : server_root/game/games_manager.cpp.s
 
+server_root/game/score_saver.o: server_root/game/score_saver.cpp.o
+.PHONY : server_root/game/score_saver.o
+
+# target to build an object file
+server_root/game/score_saver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_lib.dir/build.make CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_root/game/score_saver.cpp.o
+.PHONY : server_root/game/score_saver.cpp.o
+
+server_root/game/score_saver.i: server_root/game/score_saver.cpp.i
+.PHONY : server_root/game/score_saver.i
+
+# target to preprocess a source file
+server_root/game/score_saver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_lib.dir/build.make CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_root/game/score_saver.cpp.i
+.PHONY : server_root/game/score_saver.cpp.i
+
+server_root/game/score_saver.s: server_root/game/score_saver.cpp.s
+.PHONY : server_root/game/score_saver.s
+
+# target to generate assembly for a file
+server_root/game/score_saver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_lib.dir/build.make CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_root/game/score_saver.cpp.s
+.PHONY : server_root/game/score_saver.cpp.s
+
 server_root/game/server_message.o: server_root/game/server_message.cpp.o
 .PHONY : server_root/game/server_message.o
 
@@ -2047,6 +2074,9 @@ help:
 	@echo "... server_root/game/games_manager.o"
 	@echo "... server_root/game/games_manager.i"
 	@echo "... server_root/game/games_manager.s"
+	@echo "... server_root/game/score_saver.o"
+	@echo "... server_root/game/score_saver.i"
+	@echo "... server_root/game/score_saver.s"
 	@echo "... server_root/game/server_message.o"
 	@echo "... server_root/game/server_message.i"
 	@echo "... server_root/game/server_message.s"

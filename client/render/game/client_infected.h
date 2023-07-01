@@ -45,11 +45,8 @@ class ClientInfected {
                     GameTexture& textureLifeBar);
 
     void draw(SDL2pp::Renderer& renderer, int it);
-
     bool isZombieDead(void);
-
     void updateInfected(infected_t& newCurrentInfected);
-
     void updateSizeWindow(uint32_t newWidth, uint32_t newHeight);
 };
 

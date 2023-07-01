@@ -51,11 +51,6 @@ class ClientRenderer {
                   Queue<std::shared_ptr<ActionRender>>& qEventsToRender, 
                   SDL2pp::Window& window_, ClientProtocol& protocol, 
                   MainWindow& windowQT);
-
-   void copySprite(SDL2pp::Texture& texture, 
-                  SDL2pp::Rect& srcRect, 
-                  SDL2pp::Rect& dstRect, 
-                  int lookingTo);
                     
    int looprender(void);
 };

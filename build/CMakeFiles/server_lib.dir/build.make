@@ -363,10 +363,24 @@ CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/game/games_manager.cpp -o CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.s
 
+CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o: CMakeFiles/server_lib.dir/flags.make
+CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o: ../server_root/game/score_saver.cpp
+CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o -MF CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o -c /home/usaurio/Left4Dead/server_root/game/score_saver.cpp
+
+CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/usaurio/Left4Dead/server_root/game/score_saver.cpp > CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.i
+
+CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/usaurio/Left4Dead/server_root/game/score_saver.cpp -o CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.s
+
 CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o: ../server_root/game/server_message.cpp
 CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o -MF CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o -c /home/usaurio/Left4Dead/server_root/game/server_message.cpp
 
 CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.i: cmake_force
@@ -380,7 +394,7 @@ CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o: ../server_root/server/acceptor.cpp
 CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o -MF CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o -c /home/usaurio/Left4Dead/server_root/server/acceptor.cpp
 
 CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.i: cmake_force
@@ -394,7 +408,7 @@ CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: ../server_root/server/server.cpp
 CMakeFiles/server_lib.dir/server_root/server/server.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/server.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/server.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/server/server.cpp.o -MF CMakeFiles/server_lib.dir/server_root/server/server.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/server/server.cpp.o -c /home/usaurio/Left4Dead/server_root/server/server.cpp
 
 CMakeFiles/server_lib.dir/server_root/server/server.cpp.i: cmake_force
@@ -408,7 +422,7 @@ CMakeFiles/server_lib.dir/server_root/server/server.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: ../server_root/server/server_main.cpp
 CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o -MF CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o.d -o CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.o -c /home/usaurio/Left4Dead/server_root/server/server_main.cpp
 
 CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.i: cmake_force
@@ -422,7 +436,7 @@ CMakeFiles/server_lib.dir/server_root/server/server_main.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o: ../dipa_classes/liberror.cpp
 CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o -MF CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o.d -o CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/liberror.cpp
 
 CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.i: cmake_force
@@ -436,7 +450,7 @@ CMakeFiles/server_lib.dir/dipa_classes/liberror.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o: ../dipa_classes/resolver.cpp
 CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o -MF CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o.d -o CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/resolver.cpp
 
 CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.i: cmake_force
@@ -450,7 +464,7 @@ CMakeFiles/server_lib.dir/dipa_classes/resolver.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o: ../dipa_classes/resolvererror.cpp
 CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o -MF CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o.d -o CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/resolvererror.cpp
 
 CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.i: cmake_force
@@ -464,7 +478,7 @@ CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.s: cmake_force
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: CMakeFiles/server_lib.dir/flags.make
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: ../dipa_classes/socket.cpp
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o: CMakeFiles/server_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o -MF CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o.d -o CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o -c /home/usaurio/Left4Dead/dipa_classes/socket.cpp
 
 CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.i: cmake_force
@@ -498,6 +512,7 @@ server_lib_OBJECTS = \
 "CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/game/game.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o" \
+"CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o" \
 "CMakeFiles/server_lib.dir/server_root/server/server.cpp.o" \
@@ -531,6 +546,7 @@ libserver_lib.a: CMakeFiles/server_lib.dir/server_root/game/action.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/game/configuration/game_config.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/game/game.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/game/games_manager.cpp.o
+libserver_lib.a: CMakeFiles/server_lib.dir/server_root/game/score_saver.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/game/server_message.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/server/acceptor.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/server_root/server/server.cpp.o
@@ -541,7 +557,7 @@ libserver_lib.a: CMakeFiles/server_lib.dir/dipa_classes/resolvererror.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/dipa_classes/socket.cpp.o
 libserver_lib.a: CMakeFiles/server_lib.dir/build.make
 libserver_lib.a: CMakeFiles/server_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Linking CXX static library libserver_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/usaurio/Left4Dead/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX static library libserver_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/server_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server_lib.dir/link.txt --verbose=$(VERBOSE)
 
