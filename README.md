@@ -1,5 +1,6 @@
 # Left4Dead
-Left4Dead is a imitation of the game Left 4 Dead made by students from the University of Buenos Aires for the subject Taller de Programacion 1.
+
+Left4Dead es una imitación del juego Left 4 Dead realizada por estudiantes de la Universidad de Buenos Aires para la asignatura Taller de Programación 1.
 
 ## Documentacion
 
